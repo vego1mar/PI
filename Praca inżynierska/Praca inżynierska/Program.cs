@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace Praca_inżynierska
+namespace PI
     {
     static class Program
         {

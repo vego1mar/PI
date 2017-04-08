@@ -1,4 +1,4 @@
-﻿namespace Praca_inżynierska
+﻿namespace PI
     {
     partial class WfPropertiesPanelResizer
         {

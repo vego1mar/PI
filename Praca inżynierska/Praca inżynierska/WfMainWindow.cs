@@ -2,12 +2,19 @@
 using System;
 using System.Threading;
 
-// TODO: Update info.
-// TODO: Configuration file.
-// TODO: Reading set of curves from a file.
-// TODO: Internationalization (I18N).
+// TODO: Update info
+// TODO: Configuration file
+// TODO: Reading set of curves from a file
+// TODO: Saving set of curves into a file
+// TODO: I18N
+// TODO: Add a spinner for generated/meaned curve index selection
+// TODO: Remove 'Visualize' button and refreshing automatically
+// TODO: Replace 'Apply to' by 'From' and 'To'
+// TODO: Lock components displaying data of X axis
+// TODO: Drawing curves in charts
+// TODO: Implement Gaussian noise option
 
-namespace Praca_inżynierska
+namespace PI
     {
     #region WfMainWindow : Form
     public partial class WfMainWindow : Form
@@ -86,19 +93,9 @@ namespace Praca_inżynierska
 
         private void wfViewResizePropertiesPanelToolStripMenuItem_Click( object sender, System.EventArgs e )
             {
-            var propertiesResizerDialog = new WfPropertiesPanelResizer();
-
-            try {
-                propertiesResizerDialog.ShowDialog( this );
-                }
-            catch ( ArgumentException x ) {
-                Logger.WriteExceptionInfo( x );
-                }
-            catch ( InvalidOperationException x ) {
-                Logger.WriteExceptionInfo( x );
-                }
-            catch ( Exception x ) {
-                Logger.WriteExceptionInfo( x );
+            using ( var propertiesResizerDialog = new WfPropertiesPanelResizer() )
+                {
+                WindowsFormsHelper.ShowDialogSafe( propertiesResizerDialog, this );
                 }
             }
         #endregion
@@ -258,6 +255,52 @@ namespace Praca_inżynierska
                 }
             else {
                 wfPropertiesProgramActualState2TextBox.Text = "Success";
+                }
+            }
+        #endregion
+
+        #region wfPropertiesGenerateDefineButton_Click(...) : void
+        /// <summary>
+        /// Action: Click<para></para>
+        /// Properties root tab: Generate<para></para>
+        /// Properties tab section: Pattern curve scaffold<para></para>
+        /// </summary>
+        /// <param name="sender">No use.</param>
+        /// <param name="e">No use.</param>
+
+        private void wfPropertiesGenerateDefineButton_Click( object sender, EventArgs e )
+            {
+            using ( var PCDDialog = new PatternCurveDefiner() )
+                {
+                WindowsFormsHelper.ShowDialogSafe( PCDDialog, this );
+
+                if ( PCDDialog.DialogResult == DialogResult.OK ) {
+                    PreSets.ChosenPatternCurveScaffold = PCDDialog.ChosenCurve;
+                    PreSets.ParameterA = PCDDialog.ParameterA;
+                    PreSets.ParameterB = PCDDialog.ParameterB;
+                    PreSets.ParameterC = PCDDialog.ParameterC;
+                    PreSets.ParameterD = PCDDialog.ParameterD;
+                    PreSets.ParameterE = PCDDialog.ParameterE;
+                    PreSets.ParameterF = PCDDialog.ParameterF;
+                    UpdateComponentRelatedWithChosenPatternCurveScaffoldStatus();
+                    }
+                }
+            }
+        #endregion
+
+        #region UpdateComponentRelatedWithChosenPatternCurveScaffoldStatus() : void
+        private void UpdateComponentRelatedWithChosenPatternCurveScaffoldStatus()
+            {
+            switch ( PreSets.ChosenPatternCurveScaffold ) {
+                case SharedConstants.CURVE_PATTERN_SCAFFOLD_POLYNOMIAL :
+                    wfPropertiesGenerateCurveScaffold2TextBox.Text = "Polynomial";
+                    break;
+                case SharedConstants.CURVE_PATTERN_SCAFFOLD_HYPERBOLIC :
+                    wfPropertiesGenerateCurveScaffold2TextBox.Text = "Hyperbolic";
+                    break;
+                default :
+                    wfPropertiesGenerateCurveScaffold2TextBox.Text = "Not chosen";
+                    break;
                 }
             }
         #endregion

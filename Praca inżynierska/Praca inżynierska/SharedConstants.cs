@@ -1,8 +1,9 @@
-﻿namespace Praca_inżynierska
+﻿namespace PI
     {
-    public static class SharedDefinitions
+    public static class SharedConstants
         {
 
+        #region Exceptions
         public const int OBJECT_DISPOSED_EXCEPTION = 1;
         public const int IO_EXCEPTION = 2;
         public const int EXCEPTION = 3;
@@ -15,6 +16,13 @@
         public const int SECURITY_EXCEPTION = 10;
         public const int UNAUTHORIZED_ACCESS_EXCEPTION = 11;
         public const int ENCODER_FALLBACK_EXCEPTION = 12;
+        #endregion
+
+        #region WfMainWindow.Properties.Generate
+        public const int CURVE_PATTERN_SCAFFOLD_POLYNOMIAL = 0;
+        public const int CURVE_PATTERN_SCAFFOLD_HYPERBOLIC = 1;
+        #endregion
 
         }
+
     }

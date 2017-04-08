@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace Praca_inżynierska
+namespace PI
     {
     public partial class WfPropertiesPanelResizer : Form
         {

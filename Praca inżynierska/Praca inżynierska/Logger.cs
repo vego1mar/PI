@@ -2,7 +2,7 @@
 using System;
 using System.Globalization;
 
-namespace Praca_inżynierska
+namespace PI
     {
     #region Logger
     /// <summary>
@@ -11,10 +11,12 @@ namespace Praca_inżynierska
 
     static class Logger
         {
-        #region Members
+        #region Constants
         public const string WRITER_PATH = @"..\..\Logs\log.txt";
         public const int WRITER_BUFFER_SIZE = 4096;
+        #endregion
 
+        #region Members
         private static StreamWriter m_Writer;
         #endregion
 
@@ -26,31 +28,31 @@ namespace Praca_inżynierska
                 PrintLogHeader();
                 }
             catch ( ArgumentNullException ) {
-                return SharedDefinitions.ARGUMENT_NULL_EXCEPTION;
+                return SharedConstants.ARGUMENT_NULL_EXCEPTION;
                 }
             catch ( ArgumentOutOfRangeException ) {
-                return SharedDefinitions.ARGUMENT_OUT_OF_RANGE_EXCEPTION;
+                return SharedConstants.ARGUMENT_OUT_OF_RANGE_EXCEPTION;
                 }
             catch ( ArgumentException ) {
-                return SharedDefinitions.ARGUMENT_EXCEPTION;
+                return SharedConstants.ARGUMENT_EXCEPTION;
                 }
             catch ( DirectoryNotFoundException ) {
-                return SharedDefinitions.DIRECTORY_NOT_FOUND_EXCEPTION;
+                return SharedConstants.DIRECTORY_NOT_FOUND_EXCEPTION;
                 }
             catch ( PathTooLongException ) {
-                return SharedDefinitions.PATH_TOO_LONG_EXCEPTION;
+                return SharedConstants.PATH_TOO_LONG_EXCEPTION;
                 }
             catch ( IOException ) {
-                return SharedDefinitions.IO_EXCEPTION;
+                return SharedConstants.IO_EXCEPTION;
                 }
             catch ( System.Security.SecurityException ) {
-                return SharedDefinitions.SECURITY_EXCEPTION;
+                return SharedConstants.SECURITY_EXCEPTION;
                 }
             catch ( UnauthorizedAccessException ) {
-                return SharedDefinitions.UNAUTHORIZED_ACCESS_EXCEPTION;
+                return SharedConstants.UNAUTHORIZED_ACCESS_EXCEPTION;
                 }
             catch ( Exception ) {
-                return SharedDefinitions.EXCEPTION;
+                return SharedConstants.EXCEPTION;
                 }
 
             return 0;
@@ -71,13 +73,13 @@ namespace Praca_inżynierska
                 m_Writer.WriteLine( text );
                 }
             catch ( ObjectDisposedException ) {
-                return SharedDefinitions.OBJECT_DISPOSED_EXCEPTION;
+                return SharedConstants.OBJECT_DISPOSED_EXCEPTION;
                 }
             catch ( IOException ) {
-                return SharedDefinitions.IO_EXCEPTION;
+                return SharedConstants.IO_EXCEPTION;
                 }
             catch ( Exception ) {
-                return SharedDefinitions.EXCEPTION;
+                return SharedConstants.EXCEPTION;
                 }
 
             return 0;
@@ -91,16 +93,16 @@ namespace Praca_inżynierska
                 m_Writer.Write( text );
                 }
             catch ( ObjectDisposedException ) {
-                return SharedDefinitions.OBJECT_DISPOSED_EXCEPTION;
+                return SharedConstants.OBJECT_DISPOSED_EXCEPTION;
                 }
             catch ( IOException ) {
-                return SharedDefinitions.IO_EXCEPTION;
+                return SharedConstants.IO_EXCEPTION;
                 }
             catch ( NotSupportedException ) {
-                return SharedDefinitions.NOT_SUPPORTED_EXCEPTION;
+                return SharedConstants.NOT_SUPPORTED_EXCEPTION;
                 }
             catch ( Exception ) {
-                return SharedDefinitions.EXCEPTION;
+                return SharedConstants.EXCEPTION;
                 }
 
             return 0;
