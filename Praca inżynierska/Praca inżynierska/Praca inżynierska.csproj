@@ -84,6 +84,7 @@
       <DependentUpon>PropertiesPanelResizer.cs</DependentUpon>
     </Compile>
     <Compile Include="SharedConstants.cs" />
+    <Compile Include="Tasker.cs" />
     <Compile Include="WfMainWindow.cs">
       <SubType>Form</SubType>
     </Compile>

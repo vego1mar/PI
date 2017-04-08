@@ -64,14 +64,26 @@ namespace PI
         #endregion
 
         #region GetValueFromNumericUpDown(...) : double
-        internal static double GetValueFromNumericUpDown( NumericUpDown numeric )
+        internal static T GetValueFromNumericUpDown<T>( NumericUpDown numeric )
             {
-            double value = 0.0;
+            T value = default( T );
 
             try {
-                value = Convert.ToDouble( numeric.Value );
+                value = (T)(Convert.ChangeType( numeric.Value, typeof(T) ));
+                }
+            catch ( InvalidCastException x ) {
+                Logger.WriteExceptionInfo( x );
+                }
+            catch ( FormatException x ) {
+                Logger.WriteExceptionInfo( x );
+                }
+            catch ( OverflowException x ) {
+                Logger.WriteExceptionInfo( x );
                 }
             catch ( ArgumentOutOfRangeException x ) {
+                Logger.WriteExceptionInfo( x );
+                }
+            catch ( ArgumentNullException x ) {
                 Logger.WriteExceptionInfo( x );
                 }
             catch ( Exception x ) {
@@ -83,7 +95,7 @@ namespace PI
         #endregion
 
         #region SetValueForNumericUpDown(...) : void
-        internal static void SetValueForNumericUpDown( NumericUpDown numeric, double value )
+        internal static void SetValueForNumericUpDown<T>( NumericUpDown numeric, T value )
             {
             try {
                 numeric.Value = Convert.ToDecimal( value );
@@ -97,6 +109,63 @@ namespace PI
             catch ( Exception x ) {
                 Logger.WriteExceptionInfo( x );
                 }
+            }
+        #endregion
+
+        #region SetValueForTrackBar(...) : void
+        internal static void SetValueForTrackBar( TrackBar trackBar, int value )
+            {
+            try {
+                trackBar.Value = value;
+                }
+            catch ( ArgumentException x ) {
+                Logger.WriteExceptionInfo( x );
+                }
+            catch ( Exception x ) {
+                Logger.WriteExceptionInfo( x );
+                }
+            }
+        #endregion
+
+        #region GetValueFromTrackBar(...) : int
+        internal static int GetValueFromTrackBar( TrackBar trackBar )
+            {
+            int value = 0;
+
+            try {
+                value = trackBar.Value;
+                }
+            catch ( ArgumentException x ) {
+                Logger.WriteExceptionInfo( x );
+                }
+            catch ( Exception x ) {
+                Logger.WriteExceptionInfo( x );
+                }
+
+            return value;
+            }
+        #endregion
+
+        #region ShowMessageBoxSafe(...) : int
+        internal static int ShowMessageBoxSafe( string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon )
+            {
+            try {
+                MessageBox.Show( text, caption, buttons, icon );
+                }
+            catch ( System.ComponentModel.InvalidEnumArgumentException x ) {
+                Logger.WriteExceptionInfo( x );
+                return SharedConstants.INVALID_ENUM_ARGUMENT_EXCEPTION;
+                }
+            catch ( InvalidOperationException x ) {
+                Logger.WriteExceptionInfo( x );
+                return SharedConstants.INVALID_OPERATION_EXCEPTION;
+                }
+            catch ( Exception x ) {
+                Logger.WriteExceptionInfo( x );
+                return SharedConstants.EXCEPTION;
+                }
+
+            return 0;
             }
         #endregion
 

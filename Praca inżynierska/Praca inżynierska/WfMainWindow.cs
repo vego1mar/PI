@@ -7,12 +7,14 @@ using System.Threading;
 // TODO: Reading set of curves from a file
 // TODO: Saving set of curves into a file
 // TODO: I18N
-// TODO: Add a spinner for generated/meaned curve index selection
 // TODO: Remove 'Visualize' button and refreshing automatically
 // TODO: Replace 'Apply to' by 'From' and 'To'
 // TODO: Lock components displaying data of X axis
 // TODO: Drawing curves in charts
 // TODO: Implement Gaussian noise option
+// TODO: Menu rebuild - adding icons etc.
+// TODO: Program tab - info about using .NET Framework version
+// TODO: Move timer definition to Tasker and generalize the methods
 
 namespace PI
     {
@@ -46,7 +48,7 @@ namespace PI
             m_PropertiesPanelWidth = wfPropertiesPanel.Size.Width;
             m_TimerThread = null;
             DefineTimerThread();
-            m_TimerThread.Start();
+            Tasker.StartThreadSafe( m_TimerThread );
             UpdateComponentRelatedWithActualStatusOfTimerThread();
             }
         #endregion
@@ -251,10 +253,10 @@ namespace PI
         private void UpdateComponentRelatedWithActualStatusOfTimerThread()
             {
             if ( m_TimerThread == null ) {
-                wfPropertiesProgramActualState2TextBox.Text = "Failure";
+                wfPropertiesProgramActualState2TextBox.Text = SharedConstants.TIMER_START_FAILURE;
                 }
             else {
-                wfPropertiesProgramActualState2TextBox.Text = "Success";
+                wfPropertiesProgramActualState2TextBox.Text = SharedConstants.TIMER_START_SUCCESS;
                 }
             }
         #endregion
@@ -274,15 +276,23 @@ namespace PI
                 {
                 WindowsFormsHelper.ShowDialogSafe( PCDDialog, this );
 
-                if ( PCDDialog.DialogResult == DialogResult.OK ) {
-                    PreSets.ChosenPatternCurveScaffold = PCDDialog.ChosenCurve;
-                    PreSets.ParameterA = PCDDialog.ParameterA;
-                    PreSets.ParameterB = PCDDialog.ParameterB;
-                    PreSets.ParameterC = PCDDialog.ParameterC;
-                    PreSets.ParameterD = PCDDialog.ParameterD;
-                    PreSets.ParameterE = PCDDialog.ParameterE;
-                    PreSets.ParameterF = PCDDialog.ParameterF;
-                    UpdateComponentRelatedWithChosenPatternCurveScaffoldStatus();
+                try {
+                    if ( PCDDialog.DialogResult == DialogResult.OK ) {
+                        PreSets.ChosenPatternCurveScaffold = PCDDialog.ChosenCurve;
+                        PreSets.ParameterA = PCDDialog.ParameterA;
+                        PreSets.ParameterB = PCDDialog.ParameterB;
+                        PreSets.ParameterC = PCDDialog.ParameterC;
+                        PreSets.ParameterD = PCDDialog.ParameterD;
+                        PreSets.ParameterE = PCDDialog.ParameterE;
+                        PreSets.ParameterF = PCDDialog.ParameterF;
+                        UpdateComponentRelatedWithChosenPatternCurveScaffoldStatus();
+                        }
+                    }
+                catch ( System.ComponentModel.InvalidEnumArgumentException x ) {
+                    Logger.WriteExceptionInfo( x );
+                    }
+                catch ( Exception x ) {
+                    Logger.WriteExceptionInfo( x );
                     }
                 }
             }
@@ -293,15 +303,121 @@ namespace PI
             {
             switch ( PreSets.ChosenPatternCurveScaffold ) {
                 case SharedConstants.CURVE_PATTERN_SCAFFOLD_POLYNOMIAL :
-                    wfPropertiesGenerateCurveScaffold2TextBox.Text = "Polynomial";
+                    wfPropertiesGenerateCurveScaffold2TextBox.Text = SharedConstants.CURVE_PATTERN_SCAFFOLD_POLYNOMIAL_TEXT;
                     break;
                 case SharedConstants.CURVE_PATTERN_SCAFFOLD_HYPERBOLIC :
-                    wfPropertiesGenerateCurveScaffold2TextBox.Text = "Hyperbolic";
+                    wfPropertiesGenerateCurveScaffold2TextBox.Text = SharedConstants.CURVE_PATTERN_SCAFFOLD_HYPERBOLIC_TEXT;
                     break;
                 default :
-                    wfPropertiesGenerateCurveScaffold2TextBox.Text = "Not chosen";
+                    wfPropertiesGenerateCurveScaffold2TextBox.Text = SharedConstants.CURVE_PATTERN_SCAFFOLD_DEFAULT_TEXT;
                     break;
                 }
+            }
+        #endregion
+
+        #region wfPropertiesDatasheetCurveTypeComboBox_SelectedIndexChanged(...) : void
+        /// <summary>
+        /// Action: Selected index changed<para></para>
+        /// Properties root tab: Datasheet<para></para>
+        /// Properties tab section: Dataset control<para></para>
+        /// </summary>
+        /// <param name="sender">No use.</param>
+        /// <param name="e">No use.</param>
+
+        private void wfPropertiesDatasheetCurveTypeComboBox_SelectedIndexChanged( object sender, EventArgs e )
+            {
+            switch ( WindowsFormsHelper.GetSelectedIndexSafe(wfPropertiesDatasheetCurveTypeComboBox) ) {
+                case SharedConstants.DATASET_CURVE_TYPE_CONTROL_GENERATED :
+                    wfPropertiesDatasheetCurveIndexNumericUpDown.Enabled = true;
+                    wfPropertiesDatasheetCurveIndexTrackBar.Enabled = true;
+                    // TODO: curve refreshing
+                    break;
+                case SharedConstants.DATASET_CURVE_TYPE_CONTROL_MEANED :
+                    wfPropertiesDatasheetCurveIndexNumericUpDown.Enabled = false;
+                    wfPropertiesDatasheetCurveIndexTrackBar.Enabled = false;
+                    // TODO: curve refreshing
+                    break;
+                default :
+                    wfPropertiesDatasheetCurveIndexNumericUpDown.Enabled = false;
+                    wfPropertiesDatasheetCurveIndexTrackBar.Enabled = false;
+                    break;
+                }
+            }
+        #endregion
+
+        #region wfPropertiesDatasheetCurveIndexNumericUpDown_ValueChanged(...) : void
+        /// <summary>
+        /// Action: value changed<para></para>
+        /// Properties root tab: Datasheet<para></para>
+        /// Properties tab section: Dataset control<para></para>
+        /// </summary>
+        /// <param name="sender">No use.</param>
+        /// <param name="e">No use.</param>
+
+        private void wfPropertiesDatasheetCurveIndexNumericUpDown_ValueChanged( object sender, EventArgs e )
+            {
+            int numericUpDownValue = WindowsFormsHelper.GetValueFromNumericUpDown<int>( wfPropertiesDatasheetCurveIndexNumericUpDown );
+            WindowsFormsHelper.SetValueForTrackBar( wfPropertiesDatasheetCurveIndexTrackBar, numericUpDownValue );
+            }
+        #endregion
+
+        #region wfPropertiesDatasheetCurveIndexTrackBar_Scroll(...) : void
+        /// <summary>
+        /// Action: scroll<para></para>
+        /// Properties root tab: Datasheet<para></para>
+        /// Properties tab section: Dataset control<para></para>
+        /// </summary>
+        /// <param name="sender">No use.</param>
+        /// <param name="e">No use.</param>
+
+        private void wfPropertiesDatasheetCurveIndexTrackBar_Scroll( object sender, EventArgs e )
+            {
+            int trackBarValue = WindowsFormsHelper.GetValueFromTrackBar( wfPropertiesDatasheetCurveIndexTrackBar );
+            WindowsFormsHelper.SetValueForNumericUpDown( wfPropertiesDatasheetCurveIndexNumericUpDown, trackBarValue );
+            }
+        #endregion
+
+        #region wfPropertiesGenerateNumberOfCurves1NumericUpDown_ValueChanged(...) : void
+        /// <summary>
+        /// Action: value changed<para></para>
+        /// Properties root tab: Generate<para></para>
+        /// Properties tab section: Whole set of curves<para></para>
+        /// </summary>
+        /// <param name="sender">No use.</param>
+        /// <param name="e">No use.</param>
+
+        private void wfPropertiesGenerateNumberOfCurves1NumericUpDown_ValueChanged( object sender, EventArgs e )
+            {
+            int numberOfCurves = WindowsFormsHelper.GetValueFromNumericUpDown<int>( wfPropertiesGenerateNumberOfCurves1NumericUpDown );
+            wfPropertiesDatasheetCurveIndexNumericUpDown.Minimum = 1;
+            wfPropertiesDatasheetCurveIndexNumericUpDown.Maximum = numberOfCurves;
+            wfPropertiesDatasheetCurveIndexTrackBar.Minimum = 1;
+            wfPropertiesDatasheetCurveIndexTrackBar.Maximum = numberOfCurves;
+            PreSets.NumberOfCurves = numberOfCurves;
+            }
+        #endregion
+
+        #region wfPropertiesGenerateGenerateSetButton_Click(...) : void
+        /// <summary>
+        /// Action: button click<para></para>
+        /// Properties root tab: Generate<para></para>
+        /// Properties tab section: Individual curves<para></para>
+        /// </summary>
+        /// <param name="sender">No use.</param>
+        /// <param name="e">No use.</param>
+
+        private void wfPropertiesGenerateGenerateSetButton_Click( object sender, EventArgs e )
+            {
+            if ( wfPropertiesGenerateCurveScaffold2TextBox.Text == SharedConstants.CURVE_PATTERN_SCAFFOLD_DEFAULT_TEXT ) {
+                string text = SharedConstants.GENERATE_SET_BUTTON_PREREQUISITE_WARNING_TEXT;
+                string caption = SharedConstants.GENERATE_SET_BUTTON_PREREQUISITE_WARNING_CAPTION;
+                WindowsFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Stop );
+                return;
+                }
+
+            // TODO: gather info to PreSets - number of curves, number of points, number of threads (x2)
+            // TODO: generate pattern curve + refresh chart
+            // TODO: generate set of curves
             }
         #endregion
 

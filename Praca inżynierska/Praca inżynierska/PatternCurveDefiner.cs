@@ -125,21 +125,21 @@ namespace PI
         #region SaveParametersForPolynomialPatternCurve() : void
         private void SaveParametersForPolynomialPatternCurve()
             {
-            ParameterA = WindowsFormsHelper.GetValueFromNumericUpDown( wfContentPolynomialANumericUpDown );
-            ParameterB = WindowsFormsHelper.GetValueFromNumericUpDown( wfContentPolynomialBNumericUpDown );
-            ParameterC = WindowsFormsHelper.GetValueFromNumericUpDown( wfContentPolynomialCNumericUpDown );
-            ParameterD = WindowsFormsHelper.GetValueFromNumericUpDown( wfContentPolynomialDNumericUpDown );
-            ParameterE = WindowsFormsHelper.GetValueFromNumericUpDown( wfContentPolynomialENumericUpDown );
-            ParameterF = WindowsFormsHelper.GetValueFromNumericUpDown( wfContentPolynomialFNumericUpDown );
+            ParameterA = WindowsFormsHelper.GetValueFromNumericUpDown<double>( wfContentPolynomialANumericUpDown );
+            ParameterB = WindowsFormsHelper.GetValueFromNumericUpDown<double>( wfContentPolynomialBNumericUpDown );
+            ParameterC = WindowsFormsHelper.GetValueFromNumericUpDown<double>( wfContentPolynomialCNumericUpDown );
+            ParameterD = WindowsFormsHelper.GetValueFromNumericUpDown<double>( wfContentPolynomialDNumericUpDown );
+            ParameterE = WindowsFormsHelper.GetValueFromNumericUpDown<double>( wfContentPolynomialENumericUpDown );
+            ParameterF = WindowsFormsHelper.GetValueFromNumericUpDown<double>( wfContentPolynomialFNumericUpDown );
             }
         #endregion
 
         #region SaveParametersForHyperbolicPatternCurve() : void
         private void SaveParametersForHyperbolicPatternCurve()
             {
-            ParameterA = WindowsFormsHelper.GetValueFromNumericUpDown( wfContentPolynomialANumericUpDown );
-            ParameterB = WindowsFormsHelper.GetValueFromNumericUpDown( wfContentPolynomialBNumericUpDown );
-            ParameterC = WindowsFormsHelper.GetValueFromNumericUpDown( wfContentPolynomialCNumericUpDown );
+            ParameterA = WindowsFormsHelper.GetValueFromNumericUpDown<double>( wfContentPolynomialANumericUpDown );
+            ParameterB = WindowsFormsHelper.GetValueFromNumericUpDown<double>( wfContentPolynomialBNumericUpDown );
+            ParameterC = WindowsFormsHelper.GetValueFromNumericUpDown<double>( wfContentPolynomialCNumericUpDown );
             }
         #endregion
 
