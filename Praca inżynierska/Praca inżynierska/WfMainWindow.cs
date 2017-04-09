@@ -15,6 +15,11 @@ using System.Threading;
 // TODO: Menu rebuild - adding icons etc.
 // TODO: Program tab - info about using .NET Framework version
 // TODO: Move timer definition to Tasker and generalize the methods
+// TODO: Change the picture for hyperbolic pattern curve scaffold from 'f(x)' to 'y'
+// TODO: Log viewier from the application runtime context
+// TODO: Center dialog windows and message boxes
+// TODO: Threads
+// TODO: Errors notification icons
 
 namespace PI
     {
@@ -23,9 +28,10 @@ namespace PI
         {
         
         #region Members
-        private bool m_IsPropertiesPanelHidden;
-        private int m_PropertiesPanelWidth;
-        private Thread m_TimerThread;
+        private bool IsPropertiesPanelHidden;
+        private int PropertiesPanelWidth;
+        private Thread TimerThread;
+        private CurvesDataset ChartsCurvesDataset;
         #endregion
 
         #region WfMainWindow()
@@ -44,12 +50,13 @@ namespace PI
         #region InitalizeFields() : void
         private void InitalizeFields()
             {
-            m_IsPropertiesPanelHidden = false;
-            m_PropertiesPanelWidth = wfPropertiesPanel.Size.Width;
-            m_TimerThread = null;
+            IsPropertiesPanelHidden = false;
+            PropertiesPanelWidth = wfPropertiesPanel.Size.Width;
+            TimerThread = null;
             DefineTimerThread();
-            Tasker.StartThreadSafe( m_TimerThread );
+            ThreadTasker.StartThreadSafe( TimerThread );
             UpdateComponentRelatedWithActualStatusOfTimerThread();
+            ChartsCurvesDataset = new CurvesDataset();
             }
         #endregion
 
@@ -64,22 +71,22 @@ namespace PI
 
         private void wfViewHideShowPropertiesPanelToolStripMenuItem_Click( object sender, System.EventArgs e )
             {
-            if ( m_IsPropertiesPanelHidden ) {
+            if ( IsPropertiesPanelHidden ) {
                 wfPropertiesPanel.Visible = true;
                 wfPropertiesPanel.Enabled = true;
                 var panelSize = wfPropertiesPanel.Size;
-                panelSize.Width = m_PropertiesPanelWidth;
+                panelSize.Width = PropertiesPanelWidth;
                 wfPropertiesPanel.Size = panelSize;
-                m_IsPropertiesPanelHidden = false;
+                IsPropertiesPanelHidden = false;
                 }
             else {
                 wfPropertiesPanel.Visible = false;
                 wfPropertiesPanel.Enabled = false;
                 var panelSize = wfPropertiesPanel.Size;
-                m_PropertiesPanelWidth = panelSize.Width;
+                PropertiesPanelWidth = panelSize.Width;
                 panelSize.Width = 0;
                 wfPropertiesPanel.Size = panelSize;
-                m_IsPropertiesPanelHidden = true;
+                IsPropertiesPanelHidden = true;
                 }
             }
         #endregion
@@ -154,13 +161,17 @@ namespace PI
 
         private void DefineTimerThread()
             {
-            m_TimerThread = new Thread( () => {
+            TimerThread = new Thread( () => {
                 try {
+                    Thread.CurrentThread.IsBackground = true;
                     System.Timers.Timer timer = new System.Timers.Timer();
                     InstallEventForTimer( ref timer );
                     timer.Interval = 1000;
                     timer.Start();
                     timer.Enabled = true;
+                    }
+                catch ( ThreadStateException x ) {
+                    Logger.WriteExceptionInfo( x );
                     }
                 catch ( ObjectDisposedException x ) {
                     Logger.WriteExceptionInfo( x );
@@ -252,7 +263,7 @@ namespace PI
 
         private void UpdateComponentRelatedWithActualStatusOfTimerThread()
             {
-            if ( m_TimerThread == null ) {
+            if ( TimerThread == null ) {
                 wfPropertiesProgramActualState2TextBox.Text = SharedConstants.TIMER_START_FAILURE;
                 }
             else {
@@ -415,8 +426,18 @@ namespace PI
                 return;
                 }
 
-            // TODO: gather info to PreSets - number of curves, number of points, number of threads (x2)
-            // TODO: generate pattern curve + refresh chart
+            PreSets.NumberOfCurves = WindowsFormsHelper.GetValueFromNumericUpDown<int>( wfPropertiesGenerateNumberOfCurves1NumericUpDown );
+            PreSets.NumberOfPoints = WindowsFormsHelper.GetValueFromNumericUpDown<int>( wfPropertiesGenerateNumberOfPointsNumericUpDown );
+            PreSets.StartingXPoint = WindowsFormsHelper.GetValueFromNumericUpDown<int>( wfPropertiesGenerateStartingXPointNumericUpDown );
+
+            if ( ChartsCurvesDataset.GeneratePatternCurve(PreSets.ChosenPatternCurveScaffold, PreSets.NumberOfPoints, PreSets.StartingXPoint) ) {
+                wfChartsPatternCurve.Series.Clear();
+                wfChartsPatternCurve.Series.Add( ChartsCurvesDataset.GetPatternCurveChartingSeries() );
+                wfChartsPatternCurve.Series[0].BorderWidth = 3;
+                wfChartsPatternCurve.Visible = true;
+                wfChartsPatternCurve.Invalidate();
+                }
+
             // TODO: generate set of curves
             }
         #endregion

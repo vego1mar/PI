@@ -69,6 +69,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CurvesDataset.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="PatternCurveDefiner.cs">
       <SubType>Form</SubType>
@@ -84,7 +85,7 @@
       <DependentUpon>PropertiesPanelResizer.cs</DependentUpon>
     </Compile>
     <Compile Include="SharedConstants.cs" />
-    <Compile Include="Tasker.cs" />
+    <Compile Include="ThreadTasker.cs" />
     <Compile Include="WfMainWindow.cs">
       <SubType>Form</SubType>
     </Compile>

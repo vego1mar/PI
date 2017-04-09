@@ -13,8 +13,10 @@
         internal static double ParameterF { get; set; } = 1.0;
         #endregion
 
-        #region WfMainWindow.Properties
+        #region WfMainWindow.Properties.Generate
         internal static int NumberOfCurves { get; set; } = 1;
+        internal static int NumberOfPoints { get; set; } = 1;
+        internal static int StartingXPoint { get; set; } = 1;
         #endregion
 
         }

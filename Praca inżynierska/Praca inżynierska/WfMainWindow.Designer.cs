@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
             {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea21 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend21 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series21 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea22 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend22 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series22 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.wfChartsPatternCurve = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.wfChartsMeanedCurve = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.wfPropertiesPanel = new System.Windows.Forms.Panel();
@@ -46,14 +46,10 @@
             this.wfPropertiesGeneratePatternCurveScaffoldTextBox = new System.Windows.Forms.TextBox();
             this.wfPropertiesGenerateNumberOfCurves2NumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.wfPropertiesGenerateNumberOfCurves2TextBox = new System.Windows.Forms.TextBox();
-            this.wfPropertiesGenerateThreadForTaskTextBox = new System.Windows.Forms.TextBox();
             this.wfPropertiesGenerateMeanTypeTextBox = new System.Windows.Forms.TextBox();
             this.wfPropertiesGenerateAveragingTextBox = new System.Windows.Forms.TextBox();
-            this.wfPropertiesGenerateNumberOfThreads2NumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.wfPropertiesGenerateNumberOfThreads2TextBox = new System.Windows.Forms.TextBox();
-            this.wfPropertiesGenerateIndividualCurvesTextBox = new System.Windows.Forms.TextBox();
-            this.wfPropertiesGenerateNumberOfThreads1NumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.wfPropertiesGenerateNumberOfThreads1TextBox = new System.Windows.Forms.TextBox();
+            this.wfPropertiesGenerateStartingXPointNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.wfPropertiesGenerateStartingXPointTextBox = new System.Windows.Forms.TextBox();
             this.wfPropertiesGenerateNumberOfPointsNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.wfPropertiesGenerateNumberOfPointsTextBox = new System.Windows.Forms.TextBox();
             this.wfPropertiesGenerateWholeSetOfCurvesTextBox = new System.Windows.Forms.TextBox();
@@ -61,7 +57,6 @@
             this.wfPropertiesGenerateNumberOfCurves1NumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.wfPropertiesGenerateGenerateSetButton = new System.Windows.Forms.Button();
             this.wfPropertiesGenerateMeanTypeComboBox = new System.Windows.Forms.ComboBox();
-            this.wfPropertiesGenerateThreadForTaskCheckBox = new System.Windows.Forms.CheckBox();
             this.wfPropertiesGenerateApplyButton = new System.Windows.Forms.Button();
             this.wfPropertiesMalformTabPage = new System.Windows.Forms.TabPage();
             this.wfPropertiesDatasheetTabPage = new System.Windows.Forms.TabPage();
@@ -85,6 +80,7 @@
             this.wfPropertiesDatasheetRefreshButton = new System.Windows.Forms.Button();
             this.wfPropertiesDatasheetApplyToComboBox = new System.Windows.Forms.ComboBox();
             this.wfPropertiesDatasheetOperationTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.wfPropertiesDatasheetCurveIndexTrackBar = new System.Windows.Forms.TrackBar();
             this.wfPropertiesProgramTabPage = new System.Windows.Forms.TabPage();
             this.wfPropertiesProgramTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.wfPropertiesProgramCounts2TextBox = new System.Windows.Forms.TextBox();
@@ -120,7 +116,6 @@
             this.wfMenuProgram = new System.Windows.Forms.ToolStripMenuItem();
             this.wfMenuProgramExit = new System.Windows.Forms.ToolStripMenuItem();
             this.wfChartsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.wfPropertiesDatasheetCurveIndexTrackBar = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.wfChartsPatternCurve)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.wfChartsMeanedCurve)).BeginInit();
             this.wfPropertiesPanel.SuspendLayout();
@@ -128,8 +123,7 @@
             this.wfPropertiesGenerateTabPage.SuspendLayout();
             this.wfPropertiesGenerateTableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.wfPropertiesGenerateNumberOfCurves2NumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wfPropertiesGenerateNumberOfThreads2NumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wfPropertiesGenerateNumberOfThreads1NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.wfPropertiesGenerateStartingXPointNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.wfPropertiesGenerateNumberOfPointsNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.wfPropertiesGenerateNumberOfCurves1NumericUpDown)).BeginInit();
             this.wfPropertiesDatasheetTabPage.SuspendLayout();
@@ -138,57 +132,69 @@
             ((System.ComponentModel.ISupportInitialize)(this.wfPropertiesDatasheetPlaceholder2NumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.wfPropertiesDatasheetPlaceholder1NumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.wfPropertiesDatasheetCurveIndexNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.wfPropertiesDatasheetCurveIndexTrackBar)).BeginInit();
             this.wfPropertiesProgramTabPage.SuspendLayout();
             this.wfPropertiesProgramTableLayoutPanel.SuspendLayout();
             this.wfMenu.SuspendLayout();
             this.wfChartsTableLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.wfPropertiesDatasheetCurveIndexTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // wfChartsPatternCurve
             // 
-            chartArea21.Name = "ChartArea1";
-            this.wfChartsPatternCurve.ChartAreas.Add(chartArea21);
+            chartArea1.AxisX.IsLabelAutoFit = false;
+            chartArea1.AxisX.IsMarginVisible = false;
+            chartArea1.AxisX.LabelAutoFitMaxFontSize = 8;
+            chartArea1.AxisX.LabelAutoFitMinFontSize = 8;
+            chartArea1.AxisX.LabelAutoFitStyle = System.Windows.Forms.DataVisualization.Charting.LabelAutoFitStyles.None;
+            chartArea1.AxisX.LabelStyle.Font = new System.Drawing.Font("Consolas", 8F);
+            chartArea1.AxisX.TitleFont = new System.Drawing.Font("Consolas", 8F);
+            chartArea1.BackColor = System.Drawing.Color.White;
+            chartArea1.IsSameFontSizeForAllAxes = true;
+            chartArea1.Name = "PatternCurveChartArea";
+            this.wfChartsPatternCurve.ChartAreas.Add(chartArea1);
             this.wfChartsPatternCurve.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend21.Enabled = false;
-            legend21.Name = "Legend1";
-            this.wfChartsPatternCurve.Legends.Add(legend21);
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.wfChartsPatternCurve.Legends.Add(legend1);
             this.wfChartsPatternCurve.Location = new System.Drawing.Point(3, 3);
             this.wfChartsPatternCurve.Name = "wfChartsPatternCurve";
-            series21.BorderWidth = 3;
-            series21.ChartArea = "ChartArea1";
-            series21.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series21.Color = System.Drawing.Color.Black;
-            series21.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            series21.IsVisibleInLegend = false;
-            series21.Legend = "Legend1";
-            series21.Name = "Series1";
-            series21.YValuesPerPoint = 4;
-            this.wfChartsPatternCurve.Series.Add(series21);
+            series1.BorderWidth = 5;
+            series1.ChartArea = "PatternCurveChartArea";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Color = System.Drawing.Color.Black;
+            series1.CustomProperties = "EmptyPointValue=Zero";
+            series1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            series1.IsVisibleInLegend = false;
+            series1.IsXValueIndexed = true;
+            series1.Legend = "Legend1";
+            series1.Name = "PatternCurveSeries";
+            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            this.wfChartsPatternCurve.Series.Add(series1);
             this.wfChartsPatternCurve.Size = new System.Drawing.Size(324, 410);
             this.wfChartsPatternCurve.TabIndex = 0;
             this.wfChartsPatternCurve.Text = "wfPatternCurveChart";
             // 
             // wfChartsMeanedCurve
             // 
-            chartArea22.Name = "ChartArea1";
-            this.wfChartsMeanedCurve.ChartAreas.Add(chartArea22);
+            chartArea2.Name = "ChartArea1";
+            this.wfChartsMeanedCurve.ChartAreas.Add(chartArea2);
             this.wfChartsMeanedCurve.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend22.Enabled = false;
-            legend22.Name = "Legend1";
-            this.wfChartsMeanedCurve.Legends.Add(legend22);
+            legend2.Enabled = false;
+            legend2.Name = "Legend1";
+            this.wfChartsMeanedCurve.Legends.Add(legend2);
             this.wfChartsMeanedCurve.Location = new System.Drawing.Point(333, 3);
             this.wfChartsMeanedCurve.Name = "wfChartsMeanedCurve";
-            series22.BorderWidth = 3;
-            series22.ChartArea = "ChartArea1";
-            series22.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series22.Color = System.Drawing.Color.Black;
-            series22.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            series22.IsVisibleInLegend = false;
-            series22.Legend = "Legend1";
-            series22.Name = "Series1";
-            series22.YValuesPerPoint = 4;
-            this.wfChartsMeanedCurve.Series.Add(series22);
+            series2.BorderWidth = 3;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Color = System.Drawing.Color.Black;
+            series2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            series2.IsVisibleInLegend = false;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            series2.YValuesPerPoint = 4;
+            this.wfChartsMeanedCurve.Series.Add(series2);
             this.wfChartsMeanedCurve.Size = new System.Drawing.Size(325, 410);
             this.wfChartsMeanedCurve.TabIndex = 1;
             this.wfChartsMeanedCurve.Text = "wfMeanedCurveChart";
@@ -237,30 +243,25 @@
             this.wfPropertiesGenerateTableLayoutPanel.Controls.Add(this.wfPropertiesGenerateDefineButton, 1, 3);
             this.wfPropertiesGenerateTableLayoutPanel.Controls.Add(this.wfPropertiesGenerateCurveScaffold1TextBox, 0, 1);
             this.wfPropertiesGenerateTableLayoutPanel.Controls.Add(this.wfPropertiesGeneratePatternCurveScaffoldTextBox, 0, 0);
-            this.wfPropertiesGenerateTableLayoutPanel.Controls.Add(this.wfPropertiesGenerateNumberOfCurves2NumericUpDown, 1, 19);
-            this.wfPropertiesGenerateTableLayoutPanel.Controls.Add(this.wfPropertiesGenerateNumberOfCurves2TextBox, 0, 19);
-            this.wfPropertiesGenerateTableLayoutPanel.Controls.Add(this.wfPropertiesGenerateThreadForTaskTextBox, 0, 20);
-            this.wfPropertiesGenerateTableLayoutPanel.Controls.Add(this.wfPropertiesGenerateMeanTypeTextBox, 0, 18);
-            this.wfPropertiesGenerateTableLayoutPanel.Controls.Add(this.wfPropertiesGenerateAveragingTextBox, 0, 17);
-            this.wfPropertiesGenerateTableLayoutPanel.Controls.Add(this.wfPropertiesGenerateNumberOfThreads2NumericUpDown, 1, 12);
-            this.wfPropertiesGenerateTableLayoutPanel.Controls.Add(this.wfPropertiesGenerateNumberOfThreads2TextBox, 0, 12);
-            this.wfPropertiesGenerateTableLayoutPanel.Controls.Add(this.wfPropertiesGenerateIndividualCurvesTextBox, 0, 11);
-            this.wfPropertiesGenerateTableLayoutPanel.Controls.Add(this.wfPropertiesGenerateNumberOfThreads1NumericUpDown, 1, 9);
-            this.wfPropertiesGenerateTableLayoutPanel.Controls.Add(this.wfPropertiesGenerateNumberOfThreads1TextBox, 0, 9);
+            this.wfPropertiesGenerateTableLayoutPanel.Controls.Add(this.wfPropertiesGenerateNumberOfCurves2NumericUpDown, 1, 16);
+            this.wfPropertiesGenerateTableLayoutPanel.Controls.Add(this.wfPropertiesGenerateNumberOfCurves2TextBox, 0, 16);
+            this.wfPropertiesGenerateTableLayoutPanel.Controls.Add(this.wfPropertiesGenerateMeanTypeTextBox, 0, 15);
+            this.wfPropertiesGenerateTableLayoutPanel.Controls.Add(this.wfPropertiesGenerateAveragingTextBox, 0, 14);
+            this.wfPropertiesGenerateTableLayoutPanel.Controls.Add(this.wfPropertiesGenerateStartingXPointNumericUpDown, 1, 9);
+            this.wfPropertiesGenerateTableLayoutPanel.Controls.Add(this.wfPropertiesGenerateStartingXPointTextBox, 0, 9);
             this.wfPropertiesGenerateTableLayoutPanel.Controls.Add(this.wfPropertiesGenerateNumberOfPointsNumericUpDown, 1, 8);
             this.wfPropertiesGenerateTableLayoutPanel.Controls.Add(this.wfPropertiesGenerateNumberOfPointsTextBox, 0, 8);
             this.wfPropertiesGenerateTableLayoutPanel.Controls.Add(this.wfPropertiesGenerateWholeSetOfCurvesTextBox, 0, 6);
             this.wfPropertiesGenerateTableLayoutPanel.Controls.Add(this.wfPropertiesGenerateNumberOfCurves1TextBox, 0, 7);
             this.wfPropertiesGenerateTableLayoutPanel.Controls.Add(this.wfPropertiesGenerateNumberOfCurves1NumericUpDown, 1, 7);
-            this.wfPropertiesGenerateTableLayoutPanel.Controls.Add(this.wfPropertiesGenerateGenerateSetButton, 1, 14);
-            this.wfPropertiesGenerateTableLayoutPanel.Controls.Add(this.wfPropertiesGenerateMeanTypeComboBox, 1, 18);
-            this.wfPropertiesGenerateTableLayoutPanel.Controls.Add(this.wfPropertiesGenerateThreadForTaskCheckBox, 1, 20);
-            this.wfPropertiesGenerateTableLayoutPanel.Controls.Add(this.wfPropertiesGenerateApplyButton, 1, 22);
+            this.wfPropertiesGenerateTableLayoutPanel.Controls.Add(this.wfPropertiesGenerateGenerateSetButton, 1, 11);
+            this.wfPropertiesGenerateTableLayoutPanel.Controls.Add(this.wfPropertiesGenerateMeanTypeComboBox, 1, 15);
+            this.wfPropertiesGenerateTableLayoutPanel.Controls.Add(this.wfPropertiesGenerateApplyButton, 1, 18);
             this.wfPropertiesGenerateTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.wfPropertiesGenerateTableLayoutPanel.Location = new System.Drawing.Point(3, 3);
             this.wfPropertiesGenerateTableLayoutPanel.Name = "wfPropertiesGenerateTableLayoutPanel";
             this.wfPropertiesGenerateTableLayoutPanel.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
-            this.wfPropertiesGenerateTableLayoutPanel.RowCount = 25;
+            this.wfPropertiesGenerateTableLayoutPanel.RowCount = 22;
             this.wfPropertiesGenerateTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.wfPropertiesGenerateTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.wfPropertiesGenerateTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
@@ -283,9 +284,7 @@
             this.wfPropertiesGenerateTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.wfPropertiesGenerateTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.wfPropertiesGenerateTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.wfPropertiesGenerateTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.wfPropertiesGenerateTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.wfPropertiesGenerateTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.wfPropertiesGenerateTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.wfPropertiesGenerateTableLayoutPanel.Size = new System.Drawing.Size(261, 384);
             this.wfPropertiesGenerateTableLayoutPanel.TabIndex = 0;
             // 
@@ -343,7 +342,7 @@
             // wfPropertiesGenerateNumberOfCurves2NumericUpDown
             // 
             this.wfPropertiesGenerateNumberOfCurves2NumericUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wfPropertiesGenerateNumberOfCurves2NumericUpDown.Location = new System.Drawing.Point(122, 478);
+            this.wfPropertiesGenerateNumberOfCurves2NumericUpDown.Location = new System.Drawing.Point(122, 403);
             this.wfPropertiesGenerateNumberOfCurves2NumericUpDown.Maximum = new decimal(new int[] {
             32766,
             0,
@@ -370,7 +369,7 @@
             this.wfPropertiesGenerateNumberOfCurves2TextBox.BackColor = System.Drawing.SystemColors.HighlightText;
             this.wfPropertiesGenerateNumberOfCurves2TextBox.Cursor = System.Windows.Forms.Cursors.Default;
             this.wfPropertiesGenerateNumberOfCurves2TextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wfPropertiesGenerateNumberOfCurves2TextBox.Location = new System.Drawing.Point(3, 478);
+            this.wfPropertiesGenerateNumberOfCurves2TextBox.Location = new System.Drawing.Point(3, 403);
             this.wfPropertiesGenerateNumberOfCurves2TextBox.Name = "wfPropertiesGenerateNumberOfCurves2TextBox";
             this.wfPropertiesGenerateNumberOfCurves2TextBox.ReadOnly = true;
             this.wfPropertiesGenerateNumberOfCurves2TextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -378,25 +377,12 @@
             this.wfPropertiesGenerateNumberOfCurves2TextBox.TabIndex = 17;
             this.wfPropertiesGenerateNumberOfCurves2TextBox.Text = "Number of curves:";
             // 
-            // wfPropertiesGenerateThreadForTaskTextBox
-            // 
-            this.wfPropertiesGenerateThreadForTaskTextBox.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.wfPropertiesGenerateThreadForTaskTextBox.Cursor = System.Windows.Forms.Cursors.Default;
-            this.wfPropertiesGenerateThreadForTaskTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wfPropertiesGenerateThreadForTaskTextBox.Location = new System.Drawing.Point(3, 503);
-            this.wfPropertiesGenerateThreadForTaskTextBox.Name = "wfPropertiesGenerateThreadForTaskTextBox";
-            this.wfPropertiesGenerateThreadForTaskTextBox.ReadOnly = true;
-            this.wfPropertiesGenerateThreadForTaskTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.wfPropertiesGenerateThreadForTaskTextBox.Size = new System.Drawing.Size(113, 20);
-            this.wfPropertiesGenerateThreadForTaskTextBox.TabIndex = 14;
-            this.wfPropertiesGenerateThreadForTaskTextBox.Text = "Thread for task:";
-            // 
             // wfPropertiesGenerateMeanTypeTextBox
             // 
             this.wfPropertiesGenerateMeanTypeTextBox.BackColor = System.Drawing.SystemColors.HighlightText;
             this.wfPropertiesGenerateMeanTypeTextBox.Cursor = System.Windows.Forms.Cursors.Default;
             this.wfPropertiesGenerateMeanTypeTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wfPropertiesGenerateMeanTypeTextBox.Location = new System.Drawing.Point(3, 453);
+            this.wfPropertiesGenerateMeanTypeTextBox.Location = new System.Drawing.Point(3, 378);
             this.wfPropertiesGenerateMeanTypeTextBox.Name = "wfPropertiesGenerateMeanTypeTextBox";
             this.wfPropertiesGenerateMeanTypeTextBox.ReadOnly = true;
             this.wfPropertiesGenerateMeanTypeTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -411,102 +397,50 @@
             this.wfPropertiesGenerateAveragingTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.wfPropertiesGenerateAveragingTextBox.Enabled = false;
             this.wfPropertiesGenerateAveragingTextBox.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.wfPropertiesGenerateAveragingTextBox.Location = new System.Drawing.Point(3, 428);
+            this.wfPropertiesGenerateAveragingTextBox.Location = new System.Drawing.Point(3, 353);
             this.wfPropertiesGenerateAveragingTextBox.Name = "wfPropertiesGenerateAveragingTextBox";
             this.wfPropertiesGenerateAveragingTextBox.ReadOnly = true;
             this.wfPropertiesGenerateAveragingTextBox.Size = new System.Drawing.Size(233, 20);
             this.wfPropertiesGenerateAveragingTextBox.TabIndex = 11;
             this.wfPropertiesGenerateAveragingTextBox.Text = "Averaging";
             // 
-            // wfPropertiesGenerateNumberOfThreads2NumericUpDown
+            // wfPropertiesGenerateStartingXPointNumericUpDown
             // 
-            this.wfPropertiesGenerateNumberOfThreads2NumericUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wfPropertiesGenerateNumberOfThreads2NumericUpDown.Location = new System.Drawing.Point(122, 303);
-            this.wfPropertiesGenerateNumberOfThreads2NumericUpDown.Maximum = new decimal(new int[] {
-            255,
+            this.wfPropertiesGenerateStartingXPointNumericUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.wfPropertiesGenerateStartingXPointNumericUpDown.Location = new System.Drawing.Point(122, 228);
+            this.wfPropertiesGenerateStartingXPointNumericUpDown.Maximum = new decimal(new int[] {
+            10000,
             0,
             0,
             0});
-            this.wfPropertiesGenerateNumberOfThreads2NumericUpDown.Minimum = new decimal(new int[] {
-            1,
+            this.wfPropertiesGenerateStartingXPointNumericUpDown.Minimum = new decimal(new int[] {
+            10000,
             0,
             0,
-            0});
-            this.wfPropertiesGenerateNumberOfThreads2NumericUpDown.Name = "wfPropertiesGenerateNumberOfThreads2NumericUpDown";
-            this.wfPropertiesGenerateNumberOfThreads2NumericUpDown.Size = new System.Drawing.Size(114, 20);
-            this.wfPropertiesGenerateNumberOfThreads2NumericUpDown.TabIndex = 9;
-            this.wfPropertiesGenerateNumberOfThreads2NumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.wfPropertiesGenerateNumberOfThreads2NumericUpDown.ThousandsSeparator = true;
-            this.wfPropertiesGenerateNumberOfThreads2NumericUpDown.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // wfPropertiesGenerateNumberOfThreads2TextBox
-            // 
-            this.wfPropertiesGenerateNumberOfThreads2TextBox.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.wfPropertiesGenerateNumberOfThreads2TextBox.Cursor = System.Windows.Forms.Cursors.Default;
-            this.wfPropertiesGenerateNumberOfThreads2TextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wfPropertiesGenerateNumberOfThreads2TextBox.Location = new System.Drawing.Point(3, 303);
-            this.wfPropertiesGenerateNumberOfThreads2TextBox.Name = "wfPropertiesGenerateNumberOfThreads2TextBox";
-            this.wfPropertiesGenerateNumberOfThreads2TextBox.ReadOnly = true;
-            this.wfPropertiesGenerateNumberOfThreads2TextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.wfPropertiesGenerateNumberOfThreads2TextBox.Size = new System.Drawing.Size(113, 20);
-            this.wfPropertiesGenerateNumberOfThreads2TextBox.TabIndex = 8;
-            this.wfPropertiesGenerateNumberOfThreads2TextBox.Text = "Number of threads:";
-            // 
-            // wfPropertiesGenerateIndividualCurvesTextBox
-            // 
-            this.wfPropertiesGenerateIndividualCurvesTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.wfPropertiesGenerateTableLayoutPanel.SetColumnSpan(this.wfPropertiesGenerateIndividualCurvesTextBox, 2);
-            this.wfPropertiesGenerateIndividualCurvesTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wfPropertiesGenerateIndividualCurvesTextBox.Enabled = false;
-            this.wfPropertiesGenerateIndividualCurvesTextBox.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.wfPropertiesGenerateIndividualCurvesTextBox.Location = new System.Drawing.Point(3, 278);
-            this.wfPropertiesGenerateIndividualCurvesTextBox.Name = "wfPropertiesGenerateIndividualCurvesTextBox";
-            this.wfPropertiesGenerateIndividualCurvesTextBox.ReadOnly = true;
-            this.wfPropertiesGenerateIndividualCurvesTextBox.Size = new System.Drawing.Size(233, 20);
-            this.wfPropertiesGenerateIndividualCurvesTextBox.TabIndex = 7;
-            this.wfPropertiesGenerateIndividualCurvesTextBox.Text = "Individual curves";
-            // 
-            // wfPropertiesGenerateNumberOfThreads1NumericUpDown
-            // 
-            this.wfPropertiesGenerateNumberOfThreads1NumericUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wfPropertiesGenerateNumberOfThreads1NumericUpDown.Location = new System.Drawing.Point(122, 228);
-            this.wfPropertiesGenerateNumberOfThreads1NumericUpDown.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.wfPropertiesGenerateNumberOfThreads1NumericUpDown.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.wfPropertiesGenerateNumberOfThreads1NumericUpDown.Name = "wfPropertiesGenerateNumberOfThreads1NumericUpDown";
-            this.wfPropertiesGenerateNumberOfThreads1NumericUpDown.Size = new System.Drawing.Size(114, 20);
-            this.wfPropertiesGenerateNumberOfThreads1NumericUpDown.TabIndex = 6;
-            this.wfPropertiesGenerateNumberOfThreads1NumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.wfPropertiesGenerateNumberOfThreads1NumericUpDown.ThousandsSeparator = true;
-            this.wfPropertiesGenerateNumberOfThreads1NumericUpDown.Value = new decimal(new int[] {
+            -2147483648});
+            this.wfPropertiesGenerateStartingXPointNumericUpDown.Name = "wfPropertiesGenerateStartingXPointNumericUpDown";
+            this.wfPropertiesGenerateStartingXPointNumericUpDown.Size = new System.Drawing.Size(114, 20);
+            this.wfPropertiesGenerateStartingXPointNumericUpDown.TabIndex = 6;
+            this.wfPropertiesGenerateStartingXPointNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.wfPropertiesGenerateStartingXPointNumericUpDown.ThousandsSeparator = true;
+            this.wfPropertiesGenerateStartingXPointNumericUpDown.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
             // 
-            // wfPropertiesGenerateNumberOfThreads1TextBox
+            // wfPropertiesGenerateStartingXPointTextBox
             // 
-            this.wfPropertiesGenerateNumberOfThreads1TextBox.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.wfPropertiesGenerateNumberOfThreads1TextBox.Cursor = System.Windows.Forms.Cursors.Default;
-            this.wfPropertiesGenerateNumberOfThreads1TextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wfPropertiesGenerateNumberOfThreads1TextBox.Location = new System.Drawing.Point(3, 228);
-            this.wfPropertiesGenerateNumberOfThreads1TextBox.Name = "wfPropertiesGenerateNumberOfThreads1TextBox";
-            this.wfPropertiesGenerateNumberOfThreads1TextBox.ReadOnly = true;
-            this.wfPropertiesGenerateNumberOfThreads1TextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.wfPropertiesGenerateNumberOfThreads1TextBox.Size = new System.Drawing.Size(113, 20);
-            this.wfPropertiesGenerateNumberOfThreads1TextBox.TabIndex = 5;
-            this.wfPropertiesGenerateNumberOfThreads1TextBox.Text = "Number of threads:";
+            this.wfPropertiesGenerateStartingXPointTextBox.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.wfPropertiesGenerateStartingXPointTextBox.Cursor = System.Windows.Forms.Cursors.Default;
+            this.wfPropertiesGenerateStartingXPointTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.wfPropertiesGenerateStartingXPointTextBox.Location = new System.Drawing.Point(3, 228);
+            this.wfPropertiesGenerateStartingXPointTextBox.Name = "wfPropertiesGenerateStartingXPointTextBox";
+            this.wfPropertiesGenerateStartingXPointTextBox.ReadOnly = true;
+            this.wfPropertiesGenerateStartingXPointTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.wfPropertiesGenerateStartingXPointTextBox.Size = new System.Drawing.Size(113, 20);
+            this.wfPropertiesGenerateStartingXPointTextBox.TabIndex = 5;
+            this.wfPropertiesGenerateStartingXPointTextBox.Text = "Starting X point:";
             // 
             // wfPropertiesGenerateNumberOfPointsNumericUpDown
             // 
@@ -602,7 +536,7 @@
             // wfPropertiesGenerateGenerateSetButton
             // 
             this.wfPropertiesGenerateGenerateSetButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wfPropertiesGenerateGenerateSetButton.Location = new System.Drawing.Point(122, 353);
+            this.wfPropertiesGenerateGenerateSetButton.Location = new System.Drawing.Point(122, 278);
             this.wfPropertiesGenerateGenerateSetButton.Name = "wfPropertiesGenerateGenerateSetButton";
             this.wfPropertiesGenerateGenerateSetButton.Size = new System.Drawing.Size(114, 19);
             this.wfPropertiesGenerateGenerateSetButton.TabIndex = 10;
@@ -628,29 +562,15 @@
             "Power",
             "Logarithmic",
             "Exponential"});
-            this.wfPropertiesGenerateMeanTypeComboBox.Location = new System.Drawing.Point(122, 453);
+            this.wfPropertiesGenerateMeanTypeComboBox.Location = new System.Drawing.Point(122, 378);
             this.wfPropertiesGenerateMeanTypeComboBox.Name = "wfPropertiesGenerateMeanTypeComboBox";
             this.wfPropertiesGenerateMeanTypeComboBox.Size = new System.Drawing.Size(114, 21);
             this.wfPropertiesGenerateMeanTypeComboBox.TabIndex = 13;
             // 
-            // wfPropertiesGenerateThreadForTaskCheckBox
-            // 
-            this.wfPropertiesGenerateThreadForTaskCheckBox.AutoSize = true;
-            this.wfPropertiesGenerateThreadForTaskCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.wfPropertiesGenerateThreadForTaskCheckBox.Checked = true;
-            this.wfPropertiesGenerateThreadForTaskCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.wfPropertiesGenerateThreadForTaskCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wfPropertiesGenerateThreadForTaskCheckBox.Location = new System.Drawing.Point(122, 503);
-            this.wfPropertiesGenerateThreadForTaskCheckBox.Name = "wfPropertiesGenerateThreadForTaskCheckBox";
-            this.wfPropertiesGenerateThreadForTaskCheckBox.Size = new System.Drawing.Size(114, 19);
-            this.wfPropertiesGenerateThreadForTaskCheckBox.TabIndex = 15;
-            this.wfPropertiesGenerateThreadForTaskCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.wfPropertiesGenerateThreadForTaskCheckBox.UseVisualStyleBackColor = true;
-            // 
             // wfPropertiesGenerateApplyButton
             // 
             this.wfPropertiesGenerateApplyButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wfPropertiesGenerateApplyButton.Location = new System.Drawing.Point(122, 553);
+            this.wfPropertiesGenerateApplyButton.Location = new System.Drawing.Point(122, 453);
             this.wfPropertiesGenerateApplyButton.Name = "wfPropertiesGenerateApplyButton";
             this.wfPropertiesGenerateApplyButton.Size = new System.Drawing.Size(114, 19);
             this.wfPropertiesGenerateApplyButton.TabIndex = 16;
@@ -662,7 +582,7 @@
             this.wfPropertiesMalformTabPage.Location = new System.Drawing.Point(4, 22);
             this.wfPropertiesMalformTabPage.Name = "wfPropertiesMalformTabPage";
             this.wfPropertiesMalformTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.wfPropertiesMalformTabPage.Size = new System.Drawing.Size(267, 389);
+            this.wfPropertiesMalformTabPage.Size = new System.Drawing.Size(267, 390);
             this.wfPropertiesMalformTabPage.TabIndex = 1;
             this.wfPropertiesMalformTabPage.Text = "Malform";
             this.wfPropertiesMalformTabPage.UseVisualStyleBackColor = true;
@@ -1029,6 +949,19 @@
             this.wfPropertiesDatasheetOperationTypeComboBox.Size = new System.Drawing.Size(117, 21);
             this.wfPropertiesDatasheetOperationTypeComboBox.TabIndex = 22;
             // 
+            // wfPropertiesDatasheetCurveIndexTrackBar
+            // 
+            this.wfPropertiesDatasheetCurveIndexTrackBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.wfPropertiesDatasheetCurveIndexTrackBar.Enabled = false;
+            this.wfPropertiesDatasheetCurveIndexTrackBar.Location = new System.Drawing.Point(125, 78);
+            this.wfPropertiesDatasheetCurveIndexTrackBar.Maximum = 32766;
+            this.wfPropertiesDatasheetCurveIndexTrackBar.Name = "wfPropertiesDatasheetCurveIndexTrackBar";
+            this.wfPropertiesDatasheetCurveIndexTrackBar.Size = new System.Drawing.Size(117, 19);
+            this.wfPropertiesDatasheetCurveIndexTrackBar.TabIndex = 23;
+            this.wfPropertiesDatasheetCurveIndexTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.wfPropertiesDatasheetCurveIndexTrackBar.Value = 1;
+            this.wfPropertiesDatasheetCurveIndexTrackBar.Scroll += new System.EventHandler(this.wfPropertiesDatasheetCurveIndexTrackBar_Scroll);
+            // 
             // wfPropertiesProgramTabPage
             // 
             this.wfPropertiesProgramTabPage.Controls.Add(this.wfPropertiesProgramTableLayoutPanel);
@@ -1340,7 +1273,7 @@
             // wfMenuProgramExit
             // 
             this.wfMenuProgramExit.Name = "wfMenuProgramExit";
-            this.wfMenuProgramExit.Size = new System.Drawing.Size(98, 22);
+            this.wfMenuProgramExit.Size = new System.Drawing.Size(152, 22);
             this.wfMenuProgramExit.Text = "Exit";
             this.wfMenuProgramExit.Click += new System.EventHandler(this.wfMenuProgramExit_Click);
             // 
@@ -1359,19 +1292,6 @@
             this.wfChartsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 350F));
             this.wfChartsTableLayoutPanel.Size = new System.Drawing.Size(661, 416);
             this.wfChartsTableLayoutPanel.TabIndex = 4;
-            // 
-            // wfPropertiesDatasheetCurveIndexTrackBar
-            // 
-            this.wfPropertiesDatasheetCurveIndexTrackBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wfPropertiesDatasheetCurveIndexTrackBar.Enabled = false;
-            this.wfPropertiesDatasheetCurveIndexTrackBar.Location = new System.Drawing.Point(125, 78);
-            this.wfPropertiesDatasheetCurveIndexTrackBar.Maximum = 32766;
-            this.wfPropertiesDatasheetCurveIndexTrackBar.Name = "wfPropertiesDatasheetCurveIndexTrackBar";
-            this.wfPropertiesDatasheetCurveIndexTrackBar.Size = new System.Drawing.Size(117, 19);
-            this.wfPropertiesDatasheetCurveIndexTrackBar.TabIndex = 23;
-            this.wfPropertiesDatasheetCurveIndexTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.wfPropertiesDatasheetCurveIndexTrackBar.Value = 1;
-            this.wfPropertiesDatasheetCurveIndexTrackBar.Scroll += new System.EventHandler(this.wfPropertiesDatasheetCurveIndexTrackBar_Scroll);
             // 
             // WfMainWindow
             // 
@@ -1395,8 +1315,7 @@
             this.wfPropertiesGenerateTableLayoutPanel.ResumeLayout(false);
             this.wfPropertiesGenerateTableLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.wfPropertiesGenerateNumberOfCurves2NumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wfPropertiesGenerateNumberOfThreads2NumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wfPropertiesGenerateNumberOfThreads1NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.wfPropertiesGenerateStartingXPointNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.wfPropertiesGenerateNumberOfPointsNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.wfPropertiesGenerateNumberOfCurves1NumericUpDown)).EndInit();
             this.wfPropertiesDatasheetTabPage.ResumeLayout(false);
@@ -1406,13 +1325,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.wfPropertiesDatasheetPlaceholder2NumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.wfPropertiesDatasheetPlaceholder1NumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.wfPropertiesDatasheetCurveIndexNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.wfPropertiesDatasheetCurveIndexTrackBar)).EndInit();
             this.wfPropertiesProgramTabPage.ResumeLayout(false);
             this.wfPropertiesProgramTableLayoutPanel.ResumeLayout(false);
             this.wfPropertiesProgramTableLayoutPanel.PerformLayout();
             this.wfMenu.ResumeLayout(false);
             this.wfMenu.PerformLayout();
             this.wfChartsTableLayoutPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.wfPropertiesDatasheetCurveIndexTrackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1452,19 +1371,14 @@
         private System.Windows.Forms.TextBox wfPropertiesGenerateWholeSetOfCurvesTextBox;
         private System.Windows.Forms.TextBox wfPropertiesGenerateNumberOfCurves1TextBox;
         private System.Windows.Forms.NumericUpDown wfPropertiesGenerateNumberOfCurves1NumericUpDown;
-        private System.Windows.Forms.NumericUpDown wfPropertiesGenerateNumberOfThreads1NumericUpDown;
-        private System.Windows.Forms.TextBox wfPropertiesGenerateNumberOfThreads1TextBox;
+        private System.Windows.Forms.NumericUpDown wfPropertiesGenerateStartingXPointNumericUpDown;
+        private System.Windows.Forms.TextBox wfPropertiesGenerateStartingXPointTextBox;
         private System.Windows.Forms.NumericUpDown wfPropertiesGenerateNumberOfPointsNumericUpDown;
         private System.Windows.Forms.TextBox wfPropertiesGenerateNumberOfPointsTextBox;
-        private System.Windows.Forms.TextBox wfPropertiesGenerateIndividualCurvesTextBox;
-        private System.Windows.Forms.TextBox wfPropertiesGenerateNumberOfThreads2TextBox;
-        private System.Windows.Forms.NumericUpDown wfPropertiesGenerateNumberOfThreads2NumericUpDown;
         private System.Windows.Forms.Button wfPropertiesGenerateGenerateSetButton;
         private System.Windows.Forms.TextBox wfPropertiesGenerateMeanTypeTextBox;
         private System.Windows.Forms.TextBox wfPropertiesGenerateAveragingTextBox;
         private System.Windows.Forms.ComboBox wfPropertiesGenerateMeanTypeComboBox;
-        private System.Windows.Forms.TextBox wfPropertiesGenerateThreadForTaskTextBox;
-        private System.Windows.Forms.CheckBox wfPropertiesGenerateThreadForTaskCheckBox;
         private System.Windows.Forms.Button wfPropertiesGenerateApplyButton;
         private System.Windows.Forms.ToolStripMenuItem wfMenuGenerateShow;
         private System.Windows.Forms.ToolStripSeparator wfMenuGenerateSeparator1;
