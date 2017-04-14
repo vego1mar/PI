@@ -2,31 +2,29 @@
 using System;
 using System.Threading;
 
+// INTERNAL BACKLOG
 // TODO: Update info
 // TODO: Configuration file
 // TODO: Reading set of curves from a file
 // TODO: Saving set of curves into a file
 // TODO: I18N
-// TODO: Remove 'Visualize' button and refreshing automatically
-// TODO: Replace 'Apply to' by 'From' and 'To'
-// TODO: Lock components displaying data of X axis
+// TODO: Refreshing charts and curves datasheet automatically
+// TODO: Using DataGridView for displaying dataset of curves in a new modal window
 // TODO: Drawing curves in charts
 // TODO: Implement Gaussian noise option
-// TODO: Menu rebuild - adding icons etc.
-// TODO: Program tab - info about using .NET Framework version
-// TODO: Move timer definition to Tasker and generalize the methods
-// TODO: Change the picture for hyperbolic pattern curve scaffold from 'f(x)' to 'y'
+// TODO: Menu rebuild - adding icons etc. + functionality
+// TODO: Move timer definition to ThreadTasker and generalize the methods
 // TODO: Log viewier from the application runtime context
 // TODO: Center dialog windows and message boxes
-// TODO: Threads
+// TODO: Working on threads
 // TODO: Errors notification icons
 
 namespace PI
-    {
+{
     #region WfMainWindow : Form
     public partial class WfMainWindow : Form
-        {
-        
+    {
+
         #region Members
         private bool IsPropertiesPanelHidden;
         private int PropertiesPanelWidth;
@@ -41,15 +39,15 @@ namespace PI
         /// </summary>
 
         public WfMainWindow()
-            {
+        {
             InitializeComponent();
             InitalizeFields();
-            }
+        }
         #endregion
 
         #region InitalizeFields() : void
         private void InitalizeFields()
-            {
+        {
             IsPropertiesPanelHidden = false;
             PropertiesPanelWidth = wfPropertiesPanel.Size.Width;
             TimerThread = null;
@@ -57,7 +55,7 @@ namespace PI
             ThreadTasker.StartThreadSafe( TimerThread );
             UpdateComponentRelatedWithActualStatusOfTimerThread();
             ChartsCurvesDataset = new CurvesDataset();
-            }
+        }
         #endregion
 
         #region wfViewHideShowPropertiesPanelToolStripMenuItem_Click(...) : void
@@ -70,7 +68,7 @@ namespace PI
         /// <param name="e">No use.</param>
 
         private void wfViewHideShowPropertiesPanelToolStripMenuItem_Click( object sender, System.EventArgs e )
-            {
+        {
             if ( IsPropertiesPanelHidden ) {
                 wfPropertiesPanel.Visible = true;
                 wfPropertiesPanel.Enabled = true;
@@ -78,7 +76,7 @@ namespace PI
                 panelSize.Width = PropertiesPanelWidth;
                 wfPropertiesPanel.Size = panelSize;
                 IsPropertiesPanelHidden = false;
-                }
+            }
             else {
                 wfPropertiesPanel.Visible = false;
                 wfPropertiesPanel.Enabled = false;
@@ -87,8 +85,8 @@ namespace PI
                 panelSize.Width = 0;
                 wfPropertiesPanel.Size = panelSize;
                 IsPropertiesPanelHidden = true;
-                }
             }
+        }
         #endregion
 
         #region wfViewResizePropertiesPanelToolStripMenuItem_Click(...) : void
@@ -101,12 +99,11 @@ namespace PI
         /// <param name="e">No use.</param>
 
         private void wfViewResizePropertiesPanelToolStripMenuItem_Click( object sender, System.EventArgs e )
-            {
-            using ( var propertiesResizerDialog = new WfPropertiesPanelResizer() )
-                {
+        {
+            using ( var propertiesResizerDialog = new WfPropertiesPanelResizer() ) {
                 WindowsFormsHelper.ShowDialogSafe( propertiesResizerDialog, this );
-                }
             }
+        }
         #endregion
 
         #region WfMainWindow_FormClosed(...) : void
@@ -117,26 +114,28 @@ namespace PI
         /// </summary>
         /// <param name="sender">No use.</param>
         /// <param name="e">No use.</param>
-        
+
         private void WfMainWindow_FormClosed( object sender, FormClosedEventArgs e )
-            {
+        {
             Logger.Close();
-            }
+        }
         #endregion
 
         #region WfMainWindow_Load(...) : void
         /// <summary>
         /// Action: Form Loading<para></para>
         /// Root form: WfMainWindow<para></para>
-        /// Target: file log opening.<para></para>
+        /// Target: file log opening, Program tab info<para></para>
         /// </summary>
         /// <param name="sender">No use.</param>
         /// <param name="e">No use.</param>
-        
+
         private void WfMainWindow_Load( object sender, EventArgs e )
-            {
+        {
             Logger.Initialize();
-            }
+            UpdateComponentRelatedWithDotNetFrameworkVersion();
+            UpdateComponentRelatedWithOSVersionName();
+        }
         #endregion
 
         #region wfMenuProgramExit_Click(...) : void
@@ -149,9 +148,9 @@ namespace PI
         /// <param name="e">No use.</param>
 
         private void wfMenuProgramExit_Click( object sender, EventArgs e )
-            {
+        {
             Application.Exit();
-            }
+        }
         #endregion
 
         #region DefineTimerThread() : void
@@ -160,7 +159,7 @@ namespace PI
         /// </summary>
 
         private void DefineTimerThread()
-            {
+        {
             TimerThread = new Thread( () => {
                 try {
                     Thread.CurrentThread.IsBackground = true;
@@ -169,24 +168,24 @@ namespace PI
                     timer.Interval = 1000;
                     timer.Start();
                     timer.Enabled = true;
-                    }
+                }
                 catch ( ThreadStateException x ) {
                     Logger.WriteExceptionInfo( x );
-                    }
+                }
                 catch ( ObjectDisposedException x ) {
                     Logger.WriteExceptionInfo( x );
-                    }
+                }
                 catch ( ArgumentOutOfRangeException x ) {
                     Logger.WriteExceptionInfo( x );
-                    }
+                }
                 catch ( ArgumentException x ) {
                     Logger.WriteExceptionInfo( x );
-                    }
+                }
                 catch ( Exception x ) {
                     Logger.WriteExceptionInfo( x );
-                    }
-                });
-            }
+                }
+            } );
+        }
         #endregion
 
         #region InstallEventForTimer(...) : void
@@ -197,7 +196,7 @@ namespace PI
         /// <param name="timer">An instance of a timer from System.Timers.Timer.</param>
 
         private void InstallEventForTimer( ref System.Timers.Timer timer )
-            {
+        {
             ushort numberOfSeconds = 0;
             ushort numberOfMinutes = 0;
             ushort numberOfHours = 0;
@@ -209,25 +208,25 @@ namespace PI
                 if ( numberOfSeconds > 59 ) {
                     numberOfSeconds = 0;
                     numberOfMinutes++;
-                    }
+                }
 
                 if ( numberOfMinutes > 59 ) {
                     numberOfMinutes = 0;
                     numberOfHours++;
-                    }
+                }
 
                 if ( numberOfHours > 23 ) {
                     numberOfHours = 0;
                     numberOfDays++;
-                    }
+                }
 
                 string numberOfHoursText = numberOfHours.ToString( "00" );
                 string numberOfMinutesText = numberOfMinutes.ToString( "00" );
                 string numberOfSecondsText = numberOfSeconds.ToString( "00" );
                 string numberOfDaysText = numberOfDays.ToString();
                 RefreshComponentRelatedWithTimerThread( numberOfDaysText + ":" + numberOfHoursText + ":" + numberOfMinutesText + ":" + numberOfSecondsText );
-                };
-            }
+            };
+        }
         #endregion
 
         #region RefreshComponentRelatedWithTimerThread(...) : void
@@ -237,23 +236,23 @@ namespace PI
         /// <param name="text">A text to pass to the Windows Forms active control.</param>
 
         private void RefreshComponentRelatedWithTimerThread( string text )
-            {
+        {
             try {
-                this.BeginInvoke( ( MethodInvoker ) delegate {
+                this.BeginInvoke( (MethodInvoker) delegate {
                     wfPropertiesProgramCounts2TextBox.Text = text;
                     wfPropertiesProgramCounts2TextBox.Refresh();
-                    });
-                }
+                } );
+            }
             catch ( ObjectDisposedException x ) {
                 Logger.WriteExceptionInfo( x );
-                }
+            }
             catch ( InvalidOperationException x ) {
                 Logger.WriteExceptionInfo( x );
-                }
+            }
             catch ( Exception x ) {
                 Logger.WriteExceptionInfo( x );
-                }
             }
+        }
         #endregion
 
         #region UpdateComponentRelatedWithActualStatusOfTimerThread() : void
@@ -262,14 +261,14 @@ namespace PI
         /// </summary>
 
         private void UpdateComponentRelatedWithActualStatusOfTimerThread()
-            {
+        {
             if ( TimerThread == null ) {
                 wfPropertiesProgramActualState2TextBox.Text = SharedConstants.TIMER_START_FAILURE;
-                }
+            }
             else {
                 wfPropertiesProgramActualState2TextBox.Text = SharedConstants.TIMER_START_SUCCESS;
-                }
             }
+        }
         #endregion
 
         #region wfPropertiesGenerateDefineButton_Click(...) : void
@@ -282,9 +281,8 @@ namespace PI
         /// <param name="e">No use.</param>
 
         private void wfPropertiesGenerateDefineButton_Click( object sender, EventArgs e )
-            {
-            using ( var PCDDialog = new PatternCurveDefiner() )
-                {
+        {
+            using ( var PCDDialog = new PatternCurveDefiner() ) {
                 WindowsFormsHelper.ShowDialogSafe( PCDDialog, this );
 
                 try {
@@ -297,33 +295,33 @@ namespace PI
                         PreSets.ParameterE = PCDDialog.ParameterE;
                         PreSets.ParameterF = PCDDialog.ParameterF;
                         UpdateComponentRelatedWithChosenPatternCurveScaffoldStatus();
-                        }
-                    }
-                catch ( System.ComponentModel.InvalidEnumArgumentException x ) {
-                    Logger.WriteExceptionInfo( x );
-                    }
-                catch ( Exception x ) {
-                    Logger.WriteExceptionInfo( x );
                     }
                 }
+                catch ( System.ComponentModel.InvalidEnumArgumentException x ) {
+                    Logger.WriteExceptionInfo( x );
+                }
+                catch ( Exception x ) {
+                    Logger.WriteExceptionInfo( x );
+                }
             }
+        }
         #endregion
 
         #region UpdateComponentRelatedWithChosenPatternCurveScaffoldStatus() : void
         private void UpdateComponentRelatedWithChosenPatternCurveScaffoldStatus()
-            {
+        {
             switch ( PreSets.ChosenPatternCurveScaffold ) {
-                case SharedConstants.CURVE_PATTERN_SCAFFOLD_POLYNOMIAL :
-                    wfPropertiesGenerateCurveScaffold2TextBox.Text = SharedConstants.CURVE_PATTERN_SCAFFOLD_POLYNOMIAL_TEXT;
-                    break;
-                case SharedConstants.CURVE_PATTERN_SCAFFOLD_HYPERBOLIC :
-                    wfPropertiesGenerateCurveScaffold2TextBox.Text = SharedConstants.CURVE_PATTERN_SCAFFOLD_HYPERBOLIC_TEXT;
-                    break;
-                default :
-                    wfPropertiesGenerateCurveScaffold2TextBox.Text = SharedConstants.CURVE_PATTERN_SCAFFOLD_DEFAULT_TEXT;
-                    break;
-                }
+            case SharedConstants.CURVE_PATTERN_SCAFFOLD_POLYNOMIAL:
+                wfPropertiesGenerateCurveScaffold2TextBox.Text = SharedConstants.CURVE_PATTERN_SCAFFOLD_POLYNOMIAL_TEXT;
+                break;
+            case SharedConstants.CURVE_PATTERN_SCAFFOLD_HYPERBOLIC:
+                wfPropertiesGenerateCurveScaffold2TextBox.Text = SharedConstants.CURVE_PATTERN_SCAFFOLD_HYPERBOLIC_TEXT;
+                break;
+            default:
+                wfPropertiesGenerateCurveScaffold2TextBox.Text = SharedConstants.CURVE_PATTERN_SCAFFOLD_DEFAULT_TEXT;
+                break;
             }
+        }
         #endregion
 
         #region wfPropertiesDatasheetCurveTypeComboBox_SelectedIndexChanged(...) : void
@@ -336,24 +334,24 @@ namespace PI
         /// <param name="e">No use.</param>
 
         private void wfPropertiesDatasheetCurveTypeComboBox_SelectedIndexChanged( object sender, EventArgs e )
-            {
-            switch ( WindowsFormsHelper.GetSelectedIndexSafe(wfPropertiesDatasheetCurveTypeComboBox) ) {
-                case SharedConstants.DATASET_CURVE_TYPE_CONTROL_GENERATED :
-                    wfPropertiesDatasheetCurveIndexNumericUpDown.Enabled = true;
-                    wfPropertiesDatasheetCurveIndexTrackBar.Enabled = true;
-                    // TODO: curve refreshing
-                    break;
-                case SharedConstants.DATASET_CURVE_TYPE_CONTROL_MEANED :
-                    wfPropertiesDatasheetCurveIndexNumericUpDown.Enabled = false;
-                    wfPropertiesDatasheetCurveIndexTrackBar.Enabled = false;
-                    // TODO: curve refreshing
-                    break;
-                default :
-                    wfPropertiesDatasheetCurveIndexNumericUpDown.Enabled = false;
-                    wfPropertiesDatasheetCurveIndexTrackBar.Enabled = false;
-                    break;
-                }
+        {
+            switch ( WindowsFormsHelper.GetSelectedIndexSafe( wfPropertiesDatasheetCurveTypeComboBox ) ) {
+            case SharedConstants.DATASET_CURVE_TYPE_CONTROL_GENERATED:
+                wfPropertiesDatasheetCurveIndexNumericUpDown.Enabled = true;
+                wfPropertiesDatasheetCurveIndexTrackBar.Enabled = true;
+                // TODO: curve refreshing
+                break;
+            case SharedConstants.DATASET_CURVE_TYPE_CONTROL_PATTERN:
+                wfPropertiesDatasheetCurveIndexNumericUpDown.Enabled = false;
+                wfPropertiesDatasheetCurveIndexTrackBar.Enabled = false;
+                // TODO: curve refreshing
+                break;
+            default:
+                wfPropertiesDatasheetCurveIndexNumericUpDown.Enabled = false;
+                wfPropertiesDatasheetCurveIndexTrackBar.Enabled = false;
+                break;
             }
+        }
         #endregion
 
         #region wfPropertiesDatasheetCurveIndexNumericUpDown_ValueChanged(...) : void
@@ -366,10 +364,10 @@ namespace PI
         /// <param name="e">No use.</param>
 
         private void wfPropertiesDatasheetCurveIndexNumericUpDown_ValueChanged( object sender, EventArgs e )
-            {
+        {
             int numericUpDownValue = WindowsFormsHelper.GetValueFromNumericUpDown<int>( wfPropertiesDatasheetCurveIndexNumericUpDown );
             WindowsFormsHelper.SetValueForTrackBar( wfPropertiesDatasheetCurveIndexTrackBar, numericUpDownValue );
-            }
+        }
         #endregion
 
         #region wfPropertiesDatasheetCurveIndexTrackBar_Scroll(...) : void
@@ -382,30 +380,22 @@ namespace PI
         /// <param name="e">No use.</param>
 
         private void wfPropertiesDatasheetCurveIndexTrackBar_Scroll( object sender, EventArgs e )
-            {
+        {
             int trackBarValue = WindowsFormsHelper.GetValueFromTrackBar( wfPropertiesDatasheetCurveIndexTrackBar );
             WindowsFormsHelper.SetValueForNumericUpDown( wfPropertiesDatasheetCurveIndexNumericUpDown, trackBarValue );
-            }
+        }
         #endregion
 
         #region wfPropertiesGenerateNumberOfCurves1NumericUpDown_ValueChanged(...) : void
-        /// <summary>
-        /// Action: value changed<para></para>
-        /// Properties root tab: Generate<para></para>
-        /// Properties tab section: Whole set of curves<para></para>
-        /// </summary>
-        /// <param name="sender">No use.</param>
-        /// <param name="e">No use.</param>
-
         private void wfPropertiesGenerateNumberOfCurves1NumericUpDown_ValueChanged( object sender, EventArgs e )
-            {
+        {
             int numberOfCurves = WindowsFormsHelper.GetValueFromNumericUpDown<int>( wfPropertiesGenerateNumberOfCurves1NumericUpDown );
             wfPropertiesDatasheetCurveIndexNumericUpDown.Minimum = 1;
             wfPropertiesDatasheetCurveIndexNumericUpDown.Maximum = numberOfCurves;
             wfPropertiesDatasheetCurveIndexTrackBar.Minimum = 1;
             wfPropertiesDatasheetCurveIndexTrackBar.Maximum = numberOfCurves;
             PreSets.NumberOfCurves = numberOfCurves;
-            }
+        }
         #endregion
 
         #region wfPropertiesGenerateGenerateSetButton_Click(...) : void
@@ -418,30 +408,121 @@ namespace PI
         /// <param name="e">No use.</param>
 
         private void wfPropertiesGenerateGenerateSetButton_Click( object sender, EventArgs e )
-            {
+        {
             if ( wfPropertiesGenerateCurveScaffold2TextBox.Text == SharedConstants.CURVE_PATTERN_SCAFFOLD_DEFAULT_TEXT ) {
                 string text = SharedConstants.GENERATE_SET_BUTTON_PREREQUISITE_WARNING_TEXT;
                 string caption = SharedConstants.GENERATE_SET_BUTTON_PREREQUISITE_WARNING_CAPTION;
                 WindowsFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Stop );
                 return;
-                }
+            }
 
+            GrabPreSetsForCurvesGeneration();
+            GenerateAndShowPatternCurve();
+            // TODO: generate set of curves
+        }
+        #endregion
+
+        #region GrabPreSetsForCurvesGeneration() : void
+        private void GrabPreSetsForCurvesGeneration()
+        {
             PreSets.NumberOfCurves = WindowsFormsHelper.GetValueFromNumericUpDown<int>( wfPropertiesGenerateNumberOfCurves1NumericUpDown );
             PreSets.NumberOfPoints = WindowsFormsHelper.GetValueFromNumericUpDown<int>( wfPropertiesGenerateNumberOfPointsNumericUpDown );
             PreSets.StartingXPoint = WindowsFormsHelper.GetValueFromNumericUpDown<int>( wfPropertiesGenerateStartingXPointNumericUpDown );
+        }
+        #endregion
 
-            if ( ChartsCurvesDataset.GeneratePatternCurve(PreSets.ChosenPatternCurveScaffold, PreSets.NumberOfPoints, PreSets.StartingXPoint) ) {
+        #region UpdateComponentRelatedWithChartsInterval() : void
+        private void UpdateComponentRelatedWithChartsInterval()
+        {
+            int lowerLimit = WindowsFormsHelper.GetValueFromNumericUpDown<int>( wfPropertiesGenerateStartingXPointNumericUpDown );
+            int numberOfPoints = WindowsFormsHelper.GetValueFromNumericUpDown<int>( wfPropertiesGenerateNumberOfPointsNumericUpDown );
+            int upperLimit = lowerLimit + numberOfPoints - 1;
+            string intervalText = '<' + lowerLimit.ToString() + ';' + upperLimit.ToString() + '>';
+            wfPropertiesGenerateInterval2TextBox.Text = intervalText;
+        }
+        #endregion
+
+        #region GenerateAndShowPatternCurve() : void
+        /// <summary>
+        /// Refreshes the pattern curve chart by generated series of data.
+        /// </summary>
+
+        private void GenerateAndShowPatternCurve()
+        {
+            if ( ChartsCurvesDataset.GeneratePatternCurve( PreSets.ChosenPatternCurveScaffold, PreSets.NumberOfPoints, PreSets.StartingXPoint ) ) {
                 wfChartsPatternCurve.Series.Clear();
-                wfChartsPatternCurve.Series.Add( ChartsCurvesDataset.GetPatternCurveChartingSeries() );
+                wfChartsPatternCurve.Series.Add( ChartsCurvesDataset.PatternCurveChartingSeries );
                 wfChartsPatternCurve.Series[0].BorderWidth = 3;
                 wfChartsPatternCurve.Visible = true;
                 wfChartsPatternCurve.Invalidate();
-                }
-
-            // TODO: generate set of curves
             }
-        #endregion
 
         }
-    #endregion
+        #endregion
+
+        #region wfPropertiesGenerateNumberOfPointsNumericUpDown_ValueChanged(...) : void
+        /// <summary>
+        /// Action: value changed<para></para>
+        /// Properties root tab: Generate<para></para>
+        /// Properties tab section: Whole set of curves<para></para>
+        /// Component signature: Number of points<para></para>
+        /// Component type: NumericUpDown<para></para>
+        /// </summary>
+        /// <param name="sender">No use.</param>
+        /// <param name="e">No use.</param>
+
+        private void wfPropertiesGenerateNumberOfPointsNumericUpDown_ValueChanged( object sender, EventArgs e )
+        {
+            UpdateComponentRelatedWithChartsInterval();
+        }
+        #endregion
+
+        #region wfPropertiesGenerateStartingXPointNumericUpDown_ValueChanged(...) : void
+        /// <summary>
+        /// Action: value changed<para></para>
+        /// Properties root tab: Generate<para></para>
+        /// Properties tab section: Whole set of curves<para></para>
+        /// Component signature: Starting X point<para></para>
+        /// Component type: NumericUpDown<para></para>
+        /// </summary>
+        /// <param name="sender">No use.</param>
+        /// <param name="e">No use.</param>
+
+        private void wfPropertiesGenerateStartingXPointNumericUpDown_ValueChanged( object sender, EventArgs e )
+        {
+            UpdateComponentRelatedWithChartsInterval();
+        }
+        #endregion
+
+        #region UpdateComponentRelatedWithDotNetFrameworkVersion() : void
+        private void UpdateComponentRelatedWithDotNetFrameworkVersion()
+        {
+            string dotNetVersion = SystemInfoHelper.ObtainUsedDotNetFrameworkVersion();
+
+            if ( dotNetVersion == null ) {
+                wfPropertiesProgramDotNetFramework2TextBox.Text = SharedConstants.PROGRAM_INFO_OBTAINING_ERROR_TEXT;
+                return;
+            }
+
+            wfPropertiesProgramDotNetFramework2TextBox.Text = SystemInfoHelper.ObtainUsedDotNetFrameworkVersion();
+
+        }
+        #endregion
+
+        #region UpdateComponentRelatedWithOSVersionName() : void
+        private void UpdateComponentRelatedWithOSVersionName()
+        {
+            string osVersion = SystemInfoHelper.ObtaingApplicationRunningOSVersion();
+
+            if ( osVersion == null ) {
+                wfPropertiesProgramOSVersion2TextBox.Text = SharedConstants.PROGRAM_INFO_OBTAINING_ERROR_TEXT;
+                return;
+            }
+
+            wfPropertiesProgramOSVersion2TextBox.Text = osVersion;
+        }
+        #endregion
+
     }
+    #endregion
+}

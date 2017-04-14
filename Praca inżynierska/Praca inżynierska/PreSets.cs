@@ -1,7 +1,7 @@
 ﻿namespace PI
-    {
+{
     static class PreSets
-        {
+    {
 
         #region Pattern Curve Definer dialog
         internal static int ChosenPatternCurveScaffold { get; set; } = SharedConstants.CURVE_PATTERN_SCAFFOLD_POLYNOMIAL;
@@ -19,5 +19,5 @@
         internal static int StartingXPoint { get; set; } = 1;
         #endregion
 
-        }
     }
+}

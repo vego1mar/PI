@@ -1,7 +1,7 @@
 ﻿namespace PI
-    {
+{
     public static class SharedConstants
-        {
+    {
 
         #region Exceptions
         public const int OBJECT_DISPOSED_EXCEPTION = 1;
@@ -34,14 +34,15 @@
 
         #region WfMainWindow.Properties.Datasheet
         public const int DATASET_CURVE_TYPE_CONTROL_GENERATED = 0;
-        public const int DATASET_CURVE_TYPE_CONTROL_MEANED = 1;
+        public const int DATASET_CURVE_TYPE_CONTROL_PATTERN = 1;
         #endregion
 
         #region WfMainWindow.Properties.Program
         public const string TIMER_START_FAILURE = "Failure";
         public const string TIMER_START_SUCCESS = "Success";
+        public const string PROGRAM_INFO_OBTAINING_ERROR_TEXT = "Error. See log.";
         #endregion
 
-        }
-
     }
+
+}
