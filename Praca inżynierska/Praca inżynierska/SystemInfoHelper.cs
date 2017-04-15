@@ -5,8 +5,7 @@ namespace PI
     static class SystemInfoHelper
     {
 
-        #region ObtainUsedDotNetFrameworkVersion() : string
-        static public string ObtainUsedDotNetFrameworkVersion()
+        static public string ObtainUsedDotNetFrameworkVersion( string invokerName )
         {
             string version = null;
 
@@ -14,21 +13,19 @@ namespace PI
                 version = System.Diagnostics.FileVersionInfo.GetVersionInfo( typeof( int ).Assembly.Location ).ProductVersion;
             }
             catch ( NotSupportedException x ) {
-                Logger.WriteExceptionInfo( x );
+                Logger.WriteExceptionInfo( x, invokerName );
             }
             catch ( System.IO.FileNotFoundException x ) {
-                Logger.WriteExceptionInfo( x );
+                Logger.WriteExceptionInfo( x, invokerName );
             }
             catch ( Exception x ) {
-                Logger.WriteExceptionInfo( x );
+                Logger.WriteExceptionInfo( x, invokerName );
             }
 
             return version;
         }
-        #endregion
 
-        #region ObtaingApplicationRunningOSVersion() : string
-        static public string ObtaingApplicationRunningOSVersion()
+        static public string ObtaingApplicationRunningOSVersion( string invokerName )
         {
             string osVersion = null;
 
@@ -36,15 +33,14 @@ namespace PI
                 osVersion = Environment.OSVersion.Version.ToString();
             }
             catch ( InvalidOperationException x ) {
-                Logger.WriteExceptionInfo( x );
+                Logger.WriteExceptionInfo( x, invokerName );
             }
             catch ( Exception x ) {
-                Logger.WriteExceptionInfo( x );
+                Logger.WriteExceptionInfo( x, invokerName );
             }
 
             return osVersion;
         }
-        #endregion
 
     }
 }

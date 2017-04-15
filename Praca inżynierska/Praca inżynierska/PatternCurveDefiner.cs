@@ -7,27 +7,24 @@ namespace PI
     {
 
         #region Properties
-        public int ChosenCurve { set; get; }
-        public double ParameterA { set; get; }
-        public double ParameterB { set; get; }
-        public double ParameterC { set; get; }
-        public double ParameterD { set; get; }
-        public double ParameterE { set; get; }
-        public double ParameterF { set; get; }
+        public int ChosenCurve { private set; get; }
+        public double ParameterA { private set; get; }
+        public double ParameterB { private set; get; }
+        public double ParameterC { private set; get; }
+        public double ParameterD { private set; get; }
+        public double ParameterE { private set; get; }
+        public double ParameterF { private set; get; }
         #endregion
 
-        #region PatternCurveDefiner()
         public PatternCurveDefiner()
         {
             InitializeComponent();
-            this.MaximizeBox = false;
+            MaximizeBox = false;
             DefinePropertiesInitialValues();
             SelectChosenCurveTab();
             UpdateComponentsRelatedWithParameters();
         }
-        #endregion
 
-        #region DefinePropertiesInitialValues() : void
         private void DefinePropertiesInitialValues()
         {
             ChosenCurve = PreSets.ChosenPatternCurveScaffold;
@@ -38,12 +35,11 @@ namespace PI
             ParameterE = PreSets.ParameterE;
             ParameterF = PreSets.ParameterF;
         }
-        #endregion
 
-        #region SelectChosenCurveTab() : void
         private void SelectChosenCurveTab()
         {
-            WindowsFormsHelper.SelectTabSafe( wfContentTabControl, ChosenCurve );
+            string invoker = "PI.PatternCurveDefiner.SelectChosenCurveTab()";
+            WindowsFormsHelper.SelectTabSafe( wfContentTabControl, ChosenCurve, invoker );
 
             switch ( ChosenCurve ) {
             case SharedConstants.CURVE_PATTERN_SCAFFOLD_POLYNOMIAL:
@@ -56,57 +52,68 @@ namespace PI
                 break;
             }
         }
-        #endregion
 
-        #region UpdateComponentsRelatedWithParameters() : void
         private void UpdateComponentsRelatedWithParameters()
         {
-            WindowsFormsHelper.SetValueForNumericUpDown( wfContentPolynomialANumericUpDown, PreSets.ParameterA );
-            WindowsFormsHelper.SetValueForNumericUpDown( wfContentPolynomialBNumericUpDown, PreSets.ParameterB );
-            WindowsFormsHelper.SetValueForNumericUpDown( wfContentPolynomialCNumericUpDown, PreSets.ParameterC );
-            WindowsFormsHelper.SetValueForNumericUpDown( wfContentPolynomialDNumericUpDown, PreSets.ParameterD );
-            WindowsFormsHelper.SetValueForNumericUpDown( wfContentPolynomialENumericUpDown, PreSets.ParameterE );
-            WindowsFormsHelper.SetValueForNumericUpDown( wfContentPolynomialFNumericUpDown, PreSets.ParameterF );
-            WindowsFormsHelper.SetValueForNumericUpDown( wfContentHyperbolicCNumericUpDown, PreSets.ParameterC );
+            string invoker = "PI.PatternCurveDefiner.UpdateComponentsRelatedWithParameters()";
+            WindowsFormsHelper.SetValueForNumericUpDown( wfContentPolynomialANumericUpDown, PreSets.ParameterA, invoker );
+            WindowsFormsHelper.SetValueForNumericUpDown( wfContentPolynomialBNumericUpDown, PreSets.ParameterB, invoker );
+            WindowsFormsHelper.SetValueForNumericUpDown( wfContentPolynomialCNumericUpDown, PreSets.ParameterC, invoker );
+            WindowsFormsHelper.SetValueForNumericUpDown( wfContentPolynomialDNumericUpDown, PreSets.ParameterD, invoker );
+            WindowsFormsHelper.SetValueForNumericUpDown( wfContentPolynomialENumericUpDown, PreSets.ParameterE, invoker );
+            WindowsFormsHelper.SetValueForNumericUpDown( wfContentPolynomialFNumericUpDown, PreSets.ParameterF, invoker );
+            WindowsFormsHelper.SetValueForNumericUpDown( wfContentHyperbolicCNumericUpDown, PreSets.ParameterC, invoker );
         }
-        #endregion
 
-        #region wfTabsPanelPolynomialButton_Click(...) : void
         private void wfTabsPanelPolynomialButton_Click( object sender, EventArgs e )
         {
             ChosenCurve = SharedConstants.CURVE_PATTERN_SCAFFOLD_POLYNOMIAL;
-            WindowsFormsHelper.SelectTabSafe( wfContentTabControl, SharedConstants.CURVE_PATTERN_SCAFFOLD_POLYNOMIAL );
+            string invoker = "PI.PatternCurveDefiner.wfTabsPanelPolynomialButton_Click(sender, e)";
+            WindowsFormsHelper.SelectTabSafe( wfContentTabControl, SharedConstants.CURVE_PATTERN_SCAFFOLD_POLYNOMIAL, invoker );
             wfTabsPanelPolynomialButton.BackColor = System.Drawing.Color.GhostWhite;
             wfTabsPanelHyperbolicButton.BackColor = System.Drawing.Color.White;
         }
-        #endregion
 
-        #region wfTabsPanelHyperbolicButton_Click(...) : void
         private void wfTabsPanelHyperbolicButton_Click( object sender, EventArgs e )
         {
             ChosenCurve = SharedConstants.CURVE_PATTERN_SCAFFOLD_HYPERBOLIC;
-            WindowsFormsHelper.SelectTabSafe( wfContentTabControl, SharedConstants.CURVE_PATTERN_SCAFFOLD_HYPERBOLIC );
+            string invoker = "PI.PatternCurveDefiner.wfTabsPanelHyperbolicButton_Click(sender, e)";
+            WindowsFormsHelper.SelectTabSafe( wfContentTabControl, SharedConstants.CURVE_PATTERN_SCAFFOLD_HYPERBOLIC, invoker );
             wfTabsPanelHyperbolicButton.BackColor = System.Drawing.Color.GhostWhite;
             wfTabsPanelPolynomialButton.BackColor = System.Drawing.Color.White;
         }
-        #endregion
 
-        #region wfConfirmationCancelButton_Click(...) : void
         private void wfConfirmationCancelButton_Click( object sender, EventArgs e )
         {
-            this.DialogResult = DialogResult.Cancel;
-        }
-        #endregion
+            string invoker = "PI.PatternCurveDefiner.wfConfirmationCancelButton_Click(sender, e)";
 
-        #region wfConfirmationOKButton_Click(...) : void
+            try {
+                DialogResult = DialogResult.Cancel;
+            }
+            catch ( System.ComponentModel.InvalidEnumArgumentException x ) {
+                Logger.WriteExceptionInfo( x, invoker );
+            }
+            catch ( Exception x ) {
+                Logger.WriteExceptionInfo( x, invoker );
+            }
+        }
+
         private void wfConfirmationOKButton_Click( object sender, EventArgs e )
         {
-            this.DialogResult = DialogResult.OK;
-            SaveParametersWhileClosingDialog();
-        }
-        #endregion
+            string invoker = "PI.PatternCurveDefiner.wfConfirmationOKButton_Click(sender, e)";
 
-        #region SaveParametersWhileClosingDialog() : void
+            try {
+                DialogResult = DialogResult.OK;
+                SaveParametersWhileClosingDialog();
+            }
+            catch ( System.ComponentModel.InvalidEnumArgumentException x ) {
+                Logger.WriteExceptionInfo( x, invoker );
+            }
+            catch ( Exception x ) {
+                Logger.WriteExceptionInfo( x, invoker );
+            }
+        }
+
         private void SaveParametersWhileClosingDialog()
         {
             switch ( ChosenCurve ) {
@@ -118,26 +125,23 @@ namespace PI
                 break;
             }
         }
-        #endregion
 
-        #region SaveParametersForPolynomialPatternCurve() : void
         private void SaveParametersForPolynomialPatternCurve()
         {
-            ParameterA = WindowsFormsHelper.GetValueFromNumericUpDown<double>( wfContentPolynomialANumericUpDown );
-            ParameterB = WindowsFormsHelper.GetValueFromNumericUpDown<double>( wfContentPolynomialBNumericUpDown );
-            ParameterC = WindowsFormsHelper.GetValueFromNumericUpDown<double>( wfContentPolynomialCNumericUpDown );
-            ParameterD = WindowsFormsHelper.GetValueFromNumericUpDown<double>( wfContentPolynomialDNumericUpDown );
-            ParameterE = WindowsFormsHelper.GetValueFromNumericUpDown<double>( wfContentPolynomialENumericUpDown );
-            ParameterF = WindowsFormsHelper.GetValueFromNumericUpDown<double>( wfContentPolynomialFNumericUpDown );
+            string invoker = "PI.PatternCurveDefiner.SaveParametersForPolynomialPatternCurve()";
+            ParameterA = WindowsFormsHelper.GetValueFromNumericUpDown<double>( wfContentPolynomialANumericUpDown, invoker );
+            ParameterB = WindowsFormsHelper.GetValueFromNumericUpDown<double>( wfContentPolynomialBNumericUpDown, invoker );
+            ParameterC = WindowsFormsHelper.GetValueFromNumericUpDown<double>( wfContentPolynomialCNumericUpDown, invoker );
+            ParameterD = WindowsFormsHelper.GetValueFromNumericUpDown<double>( wfContentPolynomialDNumericUpDown, invoker );
+            ParameterE = WindowsFormsHelper.GetValueFromNumericUpDown<double>( wfContentPolynomialENumericUpDown, invoker );
+            ParameterF = WindowsFormsHelper.GetValueFromNumericUpDown<double>( wfContentPolynomialFNumericUpDown, invoker );
         }
-        #endregion
 
-        #region SaveParametersForHyperbolicPatternCurve() : void
         private void SaveParametersForHyperbolicPatternCurve()
         {
-            ParameterC = WindowsFormsHelper.GetValueFromNumericUpDown<double>( wfContentHyperbolicCNumericUpDown );
+            string invoker = "PI.PatternCurveDefiner.SaveParametersForHyperbolicPatternCurve()";
+            ParameterC = WindowsFormsHelper.GetValueFromNumericUpDown<double>( wfContentHyperbolicCNumericUpDown, invoker );
         }
-        #endregion
 
     }
 }

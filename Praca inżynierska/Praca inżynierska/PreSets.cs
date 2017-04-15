@@ -3,7 +3,7 @@
     static class PreSets
     {
 
-        #region Pattern Curve Definer dialog
+        #region Pattern Curve Definer
         internal static int ChosenPatternCurveScaffold { get; set; } = SharedConstants.CURVE_PATTERN_SCAFFOLD_POLYNOMIAL;
         internal static double ParameterA { get; set; } = 1.0;
         internal static double ParameterB { get; set; } = 1.0;
@@ -17,6 +17,10 @@
         internal static int NumberOfCurves { get; set; } = 1;
         internal static int NumberOfPoints { get; set; } = 1;
         internal static int StartingXPoint { get; set; } = 1;
+        #endregion
+
+        #region WfMainWindow.Properties.Datasheet
+        internal static int PreviousNumberOfRowsForOrdinates { get; set; } = 0;
         #endregion
 
     }

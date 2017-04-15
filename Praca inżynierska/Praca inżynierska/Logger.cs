@@ -4,11 +4,6 @@ using System.Globalization;
 
 namespace PI
 {
-    #region Logger
-    /// <summary>
-    /// Builds logs using standard output of Console.Write or Console.WriteLine.
-    /// </summary>
-
     static class Logger
     {
         #region Constants
@@ -17,10 +12,9 @@ namespace PI
         #endregion
 
         #region Members
-        private static StreamWriter logWriter { set; get; } 
+        private static StreamWriter logWriter { set; get; }
         #endregion
 
-        #region Initialize() : int
         public static int Initialize()
         {
             try {
@@ -57,16 +51,12 @@ namespace PI
 
             return 0;
         }
-        #endregion
 
-        #region PrintLogHeader() : void
         private static void PrintLogHeader()
         {
             WriteLine( DateTime.Now.ToString( CultureInfo.InvariantCulture ) + " " + DateTime.Now.DayOfWeek );
         }
-        #endregion
 
-        #region WriteLine(...) : int
         public static int WriteLine( string text )
         {
             try {
@@ -84,9 +74,7 @@ namespace PI
 
             return 0;
         }
-        #endregion
 
-        #region Write(...) : int
         public static int Write( string text )
         {
             try {
@@ -107,38 +95,37 @@ namespace PI
 
             return 0;
         }
-        #endregion
 
-        #region WriteExceptionInfo(...) : int
-        public static int WriteExceptionInfo( Exception x )
+        public static int WriteExceptionInfo( Exception x, string methodNameContext )
         {
             return
             Write( Environment.NewLine + Environment.NewLine + DateTime.Now.ToString( CultureInfo.InvariantCulture ) + Environment.NewLine +
+                   "EXCEPTION TYPE: " + x.GetType() + Environment.NewLine +
+                   "METHOD NAME CONTEXT: " + methodNameContext + Environment.NewLine +
                    "STACK TRACE:" + Environment.NewLine + x.StackTrace + Environment.NewLine +
                    "MESSAGE:" + Environment.NewLine + x.Message + Environment.NewLine +
-                   "SOURCE:" + Environment.NewLine + x.Source + Environment.NewLine +
-                   "DATA:" + Environment.NewLine + x.Data + Environment.NewLine +
+                   "SOURCE: " + x.Source + Environment.NewLine +
+                   "DATA: " + x.Data + Environment.NewLine +
                    "INNER EXCEPTION:" + Environment.NewLine + x.InnerException + Environment.NewLine +
                    "TARGET SITE:" + Environment.NewLine + x.TargetSite + Environment.NewLine +
                    Environment.NewLine + Environment.NewLine
                    );
         }
-        #endregion
 
-        #region Close() : void
         public static void Close()
         {
+            string methodName = "PI.Logger.Close()";
+
             try {
                 logWriter.Close();
             }
             catch ( System.Text.EncoderFallbackException x ) {
-                WriteExceptionInfo( x );
+                WriteExceptionInfo( x, methodName );
             }
             catch ( Exception x ) {
-                WriteExceptionInfo( x );
+                WriteExceptionInfo( x, methodName );
             }
         }
-        #endregion
+
     }
-    #endregion
 }

@@ -35,6 +35,16 @@
         #region WfMainWindow.Properties.Datasheet
         public const int DATASET_CURVE_TYPE_CONTROL_GENERATED = 0;
         public const int DATASET_CURVE_TYPE_CONTROL_PATTERN = 1;
+        public const int DATASET_CURVE_OPERATION_TYPE_OVERRIDING = 0;
+        public const int DATASET_CURVE_OPERATION_TYPE_ADDITION = 1;
+        public const int DATASET_CURVE_OPERATION_TYPE_SUBSTRACTION = 2;
+        public const int DATASET_CURVE_OPERATION_TYPE_MULTIPLICATION = 3;
+        public const int DATASET_CURVE_OPERATION_TYPE_DIVISION = 4;
+        public const int DATASET_CURVE_OPERATION_TYPE_EXPONENTIATION = 5;
+        public const int DATASET_CURVE_OPERATION_TYPE_LOGARITHMIC = 6;
+        public const int DATASET_CURVE_OPERATION_TYPE_ROOTING = 7;
+        public const string DATASET_CURVE_TYPE_CONTROL_NOT_SELECTED_TEXT = "You must choose a curve type from 'Dataset control' section.";
+        public const string DATASET_CURVE_TYPE_CONTROL_NOT_SELECTED_CAPTION = "Prerequisite not matched!";
         #endregion
 
         #region WfMainWindow.Properties.Program
