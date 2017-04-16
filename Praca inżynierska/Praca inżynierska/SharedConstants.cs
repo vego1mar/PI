@@ -53,6 +53,13 @@
         public const string PROGRAM_INFO_OBTAINING_ERROR_TEXT = "Error. See log.";
         #endregion
 
+        #region DatasetViewer.EditControlForOrdinates
+        public const string DSV_OPERATION_TYPE_NOT_SELECTED_TEXT = "You must choose an operation type to allow performing changes.";
+        public const string DSV_OPERATION_TYPE_NOT_SELECTED_CAPTION = "Edit control for ordinates prerequisite";
+        public const string DSV_USER_VALUE_NOT_VALID_TEXT = "The given value is improper. Please note, that the value format is localized by default.";
+        public const string DSV_USER_VALUE_NOT_VALID_CAPTION = "Wrong cast or conversion";
+        #endregion
+
     }
 
 }

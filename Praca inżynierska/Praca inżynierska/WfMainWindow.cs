@@ -5,17 +5,11 @@ using System.Windows.Forms;
 // INTERNAL BACKLOG
 // TODO: Update info
 // TODO: Configuration file
-// TODO: Reading set of curves from a file
-// TODO: Saving set of curves into a file
+// TODO: Reading and saving set of curves from a file
 // TODO: I18N
 // TODO: Refreshing charts and curves datasheet automatically
-// TODO: Drawing curves in charts
 // TODO: Implement Gaussian noise option
-// TODO: Menu rebuild - adding icons etc. + functionality
-// TODO: Move timer definition to ThreadTasker and generalize the methods
-// TODO: Log viewier from the application runtime context
-// TODO: Center dialog windows and message boxes
-// TODO: Working on threads
+// TODO: Menu item - 'Adjust curves' for visual effects manipulations
 // TODO: Errors notification icon
 
 namespace PI
@@ -24,8 +18,6 @@ namespace PI
     {
 
         #region Members
-        private bool IsPropertiesPanelHidden;
-        private int PropertiesPanelWidth;
         private Thread TimerThread;
         private CurvesDataset ChartsCurvesDataset;
         #endregion
@@ -38,41 +30,11 @@ namespace PI
 
         private void InitalizeFields()
         {
-            IsPropertiesPanelHidden = false;
-            PropertiesPanelWidth = wfPropertiesPanel.Size.Width;
             TimerThread = null;
             DefineTimerThread();
             ThreadTasker.StartThreadSafe( TimerThread, "PI.WfMainWindow.InitializeFields()" );
             UpdateComponentRelatedWithActualStatusOfTimerThread();
             ChartsCurvesDataset = new CurvesDataset();
-        }
-
-        private void wfViewHideShowPropertiesPanelToolStripMenuItem_Click( object sender, System.EventArgs e )
-        {
-            if ( IsPropertiesPanelHidden ) {
-                wfPropertiesPanel.Visible = true;
-                wfPropertiesPanel.Enabled = true;
-                var panelSize = wfPropertiesPanel.Size;
-                panelSize.Width = PropertiesPanelWidth;
-                wfPropertiesPanel.Size = panelSize;
-                IsPropertiesPanelHidden = false;
-            }
-            else {
-                wfPropertiesPanel.Visible = false;
-                wfPropertiesPanel.Enabled = false;
-                var panelSize = wfPropertiesPanel.Size;
-                PropertiesPanelWidth = panelSize.Width;
-                panelSize.Width = 0;
-                wfPropertiesPanel.Size = panelSize;
-                IsPropertiesPanelHidden = true;
-            }
-        }
-
-        private void wfViewResizePropertiesPanelToolStripMenuItem_Click( object sender, System.EventArgs e )
-        {
-            using ( var propertiesResizerDialog = new WfPropertiesPanelResizer() ) {
-                WindowsFormsHelper.ShowDialogSafe( propertiesResizerDialog, this, "PI.WfMainWindow.wfViewResizePropertiesPanelToolStripMenuItem_Click(sender, e)" );
-            }
         }
 
         private void WfMainWindow_FormClosed( object sender, FormClosedEventArgs e )
@@ -87,7 +49,7 @@ namespace PI
             UpdateComponentRelatedWithOSVersionName();
         }
 
-        private void wfMenuProgramExit_Click( object sender, EventArgs e )
+        private void WfMenuProgramExit_Click( object sender, EventArgs e )
         {
             Application.Exit();
         }
@@ -187,10 +149,10 @@ namespace PI
             }
         }
 
-        private void wfPropertiesGenerateDefineButton_Click( object sender, EventArgs e )
+        private void WfPropertiesGenerateDefineButton_Click( object sender, EventArgs e )
         {
             using ( var PCDDialog = new PatternCurveDefiner() ) {
-                string methodName = "PI.WfMainWindow.wfPropertiesGenerateDefineButton_Click(sender, e)";
+                string methodName = "PI.WfMainWindow.WfPropertiesGenerateDefineButton_Click(sender, e)";
                 WindowsFormsHelper.ShowDialogSafe( PCDDialog, this, methodName );
 
                 try {
@@ -229,18 +191,14 @@ namespace PI
             }
         }
 
-        private void wfPropertiesDatasheetCurveTypeComboBox_SelectedIndexChanged( object sender, EventArgs e )
+        private void WfPropertiesDatasheetCurveTypeComboBox_SelectedIndexChanged( object sender, EventArgs e )
         {
-            string methodName = "PI.WfMainWindow.wfPropertiesDatasheetCurveTypeComboBox_SelectedIndexChanged(sender, e)";
+            string methodName = "PI.WfMainWindow.WfPropertiesDatasheetCurveTypeComboBox_SelectedIndexChanged(sender, e)";
 
             switch ( WindowsFormsHelper.GetSelectedIndexSafe( wfPropertiesDatasheetCurveTypeComboBox, methodName ) ) {
             case SharedConstants.DATASET_CURVE_TYPE_CONTROL_GENERATED:
                 wfPropertiesDatasheetCurveIndexNumericUpDown.Enabled = true;
                 wfPropertiesDatasheetCurveIndexTrackBar.Enabled = true;
-                break;
-            case SharedConstants.DATASET_CURVE_TYPE_CONTROL_PATTERN:
-                wfPropertiesDatasheetCurveIndexNumericUpDown.Enabled = false;
-                wfPropertiesDatasheetCurveIndexTrackBar.Enabled = false;
                 break;
             default:
                 wfPropertiesDatasheetCurveIndexNumericUpDown.Enabled = false;
@@ -249,23 +207,23 @@ namespace PI
             }
         }
 
-        private void wfPropertiesDatasheetCurveIndexNumericUpDown_ValueChanged( object sender, EventArgs e )
+        private void WfPropertiesDatasheetCurveIndexNumericUpDown_ValueChanged( object sender, EventArgs e )
         {
-            string methodName = "PI.WfMainWindow.wfPropertiesDatasheetCurveIndexNumericUpDown_ValueChanged(sender, e)";
+            string methodName = "PI.WfMainWindow.WfPropertiesDatasheetCurveIndexNumericUpDown_ValueChanged(sender, e)";
             int numericUpDownValue = WindowsFormsHelper.GetValueFromNumericUpDown<int>( wfPropertiesDatasheetCurveIndexNumericUpDown, methodName );
             WindowsFormsHelper.SetValueForTrackBar( wfPropertiesDatasheetCurveIndexTrackBar, numericUpDownValue, methodName );
         }
 
-        private void wfPropertiesDatasheetCurveIndexTrackBar_Scroll( object sender, EventArgs e )
+        private void WfPropertiesDatasheetCurveIndexTrackBar_Scroll( object sender, EventArgs e )
         {
-            string methodName = "PI.WfMainWindow.wfPropertiesDatasheetCurveIndexTrackBar_Scroll(sender, e)";
+            string methodName = "PI.WfMainWindow.WfPropertiesDatasheetCurveIndexTrackBar_Scroll(sender, e)";
             int trackBarValue = WindowsFormsHelper.GetValueFromTrackBar( wfPropertiesDatasheetCurveIndexTrackBar, methodName );
             WindowsFormsHelper.SetValueForNumericUpDown( wfPropertiesDatasheetCurveIndexNumericUpDown, trackBarValue, methodName );
         }
 
-        private void wfPropertiesGenerateNumberOfCurves1NumericUpDown_ValueChanged( object sender, EventArgs e )
+        private void WfPropertiesGenerateNumberOfCurves1NumericUpDown_ValueChanged( object sender, EventArgs e )
         {
-            string methodName = "PI.WfMainWindow.wfPropertiesGenerateNumberOfCurves1NumericUpDown_ValueChanged(sender, e)";
+            string methodName = "PI.WfMainWindow.WfPropertiesGenerateNumberOfCurves1NumericUpDown_ValueChanged(sender, e)";
             int numberOfCurves = WindowsFormsHelper.GetValueFromNumericUpDown<int>( wfPropertiesGenerateNumberOfCurves1NumericUpDown, methodName );
             wfPropertiesDatasheetCurveIndexNumericUpDown.Minimum = 1;
             wfPropertiesDatasheetCurveIndexNumericUpDown.Maximum = numberOfCurves;
@@ -274,12 +232,12 @@ namespace PI
             PreSets.NumberOfCurves = numberOfCurves;
         }
 
-        private void wfPropertiesGenerateGenerateSetButton_Click( object sender, EventArgs e )
+        private void WfPropertiesGenerateGenerateSetButton_Click( object sender, EventArgs e )
         {
             if ( wfPropertiesGenerateCurveScaffold2TextBox.Text == SharedConstants.CURVE_PATTERN_SCAFFOLD_DEFAULT_TEXT ) {
                 string text = SharedConstants.GENERATE_SET_BUTTON_PREREQUISITE_WARNING_TEXT;
                 string caption = SharedConstants.GENERATE_SET_BUTTON_PREREQUISITE_WARNING_CAPTION;
-                string methodName = "PI.WfMainWindow.wfPropertiesGenerateGenerateSetButton_Click(sender, e)";
+                string methodName = "PI.WfMainWindow.WfPropertiesGenerateGenerateSetButton_Click(sender, e)";
                 WindowsFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Stop, methodName );
                 return;
             }
@@ -322,10 +280,12 @@ namespace PI
         private void WfPropertiesGenerateNumberOfPointsNumericUpDown_ValueChanged( object sender, EventArgs e )
         {
             UpdateComponentRelatedWithChartsInterval();
-            SetRangeForComponentsRelatedWithOperationTypeInOrdinatesEditControl();
+            string invoker = "PI.WfMainWindow.WfPropertiesGenerateNumberOfPointsNumericUpDown_ValueChanged(sender, e)";
+            int numberOfPoints = WindowsFormsHelper.GetValueFromNumericUpDown<int>( wfPropertiesGenerateNumberOfPointsNumericUpDown, invoker );
+            PreSets.NumberOfPoints = numberOfPoints;
         }
 
-        private void wfPropertiesGenerateStartingXPointNumericUpDown_ValueChanged( object sender, EventArgs e )
+        private void WfPropertiesGenerateStartingXPointNumericUpDown_ValueChanged( object sender, EventArgs e )
         {
             UpdateComponentRelatedWithChartsInterval();
         }
@@ -357,136 +317,41 @@ namespace PI
             wfPropertiesProgramOSVersion2TextBox.Text = osVersion;
         }
 
-        private void wfPropertiesDatasheetOperationTypeComboBox_SelectedIndexChanged( object sender, EventArgs e )
+        private void WfPropertiesDatasheetShowDatasetButton_Click( object sender, EventArgs e )
         {
-            string invoker = "PI.WfMainWindow.wfPropertiesDatasheetOperationTypeComboBox_SelectedIndexChanged(sender, e)";
-            int selectedIndex = WindowsFormsHelper.GetSelectedIndexSafe( wfPropertiesDatasheetOperationTypeComboBox, invoker );
+            string invoker = "PI.WfMainWindow.WfPropertiesDatasheetShowDatasetButton_Click(sender, e)";
+            int selectedCurveType = WindowsFormsHelper.GetSelectedIndexSafe( wfPropertiesDatasheetCurveTypeComboBox, invoker );
 
-            switch ( selectedIndex ) {
-            case SharedConstants.DATASET_CURVE_OPERATION_TYPE_OVERRIDING:
-                wfPropertiesDatasheetPointIndexNumericUpDown.Enabled = true;
-                wfPropertiesDatasheetPointIndexTrackBar.Enabled = true;
-                break;
-            default:
-                wfPropertiesDatasheetPointIndexNumericUpDown.Enabled = false;
-                wfPropertiesDatasheetPointIndexTrackBar.Enabled = false;
-                break;
-            }
-        }
-
-        private void SetRangeForComponentsRelatedWithOperationTypeInOrdinatesEditControl()
-        {
-            string invoker = "PI.WfMainWindow.SetRangeForComponentsRelatedWithOperationTypeInOrdinatesEditControl()";
-            int numberOfPoints = WindowsFormsHelper.GetValueFromNumericUpDown<int>( wfPropertiesGenerateNumberOfPointsNumericUpDown, invoker );
-            wfPropertiesDatasheetPointIndexNumericUpDown.Minimum = 1;
-            wfPropertiesDatasheetPointIndexNumericUpDown.Maximum = numberOfPoints;
-            wfPropertiesDatasheetPointIndexTrackBar.Minimum = 1;
-            wfPropertiesDatasheetPointIndexTrackBar.Maximum = numberOfPoints;
-        }
-
-        private void wfPropertiesDatasheetPointIndexNumericUpDown_ValueChanged( object sender, EventArgs e )
-        {
-            string invoker = "PI.WfMainWindow.wfPropertiesDatasheetPointIndexNumericUpDown_ValueChanged(sender, e)";
-            int index = WindowsFormsHelper.GetValueFromNumericUpDown<int>( wfPropertiesDatasheetPointIndexNumericUpDown, invoker );
-            WindowsFormsHelper.SetValueForTrackBar( wfPropertiesDatasheetPointIndexTrackBar, index, invoker );
-        }
-
-        private void wfPropertiesDatasheetPointIndexTrackBar_Scroll( object sender, EventArgs e )
-        {
-            string invoker = "PI.WfMainWindow.wfPropertiesDatasheetPointIndexTrackBar_Scroll(sender, e)";
-            int index = WindowsFormsHelper.GetValueFromTrackBar( wfPropertiesDatasheetPointIndexTrackBar, invoker );
-            WindowsFormsHelper.SetValueForNumericUpDown( wfPropertiesDatasheetPointIndexNumericUpDown, index, invoker );
-        }
-
-        private void WfPropertiesDatasheetRefreshButton_Click( object sender, EventArgs e )
-        {
-            string invoker = "PI.WfMainWindow.WfPropertiesDatasheetRefreshButton_Click(sender, e)";
-            int chosenDatasetCurveType = WindowsFormsHelper.GetSelectedIndexSafe( wfPropertiesDatasheetCurveTypeComboBox, invoker );
-
-            switch ( chosenDatasetCurveType ) {
+            switch ( selectedCurveType ) {
             case SharedConstants.DATASET_CURVE_TYPE_CONTROL_PATTERN:
-                RefreshComponentRelatedWithDatasheetTabDataForPatternCurve();
-                break;
             case SharedConstants.DATASET_CURVE_TYPE_CONTROL_GENERATED:
-                // TODO: implement
                 break;
             default:
                 string text = SharedConstants.DATASET_CURVE_TYPE_CONTROL_NOT_SELECTED_TEXT;
                 string caption = SharedConstants.DATASET_CURVE_TYPE_CONTROL_NOT_SELECTED_CAPTION;
                 WindowsFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Asterisk, invoker );
-                break;
+                return;
             }
 
-        }
+            using ( var DSVDialog = new DatasetViewer( ChartsCurvesDataset.PatternCurveChartingSeries ) ) {
+                // TODO: switch beetween different series populating in switch, then show dialog
+                // TODO: change 'ChartsCurvesDataset.PatternCurveChartingSeries' to function-switching invoke (curve type dataset, curve index)
+                WindowsFormsHelper.ShowDialogSafe( DSVDialog, this, invoker );
 
-        [Obsolete( "Pending" )]
-        private void RefreshComponentRelatedWithDatasheetTabDataForPatternCurve()
-        {
-            const int ROW_NUMBER_FROM_END = 3;
-            int currentNumberOfRowsForOrdinates = ChartsCurvesDataset.PatternCurveChartingSeries.Points.Count;
-
-            for ( int i = 0; i < PreSets.PreviousNumberOfRowsForOrdinates; i++ ) {
-                DeleteXYComponentsInDatasheetTab( ROW_NUMBER_FROM_END );
-                DeleteRowInDatasheetTab( ROW_NUMBER_FROM_END );
+                try {
+                    if ( DSVDialog.DialogResult == DialogResult.OK ) {
+                        // TODO: absorb new series data
+                    }
+                }
+                catch ( System.ComponentModel.InvalidEnumArgumentException x ) {
+                    Logger.WriteExceptionInfo( x, invoker );
+                }
+                catch ( Exception x ) {
+                    Logger.WriteExceptionInfo( x, invoker );
+                }
             }
-
-            for ( int i = 0; i < currentNumberOfRowsForOrdinates; i++ ) {
-                AddRowInDatasheetTab( ROW_NUMBER_FROM_END );
-                AddXYComponentsInDatasheetTab( ROW_NUMBER_FROM_END, i );
-            }
-
-            PreSets.PreviousNumberOfRowsForOrdinates = currentNumberOfRowsForOrdinates;
         }
 
-        [Obsolete( "Pending" )]
-        private void DeleteXYComponentsInDatasheetTab( int rowNumberCountedFromEnd )
-        {
-            int index = wfPropertiesDatasheetTableLayoutPanel.RowCount - rowNumberCountedFromEnd;
-            wfPropertiesDatasheetTableLayoutPanel.Controls.RemoveAt( index );
-        }
-
-        [Obsolete( "Pending" )]
-        private void DeleteRowInDatasheetTab( int rowNumberCountedFromEnd )
-        {
-            int lastRowIndex = wfPropertiesDatasheetTableLayoutPanel.RowCount - rowNumberCountedFromEnd;
-            wfPropertiesDatasheetTableLayoutPanel.RowStyles.RemoveAt( lastRowIndex );
-            wfPropertiesDatasheetTableLayoutPanel.RowCount--;
-        }
-
-        [Obsolete( "Pending" )]
-        private void AddRowInDatasheetTab( int rowNumberCountedFromEnd )
-        {
-            int validRow = wfPropertiesDatasheetTableLayoutPanel.RowCount - rowNumberCountedFromEnd;
-            RowStyle previousRowStyle = wfPropertiesDatasheetTableLayoutPanel.RowStyles[validRow];
-            wfPropertiesDatasheetTableLayoutPanel.RowCount++;
-            wfPropertiesDatasheetTableLayoutPanel.RowStyles.Add( new RowStyle( previousRowStyle.SizeType, previousRowStyle.Height ) );
-        }
-
-        [Obsolete( "Pending" )]
-        private void AddXYComponentsInDatasheetTab( int rowNumberCountedFromEnd, int indexOfPoint )
-        {
-            TextBox textBoxForXAxis = new TextBox() {
-                Text = ChartsCurvesDataset.PatternCurveChartingSeries.Points[indexOfPoint].XValue.ToString(),
-                TextAlign = HorizontalAlignment.Right,
-                Enabled = true,
-                ReadOnly = true,
-                Multiline = false,
-                Dock = DockStyle.Fill
-            };
-
-            TextBox textBoxForYAxis = new TextBox() {
-                Text = ChartsCurvesDataset.PatternCurveChartingSeries.Points[indexOfPoint].YValues[0].ToString(),
-                TextAlign = HorizontalAlignment.Right,
-                Enabled = true,
-                ReadOnly = true,
-                Multiline = false,
-                Dock = DockStyle.Fill
-            };
-
-            int validRow = wfPropertiesDatasheetTableLayoutPanel.RowCount - rowNumberCountedFromEnd;
-            wfPropertiesDatasheetTableLayoutPanel.Controls.Add( textBoxForXAxis, 0, validRow );
-            wfPropertiesDatasheetTableLayoutPanel.Controls.Add( textBoxForYAxis, 1, validRow );
-        }
     }
 
 }

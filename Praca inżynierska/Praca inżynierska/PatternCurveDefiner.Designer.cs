@@ -494,6 +494,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "PatternCurveDefiner";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Pattern Curve Definer";
             this.wfTabsPanel.ResumeLayout(false);
             this.wfTabsPanelTableLayout.ResumeLayout(false);

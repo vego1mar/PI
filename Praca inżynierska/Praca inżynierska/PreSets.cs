@@ -19,9 +19,5 @@
         internal static int StartingXPoint { get; set; } = 1;
         #endregion
 
-        #region WfMainWindow.Properties.Datasheet
-        internal static int PreviousNumberOfRowsForOrdinates { get; set; } = 0;
-        #endregion
-
     }
 }

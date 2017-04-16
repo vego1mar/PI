@@ -153,5 +153,36 @@ namespace PI
             return 0;
         }
 
+        internal static bool GetValueFromTextBox<T>( TextBox textBox, out T value, string invokerName )
+        {
+            value = default( T );
+
+            try {
+                value = (T) (Convert.ChangeType(textBox.Text, typeof(T)));
+            }
+            catch ( InvalidCastException x ) {
+                Logger.WriteExceptionInfo( x, invokerName );
+                return false;
+            }
+            catch ( FormatException x ) {
+                Logger.WriteExceptionInfo( x, invokerName );
+                return false;
+            }
+            catch ( OverflowException x ) {
+                Logger.WriteExceptionInfo( x, invokerName );
+                return false;
+            }
+            catch ( ArgumentNullException x ) {
+                Logger.WriteExceptionInfo( x, invokerName );
+                return false;
+            }
+            catch ( Exception x ) {
+                Logger.WriteExceptionInfo( x, invokerName );
+                return false;
+            }
+
+            return true;
+        }
+
     }
 }
