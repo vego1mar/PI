@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 // INTERNAL BACKLOG
 // TODO: Update info
@@ -10,7 +11,8 @@ using System.Windows.Forms;
 // TODO: Implement Gaussian noise option
 // TODO: Menu item - 'Adjust curves' for visual effects manipulations 
 // TODO: Add new pattern curve scaffold - rectangular function
-// CURRENT: 'Show dataset' button click event - inspect todo's in this scope
+// TODO: New operation type - make positive and make negative
+// CURRENT: Fix changing two curves datasets instead of one
 
 namespace PI
 {
@@ -307,6 +309,7 @@ namespace PI
             wfChartsPatternCurve.Series.Add( ChartsCurvesDataset.PatternCurveChartingSeries );
             wfChartsPatternCurve.Series[0].BorderWidth = 3;
             wfChartsPatternCurve.Series[0].Color = System.Drawing.Color.Black;
+            wfChartsPatternCurve.ChartAreas[0].RecalculateAxesScale();
             wfChartsPatternCurve.Visible = true;
             wfChartsPatternCurve.Invalidate();
         }
@@ -317,6 +320,7 @@ namespace PI
             wfChartsPatternCurve.Series.Add( ChartsCurvesDataset.GeneratedCurvesChartingSeriesCollection[indexOfCurve - 1] );
             wfChartsPatternCurve.Series[0].BorderWidth = 3;
             wfChartsPatternCurve.Series[0].Color = System.Drawing.Color.Crimson;
+            wfChartsPatternCurve.ChartAreas[0].RecalculateAxesScale();
             wfChartsPatternCurve.Visible = true;
             wfChartsPatternCurve.Invalidate();
         }
@@ -365,6 +369,7 @@ namespace PI
         {
             string invoker = "PI.WfMainWindow.WfPropertiesDatasheetShowDatasetButton_Click(sender, e)";
             int selectedCurveType = WindowsFormsHelper.GetSelectedIndexSafe( wfPropertiesDatasheetCurveTypeComboBox, invoker );
+            int selectedCurveIndex = WindowsFormsHelper.GetValueFromNumericUpDown<int>( wfPropertiesDatasheetCurveIndexNumericUpDown, invoker );
 
             switch ( selectedCurveType ) {
             case SharedConstants.DATASET_CURVE_TYPE_CONTROL_PATTERN:
@@ -377,18 +382,16 @@ namespace PI
                 return;
             }
 
-            using ( var DSVDialog = new DatasetViewer( ChartsCurvesDataset.PatternCurveChartingSeries ) ) {
-                // TODO: switch beetween different series populating in switch, then show dialog
-                // TODO: change 'ChartsCurvesDataset.PatternCurveChartingSeries' to function-switching invoke (curve type dataset, curve index)
+            using ( var DSVDialog = new DatasetViewer( SpecifyCurveSeries( selectedCurveType, selectedCurveIndex ) ) ) {
                 WindowsFormsHelper.ShowDialogSafe( DSVDialog, this, invoker );
 
                 try {
                     if ( DSVDialog.DialogResult == DialogResult.OK ) {
-                        ChartsCurvesDataset.AbsorbSeriesPoints( DSVDialog.DatasetOfCurve );
-                        // TODO: switch here between different types of curves
+                        ChartsCurvesDataset.AbsorbSeriesPoints( DSVDialog.DatasetOfCurve, selectedCurveType, selectedCurveIndex );
                         wfChartsPatternCurve.Series.Clear();
                         wfChartsPatternCurve.Series.Add( DSVDialog.DatasetOfCurve );
                         wfChartsPatternCurve.Series[0].BorderWidth = 3;
+                        wfChartsPatternCurve.Series[0].Color = System.Drawing.Color.Indigo;
                         wfChartsPatternCurve.ChartAreas[0].RecalculateAxesScale();
                         wfChartsPatternCurve.Visible = true;
                         wfChartsPatternCurve.Invalidate();
@@ -401,10 +404,19 @@ namespace PI
                     Logger.WriteExceptionInfo( x, invoker );
                 }
             }
-
-            // TODO: refresh chart
         }
 
+        private Series SpecifyCurveSeries( int curveType, int curveIndex )
+        {
+            switch ( curveType ) {
+            case SharedConstants.DATASET_CURVE_TYPE_CONTROL_PATTERN:
+                return ChartsCurvesDataset.PatternCurveChartingSeries;
+            case SharedConstants.DATASET_CURVE_TYPE_CONTROL_GENERATED:
+                return ChartsCurvesDataset.GeneratedCurvesChartingSeriesCollection[curveIndex - 1];
+            }
+
+            return null;
+        }
 
     }
 

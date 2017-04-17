@@ -8,8 +8,8 @@ namespace PI
     {
 
         #region Constants
-        private const string PatternCurveSeriesName = "PatternCurveSeries";
-        private const string GeneratedCurveSeriesName = "GeneratedCurveSeries";
+        public const string PATTERN_CURVE_SERIES_NAME = "PatternCurveSeries";
+        public const string GENERATED_CURVE_SERIES_NAME = "GeneratedCurveSeries";
         #endregion
 
         #region Members
@@ -21,7 +21,7 @@ namespace PI
         {
             PatternCurveChartingSeries = new Series();
             GeneratedCurvesChartingSeriesCollection = new List<Series>();
-            SetDefaultPropertiesForChartingSeries( PatternCurveChartingSeries, PatternCurveSeriesName );
+            SetDefaultPropertiesForChartingSeries( PatternCurveChartingSeries, PATTERN_CURVE_SERIES_NAME );
         }
 
         public static void SetDefaultPropertiesForChartingSeries( Series series, string name )
@@ -52,7 +52,7 @@ namespace PI
         private void GeneratePolynomialPatternCurve( int numberOfPoints, int startingXPoint )
         {
             PatternCurveChartingSeries.Points.Clear();
-            SetDefaultPropertiesForChartingSeries( PatternCurveChartingSeries, PatternCurveSeriesName );
+            SetDefaultPropertiesForChartingSeries( PatternCurveChartingSeries, PATTERN_CURVE_SERIES_NAME );
 
             for ( int i = 1; i <= numberOfPoints; i++ ) {
                 double offset = startingXPoint + i - 1;
@@ -66,7 +66,7 @@ namespace PI
         private void GenerateHyperbolicPatternCurve( int numberOfPoints, int startingXPoint )
         {
             PatternCurveChartingSeries.Points.Clear();
-            SetDefaultPropertiesForChartingSeries( PatternCurveChartingSeries, PatternCurveSeriesName );
+            SetDefaultPropertiesForChartingSeries( PatternCurveChartingSeries, PATTERN_CURVE_SERIES_NAME );
 
             for ( int i = 1; i <= numberOfPoints; i++ ) {
                 double offset = startingXPoint + i - 1;
@@ -76,18 +76,35 @@ namespace PI
             }
         }
 
-        [Obsolete( "Unfinished", false )]
-        public void AbsorbSeriesPoints( Series series, int numberOfGeneratedCurve = -1 )
+        public void AbsorbSeriesPoints( Series series, int curveType, int curveIndex )
         {
             if ( series == null ) {
                 return;
             }
 
-            if ( numberOfGeneratedCurve < 0 ) {
-                for ( int i = 0; i < series.Points.Count; i++ ) {
-                    PatternCurveChartingSeries.Points[i].XValue = series.Points[i].XValue;
-                    PatternCurveChartingSeries.Points[i].YValues[0] = series.Points[i].YValues[0];
-                }
+            switch ( curveType ) {
+            case SharedConstants.DATASET_CURVE_TYPE_CONTROL_PATTERN:
+                AbsorbSeriesForPatternCurve( series );
+                break;
+            case SharedConstants.DATASET_CURVE_TYPE_CONTROL_GENERATED:
+                AbsorbSeriesForSpecifiedGeneratedCurve( series, curveIndex );
+                break;
+            }
+        }
+
+        private void AbsorbSeriesForPatternCurve( Series series )
+        {
+            for ( int i = 0; i < series.Points.Count; i++ ) {
+                PatternCurveChartingSeries.Points[i].XValue = series.Points[i].XValue;
+                PatternCurveChartingSeries.Points[i].YValues[0] = series.Points[i].YValues[0];
+            }
+        }
+
+        private void AbsorbSeriesForSpecifiedGeneratedCurve( Series series, int collectionItemNumber )
+        {
+            for ( int i = 0; i < series.Points.Count; i++ ) {
+                GeneratedCurvesChartingSeriesCollection[collectionItemNumber].Points[i].XValue = series.Points[i].XValue;
+                GeneratedCurvesChartingSeriesCollection[collectionItemNumber].Points[i].YValues[0] = series.Points[i].YValues[0];
             }
         }
 
@@ -97,7 +114,7 @@ namespace PI
 
             for ( int i = 0; i < numberOfCurves; i++ ) {
                 Series series = new Series();
-                SetDefaultPropertiesForChartingSeries( series, GeneratedCurveSeriesName + i );
+                SetDefaultPropertiesForChartingSeries( series, GENERATED_CURVE_SERIES_NAME + i );
                 AddSeriesPointsFromSource( PatternCurveChartingSeries, series );
                 GeneratedCurvesChartingSeriesCollection.Add( series );
             }
