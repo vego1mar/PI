@@ -7,12 +7,10 @@ using System.Windows.Forms;
 // TODO: Configuration file
 // TODO: Reading and saving set of curves from a file
 // TODO: I18N
-// TODO: Refreshing charts and curves datasheet automatically
 // TODO: Implement Gaussian noise option
-// TODO: Menu item - 'Adjust curves' for visual effects manipulations
-// TODO: Errors notification icon
-// TODO: Add new pattern curve scaffold - quadratic function
-// TODO: Try to convert values in 'Dataset Viewer' dialog to 'decimal' (this will be assigned to chart) 
+// TODO: Menu item - 'Adjust curves' for visual effects manipulations 
+// TODO: Add new pattern curve scaffold - rectangular function
+// CURRENT: 'Show dataset' button click event - inspect todo's in this scope
 
 namespace PI
 {
@@ -20,8 +18,8 @@ namespace PI
     {
 
         #region Properties
-        private Thread TimerThread { get; set; } 
-        private CurvesDataset ChartsCurvesDataset { get; set; } 
+        private Thread TimerThread { get; set; }
+        private CurvesDataset ChartsCurvesDataset { get; set; }
         #endregion
 
         public WfMainWindow()
@@ -117,6 +115,7 @@ namespace PI
                 string numberOfSecondsText = numberOfSeconds.ToString( "00" );
                 string numberOfDaysText = numberOfDays.ToString();
                 RefreshComponentRelatedWithTimerThread( numberOfDaysText + ":" + numberOfHoursText + ":" + numberOfMinutesText + ":" + numberOfSecondsText );
+                RefreshComponentRelatedWithNumbersOfExceptionsCaught();
             };
         }
 
@@ -138,6 +137,27 @@ namespace PI
             }
             catch ( Exception x ) {
                 Logger.WriteExceptionInfo( x, methodName );
+            }
+        }
+
+        private void RefreshComponentRelatedWithNumbersOfExceptionsCaught()
+        {
+            string invoker = "PI.WfMainWindow.RefreshComponentRelatedWithNumbersOfExceptionsCaught()";
+
+            try {
+                BeginInvoke( (MethodInvoker) delegate {
+                    wfPropertiesProgramExceptionsCaught2TextBox.Text = Logger.NumberOfInvokesForExceptionInfoWriter.ToString();
+                    wfPropertiesProgramExceptionsCaught2TextBox.Refresh();
+                } );
+            }
+            catch ( ObjectDisposedException x ) {
+                Logger.WriteExceptionInfo( x, invoker );
+            }
+            catch ( InvalidOperationException x ) {
+                Logger.WriteExceptionInfo( x, invoker );
+            }
+            catch ( Exception x ) {
+                Logger.WriteExceptionInfo( x, invoker );
             }
         }
 
@@ -195,32 +215,37 @@ namespace PI
 
         private void WfPropertiesDatasheetCurveTypeComboBox_SelectedIndexChanged( object sender, EventArgs e )
         {
-            string methodName = "PI.WfMainWindow.WfPropertiesDatasheetCurveTypeComboBox_SelectedIndexChanged(sender, e)";
+            string invoker = "PI.WfMainWindow.WfPropertiesDatasheetCurveTypeComboBox_SelectedIndexChanged(sender, e)";
 
-            switch ( WindowsFormsHelper.GetSelectedIndexSafe( wfPropertiesDatasheetCurveTypeComboBox, methodName ) ) {
+            switch ( WindowsFormsHelper.GetSelectedIndexSafe( wfPropertiesDatasheetCurveTypeComboBox, invoker ) ) {
             case SharedConstants.DATASET_CURVE_TYPE_CONTROL_GENERATED:
                 wfPropertiesDatasheetCurveIndexNumericUpDown.Enabled = true;
                 wfPropertiesDatasheetCurveIndexTrackBar.Enabled = true;
+                int selectedCurveIndex = WindowsFormsHelper.GetValueFromTrackBar( wfPropertiesDatasheetCurveIndexTrackBar, invoker );
+                ShowGeneratedCurveSeriesOnChart( selectedCurveIndex );
                 break;
-            default:
+            case SharedConstants.DATASET_CURVE_TYPE_CONTROL_PATTERN:
                 wfPropertiesDatasheetCurveIndexNumericUpDown.Enabled = false;
                 wfPropertiesDatasheetCurveIndexTrackBar.Enabled = false;
+                ShowPatternCurveSeriesOnChart();
                 break;
             }
         }
 
         private void WfPropertiesDatasheetCurveIndexNumericUpDown_ValueChanged( object sender, EventArgs e )
         {
-            string methodName = "PI.WfMainWindow.WfPropertiesDatasheetCurveIndexNumericUpDown_ValueChanged(sender, e)";
-            int numericUpDownValue = WindowsFormsHelper.GetValueFromNumericUpDown<int>( wfPropertiesDatasheetCurveIndexNumericUpDown, methodName );
-            WindowsFormsHelper.SetValueForTrackBar( wfPropertiesDatasheetCurveIndexTrackBar, numericUpDownValue, methodName );
+            string invoker = "PI.WfMainWindow.WfPropertiesDatasheetCurveIndexNumericUpDown_ValueChanged(sender, e)";
+            int numericUpDownValue = WindowsFormsHelper.GetValueFromNumericUpDown<int>( wfPropertiesDatasheetCurveIndexNumericUpDown, invoker );
+            WindowsFormsHelper.SetValueForTrackBar( wfPropertiesDatasheetCurveIndexTrackBar, numericUpDownValue, invoker );
+            ShowGeneratedCurveSeriesOnChart( numericUpDownValue );
         }
 
         private void WfPropertiesDatasheetCurveIndexTrackBar_Scroll( object sender, EventArgs e )
         {
-            string methodName = "PI.WfMainWindow.WfPropertiesDatasheetCurveIndexTrackBar_Scroll(sender, e)";
-            int trackBarValue = WindowsFormsHelper.GetValueFromTrackBar( wfPropertiesDatasheetCurveIndexTrackBar, methodName );
-            WindowsFormsHelper.SetValueForNumericUpDown( wfPropertiesDatasheetCurveIndexNumericUpDown, trackBarValue, methodName );
+            string invoker = "PI.WfMainWindow.WfPropertiesDatasheetCurveIndexTrackBar_Scroll(sender, e)";
+            int trackBarValue = WindowsFormsHelper.GetValueFromTrackBar( wfPropertiesDatasheetCurveIndexTrackBar, invoker );
+            WindowsFormsHelper.SetValueForNumericUpDown( wfPropertiesDatasheetCurveIndexNumericUpDown, trackBarValue, invoker );
+            ShowGeneratedCurveSeriesOnChart( trackBarValue );
         }
 
         private void WfPropertiesGenerateNumberOfCurves1NumericUpDown_ValueChanged( object sender, EventArgs e )
@@ -248,7 +273,7 @@ namespace PI
 
             GrabPreSetsForCurvesGeneration();
             GenerateAndShowPatternCurve();
-            // TODO: generate set of curves
+            ChartsCurvesDataset.SpreadPatternCurveSeriesToGeneratedCurveSeriesCollection( PreSets.NumberOfCurves );
         }
 
         private void GrabPreSetsForCurvesGeneration()
@@ -272,13 +297,28 @@ namespace PI
         private void GenerateAndShowPatternCurve()
         {
             if ( ChartsCurvesDataset.GeneratePatternCurve( PreSets.ChosenPatternCurveScaffold, PreSets.NumberOfPoints, PreSets.StartingXPoint ) ) {
-                wfChartsPatternCurve.Series.Clear();
-                wfChartsPatternCurve.Series.Add( ChartsCurvesDataset.PatternCurveChartingSeries );
-                wfChartsPatternCurve.Series[0].BorderWidth = 3;
-                wfChartsPatternCurve.Visible = true;
-                wfChartsPatternCurve.Invalidate();
+                ShowPatternCurveSeriesOnChart();
             }
+        }
 
+        private void ShowPatternCurveSeriesOnChart()
+        {
+            wfChartsPatternCurve.Series.Clear();
+            wfChartsPatternCurve.Series.Add( ChartsCurvesDataset.PatternCurveChartingSeries );
+            wfChartsPatternCurve.Series[0].BorderWidth = 3;
+            wfChartsPatternCurve.Series[0].Color = System.Drawing.Color.Black;
+            wfChartsPatternCurve.Visible = true;
+            wfChartsPatternCurve.Invalidate();
+        }
+
+        private void ShowGeneratedCurveSeriesOnChart( int indexOfCurve )
+        {
+            wfChartsPatternCurve.Series.Clear();
+            wfChartsPatternCurve.Series.Add( ChartsCurvesDataset.GeneratedCurvesChartingSeriesCollection[indexOfCurve - 1] );
+            wfChartsPatternCurve.Series[0].BorderWidth = 3;
+            wfChartsPatternCurve.Series[0].Color = System.Drawing.Color.Crimson;
+            wfChartsPatternCurve.Visible = true;
+            wfChartsPatternCurve.Invalidate();
         }
 
         private void WfPropertiesGenerateNumberOfPointsNumericUpDown_ValueChanged( object sender, EventArgs e )
@@ -361,7 +401,10 @@ namespace PI
                     Logger.WriteExceptionInfo( x, invoker );
                 }
             }
+
+            // TODO: refresh chart
         }
+
 
     }
 

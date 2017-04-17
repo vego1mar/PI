@@ -7,7 +7,7 @@ namespace PI
     public partial class DatasetViewer : Form
     {
 
-        #region Members
+        #region Properties
         public Series DatasetOfCurve { private set; get; }
         #endregion
 
@@ -25,6 +25,7 @@ namespace PI
             int selectedOperationType = WindowsFormsHelper.GetSelectedIndexSafe( wfEditControlOperationTypeComboBox, invoker );
             int selectedPointIndex = WindowsFormsHelper.GetValueFromTrackBar( wfEditControlPointIndexTrackBar, invoker );
             bool isValueValid = WindowsFormsHelper.GetValueFromTextBox( wfEditControlValue2TextBox, out double userValue, invoker );
+            bool isOperationValid = false;
 
             if ( !isValueValid ) {
                 string text = SharedConstants.DSV_USER_VALUE_NOT_VALID_TEXT;
@@ -35,31 +36,17 @@ namespace PI
 
             switch ( selectedOperationType ) {
             case SharedConstants.DSV_OPERATION_TYPE_OVERRIDING:
-                PerformOperationOverriding( selectedPointIndex, userValue );
+                isOperationValid = PerformOperationOverriding( selectedPointIndex, userValue );
                 break;
             case SharedConstants.DSV_OPERATION_TYPE_ADDITION:
-                PerformOperationAddition( userValue );
-                break;
             case SharedConstants.DSV_OPERATION_TYPE_SUBSTRACTION:
-                PerformOperationSubstraction( userValue );
-                break;
             case SharedConstants.DSV_OPERATION_TYPE_MULTIPLICATION:
-                PerformOperationMultiplication( userValue );
-                break;
             case SharedConstants.DSV_OPERATION_TYPE_DIVISION:
-                PerformOperationDivision( userValue );
-                break;
             case SharedConstants.DSV_OPERATION_TYPE_EXPONENTIATION:
-                PerformOperationExponentiation( userValue );
-                break;
             case SharedConstants.DSV_OPERATION_TYPE_LOGARITHMIC:
-                PerformOperationLogarithmic( userValue );
-                break;
             case SharedConstants.DSV_OPERATION_TYPE_ROOTING:
-                PerformOperationRooting( userValue );
-                break;
             case SharedConstants.DSV_OPERATION_TYPE_CONSTANT:
-                PerformOperationConstant( userValue );
+                isOperationValid = PerformOperationOnSeriesPoints( userValue, selectedOperationType );
                 break;
             default:
                 string text = SharedConstants.DSV_OPERATION_TYPE_NOT_SELECTED_TEXT;
@@ -68,7 +55,9 @@ namespace PI
                 return;
             }
 
-            BuildAndPopulateDatasetGrid();
+            if ( isOperationValid ) {
+                BuildAndPopulateDatasetGrid();
+            }
         }
 
         private void SetRangesToComponentsRelatedWithPointIndex()
@@ -245,65 +234,122 @@ namespace PI
             }
         }
 
-        private void PerformOperationOverriding( int indexOfPoint, double userValue )
+        private bool PerformOperationOverriding( int indexOfPoint, double userValue )
         {
-            DatasetOfCurve.Points[indexOfPoint - 1].YValues[0] = userValue;
+            if ( IsValidDecimalChartNumber( userValue ) ) {
+                DatasetOfCurve.Points[indexOfPoint - 1].YValues[0] = userValue;
+                return true;
+            }
+
+            string invoker = "PI.DatasetViewer.PerformOperationOverriding(indexOfPoint, userValue)";
+            string text = SharedConstants.DSV_NOT_VALID_DECIMAL_CHART_NUMBER_TEXT;
+            string caption = SharedConstants.DSV_NOT_VALID_DECIMAL_CHART_NUMBER_CAPTION;
+            SetSpecifiedComponentsToInformAboutOverflow( userValue );
+            WindowsFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Stop, invoker );
+            return false;
         }
 
-        private void PerformOperationConstant( double userValue )
+        private bool PerformOperationOnSeriesPoints( double userValue, int operationType )
         {
+            Series series = GetCopyOfCurrentCurveSeriesPoints();
+
+            for ( int i = 0; i < series.Points.Count; i++ ) {
+                double value = SelectAndPerformOperation( operationType, userValue, series, i );
+
+                if ( !IsValidDecimalChartNumber( value ) ) {
+                    string invoker = "PI.DatasetViewer.PerformOperationOnSeriesPoints(userValue, operationType)";
+                    string text = SharedConstants.DSV_NOT_VALID_DECIMAL_CHART_NUMBER_TEXT;
+                    string caption = SharedConstants.DSV_NOT_VALID_DECIMAL_CHART_NUMBER_CAPTION;
+                    SetSpecifiedComponentsToInformAboutOverflow( value );
+                    WindowsFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Stop, invoker );
+                    return false;
+                }
+            }
+
+            CopySeriesPointsBack( series, DatasetOfCurve );
+            return true;
+        }
+
+        private double SelectAndPerformOperation( int operationType, double userValue, Series series, int pointIndex )
+        {
+            double result = userValue;
+
+            switch ( operationType ) {
+            case SharedConstants.DSV_OPERATION_TYPE_ADDITION:
+                result = series.Points[pointIndex].YValues[0] + userValue;
+                break;
+            case SharedConstants.DSV_OPERATION_TYPE_SUBSTRACTION:
+                result = series.Points[pointIndex].YValues[0] - userValue;
+                break;
+            case SharedConstants.DSV_OPERATION_TYPE_MULTIPLICATION:
+                result = series.Points[pointIndex].YValues[0] * userValue;
+                break;
+            case SharedConstants.DSV_OPERATION_TYPE_DIVISION:
+                result = series.Points[pointIndex].YValues[0] / userValue;
+                break;
+            case SharedConstants.DSV_OPERATION_TYPE_EXPONENTIATION:
+                result = Math.Pow( series.Points[pointIndex].YValues[0], userValue );
+                break;
+            case SharedConstants.DSV_OPERATION_TYPE_LOGARITHMIC:
+                result = Math.Log( series.Points[pointIndex].YValues[0], userValue );
+                break;
+            case SharedConstants.DSV_OPERATION_TYPE_ROOTING:
+                result = Math.Pow( series.Points[pointIndex].YValues[0], 1.0 / userValue );
+                break;
+            case SharedConstants.DSV_OPERATION_TYPE_CONSTANT:
+                result = userValue;
+                break;
+            }
+
+            series.Points[pointIndex].YValues[0] = result;
+            return result;
+        }
+
+        private bool IsValidDecimalChartNumber( double number )
+        {
+            string invoker = "PI.DatasetViewer.IsValidDecimalChartNumber(number)";
+            decimal convertite;
+
+            try {
+                convertite = Convert.ToDecimal( number );
+            }
+            catch ( OverflowException x ) {
+                Logger.WriteExceptionInfo( x, invoker );
+                return false;
+            }
+            catch ( Exception x ) {
+                Logger.WriteExceptionInfo( x, invoker );
+                return false;
+            }
+
+            return true;
+        }
+
+        private Series GetCopyOfCurrentCurveSeriesPoints()
+        {
+            Series series = new Series();
+            CurvesDataset.SetDefaultPropertiesForChartingSeries( series, "CopyOfSeries" );
+
             for ( int i = 0; i < DatasetOfCurve.Points.Count; i++ ) {
-                DatasetOfCurve.Points[i].YValues[0] = userValue;
+                series.Points.AddXY( DatasetOfCurve.Points[i].XValue, DatasetOfCurve.Points[i].YValues[0] );
+            }
+
+            return series;
+        }
+
+        private void CopySeriesPointsBack( Series source, Series target )
+        {
+            for ( int i = 0; i < source.Points.Count; i++ ) {
+                target.Points[i].XValue = source.Points[i].XValue;
+                target.Points[i].YValues[0] = source.Points[i].YValues[0];
             }
         }
 
-        private void PerformOperationAddition( double userValue )
+        private void SetSpecifiedComponentsToInformAboutOverflow( double power )
         {
-            for ( int i = 0; i < DatasetOfCurve.Points.Count; i++ ) {
-                DatasetOfCurve.Points[i].YValues[0] += userValue;
-            }
-        }
-
-        private void PerformOperationSubstraction( double userValue )
-        {
-            for ( int i = 0; i < DatasetOfCurve.Points.Count; i++ ) {
-                DatasetOfCurve.Points[i].YValues[0] -= userValue;
-            }
-        }
-
-        private void PerformOperationMultiplication( double userValue )
-        {
-            for ( int i = 0; i < DatasetOfCurve.Points.Count; i++ ) {
-                DatasetOfCurve.Points[i].YValues[0] *= userValue;
-            }
-        }
-
-        private void PerformOperationDivision( double userValue )
-        {
-            for ( int i = 0; i < DatasetOfCurve.Points.Count; i++ ) {
-                DatasetOfCurve.Points[i].YValues[0] /= userValue;
-            }
-        }
-
-        private void PerformOperationExponentiation( double userValue )
-        {
-            for ( int i = 0; i < DatasetOfCurve.Points.Count; i++ ) {
-                DatasetOfCurve.Points[i].YValues[0] = Math.Pow( DatasetOfCurve.Points[i].YValues[0], userValue );
-            }
-        }
-
-        private void PerformOperationLogarithmic( double userValue )
-        {
-            for ( int i = 0; i < DatasetOfCurve.Points.Count; i++ ) {
-                DatasetOfCurve.Points[i].YValues[0] = Math.Log( DatasetOfCurve.Points[i].YValues[0], userValue );
-            }
-        }
-
-        private void PerformOperationRooting( double userValue )
-        {
-            for ( int i = 0; i < DatasetOfCurve.Points.Count; i++ ) {
-                DatasetOfCurve.Points[i].YValues[0] = Math.Pow( DatasetOfCurve.Points[i].YValues[0], 1.0 / userValue );
-            }
+            string invoker = "PI.DatasetViewer.SetSpecifiedComponentsToInformAboutOverflow(power)";
+            wfEditControlValue1TextBox.Text = SharedConstants.DSV_OPERATION_ERROR_OVERFLOW_TEXT;
+            wfEditControlValue2TextBox.Text = StringFormatter.FormatAsNumeric( 4, power, invoker );
         }
 
     }

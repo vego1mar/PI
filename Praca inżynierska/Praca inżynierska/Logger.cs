@@ -11,14 +11,15 @@ namespace PI
         public const int WRITER_BUFFER_SIZE = 4096;
         #endregion
 
-        #region Members
-        private static StreamWriter logWriter { set; get; }
+        #region Properties
+        private static StreamWriter LogWriter { set; get; }
+        public static uint NumberOfInvokesForExceptionInfoWriter { get; private set; } = 0; 
         #endregion
 
         public static int Initialize()
         {
             try {
-                logWriter = new StreamWriter( WRITER_PATH, false, System.Text.Encoding.UTF8, WRITER_BUFFER_SIZE );
+                LogWriter = new StreamWriter( WRITER_PATH, false, System.Text.Encoding.UTF8, WRITER_BUFFER_SIZE );
                 PrintLogHeader();
             }
             catch ( ArgumentNullException ) {
@@ -60,7 +61,7 @@ namespace PI
         public static int WriteLine( string text )
         {
             try {
-                logWriter.WriteLine( text );
+                LogWriter.WriteLine( text );
             }
             catch ( ObjectDisposedException ) {
                 return SharedConstants.OBJECT_DISPOSED_EXCEPTION;
@@ -78,7 +79,7 @@ namespace PI
         public static int Write( string text )
         {
             try {
-                logWriter.Write( text );
+                LogWriter.Write( text );
             }
             catch ( ObjectDisposedException ) {
                 return SharedConstants.OBJECT_DISPOSED_EXCEPTION;
@@ -98,6 +99,8 @@ namespace PI
 
         public static int WriteExceptionInfo( Exception x, string methodNameContext )
         {
+            NumberOfInvokesForExceptionInfoWriter++;
+
             return
             Write( Environment.NewLine + Environment.NewLine + DateTime.Now.ToString( CultureInfo.InvariantCulture ) + Environment.NewLine +
                    "EXCEPTION TYPE: " + x.GetType() + Environment.NewLine +
@@ -117,7 +120,7 @@ namespace PI
             string methodName = "PI.Logger.Close()";
 
             try {
-                logWriter.Close();
+                LogWriter.Close();
             }
             catch ( System.Text.EncoderFallbackException x ) {
                 WriteExceptionInfo( x, methodName );

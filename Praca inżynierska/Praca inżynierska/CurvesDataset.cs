@@ -1,24 +1,32 @@
-﻿using System.Windows.Forms.DataVisualization.Charting;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace PI
 {
     class CurvesDataset
     {
 
+        #region Constants
+        private const string PatternCurveSeriesName = "PatternCurveSeries";
+        private const string GeneratedCurveSeriesName = "GeneratedCurveSeries";
+        #endregion
+
         #region Members
-        public Series PatternCurveChartingSeries { private set; get; }
+        public Series PatternCurveChartingSeries { get; private set; }
+        public List<Series> GeneratedCurvesChartingSeriesCollection { get; private set; }
         #endregion
 
         public CurvesDataset()
         {
             PatternCurveChartingSeries = new Series();
-            SetDefaultPropertiesForChartingSeries( PatternCurveChartingSeries );
+            GeneratedCurvesChartingSeriesCollection = new List<Series>();
+            SetDefaultPropertiesForChartingSeries( PatternCurveChartingSeries, PatternCurveSeriesName );
         }
 
-        private void SetDefaultPropertiesForChartingSeries( Series series )
+        public static void SetDefaultPropertiesForChartingSeries( Series series, string name )
         {
-            series.Name = "PatternCurveSeries";
+            series.Name = name;
             series.Color = System.Drawing.Color.Black;
             series.IsVisibleInLegend = false;
             series.IsXValueIndexed = true;
@@ -44,7 +52,7 @@ namespace PI
         private void GeneratePolynomialPatternCurve( int numberOfPoints, int startingXPoint )
         {
             PatternCurveChartingSeries.Points.Clear();
-            SetDefaultPropertiesForChartingSeries( PatternCurveChartingSeries );
+            SetDefaultPropertiesForChartingSeries( PatternCurveChartingSeries, PatternCurveSeriesName );
 
             for ( int i = 1; i <= numberOfPoints; i++ ) {
                 double offset = startingXPoint + i - 1;
@@ -58,7 +66,7 @@ namespace PI
         private void GenerateHyperbolicPatternCurve( int numberOfPoints, int startingXPoint )
         {
             PatternCurveChartingSeries.Points.Clear();
-            SetDefaultPropertiesForChartingSeries( PatternCurveChartingSeries );
+            SetDefaultPropertiesForChartingSeries( PatternCurveChartingSeries, PatternCurveSeriesName );
 
             for ( int i = 1; i <= numberOfPoints; i++ ) {
                 double offset = startingXPoint + i - 1;
@@ -80,6 +88,25 @@ namespace PI
                     PatternCurveChartingSeries.Points[i].XValue = series.Points[i].XValue;
                     PatternCurveChartingSeries.Points[i].YValues[0] = series.Points[i].YValues[0];
                 }
+            }
+        }
+
+        public void SpreadPatternCurveSeriesToGeneratedCurveSeriesCollection( int numberOfCurves )
+        {
+            GeneratedCurvesChartingSeriesCollection = new List<Series>();
+
+            for ( int i = 0; i < numberOfCurves; i++ ) {
+                Series series = new Series();
+                SetDefaultPropertiesForChartingSeries( series, GeneratedCurveSeriesName + i );
+                AddSeriesPointsFromSource( PatternCurveChartingSeries, series );
+                GeneratedCurvesChartingSeriesCollection.Add( series );
+            }
+        }
+
+        private void AddSeriesPointsFromSource( Series source, Series target )
+        {
+            for ( int i = 0; i < source.Points.Count; i++ ) {
+                target.Points.AddXY( source.Points[i].XValue, source.Points[i].YValues[0] );
             }
         }
 

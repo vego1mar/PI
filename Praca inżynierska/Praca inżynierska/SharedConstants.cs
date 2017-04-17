@@ -67,6 +67,9 @@
         public const string DSV_EDIT_CONTROL_EXPONENT_TEXT = "Exponent:";
         public const string DSV_EDIT_CONTROL_BASE_TEXT = "Base:";
         public const string DSV_EDIT_CONTROL_LEVEL_TEXT = "Level:";
+        public const string DSV_NOT_VALID_DECIMAL_CHART_NUMBER_TEXT = "At least one value of the performed operation is overflowed. All changes will be ignored.";
+        public const string DSV_NOT_VALID_DECIMAL_CHART_NUMBER_CAPTION = "Data type overflow";
+        public const string DSV_OPERATION_ERROR_OVERFLOW_TEXT = "Overflow:";
         #endregion
 
     }
