@@ -158,7 +158,7 @@ namespace PI
             value = default( T );
 
             try {
-                value = (T) (Convert.ChangeType(textBox.Text, typeof(T)));
+                value = (T) (Convert.ChangeType( textBox.Text, typeof( T ) ));
             }
             catch ( InvalidCastException x ) {
                 Logger.WriteExceptionInfo( x, invokerName );
@@ -182,6 +182,23 @@ namespace PI
             }
 
             return true;
+        }
+
+        internal static RowStyle GetRowStyleSafe( SizeType sizeType, float height, string invokerName )
+        {
+            RowStyle rowStyle = null;
+
+            try {
+                rowStyle = new RowStyle( sizeType, height );
+            }
+            catch ( ArgumentOutOfRangeException x ) {
+                Logger.WriteExceptionInfo( x, invokerName );
+            }
+            catch ( Exception x ) {
+                Logger.WriteExceptionInfo( x, invokerName );
+            }
+
+            return rowStyle;
         }
 
     }

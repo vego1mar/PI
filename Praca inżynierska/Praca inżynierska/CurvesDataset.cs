@@ -10,15 +10,12 @@ namespace PI
         public Series PatternCurveChartingSeries { private set; get; }
         #endregion
 
-        #region CurvesDataset()
         public CurvesDataset()
         {
             PatternCurveChartingSeries = new Series();
             SetDefaultPropertiesForChartingSeries( PatternCurveChartingSeries );
         }
-        #endregion
 
-        #region SetDefaultPropertiesForChartingSeries(...) : void
         private void SetDefaultPropertiesForChartingSeries( Series series )
         {
             series.Name = "PatternCurveSeries";
@@ -29,9 +26,7 @@ namespace PI
             series.YValueType = ChartValueType.Double;
             series.YValuesPerPoint = 1;
         }
-        #endregion
 
-        #region GeneratePatternCurve(...) : bool
         public bool GeneratePatternCurve( int curveScaffoldType, int numberOfPoints, int startingXPoint )
         {
             switch ( curveScaffoldType ) {
@@ -45,9 +40,7 @@ namespace PI
 
             return false;
         }
-        #endregion
 
-        #region GeneratePolynomialPatternCurve(...) : void
         private void GeneratePolynomialPatternCurve( int numberOfPoints, int startingXPoint )
         {
             PatternCurveChartingSeries.Points.Clear();
@@ -61,9 +54,7 @@ namespace PI
                 PatternCurveChartingSeries.Points.AddXY( offset, polynomial );
             }
         }
-        #endregion
 
-        #region GenerateHyperbolicPatternCurve(...) : void
         private void GenerateHyperbolicPatternCurve( int numberOfPoints, int startingXPoint )
         {
             PatternCurveChartingSeries.Points.Clear();
@@ -76,7 +67,21 @@ namespace PI
                 PatternCurveChartingSeries.Points.AddXY( offset, fraction );
             }
         }
-        #endregion
+
+        [Obsolete( "Unfinished", false )]
+        public void AbsorbSeriesPoints( Series series, int numberOfGeneratedCurve = -1 )
+        {
+            if ( series == null ) {
+                return;
+            }
+
+            if ( numberOfGeneratedCurve < 0 ) {
+                for ( int i = 0; i < series.Points.Count; i++ ) {
+                    PatternCurveChartingSeries.Points[i].XValue = series.Points[i].XValue;
+                    PatternCurveChartingSeries.Points[i].YValues[0] = series.Points[i].YValues[0];
+                }
+            }
+        }
 
     }
 }

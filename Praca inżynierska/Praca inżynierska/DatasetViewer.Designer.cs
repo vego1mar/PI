@@ -178,7 +178,8 @@
             "Division",
             "Exponentiation",
             "Logarithmic",
-            "Rooting"});
+            "Rooting",
+            "Constant"});
             this.wfEditControlOperationTypeComboBox.Location = new System.Drawing.Point(133, 28);
             this.wfEditControlOperationTypeComboBox.Name = "wfEditControlOperationTypeComboBox";
             this.wfEditControlOperationTypeComboBox.Size = new System.Drawing.Size(124, 21);

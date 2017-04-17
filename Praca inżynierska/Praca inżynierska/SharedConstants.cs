@@ -35,14 +35,6 @@
         #region WfMainWindow.Properties.Datasheet
         public const int DATASET_CURVE_TYPE_CONTROL_GENERATED = 0;
         public const int DATASET_CURVE_TYPE_CONTROL_PATTERN = 1;
-        public const int DATASET_CURVE_OPERATION_TYPE_OVERRIDING = 0;
-        public const int DATASET_CURVE_OPERATION_TYPE_ADDITION = 1;
-        public const int DATASET_CURVE_OPERATION_TYPE_SUBSTRACTION = 2;
-        public const int DATASET_CURVE_OPERATION_TYPE_MULTIPLICATION = 3;
-        public const int DATASET_CURVE_OPERATION_TYPE_DIVISION = 4;
-        public const int DATASET_CURVE_OPERATION_TYPE_EXPONENTIATION = 5;
-        public const int DATASET_CURVE_OPERATION_TYPE_LOGARITHMIC = 6;
-        public const int DATASET_CURVE_OPERATION_TYPE_ROOTING = 7;
         public const string DATASET_CURVE_TYPE_CONTROL_NOT_SELECTED_TEXT = "You must choose a curve type from 'Dataset control' section.";
         public const string DATASET_CURVE_TYPE_CONTROL_NOT_SELECTED_CAPTION = "Prerequisite not matched!";
         #endregion
@@ -54,10 +46,27 @@
         #endregion
 
         #region DatasetViewer.EditControlForOrdinates
+        public const int DSV_OPERATION_TYPE_OVERRIDING = 0;
+        public const int DSV_OPERATION_TYPE_ADDITION = 1;
+        public const int DSV_OPERATION_TYPE_SUBSTRACTION = 2;
+        public const int DSV_OPERATION_TYPE_MULTIPLICATION = 3;
+        public const int DSV_OPERATION_TYPE_DIVISION = 4;
+        public const int DSV_OPERATION_TYPE_EXPONENTIATION = 5;
+        public const int DSV_OPERATION_TYPE_LOGARITHMIC = 6;
+        public const int DSV_OPERATION_TYPE_ROOTING = 7;
+        public const int DSV_OPERATION_TYPE_CONSTANT = 8;
         public const string DSV_OPERATION_TYPE_NOT_SELECTED_TEXT = "You must choose an operation type to allow performing changes.";
         public const string DSV_OPERATION_TYPE_NOT_SELECTED_CAPTION = "Edit control for ordinates prerequisite";
         public const string DSV_USER_VALUE_NOT_VALID_TEXT = "The given value is improper. Please note, that the value format is localized by default.";
         public const string DSV_USER_VALUE_NOT_VALID_CAPTION = "Wrong cast or conversion";
+        public const string DSV_EDIT_CONTROL_VALUE_TEXT = "Value:";
+        public const string DSV_EDIT_CONTROL_ADDEND_TEXT = "Addend:";
+        public const string DSV_EDIT_CONTROL_SUBTRAHEND_TEXT = "Subtrahend:";
+        public const string DSV_EDIT_CONTROL_MULTIPLIER_TEXT = "Multiplier:";
+        public const string DSV_EDIT_CONTROL_DIVISOR_TEXT = "Divisor:";
+        public const string DSV_EDIT_CONTROL_EXPONENT_TEXT = "Exponent:";
+        public const string DSV_EDIT_CONTROL_BASE_TEXT = "Base:";
+        public const string DSV_EDIT_CONTROL_LEVEL_TEXT = "Level:";
         #endregion
 
     }

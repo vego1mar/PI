@@ -19,7 +19,6 @@ namespace PI
             BuildAndPopulateDatasetGrid();
         }
 
-        [Obsolete( "Under development", false )]
         private void WfEditControlPerformButton_Click( object sender, EventArgs e )
         {
             string invoker = "PI.DatasetViewer.WfEditControlPerformButton_Click(sender, e)";
@@ -35,14 +34,32 @@ namespace PI
             }
 
             switch ( selectedOperationType ) {
-            case SharedConstants.DATASET_CURVE_OPERATION_TYPE_OVERRIDING:
-            case SharedConstants.DATASET_CURVE_OPERATION_TYPE_ADDITION:
-            case SharedConstants.DATASET_CURVE_OPERATION_TYPE_SUBSTRACTION:
-            case SharedConstants.DATASET_CURVE_OPERATION_TYPE_MULTIPLICATION:
-            case SharedConstants.DATASET_CURVE_OPERATION_TYPE_DIVISION:
-            case SharedConstants.DATASET_CURVE_OPERATION_TYPE_EXPONENTIATION:
-            case SharedConstants.DATASET_CURVE_OPERATION_TYPE_LOGARITHMIC:
-            case SharedConstants.DATASET_CURVE_OPERATION_TYPE_ROOTING:
+            case SharedConstants.DSV_OPERATION_TYPE_OVERRIDING:
+                PerformOperationOverriding( selectedPointIndex, userValue );
+                break;
+            case SharedConstants.DSV_OPERATION_TYPE_ADDITION:
+                PerformOperationAddition( userValue );
+                break;
+            case SharedConstants.DSV_OPERATION_TYPE_SUBSTRACTION:
+                PerformOperationSubstraction( userValue );
+                break;
+            case SharedConstants.DSV_OPERATION_TYPE_MULTIPLICATION:
+                PerformOperationMultiplication( userValue );
+                break;
+            case SharedConstants.DSV_OPERATION_TYPE_DIVISION:
+                PerformOperationDivision( userValue );
+                break;
+            case SharedConstants.DSV_OPERATION_TYPE_EXPONENTIATION:
+                PerformOperationExponentiation( userValue );
+                break;
+            case SharedConstants.DSV_OPERATION_TYPE_LOGARITHMIC:
+                PerformOperationLogarithmic( userValue );
+                break;
+            case SharedConstants.DSV_OPERATION_TYPE_ROOTING:
+                PerformOperationRooting( userValue );
+                break;
+            case SharedConstants.DSV_OPERATION_TYPE_CONSTANT:
+                PerformOperationConstant( userValue );
                 break;
             default:
                 string text = SharedConstants.DSV_OPERATION_TYPE_NOT_SELECTED_TEXT;
@@ -51,7 +68,7 @@ namespace PI
                 return;
             }
 
-            // TODO: refresh dataset grid
+            BuildAndPopulateDatasetGrid();
         }
 
         private void SetRangesToComponentsRelatedWithPointIndex()
@@ -85,12 +102,14 @@ namespace PI
 
         private void ClearDatasetGridAndBuildStartState()
         {
+            wfGridTableLayoutPanel.Controls.Clear();
             int lastRow = wfGridTableLayoutPanel.RowCount - 1;
             RowStyle previousRowStyle = wfGridTableLayoutPanel.RowStyles[lastRow];
             wfGridTableLayoutPanel.RowStyles.Clear();
             wfGridTableLayoutPanel.RowCount = 0;
-            wfGridTableLayoutPanel.RowStyles.Add( new RowStyle( previousRowStyle.SizeType, previousRowStyle.Height ) );
-            wfGridTableLayoutPanel.RowStyles.Add( new RowStyle( previousRowStyle.SizeType, previousRowStyle.Height ) );
+            string invoker = "PI.DatasetViewer.ClearDatasetGridAndBuildStartState()";
+            wfGridTableLayoutPanel.RowStyles.Add( WindowsFormsHelper.GetRowStyleSafe( previousRowStyle.SizeType, previousRowStyle.Height, invoker ) );
+            wfGridTableLayoutPanel.RowStyles.Add( WindowsFormsHelper.GetRowStyleSafe( previousRowStyle.SizeType, previousRowStyle.Height, invoker ) );
             wfGridTableLayoutPanel.RowCount = 2;
         }
 
@@ -190,17 +209,102 @@ namespace PI
         {
             string invoker = "PI.DatasetViewer.WfEditControlOperationTypeComboBox_SelectedIndexChanged(sender, e)";
             int selectedOperationType = WindowsFormsHelper.GetSelectedIndexSafe( wfEditControlOperationTypeComboBox, invoker );
+            wfEditControlPointIndexNumericUpDown.Enabled = false;
+            wfEditControlPointIndexTrackBar.Enabled = false;
 
             switch ( selectedOperationType ) {
-            case SharedConstants.DATASET_CURVE_OPERATION_TYPE_OVERRIDING:
+            case SharedConstants.DSV_OPERATION_TYPE_CONSTANT:
+                wfEditControlValue1TextBox.Text = SharedConstants.DSV_EDIT_CONTROL_VALUE_TEXT;
+                break;
+            case SharedConstants.DSV_OPERATION_TYPE_OVERRIDING:
                 wfEditControlPointIndexNumericUpDown.Enabled = true;
                 wfEditControlPointIndexTrackBar.Enabled = true;
+                wfEditControlValue1TextBox.Text = SharedConstants.DSV_EDIT_CONTROL_VALUE_TEXT;
                 break;
-            default:
-                wfEditControlPointIndexNumericUpDown.Enabled = false;
-                wfEditControlPointIndexTrackBar.Enabled = false;
+            case SharedConstants.DSV_OPERATION_TYPE_ADDITION:
+                wfEditControlValue1TextBox.Text = SharedConstants.DSV_EDIT_CONTROL_ADDEND_TEXT;
+                break;
+            case SharedConstants.DSV_OPERATION_TYPE_SUBSTRACTION:
+                wfEditControlValue1TextBox.Text = SharedConstants.DSV_EDIT_CONTROL_SUBTRAHEND_TEXT;
+                break;
+            case SharedConstants.DSV_OPERATION_TYPE_MULTIPLICATION:
+                wfEditControlValue1TextBox.Text = SharedConstants.DSV_EDIT_CONTROL_MULTIPLIER_TEXT;
+                break;
+            case SharedConstants.DSV_OPERATION_TYPE_DIVISION:
+                wfEditControlValue1TextBox.Text = SharedConstants.DSV_EDIT_CONTROL_DIVISOR_TEXT;
+                break;
+            case SharedConstants.DSV_OPERATION_TYPE_EXPONENTIATION:
+                wfEditControlValue1TextBox.Text = SharedConstants.DSV_EDIT_CONTROL_EXPONENT_TEXT;
+                break;
+            case SharedConstants.DSV_OPERATION_TYPE_LOGARITHMIC:
+                wfEditControlValue1TextBox.Text = SharedConstants.DSV_EDIT_CONTROL_BASE_TEXT;
+                break;
+            case SharedConstants.DSV_OPERATION_TYPE_ROOTING:
+                wfEditControlValue1TextBox.Text = SharedConstants.DSV_EDIT_CONTROL_LEVEL_TEXT;
                 break;
             }
         }
+
+        private void PerformOperationOverriding( int indexOfPoint, double userValue )
+        {
+            DatasetOfCurve.Points[indexOfPoint - 1].YValues[0] = userValue;
+        }
+
+        private void PerformOperationConstant( double userValue )
+        {
+            for ( int i = 0; i < DatasetOfCurve.Points.Count; i++ ) {
+                DatasetOfCurve.Points[i].YValues[0] = userValue;
+            }
+        }
+
+        private void PerformOperationAddition( double userValue )
+        {
+            for ( int i = 0; i < DatasetOfCurve.Points.Count; i++ ) {
+                DatasetOfCurve.Points[i].YValues[0] += userValue;
+            }
+        }
+
+        private void PerformOperationSubstraction( double userValue )
+        {
+            for ( int i = 0; i < DatasetOfCurve.Points.Count; i++ ) {
+                DatasetOfCurve.Points[i].YValues[0] -= userValue;
+            }
+        }
+
+        private void PerformOperationMultiplication( double userValue )
+        {
+            for ( int i = 0; i < DatasetOfCurve.Points.Count; i++ ) {
+                DatasetOfCurve.Points[i].YValues[0] *= userValue;
+            }
+        }
+
+        private void PerformOperationDivision( double userValue )
+        {
+            for ( int i = 0; i < DatasetOfCurve.Points.Count; i++ ) {
+                DatasetOfCurve.Points[i].YValues[0] /= userValue;
+            }
+        }
+
+        private void PerformOperationExponentiation( double userValue )
+        {
+            for ( int i = 0; i < DatasetOfCurve.Points.Count; i++ ) {
+                DatasetOfCurve.Points[i].YValues[0] = Math.Pow( DatasetOfCurve.Points[i].YValues[0], userValue );
+            }
+        }
+
+        private void PerformOperationLogarithmic( double userValue )
+        {
+            for ( int i = 0; i < DatasetOfCurve.Points.Count; i++ ) {
+                DatasetOfCurve.Points[i].YValues[0] = Math.Log( DatasetOfCurve.Points[i].YValues[0], userValue );
+            }
+        }
+
+        private void PerformOperationRooting( double userValue )
+        {
+            for ( int i = 0; i < DatasetOfCurve.Points.Count; i++ ) {
+                DatasetOfCurve.Points[i].YValues[0] = Math.Pow( DatasetOfCurve.Points[i].YValues[0], 1.0 / userValue );
+            }
+        }
+
     }
 }

@@ -11,15 +11,17 @@ using System.Windows.Forms;
 // TODO: Implement Gaussian noise option
 // TODO: Menu item - 'Adjust curves' for visual effects manipulations
 // TODO: Errors notification icon
+// TODO: Add new pattern curve scaffold - quadratic function
+// TODO: Try to convert values in 'Dataset Viewer' dialog to 'decimal' (this will be assigned to chart) 
 
 namespace PI
 {
     public partial class WfMainWindow : Form
     {
 
-        #region Members
-        private Thread TimerThread;
-        private CurvesDataset ChartsCurvesDataset;
+        #region Properties
+        private Thread TimerThread { get; set; } 
+        private CurvesDataset ChartsCurvesDataset { get; set; } 
         #endregion
 
         public WfMainWindow()
@@ -230,6 +232,8 @@ namespace PI
             wfPropertiesDatasheetCurveIndexTrackBar.Minimum = 1;
             wfPropertiesDatasheetCurveIndexTrackBar.Maximum = numberOfCurves;
             PreSets.NumberOfCurves = numberOfCurves;
+            wfPropertiesGenerateNumberOfCurves2NumericUpDown.Minimum = 1;
+            wfPropertiesGenerateNumberOfCurves2NumericUpDown.Maximum = numberOfCurves;
         }
 
         private void WfPropertiesGenerateGenerateSetButton_Click( object sender, EventArgs e )
@@ -340,7 +344,14 @@ namespace PI
 
                 try {
                     if ( DSVDialog.DialogResult == DialogResult.OK ) {
-                        // TODO: absorb new series data
+                        ChartsCurvesDataset.AbsorbSeriesPoints( DSVDialog.DatasetOfCurve );
+                        // TODO: switch here between different types of curves
+                        wfChartsPatternCurve.Series.Clear();
+                        wfChartsPatternCurve.Series.Add( DSVDialog.DatasetOfCurve );
+                        wfChartsPatternCurve.Series[0].BorderWidth = 3;
+                        wfChartsPatternCurve.ChartAreas[0].RecalculateAxesScale();
+                        wfChartsPatternCurve.Visible = true;
+                        wfChartsPatternCurve.Invalidate();
                     }
                 }
                 catch ( System.ComponentModel.InvalidEnumArgumentException x ) {
