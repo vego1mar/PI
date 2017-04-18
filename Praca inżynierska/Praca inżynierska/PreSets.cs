@@ -11,6 +11,7 @@
         internal static double ParameterD { get; set; } = 1.0;
         internal static double ParameterE { get; set; } = 1.0;
         internal static double ParameterF { get; set; } = 1.0;
+        internal static double ParameterG { get; set; } = 1.0;
         #endregion
 
         #region WfMainWindow.Properties.Generate

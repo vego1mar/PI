@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
             {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.wfChartsPatternCurve = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.wfChartsMeanedCurve = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.wfPropertiesPanel = new System.Windows.Forms.Panel();
@@ -90,6 +90,8 @@
             this.wfMenuProgramExit = new System.Windows.Forms.ToolStripMenuItem();
             this.wfMainWindowSplitContainer = new System.Windows.Forms.SplitContainer();
             this.wfChartsSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.wfPropertiesProgramLogPath1TextBox = new System.Windows.Forms.TextBox();
+            this.wfPropertiesProgramLogPath2TextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.wfChartsPatternCurve)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.wfChartsMeanedCurve)).BeginInit();
             this.wfPropertiesPanel.SuspendLayout();
@@ -119,66 +121,66 @@
             // 
             // wfChartsPatternCurve
             // 
-            chartArea5.AxisX.IsLabelAutoFit = false;
-            chartArea5.AxisX.IsMarginVisible = false;
-            chartArea5.AxisX.LabelAutoFitMaxFontSize = 8;
-            chartArea5.AxisX.LabelAutoFitMinFontSize = 8;
-            chartArea5.AxisX.LabelAutoFitStyle = System.Windows.Forms.DataVisualization.Charting.LabelAutoFitStyles.None;
-            chartArea5.AxisX.LabelStyle.Font = new System.Drawing.Font("Consolas", 8F);
-            chartArea5.AxisX.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea5.AxisX.MajorTickMark.Enabled = false;
-            chartArea5.AxisX.TitleFont = new System.Drawing.Font("Consolas", 8F);
-            chartArea5.AxisY.LabelAutoFitMaxFontSize = 8;
-            chartArea5.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea5.AxisY.MajorTickMark.Enabled = false;
-            chartArea5.AxisY.TitleFont = new System.Drawing.Font("Consolas", 8F);
-            chartArea5.BackColor = System.Drawing.Color.White;
-            chartArea5.IsSameFontSizeForAllAxes = true;
-            chartArea5.Name = "PatternCurveChartArea";
-            this.wfChartsPatternCurve.ChartAreas.Add(chartArea5);
+            chartArea3.AxisX.IsLabelAutoFit = false;
+            chartArea3.AxisX.IsMarginVisible = false;
+            chartArea3.AxisX.LabelAutoFitMaxFontSize = 8;
+            chartArea3.AxisX.LabelAutoFitMinFontSize = 8;
+            chartArea3.AxisX.LabelAutoFitStyle = System.Windows.Forms.DataVisualization.Charting.LabelAutoFitStyles.None;
+            chartArea3.AxisX.LabelStyle.Font = new System.Drawing.Font("Consolas", 8F);
+            chartArea3.AxisX.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea3.AxisX.MajorTickMark.Enabled = false;
+            chartArea3.AxisX.TitleFont = new System.Drawing.Font("Consolas", 8F);
+            chartArea3.AxisY.LabelAutoFitMaxFontSize = 8;
+            chartArea3.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea3.AxisY.MajorTickMark.Enabled = false;
+            chartArea3.AxisY.TitleFont = new System.Drawing.Font("Consolas", 8F);
+            chartArea3.BackColor = System.Drawing.Color.White;
+            chartArea3.IsSameFontSizeForAllAxes = true;
+            chartArea3.Name = "PatternCurveChartArea";
+            this.wfChartsPatternCurve.ChartAreas.Add(chartArea3);
             this.wfChartsPatternCurve.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend5.Enabled = false;
-            legend5.Name = "Legend1";
-            this.wfChartsPatternCurve.Legends.Add(legend5);
+            legend3.Enabled = false;
+            legend3.Name = "Legend1";
+            this.wfChartsPatternCurve.Legends.Add(legend3);
             this.wfChartsPatternCurve.Location = new System.Drawing.Point(0, 0);
             this.wfChartsPatternCurve.Name = "wfChartsPatternCurve";
-            series5.BorderWidth = 5;
-            series5.ChartArea = "PatternCurveChartArea";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series5.Color = System.Drawing.Color.Black;
-            series5.CustomProperties = "EmptyPointValue=Zero";
-            series5.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            series5.IsVisibleInLegend = false;
-            series5.IsXValueIndexed = true;
-            series5.Legend = "Legend1";
-            series5.Name = "PatternCurveSeries";
-            series5.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            series5.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            this.wfChartsPatternCurve.Series.Add(series5);
+            series3.BorderWidth = 5;
+            series3.ChartArea = "PatternCurveChartArea";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Color = System.Drawing.Color.Black;
+            series3.CustomProperties = "EmptyPointValue=Zero";
+            series3.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            series3.IsVisibleInLegend = false;
+            series3.IsXValueIndexed = true;
+            series3.Legend = "Legend1";
+            series3.Name = "PatternCurveSeries";
+            series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            series3.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            this.wfChartsPatternCurve.Series.Add(series3);
             this.wfChartsPatternCurve.Size = new System.Drawing.Size(316, 416);
             this.wfChartsPatternCurve.TabIndex = 0;
             this.wfChartsPatternCurve.Text = "wfPatternCurveChart";
             // 
             // wfChartsMeanedCurve
             // 
-            chartArea6.Name = "ChartArea1";
-            this.wfChartsMeanedCurve.ChartAreas.Add(chartArea6);
+            chartArea4.Name = "ChartArea1";
+            this.wfChartsMeanedCurve.ChartAreas.Add(chartArea4);
             this.wfChartsMeanedCurve.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend6.Enabled = false;
-            legend6.Name = "Legend1";
-            this.wfChartsMeanedCurve.Legends.Add(legend6);
+            legend4.Enabled = false;
+            legend4.Name = "Legend1";
+            this.wfChartsMeanedCurve.Legends.Add(legend4);
             this.wfChartsMeanedCurve.Location = new System.Drawing.Point(0, 0);
             this.wfChartsMeanedCurve.Name = "wfChartsMeanedCurve";
-            series6.BorderWidth = 3;
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series6.Color = System.Drawing.Color.Black;
-            series6.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            series6.IsVisibleInLegend = false;
-            series6.Legend = "Legend1";
-            series6.Name = "Series1";
-            series6.YValuesPerPoint = 4;
-            this.wfChartsMeanedCurve.Series.Add(series6);
+            series4.BorderWidth = 3;
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series4.Color = System.Drawing.Color.Black;
+            series4.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            series4.IsVisibleInLegend = false;
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            series4.YValuesPerPoint = 4;
+            this.wfChartsMeanedCurve.Series.Add(series4);
             this.wfChartsMeanedCurve.Size = new System.Drawing.Size(342, 416);
             this.wfChartsMeanedCurve.TabIndex = 1;
             this.wfChartsMeanedCurve.Text = "wfMeanedCurveChart";
@@ -775,6 +777,8 @@
             this.wfPropertiesProgramTableLayoutPanel.ColumnCount = 2;
             this.wfPropertiesProgramTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.wfPropertiesProgramTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.wfPropertiesProgramTableLayoutPanel.Controls.Add(this.wfPropertiesProgramLogPath2TextBox, 1, 10);
+            this.wfPropertiesProgramTableLayoutPanel.Controls.Add(this.wfPropertiesProgramLogPath1TextBox, 0, 10);
             this.wfPropertiesProgramTableLayoutPanel.Controls.Add(this.wfPropertiesProgramExceptionsCaught2TextBox, 1, 9);
             this.wfPropertiesProgramTableLayoutPanel.Controls.Add(this.wfPropertiesProgramExceptionsCaught1TextBox, 0, 9);
             this.wfPropertiesProgramTableLayoutPanel.Controls.Add(this.wfPropertiesProgramExceptionsTextBox, 0, 8);
@@ -791,7 +795,8 @@
             this.wfPropertiesProgramTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.wfPropertiesProgramTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.wfPropertiesProgramTableLayoutPanel.Name = "wfPropertiesProgramTableLayoutPanel";
-            this.wfPropertiesProgramTableLayoutPanel.RowCount = 13;
+            this.wfPropertiesProgramTableLayoutPanel.RowCount = 14;
+            this.wfPropertiesProgramTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.wfPropertiesProgramTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.wfPropertiesProgramTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.wfPropertiesProgramTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
@@ -1041,6 +1046,32 @@
             this.wfChartsSplitContainer.SplitterDistance = 316;
             this.wfChartsSplitContainer.TabIndex = 0;
             // 
+            // wfPropertiesProgramLogPath1TextBox
+            // 
+            this.wfPropertiesProgramLogPath1TextBox.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.wfPropertiesProgramLogPath1TextBox.Cursor = System.Windows.Forms.Cursors.Default;
+            this.wfPropertiesProgramLogPath1TextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.wfPropertiesProgramLogPath1TextBox.Location = new System.Drawing.Point(3, 253);
+            this.wfPropertiesProgramLogPath1TextBox.Name = "wfPropertiesProgramLogPath1TextBox";
+            this.wfPropertiesProgramLogPath1TextBox.ReadOnly = true;
+            this.wfPropertiesProgramLogPath1TextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.wfPropertiesProgramLogPath1TextBox.Size = new System.Drawing.Size(125, 20);
+            this.wfPropertiesProgramLogPath1TextBox.TabIndex = 18;
+            this.wfPropertiesProgramLogPath1TextBox.Text = "Log path:";
+            // 
+            // wfPropertiesProgramLogPath2TextBox
+            // 
+            this.wfPropertiesProgramLogPath2TextBox.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.wfPropertiesProgramLogPath2TextBox.Cursor = System.Windows.Forms.Cursors.Default;
+            this.wfPropertiesProgramLogPath2TextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.wfPropertiesProgramLogPath2TextBox.Location = new System.Drawing.Point(134, 253);
+            this.wfPropertiesProgramLogPath2TextBox.Name = "wfPropertiesProgramLogPath2TextBox";
+            this.wfPropertiesProgramLogPath2TextBox.ReadOnly = true;
+            this.wfPropertiesProgramLogPath2TextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.wfPropertiesProgramLogPath2TextBox.Size = new System.Drawing.Size(125, 20);
+            this.wfPropertiesProgramLogPath2TextBox.TabIndex = 19;
+            this.wfPropertiesProgramLogPath2TextBox.Text = "Not known";
+            // 
             // WfMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1145,6 +1176,8 @@
         private System.Windows.Forms.TextBox wfPropertiesProgramExceptionsCaught2TextBox;
         private System.Windows.Forms.TextBox wfPropertiesProgramExceptionsCaught1TextBox;
         private System.Windows.Forms.TextBox wfPropertiesProgramExceptionsTextBox;
+        private System.Windows.Forms.TextBox wfPropertiesProgramLogPath2TextBox;
+        private System.Windows.Forms.TextBox wfPropertiesProgramLogPath1TextBox;
     }
     }
 

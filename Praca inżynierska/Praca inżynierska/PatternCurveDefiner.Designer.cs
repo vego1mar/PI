@@ -47,15 +47,15 @@
             this.wfContentPolynomialDNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.wfContentPolynomialCNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.wfContentPolynomialDLabel = new System.Windows.Forms.Label();
-            this.wfContentPolynomialPictureBox = new System.Windows.Forms.PictureBox();
             this.wfContentHyperbolicTabPage = new System.Windows.Forms.TabPage();
             this.wfContentHyperbolicParametersGroupBox = new System.Windows.Forms.GroupBox();
-            this.wfContentHyperbolicCNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.wfContentHyperbolicCLabel = new System.Windows.Forms.Label();
-            this.wfContentHyperbolicPictureBox = new System.Windows.Forms.PictureBox();
+            this.wfContentHyperbolicGNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.wfContentHyperbolicGLabel = new System.Windows.Forms.Label();
             this.wfConfirmationPanel = new System.Windows.Forms.Panel();
             this.wfConfirmationCancelButton = new System.Windows.Forms.Button();
             this.wfConfirmationOKButton = new System.Windows.Forms.Button();
+            this.wfContentPolynomialPictureBox = new System.Windows.Forms.PictureBox();
+            this.wfContentHyperbolicPictureBox = new System.Windows.Forms.PictureBox();
             this.wfTabsPanel.SuspendLayout();
             this.wfTabsPanelTableLayout.SuspendLayout();
             this.wfContentTabControl.SuspendLayout();
@@ -67,12 +67,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.wfContentPolynomialBNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.wfContentPolynomialDNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.wfContentPolynomialCNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wfContentPolynomialPictureBox)).BeginInit();
             this.wfContentHyperbolicTabPage.SuspendLayout();
             this.wfContentHyperbolicParametersGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.wfContentHyperbolicCNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wfContentHyperbolicPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.wfContentHyperbolicGNumericUpDown)).BeginInit();
             this.wfConfirmationPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.wfContentPolynomialPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.wfContentHyperbolicPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // wfTabsPanel
@@ -114,7 +114,7 @@
             this.wfTabsPanelHyperbolicButton.TabIndex = 1;
             this.wfTabsPanelHyperbolicButton.Text = "Hyperbolic";
             this.wfTabsPanelHyperbolicButton.UseVisualStyleBackColor = true;
-            this.wfTabsPanelHyperbolicButton.Click += new System.EventHandler(this.wfTabsPanelHyperbolicButton_Click);
+            this.wfTabsPanelHyperbolicButton.Click += new System.EventHandler(this.WfTabsPanelHyperbolicButton_Click);
             // 
             // wfTabsPanelPolynomialButton
             // 
@@ -127,7 +127,7 @@
             this.wfTabsPanelPolynomialButton.TabIndex = 0;
             this.wfTabsPanelPolynomialButton.Text = "Polynomial";
             this.wfTabsPanelPolynomialButton.UseVisualStyleBackColor = true;
-            this.wfTabsPanelPolynomialButton.Click += new System.EventHandler(this.wfTabsPanelPolynomialButton_Click);
+            this.wfTabsPanelPolynomialButton.Click += new System.EventHandler(this.WfTabsPanelPolynomialButton_Click);
             // 
             // wfContentTabControl
             // 
@@ -260,11 +260,6 @@
             0,
             0,
             0});
-            this.wfContentPolynomialENumericUpDown.Minimum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            -2147483648});
             this.wfContentPolynomialENumericUpDown.Name = "wfContentPolynomialENumericUpDown";
             this.wfContentPolynomialENumericUpDown.Size = new System.Drawing.Size(120, 20);
             this.wfContentPolynomialENumericUpDown.TabIndex = 10;
@@ -280,11 +275,6 @@
             0,
             0,
             0});
-            this.wfContentPolynomialBNumericUpDown.Minimum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            -2147483648});
             this.wfContentPolynomialBNumericUpDown.Name = "wfContentPolynomialBNumericUpDown";
             this.wfContentPolynomialBNumericUpDown.Size = new System.Drawing.Size(120, 20);
             this.wfContentPolynomialBNumericUpDown.TabIndex = 4;
@@ -366,18 +356,6 @@
             this.wfContentPolynomialDLabel.TabIndex = 7;
             this.wfContentPolynomialDLabel.Text = "d = ";
             // 
-            // wfContentPolynomialPictureBox
-            // 
-            this.wfContentPolynomialPictureBox.BackColor = System.Drawing.SystemColors.Window;
-            this.wfContentPolynomialPictureBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.wfContentPolynomialPictureBox.Image = global::PI.Properties.Resources.Pattern_scaffold_polynomial;
-            this.wfContentPolynomialPictureBox.Location = new System.Drawing.Point(3, 3);
-            this.wfContentPolynomialPictureBox.Name = "wfContentPolynomialPictureBox";
-            this.wfContentPolynomialPictureBox.Size = new System.Drawing.Size(531, 130);
-            this.wfContentPolynomialPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.wfContentPolynomialPictureBox.TabIndex = 0;
-            this.wfContentPolynomialPictureBox.TabStop = false;
-            // 
             // wfContentHyperbolicTabPage
             // 
             this.wfContentHyperbolicTabPage.Controls.Add(this.wfContentHyperbolicParametersGroupBox);
@@ -392,8 +370,8 @@
             // 
             // wfContentHyperbolicParametersGroupBox
             // 
-            this.wfContentHyperbolicParametersGroupBox.Controls.Add(this.wfContentHyperbolicCNumericUpDown);
-            this.wfContentHyperbolicParametersGroupBox.Controls.Add(this.wfContentHyperbolicCLabel);
+            this.wfContentHyperbolicParametersGroupBox.Controls.Add(this.wfContentHyperbolicGNumericUpDown);
+            this.wfContentHyperbolicParametersGroupBox.Controls.Add(this.wfContentHyperbolicGLabel);
             this.wfContentHyperbolicParametersGroupBox.Location = new System.Drawing.Point(144, 161);
             this.wfContentHyperbolicParametersGroupBox.Name = "wfContentHyperbolicParametersGroupBox";
             this.wfContentHyperbolicParametersGroupBox.Size = new System.Drawing.Size(251, 88);
@@ -401,52 +379,40 @@
             this.wfContentHyperbolicParametersGroupBox.TabStop = false;
             this.wfContentHyperbolicParametersGroupBox.Text = "Parameters";
             // 
-            // wfContentHyperbolicCNumericUpDown
+            // wfContentHyperbolicGNumericUpDown
             // 
-            this.wfContentHyperbolicCNumericUpDown.DecimalPlaces = 4;
-            this.wfContentHyperbolicCNumericUpDown.Location = new System.Drawing.Point(86, 34);
-            this.wfContentHyperbolicCNumericUpDown.Maximum = new decimal(new int[] {
+            this.wfContentHyperbolicGNumericUpDown.DecimalPlaces = 4;
+            this.wfContentHyperbolicGNumericUpDown.Location = new System.Drawing.Point(86, 34);
+            this.wfContentHyperbolicGNumericUpDown.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
-            this.wfContentHyperbolicCNumericUpDown.Minimum = new decimal(new int[] {
+            this.wfContentHyperbolicGNumericUpDown.Minimum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            -2147483648});
+            this.wfContentHyperbolicGNumericUpDown.Name = "wfContentHyperbolicGNumericUpDown";
+            this.wfContentHyperbolicGNumericUpDown.Size = new System.Drawing.Size(120, 20);
+            this.wfContentHyperbolicGNumericUpDown.TabIndex = 8;
+            this.wfContentHyperbolicGNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.wfContentHyperbolicGNumericUpDown.ThousandsSeparator = true;
+            this.wfContentHyperbolicGNumericUpDown.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.wfContentHyperbolicCNumericUpDown.Name = "wfContentHyperbolicCNumericUpDown";
-            this.wfContentHyperbolicCNumericUpDown.Size = new System.Drawing.Size(120, 20);
-            this.wfContentHyperbolicCNumericUpDown.TabIndex = 8;
-            this.wfContentHyperbolicCNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.wfContentHyperbolicCNumericUpDown.ThousandsSeparator = true;
-            this.wfContentHyperbolicCNumericUpDown.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             // 
-            // wfContentHyperbolicCLabel
+            // wfContentHyperbolicGLabel
             // 
-            this.wfContentHyperbolicCLabel.AutoSize = true;
-            this.wfContentHyperbolicCLabel.Font = new System.Drawing.Font("Consolas", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.wfContentHyperbolicCLabel.Location = new System.Drawing.Point(44, 35);
-            this.wfContentHyperbolicCLabel.Name = "wfContentHyperbolicCLabel";
-            this.wfContentHyperbolicCLabel.Size = new System.Drawing.Size(40, 17);
-            this.wfContentHyperbolicCLabel.TabIndex = 7;
-            this.wfContentHyperbolicCLabel.Text = "c = ";
-            // 
-            // wfContentHyperbolicPictureBox
-            // 
-            this.wfContentHyperbolicPictureBox.BackColor = System.Drawing.SystemColors.Window;
-            this.wfContentHyperbolicPictureBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.wfContentHyperbolicPictureBox.Image = global::PI.Properties.Resources.Pattern_scaffold_hyperbolic;
-            this.wfContentHyperbolicPictureBox.Location = new System.Drawing.Point(3, 3);
-            this.wfContentHyperbolicPictureBox.Name = "wfContentHyperbolicPictureBox";
-            this.wfContentHyperbolicPictureBox.Size = new System.Drawing.Size(531, 130);
-            this.wfContentHyperbolicPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.wfContentHyperbolicPictureBox.TabIndex = 0;
-            this.wfContentHyperbolicPictureBox.TabStop = false;
+            this.wfContentHyperbolicGLabel.AutoSize = true;
+            this.wfContentHyperbolicGLabel.Font = new System.Drawing.Font("Consolas", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.wfContentHyperbolicGLabel.Location = new System.Drawing.Point(44, 35);
+            this.wfContentHyperbolicGLabel.Name = "wfContentHyperbolicGLabel";
+            this.wfContentHyperbolicGLabel.Size = new System.Drawing.Size(40, 17);
+            this.wfContentHyperbolicGLabel.TabIndex = 7;
+            this.wfContentHyperbolicGLabel.Text = "g = ";
             // 
             // wfConfirmationPanel
             // 
@@ -468,7 +434,7 @@
             this.wfConfirmationCancelButton.TabIndex = 1;
             this.wfConfirmationCancelButton.Text = "Cancel";
             this.wfConfirmationCancelButton.UseVisualStyleBackColor = true;
-            this.wfConfirmationCancelButton.Click += new System.EventHandler(this.wfConfirmationCancelButton_Click);
+            this.wfConfirmationCancelButton.Click += new System.EventHandler(this.WfConfirmationCancelButton_Click);
             // 
             // wfConfirmationOKButton
             // 
@@ -480,7 +446,31 @@
             this.wfConfirmationOKButton.TabIndex = 0;
             this.wfConfirmationOKButton.Text = "OK";
             this.wfConfirmationOKButton.UseVisualStyleBackColor = true;
-            this.wfConfirmationOKButton.Click += new System.EventHandler(this.wfConfirmationOKButton_Click);
+            this.wfConfirmationOKButton.Click += new System.EventHandler(this.WfConfirmationOKButton_Click);
+            // 
+            // wfContentPolynomialPictureBox
+            // 
+            this.wfContentPolynomialPictureBox.BackColor = System.Drawing.SystemColors.Window;
+            this.wfContentPolynomialPictureBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.wfContentPolynomialPictureBox.Image = global::PI.Properties.Resources.Pattern_scaffold_polynomial;
+            this.wfContentPolynomialPictureBox.Location = new System.Drawing.Point(3, 3);
+            this.wfContentPolynomialPictureBox.Name = "wfContentPolynomialPictureBox";
+            this.wfContentPolynomialPictureBox.Size = new System.Drawing.Size(531, 130);
+            this.wfContentPolynomialPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.wfContentPolynomialPictureBox.TabIndex = 0;
+            this.wfContentPolynomialPictureBox.TabStop = false;
+            // 
+            // wfContentHyperbolicPictureBox
+            // 
+            this.wfContentHyperbolicPictureBox.BackColor = System.Drawing.SystemColors.Window;
+            this.wfContentHyperbolicPictureBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.wfContentHyperbolicPictureBox.Image = global::PI.Properties.Resources.Pattern_scaffold_hyperbolic;
+            this.wfContentHyperbolicPictureBox.Location = new System.Drawing.Point(3, 3);
+            this.wfContentHyperbolicPictureBox.Name = "wfContentHyperbolicPictureBox";
+            this.wfContentHyperbolicPictureBox.Size = new System.Drawing.Size(531, 130);
+            this.wfContentHyperbolicPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.wfContentHyperbolicPictureBox.TabIndex = 0;
+            this.wfContentHyperbolicPictureBox.TabStop = false;
             // 
             // PatternCurveDefiner
             // 
@@ -508,13 +498,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.wfContentPolynomialBNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.wfContentPolynomialDNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.wfContentPolynomialCNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wfContentPolynomialPictureBox)).EndInit();
             this.wfContentHyperbolicTabPage.ResumeLayout(false);
             this.wfContentHyperbolicParametersGroupBox.ResumeLayout(false);
             this.wfContentHyperbolicParametersGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.wfContentHyperbolicCNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wfContentHyperbolicPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.wfContentHyperbolicGNumericUpDown)).EndInit();
             this.wfConfirmationPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.wfContentPolynomialPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.wfContentHyperbolicPictureBox)).EndInit();
             this.ResumeLayout(false);
 
             }
@@ -545,8 +535,8 @@
         private System.Windows.Forms.NumericUpDown wfContentPolynomialBNumericUpDown;
         private System.Windows.Forms.Label wfContentPolynomialBLabel;
         private System.Windows.Forms.GroupBox wfContentHyperbolicParametersGroupBox;
-        private System.Windows.Forms.NumericUpDown wfContentHyperbolicCNumericUpDown;
-        private System.Windows.Forms.Label wfContentHyperbolicCLabel;
+        private System.Windows.Forms.NumericUpDown wfContentHyperbolicGNumericUpDown;
+        private System.Windows.Forms.Label wfContentHyperbolicGLabel;
         private System.Windows.Forms.GroupBox wfContentPolynomialParametersGroupBox;
         }
     }

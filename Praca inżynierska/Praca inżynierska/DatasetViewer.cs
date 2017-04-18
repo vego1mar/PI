@@ -48,6 +48,14 @@ namespace PI
             case SharedConstants.DSV_OPERATION_TYPE_CONSTANT:
                 isOperationValid = PerformOperationOnSeriesPoints( userValue, selectedOperationType );
                 break;
+            case SharedConstants.DSV_OPERATION_TYPE_POSITIVE:
+                PerformOperationPositive();
+                isOperationValid = true;
+                break;
+            case SharedConstants.DSV_OPERATION_TYPE_NEGATIVE:
+                PerformOperationNegative();
+                isOperationValid = true;
+                break;
             default:
                 string text = SharedConstants.DSV_OPERATION_TYPE_NOT_SELECTED_TEXT;
                 string caption = SharedConstants.DSV_OPERATION_TYPE_NOT_SELECTED_CAPTION;
@@ -200,6 +208,7 @@ namespace PI
             int selectedOperationType = WindowsFormsHelper.GetSelectedIndexSafe( wfEditControlOperationTypeComboBox, invoker );
             wfEditControlPointIndexNumericUpDown.Enabled = false;
             wfEditControlPointIndexTrackBar.Enabled = false;
+            wfEditControlValue2TextBox.Enabled = true;
 
             switch ( selectedOperationType ) {
             case SharedConstants.DSV_OPERATION_TYPE_CONSTANT:
@@ -231,6 +240,11 @@ namespace PI
             case SharedConstants.DSV_OPERATION_TYPE_ROOTING:
                 wfEditControlValue1TextBox.Text = SharedConstants.DSV_EDIT_CONTROL_LEVEL_TEXT;
                 break;
+            case SharedConstants.DSV_OPERATION_TYPE_POSITIVE:
+            case SharedConstants.DSV_OPERATION_TYPE_NEGATIVE:
+                wfEditControlValue2TextBox.Text = "0";
+                wfEditControlValue2TextBox.Enabled = false;
+                break;
             }
         }
 
@@ -247,6 +261,24 @@ namespace PI
             SetSpecifiedComponentsToInformAboutOverflow( userValue );
             WindowsFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Stop, invoker );
             return false;
+        }
+
+        private void PerformOperationPositive()
+        {
+            for ( int i = 0; i < DatasetOfCurve.Points.Count; i++ ) {
+                if ( DatasetOfCurve.Points[i].YValues[0] < 0 ) {
+                    DatasetOfCurve.Points[i].YValues[0] = Math.Abs( DatasetOfCurve.Points[i].YValues[0] );
+                }
+            }
+        }
+
+        private void PerformOperationNegative()
+        {
+            for ( int i = 0; i < DatasetOfCurve.Points.Count; i++ ) {
+                if ( DatasetOfCurve.Points[i].YValues[0] > 0 ) {
+                    DatasetOfCurve.Points[i].YValues[0] = -(DatasetOfCurve.Points[i].YValues[0]);
+                }
+            }
         }
 
         private bool PerformOperationOnSeriesPoints( double userValue, int operationType )

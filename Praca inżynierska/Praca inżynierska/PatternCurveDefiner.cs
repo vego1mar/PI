@@ -7,13 +7,14 @@ namespace PI
     {
 
         #region Properties
-        public int ChosenCurve { private set; get; }
-        public double ParameterA { private set; get; }
-        public double ParameterB { private set; get; }
-        public double ParameterC { private set; get; }
-        public double ParameterD { private set; get; }
-        public double ParameterE { private set; get; }
-        public double ParameterF { private set; get; }
+        public int ChosenCurve { get; private set; }
+        public double ParameterA { get; private set; }
+        public double ParameterB { get; private set; }
+        public double ParameterC { get; private set; }
+        public double ParameterD { get; private set; }
+        public double ParameterE { get; private set; }
+        public double ParameterF { get; private set; }
+        public double ParameterG { get; private set; }
         #endregion
 
         public PatternCurveDefiner()
@@ -34,6 +35,7 @@ namespace PI
             ParameterD = PreSets.ParameterD;
             ParameterE = PreSets.ParameterE;
             ParameterF = PreSets.ParameterF;
+            ParameterG = PreSets.ParameterG;
         }
 
         private void SelectChosenCurveTab()
@@ -62,30 +64,30 @@ namespace PI
             WindowsFormsHelper.SetValueForNumericUpDown( wfContentPolynomialDNumericUpDown, PreSets.ParameterD, invoker );
             WindowsFormsHelper.SetValueForNumericUpDown( wfContentPolynomialENumericUpDown, PreSets.ParameterE, invoker );
             WindowsFormsHelper.SetValueForNumericUpDown( wfContentPolynomialFNumericUpDown, PreSets.ParameterF, invoker );
-            WindowsFormsHelper.SetValueForNumericUpDown( wfContentHyperbolicCNumericUpDown, PreSets.ParameterC, invoker );
+            WindowsFormsHelper.SetValueForNumericUpDown( wfContentHyperbolicGNumericUpDown, PreSets.ParameterG, invoker );
         }
 
-        private void wfTabsPanelPolynomialButton_Click( object sender, EventArgs e )
+        private void WfTabsPanelPolynomialButton_Click( object sender, EventArgs e )
         {
             ChosenCurve = SharedConstants.CURVE_PATTERN_SCAFFOLD_POLYNOMIAL;
-            string invoker = "PI.PatternCurveDefiner.wfTabsPanelPolynomialButton_Click(sender, e)";
+            string invoker = "PI.PatternCurveDefiner.WfTabsPanelPolynomialButton_Click(sender, e)";
             WindowsFormsHelper.SelectTabSafe( wfContentTabControl, SharedConstants.CURVE_PATTERN_SCAFFOLD_POLYNOMIAL, invoker );
             wfTabsPanelPolynomialButton.BackColor = System.Drawing.Color.GhostWhite;
             wfTabsPanelHyperbolicButton.BackColor = System.Drawing.Color.White;
         }
 
-        private void wfTabsPanelHyperbolicButton_Click( object sender, EventArgs e )
+        private void WfTabsPanelHyperbolicButton_Click( object sender, EventArgs e )
         {
             ChosenCurve = SharedConstants.CURVE_PATTERN_SCAFFOLD_HYPERBOLIC;
-            string invoker = "PI.PatternCurveDefiner.wfTabsPanelHyperbolicButton_Click(sender, e)";
+            string invoker = "PI.PatternCurveDefiner.WfTabsPanelHyperbolicButton_Click(sender, e)";
             WindowsFormsHelper.SelectTabSafe( wfContentTabControl, SharedConstants.CURVE_PATTERN_SCAFFOLD_HYPERBOLIC, invoker );
             wfTabsPanelHyperbolicButton.BackColor = System.Drawing.Color.GhostWhite;
             wfTabsPanelPolynomialButton.BackColor = System.Drawing.Color.White;
         }
 
-        private void wfConfirmationCancelButton_Click( object sender, EventArgs e )
+        private void WfConfirmationCancelButton_Click( object sender, EventArgs e )
         {
-            string invoker = "PI.PatternCurveDefiner.wfConfirmationCancelButton_Click(sender, e)";
+            string invoker = "PI.PatternCurveDefiner.WfConfirmationCancelButton_Click(sender, e)";
 
             try {
                 DialogResult = DialogResult.Cancel;
@@ -98,9 +100,9 @@ namespace PI
             }
         }
 
-        private void wfConfirmationOKButton_Click( object sender, EventArgs e )
+        private void WfConfirmationOKButton_Click( object sender, EventArgs e )
         {
-            string invoker = "PI.PatternCurveDefiner.wfConfirmationOKButton_Click(sender, e)";
+            string invoker = "PI.PatternCurveDefiner.WfConfirmationOKButton_Click(sender, e)";
 
             try {
                 DialogResult = DialogResult.OK;
@@ -140,7 +142,18 @@ namespace PI
         private void SaveParametersForHyperbolicPatternCurve()
         {
             string invoker = "PI.PatternCurveDefiner.SaveParametersForHyperbolicPatternCurve()";
-            ParameterC = WindowsFormsHelper.GetValueFromNumericUpDown<double>( wfContentHyperbolicCNumericUpDown, invoker );
+            double userValue = WindowsFormsHelper.GetValueFromNumericUpDown<double>( wfContentHyperbolicGNumericUpDown, invoker );
+
+            // Checking 'decimal' value, not 'double'.
+            // Four zeros after decimal separator are revelant here, not floating-point precision.
+            if ( userValue == 0.0000 ) {
+                string text = SharedConstants.PCD_PARAMETERS_HYPERBOLIC_ZERO_DIVISION_TEXT;
+                string caption = SharedConstants.PCD_PARAMETERS_HYPERBOLIC_ZERO_DIVISION_CAPTION;
+                WindowsFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation, invoker );
+                userValue = 0.0001;
+            }
+
+            ParameterG = userValue;
         }
 
     }

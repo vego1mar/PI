@@ -11,8 +11,6 @@ using System.Windows.Forms.DataVisualization.Charting;
 // TODO: Implement Gaussian noise option
 // TODO: Menu item - 'Adjust curves' for visual effects manipulations 
 // TODO: Add new pattern curve scaffold - rectangular function
-// TODO: New operation type - make positive and make negative
-// CURRENT: Fix changing two curves datasets instead of one
 
 namespace PI
 {
@@ -49,6 +47,7 @@ namespace PI
             Logger.Initialize();
             UpdateComponentRelatedWithDotNetFrameworkVersion();
             UpdateComponentRelatedWithOSVersionName();
+            UpdateComponentRelatedWithLogFileFullPathLocation();
         }
 
         private void WfMenuProgramExit_Click( object sender, EventArgs e )
@@ -188,6 +187,7 @@ namespace PI
                         PreSets.ParameterD = PCDDialog.ParameterD;
                         PreSets.ParameterE = PCDDialog.ParameterE;
                         PreSets.ParameterF = PCDDialog.ParameterF;
+                        PreSets.ParameterG = PCDDialog.ParameterG;
                         UpdateComponentRelatedWithChosenPatternCurveScaffoldStatus();
                     }
                 }
@@ -305,24 +305,50 @@ namespace PI
 
         private void ShowPatternCurveSeriesOnChart()
         {
-            wfChartsPatternCurve.Series.Clear();
-            wfChartsPatternCurve.Series.Add( ChartsCurvesDataset.PatternCurveChartingSeries );
-            wfChartsPatternCurve.Series[0].BorderWidth = 3;
-            wfChartsPatternCurve.Series[0].Color = System.Drawing.Color.Black;
-            wfChartsPatternCurve.ChartAreas[0].RecalculateAxesScale();
-            wfChartsPatternCurve.Visible = true;
-            wfChartsPatternCurve.Invalidate();
+            string invoker = "PI.WfMainWindow.ShowPatternCurveSeriesOnChart()";
+
+            try {
+                wfChartsPatternCurve.Series.Clear();
+                wfChartsPatternCurve.Series.Add( ChartsCurvesDataset.PatternCurveChartingSeries );
+                wfChartsPatternCurve.Series[0].BorderWidth = 3;
+                wfChartsPatternCurve.Series[0].Color = System.Drawing.Color.Black;
+                wfChartsPatternCurve.ChartAreas[0].RecalculateAxesScale();
+                wfChartsPatternCurve.Visible = true;
+                wfChartsPatternCurve.Invalidate();
+            }
+            catch ( InvalidOperationException x ) {
+                string text = SharedConstants.CHARTS_REFRESHING_ERROR_TEXT;
+                string caption = SharedConstants.CHARTS_REFRESHING_ERROR_CAPTION;
+                WindowsFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error, invoker );
+                Logger.WriteExceptionInfo( x, invoker );
+            }
+            catch ( Exception x ) {
+                Logger.WriteExceptionInfo( x, invoker );
+            }
         }
 
         private void ShowGeneratedCurveSeriesOnChart( int indexOfCurve )
         {
-            wfChartsPatternCurve.Series.Clear();
-            wfChartsPatternCurve.Series.Add( ChartsCurvesDataset.GeneratedCurvesChartingSeriesCollection[indexOfCurve - 1] );
-            wfChartsPatternCurve.Series[0].BorderWidth = 3;
-            wfChartsPatternCurve.Series[0].Color = System.Drawing.Color.Crimson;
-            wfChartsPatternCurve.ChartAreas[0].RecalculateAxesScale();
-            wfChartsPatternCurve.Visible = true;
-            wfChartsPatternCurve.Invalidate();
+            string invoker = "PI.WfMainWindow.ShowGeneratedCurveSeriesOnChart(indexOfCurve)";
+
+            try {
+                wfChartsPatternCurve.Series.Clear();
+                wfChartsPatternCurve.Series.Add( ChartsCurvesDataset.GeneratedCurvesChartingSeriesCollection[indexOfCurve - 1] );
+                wfChartsPatternCurve.Series[0].BorderWidth = 3;
+                wfChartsPatternCurve.Series[0].Color = System.Drawing.Color.Crimson;
+                wfChartsPatternCurve.ChartAreas[0].RecalculateAxesScale();
+                wfChartsPatternCurve.Visible = true;
+                wfChartsPatternCurve.Invalidate();
+            }
+            catch ( InvalidOperationException x ) {
+                string text = SharedConstants.CHARTS_REFRESHING_ERROR_TEXT;
+                string caption = SharedConstants.CHARTS_REFRESHING_ERROR_CAPTION;
+                WindowsFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error, invoker );
+                Logger.WriteExceptionInfo( x, invoker );
+            }
+            catch ( Exception x ) {
+                Logger.WriteExceptionInfo( x, invoker );
+            }
         }
 
         private void WfPropertiesGenerateNumberOfPointsNumericUpDown_ValueChanged( object sender, EventArgs e )
@@ -397,6 +423,12 @@ namespace PI
                         wfChartsPatternCurve.Invalidate();
                     }
                 }
+                catch ( InvalidOperationException x ) {
+                    string text = SharedConstants.CHARTS_REFRESHING_ERROR_TEXT;
+                    string caption = SharedConstants.CHARTS_REFRESHING_ERROR_CAPTION;
+                    WindowsFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error, invoker );
+                    Logger.WriteExceptionInfo( x, invoker );
+                }
                 catch ( System.ComponentModel.InvalidEnumArgumentException x ) {
                     Logger.WriteExceptionInfo( x, invoker );
                 }
@@ -416,6 +448,11 @@ namespace PI
             }
 
             return null;
+        }
+
+        private void UpdateComponentRelatedWithLogFileFullPathLocation()
+        {
+            wfPropertiesProgramLogPath2TextBox.Text = Logger.GetFullPathOfLogFileLocation();
         }
 
     }

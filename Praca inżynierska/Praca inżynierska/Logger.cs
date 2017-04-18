@@ -13,7 +13,7 @@ namespace PI
 
         #region Properties
         private static StreamWriter LogWriter { set; get; }
-        public static uint NumberOfInvokesForExceptionInfoWriter { get; private set; } = 0; 
+        public static uint NumberOfInvokesForExceptionInfoWriter { get; private set; } = 0;
         #endregion
 
         public static int Initialize()
@@ -128,6 +128,24 @@ namespace PI
             catch ( Exception x ) {
                 WriteExceptionInfo( x, methodName );
             }
+        }
+
+        public static string GetFullPathOfLogFileLocation() 
+        {
+            string invoker = "PI.Logger.GetFullPathOfLogLocation()";
+            string fullPath = null;
+
+            try {
+                fullPath = ((FileStream) (LogWriter.BaseStream)).Name;
+            }
+            catch ( InvalidCastException x ) {
+                WriteExceptionInfo( x, invoker );
+            }
+            catch ( Exception x ) {
+                WriteExceptionInfo( x, invoker );
+            }
+
+            return fullPath;
         }
 
     }

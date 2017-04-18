@@ -87,7 +87,7 @@ namespace PI
                 AbsorbSeriesForPatternCurve( series );
                 break;
             case SharedConstants.DATASET_CURVE_TYPE_CONTROL_GENERATED:
-                AbsorbSeriesForSpecifiedGeneratedCurve( series, curveIndex );
+                AbsorbSeriesForSpecifiedGeneratedCurve( series, curveIndex - 1 );
                 break;
             }
         }

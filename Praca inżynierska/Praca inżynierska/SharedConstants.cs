@@ -45,6 +45,11 @@
         public const string PROGRAM_INFO_OBTAINING_ERROR_TEXT = "Error. See log.";
         #endregion
 
+        #region WfMainWindow.Charts
+        public const string CHARTS_REFRESHING_ERROR_TEXT = "A problem occured when trying to refresh a chart or recalculating axes scales.";
+        public const string CHARTS_REFRESHING_ERROR_CAPTION = "Invalidating error";
+        #endregion
+
         #region DatasetViewer.EditControlForOrdinates
         public const int DSV_OPERATION_TYPE_OVERRIDING = 0;
         public const int DSV_OPERATION_TYPE_ADDITION = 1;
@@ -55,6 +60,8 @@
         public const int DSV_OPERATION_TYPE_LOGARITHMIC = 6;
         public const int DSV_OPERATION_TYPE_ROOTING = 7;
         public const int DSV_OPERATION_TYPE_CONSTANT = 8;
+        public const int DSV_OPERATION_TYPE_POSITIVE = 9;
+        public const int DSV_OPERATION_TYPE_NEGATIVE = 10;
         public const string DSV_OPERATION_TYPE_NOT_SELECTED_TEXT = "You must choose an operation type to allow performing changes.";
         public const string DSV_OPERATION_TYPE_NOT_SELECTED_CAPTION = "Edit control for ordinates prerequisite";
         public const string DSV_USER_VALUE_NOT_VALID_TEXT = "The given value is improper. Please note, that the value format is localized by default.";
@@ -70,6 +77,11 @@
         public const string DSV_NOT_VALID_DECIMAL_CHART_NUMBER_TEXT = "At least one value of the performed operation is overflowed. All changes will be ignored.";
         public const string DSV_NOT_VALID_DECIMAL_CHART_NUMBER_CAPTION = "Data type overflow";
         public const string DSV_OPERATION_ERROR_OVERFLOW_TEXT = "Overflow:";
+        #endregion
+
+        #region PatternCurveDefiner.Hyperbolic
+        public const string PCD_PARAMETERS_HYPERBOLIC_ZERO_DIVISION_TEXT = "Cannot divide by 0.0000. A value of 0.0001 will be used instead.";
+        public const string PCD_PARAMETERS_HYPERBOLIC_ZERO_DIVISION_CAPTION = "Division by zero";
         #endregion
 
     }
