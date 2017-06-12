@@ -1,61 +1,38 @@
 ﻿using System;
 using System.Threading;
-using System.ComponentModel;
 
 namespace PI
 {
     static class ThreadTasker
     {
 
-        internal static int StartThreadSafe( Thread thread, string invokerName )
+        public static string Context { get; set; }
+
+        internal static int StartThreadSafe( Thread thread )
         {
+            Logger.Context = Context;
+
             try {
                 thread.Start();
             }
             catch ( ObjectDisposedException x ) {
-                Logger.WriteExceptionInfo( x, invokerName );
-                return SharedConstants.OBJECT_DISPOSED_EXCEPTION;
+                Logger.WriteException( x );
+                return Constants.Exceptions.OBJECT_DISPOSED;
             }
             catch ( ThreadStateException x ) {
-                Logger.WriteExceptionInfo( x, invokerName );
-                return SharedConstants.THREAD_STATE_EXCEPTION;
+                Logger.WriteException( x );
+                return Constants.Exceptions.THREAD_STATE;
             }
             catch ( OutOfMemoryException x ) {
-                Logger.WriteExceptionInfo( x, invokerName );
-                return SharedConstants.OUT_OF_MEMORY_EXCEPTION;
+                Logger.WriteException( x );
+                return Constants.Exceptions.OUT_OF_MEMORY;
             }
             catch ( Exception x ) {
-                Logger.WriteExceptionInfo( x, invokerName );
-                return SharedConstants.EXCEPTION;
+                Logger.WriteException( x );
+                return Constants.Exceptions.EXCEPTION;
             }
-
-            return 0;
-        }
-
-        internal static int RunBackgroundWorkerSafe( BackgroundWorker worker, object argument, string invokerName )
-        {
-            try {
-                worker.RunWorkerAsync( argument );
-            }
-            catch ( ObjectDisposedException x ) {
-                Logger.WriteExceptionInfo( x, invokerName );
-                return SharedConstants.OBJECT_DISPOSED_EXCEPTION;
-            }
-            catch ( InvalidOperationException x ) {
-                Logger.WriteExceptionInfo( x, invokerName );
-                return SharedConstants.INVALID_OPERATION_EXCEPTION;
-            }
-            catch ( ThreadStateException x ) {
-                Logger.WriteExceptionInfo( x, invokerName );
-                return SharedConstants.THREAD_STATE_EXCEPTION;
-            }
-            catch ( OutOfMemoryException x ) {
-                Logger.WriteExceptionInfo( x, invokerName );
-                return SharedConstants.OUT_OF_MEMORY_EXCEPTION;
-            }
-            catch ( Exception x ) {
-                Logger.WriteExceptionInfo( x, invokerName );
-                return SharedConstants.EXCEPTION;
+            finally {
+                Logger.Context = string.Empty;
             }
 
             return 0;

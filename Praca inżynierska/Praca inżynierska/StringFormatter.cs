@@ -5,8 +5,11 @@ namespace PI
     static class StringFormatter
     {
 
-        static public string FormatAsNumeric( uint numberOfDecimalPlaces, object argument, string invoker )
+        public static string Context { get; set; } 
+
+        static public string FormatAsNumeric( uint numberOfDecimalPlaces, object argument )
         {
+            Logger.Context = Context;
             string result = null;
             string format = "{0:N" + numberOfDecimalPlaces + "}";
 
@@ -14,13 +17,16 @@ namespace PI
                 result = string.Format( format, argument );
             }
             catch ( FormatException x ) {
-                Logger.WriteExceptionInfo( x, invoker );
+                Logger.WriteException( x );
             }
             catch ( ArgumentNullException x ) {
-                Logger.WriteExceptionInfo( x, invoker );
+                Logger.WriteException( x );
             }
             catch ( Exception x ) {
-                Logger.WriteExceptionInfo( x, invoker );
+                Logger.WriteException( x );
+            }
+            finally {
+                Logger.Context = string.Empty;
             }
 
             return result;

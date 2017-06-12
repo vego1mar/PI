@@ -6,7 +6,6 @@ namespace PI
     public partial class PatternCurveDefiner : Form
     {
 
-        #region Properties
         public int ChosenCurve { get; private set; }
         public double ParameterA { get; private set; }
         public double ParameterB { get; private set; }
@@ -15,7 +14,6 @@ namespace PI
         public double ParameterE { get; private set; }
         public double ParameterF { get; private set; }
         public double ParameterG { get; private set; }
-        #endregion
 
         public PatternCurveDefiner()
         {
@@ -28,26 +26,26 @@ namespace PI
 
         private void DefinePropertiesInitialValues()
         {
-            ChosenCurve = PreSets.ChosenPatternCurveScaffold;
-            ParameterA = PreSets.ParameterA;
-            ParameterB = PreSets.ParameterB;
-            ParameterC = PreSets.ParameterC;
-            ParameterD = PreSets.ParameterD;
-            ParameterE = PreSets.ParameterE;
-            ParameterF = PreSets.ParameterF;
-            ParameterG = PreSets.ParameterG;
+            ChosenCurve = PreSets.Pcd.ChosenScaffold;
+            ParameterA = PreSets.Pcd.ParameterA;
+            ParameterB = PreSets.Pcd.ParameterB;
+            ParameterC = PreSets.Pcd.ParameterC;
+            ParameterD = PreSets.Pcd.ParameterD;
+            ParameterE = PreSets.Pcd.ParameterE;
+            ParameterF = PreSets.Pcd.ParameterF;
+            ParameterG = PreSets.Pcd.ParameterG;
         }
 
         private void SelectChosenCurveTab()
         {
-            string invoker = "PI.PatternCurveDefiner.SelectChosenCurveTab()";
-            WindowsFormsHelper.SelectTabSafe( wfContentTabControl, ChosenCurve, invoker );
+            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
+            WinFormsHelper.SelectTabSafe( wfContentTabControl, ChosenCurve );
 
             switch ( ChosenCurve ) {
-            case SharedConstants.CURVE_PATTERN_SCAFFOLD_POLYNOMIAL:
+            case Constants.Ui.Panel.Generate.SCAFFOLD_POLYNOMIAL:
                 wfTabsPanelPolynomialButton.BackColor = System.Drawing.Color.GhostWhite;
                 break;
-            case SharedConstants.CURVE_PATTERN_SCAFFOLD_HYPERBOLIC:
+            case Constants.Ui.Panel.Generate.SCAFFOLD_HYPERBOLIC:
                 wfTabsPanelHyperbolicButton.BackColor = System.Drawing.Color.GhostWhite;
                 break;
             default:
@@ -57,72 +55,78 @@ namespace PI
 
         private void UpdateComponentsRelatedWithParameters()
         {
-            string invoker = "PI.PatternCurveDefiner.UpdateComponentsRelatedWithParameters()";
-            WindowsFormsHelper.SetValueForNumericUpDown( wfContentPolynomialANumericUpDown, PreSets.ParameterA, invoker );
-            WindowsFormsHelper.SetValueForNumericUpDown( wfContentPolynomialBNumericUpDown, PreSets.ParameterB, invoker );
-            WindowsFormsHelper.SetValueForNumericUpDown( wfContentPolynomialCNumericUpDown, PreSets.ParameterC, invoker );
-            WindowsFormsHelper.SetValueForNumericUpDown( wfContentPolynomialDNumericUpDown, PreSets.ParameterD, invoker );
-            WindowsFormsHelper.SetValueForNumericUpDown( wfContentPolynomialENumericUpDown, PreSets.ParameterE, invoker );
-            WindowsFormsHelper.SetValueForNumericUpDown( wfContentPolynomialFNumericUpDown, PreSets.ParameterF, invoker );
-            WindowsFormsHelper.SetValueForNumericUpDown( wfContentHyperbolicGNumericUpDown, PreSets.ParameterG, invoker );
+            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
+            WinFormsHelper.SetValue( wfContentPolynomialANumericUpDown, PreSets.Pcd.ParameterA );
+            WinFormsHelper.SetValue( wfContentPolynomialBNumericUpDown, PreSets.Pcd.ParameterB );
+            WinFormsHelper.SetValue( wfContentPolynomialCNumericUpDown, PreSets.Pcd.ParameterC );
+            WinFormsHelper.SetValue( wfContentPolynomialDNumericUpDown, PreSets.Pcd.ParameterD );
+            WinFormsHelper.SetValue( wfContentPolynomialENumericUpDown, PreSets.Pcd.ParameterE );
+            WinFormsHelper.SetValue( wfContentPolynomialFNumericUpDown, PreSets.Pcd.ParameterF );
+            WinFormsHelper.SetValue( wfContentHyperbolicGNumericUpDown, PreSets.Pcd.ParameterG );
         }
 
         private void WfTabsPanelPolynomialButton_Click( object sender, EventArgs e )
         {
-            ChosenCurve = SharedConstants.CURVE_PATTERN_SCAFFOLD_POLYNOMIAL;
-            string invoker = "PI.PatternCurveDefiner.WfTabsPanelPolynomialButton_Click(sender, e)";
-            WindowsFormsHelper.SelectTabSafe( wfContentTabControl, SharedConstants.CURVE_PATTERN_SCAFFOLD_POLYNOMIAL, invoker );
+            ChosenCurve = Constants.Ui.Panel.Generate.SCAFFOLD_POLYNOMIAL;
+            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
+            WinFormsHelper.SelectTabSafe( wfContentTabControl, Constants.Ui.Panel.Generate.SCAFFOLD_POLYNOMIAL );
             wfTabsPanelPolynomialButton.BackColor = System.Drawing.Color.GhostWhite;
             wfTabsPanelHyperbolicButton.BackColor = System.Drawing.Color.White;
         }
 
         private void WfTabsPanelHyperbolicButton_Click( object sender, EventArgs e )
         {
-            ChosenCurve = SharedConstants.CURVE_PATTERN_SCAFFOLD_HYPERBOLIC;
-            string invoker = "PI.PatternCurveDefiner.WfTabsPanelHyperbolicButton_Click(sender, e)";
-            WindowsFormsHelper.SelectTabSafe( wfContentTabControl, SharedConstants.CURVE_PATTERN_SCAFFOLD_HYPERBOLIC, invoker );
+            ChosenCurve = Constants.Ui.Panel.Generate.SCAFFOLD_HYPERBOLIC;
+            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
+            WinFormsHelper.SelectTabSafe( wfContentTabControl, Constants.Ui.Panel.Generate.SCAFFOLD_HYPERBOLIC );
             wfTabsPanelHyperbolicButton.BackColor = System.Drawing.Color.GhostWhite;
             wfTabsPanelPolynomialButton.BackColor = System.Drawing.Color.White;
         }
 
         private void WfConfirmationCancelButton_Click( object sender, EventArgs e )
         {
-            string invoker = "PI.PatternCurveDefiner.WfConfirmationCancelButton_Click(sender, e)";
+            Logger.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
             try {
                 DialogResult = DialogResult.Cancel;
             }
             catch ( System.ComponentModel.InvalidEnumArgumentException x ) {
-                Logger.WriteExceptionInfo( x, invoker );
+                Logger.WriteException( x );
             }
             catch ( Exception x ) {
-                Logger.WriteExceptionInfo( x, invoker );
+                Logger.WriteException( x );
+            }
+            finally {
+                Logger.Context = string.Empty;
             }
         }
 
         private void WfConfirmationOKButton_Click( object sender, EventArgs e )
         {
-            string invoker = "PI.PatternCurveDefiner.WfConfirmationOKButton_Click(sender, e)";
+            Logger.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
             try {
                 DialogResult = DialogResult.OK;
                 SaveParametersWhileClosingDialog();
             }
             catch ( System.ComponentModel.InvalidEnumArgumentException x ) {
-                Logger.WriteExceptionInfo( x, invoker );
+                Logger.WriteException( x );
             }
             catch ( Exception x ) {
-                Logger.WriteExceptionInfo( x, invoker );
+                Logger.WriteException( x );
+            }
+            finally {
+                Logger.Context = string.Empty;
             }
         }
 
         private void SaveParametersWhileClosingDialog()
         {
             switch ( ChosenCurve ) {
-            case SharedConstants.CURVE_PATTERN_SCAFFOLD_POLYNOMIAL:
+            case Constants.Ui.Panel.Generate.SCAFFOLD_POLYNOMIAL:
                 SaveParametersForPolynomialPatternCurve();
                 break;
-            case SharedConstants.CURVE_PATTERN_SCAFFOLD_HYPERBOLIC:
+            case Constants.Ui.Panel.Generate.SCAFFOLD_HYPERBOLIC:
                 SaveParametersForHyperbolicPatternCurve();
                 break;
             }
@@ -130,26 +134,26 @@ namespace PI
 
         private void SaveParametersForPolynomialPatternCurve()
         {
-            string invoker = "PI.PatternCurveDefiner.SaveParametersForPolynomialPatternCurve()";
-            ParameterA = WindowsFormsHelper.GetValueFromNumericUpDown<double>( wfContentPolynomialANumericUpDown, invoker );
-            ParameterB = WindowsFormsHelper.GetValueFromNumericUpDown<double>( wfContentPolynomialBNumericUpDown, invoker );
-            ParameterC = WindowsFormsHelper.GetValueFromNumericUpDown<double>( wfContentPolynomialCNumericUpDown, invoker );
-            ParameterD = WindowsFormsHelper.GetValueFromNumericUpDown<double>( wfContentPolynomialDNumericUpDown, invoker );
-            ParameterE = WindowsFormsHelper.GetValueFromNumericUpDown<double>( wfContentPolynomialENumericUpDown, invoker );
-            ParameterF = WindowsFormsHelper.GetValueFromNumericUpDown<double>( wfContentPolynomialFNumericUpDown, invoker );
+            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
+            ParameterA = WinFormsHelper.GetValue<double>( wfContentPolynomialANumericUpDown );
+            ParameterB = WinFormsHelper.GetValue<double>( wfContentPolynomialBNumericUpDown );
+            ParameterC = WinFormsHelper.GetValue<double>( wfContentPolynomialCNumericUpDown );
+            ParameterD = WinFormsHelper.GetValue<double>( wfContentPolynomialDNumericUpDown );
+            ParameterE = WinFormsHelper.GetValue<double>( wfContentPolynomialENumericUpDown );
+            ParameterF = WinFormsHelper.GetValue<double>( wfContentPolynomialFNumericUpDown );
         }
 
         private void SaveParametersForHyperbolicPatternCurve()
         {
-            string invoker = "PI.PatternCurveDefiner.SaveParametersForHyperbolicPatternCurve()";
-            double userValue = WindowsFormsHelper.GetValueFromNumericUpDown<double>( wfContentHyperbolicGNumericUpDown, invoker );
+            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
+            double userValue = WinFormsHelper.GetValue<double>( wfContentHyperbolicGNumericUpDown );
 
             // Checking 'decimal' value, not 'double'.
             // Four zeros after decimal separator are revelant here, not floating-point precision.
             if ( userValue == 0.0000 ) {
-                string text = SharedConstants.PCD_PARAMETERS_HYPERBOLIC_ZERO_DIVISION_TEXT;
-                string caption = SharedConstants.PCD_PARAMETERS_HYPERBOLIC_ZERO_DIVISION_CAPTION;
-                WindowsFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation, invoker );
+                string text = Constants.Pcd.Hyperbolic.PARAMS_ZERO_DIVISION_TEXT;
+                string caption = Constants.Pcd.Hyperbolic.PARAMS_ZERO_DIVISION_CAPTION;
+                WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
                 userValue = 0.0001;
             }
 

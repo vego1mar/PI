@@ -7,59 +7,57 @@ namespace PI
     public partial class DatasetViewer : Form
     {
 
-        #region Properties
-        public Series DatasetOfCurve { private set; get; }
-        #endregion
+        public Series CurveDataSet { private set; get; }
 
         public DatasetViewer( Series curveDataset )
         {
             InitializeComponent();
-            DatasetOfCurve = curveDataset;
+            CurveDataSet = curveDataset;
             SetRangesToComponentsRelatedWithPointIndex();
             BuildAndPopulateDatasetGrid();
         }
 
         private void WfEditControlPerformButton_Click( object sender, EventArgs e )
         {
-            string invoker = "PI.DatasetViewer.WfEditControlPerformButton_Click(sender, e)";
-            int selectedOperationType = WindowsFormsHelper.GetSelectedIndexSafe( wfEditControlOperationTypeComboBox, invoker );
-            int selectedPointIndex = WindowsFormsHelper.GetValueFromTrackBar( wfEditControlPointIndexTrackBar, invoker );
-            bool isValueValid = WindowsFormsHelper.GetValueFromTextBox( wfEditControlValue2TextBox, out double userValue, invoker );
+            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
+            int selectedOperationType = WinFormsHelper.GetSelectedIndexSafe( wfEditControlOperationTypeComboBox );
+            int selectedPointIndex = WinFormsHelper.GetValue( wfEditControlPointIndexTrackBar );
+            bool isValueValid = WinFormsHelper.GetValue( wfEditControlValue2TextBox, out double userValue );
             bool isOperationValid = false;
 
             if ( !isValueValid ) {
-                string text = SharedConstants.DSV_USER_VALUE_NOT_VALID_TEXT;
-                string caption = SharedConstants.DSV_USER_VALUE_NOT_VALID_CAPTION;
-                WindowsFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation, invoker );
+                string text = Constants.Dsv.EditControl.USER_VALUE_NOT_VALID_TEXT;
+                string caption = Constants.Dsv.EditControl.USER_VALUE_NOT_VALID_CAPTION;
+                WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
                 return;
             }
 
             switch ( selectedOperationType ) {
-            case SharedConstants.DSV_OPERATION_TYPE_OVERRIDING:
+            case Constants.Dsv.EditControl.OPERATION_TYPE_OVERRIDING:
                 isOperationValid = PerformOperationOverriding( selectedPointIndex, userValue );
                 break;
-            case SharedConstants.DSV_OPERATION_TYPE_ADDITION:
-            case SharedConstants.DSV_OPERATION_TYPE_SUBSTRACTION:
-            case SharedConstants.DSV_OPERATION_TYPE_MULTIPLICATION:
-            case SharedConstants.DSV_OPERATION_TYPE_DIVISION:
-            case SharedConstants.DSV_OPERATION_TYPE_EXPONENTIATION:
-            case SharedConstants.DSV_OPERATION_TYPE_LOGARITHMIC:
-            case SharedConstants.DSV_OPERATION_TYPE_ROOTING:
-            case SharedConstants.DSV_OPERATION_TYPE_CONSTANT:
+            case Constants.Dsv.EditControl.OPERATION_TYPE_ADDITION:
+            case Constants.Dsv.EditControl.OPERATION_TYPE_SUBSTRACTION:
+            case Constants.Dsv.EditControl.OPERATION_TYPE_MULTIPLICATION:
+            case Constants.Dsv.EditControl.OPERATION_TYPE_DIVISION:
+            case Constants.Dsv.EditControl.OPERATION_TYPE_EXPONENTIATION:
+            case Constants.Dsv.EditControl.OPERATION_TYPE_LOGARITHMIC:
+            case Constants.Dsv.EditControl.OPERATION_TYPE_ROOTING:
+            case Constants.Dsv.EditControl.OPERATION_TYPE_CONSTANT:
                 isOperationValid = PerformOperationOnSeriesPoints( userValue, selectedOperationType );
                 break;
-            case SharedConstants.DSV_OPERATION_TYPE_POSITIVE:
+            case Constants.Dsv.EditControl.OPERATION_TYPE_POSITIVE:
                 PerformOperationPositive();
                 isOperationValid = true;
                 break;
-            case SharedConstants.DSV_OPERATION_TYPE_NEGATIVE:
+            case Constants.Dsv.EditControl.OPERATION_TYPE_NEGATIVE:
                 PerformOperationNegative();
                 isOperationValid = true;
                 break;
             default:
-                string text = SharedConstants.DSV_OPERATION_TYPE_NOT_SELECTED_TEXT;
-                string caption = SharedConstants.DSV_OPERATION_TYPE_NOT_SELECTED_CAPTION;
-                WindowsFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Asterisk, invoker );
+                string text = Constants.Dsv.EditControl.OPERATION_TYPE_NOT_SELECTED_TEXT;
+                string caption = Constants.Dsv.EditControl.OPERATION_TYPE_NOT_SELECTED_CAPTION;
+                WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Asterisk );
                 return;
             }
 
@@ -71,23 +69,23 @@ namespace PI
         private void SetRangesToComponentsRelatedWithPointIndex()
         {
             wfEditControlPointIndexNumericUpDown.Minimum = 1;
-            wfEditControlPointIndexNumericUpDown.Maximum = PreSets.NumberOfPoints;
+            wfEditControlPointIndexNumericUpDown.Maximum = PreSets.Ui.NumberOfPoints;
             wfEditControlPointIndexTrackBar.Minimum = 1;
-            wfEditControlPointIndexTrackBar.Maximum = PreSets.NumberOfPoints;
+            wfEditControlPointIndexTrackBar.Maximum = PreSets.Ui.NumberOfPoints;
         }
 
         private void WfEditControlPointIndexNumericUpDown_ValueChanged( object sender, EventArgs e )
         {
-            string invoker = "PI.DatasetViewer.WfEditControlPointIndexNumericUpDown_ValueChanged(sender, e)";
-            int currentValue = WindowsFormsHelper.GetValueFromNumericUpDown<int>( wfEditControlPointIndexNumericUpDown, invoker );
-            WindowsFormsHelper.SetValueForTrackBar( wfEditControlPointIndexTrackBar, currentValue, invoker );
+            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
+            int currentValue = WinFormsHelper.GetValue<int>( wfEditControlPointIndexNumericUpDown );
+            WinFormsHelper.SetValue( wfEditControlPointIndexTrackBar, currentValue );
         }
 
         private void WfEditControlPointIndexTrackBar_Scroll( object sender, EventArgs e )
         {
-            string invoker = "PI.DatasetViewer.WfEditControlPointIndexTrackBar_Scroll(sender, e)";
-            int currentValue = WindowsFormsHelper.GetValueFromTrackBar( wfEditControlPointIndexTrackBar, invoker );
-            WindowsFormsHelper.SetValueForNumericUpDown( wfEditControlPointIndexNumericUpDown, currentValue, invoker );
+            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
+            int currentValue = WinFormsHelper.GetValue( wfEditControlPointIndexTrackBar );
+            WinFormsHelper.SetValue( wfEditControlPointIndexNumericUpDown, currentValue );
         }
 
         private void BuildAndPopulateDatasetGrid()
@@ -104,9 +102,9 @@ namespace PI
             RowStyle previousRowStyle = wfGridTableLayoutPanel.RowStyles[lastRow];
             wfGridTableLayoutPanel.RowStyles.Clear();
             wfGridTableLayoutPanel.RowCount = 0;
-            string invoker = "PI.DatasetViewer.ClearDatasetGridAndBuildStartState()";
-            wfGridTableLayoutPanel.RowStyles.Add( WindowsFormsHelper.GetRowStyleSafe( previousRowStyle.SizeType, previousRowStyle.Height, invoker ) );
-            wfGridTableLayoutPanel.RowStyles.Add( WindowsFormsHelper.GetRowStyleSafe( previousRowStyle.SizeType, previousRowStyle.Height, invoker ) );
+            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
+            wfGridTableLayoutPanel.RowStyles.Add( WinFormsHelper.GetRowStyleSafe( previousRowStyle.SizeType, previousRowStyle.Height ) );
+            wfGridTableLayoutPanel.RowStyles.Add( WinFormsHelper.GetRowStyleSafe( previousRowStyle.SizeType, previousRowStyle.Height ) );
             wfGridTableLayoutPanel.RowCount = 2;
         }
 
@@ -147,10 +145,10 @@ namespace PI
 
         private void PopulateDatasetGridByCurvePointsData()
         {
-            for ( int i = 0; i < DatasetOfCurve.Points.Count; i++ ) {
+            for ( int i = 0; i < CurveDataSet.Points.Count; i++ ) {
                 AddRowToDatasetGridAtEnd();
-                double x = DatasetOfCurve.Points[i].XValue;
-                double y = DatasetOfCurve.Points[i].YValues[0];
+                double x = CurveDataSet.Points[i].XValue;
+                double y = CurveDataSet.Points[i].YValues[0];
                 AddRowComponentsToDatasetGridAtEnd( i + 1, x, y );
             }
 
@@ -176,10 +174,10 @@ namespace PI
                 Dock = DockStyle.Fill,
             };
 
-            string invoker = "PI.DatasetViewer.AddRowComponentsToDatasetGridAtEnd(i, x, y)";
+            StringFormatter.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
             TextBox axisXTextBox = new TextBox() {
-                Text = StringFormatter.FormatAsNumeric( 4, x, invoker ),
+                Text = StringFormatter.FormatAsNumeric( 4, x ),
                 TextAlign = HorizontalAlignment.Right,
                 Enabled = true,
                 ReadOnly = true,
@@ -188,7 +186,7 @@ namespace PI
             };
 
             TextBox axisYTextBox = new TextBox() {
-                Text = StringFormatter.FormatAsNumeric( 4, y, invoker ),
+                Text = StringFormatter.FormatAsNumeric( 4, y ),
                 TextAlign = HorizontalAlignment.Right,
                 Enabled = true,
                 ReadOnly = true,
@@ -204,44 +202,44 @@ namespace PI
 
         private void WfEditControlOperationTypeComboBox_SelectedIndexChanged( object sender, EventArgs e )
         {
-            string invoker = "PI.DatasetViewer.WfEditControlOperationTypeComboBox_SelectedIndexChanged(sender, e)";
-            int selectedOperationType = WindowsFormsHelper.GetSelectedIndexSafe( wfEditControlOperationTypeComboBox, invoker );
+            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
+            int selectedOperationType = WinFormsHelper.GetSelectedIndexSafe( wfEditControlOperationTypeComboBox );
             wfEditControlPointIndexNumericUpDown.Enabled = false;
             wfEditControlPointIndexTrackBar.Enabled = false;
             wfEditControlValue2TextBox.Enabled = true;
 
             switch ( selectedOperationType ) {
-            case SharedConstants.DSV_OPERATION_TYPE_CONSTANT:
-                wfEditControlValue1TextBox.Text = SharedConstants.DSV_EDIT_CONTROL_VALUE_TEXT;
+            case Constants.Dsv.EditControl.OPERATION_TYPE_CONSTANT:
+                wfEditControlValue1TextBox.Text = Constants.Dsv.EditControl.EDIT_CONTROL_VALUE_TEXT;
                 break;
-            case SharedConstants.DSV_OPERATION_TYPE_OVERRIDING:
+            case Constants.Dsv.EditControl.OPERATION_TYPE_OVERRIDING:
                 wfEditControlPointIndexNumericUpDown.Enabled = true;
                 wfEditControlPointIndexTrackBar.Enabled = true;
-                wfEditControlValue1TextBox.Text = SharedConstants.DSV_EDIT_CONTROL_VALUE_TEXT;
+                wfEditControlValue1TextBox.Text = Constants.Dsv.EditControl.EDIT_CONTROL_VALUE_TEXT;
                 break;
-            case SharedConstants.DSV_OPERATION_TYPE_ADDITION:
-                wfEditControlValue1TextBox.Text = SharedConstants.DSV_EDIT_CONTROL_ADDEND_TEXT;
+            case Constants.Dsv.EditControl.OPERATION_TYPE_ADDITION:
+                wfEditControlValue1TextBox.Text = Constants.Dsv.EditControl.EDIT_CONTROL_ADDEND_TEXT;
                 break;
-            case SharedConstants.DSV_OPERATION_TYPE_SUBSTRACTION:
-                wfEditControlValue1TextBox.Text = SharedConstants.DSV_EDIT_CONTROL_SUBTRAHEND_TEXT;
+            case Constants.Dsv.EditControl.OPERATION_TYPE_SUBSTRACTION:
+                wfEditControlValue1TextBox.Text = Constants.Dsv.EditControl.EDIT_CONTROL_SUBTRAHEND_TEXT;
                 break;
-            case SharedConstants.DSV_OPERATION_TYPE_MULTIPLICATION:
-                wfEditControlValue1TextBox.Text = SharedConstants.DSV_EDIT_CONTROL_MULTIPLIER_TEXT;
+            case Constants.Dsv.EditControl.OPERATION_TYPE_MULTIPLICATION:
+                wfEditControlValue1TextBox.Text = Constants.Dsv.EditControl.EDIT_CONTROL_MULTIPLIER_TEXT;
                 break;
-            case SharedConstants.DSV_OPERATION_TYPE_DIVISION:
-                wfEditControlValue1TextBox.Text = SharedConstants.DSV_EDIT_CONTROL_DIVISOR_TEXT;
+            case Constants.Dsv.EditControl.OPERATION_TYPE_DIVISION:
+                wfEditControlValue1TextBox.Text = Constants.Dsv.EditControl.EDIT_CONTROL_DIVISOR_TEXT;
                 break;
-            case SharedConstants.DSV_OPERATION_TYPE_EXPONENTIATION:
-                wfEditControlValue1TextBox.Text = SharedConstants.DSV_EDIT_CONTROL_EXPONENT_TEXT;
+            case Constants.Dsv.EditControl.OPERATION_TYPE_EXPONENTIATION:
+                wfEditControlValue1TextBox.Text = Constants.Dsv.EditControl.EDIT_CONTROL_EXPONENT_TEXT;
                 break;
-            case SharedConstants.DSV_OPERATION_TYPE_LOGARITHMIC:
-                wfEditControlValue1TextBox.Text = SharedConstants.DSV_EDIT_CONTROL_BASE_TEXT;
+            case Constants.Dsv.EditControl.OPERATION_TYPE_LOGARITHMIC:
+                wfEditControlValue1TextBox.Text = Constants.Dsv.EditControl.EDIT_CONTROL_BASE_TEXT;
                 break;
-            case SharedConstants.DSV_OPERATION_TYPE_ROOTING:
-                wfEditControlValue1TextBox.Text = SharedConstants.DSV_EDIT_CONTROL_LEVEL_TEXT;
+            case Constants.Dsv.EditControl.OPERATION_TYPE_ROOTING:
+                wfEditControlValue1TextBox.Text = Constants.Dsv.EditControl.EDIT_CONTROL_LEVEL_TEXT;
                 break;
-            case SharedConstants.DSV_OPERATION_TYPE_POSITIVE:
-            case SharedConstants.DSV_OPERATION_TYPE_NEGATIVE:
+            case Constants.Dsv.EditControl.OPERATION_TYPE_POSITIVE:
+            case Constants.Dsv.EditControl.OPERATION_TYPE_NEGATIVE:
                 wfEditControlValue2TextBox.Text = "0";
                 wfEditControlValue2TextBox.Enabled = false;
                 break;
@@ -251,32 +249,32 @@ namespace PI
         private bool PerformOperationOverriding( int indexOfPoint, double userValue )
         {
             if ( IsValidDecimalChartNumber( userValue ) ) {
-                DatasetOfCurve.Points[indexOfPoint - 1].YValues[0] = userValue;
+                CurveDataSet.Points[indexOfPoint - 1].YValues[0] = userValue;
                 return true;
             }
 
-            string invoker = "PI.DatasetViewer.PerformOperationOverriding(indexOfPoint, userValue)";
-            string text = SharedConstants.DSV_NOT_VALID_DECIMAL_CHART_NUMBER_TEXT;
-            string caption = SharedConstants.DSV_NOT_VALID_DECIMAL_CHART_NUMBER_CAPTION;
+            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
+            string text = Constants.Dsv.EditControl.NOT_VALID_DECIMAL_CHART_NUMBER_TEXT;
+            string caption = Constants.Dsv.EditControl.NOT_VALID_DECIMAL_CHART_NUMBER_CAPTION;
             SetSpecifiedComponentsToInformAboutOverflow( userValue );
-            WindowsFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Stop, invoker );
+            WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Stop );
             return false;
         }
 
         private void PerformOperationPositive()
         {
-            for ( int i = 0; i < DatasetOfCurve.Points.Count; i++ ) {
-                if ( DatasetOfCurve.Points[i].YValues[0] < 0 ) {
-                    DatasetOfCurve.Points[i].YValues[0] = Math.Abs( DatasetOfCurve.Points[i].YValues[0] );
+            for ( int i = 0; i < CurveDataSet.Points.Count; i++ ) {
+                if ( CurveDataSet.Points[i].YValues[0] < 0 ) {
+                    CurveDataSet.Points[i].YValues[0] = Math.Abs( CurveDataSet.Points[i].YValues[0] );
                 }
             }
         }
 
         private void PerformOperationNegative()
         {
-            for ( int i = 0; i < DatasetOfCurve.Points.Count; i++ ) {
-                if ( DatasetOfCurve.Points[i].YValues[0] > 0 ) {
-                    DatasetOfCurve.Points[i].YValues[0] = -(DatasetOfCurve.Points[i].YValues[0]);
+            for ( int i = 0; i < CurveDataSet.Points.Count; i++ ) {
+                if ( CurveDataSet.Points[i].YValues[0] > 0 ) {
+                    CurveDataSet.Points[i].YValues[0] = -(CurveDataSet.Points[i].YValues[0]);
                 }
             }
         }
@@ -289,16 +287,16 @@ namespace PI
                 double value = SelectAndPerformOperation( operationType, userValue, series, i );
 
                 if ( !IsValidDecimalChartNumber( value ) ) {
-                    string invoker = "PI.DatasetViewer.PerformOperationOnSeriesPoints(userValue, operationType)";
-                    string text = SharedConstants.DSV_NOT_VALID_DECIMAL_CHART_NUMBER_TEXT;
-                    string caption = SharedConstants.DSV_NOT_VALID_DECIMAL_CHART_NUMBER_CAPTION;
+                    WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                    string text = Constants.Dsv.EditControl.NOT_VALID_DECIMAL_CHART_NUMBER_TEXT;
+                    string caption = Constants.Dsv.EditControl.NOT_VALID_DECIMAL_CHART_NUMBER_CAPTION;
                     SetSpecifiedComponentsToInformAboutOverflow( value );
-                    WindowsFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Stop, invoker );
+                    WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Stop );
                     return false;
                 }
             }
 
-            CopySeriesPointsBack( series, DatasetOfCurve );
+            CopySeriesPointsBack( series, CurveDataSet );
             return true;
         }
 
@@ -307,28 +305,28 @@ namespace PI
             double result = userValue;
 
             switch ( operationType ) {
-            case SharedConstants.DSV_OPERATION_TYPE_ADDITION:
+            case Constants.Dsv.EditControl.OPERATION_TYPE_ADDITION:
                 result = series.Points[pointIndex].YValues[0] + userValue;
                 break;
-            case SharedConstants.DSV_OPERATION_TYPE_SUBSTRACTION:
+            case Constants.Dsv.EditControl.OPERATION_TYPE_SUBSTRACTION:
                 result = series.Points[pointIndex].YValues[0] - userValue;
                 break;
-            case SharedConstants.DSV_OPERATION_TYPE_MULTIPLICATION:
+            case Constants.Dsv.EditControl.OPERATION_TYPE_MULTIPLICATION:
                 result = series.Points[pointIndex].YValues[0] * userValue;
                 break;
-            case SharedConstants.DSV_OPERATION_TYPE_DIVISION:
+            case Constants.Dsv.EditControl.OPERATION_TYPE_DIVISION:
                 result = series.Points[pointIndex].YValues[0] / userValue;
                 break;
-            case SharedConstants.DSV_OPERATION_TYPE_EXPONENTIATION:
+            case Constants.Dsv.EditControl.OPERATION_TYPE_EXPONENTIATION:
                 result = Math.Pow( series.Points[pointIndex].YValues[0], userValue );
                 break;
-            case SharedConstants.DSV_OPERATION_TYPE_LOGARITHMIC:
+            case Constants.Dsv.EditControl.OPERATION_TYPE_LOGARITHMIC:
                 result = Math.Log( series.Points[pointIndex].YValues[0], userValue );
                 break;
-            case SharedConstants.DSV_OPERATION_TYPE_ROOTING:
+            case Constants.Dsv.EditControl.OPERATION_TYPE_ROOTING:
                 result = Math.Pow( series.Points[pointIndex].YValues[0], 1.0 / userValue );
                 break;
-            case SharedConstants.DSV_OPERATION_TYPE_CONSTANT:
+            case Constants.Dsv.EditControl.OPERATION_TYPE_CONSTANT:
                 result = userValue;
                 break;
             }
@@ -339,19 +337,22 @@ namespace PI
 
         private bool IsValidDecimalChartNumber( double number )
         {
-            string invoker = "PI.DatasetViewer.IsValidDecimalChartNumber(number)";
+            Logger.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
             decimal convertite;
 
             try {
                 convertite = Convert.ToDecimal( number );
             }
             catch ( OverflowException x ) {
-                Logger.WriteExceptionInfo( x, invoker );
+                Logger.WriteException( x );
                 return false;
             }
             catch ( Exception x ) {
-                Logger.WriteExceptionInfo( x, invoker );
+                Logger.WriteException( x );
                 return false;
+            }
+            finally {
+                Logger.Context = string.Empty;
             }
 
             return true;
@@ -362,8 +363,8 @@ namespace PI
             Series series = new Series();
             CurvesDataset.SetDefaultPropertiesForChartingSeries( series, "CopyOfSeries" );
 
-            for ( int i = 0; i < DatasetOfCurve.Points.Count; i++ ) {
-                series.Points.AddXY( DatasetOfCurve.Points[i].XValue, DatasetOfCurve.Points[i].YValues[0] );
+            for ( int i = 0; i < CurveDataSet.Points.Count; i++ ) {
+                series.Points.AddXY( CurveDataSet.Points[i].XValue, CurveDataSet.Points[i].YValues[0] );
             }
 
             return series;
@@ -379,9 +380,9 @@ namespace PI
 
         private void SetSpecifiedComponentsToInformAboutOverflow( double power )
         {
-            string invoker = "PI.DatasetViewer.SetSpecifiedComponentsToInformAboutOverflow(power)";
-            wfEditControlValue1TextBox.Text = SharedConstants.DSV_OPERATION_ERROR_OVERFLOW_TEXT;
-            wfEditControlValue2TextBox.Text = StringFormatter.FormatAsNumeric( 4, power, invoker );
+            StringFormatter.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
+            wfEditControlValue1TextBox.Text = Constants.Dsv.EditControl.OPERATION_ERR_OVERFLOW_TEXT;
+            wfEditControlValue2TextBox.Text = StringFormatter.FormatAsNumeric( 4, power );
         }
 
     }

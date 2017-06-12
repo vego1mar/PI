@@ -2,41 +2,51 @@
 
 namespace PI
 {
-    static class SystemInfoHelper
+    static class SysInfoHelper
     {
 
-        static public string ObtainUsedDotNetFrameworkVersion( string invokerName )
+        public static string Context { get; set; } 
+
+        static public string ObtainUsedDotNetFrameworkVersion()
         {
+            Logger.Context = Context;
             string version = null;
 
             try {
                 version = System.Diagnostics.FileVersionInfo.GetVersionInfo( typeof( int ).Assembly.Location ).ProductVersion;
             }
             catch ( NotSupportedException x ) {
-                Logger.WriteExceptionInfo( x, invokerName );
+                Logger.WriteException( x );
             }
             catch ( System.IO.FileNotFoundException x ) {
-                Logger.WriteExceptionInfo( x, invokerName );
+                Logger.WriteException( x );
             }
             catch ( Exception x ) {
-                Logger.WriteExceptionInfo( x, invokerName );
+                Logger.WriteException( x );
+            }
+            finally {
+                Logger.Context = string.Empty;
             }
 
             return version;
         }
 
-        static public string ObtaingApplicationRunningOSVersion( string invokerName )
+        static public string ObtaingApplicationRunningOSVersion()
         {
+            Logger.Context = Context;
             string osVersion = null;
 
             try {
                 osVersion = Environment.OSVersion.Version.ToString();
             }
             catch ( InvalidOperationException x ) {
-                Logger.WriteExceptionInfo( x, invokerName );
+                Logger.WriteException( x );
             }
             catch ( Exception x ) {
-                Logger.WriteExceptionInfo( x, invokerName );
+                Logger.WriteException( x );
+            }
+            finally {
+                Logger.Context = string.Empty;
             }
 
             return osVersion;

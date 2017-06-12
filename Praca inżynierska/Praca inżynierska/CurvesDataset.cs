@@ -7,15 +7,11 @@ namespace PI
     class CurvesDataset
     {
 
-        #region Constants
         public const string PATTERN_CURVE_SERIES_NAME = "PatternCurveSeries";
         public const string GENERATED_CURVE_SERIES_NAME = "GeneratedCurveSeries";
-        #endregion
 
-        #region Members
         public Series PatternCurveChartingSeries { get; private set; }
         public List<Series> GeneratedCurvesChartingSeriesCollection { get; private set; }
-        #endregion
 
         public CurvesDataset()
         {
@@ -38,10 +34,10 @@ namespace PI
         public bool GeneratePatternCurve( int curveScaffoldType, int numberOfPoints, int startingXPoint )
         {
             switch ( curveScaffoldType ) {
-            case SharedConstants.CURVE_PATTERN_SCAFFOLD_POLYNOMIAL:
+            case Constants.Ui.Panel.Generate.SCAFFOLD_POLYNOMIAL:
                 GeneratePolynomialPatternCurve( numberOfPoints, startingXPoint );
                 return true;
-            case SharedConstants.CURVE_PATTERN_SCAFFOLD_HYPERBOLIC:
+            case Constants.Ui.Panel.Generate.SCAFFOLD_HYPERBOLIC:
                 GenerateHyperbolicPatternCurve( numberOfPoints, startingXPoint );
                 return true;
             }
@@ -56,8 +52,8 @@ namespace PI
 
             for ( int i = 1; i <= numberOfPoints; i++ ) {
                 double offset = startingXPoint + i - 1;
-                double leftFraction = (PreSets.ParameterA * Math.Pow( offset, PreSets.ParameterB )) / PreSets.ParameterC;
-                double rightFraction = (PreSets.ParameterD * Math.Pow( offset, PreSets.ParameterE )) / PreSets.ParameterF;
+                double leftFraction = (PreSets.Pcd.ParameterA * Math.Pow( offset, PreSets.Pcd.ParameterB )) / PreSets.Pcd.ParameterC;
+                double rightFraction = (PreSets.Pcd.ParameterD * Math.Pow( offset, PreSets.Pcd.ParameterE )) / PreSets.Pcd.ParameterF;
                 double polynomial = leftFraction + rightFraction;
                 PatternCurveChartingSeries.Points.AddXY( offset, polynomial );
             }
@@ -71,7 +67,7 @@ namespace PI
             for ( int i = 1; i <= numberOfPoints; i++ ) {
                 double offset = startingXPoint + i - 1;
                 double numerator = Math.Pow( Math.E, offset ) - Math.Pow( Math.E, -offset );
-                double fraction = numerator / PreSets.ParameterC;
+                double fraction = numerator / PreSets.Pcd.ParameterC;
                 PatternCurveChartingSeries.Points.AddXY( offset, fraction );
             }
         }
@@ -83,10 +79,10 @@ namespace PI
             }
 
             switch ( curveType ) {
-            case SharedConstants.DATASET_CURVE_TYPE_CONTROL_PATTERN:
+            case Constants.Ui.Panel.Datasheet.CURVE_TYPE_PATTERN:
                 AbsorbSeriesForPatternCurve( series );
                 break;
-            case SharedConstants.DATASET_CURVE_TYPE_CONTROL_GENERATED:
+            case Constants.Ui.Panel.Datasheet.CURVE_TYPE_GENERATED:
                 AbsorbSeriesForSpecifiedGeneratedCurve( series, curveIndex - 1 );
                 break;
             }

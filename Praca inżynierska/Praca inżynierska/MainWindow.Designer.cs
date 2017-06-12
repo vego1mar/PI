@@ -1,6 +1,6 @@
 ﻿namespace PI
     {
-    partial class WfMainWindow
+    partial class MainWindow
         {
         /// <summary>
         /// Required designer variable.

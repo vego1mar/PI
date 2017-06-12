@@ -13,7 +13,7 @@ namespace PI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault( false );
-            Application.Run( new WfMainWindow() );
+            Application.Run( new MainWindow() );
         }
     }
 }

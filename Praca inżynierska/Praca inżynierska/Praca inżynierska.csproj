@@ -84,27 +84,27 @@
       <DependentUpon>PatternCurveDefiner.cs</DependentUpon>
     </Compile>
     <Compile Include="PreSets.cs" />
-    <Compile Include="SharedConstants.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="StringFormatter.cs" />
-    <Compile Include="SystemInfoHelper.cs" />
+    <Compile Include="SysInfoHelper.cs" />
     <Compile Include="ThreadTasker.cs" />
-    <Compile Include="WfMainWindow.cs">
+    <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WfMainWindow.Designer.cs">
-      <DependentUpon>WfMainWindow.cs</DependentUpon>
+    <Compile Include="MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WindowsFormsHelper.cs" />
+    <Compile Include="WinFormsHelper.cs" />
     <EmbeddedResource Include="DatasetViewer.resx">
       <DependentUpon>DatasetViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PatternCurveDefiner.resx">
       <DependentUpon>PatternCurveDefiner.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WfMainWindow.resx">
-      <DependentUpon>WfMainWindow.cs</DependentUpon>
+    <EmbeddedResource Include="MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
