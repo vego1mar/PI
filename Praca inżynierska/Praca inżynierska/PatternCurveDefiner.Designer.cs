@@ -28,515 +28,515 @@
         /// </summary>
         private void InitializeComponent()
             {
-            this.wfTabsPanel = new System.Windows.Forms.Panel();
-            this.wfTabsPanelTableLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.wfTabsPanelHyperbolicButton = new System.Windows.Forms.Button();
-            this.wfTabsPanelPolynomialButton = new System.Windows.Forms.Button();
-            this.wfContentTabControl = new System.Windows.Forms.TabControl();
-            this.wfContentPolynomialTabPage = new System.Windows.Forms.TabPage();
-            this.wfContentPolynomialParametersGroupBox = new System.Windows.Forms.GroupBox();
-            this.wfContentPolynomialANumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.wfContentPolynomialFNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.wfContentPolynomialALabel = new System.Windows.Forms.Label();
-            this.wfContentPolynomialFLabel = new System.Windows.Forms.Label();
-            this.wfContentPolynomialBLabel = new System.Windows.Forms.Label();
-            this.wfContentPolynomialENumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.wfContentPolynomialBNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.wfContentPolynomialELabel = new System.Windows.Forms.Label();
-            this.wfContentPolynomialCLabel = new System.Windows.Forms.Label();
-            this.wfContentPolynomialDNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.wfContentPolynomialCNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.wfContentPolynomialDLabel = new System.Windows.Forms.Label();
-            this.wfContentHyperbolicTabPage = new System.Windows.Forms.TabPage();
-            this.wfContentHyperbolicParametersGroupBox = new System.Windows.Forms.GroupBox();
-            this.wfContentHyperbolicGNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.wfContentHyperbolicGLabel = new System.Windows.Forms.Label();
-            this.wfConfirmationPanel = new System.Windows.Forms.Panel();
-            this.wfConfirmationCancelButton = new System.Windows.Forms.Button();
-            this.wfConfirmationOKButton = new System.Windows.Forms.Button();
-            this.wfContentPolynomialPictureBox = new System.Windows.Forms.PictureBox();
-            this.wfContentHyperbolicPictureBox = new System.Windows.Forms.PictureBox();
-            this.wfTabsPanel.SuspendLayout();
-            this.wfTabsPanelTableLayout.SuspendLayout();
-            this.wfContentTabControl.SuspendLayout();
-            this.wfContentPolynomialTabPage.SuspendLayout();
-            this.wfContentPolynomialParametersGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.wfContentPolynomialANumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wfContentPolynomialFNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wfContentPolynomialENumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wfContentPolynomialBNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wfContentPolynomialDNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wfContentPolynomialCNumericUpDown)).BeginInit();
-            this.wfContentHyperbolicTabPage.SuspendLayout();
-            this.wfContentHyperbolicParametersGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.wfContentHyperbolicGNumericUpDown)).BeginInit();
-            this.wfConfirmationPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.wfContentPolynomialPictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wfContentHyperbolicPictureBox)).BeginInit();
+            this.uiTabs_Pnl = new System.Windows.Forms.Panel();
+            this.uiTabs_TblLay = new System.Windows.Forms.TableLayoutPanel();
+            this.uiTabs_Hyp_Btn = new System.Windows.Forms.Button();
+            this.uiTabs_Pol_Btn = new System.Windows.Forms.Button();
+            this.uiCnt_TbCtrl = new System.Windows.Forms.TabControl();
+            this.uiCntPol_TbPg = new System.Windows.Forms.TabPage();
+            this.uiCntPol_Params_GrBx = new System.Windows.Forms.GroupBox();
+            this.uiCntPol_a_Num = new System.Windows.Forms.NumericUpDown();
+            this.uiCntPol_f_Num = new System.Windows.Forms.NumericUpDown();
+            this.uiCntPol_a_Lb = new System.Windows.Forms.Label();
+            this.uiCntPol_f_Lb = new System.Windows.Forms.Label();
+            this.uiCntPol_b_Lb = new System.Windows.Forms.Label();
+            this.uiCntPol_e_Num = new System.Windows.Forms.NumericUpDown();
+            this.uiCntPol_b_Num = new System.Windows.Forms.NumericUpDown();
+            this.uiCntPol_e_Lb = new System.Windows.Forms.Label();
+            this.uiCntPol_c_Lb = new System.Windows.Forms.Label();
+            this.uiCntPol_d_Num = new System.Windows.Forms.NumericUpDown();
+            this.uiCntPol_c_Num = new System.Windows.Forms.NumericUpDown();
+            this.uiCntPol_d_Lb = new System.Windows.Forms.Label();
+            this.uiCntPol_PicBx = new System.Windows.Forms.PictureBox();
+            this.uiCntHyp_TbPg = new System.Windows.Forms.TabPage();
+            this.uiCntHyp_Params_GrBx = new System.Windows.Forms.GroupBox();
+            this.uiCntHyp_g_Num = new System.Windows.Forms.NumericUpDown();
+            this.uiCntHyp_g_Lb = new System.Windows.Forms.Label();
+            this.uiCntHyp_PicBx = new System.Windows.Forms.PictureBox();
+            this.uiCfrm_Pnl = new System.Windows.Forms.Panel();
+            this.uiCfrmPnl_Cancel_Btn = new System.Windows.Forms.Button();
+            this.uiCfrmPnl_Ok_Btn = new System.Windows.Forms.Button();
+            this.uiTabs_Pnl.SuspendLayout();
+            this.uiTabs_TblLay.SuspendLayout();
+            this.uiCnt_TbCtrl.SuspendLayout();
+            this.uiCntPol_TbPg.SuspendLayout();
+            this.uiCntPol_Params_GrBx.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntPol_a_Num)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntPol_f_Num)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntPol_e_Num)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntPol_b_Num)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntPol_d_Num)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntPol_c_Num)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntPol_PicBx)).BeginInit();
+            this.uiCntHyp_TbPg.SuspendLayout();
+            this.uiCntHyp_Params_GrBx.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_g_Num)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_PicBx)).BeginInit();
+            this.uiCfrm_Pnl.SuspendLayout();
             this.SuspendLayout();
             // 
-            // wfTabsPanel
+            // uiTabs_Pnl
             // 
-            this.wfTabsPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.wfTabsPanel.Controls.Add(this.wfTabsPanelTableLayout);
-            this.wfTabsPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.wfTabsPanel.Location = new System.Drawing.Point(0, 0);
-            this.wfTabsPanel.Name = "wfTabsPanel";
-            this.wfTabsPanel.Size = new System.Drawing.Size(200, 350);
-            this.wfTabsPanel.TabIndex = 0;
+            this.uiTabs_Pnl.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.uiTabs_Pnl.Controls.Add(this.uiTabs_TblLay);
+            this.uiTabs_Pnl.Dock = System.Windows.Forms.DockStyle.Left;
+            this.uiTabs_Pnl.Location = new System.Drawing.Point(0, 0);
+            this.uiTabs_Pnl.Name = "uiTabs_Pnl";
+            this.uiTabs_Pnl.Size = new System.Drawing.Size(200, 350);
+            this.uiTabs_Pnl.TabIndex = 0;
             // 
-            // wfTabsPanelTableLayout
+            // uiTabs_TblLay
             // 
-            this.wfTabsPanelTableLayout.ColumnCount = 1;
-            this.wfTabsPanelTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.wfTabsPanelTableLayout.Controls.Add(this.wfTabsPanelHyperbolicButton, 0, 1);
-            this.wfTabsPanelTableLayout.Controls.Add(this.wfTabsPanelPolynomialButton, 0, 0);
-            this.wfTabsPanelTableLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wfTabsPanelTableLayout.Location = new System.Drawing.Point(0, 0);
-            this.wfTabsPanelTableLayout.Name = "wfTabsPanelTableLayout";
-            this.wfTabsPanelTableLayout.RowCount = 5;
-            this.wfTabsPanelTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.wfTabsPanelTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.wfTabsPanelTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.wfTabsPanelTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.wfTabsPanelTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.wfTabsPanelTableLayout.Size = new System.Drawing.Size(200, 350);
-            this.wfTabsPanelTableLayout.TabIndex = 0;
+            this.uiTabs_TblLay.ColumnCount = 1;
+            this.uiTabs_TblLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.uiTabs_TblLay.Controls.Add(this.uiTabs_Hyp_Btn, 0, 1);
+            this.uiTabs_TblLay.Controls.Add(this.uiTabs_Pol_Btn, 0, 0);
+            this.uiTabs_TblLay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiTabs_TblLay.Location = new System.Drawing.Point(0, 0);
+            this.uiTabs_TblLay.Name = "uiTabs_TblLay";
+            this.uiTabs_TblLay.RowCount = 5;
+            this.uiTabs_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.uiTabs_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.uiTabs_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.uiTabs_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.uiTabs_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.uiTabs_TblLay.Size = new System.Drawing.Size(200, 350);
+            this.uiTabs_TblLay.TabIndex = 0;
             // 
-            // wfTabsPanelHyperbolicButton
+            // uiTabs_Hyp_Btn
             // 
-            this.wfTabsPanelHyperbolicButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.wfTabsPanelHyperbolicButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wfTabsPanelHyperbolicButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.wfTabsPanelHyperbolicButton.Location = new System.Drawing.Point(3, 43);
-            this.wfTabsPanelHyperbolicButton.Name = "wfTabsPanelHyperbolicButton";
-            this.wfTabsPanelHyperbolicButton.Size = new System.Drawing.Size(194, 34);
-            this.wfTabsPanelHyperbolicButton.TabIndex = 1;
-            this.wfTabsPanelHyperbolicButton.Text = "Hyperbolic";
-            this.wfTabsPanelHyperbolicButton.UseVisualStyleBackColor = true;
-            this.wfTabsPanelHyperbolicButton.Click += new System.EventHandler(this.WfTabsPanelHyperbolicButton_Click);
+            this.uiTabs_Hyp_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiTabs_Hyp_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiTabs_Hyp_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.uiTabs_Hyp_Btn.Location = new System.Drawing.Point(3, 43);
+            this.uiTabs_Hyp_Btn.Name = "uiTabs_Hyp_Btn";
+            this.uiTabs_Hyp_Btn.Size = new System.Drawing.Size(194, 34);
+            this.uiTabs_Hyp_Btn.TabIndex = 1;
+            this.uiTabs_Hyp_Btn.Text = "Hyperbolic";
+            this.uiTabs_Hyp_Btn.UseVisualStyleBackColor = true;
+            this.uiTabs_Hyp_Btn.Click += new System.EventHandler(this.UiTabs_Hyperbolic_Click);
             // 
-            // wfTabsPanelPolynomialButton
+            // uiTabs_Pol_Btn
             // 
-            this.wfTabsPanelPolynomialButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.wfTabsPanelPolynomialButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wfTabsPanelPolynomialButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.wfTabsPanelPolynomialButton.Location = new System.Drawing.Point(3, 3);
-            this.wfTabsPanelPolynomialButton.Name = "wfTabsPanelPolynomialButton";
-            this.wfTabsPanelPolynomialButton.Size = new System.Drawing.Size(194, 34);
-            this.wfTabsPanelPolynomialButton.TabIndex = 0;
-            this.wfTabsPanelPolynomialButton.Text = "Polynomial";
-            this.wfTabsPanelPolynomialButton.UseVisualStyleBackColor = true;
-            this.wfTabsPanelPolynomialButton.Click += new System.EventHandler(this.WfTabsPanelPolynomialButton_Click);
+            this.uiTabs_Pol_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiTabs_Pol_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiTabs_Pol_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.uiTabs_Pol_Btn.Location = new System.Drawing.Point(3, 3);
+            this.uiTabs_Pol_Btn.Name = "uiTabs_Pol_Btn";
+            this.uiTabs_Pol_Btn.Size = new System.Drawing.Size(194, 34);
+            this.uiTabs_Pol_Btn.TabIndex = 0;
+            this.uiTabs_Pol_Btn.Text = "Polynomial";
+            this.uiTabs_Pol_Btn.UseVisualStyleBackColor = true;
+            this.uiTabs_Pol_Btn.Click += new System.EventHandler(this.UiTabs_Polynomial_Click);
             // 
-            // wfContentTabControl
+            // uiCnt_TbCtrl
             // 
-            this.wfContentTabControl.Appearance = System.Windows.Forms.TabAppearance.Buttons;
-            this.wfContentTabControl.Controls.Add(this.wfContentPolynomialTabPage);
-            this.wfContentTabControl.Controls.Add(this.wfContentHyperbolicTabPage);
-            this.wfContentTabControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.wfContentTabControl.ItemSize = new System.Drawing.Size(0, 1);
-            this.wfContentTabControl.Location = new System.Drawing.Point(200, 0);
-            this.wfContentTabControl.Name = "wfContentTabControl";
-            this.wfContentTabControl.SelectedIndex = 0;
-            this.wfContentTabControl.Size = new System.Drawing.Size(545, 297);
-            this.wfContentTabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.wfContentTabControl.TabIndex = 1;
+            this.uiCnt_TbCtrl.Appearance = System.Windows.Forms.TabAppearance.Buttons;
+            this.uiCnt_TbCtrl.Controls.Add(this.uiCntPol_TbPg);
+            this.uiCnt_TbCtrl.Controls.Add(this.uiCntHyp_TbPg);
+            this.uiCnt_TbCtrl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.uiCnt_TbCtrl.ItemSize = new System.Drawing.Size(0, 1);
+            this.uiCnt_TbCtrl.Location = new System.Drawing.Point(200, 0);
+            this.uiCnt_TbCtrl.Name = "uiCnt_TbCtrl";
+            this.uiCnt_TbCtrl.SelectedIndex = 0;
+            this.uiCnt_TbCtrl.Size = new System.Drawing.Size(545, 297);
+            this.uiCnt_TbCtrl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.uiCnt_TbCtrl.TabIndex = 1;
             // 
-            // wfContentPolynomialTabPage
+            // uiCntPol_TbPg
             // 
-            this.wfContentPolynomialTabPage.Controls.Add(this.wfContentPolynomialParametersGroupBox);
-            this.wfContentPolynomialTabPage.Controls.Add(this.wfContentPolynomialPictureBox);
-            this.wfContentPolynomialTabPage.Location = new System.Drawing.Point(4, 5);
-            this.wfContentPolynomialTabPage.Name = "wfContentPolynomialTabPage";
-            this.wfContentPolynomialTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.wfContentPolynomialTabPage.Size = new System.Drawing.Size(537, 288);
-            this.wfContentPolynomialTabPage.TabIndex = 0;
-            this.wfContentPolynomialTabPage.Text = "Polynomial";
-            this.wfContentPolynomialTabPage.UseVisualStyleBackColor = true;
+            this.uiCntPol_TbPg.Controls.Add(this.uiCntPol_Params_GrBx);
+            this.uiCntPol_TbPg.Controls.Add(this.uiCntPol_PicBx);
+            this.uiCntPol_TbPg.Location = new System.Drawing.Point(4, 5);
+            this.uiCntPol_TbPg.Name = "uiCntPol_TbPg";
+            this.uiCntPol_TbPg.Padding = new System.Windows.Forms.Padding(3);
+            this.uiCntPol_TbPg.Size = new System.Drawing.Size(537, 288);
+            this.uiCntPol_TbPg.TabIndex = 0;
+            this.uiCntPol_TbPg.Text = "Polynomial";
+            this.uiCntPol_TbPg.UseVisualStyleBackColor = true;
             // 
-            // wfContentPolynomialParametersGroupBox
+            // uiCntPol_Params_GrBx
             // 
-            this.wfContentPolynomialParametersGroupBox.Controls.Add(this.wfContentPolynomialANumericUpDown);
-            this.wfContentPolynomialParametersGroupBox.Controls.Add(this.wfContentPolynomialFNumericUpDown);
-            this.wfContentPolynomialParametersGroupBox.Controls.Add(this.wfContentPolynomialALabel);
-            this.wfContentPolynomialParametersGroupBox.Controls.Add(this.wfContentPolynomialFLabel);
-            this.wfContentPolynomialParametersGroupBox.Controls.Add(this.wfContentPolynomialBLabel);
-            this.wfContentPolynomialParametersGroupBox.Controls.Add(this.wfContentPolynomialENumericUpDown);
-            this.wfContentPolynomialParametersGroupBox.Controls.Add(this.wfContentPolynomialBNumericUpDown);
-            this.wfContentPolynomialParametersGroupBox.Controls.Add(this.wfContentPolynomialELabel);
-            this.wfContentPolynomialParametersGroupBox.Controls.Add(this.wfContentPolynomialCLabel);
-            this.wfContentPolynomialParametersGroupBox.Controls.Add(this.wfContentPolynomialDNumericUpDown);
-            this.wfContentPolynomialParametersGroupBox.Controls.Add(this.wfContentPolynomialCNumericUpDown);
-            this.wfContentPolynomialParametersGroupBox.Controls.Add(this.wfContentPolynomialDLabel);
-            this.wfContentPolynomialParametersGroupBox.Location = new System.Drawing.Point(19, 151);
-            this.wfContentPolynomialParametersGroupBox.Name = "wfContentPolynomialParametersGroupBox";
-            this.wfContentPolynomialParametersGroupBox.Size = new System.Drawing.Size(488, 120);
-            this.wfContentPolynomialParametersGroupBox.TabIndex = 13;
-            this.wfContentPolynomialParametersGroupBox.TabStop = false;
-            this.wfContentPolynomialParametersGroupBox.Text = "Parameters";
+            this.uiCntPol_Params_GrBx.Controls.Add(this.uiCntPol_a_Num);
+            this.uiCntPol_Params_GrBx.Controls.Add(this.uiCntPol_f_Num);
+            this.uiCntPol_Params_GrBx.Controls.Add(this.uiCntPol_a_Lb);
+            this.uiCntPol_Params_GrBx.Controls.Add(this.uiCntPol_f_Lb);
+            this.uiCntPol_Params_GrBx.Controls.Add(this.uiCntPol_b_Lb);
+            this.uiCntPol_Params_GrBx.Controls.Add(this.uiCntPol_e_Num);
+            this.uiCntPol_Params_GrBx.Controls.Add(this.uiCntPol_b_Num);
+            this.uiCntPol_Params_GrBx.Controls.Add(this.uiCntPol_e_Lb);
+            this.uiCntPol_Params_GrBx.Controls.Add(this.uiCntPol_c_Lb);
+            this.uiCntPol_Params_GrBx.Controls.Add(this.uiCntPol_d_Num);
+            this.uiCntPol_Params_GrBx.Controls.Add(this.uiCntPol_c_Num);
+            this.uiCntPol_Params_GrBx.Controls.Add(this.uiCntPol_d_Lb);
+            this.uiCntPol_Params_GrBx.Location = new System.Drawing.Point(19, 151);
+            this.uiCntPol_Params_GrBx.Name = "uiCntPol_Params_GrBx";
+            this.uiCntPol_Params_GrBx.Size = new System.Drawing.Size(488, 120);
+            this.uiCntPol_Params_GrBx.TabIndex = 13;
+            this.uiCntPol_Params_GrBx.TabStop = false;
+            this.uiCntPol_Params_GrBx.Text = "Parameters";
             // 
-            // wfContentPolynomialANumericUpDown
+            // uiCntPol_a_Num
             // 
-            this.wfContentPolynomialANumericUpDown.DecimalPlaces = 4;
-            this.wfContentPolynomialANumericUpDown.Location = new System.Drawing.Point(77, 22);
-            this.wfContentPolynomialANumericUpDown.Maximum = new decimal(new int[] {
+            this.uiCntPol_a_Num.DecimalPlaces = 4;
+            this.uiCntPol_a_Num.Location = new System.Drawing.Point(77, 22);
+            this.uiCntPol_a_Num.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
-            this.wfContentPolynomialANumericUpDown.Minimum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            -2147483648});
-            this.wfContentPolynomialANumericUpDown.Name = "wfContentPolynomialANumericUpDown";
-            this.wfContentPolynomialANumericUpDown.Size = new System.Drawing.Size(120, 20);
-            this.wfContentPolynomialANumericUpDown.TabIndex = 2;
-            this.wfContentPolynomialANumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.wfContentPolynomialANumericUpDown.ThousandsSeparator = true;
-            // 
-            // wfContentPolynomialFNumericUpDown
-            // 
-            this.wfContentPolynomialFNumericUpDown.DecimalPlaces = 4;
-            this.wfContentPolynomialFNumericUpDown.Location = new System.Drawing.Point(319, 83);
-            this.wfContentPolynomialFNumericUpDown.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.wfContentPolynomialFNumericUpDown.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.wfContentPolynomialFNumericUpDown.Name = "wfContentPolynomialFNumericUpDown";
-            this.wfContentPolynomialFNumericUpDown.Size = new System.Drawing.Size(120, 20);
-            this.wfContentPolynomialFNumericUpDown.TabIndex = 12;
-            this.wfContentPolynomialFNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.wfContentPolynomialFNumericUpDown.ThousandsSeparator = true;
-            this.wfContentPolynomialFNumericUpDown.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // wfContentPolynomialALabel
-            // 
-            this.wfContentPolynomialALabel.AutoSize = true;
-            this.wfContentPolynomialALabel.Font = new System.Drawing.Font("Consolas", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.wfContentPolynomialALabel.Location = new System.Drawing.Point(36, 23);
-            this.wfContentPolynomialALabel.Name = "wfContentPolynomialALabel";
-            this.wfContentPolynomialALabel.Size = new System.Drawing.Size(40, 17);
-            this.wfContentPolynomialALabel.TabIndex = 1;
-            this.wfContentPolynomialALabel.Text = "a = ";
-            // 
-            // wfContentPolynomialFLabel
-            // 
-            this.wfContentPolynomialFLabel.AutoSize = true;
-            this.wfContentPolynomialFLabel.Font = new System.Drawing.Font("Consolas", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.wfContentPolynomialFLabel.Location = new System.Drawing.Point(278, 84);
-            this.wfContentPolynomialFLabel.Name = "wfContentPolynomialFLabel";
-            this.wfContentPolynomialFLabel.Size = new System.Drawing.Size(40, 17);
-            this.wfContentPolynomialFLabel.TabIndex = 11;
-            this.wfContentPolynomialFLabel.Text = "f = ";
-            // 
-            // wfContentPolynomialBLabel
-            // 
-            this.wfContentPolynomialBLabel.AutoSize = true;
-            this.wfContentPolynomialBLabel.Font = new System.Drawing.Font("Consolas", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.wfContentPolynomialBLabel.Location = new System.Drawing.Point(36, 53);
-            this.wfContentPolynomialBLabel.Name = "wfContentPolynomialBLabel";
-            this.wfContentPolynomialBLabel.Size = new System.Drawing.Size(40, 17);
-            this.wfContentPolynomialBLabel.TabIndex = 3;
-            this.wfContentPolynomialBLabel.Text = "b = ";
-            // 
-            // wfContentPolynomialENumericUpDown
-            // 
-            this.wfContentPolynomialENumericUpDown.DecimalPlaces = 4;
-            this.wfContentPolynomialENumericUpDown.Location = new System.Drawing.Point(319, 53);
-            this.wfContentPolynomialENumericUpDown.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.wfContentPolynomialENumericUpDown.Name = "wfContentPolynomialENumericUpDown";
-            this.wfContentPolynomialENumericUpDown.Size = new System.Drawing.Size(120, 20);
-            this.wfContentPolynomialENumericUpDown.TabIndex = 10;
-            this.wfContentPolynomialENumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.wfContentPolynomialENumericUpDown.ThousandsSeparator = true;
-            // 
-            // wfContentPolynomialBNumericUpDown
-            // 
-            this.wfContentPolynomialBNumericUpDown.DecimalPlaces = 4;
-            this.wfContentPolynomialBNumericUpDown.Location = new System.Drawing.Point(77, 52);
-            this.wfContentPolynomialBNumericUpDown.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.wfContentPolynomialBNumericUpDown.Name = "wfContentPolynomialBNumericUpDown";
-            this.wfContentPolynomialBNumericUpDown.Size = new System.Drawing.Size(120, 20);
-            this.wfContentPolynomialBNumericUpDown.TabIndex = 4;
-            this.wfContentPolynomialBNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.wfContentPolynomialBNumericUpDown.ThousandsSeparator = true;
-            // 
-            // wfContentPolynomialELabel
-            // 
-            this.wfContentPolynomialELabel.AutoSize = true;
-            this.wfContentPolynomialELabel.Font = new System.Drawing.Font("Consolas", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.wfContentPolynomialELabel.Location = new System.Drawing.Point(278, 54);
-            this.wfContentPolynomialELabel.Name = "wfContentPolynomialELabel";
-            this.wfContentPolynomialELabel.Size = new System.Drawing.Size(40, 17);
-            this.wfContentPolynomialELabel.TabIndex = 9;
-            this.wfContentPolynomialELabel.Text = "e = ";
-            // 
-            // wfContentPolynomialCLabel
-            // 
-            this.wfContentPolynomialCLabel.AutoSize = true;
-            this.wfContentPolynomialCLabel.Font = new System.Drawing.Font("Consolas", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.wfContentPolynomialCLabel.Location = new System.Drawing.Point(36, 83);
-            this.wfContentPolynomialCLabel.Name = "wfContentPolynomialCLabel";
-            this.wfContentPolynomialCLabel.Size = new System.Drawing.Size(40, 17);
-            this.wfContentPolynomialCLabel.TabIndex = 5;
-            this.wfContentPolynomialCLabel.Text = "c = ";
-            // 
-            // wfContentPolynomialDNumericUpDown
-            // 
-            this.wfContentPolynomialDNumericUpDown.DecimalPlaces = 4;
-            this.wfContentPolynomialDNumericUpDown.Location = new System.Drawing.Point(319, 23);
-            this.wfContentPolynomialDNumericUpDown.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.wfContentPolynomialDNumericUpDown.Minimum = new decimal(new int[] {
+            this.uiCntPol_a_Num.Minimum = new decimal(new int[] {
             1000000,
             0,
             0,
             -2147483648});
-            this.wfContentPolynomialDNumericUpDown.Name = "wfContentPolynomialDNumericUpDown";
-            this.wfContentPolynomialDNumericUpDown.Size = new System.Drawing.Size(120, 20);
-            this.wfContentPolynomialDNumericUpDown.TabIndex = 8;
-            this.wfContentPolynomialDNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.wfContentPolynomialDNumericUpDown.ThousandsSeparator = true;
+            this.uiCntPol_a_Num.Name = "uiCntPol_a_Num";
+            this.uiCntPol_a_Num.Size = new System.Drawing.Size(120, 20);
+            this.uiCntPol_a_Num.TabIndex = 2;
+            this.uiCntPol_a_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.uiCntPol_a_Num.ThousandsSeparator = true;
             // 
-            // wfContentPolynomialCNumericUpDown
+            // uiCntPol_f_Num
             // 
-            this.wfContentPolynomialCNumericUpDown.DecimalPlaces = 4;
-            this.wfContentPolynomialCNumericUpDown.Location = new System.Drawing.Point(77, 82);
-            this.wfContentPolynomialCNumericUpDown.Maximum = new decimal(new int[] {
+            this.uiCntPol_f_Num.DecimalPlaces = 4;
+            this.uiCntPol_f_Num.Location = new System.Drawing.Point(319, 83);
+            this.uiCntPol_f_Num.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
-            this.wfContentPolynomialCNumericUpDown.Minimum = new decimal(new int[] {
+            this.uiCntPol_f_Num.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.wfContentPolynomialCNumericUpDown.Name = "wfContentPolynomialCNumericUpDown";
-            this.wfContentPolynomialCNumericUpDown.Size = new System.Drawing.Size(120, 20);
-            this.wfContentPolynomialCNumericUpDown.TabIndex = 6;
-            this.wfContentPolynomialCNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.wfContentPolynomialCNumericUpDown.ThousandsSeparator = true;
-            this.wfContentPolynomialCNumericUpDown.Value = new decimal(new int[] {
+            this.uiCntPol_f_Num.Name = "uiCntPol_f_Num";
+            this.uiCntPol_f_Num.Size = new System.Drawing.Size(120, 20);
+            this.uiCntPol_f_Num.TabIndex = 12;
+            this.uiCntPol_f_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.uiCntPol_f_Num.ThousandsSeparator = true;
+            this.uiCntPol_f_Num.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
             // 
-            // wfContentPolynomialDLabel
+            // uiCntPol_a_Lb
             // 
-            this.wfContentPolynomialDLabel.AutoSize = true;
-            this.wfContentPolynomialDLabel.Font = new System.Drawing.Font("Consolas", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.wfContentPolynomialDLabel.Location = new System.Drawing.Point(278, 24);
-            this.wfContentPolynomialDLabel.Name = "wfContentPolynomialDLabel";
-            this.wfContentPolynomialDLabel.Size = new System.Drawing.Size(40, 17);
-            this.wfContentPolynomialDLabel.TabIndex = 7;
-            this.wfContentPolynomialDLabel.Text = "d = ";
+            this.uiCntPol_a_Lb.AutoSize = true;
+            this.uiCntPol_a_Lb.Font = new System.Drawing.Font("Consolas", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.uiCntPol_a_Lb.Location = new System.Drawing.Point(36, 23);
+            this.uiCntPol_a_Lb.Name = "uiCntPol_a_Lb";
+            this.uiCntPol_a_Lb.Size = new System.Drawing.Size(40, 17);
+            this.uiCntPol_a_Lb.TabIndex = 1;
+            this.uiCntPol_a_Lb.Text = "a = ";
             // 
-            // wfContentHyperbolicTabPage
+            // uiCntPol_f_Lb
             // 
-            this.wfContentHyperbolicTabPage.Controls.Add(this.wfContentHyperbolicParametersGroupBox);
-            this.wfContentHyperbolicTabPage.Controls.Add(this.wfContentHyperbolicPictureBox);
-            this.wfContentHyperbolicTabPage.Location = new System.Drawing.Point(4, 5);
-            this.wfContentHyperbolicTabPage.Name = "wfContentHyperbolicTabPage";
-            this.wfContentHyperbolicTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.wfContentHyperbolicTabPage.Size = new System.Drawing.Size(537, 288);
-            this.wfContentHyperbolicTabPage.TabIndex = 1;
-            this.wfContentHyperbolicTabPage.Text = "Hyperbolic";
-            this.wfContentHyperbolicTabPage.UseVisualStyleBackColor = true;
+            this.uiCntPol_f_Lb.AutoSize = true;
+            this.uiCntPol_f_Lb.Font = new System.Drawing.Font("Consolas", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.uiCntPol_f_Lb.Location = new System.Drawing.Point(278, 84);
+            this.uiCntPol_f_Lb.Name = "uiCntPol_f_Lb";
+            this.uiCntPol_f_Lb.Size = new System.Drawing.Size(40, 17);
+            this.uiCntPol_f_Lb.TabIndex = 11;
+            this.uiCntPol_f_Lb.Text = "f = ";
             // 
-            // wfContentHyperbolicParametersGroupBox
+            // uiCntPol_b_Lb
             // 
-            this.wfContentHyperbolicParametersGroupBox.Controls.Add(this.wfContentHyperbolicGNumericUpDown);
-            this.wfContentHyperbolicParametersGroupBox.Controls.Add(this.wfContentHyperbolicGLabel);
-            this.wfContentHyperbolicParametersGroupBox.Location = new System.Drawing.Point(144, 161);
-            this.wfContentHyperbolicParametersGroupBox.Name = "wfContentHyperbolicParametersGroupBox";
-            this.wfContentHyperbolicParametersGroupBox.Size = new System.Drawing.Size(251, 88);
-            this.wfContentHyperbolicParametersGroupBox.TabIndex = 9;
-            this.wfContentHyperbolicParametersGroupBox.TabStop = false;
-            this.wfContentHyperbolicParametersGroupBox.Text = "Parameters";
+            this.uiCntPol_b_Lb.AutoSize = true;
+            this.uiCntPol_b_Lb.Font = new System.Drawing.Font("Consolas", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.uiCntPol_b_Lb.Location = new System.Drawing.Point(36, 53);
+            this.uiCntPol_b_Lb.Name = "uiCntPol_b_Lb";
+            this.uiCntPol_b_Lb.Size = new System.Drawing.Size(40, 17);
+            this.uiCntPol_b_Lb.TabIndex = 3;
+            this.uiCntPol_b_Lb.Text = "b = ";
             // 
-            // wfContentHyperbolicGNumericUpDown
+            // uiCntPol_e_Num
             // 
-            this.wfContentHyperbolicGNumericUpDown.DecimalPlaces = 4;
-            this.wfContentHyperbolicGNumericUpDown.Location = new System.Drawing.Point(86, 34);
-            this.wfContentHyperbolicGNumericUpDown.Maximum = new decimal(new int[] {
+            this.uiCntPol_e_Num.DecimalPlaces = 4;
+            this.uiCntPol_e_Num.Location = new System.Drawing.Point(319, 53);
+            this.uiCntPol_e_Num.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
-            this.wfContentHyperbolicGNumericUpDown.Minimum = new decimal(new int[] {
+            this.uiCntPol_e_Num.Name = "uiCntPol_e_Num";
+            this.uiCntPol_e_Num.Size = new System.Drawing.Size(120, 20);
+            this.uiCntPol_e_Num.TabIndex = 10;
+            this.uiCntPol_e_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.uiCntPol_e_Num.ThousandsSeparator = true;
+            // 
+            // uiCntPol_b_Num
+            // 
+            this.uiCntPol_b_Num.DecimalPlaces = 4;
+            this.uiCntPol_b_Num.Location = new System.Drawing.Point(77, 52);
+            this.uiCntPol_b_Num.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.uiCntPol_b_Num.Name = "uiCntPol_b_Num";
+            this.uiCntPol_b_Num.Size = new System.Drawing.Size(120, 20);
+            this.uiCntPol_b_Num.TabIndex = 4;
+            this.uiCntPol_b_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.uiCntPol_b_Num.ThousandsSeparator = true;
+            // 
+            // uiCntPol_e_Lb
+            // 
+            this.uiCntPol_e_Lb.AutoSize = true;
+            this.uiCntPol_e_Lb.Font = new System.Drawing.Font("Consolas", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.uiCntPol_e_Lb.Location = new System.Drawing.Point(278, 54);
+            this.uiCntPol_e_Lb.Name = "uiCntPol_e_Lb";
+            this.uiCntPol_e_Lb.Size = new System.Drawing.Size(40, 17);
+            this.uiCntPol_e_Lb.TabIndex = 9;
+            this.uiCntPol_e_Lb.Text = "e = ";
+            // 
+            // uiCntPol_c_Lb
+            // 
+            this.uiCntPol_c_Lb.AutoSize = true;
+            this.uiCntPol_c_Lb.Font = new System.Drawing.Font("Consolas", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.uiCntPol_c_Lb.Location = new System.Drawing.Point(36, 83);
+            this.uiCntPol_c_Lb.Name = "uiCntPol_c_Lb";
+            this.uiCntPol_c_Lb.Size = new System.Drawing.Size(40, 17);
+            this.uiCntPol_c_Lb.TabIndex = 5;
+            this.uiCntPol_c_Lb.Text = "c = ";
+            // 
+            // uiCntPol_d_Num
+            // 
+            this.uiCntPol_d_Num.DecimalPlaces = 4;
+            this.uiCntPol_d_Num.Location = new System.Drawing.Point(319, 23);
+            this.uiCntPol_d_Num.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.uiCntPol_d_Num.Minimum = new decimal(new int[] {
             1000000,
             0,
             0,
             -2147483648});
-            this.wfContentHyperbolicGNumericUpDown.Name = "wfContentHyperbolicGNumericUpDown";
-            this.wfContentHyperbolicGNumericUpDown.Size = new System.Drawing.Size(120, 20);
-            this.wfContentHyperbolicGNumericUpDown.TabIndex = 8;
-            this.wfContentHyperbolicGNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.wfContentHyperbolicGNumericUpDown.ThousandsSeparator = true;
-            this.wfContentHyperbolicGNumericUpDown.Value = new decimal(new int[] {
+            this.uiCntPol_d_Num.Name = "uiCntPol_d_Num";
+            this.uiCntPol_d_Num.Size = new System.Drawing.Size(120, 20);
+            this.uiCntPol_d_Num.TabIndex = 8;
+            this.uiCntPol_d_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.uiCntPol_d_Num.ThousandsSeparator = true;
+            // 
+            // uiCntPol_c_Num
+            // 
+            this.uiCntPol_c_Num.DecimalPlaces = 4;
+            this.uiCntPol_c_Num.Location = new System.Drawing.Point(77, 82);
+            this.uiCntPol_c_Num.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.uiCntPol_c_Num.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.uiCntPol_c_Num.Name = "uiCntPol_c_Num";
+            this.uiCntPol_c_Num.Size = new System.Drawing.Size(120, 20);
+            this.uiCntPol_c_Num.TabIndex = 6;
+            this.uiCntPol_c_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.uiCntPol_c_Num.ThousandsSeparator = true;
+            this.uiCntPol_c_Num.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
             // 
-            // wfContentHyperbolicGLabel
+            // uiCntPol_d_Lb
             // 
-            this.wfContentHyperbolicGLabel.AutoSize = true;
-            this.wfContentHyperbolicGLabel.Font = new System.Drawing.Font("Consolas", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.wfContentHyperbolicGLabel.Location = new System.Drawing.Point(44, 35);
-            this.wfContentHyperbolicGLabel.Name = "wfContentHyperbolicGLabel";
-            this.wfContentHyperbolicGLabel.Size = new System.Drawing.Size(40, 17);
-            this.wfContentHyperbolicGLabel.TabIndex = 7;
-            this.wfContentHyperbolicGLabel.Text = "g = ";
+            this.uiCntPol_d_Lb.AutoSize = true;
+            this.uiCntPol_d_Lb.Font = new System.Drawing.Font("Consolas", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.uiCntPol_d_Lb.Location = new System.Drawing.Point(278, 24);
+            this.uiCntPol_d_Lb.Name = "uiCntPol_d_Lb";
+            this.uiCntPol_d_Lb.Size = new System.Drawing.Size(40, 17);
+            this.uiCntPol_d_Lb.TabIndex = 7;
+            this.uiCntPol_d_Lb.Text = "d = ";
             // 
-            // wfConfirmationPanel
+            // uiCntPol_PicBx
             // 
-            this.wfConfirmationPanel.Controls.Add(this.wfConfirmationCancelButton);
-            this.wfConfirmationPanel.Controls.Add(this.wfConfirmationOKButton);
-            this.wfConfirmationPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.wfConfirmationPanel.Location = new System.Drawing.Point(200, 303);
-            this.wfConfirmationPanel.Name = "wfConfirmationPanel";
-            this.wfConfirmationPanel.Size = new System.Drawing.Size(545, 47);
-            this.wfConfirmationPanel.TabIndex = 2;
+            this.uiCntPol_PicBx.BackColor = System.Drawing.SystemColors.Window;
+            this.uiCntPol_PicBx.Dock = System.Windows.Forms.DockStyle.Top;
+            this.uiCntPol_PicBx.Image = global::PI.Properties.Resources.Pattern_scaffold_polynomial;
+            this.uiCntPol_PicBx.Location = new System.Drawing.Point(3, 3);
+            this.uiCntPol_PicBx.Name = "uiCntPol_PicBx";
+            this.uiCntPol_PicBx.Size = new System.Drawing.Size(531, 130);
+            this.uiCntPol_PicBx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.uiCntPol_PicBx.TabIndex = 0;
+            this.uiCntPol_PicBx.TabStop = false;
             // 
-            // wfConfirmationCancelButton
+            // uiCntHyp_TbPg
             // 
-            this.wfConfirmationCancelButton.Cursor = System.Windows.Forms.Cursors.Default;
-            this.wfConfirmationCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.wfConfirmationCancelButton.Location = new System.Drawing.Point(302, 12);
-            this.wfConfirmationCancelButton.Name = "wfConfirmationCancelButton";
-            this.wfConfirmationCancelButton.Size = new System.Drawing.Size(97, 23);
-            this.wfConfirmationCancelButton.TabIndex = 1;
-            this.wfConfirmationCancelButton.Text = "Cancel";
-            this.wfConfirmationCancelButton.UseVisualStyleBackColor = true;
-            this.wfConfirmationCancelButton.Click += new System.EventHandler(this.WfConfirmationCancelButton_Click);
+            this.uiCntHyp_TbPg.Controls.Add(this.uiCntHyp_Params_GrBx);
+            this.uiCntHyp_TbPg.Controls.Add(this.uiCntHyp_PicBx);
+            this.uiCntHyp_TbPg.Location = new System.Drawing.Point(4, 5);
+            this.uiCntHyp_TbPg.Name = "uiCntHyp_TbPg";
+            this.uiCntHyp_TbPg.Padding = new System.Windows.Forms.Padding(3);
+            this.uiCntHyp_TbPg.Size = new System.Drawing.Size(537, 288);
+            this.uiCntHyp_TbPg.TabIndex = 1;
+            this.uiCntHyp_TbPg.Text = "Hyperbolic";
+            this.uiCntHyp_TbPg.UseVisualStyleBackColor = true;
             // 
-            // wfConfirmationOKButton
+            // uiCntHyp_Params_GrBx
             // 
-            this.wfConfirmationOKButton.Cursor = System.Windows.Forms.Cursors.Default;
-            this.wfConfirmationOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.wfConfirmationOKButton.Location = new System.Drawing.Point(414, 12);
-            this.wfConfirmationOKButton.Name = "wfConfirmationOKButton";
-            this.wfConfirmationOKButton.Size = new System.Drawing.Size(97, 23);
-            this.wfConfirmationOKButton.TabIndex = 0;
-            this.wfConfirmationOKButton.Text = "OK";
-            this.wfConfirmationOKButton.UseVisualStyleBackColor = true;
-            this.wfConfirmationOKButton.Click += new System.EventHandler(this.WfConfirmationOKButton_Click);
+            this.uiCntHyp_Params_GrBx.Controls.Add(this.uiCntHyp_g_Num);
+            this.uiCntHyp_Params_GrBx.Controls.Add(this.uiCntHyp_g_Lb);
+            this.uiCntHyp_Params_GrBx.Location = new System.Drawing.Point(144, 161);
+            this.uiCntHyp_Params_GrBx.Name = "uiCntHyp_Params_GrBx";
+            this.uiCntHyp_Params_GrBx.Size = new System.Drawing.Size(251, 88);
+            this.uiCntHyp_Params_GrBx.TabIndex = 9;
+            this.uiCntHyp_Params_GrBx.TabStop = false;
+            this.uiCntHyp_Params_GrBx.Text = "Parameters";
             // 
-            // wfContentPolynomialPictureBox
+            // uiCntHyp_g_Num
             // 
-            this.wfContentPolynomialPictureBox.BackColor = System.Drawing.SystemColors.Window;
-            this.wfContentPolynomialPictureBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.wfContentPolynomialPictureBox.Image = global::PI.Properties.Resources.Pattern_scaffold_polynomial;
-            this.wfContentPolynomialPictureBox.Location = new System.Drawing.Point(3, 3);
-            this.wfContentPolynomialPictureBox.Name = "wfContentPolynomialPictureBox";
-            this.wfContentPolynomialPictureBox.Size = new System.Drawing.Size(531, 130);
-            this.wfContentPolynomialPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.wfContentPolynomialPictureBox.TabIndex = 0;
-            this.wfContentPolynomialPictureBox.TabStop = false;
+            this.uiCntHyp_g_Num.DecimalPlaces = 4;
+            this.uiCntHyp_g_Num.Location = new System.Drawing.Point(86, 34);
+            this.uiCntHyp_g_Num.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.uiCntHyp_g_Num.Minimum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            -2147483648});
+            this.uiCntHyp_g_Num.Name = "uiCntHyp_g_Num";
+            this.uiCntHyp_g_Num.Size = new System.Drawing.Size(120, 20);
+            this.uiCntHyp_g_Num.TabIndex = 8;
+            this.uiCntHyp_g_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.uiCntHyp_g_Num.ThousandsSeparator = true;
+            this.uiCntHyp_g_Num.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
-            // wfContentHyperbolicPictureBox
+            // uiCntHyp_g_Lb
             // 
-            this.wfContentHyperbolicPictureBox.BackColor = System.Drawing.SystemColors.Window;
-            this.wfContentHyperbolicPictureBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.wfContentHyperbolicPictureBox.Image = global::PI.Properties.Resources.Pattern_scaffold_hyperbolic;
-            this.wfContentHyperbolicPictureBox.Location = new System.Drawing.Point(3, 3);
-            this.wfContentHyperbolicPictureBox.Name = "wfContentHyperbolicPictureBox";
-            this.wfContentHyperbolicPictureBox.Size = new System.Drawing.Size(531, 130);
-            this.wfContentHyperbolicPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.wfContentHyperbolicPictureBox.TabIndex = 0;
-            this.wfContentHyperbolicPictureBox.TabStop = false;
+            this.uiCntHyp_g_Lb.AutoSize = true;
+            this.uiCntHyp_g_Lb.Font = new System.Drawing.Font("Consolas", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.uiCntHyp_g_Lb.Location = new System.Drawing.Point(44, 35);
+            this.uiCntHyp_g_Lb.Name = "uiCntHyp_g_Lb";
+            this.uiCntHyp_g_Lb.Size = new System.Drawing.Size(40, 17);
+            this.uiCntHyp_g_Lb.TabIndex = 7;
+            this.uiCntHyp_g_Lb.Text = "g = ";
+            // 
+            // uiCntHyp_PicBx
+            // 
+            this.uiCntHyp_PicBx.BackColor = System.Drawing.SystemColors.Window;
+            this.uiCntHyp_PicBx.Dock = System.Windows.Forms.DockStyle.Top;
+            this.uiCntHyp_PicBx.Image = global::PI.Properties.Resources.Pattern_scaffold_hyperbolic;
+            this.uiCntHyp_PicBx.Location = new System.Drawing.Point(3, 3);
+            this.uiCntHyp_PicBx.Name = "uiCntHyp_PicBx";
+            this.uiCntHyp_PicBx.Size = new System.Drawing.Size(531, 130);
+            this.uiCntHyp_PicBx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.uiCntHyp_PicBx.TabIndex = 0;
+            this.uiCntHyp_PicBx.TabStop = false;
+            // 
+            // uiCfrm_Pnl
+            // 
+            this.uiCfrm_Pnl.Controls.Add(this.uiCfrmPnl_Cancel_Btn);
+            this.uiCfrm_Pnl.Controls.Add(this.uiCfrmPnl_Ok_Btn);
+            this.uiCfrm_Pnl.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.uiCfrm_Pnl.Location = new System.Drawing.Point(200, 303);
+            this.uiCfrm_Pnl.Name = "uiCfrm_Pnl";
+            this.uiCfrm_Pnl.Size = new System.Drawing.Size(545, 47);
+            this.uiCfrm_Pnl.TabIndex = 2;
+            // 
+            // uiCfrmPnl_Cancel_Btn
+            // 
+            this.uiCfrmPnl_Cancel_Btn.Cursor = System.Windows.Forms.Cursors.Default;
+            this.uiCfrmPnl_Cancel_Btn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.uiCfrmPnl_Cancel_Btn.Location = new System.Drawing.Point(302, 12);
+            this.uiCfrmPnl_Cancel_Btn.Name = "uiCfrmPnl_Cancel_Btn";
+            this.uiCfrmPnl_Cancel_Btn.Size = new System.Drawing.Size(97, 23);
+            this.uiCfrmPnl_Cancel_Btn.TabIndex = 1;
+            this.uiCfrmPnl_Cancel_Btn.Text = "Cancel";
+            this.uiCfrmPnl_Cancel_Btn.UseVisualStyleBackColor = true;
+            this.uiCfrmPnl_Cancel_Btn.Click += new System.EventHandler(this.UiConfirmationPanel_Cancel_Click);
+            // 
+            // uiCfrmPnl_Ok_Btn
+            // 
+            this.uiCfrmPnl_Ok_Btn.Cursor = System.Windows.Forms.Cursors.Default;
+            this.uiCfrmPnl_Ok_Btn.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.uiCfrmPnl_Ok_Btn.Location = new System.Drawing.Point(414, 12);
+            this.uiCfrmPnl_Ok_Btn.Name = "uiCfrmPnl_Ok_Btn";
+            this.uiCfrmPnl_Ok_Btn.Size = new System.Drawing.Size(97, 23);
+            this.uiCfrmPnl_Ok_Btn.TabIndex = 0;
+            this.uiCfrmPnl_Ok_Btn.Text = "OK";
+            this.uiCfrmPnl_Ok_Btn.UseVisualStyleBackColor = true;
+            this.uiCfrmPnl_Ok_Btn.Click += new System.EventHandler(this.UiConfirmationPanel_Ok_Click);
             // 
             // PatternCurveDefiner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(745, 350);
-            this.Controls.Add(this.wfConfirmationPanel);
-            this.Controls.Add(this.wfContentTabControl);
-            this.Controls.Add(this.wfTabsPanel);
+            this.Controls.Add(this.uiCfrm_Pnl);
+            this.Controls.Add(this.uiCnt_TbCtrl);
+            this.Controls.Add(this.uiTabs_Pnl);
             this.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "PatternCurveDefiner";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Pattern Curve Definer";
-            this.wfTabsPanel.ResumeLayout(false);
-            this.wfTabsPanelTableLayout.ResumeLayout(false);
-            this.wfContentTabControl.ResumeLayout(false);
-            this.wfContentPolynomialTabPage.ResumeLayout(false);
-            this.wfContentPolynomialParametersGroupBox.ResumeLayout(false);
-            this.wfContentPolynomialParametersGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.wfContentPolynomialANumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wfContentPolynomialFNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wfContentPolynomialENumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wfContentPolynomialBNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wfContentPolynomialDNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wfContentPolynomialCNumericUpDown)).EndInit();
-            this.wfContentHyperbolicTabPage.ResumeLayout(false);
-            this.wfContentHyperbolicParametersGroupBox.ResumeLayout(false);
-            this.wfContentHyperbolicParametersGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.wfContentHyperbolicGNumericUpDown)).EndInit();
-            this.wfConfirmationPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.wfContentPolynomialPictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wfContentHyperbolicPictureBox)).EndInit();
+            this.uiTabs_Pnl.ResumeLayout(false);
+            this.uiTabs_TblLay.ResumeLayout(false);
+            this.uiCnt_TbCtrl.ResumeLayout(false);
+            this.uiCntPol_TbPg.ResumeLayout(false);
+            this.uiCntPol_Params_GrBx.ResumeLayout(false);
+            this.uiCntPol_Params_GrBx.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntPol_a_Num)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntPol_f_Num)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntPol_e_Num)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntPol_b_Num)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntPol_d_Num)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntPol_c_Num)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntPol_PicBx)).EndInit();
+            this.uiCntHyp_TbPg.ResumeLayout(false);
+            this.uiCntHyp_Params_GrBx.ResumeLayout(false);
+            this.uiCntHyp_Params_GrBx.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_g_Num)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_PicBx)).EndInit();
+            this.uiCfrm_Pnl.ResumeLayout(false);
             this.ResumeLayout(false);
 
             }
 
         #endregion
-        private System.Windows.Forms.Panel wfTabsPanel;
-        private System.Windows.Forms.TableLayoutPanel wfTabsPanelTableLayout;
-        private System.Windows.Forms.TabControl wfContentTabControl;
-        private System.Windows.Forms.TabPage wfContentPolynomialTabPage;
-        private System.Windows.Forms.TabPage wfContentHyperbolicTabPage;
-        private System.Windows.Forms.Button wfTabsPanelPolynomialButton;
-        private System.Windows.Forms.Button wfTabsPanelHyperbolicButton;
-        private System.Windows.Forms.Panel wfConfirmationPanel;
-        private System.Windows.Forms.Button wfConfirmationOKButton;
-        private System.Windows.Forms.Button wfConfirmationCancelButton;
-        private System.Windows.Forms.PictureBox wfContentPolynomialPictureBox;
-        private System.Windows.Forms.PictureBox wfContentHyperbolicPictureBox;
-        private System.Windows.Forms.NumericUpDown wfContentPolynomialANumericUpDown;
-        private System.Windows.Forms.Label wfContentPolynomialALabel;
-        private System.Windows.Forms.NumericUpDown wfContentPolynomialFNumericUpDown;
-        private System.Windows.Forms.Label wfContentPolynomialFLabel;
-        private System.Windows.Forms.NumericUpDown wfContentPolynomialENumericUpDown;
-        private System.Windows.Forms.Label wfContentPolynomialELabel;
-        private System.Windows.Forms.NumericUpDown wfContentPolynomialDNumericUpDown;
-        private System.Windows.Forms.Label wfContentPolynomialDLabel;
-        private System.Windows.Forms.NumericUpDown wfContentPolynomialCNumericUpDown;
-        private System.Windows.Forms.Label wfContentPolynomialCLabel;
-        private System.Windows.Forms.NumericUpDown wfContentPolynomialBNumericUpDown;
-        private System.Windows.Forms.Label wfContentPolynomialBLabel;
-        private System.Windows.Forms.GroupBox wfContentHyperbolicParametersGroupBox;
-        private System.Windows.Forms.NumericUpDown wfContentHyperbolicGNumericUpDown;
-        private System.Windows.Forms.Label wfContentHyperbolicGLabel;
-        private System.Windows.Forms.GroupBox wfContentPolynomialParametersGroupBox;
+        private System.Windows.Forms.Panel uiTabs_Pnl;
+        private System.Windows.Forms.TableLayoutPanel uiTabs_TblLay;
+        private System.Windows.Forms.TabControl uiCnt_TbCtrl;
+        private System.Windows.Forms.TabPage uiCntPol_TbPg;
+        private System.Windows.Forms.TabPage uiCntHyp_TbPg;
+        private System.Windows.Forms.Button uiTabs_Pol_Btn;
+        private System.Windows.Forms.Button uiTabs_Hyp_Btn;
+        private System.Windows.Forms.Panel uiCfrm_Pnl;
+        private System.Windows.Forms.Button uiCfrmPnl_Ok_Btn;
+        private System.Windows.Forms.Button uiCfrmPnl_Cancel_Btn;
+        private System.Windows.Forms.PictureBox uiCntPol_PicBx;
+        private System.Windows.Forms.PictureBox uiCntHyp_PicBx;
+        private System.Windows.Forms.NumericUpDown uiCntPol_a_Num;
+        private System.Windows.Forms.Label uiCntPol_a_Lb;
+        private System.Windows.Forms.NumericUpDown uiCntPol_f_Num;
+        private System.Windows.Forms.Label uiCntPol_f_Lb;
+        private System.Windows.Forms.NumericUpDown uiCntPol_e_Num;
+        private System.Windows.Forms.Label uiCntPol_e_Lb;
+        private System.Windows.Forms.NumericUpDown uiCntPol_d_Num;
+        private System.Windows.Forms.Label uiCntPol_d_Lb;
+        private System.Windows.Forms.NumericUpDown uiCntPol_c_Num;
+        private System.Windows.Forms.Label uiCntPol_c_Lb;
+        private System.Windows.Forms.NumericUpDown uiCntPol_b_Num;
+        private System.Windows.Forms.Label uiCntPol_b_Lb;
+        private System.Windows.Forms.GroupBox uiCntHyp_Params_GrBx;
+        private System.Windows.Forms.NumericUpDown uiCntHyp_g_Num;
+        private System.Windows.Forms.Label uiCntHyp_g_Lb;
+        private System.Windows.Forms.GroupBox uiCntPol_Params_GrBx;
         }
     }

@@ -27,150 +27,150 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.wfMainSplitContainer = new System.Windows.Forms.SplitContainer();
-            this.wfEditControlTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.wfEditControlPerformButton = new System.Windows.Forms.Button();
-            this.wfEditControlValue2TextBox = new System.Windows.Forms.TextBox();
-            this.wfEditControlValue1TextBox = new System.Windows.Forms.TextBox();
-            this.wfEditControlPointIndexTextBox = new System.Windows.Forms.TextBox();
-            this.wfEditControlEditControlForOrdinatesTextBox = new System.Windows.Forms.TextBox();
-            this.wfEditControlOperationTypeTextBox = new System.Windows.Forms.TextBox();
-            this.wfEditControlOperationTypeComboBox = new System.Windows.Forms.ComboBox();
-            this.wfEditControlPointIndexNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.wfEditControlPointIndexTrackBar = new System.Windows.Forms.TrackBar();
-            this.wfEditControlSaveAndExitButton = new System.Windows.Forms.Button();
-            this.wfGridTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            ((System.ComponentModel.ISupportInitialize)(this.wfMainSplitContainer)).BeginInit();
-            this.wfMainSplitContainer.Panel1.SuspendLayout();
-            this.wfMainSplitContainer.Panel2.SuspendLayout();
-            this.wfMainSplitContainer.SuspendLayout();
-            this.wfEditControlTableLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.wfEditControlPointIndexNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wfEditControlPointIndexTrackBar)).BeginInit();
+            this.ui_SpCtn = new System.Windows.Forms.SplitContainer();
+            this.uiPnl_TblLay = new System.Windows.Forms.TableLayoutPanel();
+            this.uiPnl_Perform_Btn = new System.Windows.Forms.Button();
+            this.uiPnl_Value2_TxtBx = new System.Windows.Forms.TextBox();
+            this.uiPnl_Value1_TxtBx = new System.Windows.Forms.TextBox();
+            this.uiPnl_PointIdx_TxtBx = new System.Windows.Forms.TextBox();
+            this.uiPnl_Edit_TxtBx = new System.Windows.Forms.TextBox();
+            this.uiPnl_OperT_TxtBx = new System.Windows.Forms.TextBox();
+            this.uiPnl_OperT_ComBx = new System.Windows.Forms.ComboBox();
+            this.uiPnl_PointIdx_Num = new System.Windows.Forms.NumericUpDown();
+            this.uiPnl_PointIdx_TrBr = new System.Windows.Forms.TrackBar();
+            this.uiPnl_SaveExit_Btn = new System.Windows.Forms.Button();
+            this.uiGrid_TblLay = new System.Windows.Forms.TableLayoutPanel();
+            ((System.ComponentModel.ISupportInitialize)(this.ui_SpCtn)).BeginInit();
+            this.ui_SpCtn.Panel1.SuspendLayout();
+            this.ui_SpCtn.Panel2.SuspendLayout();
+            this.ui_SpCtn.SuspendLayout();
+            this.uiPnl_TblLay.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uiPnl_PointIdx_Num)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiPnl_PointIdx_TrBr)).BeginInit();
             this.SuspendLayout();
             // 
-            // wfMainSplitContainer
+            // ui_SpCtn
             // 
-            this.wfMainSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wfMainSplitContainer.Location = new System.Drawing.Point(0, 0);
-            this.wfMainSplitContainer.Name = "wfMainSplitContainer";
+            this.ui_SpCtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ui_SpCtn.Location = new System.Drawing.Point(0, 0);
+            this.ui_SpCtn.Name = "ui_SpCtn";
             // 
-            // wfMainSplitContainer.Panel1
+            // ui_SpCtn.Panel1
             // 
-            this.wfMainSplitContainer.Panel1.Controls.Add(this.wfEditControlTableLayoutPanel);
+            this.ui_SpCtn.Panel1.Controls.Add(this.uiPnl_TblLay);
             // 
-            // wfMainSplitContainer.Panel2
+            // ui_SpCtn.Panel2
             // 
-            this.wfMainSplitContainer.Panel2.Controls.Add(this.wfGridTableLayoutPanel);
-            this.wfMainSplitContainer.Size = new System.Drawing.Size(780, 371);
-            this.wfMainSplitContainer.SplitterDistance = 260;
-            this.wfMainSplitContainer.TabIndex = 0;
+            this.ui_SpCtn.Panel2.Controls.Add(this.uiGrid_TblLay);
+            this.ui_SpCtn.Size = new System.Drawing.Size(780, 371);
+            this.ui_SpCtn.SplitterDistance = 260;
+            this.ui_SpCtn.TabIndex = 0;
             // 
-            // wfEditControlTableLayoutPanel
+            // uiPnl_TblLay
             // 
-            this.wfEditControlTableLayoutPanel.BackColor = System.Drawing.SystemColors.Control;
-            this.wfEditControlTableLayoutPanel.ColumnCount = 2;
-            this.wfEditControlTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.wfEditControlTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.wfEditControlTableLayoutPanel.Controls.Add(this.wfEditControlPerformButton, 1, 6);
-            this.wfEditControlTableLayoutPanel.Controls.Add(this.wfEditControlValue2TextBox, 1, 4);
-            this.wfEditControlTableLayoutPanel.Controls.Add(this.wfEditControlValue1TextBox, 0, 4);
-            this.wfEditControlTableLayoutPanel.Controls.Add(this.wfEditControlPointIndexTextBox, 0, 2);
-            this.wfEditControlTableLayoutPanel.Controls.Add(this.wfEditControlEditControlForOrdinatesTextBox, 0, 0);
-            this.wfEditControlTableLayoutPanel.Controls.Add(this.wfEditControlOperationTypeTextBox, 0, 1);
-            this.wfEditControlTableLayoutPanel.Controls.Add(this.wfEditControlOperationTypeComboBox, 1, 1);
-            this.wfEditControlTableLayoutPanel.Controls.Add(this.wfEditControlPointIndexNumericUpDown, 1, 2);
-            this.wfEditControlTableLayoutPanel.Controls.Add(this.wfEditControlPointIndexTrackBar, 1, 3);
-            this.wfEditControlTableLayoutPanel.Controls.Add(this.wfEditControlSaveAndExitButton, 1, 7);
-            this.wfEditControlTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wfEditControlTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.wfEditControlTableLayoutPanel.Name = "wfEditControlTableLayoutPanel";
-            this.wfEditControlTableLayoutPanel.RowCount = 11;
-            this.wfEditControlTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.wfEditControlTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.wfEditControlTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.wfEditControlTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.wfEditControlTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.wfEditControlTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.wfEditControlTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.wfEditControlTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.wfEditControlTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.wfEditControlTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.wfEditControlTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.wfEditControlTableLayoutPanel.Size = new System.Drawing.Size(260, 371);
-            this.wfEditControlTableLayoutPanel.TabIndex = 0;
+            this.uiPnl_TblLay.BackColor = System.Drawing.SystemColors.Control;
+            this.uiPnl_TblLay.ColumnCount = 2;
+            this.uiPnl_TblLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.uiPnl_TblLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.uiPnl_TblLay.Controls.Add(this.uiPnl_Perform_Btn, 1, 6);
+            this.uiPnl_TblLay.Controls.Add(this.uiPnl_Value2_TxtBx, 1, 4);
+            this.uiPnl_TblLay.Controls.Add(this.uiPnl_Value1_TxtBx, 0, 4);
+            this.uiPnl_TblLay.Controls.Add(this.uiPnl_PointIdx_TxtBx, 0, 2);
+            this.uiPnl_TblLay.Controls.Add(this.uiPnl_Edit_TxtBx, 0, 0);
+            this.uiPnl_TblLay.Controls.Add(this.uiPnl_OperT_TxtBx, 0, 1);
+            this.uiPnl_TblLay.Controls.Add(this.uiPnl_OperT_ComBx, 1, 1);
+            this.uiPnl_TblLay.Controls.Add(this.uiPnl_PointIdx_Num, 1, 2);
+            this.uiPnl_TblLay.Controls.Add(this.uiPnl_PointIdx_TrBr, 1, 3);
+            this.uiPnl_TblLay.Controls.Add(this.uiPnl_SaveExit_Btn, 1, 7);
+            this.uiPnl_TblLay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiPnl_TblLay.Location = new System.Drawing.Point(0, 0);
+            this.uiPnl_TblLay.Name = "uiPnl_TblLay";
+            this.uiPnl_TblLay.RowCount = 11;
+            this.uiPnl_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.uiPnl_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.uiPnl_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.uiPnl_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.uiPnl_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.uiPnl_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.uiPnl_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.uiPnl_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.uiPnl_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.uiPnl_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.uiPnl_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.uiPnl_TblLay.Size = new System.Drawing.Size(260, 371);
+            this.uiPnl_TblLay.TabIndex = 0;
             // 
-            // wfEditControlPerformButton
+            // uiPnl_Perform_Btn
             // 
-            this.wfEditControlPerformButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wfEditControlPerformButton.Location = new System.Drawing.Point(133, 153);
-            this.wfEditControlPerformButton.Name = "wfEditControlPerformButton";
-            this.wfEditControlPerformButton.Size = new System.Drawing.Size(124, 19);
-            this.wfEditControlPerformButton.TabIndex = 1;
-            this.wfEditControlPerformButton.Text = "Perform";
-            this.wfEditControlPerformButton.UseVisualStyleBackColor = true;
-            this.wfEditControlPerformButton.Click += new System.EventHandler(this.WfEditControlPerformButton_Click);
+            this.uiPnl_Perform_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiPnl_Perform_Btn.Location = new System.Drawing.Point(133, 153);
+            this.uiPnl_Perform_Btn.Name = "uiPnl_Perform_Btn";
+            this.uiPnl_Perform_Btn.Size = new System.Drawing.Size(124, 19);
+            this.uiPnl_Perform_Btn.TabIndex = 1;
+            this.uiPnl_Perform_Btn.Text = "Perform";
+            this.uiPnl_Perform_Btn.UseVisualStyleBackColor = true;
+            this.uiPnl_Perform_Btn.Click += new System.EventHandler(this.UiPanel_Perform_Click);
             // 
-            // wfEditControlValue2TextBox
+            // uiPnl_Value2_TxtBx
             // 
-            this.wfEditControlValue2TextBox.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.wfEditControlValue2TextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wfEditControlValue2TextBox.Location = new System.Drawing.Point(133, 103);
-            this.wfEditControlValue2TextBox.Name = "wfEditControlValue2TextBox";
-            this.wfEditControlValue2TextBox.Size = new System.Drawing.Size(124, 20);
-            this.wfEditControlValue2TextBox.TabIndex = 2;
+            this.uiPnl_Value2_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.uiPnl_Value2_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiPnl_Value2_TxtBx.Location = new System.Drawing.Point(133, 103);
+            this.uiPnl_Value2_TxtBx.Name = "uiPnl_Value2_TxtBx";
+            this.uiPnl_Value2_TxtBx.Size = new System.Drawing.Size(124, 20);
+            this.uiPnl_Value2_TxtBx.TabIndex = 2;
             // 
-            // wfEditControlValue1TextBox
+            // uiPnl_Value1_TxtBx
             // 
-            this.wfEditControlValue1TextBox.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.wfEditControlValue1TextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wfEditControlValue1TextBox.Location = new System.Drawing.Point(3, 103);
-            this.wfEditControlValue1TextBox.Name = "wfEditControlValue1TextBox";
-            this.wfEditControlValue1TextBox.ReadOnly = true;
-            this.wfEditControlValue1TextBox.Size = new System.Drawing.Size(124, 20);
-            this.wfEditControlValue1TextBox.TabIndex = 3;
-            this.wfEditControlValue1TextBox.Text = "Value:";
+            this.uiPnl_Value1_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.uiPnl_Value1_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiPnl_Value1_TxtBx.Location = new System.Drawing.Point(3, 103);
+            this.uiPnl_Value1_TxtBx.Name = "uiPnl_Value1_TxtBx";
+            this.uiPnl_Value1_TxtBx.ReadOnly = true;
+            this.uiPnl_Value1_TxtBx.Size = new System.Drawing.Size(124, 20);
+            this.uiPnl_Value1_TxtBx.TabIndex = 3;
+            this.uiPnl_Value1_TxtBx.Text = "Value:";
             // 
-            // wfEditControlPointIndexTextBox
+            // uiPnl_PointIdx_TxtBx
             // 
-            this.wfEditControlPointIndexTextBox.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.wfEditControlPointIndexTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wfEditControlPointIndexTextBox.Location = new System.Drawing.Point(3, 53);
-            this.wfEditControlPointIndexTextBox.Name = "wfEditControlPointIndexTextBox";
-            this.wfEditControlPointIndexTextBox.ReadOnly = true;
-            this.wfEditControlPointIndexTextBox.Size = new System.Drawing.Size(124, 20);
-            this.wfEditControlPointIndexTextBox.TabIndex = 6;
-            this.wfEditControlPointIndexTextBox.Text = "Point index:";
+            this.uiPnl_PointIdx_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.uiPnl_PointIdx_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiPnl_PointIdx_TxtBx.Location = new System.Drawing.Point(3, 53);
+            this.uiPnl_PointIdx_TxtBx.Name = "uiPnl_PointIdx_TxtBx";
+            this.uiPnl_PointIdx_TxtBx.ReadOnly = true;
+            this.uiPnl_PointIdx_TxtBx.Size = new System.Drawing.Size(124, 20);
+            this.uiPnl_PointIdx_TxtBx.TabIndex = 6;
+            this.uiPnl_PointIdx_TxtBx.Text = "Point index:";
             // 
-            // wfEditControlEditControlForOrdinatesTextBox
+            // uiPnl_Edit_TxtBx
             // 
-            this.wfEditControlTableLayoutPanel.SetColumnSpan(this.wfEditControlEditControlForOrdinatesTextBox, 2);
-            this.wfEditControlEditControlForOrdinatesTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wfEditControlEditControlForOrdinatesTextBox.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.wfEditControlEditControlForOrdinatesTextBox.Location = new System.Drawing.Point(3, 3);
-            this.wfEditControlEditControlForOrdinatesTextBox.Name = "wfEditControlEditControlForOrdinatesTextBox";
-            this.wfEditControlEditControlForOrdinatesTextBox.ReadOnly = true;
-            this.wfEditControlEditControlForOrdinatesTextBox.Size = new System.Drawing.Size(254, 20);
-            this.wfEditControlEditControlForOrdinatesTextBox.TabIndex = 9;
-            this.wfEditControlEditControlForOrdinatesTextBox.Text = "Edit control for ordinates";
+            this.uiPnl_TblLay.SetColumnSpan(this.uiPnl_Edit_TxtBx, 2);
+            this.uiPnl_Edit_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiPnl_Edit_TxtBx.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.uiPnl_Edit_TxtBx.Location = new System.Drawing.Point(3, 3);
+            this.uiPnl_Edit_TxtBx.Name = "uiPnl_Edit_TxtBx";
+            this.uiPnl_Edit_TxtBx.ReadOnly = true;
+            this.uiPnl_Edit_TxtBx.Size = new System.Drawing.Size(254, 20);
+            this.uiPnl_Edit_TxtBx.TabIndex = 9;
+            this.uiPnl_Edit_TxtBx.Text = "Edit control for ordinates";
             // 
-            // wfEditControlOperationTypeTextBox
+            // uiPnl_OperT_TxtBx
             // 
-            this.wfEditControlOperationTypeTextBox.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.wfEditControlOperationTypeTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wfEditControlOperationTypeTextBox.Location = new System.Drawing.Point(3, 28);
-            this.wfEditControlOperationTypeTextBox.Name = "wfEditControlOperationTypeTextBox";
-            this.wfEditControlOperationTypeTextBox.ReadOnly = true;
-            this.wfEditControlOperationTypeTextBox.Size = new System.Drawing.Size(124, 20);
-            this.wfEditControlOperationTypeTextBox.TabIndex = 8;
-            this.wfEditControlOperationTypeTextBox.Text = "Operation type:";
+            this.uiPnl_OperT_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.uiPnl_OperT_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiPnl_OperT_TxtBx.Location = new System.Drawing.Point(3, 28);
+            this.uiPnl_OperT_TxtBx.Name = "uiPnl_OperT_TxtBx";
+            this.uiPnl_OperT_TxtBx.ReadOnly = true;
+            this.uiPnl_OperT_TxtBx.Size = new System.Drawing.Size(124, 20);
+            this.uiPnl_OperT_TxtBx.TabIndex = 8;
+            this.uiPnl_OperT_TxtBx.Text = "Operation type:";
             // 
-            // wfEditControlOperationTypeComboBox
+            // uiPnl_OperT_ComBx
             // 
-            this.wfEditControlOperationTypeComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wfEditControlOperationTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.wfEditControlOperationTypeComboBox.FormattingEnabled = true;
-            this.wfEditControlOperationTypeComboBox.Items.AddRange(new object[] {
+            this.uiPnl_OperT_ComBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiPnl_OperT_ComBx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.uiPnl_OperT_ComBx.FormattingEnabled = true;
+            this.uiPnl_OperT_ComBx.Items.AddRange(new object[] {
             "Overriding",
             "Addition",
             "Substraction",
@@ -182,120 +182,120 @@
             "Constant",
             "Positive",
             "Negative"});
-            this.wfEditControlOperationTypeComboBox.Location = new System.Drawing.Point(133, 28);
-            this.wfEditControlOperationTypeComboBox.Name = "wfEditControlOperationTypeComboBox";
-            this.wfEditControlOperationTypeComboBox.Size = new System.Drawing.Size(124, 21);
-            this.wfEditControlOperationTypeComboBox.TabIndex = 7;
-            this.wfEditControlOperationTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.WfEditControlOperationTypeComboBox_SelectedIndexChanged);
+            this.uiPnl_OperT_ComBx.Location = new System.Drawing.Point(133, 28);
+            this.uiPnl_OperT_ComBx.Name = "uiPnl_OperT_ComBx";
+            this.uiPnl_OperT_ComBx.Size = new System.Drawing.Size(124, 21);
+            this.uiPnl_OperT_ComBx.TabIndex = 7;
+            this.uiPnl_OperT_ComBx.SelectedIndexChanged += new System.EventHandler(this.UiPanel_OperationType_SelectedIndexChanged);
             // 
-            // wfEditControlPointIndexNumericUpDown
+            // uiPnl_PointIdx_Num
             // 
-            this.wfEditControlPointIndexNumericUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wfEditControlPointIndexNumericUpDown.Enabled = false;
-            this.wfEditControlPointIndexNumericUpDown.Location = new System.Drawing.Point(133, 53);
-            this.wfEditControlPointIndexNumericUpDown.Maximum = new decimal(new int[] {
+            this.uiPnl_PointIdx_Num.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiPnl_PointIdx_Num.Enabled = false;
+            this.uiPnl_PointIdx_Num.Location = new System.Drawing.Point(133, 53);
+            this.uiPnl_PointIdx_Num.Maximum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.wfEditControlPointIndexNumericUpDown.Minimum = new decimal(new int[] {
+            this.uiPnl_PointIdx_Num.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.wfEditControlPointIndexNumericUpDown.Name = "wfEditControlPointIndexNumericUpDown";
-            this.wfEditControlPointIndexNumericUpDown.Size = new System.Drawing.Size(124, 20);
-            this.wfEditControlPointIndexNumericUpDown.TabIndex = 5;
-            this.wfEditControlPointIndexNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.wfEditControlPointIndexNumericUpDown.ThousandsSeparator = true;
-            this.wfEditControlPointIndexNumericUpDown.Value = new decimal(new int[] {
+            this.uiPnl_PointIdx_Num.Name = "uiPnl_PointIdx_Num";
+            this.uiPnl_PointIdx_Num.Size = new System.Drawing.Size(124, 20);
+            this.uiPnl_PointIdx_Num.TabIndex = 5;
+            this.uiPnl_PointIdx_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.uiPnl_PointIdx_Num.ThousandsSeparator = true;
+            this.uiPnl_PointIdx_Num.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.wfEditControlPointIndexNumericUpDown.ValueChanged += new System.EventHandler(this.WfEditControlPointIndexNumericUpDown_ValueChanged);
+            this.uiPnl_PointIdx_Num.ValueChanged += new System.EventHandler(this.UiPanel_PointIndex_NumericUpDown_ValueChanged);
             // 
-            // wfEditControlPointIndexTrackBar
+            // uiPnl_PointIdx_TrBr
             // 
-            this.wfEditControlPointIndexTrackBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wfEditControlPointIndexTrackBar.Enabled = false;
-            this.wfEditControlPointIndexTrackBar.Location = new System.Drawing.Point(133, 78);
-            this.wfEditControlPointIndexTrackBar.Maximum = 1;
-            this.wfEditControlPointIndexTrackBar.Minimum = 1;
-            this.wfEditControlPointIndexTrackBar.Name = "wfEditControlPointIndexTrackBar";
-            this.wfEditControlPointIndexTrackBar.Size = new System.Drawing.Size(124, 19);
-            this.wfEditControlPointIndexTrackBar.TabIndex = 4;
-            this.wfEditControlPointIndexTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.wfEditControlPointIndexTrackBar.Value = 1;
-            this.wfEditControlPointIndexTrackBar.Scroll += new System.EventHandler(this.WfEditControlPointIndexTrackBar_Scroll);
+            this.uiPnl_PointIdx_TrBr.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiPnl_PointIdx_TrBr.Enabled = false;
+            this.uiPnl_PointIdx_TrBr.Location = new System.Drawing.Point(133, 78);
+            this.uiPnl_PointIdx_TrBr.Maximum = 1;
+            this.uiPnl_PointIdx_TrBr.Minimum = 1;
+            this.uiPnl_PointIdx_TrBr.Name = "uiPnl_PointIdx_TrBr";
+            this.uiPnl_PointIdx_TrBr.Size = new System.Drawing.Size(124, 19);
+            this.uiPnl_PointIdx_TrBr.TabIndex = 4;
+            this.uiPnl_PointIdx_TrBr.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.uiPnl_PointIdx_TrBr.Value = 1;
+            this.uiPnl_PointIdx_TrBr.Scroll += new System.EventHandler(this.UiPanel_PointIndex_TrackBar_Scroll);
             // 
-            // wfEditControlSaveAndExitButton
+            // uiPnl_SaveExit_Btn
             // 
-            this.wfEditControlSaveAndExitButton.BackColor = System.Drawing.SystemColors.Control;
-            this.wfEditControlSaveAndExitButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.wfEditControlSaveAndExitButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.wfEditControlSaveAndExitButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wfEditControlSaveAndExitButton.Location = new System.Drawing.Point(133, 178);
-            this.wfEditControlSaveAndExitButton.Name = "wfEditControlSaveAndExitButton";
-            this.wfEditControlSaveAndExitButton.Size = new System.Drawing.Size(124, 19);
-            this.wfEditControlSaveAndExitButton.TabIndex = 0;
-            this.wfEditControlSaveAndExitButton.Text = "Save and exit";
-            this.wfEditControlSaveAndExitButton.UseVisualStyleBackColor = false;
+            this.uiPnl_SaveExit_Btn.BackColor = System.Drawing.SystemColors.Control;
+            this.uiPnl_SaveExit_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiPnl_SaveExit_Btn.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.uiPnl_SaveExit_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiPnl_SaveExit_Btn.Location = new System.Drawing.Point(133, 178);
+            this.uiPnl_SaveExit_Btn.Name = "uiPnl_SaveExit_Btn";
+            this.uiPnl_SaveExit_Btn.Size = new System.Drawing.Size(124, 19);
+            this.uiPnl_SaveExit_Btn.TabIndex = 0;
+            this.uiPnl_SaveExit_Btn.Text = "Save and exit";
+            this.uiPnl_SaveExit_Btn.UseVisualStyleBackColor = false;
             // 
-            // wfGridTableLayoutPanel
+            // uiGrid_TblLay
             // 
-            this.wfGridTableLayoutPanel.AutoScroll = true;
-            this.wfGridTableLayoutPanel.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.wfGridTableLayoutPanel.ColumnCount = 3;
-            this.wfGridTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.45561F));
-            this.wfGridTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.27219F));
-            this.wfGridTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.2722F));
-            this.wfGridTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wfGridTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.wfGridTableLayoutPanel.Name = "wfGridTableLayoutPanel";
-            this.wfGridTableLayoutPanel.RowCount = 2;
-            this.wfGridTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.wfGridTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.wfGridTableLayoutPanel.Size = new System.Drawing.Size(516, 371);
-            this.wfGridTableLayoutPanel.TabIndex = 0;
+            this.uiGrid_TblLay.AutoScroll = true;
+            this.uiGrid_TblLay.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.uiGrid_TblLay.ColumnCount = 3;
+            this.uiGrid_TblLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.45561F));
+            this.uiGrid_TblLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.27219F));
+            this.uiGrid_TblLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.2722F));
+            this.uiGrid_TblLay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiGrid_TblLay.Location = new System.Drawing.Point(0, 0);
+            this.uiGrid_TblLay.Name = "uiGrid_TblLay";
+            this.uiGrid_TblLay.RowCount = 2;
+            this.uiGrid_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.uiGrid_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.uiGrid_TblLay.Size = new System.Drawing.Size(516, 371);
+            this.uiGrid_TblLay.TabIndex = 0;
             // 
             // DatasetViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(780, 371);
-            this.Controls.Add(this.wfMainSplitContainer);
+            this.Controls.Add(this.ui_SpCtn);
             this.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.Name = "DatasetViewer";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Dataset Viewer";
-            this.wfMainSplitContainer.Panel1.ResumeLayout(false);
-            this.wfMainSplitContainer.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.wfMainSplitContainer)).EndInit();
-            this.wfMainSplitContainer.ResumeLayout(false);
-            this.wfEditControlTableLayoutPanel.ResumeLayout(false);
-            this.wfEditControlTableLayoutPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.wfEditControlPointIndexNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wfEditControlPointIndexTrackBar)).EndInit();
+            this.ui_SpCtn.Panel1.ResumeLayout(false);
+            this.ui_SpCtn.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ui_SpCtn)).EndInit();
+            this.ui_SpCtn.ResumeLayout(false);
+            this.uiPnl_TblLay.ResumeLayout(false);
+            this.uiPnl_TblLay.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uiPnl_PointIdx_Num)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiPnl_PointIdx_TrBr)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.SplitContainer wfMainSplitContainer;
-        private System.Windows.Forms.TableLayoutPanel wfEditControlTableLayoutPanel;
-        private System.Windows.Forms.TableLayoutPanel wfGridTableLayoutPanel;
-        private System.Windows.Forms.TextBox wfEditControlEditControlForOrdinatesTextBox;
-        private System.Windows.Forms.TextBox wfEditControlOperationTypeTextBox;
-        private System.Windows.Forms.TextBox wfEditControlPointIndexTextBox;
-        private System.Windows.Forms.TextBox wfEditControlValue1TextBox;
-        private System.Windows.Forms.ComboBox wfEditControlOperationTypeComboBox;
-        private System.Windows.Forms.NumericUpDown wfEditControlPointIndexNumericUpDown;
-        private System.Windows.Forms.TrackBar wfEditControlPointIndexTrackBar;
-        private System.Windows.Forms.TextBox wfEditControlValue2TextBox;
-        private System.Windows.Forms.Button wfEditControlPerformButton;
-        private System.Windows.Forms.Button wfEditControlSaveAndExitButton;
+        private System.Windows.Forms.SplitContainer ui_SpCtn;
+        private System.Windows.Forms.TableLayoutPanel uiPnl_TblLay;
+        private System.Windows.Forms.TableLayoutPanel uiGrid_TblLay;
+        private System.Windows.Forms.TextBox uiPnl_Edit_TxtBx;
+        private System.Windows.Forms.TextBox uiPnl_OperT_TxtBx;
+        private System.Windows.Forms.TextBox uiPnl_PointIdx_TxtBx;
+        private System.Windows.Forms.TextBox uiPnl_Value1_TxtBx;
+        private System.Windows.Forms.ComboBox uiPnl_OperT_ComBx;
+        private System.Windows.Forms.NumericUpDown uiPnl_PointIdx_Num;
+        private System.Windows.Forms.TrackBar uiPnl_PointIdx_TrBr;
+        private System.Windows.Forms.TextBox uiPnl_Value2_TxtBx;
+        private System.Windows.Forms.Button uiPnl_Perform_Btn;
+        private System.Windows.Forms.Button uiPnl_SaveExit_Btn;
     }
 }

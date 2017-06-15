@@ -11,6 +11,9 @@ using System.Windows.Forms.DataVisualization.Charting;
 // TODO: Implement Gaussian noise option
 // TODO: Menu item - 'Adjust curves' for visual effects manipulations 
 // TODO: Add new pattern curve scaffold - rectangular function
+// TODO: In 'Datasheet' - showing dataset when there is no one should be forbidden
+// TODO: In 'Datasheet' - showing dataset of pattern curve should be allowed, but alteration forbidden
+// TODO: Charts - validation before using 'Generate set'
 
 namespace PI
 {
@@ -32,25 +35,25 @@ namespace PI
             LeftChartDataset = new CurvesDataset();
         }
 
-        private void WfMainWindow_FormClosed( object sender, FormClosedEventArgs e )
+        private void UiMainWindow_FormClosed( object sender, FormClosedEventArgs e )
         {
             Logger.Close();
         }
 
-        private void WfMainWindow_Load( object sender, EventArgs e )
+        private void UiMainWindow_Load( object sender, EventArgs e )
         {
             Logger.Initialize();
-            UpdateUIWithDotNetFrameworkVersion();
-            UpdateUIWithOSVersionName();
-            UpdateUIWithLogFileFullPathLocation();
+            UpdateUiByDotNetFrameworkVersion();
+            UpdateUiByOsVersionName();
+            UpdateUiByLogFileFullPathLocation();
             DefineTimerThread();
             ThreadTasker.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
             ThreadTasker.StartThreadSafe( TimerThread );
-            UpdateUIWithStatusOfTimerThread();
-            UpdateUIWithNumbersOfExceptionsCaught();
+            UpdateUiByStatusOfTimerThread();
+            UpdateUiByNumbersOfExceptionsCaught();
         }
 
-        private void WfMenuProgramExit_Click( object sender, EventArgs e )
+        private void UiMenuPrg_Exit_Click( object sender, EventArgs e )
         {
             Application.Exit();
         }
@@ -115,19 +118,19 @@ namespace PI
                 string numberOfMinutesText = numberOfMinutes.ToString( "00" );
                 string numberOfSecondsText = numberOfSeconds.ToString( "00" );
                 string numberOfDaysText = numberOfDays.ToString();
-                UpdateUIWithTimerCount( numberOfDaysText + ":" + numberOfHoursText + ":" + numberOfMinutesText + ":" + numberOfSecondsText );
-                UpdateUIWithNumbersOfExceptionsCaught();
+                UpdateUiByTimerCounts( numberOfDaysText + ":" + numberOfHoursText + ":" + numberOfMinutesText + ":" + numberOfSecondsText );
+                UpdateUiByNumbersOfExceptionsCaught();
             };
         }
 
-        private void UpdateUIWithTimerCount( string text )
+        private void UpdateUiByTimerCounts( string text )
         {
             Logger.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
             try {
                 BeginInvoke( (MethodInvoker) delegate {
-                    wfPropertiesProgramCounts2TextBox.Text = text;
-                    wfPropertiesProgramCounts2TextBox.Refresh();
+                    uiPnlPrg_Cnts2_TxtBx.Text = text;
+                    uiPnlPrg_Cnts2_TxtBx.Refresh();
                 } );
             }
             catch ( ObjectDisposedException x ) {
@@ -141,14 +144,14 @@ namespace PI
             }
         }
 
-        private void UpdateUIWithNumbersOfExceptionsCaught()
+        private void UpdateUiByNumbersOfExceptionsCaught()
         {
             Logger.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
             try {
                 BeginInvoke( (MethodInvoker) delegate {
-                    wfPropertiesProgramExceptionsCaught2TextBox.Text = Logger.NumberOfLoggedExceptions.ToString();
-                    wfPropertiesProgramExceptionsCaught2TextBox.Refresh();
+                    uiPnlPrg_Excp2_TxtBx.Text = Logger.NumberOfLoggedExceptions.ToString();
+                    uiPnlPrg_Excp2_TxtBx.Refresh();
                 } );
             }
             catch ( ObjectDisposedException x ) {
@@ -162,17 +165,17 @@ namespace PI
             }
         }
 
-        private void UpdateUIWithStatusOfTimerThread()
+        private void UpdateUiByStatusOfTimerThread()
         {
             if ( TimerThread == null ) {
-                wfPropertiesProgramActualState2TextBox.Text = Constants.Ui.Panel.Program.TIMER_START_FAILURE;
+                uiPnlPrg_ActState2_TxtBx.Text = Constants.Ui.Panel.Program.TIMER_START_FAILURE;
             }
             else {
-                wfPropertiesProgramActualState2TextBox.Text = Constants.Ui.Panel.Program.TIMER_START_SUCCESS;
+                uiPnlPrg_ActState2_TxtBx.Text = Constants.Ui.Panel.Program.TIMER_START_SUCCESS;
             }
         }
 
-        private void WfPropertiesGenerateDefineButton_Click( object sender, EventArgs e )
+        private void UiPanelGenerate_Define_Click( object sender, EventArgs e )
         {
             using ( var PCDDialog = new PatternCurveDefiner() ) {
                 WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
@@ -188,7 +191,7 @@ namespace PI
                         PreSets.Pcd.ParameterE = PCDDialog.ParameterE;
                         PreSets.Pcd.ParameterF = PCDDialog.ParameterF;
                         PreSets.Pcd.ParameterG = PCDDialog.ParameterG;
-                        UpdateUIWithChosenScaffoldStatus();
+                        UpdateUiByChosenScaffoldStatus();
                     }
                 }
                 catch ( System.ComponentModel.InvalidEnumArgumentException x ) {
@@ -200,72 +203,72 @@ namespace PI
             }
         }
 
-        private void UpdateUIWithChosenScaffoldStatus()
+        private void UpdateUiByChosenScaffoldStatus()
         {
             switch ( PreSets.Pcd.ChosenScaffold ) {
             case Constants.Ui.Panel.Generate.SCAFFOLD_POLYNOMIAL:
-                wfPropertiesGenerateCurveScaffold2TextBox.Text = Constants.Ui.Panel.Generate.SCAFFOLD_POLYNOMIAL_TEXT;
+                uiPnlGen_CrvScaff2_TxtBx.Text = Constants.Ui.Panel.Generate.SCAFFOLD_POLYNOMIAL_TEXT;
                 break;
             case Constants.Ui.Panel.Generate.SCAFFOLD_HYPERBOLIC:
-                wfPropertiesGenerateCurveScaffold2TextBox.Text = Constants.Ui.Panel.Generate.SCAFFOLD_HYPERBOLIC_TEXT;
+                uiPnlGen_CrvScaff2_TxtBx.Text = Constants.Ui.Panel.Generate.SCAFFOLD_HYPERBOLIC_TEXT;
                 break;
             default:
-                wfPropertiesGenerateCurveScaffold2TextBox.Text = Constants.Ui.Panel.Generate.SCAFFOLD_DEFAULT_TEXT;
+                uiPnlGen_CrvScaff2_TxtBx.Text = Constants.Ui.Panel.Generate.SCAFFOLD_DEFAULT_TEXT;
                 break;
             }
         }
 
-        private void WfPropertiesDatasheetCurveTypeComboBox_SelectedIndexChanged( object sender, EventArgs e )
+        private void UiPanelDataSheet_CurveType_SelectedIndexChanged( object sender, EventArgs e )
         {
             WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
-            switch ( WinFormsHelper.GetSelectedIndexSafe( wfPropertiesDatasheetCurveTypeComboBox ) ) {
+            switch ( WinFormsHelper.GetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx ) ) {
             case Constants.Ui.Panel.Datasheet.CURVE_TYPE_GENERATED:
-                wfPropertiesDatasheetCurveIndexNumericUpDown.Enabled = true;
-                wfPropertiesDatasheetCurveIndexTrackBar.Enabled = true;
-                int selectedCurveIndex = WinFormsHelper.GetValue( wfPropertiesDatasheetCurveIndexTrackBar );
+                uiPnlDtSh_CrvIdx_Num.Enabled = true;
+                uiPnlDtSh_CrvIdx_TrBr.Enabled = true;
+                int selectedCurveIndex = WinFormsHelper.GetValue( uiPnlDtSh_CrvIdx_TrBr );
                 ShowGeneratedCurveSeriesOnChart( selectedCurveIndex );
                 break;
             case Constants.Ui.Panel.Datasheet.CURVE_TYPE_PATTERN:
-                wfPropertiesDatasheetCurveIndexNumericUpDown.Enabled = false;
-                wfPropertiesDatasheetCurveIndexTrackBar.Enabled = false;
+                uiPnlDtSh_CrvIdx_Num.Enabled = false;
+                uiPnlDtSh_CrvIdx_TrBr.Enabled = false;
                 ShowPatternCurveSeriesOnChart();
                 break;
             }
         }
 
-        private void WfPropertiesDatasheetCurveIndexNumericUpDown_ValueChanged( object sender, EventArgs e )
+        private void UiPanelDataSheet_CurveIndex_NumericUpDown_ValueChanged( object sender, EventArgs e )
         {
             WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            int numericUpDownValue = WinFormsHelper.GetValue<int>( wfPropertiesDatasheetCurveIndexNumericUpDown );
-            WinFormsHelper.SetValue( wfPropertiesDatasheetCurveIndexTrackBar, numericUpDownValue );
+            int numericUpDownValue = WinFormsHelper.GetValue<int>( uiPnlDtSh_CrvIdx_Num );
+            WinFormsHelper.SetValue( uiPnlDtSh_CrvIdx_TrBr, numericUpDownValue );
             ShowGeneratedCurveSeriesOnChart( numericUpDownValue );
         }
 
-        private void WfPropertiesDatasheetCurveIndexTrackBar_Scroll( object sender, EventArgs e )
+        private void UiPanelDataSheet_CurveIndex_TrackBar_Scroll( object sender, EventArgs e )
         {
             WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            int trackBarValue = WinFormsHelper.GetValue( wfPropertiesDatasheetCurveIndexTrackBar );
-            WinFormsHelper.SetValue( wfPropertiesDatasheetCurveIndexNumericUpDown, trackBarValue );
+            int trackBarValue = WinFormsHelper.GetValue( uiPnlDtSh_CrvIdx_TrBr );
+            WinFormsHelper.SetValue( uiPnlDtSh_CrvIdx_Num, trackBarValue );
             ShowGeneratedCurveSeriesOnChart( trackBarValue );
         }
 
-        private void WfPropertiesGenerateNumberOfCurves1NumericUpDown_ValueChanged( object sender, EventArgs e )
+        private void UiPanelGenerate_Curves1No_ValueChanged( object sender, EventArgs e )
         {
             WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            int numberOfCurves = WinFormsHelper.GetValue<int>( wfPropertiesGenerateNumberOfCurves1NumericUpDown );
-            wfPropertiesDatasheetCurveIndexNumericUpDown.Minimum = 1;
-            wfPropertiesDatasheetCurveIndexNumericUpDown.Maximum = numberOfCurves;
-            wfPropertiesDatasheetCurveIndexTrackBar.Minimum = 1;
-            wfPropertiesDatasheetCurveIndexTrackBar.Maximum = numberOfCurves;
+            int numberOfCurves = WinFormsHelper.GetValue<int>( uiPnlGen_Crvs1No_Num );
+            uiPnlDtSh_CrvIdx_Num.Minimum = 1;
+            uiPnlDtSh_CrvIdx_Num.Maximum = numberOfCurves;
+            uiPnlDtSh_CrvIdx_TrBr.Minimum = 1;
+            uiPnlDtSh_CrvIdx_TrBr.Maximum = numberOfCurves;
             PreSets.Ui.NumberOfCurves = numberOfCurves;
-            wfPropertiesGenerateNumberOfCurves2NumericUpDown.Minimum = 1;
-            wfPropertiesGenerateNumberOfCurves2NumericUpDown.Maximum = numberOfCurves;
+            uiPnlGen_Crvs2No_Nm.Minimum = 1;
+            uiPnlGen_Crvs2No_Nm.Maximum = numberOfCurves;
         }
 
-        private void WfPropertiesGenerateGenerateSetButton_Click( object sender, EventArgs e )
+        private void UiPanelGenerate_GenerateSet_Click( object sender, EventArgs e )
         {
-            if ( wfPropertiesGenerateCurveScaffold2TextBox.Text == Constants.Ui.Panel.Generate.SCAFFOLD_DEFAULT_TEXT ) {
+            if ( uiPnlGen_CrvScaff2_TxtBx.Text == Constants.Ui.Panel.Generate.SCAFFOLD_DEFAULT_TEXT ) {
                 string text = Constants.Ui.Panel.Generate.GENERATE_SET_BTN_PREREQUISITE_WARNING_TEXT;
                 string caption = Constants.Ui.Panel.Generate.GENERATE_SET_BTN_PREREQUISITE_WARNING_CAPTION;
                 WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
@@ -281,19 +284,19 @@ namespace PI
         private void GrabPreSetsForCurvesGeneration()
         {
             WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            PreSets.Ui.NumberOfCurves = WinFormsHelper.GetValue<int>( wfPropertiesGenerateNumberOfCurves1NumericUpDown );
-            PreSets.Ui.NumberOfPoints = WinFormsHelper.GetValue<int>( wfPropertiesGenerateNumberOfPointsNumericUpDown );
-            PreSets.Ui.StartingXPoint = WinFormsHelper.GetValue<int>( wfPropertiesGenerateStartingXPointNumericUpDown );
+            PreSets.Ui.NumberOfCurves = WinFormsHelper.GetValue<int>( uiPnlGen_Crvs1No_Num );
+            PreSets.Ui.NumberOfPoints = WinFormsHelper.GetValue<int>( uiPnlGen_PointsNo_Num );
+            PreSets.Ui.StartingXPoint = WinFormsHelper.GetValue<int>( uiPnlGen_StartX_Num );
         }
 
-        private void UpdateUIWithChartsInterval()
+        private void UpdateUiByChartsInterval()
         {
             WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            int lowerLimit = WinFormsHelper.GetValue<int>( wfPropertiesGenerateStartingXPointNumericUpDown );
-            int numberOfPoints = WinFormsHelper.GetValue<int>( wfPropertiesGenerateNumberOfPointsNumericUpDown );
+            int lowerLimit = WinFormsHelper.GetValue<int>( uiPnlGen_StartX_Num );
+            int numberOfPoints = WinFormsHelper.GetValue<int>( uiPnlGen_PointsNo_Num );
             int upperLimit = lowerLimit + numberOfPoints - 1;
             string intervalText = '<' + lowerLimit.ToString() + ';' + upperLimit.ToString() + '>';
-            wfPropertiesGenerateInterval2TextBox.Text = intervalText;
+            uiPnlGen_Interval2_TxtBx.Text = intervalText;
         }
 
         private void GenerateAndShowPatternCurve()
@@ -308,13 +311,13 @@ namespace PI
             WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
             try {
-                wfChartsPatternCurve.Series.Clear();
-                wfChartsPatternCurve.Series.Add( LeftChartDataset.PatternCurveChartingSeries );
-                wfChartsPatternCurve.Series[0].BorderWidth = 3;
-                wfChartsPatternCurve.Series[0].Color = System.Drawing.Color.Black;
-                wfChartsPatternCurve.ChartAreas[0].RecalculateAxesScale();
-                wfChartsPatternCurve.Visible = true;
-                wfChartsPatternCurve.Invalidate();
+                uiCharts_PtrnCrv.Series.Clear();
+                uiCharts_PtrnCrv.Series.Add( LeftChartDataset.PatternCurveChartingSeries );
+                uiCharts_PtrnCrv.Series[0].BorderWidth = 3;
+                uiCharts_PtrnCrv.Series[0].Color = System.Drawing.Color.Black;
+                uiCharts_PtrnCrv.ChartAreas[0].RecalculateAxesScale();
+                uiCharts_PtrnCrv.Visible = true;
+                uiCharts_PtrnCrv.Invalidate();
             }
             catch ( InvalidOperationException x ) {
                 string text = Constants.Ui.Charts.REFRESHING_ERR_TEXT;
@@ -332,13 +335,13 @@ namespace PI
             WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
             try {
-                wfChartsPatternCurve.Series.Clear();
-                wfChartsPatternCurve.Series.Add( LeftChartDataset.GeneratedCurvesChartingSeriesCollection[indexOfCurve - 1] );
-                wfChartsPatternCurve.Series[0].BorderWidth = 3;
-                wfChartsPatternCurve.Series[0].Color = System.Drawing.Color.Crimson;
-                wfChartsPatternCurve.ChartAreas[0].RecalculateAxesScale();
-                wfChartsPatternCurve.Visible = true;
-                wfChartsPatternCurve.Invalidate();
+                uiCharts_PtrnCrv.Series.Clear();
+                uiCharts_PtrnCrv.Series.Add( LeftChartDataset.GeneratedCurvesChartingSeriesCollection[indexOfCurve - 1] );
+                uiCharts_PtrnCrv.Series[0].BorderWidth = 3;
+                uiCharts_PtrnCrv.Series[0].Color = System.Drawing.Color.Crimson;
+                uiCharts_PtrnCrv.ChartAreas[0].RecalculateAxesScale();
+                uiCharts_PtrnCrv.Visible = true;
+                uiCharts_PtrnCrv.Invalidate();
             }
             catch ( InvalidOperationException x ) {
                 string text = Constants.Ui.Charts.REFRESHING_ERR_TEXT;
@@ -351,51 +354,51 @@ namespace PI
             }
         }
 
-        private void WfPropertiesGenerateNumberOfPointsNumericUpDown_ValueChanged( object sender, EventArgs e )
+        private void UiPanelGenerate_PointsNo_ValueChanged( object sender, EventArgs e )
         {
-            UpdateUIWithChartsInterval();
+            UpdateUiByChartsInterval();
             WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            int numberOfPoints = WinFormsHelper.GetValue<int>( wfPropertiesGenerateNumberOfPointsNumericUpDown );
+            int numberOfPoints = WinFormsHelper.GetValue<int>( uiPnlGen_PointsNo_Num );
             PreSets.Ui.NumberOfPoints = numberOfPoints;
         }
 
-        private void WfPropertiesGenerateStartingXPointNumericUpDown_ValueChanged( object sender, EventArgs e )
+        private void UiPanelGenerate_StartingXPoint_ValueChanged( object sender, EventArgs e )
         {
-            UpdateUIWithChartsInterval();
+            UpdateUiByChartsInterval();
         }
 
-        private void UpdateUIWithDotNetFrameworkVersion()
+        private void UpdateUiByDotNetFrameworkVersion()
         {
             SysInfoHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
             string dotNetVersion = SysInfoHelper.ObtainUsedDotNetFrameworkVersion();
 
             if ( dotNetVersion == null ) {
-                wfPropertiesProgramDotNetFramework2TextBox.Text = Constants.Ui.Panel.Program.INFO_OBTAINING_ERR_TEXT;
+                uiPnlPrg_DotNetFr2_TxtBx.Text = Constants.Ui.Panel.Program.INFO_OBTAINING_ERR_TEXT;
                 return;
             }
 
-            wfPropertiesProgramDotNetFramework2TextBox.Text = dotNetVersion;
+            uiPnlPrg_DotNetFr2_TxtBx.Text = dotNetVersion;
 
         }
 
-        private void UpdateUIWithOSVersionName()
+        private void UpdateUiByOsVersionName()
         {
             SysInfoHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
             string osVersion = SysInfoHelper.ObtaingApplicationRunningOSVersion();
 
             if ( osVersion == null ) {
-                wfPropertiesProgramOSVersion2TextBox.Text = Constants.Ui.Panel.Program.INFO_OBTAINING_ERR_TEXT;
+                uiPnlPrg_OsVer2_TxtBx.Text = Constants.Ui.Panel.Program.INFO_OBTAINING_ERR_TEXT;
                 return;
             }
 
-            wfPropertiesProgramOSVersion2TextBox.Text = osVersion;
+            uiPnlPrg_OsVer2_TxtBx.Text = osVersion;
         }
 
-        private void WfPropertiesDatasheetShowDatasetButton_Click( object sender, EventArgs e )
+        private void UiPanelDataSheet_ShowDataSet_Click( object sender, EventArgs e )
         {
             WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            int selectedCurveType = WinFormsHelper.GetSelectedIndexSafe( wfPropertiesDatasheetCurveTypeComboBox );
-            int selectedCurveIndex = WinFormsHelper.GetValue<int>( wfPropertiesDatasheetCurveIndexNumericUpDown );
+            int selectedCurveType = WinFormsHelper.GetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx );
+            int selectedCurveIndex = WinFormsHelper.GetValue<int>( uiPnlDtSh_CrvIdx_Num );
 
             switch ( selectedCurveType ) {
             case Constants.Ui.Panel.Datasheet.CURVE_TYPE_PATTERN:
@@ -414,13 +417,13 @@ namespace PI
                 try {
                     if ( DSVDialog.DialogResult == DialogResult.OK ) {
                         LeftChartDataset.AbsorbSeriesPoints( DSVDialog.CurveDataSet, selectedCurveType, selectedCurveIndex );
-                        wfChartsPatternCurve.Series.Clear();
-                        wfChartsPatternCurve.Series.Add( DSVDialog.CurveDataSet );
-                        wfChartsPatternCurve.Series[0].BorderWidth = 3;
-                        wfChartsPatternCurve.Series[0].Color = System.Drawing.Color.Indigo;
-                        wfChartsPatternCurve.ChartAreas[0].RecalculateAxesScale();
-                        wfChartsPatternCurve.Visible = true;
-                        wfChartsPatternCurve.Invalidate();
+                        uiCharts_PtrnCrv.Series.Clear();
+                        uiCharts_PtrnCrv.Series.Add( DSVDialog.CurveDataSet );
+                        uiCharts_PtrnCrv.Series[0].BorderWidth = 3;
+                        uiCharts_PtrnCrv.Series[0].Color = System.Drawing.Color.Indigo;
+                        uiCharts_PtrnCrv.ChartAreas[0].RecalculateAxesScale();
+                        uiCharts_PtrnCrv.Visible = true;
+                        uiCharts_PtrnCrv.Invalidate();
                     }
                 }
                 catch ( InvalidOperationException x ) {
@@ -453,11 +456,11 @@ namespace PI
             return null;
         }
 
-        private void UpdateUIWithLogFileFullPathLocation()
+        private void UpdateUiByLogFileFullPathLocation()
         {
-            wfPropertiesProgramLogPath2TextBox.Text = Logger.GetFullPathOfLogFileLocation();
+            uiPnlPrg_LogPath2_TxtBx.Text = Logger.GetFullPathOfLogFileLocation();
         }
 
-    }
+     }
 
 }

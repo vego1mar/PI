@@ -2,7 +2,7 @@
 
 namespace PI
 {
-    [Description("Do not instantiate any class in this scope.")]
+    [Description("Do not explicitly instantiate any class in this scope.")]
     internal static class Constants
     {
 
@@ -66,7 +66,7 @@ namespace PI
 
         internal static class Dsv
         {
-            internal static class EditControl
+            internal static class Panel
             {
                 internal const int OPERATION_TYPE_OVERRIDING = 0;
                 internal const int OPERATION_TYPE_ADDITION = 1;

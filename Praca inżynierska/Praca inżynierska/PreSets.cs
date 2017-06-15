@@ -1,5 +1,9 @@
-﻿namespace PI
+﻿using System.ComponentModel;
+
+namespace PI
 {
+
+    [Description( "Do not explicitly instantiate any class in this scope." )]
     internal static class PreSets
     {
 

@@ -13,50 +13,50 @@ namespace PI
         {
             InitializeComponent();
             CurveDataSet = curveDataset;
-            SetRangesToComponentsRelatedWithPointIndex();
+            UpdateUiByRangesForPointIndexComponents();
             BuildAndPopulateDatasetGrid();
         }
 
-        private void WfEditControlPerformButton_Click( object sender, EventArgs e )
+        private void UiPanel_Perform_Click( object sender, EventArgs e )
         {
             WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            int selectedOperationType = WinFormsHelper.GetSelectedIndexSafe( wfEditControlOperationTypeComboBox );
-            int selectedPointIndex = WinFormsHelper.GetValue( wfEditControlPointIndexTrackBar );
-            bool isValueValid = WinFormsHelper.GetValue( wfEditControlValue2TextBox, out double userValue );
+            int selectedOperationType = WinFormsHelper.GetSelectedIndexSafe( uiPnl_OperT_ComBx );
+            int selectedPointIndex = WinFormsHelper.GetValue( uiPnl_PointIdx_TrBr );
+            bool isValueValid = WinFormsHelper.GetValue( uiPnl_Value2_TxtBx, out double userValue );
             bool isOperationValid = false;
 
             if ( !isValueValid ) {
-                string text = Constants.Dsv.EditControl.USER_VALUE_NOT_VALID_TEXT;
-                string caption = Constants.Dsv.EditControl.USER_VALUE_NOT_VALID_CAPTION;
+                string text = Constants.Dsv.Panel.USER_VALUE_NOT_VALID_TEXT;
+                string caption = Constants.Dsv.Panel.USER_VALUE_NOT_VALID_CAPTION;
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
                 return;
             }
 
             switch ( selectedOperationType ) {
-            case Constants.Dsv.EditControl.OPERATION_TYPE_OVERRIDING:
+            case Constants.Dsv.Panel.OPERATION_TYPE_OVERRIDING:
                 isOperationValid = PerformOperationOverriding( selectedPointIndex, userValue );
                 break;
-            case Constants.Dsv.EditControl.OPERATION_TYPE_ADDITION:
-            case Constants.Dsv.EditControl.OPERATION_TYPE_SUBSTRACTION:
-            case Constants.Dsv.EditControl.OPERATION_TYPE_MULTIPLICATION:
-            case Constants.Dsv.EditControl.OPERATION_TYPE_DIVISION:
-            case Constants.Dsv.EditControl.OPERATION_TYPE_EXPONENTIATION:
-            case Constants.Dsv.EditControl.OPERATION_TYPE_LOGARITHMIC:
-            case Constants.Dsv.EditControl.OPERATION_TYPE_ROOTING:
-            case Constants.Dsv.EditControl.OPERATION_TYPE_CONSTANT:
+            case Constants.Dsv.Panel.OPERATION_TYPE_ADDITION:
+            case Constants.Dsv.Panel.OPERATION_TYPE_SUBSTRACTION:
+            case Constants.Dsv.Panel.OPERATION_TYPE_MULTIPLICATION:
+            case Constants.Dsv.Panel.OPERATION_TYPE_DIVISION:
+            case Constants.Dsv.Panel.OPERATION_TYPE_EXPONENTIATION:
+            case Constants.Dsv.Panel.OPERATION_TYPE_LOGARITHMIC:
+            case Constants.Dsv.Panel.OPERATION_TYPE_ROOTING:
+            case Constants.Dsv.Panel.OPERATION_TYPE_CONSTANT:
                 isOperationValid = PerformOperationOnSeriesPoints( userValue, selectedOperationType );
                 break;
-            case Constants.Dsv.EditControl.OPERATION_TYPE_POSITIVE:
+            case Constants.Dsv.Panel.OPERATION_TYPE_POSITIVE:
                 PerformOperationPositive();
                 isOperationValid = true;
                 break;
-            case Constants.Dsv.EditControl.OPERATION_TYPE_NEGATIVE:
+            case Constants.Dsv.Panel.OPERATION_TYPE_NEGATIVE:
                 PerformOperationNegative();
                 isOperationValid = true;
                 break;
             default:
-                string text = Constants.Dsv.EditControl.OPERATION_TYPE_NOT_SELECTED_TEXT;
-                string caption = Constants.Dsv.EditControl.OPERATION_TYPE_NOT_SELECTED_CAPTION;
+                string text = Constants.Dsv.Panel.OPERATION_TYPE_NOT_SELECTED_TEXT;
+                string caption = Constants.Dsv.Panel.OPERATION_TYPE_NOT_SELECTED_CAPTION;
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Asterisk );
                 return;
             }
@@ -66,26 +66,26 @@ namespace PI
             }
         }
 
-        private void SetRangesToComponentsRelatedWithPointIndex()
+        private void UpdateUiByRangesForPointIndexComponents()
         {
-            wfEditControlPointIndexNumericUpDown.Minimum = 1;
-            wfEditControlPointIndexNumericUpDown.Maximum = PreSets.Ui.NumberOfPoints;
-            wfEditControlPointIndexTrackBar.Minimum = 1;
-            wfEditControlPointIndexTrackBar.Maximum = PreSets.Ui.NumberOfPoints;
+            uiPnl_PointIdx_Num.Minimum = 1;
+            uiPnl_PointIdx_Num.Maximum = PreSets.Ui.NumberOfPoints;
+            uiPnl_PointIdx_TrBr.Minimum = 1;
+            uiPnl_PointIdx_TrBr.Maximum = PreSets.Ui.NumberOfPoints;
         }
 
-        private void WfEditControlPointIndexNumericUpDown_ValueChanged( object sender, EventArgs e )
+        private void UiPanel_PointIndex_NumericUpDown_ValueChanged( object sender, EventArgs e )
         {
             WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            int currentValue = WinFormsHelper.GetValue<int>( wfEditControlPointIndexNumericUpDown );
-            WinFormsHelper.SetValue( wfEditControlPointIndexTrackBar, currentValue );
+            int currentValue = WinFormsHelper.GetValue<int>( uiPnl_PointIdx_Num );
+            WinFormsHelper.SetValue( uiPnl_PointIdx_TrBr, currentValue );
         }
 
-        private void WfEditControlPointIndexTrackBar_Scroll( object sender, EventArgs e )
+        private void UiPanel_PointIndex_TrackBar_Scroll( object sender, EventArgs e )
         {
             WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            int currentValue = WinFormsHelper.GetValue( wfEditControlPointIndexTrackBar );
-            WinFormsHelper.SetValue( wfEditControlPointIndexNumericUpDown, currentValue );
+            int currentValue = WinFormsHelper.GetValue( uiPnl_PointIdx_TrBr );
+            WinFormsHelper.SetValue( uiPnl_PointIdx_Num, currentValue );
         }
 
         private void BuildAndPopulateDatasetGrid()
@@ -97,15 +97,15 @@ namespace PI
 
         private void ClearDatasetGridAndBuildStartState()
         {
-            wfGridTableLayoutPanel.Controls.Clear();
-            int lastRow = wfGridTableLayoutPanel.RowCount - 1;
-            RowStyle previousRowStyle = wfGridTableLayoutPanel.RowStyles[lastRow];
-            wfGridTableLayoutPanel.RowStyles.Clear();
-            wfGridTableLayoutPanel.RowCount = 0;
+            uiGrid_TblLay.Controls.Clear();
+            int lastRow = uiGrid_TblLay.RowCount - 1;
+            RowStyle previousRowStyle = uiGrid_TblLay.RowStyles[lastRow];
+            uiGrid_TblLay.RowStyles.Clear();
+            uiGrid_TblLay.RowCount = 0;
             WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            wfGridTableLayoutPanel.RowStyles.Add( WinFormsHelper.GetRowStyleSafe( previousRowStyle.SizeType, previousRowStyle.Height ) );
-            wfGridTableLayoutPanel.RowStyles.Add( WinFormsHelper.GetRowStyleSafe( previousRowStyle.SizeType, previousRowStyle.Height ) );
-            wfGridTableLayoutPanel.RowCount = 2;
+            uiGrid_TblLay.RowStyles.Add( WinFormsHelper.GetRowStyleSafe( previousRowStyle.SizeType, previousRowStyle.Height ) );
+            uiGrid_TblLay.RowStyles.Add( WinFormsHelper.GetRowStyleSafe( previousRowStyle.SizeType, previousRowStyle.Height ) );
+            uiGrid_TblLay.RowCount = 2;
         }
 
         private void AddTitleHeaderComponentsToDatasetGrid()
@@ -137,10 +137,10 @@ namespace PI
                 Dock = DockStyle.Fill
             };
 
-            int lastRow = wfGridTableLayoutPanel.RowCount - 1;
-            wfGridTableLayoutPanel.Controls.Add( indexTextBox, 0, lastRow );
-            wfGridTableLayoutPanel.Controls.Add( axisXTextBox, 1, lastRow );
-            wfGridTableLayoutPanel.Controls.Add( axisYTextBox, 2, lastRow );
+            int lastRow = uiGrid_TblLay.RowCount - 1;
+            uiGrid_TblLay.Controls.Add( indexTextBox, 0, lastRow );
+            uiGrid_TblLay.Controls.Add( axisXTextBox, 1, lastRow );
+            uiGrid_TblLay.Controls.Add( axisYTextBox, 2, lastRow );
         }
 
         private void PopulateDatasetGridByCurvePointsData()
@@ -157,10 +157,10 @@ namespace PI
 
         private void AddRowToDatasetGridAtEnd()
         {
-            int lastRow = wfGridTableLayoutPanel.RowCount - 1;
-            RowStyle previousRowStyle = wfGridTableLayoutPanel.RowStyles[lastRow];
-            wfGridTableLayoutPanel.RowStyles.Add( new RowStyle( previousRowStyle.SizeType, previousRowStyle.Height ) );
-            wfGridTableLayoutPanel.RowCount++;
+            int lastRow = uiGrid_TblLay.RowCount - 1;
+            RowStyle previousRowStyle = uiGrid_TblLay.RowStyles[lastRow];
+            uiGrid_TblLay.RowStyles.Add( new RowStyle( previousRowStyle.SizeType, previousRowStyle.Height ) );
+            uiGrid_TblLay.RowCount++;
         }
 
         private void AddRowComponentsToDatasetGridAtEnd( int i, double x, double y )
@@ -194,54 +194,54 @@ namespace PI
                 Dock = DockStyle.Fill,
             };
 
-            int lastRow = wfGridTableLayoutPanel.RowCount - 1;
-            wfGridTableLayoutPanel.Controls.Add( indexTextBox, 0, lastRow );
-            wfGridTableLayoutPanel.Controls.Add( axisXTextBox, 1, lastRow );
-            wfGridTableLayoutPanel.Controls.Add( axisYTextBox, 2, lastRow );
+            int lastRow = uiGrid_TblLay.RowCount - 1;
+            uiGrid_TblLay.Controls.Add( indexTextBox, 0, lastRow );
+            uiGrid_TblLay.Controls.Add( axisXTextBox, 1, lastRow );
+            uiGrid_TblLay.Controls.Add( axisYTextBox, 2, lastRow );
         }
 
-        private void WfEditControlOperationTypeComboBox_SelectedIndexChanged( object sender, EventArgs e )
+        private void UiPanel_OperationType_SelectedIndexChanged( object sender, EventArgs e )
         {
             WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            int selectedOperationType = WinFormsHelper.GetSelectedIndexSafe( wfEditControlOperationTypeComboBox );
-            wfEditControlPointIndexNumericUpDown.Enabled = false;
-            wfEditControlPointIndexTrackBar.Enabled = false;
-            wfEditControlValue2TextBox.Enabled = true;
+            int selectedOperationType = WinFormsHelper.GetSelectedIndexSafe( uiPnl_OperT_ComBx );
+            uiPnl_PointIdx_Num.Enabled = false;
+            uiPnl_PointIdx_TrBr.Enabled = false;
+            uiPnl_Value2_TxtBx.Enabled = true;
 
             switch ( selectedOperationType ) {
-            case Constants.Dsv.EditControl.OPERATION_TYPE_CONSTANT:
-                wfEditControlValue1TextBox.Text = Constants.Dsv.EditControl.EDIT_CONTROL_VALUE_TEXT;
+            case Constants.Dsv.Panel.OPERATION_TYPE_CONSTANT:
+                uiPnl_Value1_TxtBx.Text = Constants.Dsv.Panel.EDIT_CONTROL_VALUE_TEXT;
                 break;
-            case Constants.Dsv.EditControl.OPERATION_TYPE_OVERRIDING:
-                wfEditControlPointIndexNumericUpDown.Enabled = true;
-                wfEditControlPointIndexTrackBar.Enabled = true;
-                wfEditControlValue1TextBox.Text = Constants.Dsv.EditControl.EDIT_CONTROL_VALUE_TEXT;
+            case Constants.Dsv.Panel.OPERATION_TYPE_OVERRIDING:
+                uiPnl_PointIdx_Num.Enabled = true;
+                uiPnl_PointIdx_TrBr.Enabled = true;
+                uiPnl_Value1_TxtBx.Text = Constants.Dsv.Panel.EDIT_CONTROL_VALUE_TEXT;
                 break;
-            case Constants.Dsv.EditControl.OPERATION_TYPE_ADDITION:
-                wfEditControlValue1TextBox.Text = Constants.Dsv.EditControl.EDIT_CONTROL_ADDEND_TEXT;
+            case Constants.Dsv.Panel.OPERATION_TYPE_ADDITION:
+                uiPnl_Value1_TxtBx.Text = Constants.Dsv.Panel.EDIT_CONTROL_ADDEND_TEXT;
                 break;
-            case Constants.Dsv.EditControl.OPERATION_TYPE_SUBSTRACTION:
-                wfEditControlValue1TextBox.Text = Constants.Dsv.EditControl.EDIT_CONTROL_SUBTRAHEND_TEXT;
+            case Constants.Dsv.Panel.OPERATION_TYPE_SUBSTRACTION:
+                uiPnl_Value1_TxtBx.Text = Constants.Dsv.Panel.EDIT_CONTROL_SUBTRAHEND_TEXT;
                 break;
-            case Constants.Dsv.EditControl.OPERATION_TYPE_MULTIPLICATION:
-                wfEditControlValue1TextBox.Text = Constants.Dsv.EditControl.EDIT_CONTROL_MULTIPLIER_TEXT;
+            case Constants.Dsv.Panel.OPERATION_TYPE_MULTIPLICATION:
+                uiPnl_Value1_TxtBx.Text = Constants.Dsv.Panel.EDIT_CONTROL_MULTIPLIER_TEXT;
                 break;
-            case Constants.Dsv.EditControl.OPERATION_TYPE_DIVISION:
-                wfEditControlValue1TextBox.Text = Constants.Dsv.EditControl.EDIT_CONTROL_DIVISOR_TEXT;
+            case Constants.Dsv.Panel.OPERATION_TYPE_DIVISION:
+                uiPnl_Value1_TxtBx.Text = Constants.Dsv.Panel.EDIT_CONTROL_DIVISOR_TEXT;
                 break;
-            case Constants.Dsv.EditControl.OPERATION_TYPE_EXPONENTIATION:
-                wfEditControlValue1TextBox.Text = Constants.Dsv.EditControl.EDIT_CONTROL_EXPONENT_TEXT;
+            case Constants.Dsv.Panel.OPERATION_TYPE_EXPONENTIATION:
+                uiPnl_Value1_TxtBx.Text = Constants.Dsv.Panel.EDIT_CONTROL_EXPONENT_TEXT;
                 break;
-            case Constants.Dsv.EditControl.OPERATION_TYPE_LOGARITHMIC:
-                wfEditControlValue1TextBox.Text = Constants.Dsv.EditControl.EDIT_CONTROL_BASE_TEXT;
+            case Constants.Dsv.Panel.OPERATION_TYPE_LOGARITHMIC:
+                uiPnl_Value1_TxtBx.Text = Constants.Dsv.Panel.EDIT_CONTROL_BASE_TEXT;
                 break;
-            case Constants.Dsv.EditControl.OPERATION_TYPE_ROOTING:
-                wfEditControlValue1TextBox.Text = Constants.Dsv.EditControl.EDIT_CONTROL_LEVEL_TEXT;
+            case Constants.Dsv.Panel.OPERATION_TYPE_ROOTING:
+                uiPnl_Value1_TxtBx.Text = Constants.Dsv.Panel.EDIT_CONTROL_LEVEL_TEXT;
                 break;
-            case Constants.Dsv.EditControl.OPERATION_TYPE_POSITIVE:
-            case Constants.Dsv.EditControl.OPERATION_TYPE_NEGATIVE:
-                wfEditControlValue2TextBox.Text = "0";
-                wfEditControlValue2TextBox.Enabled = false;
+            case Constants.Dsv.Panel.OPERATION_TYPE_POSITIVE:
+            case Constants.Dsv.Panel.OPERATION_TYPE_NEGATIVE:
+                uiPnl_Value2_TxtBx.Text = "0";
+                uiPnl_Value2_TxtBx.Enabled = false;
                 break;
             }
         }
@@ -254,9 +254,9 @@ namespace PI
             }
 
             WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            string text = Constants.Dsv.EditControl.NOT_VALID_DECIMAL_CHART_NUMBER_TEXT;
-            string caption = Constants.Dsv.EditControl.NOT_VALID_DECIMAL_CHART_NUMBER_CAPTION;
-            SetSpecifiedComponentsToInformAboutOverflow( userValue );
+            string text = Constants.Dsv.Panel.NOT_VALID_DECIMAL_CHART_NUMBER_TEXT;
+            string caption = Constants.Dsv.Panel.NOT_VALID_DECIMAL_CHART_NUMBER_CAPTION;
+            UpdateUiByInfoAboutOverflow( userValue );
             WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Stop );
             return false;
         }
@@ -288,9 +288,9 @@ namespace PI
 
                 if ( !IsValidDecimalChartNumber( value ) ) {
                     WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
-                    string text = Constants.Dsv.EditControl.NOT_VALID_DECIMAL_CHART_NUMBER_TEXT;
-                    string caption = Constants.Dsv.EditControl.NOT_VALID_DECIMAL_CHART_NUMBER_CAPTION;
-                    SetSpecifiedComponentsToInformAboutOverflow( value );
+                    string text = Constants.Dsv.Panel.NOT_VALID_DECIMAL_CHART_NUMBER_TEXT;
+                    string caption = Constants.Dsv.Panel.NOT_VALID_DECIMAL_CHART_NUMBER_CAPTION;
+                    UpdateUiByInfoAboutOverflow( value );
                     WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Stop );
                     return false;
                 }
@@ -305,28 +305,28 @@ namespace PI
             double result = userValue;
 
             switch ( operationType ) {
-            case Constants.Dsv.EditControl.OPERATION_TYPE_ADDITION:
+            case Constants.Dsv.Panel.OPERATION_TYPE_ADDITION:
                 result = series.Points[pointIndex].YValues[0] + userValue;
                 break;
-            case Constants.Dsv.EditControl.OPERATION_TYPE_SUBSTRACTION:
+            case Constants.Dsv.Panel.OPERATION_TYPE_SUBSTRACTION:
                 result = series.Points[pointIndex].YValues[0] - userValue;
                 break;
-            case Constants.Dsv.EditControl.OPERATION_TYPE_MULTIPLICATION:
+            case Constants.Dsv.Panel.OPERATION_TYPE_MULTIPLICATION:
                 result = series.Points[pointIndex].YValues[0] * userValue;
                 break;
-            case Constants.Dsv.EditControl.OPERATION_TYPE_DIVISION:
+            case Constants.Dsv.Panel.OPERATION_TYPE_DIVISION:
                 result = series.Points[pointIndex].YValues[0] / userValue;
                 break;
-            case Constants.Dsv.EditControl.OPERATION_TYPE_EXPONENTIATION:
+            case Constants.Dsv.Panel.OPERATION_TYPE_EXPONENTIATION:
                 result = Math.Pow( series.Points[pointIndex].YValues[0], userValue );
                 break;
-            case Constants.Dsv.EditControl.OPERATION_TYPE_LOGARITHMIC:
+            case Constants.Dsv.Panel.OPERATION_TYPE_LOGARITHMIC:
                 result = Math.Log( series.Points[pointIndex].YValues[0], userValue );
                 break;
-            case Constants.Dsv.EditControl.OPERATION_TYPE_ROOTING:
+            case Constants.Dsv.Panel.OPERATION_TYPE_ROOTING:
                 result = Math.Pow( series.Points[pointIndex].YValues[0], 1.0 / userValue );
                 break;
-            case Constants.Dsv.EditControl.OPERATION_TYPE_CONSTANT:
+            case Constants.Dsv.Panel.OPERATION_TYPE_CONSTANT:
                 result = userValue;
                 break;
             }
@@ -378,11 +378,11 @@ namespace PI
             }
         }
 
-        private void SetSpecifiedComponentsToInformAboutOverflow( double power )
+        private void UpdateUiByInfoAboutOverflow( double power )
         {
             StringFormatter.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            wfEditControlValue1TextBox.Text = Constants.Dsv.EditControl.OPERATION_ERR_OVERFLOW_TEXT;
-            wfEditControlValue2TextBox.Text = StringFormatter.FormatAsNumeric( 4, power );
+            uiPnl_Value1_TxtBx.Text = Constants.Dsv.Panel.OPERATION_ERR_OVERFLOW_TEXT;
+            uiPnl_Value2_TxtBx.Text = StringFormatter.FormatAsNumeric( 4, power );
         }
 
     }
