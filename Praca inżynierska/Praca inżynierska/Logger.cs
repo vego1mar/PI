@@ -4,15 +4,28 @@ using System.Globalization;
 
 namespace PI
 {
+
+    internal enum LoggerSection
+    {
+        General,
+        Logger,
+        UiMainWindow,
+        WinFormsHelper,
+        ThreadTasker,
+        CurvesDataSet,
+        PatternCurveDefiner,
+        DataSetViewer,
+        SysInfoHelper,
+        StringFormatter
+    }
+
     static class Logger
     {
 
         public const string WRITER_PATH = @"..\..\Logs\log.txt";
         public const int WRITER_BUFFER_SIZE = 4096;
-
         private static StreamWriter LogWriter { set; get; }
         public static uint NumberOfLoggedExceptions { get; private set; } = 0;
-        public static string Context { get; set; } 
 
         public static int Initialize()
         {
@@ -95,15 +108,15 @@ namespace PI
             return 0;
         }
 
-        public static int WriteException( Exception x )
+        public static int WriteException( Exception x, LoggerSection section )
         {
             NumberOfLoggedExceptions++;
 
             return
-            Write( Environment.NewLine + Environment.NewLine + 
+            Write( Environment.NewLine + Environment.NewLine +
                     DateTime.Now.ToString( CultureInfo.InvariantCulture ) + Environment.NewLine +
                    "EXCEPTION TYPE: " + x.GetType() + Environment.NewLine +
-                   "PROVIDED CONTEXT: " + Context + Environment.NewLine +
+                   "PROVIDED SECTION: " + section.ToString() + Environment.NewLine +
                    "STACK TRACE:" + Environment.NewLine + x.StackTrace + Environment.NewLine +
                    "MESSAGE:" + Environment.NewLine + x.Message + Environment.NewLine +
                    "SOURCE: " + x.Source + Environment.NewLine +
@@ -113,38 +126,29 @@ namespace PI
 
         public static void Close()
         {
-            Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
             try {
                 LogWriter.Close();
             }
             catch ( System.Text.EncoderFallbackException x ) {
-                WriteException( x );
+                WriteException( x, LoggerSection.Logger );
             }
             catch ( Exception x ) {
-                WriteException( x );
-            }
-            finally {
-                Context = string.Empty;
+                WriteException( x, LoggerSection.Logger );
             }
         }
 
-        public static string GetFullPathOfLogFileLocation() 
+        public static string GetFullPathOfLogFileLocation()
         {
-            Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
             string fullPath = null;
 
             try {
                 fullPath = ((FileStream) (LogWriter.BaseStream)).Name;
             }
             catch ( InvalidCastException x ) {
-                WriteException( x );
+                WriteException( x, LoggerSection.Logger );
             }
             catch ( Exception x ) {
-                WriteException( x );
-            }
-            finally {
-                Context = string.Empty;
+                WriteException( x, LoggerSection.Logger );
             }
 
             return fullPath;

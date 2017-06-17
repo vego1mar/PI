@@ -3,7 +3,7 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
-// INTERNAL BACKLOG
+// BACKLOG
 // TODO: Update info
 // TODO: Configuration file
 // TODO: Reading and saving set of curves from a file
@@ -11,9 +11,13 @@ using System.Windows.Forms.DataVisualization.Charting;
 // TODO: Implement Gaussian noise option
 // TODO: Menu item - 'Adjust curves' for visual effects manipulations 
 // TODO: Add new pattern curve scaffold - rectangular function
-// TODO: In 'Datasheet' - showing dataset when there is no one should be forbidden
+// TODO: In 'Datasheet' - showing dataset when there is no one, should be forbidden
 // TODO: In 'Datasheet' - showing dataset of pattern curve should be allowed, but alteration forbidden
-// TODO: Charts - validation before using 'Generate set'
+// >>>> TODO: Charts - validation after using 'Generate set'; <-2,76>, g=4.0 
+// TODO: Images - add a free expression to both curve scaffold patterns
+// TODO: Charts - density of points
+// TODO: Remove 'Malform' tab page and replace it under 'Datasheet' as a new section
+// TODO: Parameters A-G - surround by a hierarchy, both PCD & PreSets
 
 namespace PI
 {
@@ -47,21 +51,18 @@ namespace PI
             UpdateUiByOsVersionName();
             UpdateUiByLogFileFullPathLocation();
             DefineTimerThread();
-            ThreadTasker.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
             ThreadTasker.StartThreadSafe( TimerThread );
             UpdateUiByStatusOfTimerThread();
             UpdateUiByNumbersOfExceptionsCaught();
         }
 
-        private void UiMenuPrg_Exit_Click( object sender, EventArgs e )
+        private void UiMenuProgram_Exit_Click( object sender, EventArgs e )
         {
             Application.Exit();
         }
 
         private void DefineTimerThread()
         {
-            Logger.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
             TimerThread = new Thread( () => {
                 try {
                     Thread.CurrentThread.IsBackground = true;
@@ -72,19 +73,19 @@ namespace PI
                     timer.Enabled = true;
                 }
                 catch ( ThreadStateException x ) {
-                    Logger.WriteException( x );
+                    Logger.WriteException( x, LoggerSection.UiMainWindow );
                 }
                 catch ( ObjectDisposedException x ) {
-                    Logger.WriteException( x );
+                    Logger.WriteException( x, LoggerSection.UiMainWindow );
                 }
                 catch ( ArgumentOutOfRangeException x ) {
-                    Logger.WriteException( x );
+                    Logger.WriteException( x, LoggerSection.UiMainWindow );
                 }
                 catch ( ArgumentException x ) {
-                    Logger.WriteException( x );
+                    Logger.WriteException( x, LoggerSection.UiMainWindow );
                 }
                 catch ( Exception x ) {
-                    Logger.WriteException( x );
+                    Logger.WriteException( x, LoggerSection.UiMainWindow );
                 }
             } );
         }
@@ -125,8 +126,6 @@ namespace PI
 
         private void UpdateUiByTimerCounts( string text )
         {
-            Logger.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
             try {
                 BeginInvoke( (MethodInvoker) delegate {
                     uiPnlPrg_Cnts2_TxtBx.Text = text;
@@ -134,20 +133,18 @@ namespace PI
                 } );
             }
             catch ( ObjectDisposedException x ) {
-                Logger.WriteException( x );
+                Logger.WriteException( x, LoggerSection.UiMainWindow );
             }
             catch ( InvalidOperationException x ) {
-                Logger.WriteException( x );
+                Logger.WriteException( x, LoggerSection.UiMainWindow );
             }
             catch ( Exception x ) {
-                Logger.WriteException( x );
+                Logger.WriteException( x, LoggerSection.UiMainWindow );
             }
         }
 
         private void UpdateUiByNumbersOfExceptionsCaught()
         {
-            Logger.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
             try {
                 BeginInvoke( (MethodInvoker) delegate {
                     uiPnlPrg_Excp2_TxtBx.Text = Logger.NumberOfLoggedExceptions.ToString();
@@ -155,13 +152,13 @@ namespace PI
                 } );
             }
             catch ( ObjectDisposedException x ) {
-                Logger.WriteException( x );
+                Logger.WriteException( x, LoggerSection.UiMainWindow );
             }
             catch ( InvalidOperationException x ) {
-                Logger.WriteException( x );
+                Logger.WriteException( x, LoggerSection.UiMainWindow );
             }
             catch ( Exception x ) {
-                Logger.WriteException( x );
+                Logger.WriteException( x, LoggerSection.UiMainWindow );
             }
         }
 
@@ -178,7 +175,6 @@ namespace PI
         private void UiPanelGenerate_Define_Click( object sender, EventArgs e )
         {
             using ( var PCDDialog = new PatternCurveDefiner() ) {
-                WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
                 WinFormsHelper.ShowDialogSafe( PCDDialog, this );
 
                 try {
@@ -195,10 +191,10 @@ namespace PI
                     }
                 }
                 catch ( System.ComponentModel.InvalidEnumArgumentException x ) {
-                    Logger.WriteException( x );
+                    Logger.WriteException( x, LoggerSection.UiMainWindow );
                 }
                 catch ( Exception x ) {
-                    Logger.WriteException( x );
+                    Logger.WriteException( x, LoggerSection.UiMainWindow );
                 }
             }
         }
@@ -220,8 +216,6 @@ namespace PI
 
         private void UiPanelDataSheet_CurveType_SelectedIndexChanged( object sender, EventArgs e )
         {
-            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
             switch ( WinFormsHelper.GetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx ) ) {
             case Constants.Ui.Panel.Datasheet.CURVE_TYPE_GENERATED:
                 uiPnlDtSh_CrvIdx_Num.Enabled = true;
@@ -239,7 +233,6 @@ namespace PI
 
         private void UiPanelDataSheet_CurveIndex_NumericUpDown_ValueChanged( object sender, EventArgs e )
         {
-            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
             int numericUpDownValue = WinFormsHelper.GetValue<int>( uiPnlDtSh_CrvIdx_Num );
             WinFormsHelper.SetValue( uiPnlDtSh_CrvIdx_TrBr, numericUpDownValue );
             ShowGeneratedCurveSeriesOnChart( numericUpDownValue );
@@ -247,7 +240,6 @@ namespace PI
 
         private void UiPanelDataSheet_CurveIndex_TrackBar_Scroll( object sender, EventArgs e )
         {
-            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
             int trackBarValue = WinFormsHelper.GetValue( uiPnlDtSh_CrvIdx_TrBr );
             WinFormsHelper.SetValue( uiPnlDtSh_CrvIdx_Num, trackBarValue );
             ShowGeneratedCurveSeriesOnChart( trackBarValue );
@@ -255,7 +247,6 @@ namespace PI
 
         private void UiPanelGenerate_Curves1No_ValueChanged( object sender, EventArgs e )
         {
-            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
             int numberOfCurves = WinFormsHelper.GetValue<int>( uiPnlGen_Crvs1No_Num );
             uiPnlDtSh_CrvIdx_Num.Minimum = 1;
             uiPnlDtSh_CrvIdx_Num.Maximum = numberOfCurves;
@@ -269,21 +260,17 @@ namespace PI
         private void UiPanelGenerate_GenerateSet_Click( object sender, EventArgs e )
         {
             if ( uiPnlGen_CrvScaff2_TxtBx.Text == Constants.Ui.Panel.Generate.SCAFFOLD_DEFAULT_TEXT ) {
-                string text = Constants.Ui.Panel.Generate.GENERATE_SET_BTN_PREREQUISITE_WARNING_TEXT;
-                string caption = Constants.Ui.Panel.Generate.GENERATE_SET_BTN_PREREQUISITE_WARNING_CAPTION;
-                WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
-                WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Stop );
+                MsgBxShower.Ui.PatternCurveNotChosenPrerequisite();
                 return;
             }
 
             GrabPreSetsForCurvesGeneration();
             GenerateAndShowPatternCurve();
-            LeftChartDataset.SpreadPatternCurveSeriesToGeneratedCurveSeriesCollection( PreSets.Ui.NumberOfCurves );
+            LeftChartDataset.SpreadPatternCurveSetToGeneratedCurveSet( PreSets.Ui.NumberOfCurves );
         }
 
         private void GrabPreSetsForCurvesGeneration()
         {
-            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
             PreSets.Ui.NumberOfCurves = WinFormsHelper.GetValue<int>( uiPnlGen_Crvs1No_Num );
             PreSets.Ui.NumberOfPoints = WinFormsHelper.GetValue<int>( uiPnlGen_PointsNo_Num );
             PreSets.Ui.StartingXPoint = WinFormsHelper.GetValue<int>( uiPnlGen_StartX_Num );
@@ -291,7 +278,6 @@ namespace PI
 
         private void UpdateUiByChartsInterval()
         {
-            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
             int lowerLimit = WinFormsHelper.GetValue<int>( uiPnlGen_StartX_Num );
             int numberOfPoints = WinFormsHelper.GetValue<int>( uiPnlGen_PointsNo_Num );
             int upperLimit = lowerLimit + numberOfPoints - 1;
@@ -308,11 +294,9 @@ namespace PI
 
         private void ShowPatternCurveSeriesOnChart()
         {
-            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
             try {
                 uiCharts_PtrnCrv.Series.Clear();
-                uiCharts_PtrnCrv.Series.Add( LeftChartDataset.PatternCurveChartingSeries );
+                uiCharts_PtrnCrv.Series.Add( LeftChartDataset.PatternCurveSet );
                 uiCharts_PtrnCrv.Series[0].BorderWidth = 3;
                 uiCharts_PtrnCrv.Series[0].Color = System.Drawing.Color.Black;
                 uiCharts_PtrnCrv.ChartAreas[0].RecalculateAxesScale();
@@ -320,23 +304,19 @@ namespace PI
                 uiCharts_PtrnCrv.Invalidate();
             }
             catch ( InvalidOperationException x ) {
-                string text = Constants.Ui.Charts.REFRESHING_ERR_TEXT;
-                string caption = Constants.Ui.Charts.REFRESHING_ERR_CAPTION;
-                WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
-                Logger.WriteException( x );
+                MsgBxShower.Ui.ChartRefreshingError();
+                Logger.WriteException( x, LoggerSection.UiMainWindow );
             }
             catch ( Exception x ) {
-                Logger.WriteException( x );
+                Logger.WriteException( x, LoggerSection.UiMainWindow );
             }
         }
 
         private void ShowGeneratedCurveSeriesOnChart( int indexOfCurve )
         {
-            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
             try {
                 uiCharts_PtrnCrv.Series.Clear();
-                uiCharts_PtrnCrv.Series.Add( LeftChartDataset.GeneratedCurvesChartingSeriesCollection[indexOfCurve - 1] );
+                uiCharts_PtrnCrv.Series.Add( LeftChartDataset.GeneratedCurvesSet[indexOfCurve - 1] );
                 uiCharts_PtrnCrv.Series[0].BorderWidth = 3;
                 uiCharts_PtrnCrv.Series[0].Color = System.Drawing.Color.Crimson;
                 uiCharts_PtrnCrv.ChartAreas[0].RecalculateAxesScale();
@@ -344,22 +324,22 @@ namespace PI
                 uiCharts_PtrnCrv.Invalidate();
             }
             catch ( InvalidOperationException x ) {
-                string text = Constants.Ui.Charts.REFRESHING_ERR_TEXT;
-                string caption = Constants.Ui.Charts.REFRESHING_ERR_CAPTION;
-                WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
-                Logger.WriteException( x );
+                MsgBxShower.Ui.ChartRefreshingError();
+                Logger.WriteException( x, LoggerSection.UiMainWindow );
+            }
+            catch ( ArgumentOutOfRangeException x ) {
+                MsgBxShower.Ui.SeriesSelectionProblem();
+                Logger.WriteException( x, LoggerSection.UiMainWindow );
             }
             catch ( Exception x ) {
-                Logger.WriteException( x );
+                Logger.WriteException( x, LoggerSection.UiMainWindow );
             }
         }
 
         private void UiPanelGenerate_PointsNo_ValueChanged( object sender, EventArgs e )
         {
             UpdateUiByChartsInterval();
-            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            int numberOfPoints = WinFormsHelper.GetValue<int>( uiPnlGen_PointsNo_Num );
-            PreSets.Ui.NumberOfPoints = numberOfPoints;
+            PreSets.Ui.NumberOfPoints = WinFormsHelper.GetValue<int>( uiPnlGen_PointsNo_Num );
         }
 
         private void UiPanelGenerate_StartingXPoint_ValueChanged( object sender, EventArgs e )
@@ -369,7 +349,6 @@ namespace PI
 
         private void UpdateUiByDotNetFrameworkVersion()
         {
-            SysInfoHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
             string dotNetVersion = SysInfoHelper.ObtainUsedDotNetFrameworkVersion();
 
             if ( dotNetVersion == null ) {
@@ -383,7 +362,6 @@ namespace PI
 
         private void UpdateUiByOsVersionName()
         {
-            SysInfoHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
             string osVersion = SysInfoHelper.ObtaingApplicationRunningOSVersion();
 
             if ( osVersion == null ) {
@@ -396,7 +374,6 @@ namespace PI
 
         private void UiPanelDataSheet_ShowDataSet_Click( object sender, EventArgs e )
         {
-            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
             int selectedCurveType = WinFormsHelper.GetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx );
             int selectedCurveIndex = WinFormsHelper.GetValue<int>( uiPnlDtSh_CrvIdx_Num );
 
@@ -405,20 +382,25 @@ namespace PI
             case Constants.Ui.Panel.Datasheet.CURVE_TYPE_GENERATED:
                 break;
             default:
-                string text = Constants.Ui.Panel.Datasheet.CURVE_TYPE_NOT_SELECTED_TEXT;
-                string caption = Constants.Ui.Panel.Datasheet.CURVE_TYPE_NOT_SELECTED_CAPTION;
-                WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Asterisk );
+                MsgBxShower.Ui.CurveTypeNotSelectedInfo();
                 return;
             }
 
-            using ( var DSVDialog = new DatasetViewer( SpecifyCurveSeries( selectedCurveType, selectedCurveIndex ) ) ) {
-                WinFormsHelper.ShowDialogSafe( DSVDialog, this );
+            Series selectedCurveSeries = SpecifyCurveSeries( selectedCurveType, selectedCurveIndex );
+
+            if ( selectedCurveSeries == null ) {
+                MsgBxShower.Ui.SeriesSelectionProblem();
+                return;
+            }
+
+            using ( var DsvDialog = new DatasetViewer( selectedCurveSeries ) ) {
+                WinFormsHelper.ShowDialogSafe( DsvDialog, this );
 
                 try {
-                    if ( DSVDialog.DialogResult == DialogResult.OK ) {
-                        LeftChartDataset.AbsorbSeriesPoints( DSVDialog.CurveDataSet, selectedCurveType, selectedCurveIndex );
+                    if ( DsvDialog.DialogResult == DialogResult.OK ) {
+                        LeftChartDataset.AbsorbSeriesPoints( DsvDialog.CurveDataSet, selectedCurveType, selectedCurveIndex );
                         uiCharts_PtrnCrv.Series.Clear();
-                        uiCharts_PtrnCrv.Series.Add( DSVDialog.CurveDataSet );
+                        uiCharts_PtrnCrv.Series.Add( DsvDialog.CurveDataSet );
                         uiCharts_PtrnCrv.Series[0].BorderWidth = 3;
                         uiCharts_PtrnCrv.Series[0].Color = System.Drawing.Color.Indigo;
                         uiCharts_PtrnCrv.ChartAreas[0].RecalculateAxesScale();
@@ -427,30 +409,33 @@ namespace PI
                     }
                 }
                 catch ( InvalidOperationException x ) {
-                    string text = Constants.Ui.Charts.REFRESHING_ERR_TEXT;
-                    string caption = Constants.Ui.Charts.REFRESHING_ERR_CAPTION;
-                    WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
-                    Logger.WriteException( x );
+                    MsgBxShower.Ui.ChartRefreshingError();
+                    Logger.WriteException( x, LoggerSection.UiMainWindow );
                 }
                 catch ( System.ComponentModel.InvalidEnumArgumentException x ) {
-                    Logger.WriteException( x );
+                    Logger.WriteException( x, LoggerSection.UiMainWindow );
                 }
                 catch ( Exception x ) {
-                    Logger.WriteException( x );
-                }
-                finally {
-                    Logger.Context = string.Empty;
+                    Logger.WriteException( x, LoggerSection.UiMainWindow );
                 }
             }
         }
 
         private Series SpecifyCurveSeries( int curveType, int curveIndex )
         {
-            switch ( curveType ) {
-            case Constants.Ui.Panel.Datasheet.CURVE_TYPE_PATTERN:
-                return LeftChartDataset.PatternCurveChartingSeries;
-            case Constants.Ui.Panel.Datasheet.CURVE_TYPE_GENERATED:
-                return LeftChartDataset.GeneratedCurvesChartingSeriesCollection[curveIndex - 1];
+            try {
+                switch ( curveType ) {
+                case Constants.Ui.Panel.Datasheet.CURVE_TYPE_PATTERN:
+                    return LeftChartDataset.PatternCurveSet;
+                case Constants.Ui.Panel.Datasheet.CURVE_TYPE_GENERATED:
+                    return LeftChartDataset.GeneratedCurvesSet[curveIndex - 1];
+                }
+            }
+            catch ( ArgumentOutOfRangeException x ) {
+                Logger.WriteException( x, LoggerSection.UiMainWindow );
+            }
+            catch ( Exception x ) {
+                Logger.WriteException( x, LoggerSection.UiMainWindow );
             }
 
             return null;
@@ -461,6 +446,6 @@ namespace PI
             uiPnlPrg_LogPath2_TxtBx.Text = Logger.GetFullPathOfLogFileLocation();
         }
 
-     }
+    }
 
 }

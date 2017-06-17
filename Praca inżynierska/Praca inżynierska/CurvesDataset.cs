@@ -10,14 +10,14 @@ namespace PI
         public const string PATTERN_CURVE_SERIES_NAME = "PatternCurveSeries";
         public const string GENERATED_CURVE_SERIES_NAME = "GeneratedCurveSeries";
 
-        public Series PatternCurveChartingSeries { get; private set; }
-        public List<Series> GeneratedCurvesChartingSeriesCollection { get; private set; }
+        public Series PatternCurveSet { get; private set; }
+        public List<Series> GeneratedCurvesSet { get; private set; }
 
         public CurvesDataset()
         {
-            PatternCurveChartingSeries = new Series();
-            GeneratedCurvesChartingSeriesCollection = new List<Series>();
-            SetDefaultPropertiesForChartingSeries( PatternCurveChartingSeries, PATTERN_CURVE_SERIES_NAME );
+            PatternCurveSet = new Series();
+            GeneratedCurvesSet = new List<Series>();
+            SetDefaultPropertiesForChartingSeries( PatternCurveSet, PATTERN_CURVE_SERIES_NAME );
         }
 
         public static void SetDefaultPropertiesForChartingSeries( Series series, string name )
@@ -47,28 +47,28 @@ namespace PI
 
         private void GeneratePolynomialPatternCurve( int numberOfPoints, int startingXPoint )
         {
-            PatternCurveChartingSeries.Points.Clear();
-            SetDefaultPropertiesForChartingSeries( PatternCurveChartingSeries, PATTERN_CURVE_SERIES_NAME );
+            PatternCurveSet.Points.Clear();
+            SetDefaultPropertiesForChartingSeries( PatternCurveSet, PATTERN_CURVE_SERIES_NAME );
 
             for ( int i = 1; i <= numberOfPoints; i++ ) {
                 double offset = startingXPoint + i - 1;
                 double leftFraction = (PreSets.Pcd.ParameterA * Math.Pow( offset, PreSets.Pcd.ParameterB )) / PreSets.Pcd.ParameterC;
                 double rightFraction = (PreSets.Pcd.ParameterD * Math.Pow( offset, PreSets.Pcd.ParameterE )) / PreSets.Pcd.ParameterF;
                 double polynomial = leftFraction + rightFraction;
-                PatternCurveChartingSeries.Points.AddXY( offset, polynomial );
+                PatternCurveSet.Points.AddXY( offset, polynomial );
             }
         }
 
         private void GenerateHyperbolicPatternCurve( int numberOfPoints, int startingXPoint )
         {
-            PatternCurveChartingSeries.Points.Clear();
-            SetDefaultPropertiesForChartingSeries( PatternCurveChartingSeries, PATTERN_CURVE_SERIES_NAME );
+            PatternCurveSet.Points.Clear();
+            SetDefaultPropertiesForChartingSeries( PatternCurveSet, PATTERN_CURVE_SERIES_NAME );
 
             for ( int i = 1; i <= numberOfPoints; i++ ) {
                 double offset = startingXPoint + i - 1;
                 double numerator = Math.Pow( Math.E, offset ) - Math.Pow( Math.E, -offset );
                 double fraction = numerator / PreSets.Pcd.ParameterC;
-                PatternCurveChartingSeries.Points.AddXY( offset, fraction );
+                PatternCurveSet.Points.AddXY( offset, fraction );
             }
         }
 
@@ -91,28 +91,28 @@ namespace PI
         private void AbsorbSeriesForPatternCurve( Series series )
         {
             for ( int i = 0; i < series.Points.Count; i++ ) {
-                PatternCurveChartingSeries.Points[i].XValue = series.Points[i].XValue;
-                PatternCurveChartingSeries.Points[i].YValues[0] = series.Points[i].YValues[0];
+                PatternCurveSet.Points[i].XValue = series.Points[i].XValue;
+                PatternCurveSet.Points[i].YValues[0] = series.Points[i].YValues[0];
             }
         }
 
         private void AbsorbSeriesForSpecifiedGeneratedCurve( Series series, int collectionItemNumber )
         {
             for ( int i = 0; i < series.Points.Count; i++ ) {
-                GeneratedCurvesChartingSeriesCollection[collectionItemNumber].Points[i].XValue = series.Points[i].XValue;
-                GeneratedCurvesChartingSeriesCollection[collectionItemNumber].Points[i].YValues[0] = series.Points[i].YValues[0];
+                GeneratedCurvesSet[collectionItemNumber].Points[i].XValue = series.Points[i].XValue;
+                GeneratedCurvesSet[collectionItemNumber].Points[i].YValues[0] = series.Points[i].YValues[0];
             }
         }
 
-        public void SpreadPatternCurveSeriesToGeneratedCurveSeriesCollection( int numberOfCurves )
+        public void SpreadPatternCurveSetToGeneratedCurveSet( int numberOfCurves )
         {
-            GeneratedCurvesChartingSeriesCollection = new List<Series>();
+            GeneratedCurvesSet = new List<Series>();
 
             for ( int i = 0; i < numberOfCurves; i++ ) {
                 Series series = new Series();
                 SetDefaultPropertiesForChartingSeries( series, GENERATED_CURVE_SERIES_NAME + i );
-                AddSeriesPointsFromSource( PatternCurveChartingSeries, series );
-                GeneratedCurvesChartingSeriesCollection.Add( series );
+                AddSeriesPointsFromSource( PatternCurveSet, series );
+                GeneratedCurvesSet.Add( series );
             }
         }
 

@@ -14,21 +14,21 @@ namespace PI
             InitializeComponent();
             CurveDataSet = curveDataset;
             UpdateUiByRangesForPointIndexComponents();
-            BuildAndPopulateDatasetGrid();
+
+            if ( curveDataset != null ) {
+                BuildAndPopulateDatasetGrid();
+            }
         }
 
         private void UiPanel_Perform_Click( object sender, EventArgs e )
         {
-            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
             int selectedOperationType = WinFormsHelper.GetSelectedIndexSafe( uiPnl_OperT_ComBx );
             int selectedPointIndex = WinFormsHelper.GetValue( uiPnl_PointIdx_TrBr );
             bool isValueValid = WinFormsHelper.GetValue( uiPnl_Value2_TxtBx, out double userValue );
             bool isOperationValid = false;
 
             if ( !isValueValid ) {
-                string text = Constants.Dsv.Panel.USER_VALUE_NOT_VALID_TEXT;
-                string caption = Constants.Dsv.Panel.USER_VALUE_NOT_VALID_CAPTION;
-                WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+                MsgBxShower.Dsv.CastOrConversionProblem();
                 return;
             }
 
@@ -55,9 +55,7 @@ namespace PI
                 isOperationValid = true;
                 break;
             default:
-                string text = Constants.Dsv.Panel.OPERATION_TYPE_NOT_SELECTED_TEXT;
-                string caption = Constants.Dsv.Panel.OPERATION_TYPE_NOT_SELECTED_CAPTION;
-                WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Asterisk );
+                MsgBxShower.Dsv.OperationTypeNotSelectedInfo();
                 return;
             }
 
@@ -76,14 +74,12 @@ namespace PI
 
         private void UiPanel_PointIndex_NumericUpDown_ValueChanged( object sender, EventArgs e )
         {
-            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
             int currentValue = WinFormsHelper.GetValue<int>( uiPnl_PointIdx_Num );
             WinFormsHelper.SetValue( uiPnl_PointIdx_TrBr, currentValue );
         }
 
         private void UiPanel_PointIndex_TrackBar_Scroll( object sender, EventArgs e )
         {
-            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
             int currentValue = WinFormsHelper.GetValue( uiPnl_PointIdx_TrBr );
             WinFormsHelper.SetValue( uiPnl_PointIdx_Num, currentValue );
         }
@@ -102,7 +98,6 @@ namespace PI
             RowStyle previousRowStyle = uiGrid_TblLay.RowStyles[lastRow];
             uiGrid_TblLay.RowStyles.Clear();
             uiGrid_TblLay.RowCount = 0;
-            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
             uiGrid_TblLay.RowStyles.Add( WinFormsHelper.GetRowStyleSafe( previousRowStyle.SizeType, previousRowStyle.Height ) );
             uiGrid_TblLay.RowStyles.Add( WinFormsHelper.GetRowStyleSafe( previousRowStyle.SizeType, previousRowStyle.Height ) );
             uiGrid_TblLay.RowCount = 2;
@@ -174,8 +169,6 @@ namespace PI
                 Dock = DockStyle.Fill,
             };
 
-            StringFormatter.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
             TextBox axisXTextBox = new TextBox() {
                 Text = StringFormatter.FormatAsNumeric( 4, x ),
                 TextAlign = HorizontalAlignment.Right,
@@ -202,7 +195,6 @@ namespace PI
 
         private void UiPanel_OperationType_SelectedIndexChanged( object sender, EventArgs e )
         {
-            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
             int selectedOperationType = WinFormsHelper.GetSelectedIndexSafe( uiPnl_OperT_ComBx );
             uiPnl_PointIdx_Num.Enabled = false;
             uiPnl_PointIdx_TrBr.Enabled = false;
@@ -253,11 +245,8 @@ namespace PI
                 return true;
             }
 
-            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            string text = Constants.Dsv.Panel.NOT_VALID_DECIMAL_CHART_NUMBER_TEXT;
-            string caption = Constants.Dsv.Panel.NOT_VALID_DECIMAL_CHART_NUMBER_CAPTION;
             UpdateUiByInfoAboutOverflow( userValue );
-            WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Stop );
+            MsgBxShower.Dsv.DecimalDataTypeOverflowStop();
             return false;
         }
 
@@ -287,11 +276,8 @@ namespace PI
                 double value = SelectAndPerformOperation( operationType, userValue, series, i );
 
                 if ( !IsValidDecimalChartNumber( value ) ) {
-                    WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
-                    string text = Constants.Dsv.Panel.NOT_VALID_DECIMAL_CHART_NUMBER_TEXT;
-                    string caption = Constants.Dsv.Panel.NOT_VALID_DECIMAL_CHART_NUMBER_CAPTION;
                     UpdateUiByInfoAboutOverflow( value );
-                    WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Stop );
+                    MsgBxShower.Dsv.DecimalDataTypeOverflowStop();
                     return false;
                 }
             }
@@ -337,22 +323,18 @@ namespace PI
 
         private bool IsValidDecimalChartNumber( double number )
         {
-            Logger.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
             decimal convertite;
 
             try {
                 convertite = Convert.ToDecimal( number );
             }
             catch ( OverflowException x ) {
-                Logger.WriteException( x );
+                Logger.WriteException( x, LoggerSection.DataSetViewer );
                 return false;
             }
             catch ( Exception x ) {
-                Logger.WriteException( x );
+                Logger.WriteException( x, LoggerSection.DataSetViewer );
                 return false;
-            }
-            finally {
-                Logger.Context = string.Empty;
             }
 
             return true;
@@ -380,7 +362,6 @@ namespace PI
 
         private void UpdateUiByInfoAboutOverflow( double power )
         {
-            StringFormatter.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
             uiPnl_Value1_TxtBx.Text = Constants.Dsv.Panel.OPERATION_ERR_OVERFLOW_TEXT;
             uiPnl_Value2_TxtBx.Text = StringFormatter.FormatAsNumeric( 4, power );
         }

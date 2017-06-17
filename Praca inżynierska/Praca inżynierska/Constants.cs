@@ -19,11 +19,10 @@ namespace PI
             internal const int PATH_TOO_LONG = 9;
             internal const int SECURITY = 10;
             internal const int UNAUTHORIZED_ACCESS = 11;
-            internal const int ENCODER_FALLBACK = 12;
-            internal const int INVALID_ENUM_ARGUMENT = 13;
-            internal const int INVALID_OPERATION = 14;
-            internal const int THREAD_STATE = 15;
-            internal const int OUT_OF_MEMORY = 16;
+            internal const int INVALID_ENUM_ARGUMENT = 12;
+            internal const int INVALID_OPERATION = 13;
+            internal const int THREAD_STATE = 14;
+            internal const int OUT_OF_MEMORY = 15;
         }
 
         internal static class Ui
@@ -47,6 +46,8 @@ namespace PI
                     internal const int CURVE_TYPE_PATTERN = 1;
                     internal const string CURVE_TYPE_NOT_SELECTED_TEXT = "You must choose a curve type from 'Dataset control' section.";
                     internal const string CURVE_TYPE_NOT_SELECTED_CAPTION = "Prerequisite not matched!";
+                    internal const string SELECTED_CURVE_SERIES_TEXT = "Any curve has not been generated yet.";
+                    internal const string SELECTED_CURVE_SERIES_CAPTION = "Data selection problem";
                 }
 
                 internal static class Program

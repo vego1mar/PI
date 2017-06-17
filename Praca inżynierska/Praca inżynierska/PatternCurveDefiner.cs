@@ -38,7 +38,6 @@ namespace PI
 
         private void SelectChosenCurveTab()
         {
-            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
             WinFormsHelper.SelectTabSafe( uiCnt_TbCtrl, ChosenCurve );
 
             switch ( ChosenCurve ) {
@@ -55,7 +54,6 @@ namespace PI
 
         private void UpdateUiByParametersValues()
         {
-            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
             WinFormsHelper.SetValue( uiCntPol_a_Num, PreSets.Pcd.ParameterA );
             WinFormsHelper.SetValue( uiCntPol_b_Num, PreSets.Pcd.ParameterB );
             WinFormsHelper.SetValue( uiCntPol_c_Num, PreSets.Pcd.ParameterC );
@@ -68,7 +66,6 @@ namespace PI
         private void UiTabs_Polynomial_Click( object sender, EventArgs e )
         {
             ChosenCurve = Constants.Ui.Panel.Generate.SCAFFOLD_POLYNOMIAL;
-            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
             WinFormsHelper.SelectTabSafe( uiCnt_TbCtrl, Constants.Ui.Panel.Generate.SCAFFOLD_POLYNOMIAL );
             uiTabs_Pol_Btn.BackColor = System.Drawing.Color.GhostWhite;
             uiTabs_Hyp_Btn.BackColor = System.Drawing.Color.White;
@@ -77,7 +74,6 @@ namespace PI
         private void UiTabs_Hyperbolic_Click( object sender, EventArgs e )
         {
             ChosenCurve = Constants.Ui.Panel.Generate.SCAFFOLD_HYPERBOLIC;
-            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
             WinFormsHelper.SelectTabSafe( uiCnt_TbCtrl, Constants.Ui.Panel.Generate.SCAFFOLD_HYPERBOLIC );
             uiTabs_Hyp_Btn.BackColor = System.Drawing.Color.GhostWhite;
             uiTabs_Pol_Btn.BackColor = System.Drawing.Color.White;
@@ -85,38 +81,28 @@ namespace PI
 
         private void UiConfirmationPanel_Cancel_Click( object sender, EventArgs e )
         {
-            Logger.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
             try {
                 DialogResult = DialogResult.Cancel;
             }
             catch ( System.ComponentModel.InvalidEnumArgumentException x ) {
-                Logger.WriteException( x );
+                Logger.WriteException( x, LoggerSection.PatternCurveDefiner );
             }
             catch ( Exception x ) {
-                Logger.WriteException( x );
-            }
-            finally {
-                Logger.Context = string.Empty;
+                Logger.WriteException( x, LoggerSection.PatternCurveDefiner );
             }
         }
 
         private void UiConfirmationPanel_Ok_Click( object sender, EventArgs e )
         {
-            Logger.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
             try {
                 DialogResult = DialogResult.OK;
                 SaveParametersWhileClosingDialog();
             }
             catch ( System.ComponentModel.InvalidEnumArgumentException x ) {
-                Logger.WriteException( x );
+                Logger.WriteException( x, LoggerSection.PatternCurveDefiner );
             }
             catch ( Exception x ) {
-                Logger.WriteException( x );
-            }
-            finally {
-                Logger.Context = string.Empty;
+                Logger.WriteException( x, LoggerSection.PatternCurveDefiner );
             }
         }
 
@@ -134,7 +120,6 @@ namespace PI
 
         private void SaveParametersForPolynomialPatternCurve()
         {
-            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
             ParameterA = WinFormsHelper.GetValue<double>( uiCntPol_a_Num );
             ParameterB = WinFormsHelper.GetValue<double>( uiCntPol_b_Num );
             ParameterC = WinFormsHelper.GetValue<double>( uiCntPol_c_Num );
@@ -145,15 +130,12 @@ namespace PI
 
         private void SaveParametersForHyperbolicPatternCurve()
         {
-            WinFormsHelper.Context = System.Reflection.MethodBase.GetCurrentMethod().Name;
             double userValue = WinFormsHelper.GetValue<double>( uiCntHyp_g_Num );
 
             // Checking 'decimal' value, not 'double'.
             // Four zeros after decimal separator are revelant here, not floating-point precision.
             if ( userValue == 0.0000 ) {
-                string text = Constants.Pcd.Hyperbolic.PARAMS_ZERO_DIVISION_TEXT;
-                string caption = Constants.Pcd.Hyperbolic.PARAMS_ZERO_DIVISION_CAPTION;
-                WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+                MsgBxShower.Pcd.DivisionByZeroProblem();
                 userValue = 0.0001;
             }
 

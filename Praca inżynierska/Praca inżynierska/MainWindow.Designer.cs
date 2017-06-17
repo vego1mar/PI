@@ -1036,7 +1036,7 @@
             this.uiMenuPrg_Exit.Name = "uiMenuPrg_Exit";
             this.uiMenuPrg_Exit.Size = new System.Drawing.Size(98, 22);
             this.uiMenuPrg_Exit.Text = "Exit";
-            this.uiMenuPrg_Exit.Click += new System.EventHandler(this.UiMenuPrg_Exit_Click);
+            this.uiMenuPrg_Exit.Click += new System.EventHandler(this.UiMenuProgram_Exit_Click);
             // 
             // uiMw_SpCtn
             // 
