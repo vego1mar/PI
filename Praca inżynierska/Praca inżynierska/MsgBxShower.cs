@@ -39,6 +39,39 @@ namespace PI
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Stop );
             }
 
+            internal static void PointsNotValidToChartProblem()
+            {
+                string text = Constants.Ui.Charts.GENERATING_WARN_TEXT;
+                string caption = Constants.Ui.Charts.GENERATING_WARN_CAPTION;
+                WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+            }
+
+        }
+
+        internal static class Menu
+        {
+
+            internal static void CannotDownloadUpdateInfoProblem()
+            {
+                string text = Constants.Ui.Menu.DOWNLOADING_UPDATE_INFO_ERR_TEXT;
+                string caption = Constants.Ui.Menu.DOWNLOADING_UPDATE_INFO_ERR_CAPTION;
+                WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+            }
+
+            internal static void RunningLatestReleaseAppInfo()
+            {
+                string text = Constants.Ui.Menu.RUNNING_LATEST_APP_TEXT;
+                string caption = Constants.Ui.Menu.RUNNING_LATEST_APP_CAPTION;
+                WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Information );
+            }
+
+            internal static void RunningObsoleteAppInfo()
+            {
+                string text = Constants.Ui.Menu.RUNNING_OBSOLETE_APP_TEXT;
+                string caption = Constants.Ui.Menu.RUNNING_OBSOLETE_APP_CAPTION;
+                WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Information );
+            }
+
         }
 
         internal static class Dsv

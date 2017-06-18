@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using System.Windows.Forms;
 
 namespace PI
@@ -13,10 +12,10 @@ namespace PI
                 tabControl.SelectTab( index );
             }
             catch ( ArgumentOutOfRangeException x ) {
-                Logger.WriteException( x, LoggerSection.WinFormsHelper );
+                Logger.WriteException( x );
             }
             catch ( Exception x ) {
-                Logger.WriteException( x, LoggerSection.WinFormsHelper );
+                Logger.WriteException( x );
             }
         }
 
@@ -26,15 +25,15 @@ namespace PI
                 window.ShowDialog( owner );
             }
             catch ( ArgumentException x ) {
-                Logger.WriteException( x, LoggerSection.WinFormsHelper );
+                Logger.WriteException( x );
                 return false;
             }
             catch ( InvalidOperationException x ) {
-                Logger.WriteException( x, LoggerSection.WinFormsHelper );
+                Logger.WriteException( x );
                 return false;
             }
             catch ( Exception x ) {
-                Logger.WriteException( x, LoggerSection.WinFormsHelper );
+                Logger.WriteException( x );
                 return false;
             }
 
@@ -49,10 +48,10 @@ namespace PI
                 selectedIndex = comboBox.SelectedIndex;
             }
             catch ( ArgumentOutOfRangeException x ) {
-                Logger.WriteException( x, LoggerSection.WinFormsHelper );
+                Logger.WriteException( x );
             }
             catch ( Exception x ) {
-                Logger.WriteException( x, LoggerSection.WinFormsHelper );
+                Logger.WriteException( x );
             }
 
             return selectedIndex;
@@ -66,22 +65,22 @@ namespace PI
                 value = (T) (Convert.ChangeType( numeric.Value, typeof( T ) ));
             }
             catch ( InvalidCastException x ) {
-                Logger.WriteException( x, LoggerSection.WinFormsHelper );
+                Logger.WriteException( x );
             }
             catch ( FormatException x ) {
-                Logger.WriteException( x, LoggerSection.WinFormsHelper );
+                Logger.WriteException( x );
             }
             catch ( OverflowException x ) {
-                Logger.WriteException( x, LoggerSection.WinFormsHelper );
+                Logger.WriteException( x );
             }
             catch ( ArgumentOutOfRangeException x ) {
-                Logger.WriteException( x, LoggerSection.WinFormsHelper );
+                Logger.WriteException( x );
             }
             catch ( ArgumentNullException x ) {
-                Logger.WriteException( x, LoggerSection.WinFormsHelper );
+                Logger.WriteException( x );
             }
             catch ( Exception x ) {
-                Logger.WriteException( x, LoggerSection.WinFormsHelper );
+                Logger.WriteException( x );
             }
 
             return value;
@@ -93,13 +92,13 @@ namespace PI
                 numeric.Value = Convert.ToDecimal( value );
             }
             catch ( OverflowException x ) {
-                Logger.WriteException( x, LoggerSection.WinFormsHelper );
+                Logger.WriteException( x );
             }
             catch ( ArgumentOutOfRangeException x ) {
-                Logger.WriteException( x, LoggerSection.WinFormsHelper );
+                Logger.WriteException( x );
             }
             catch ( Exception x ) {
-                Logger.WriteException( x, LoggerSection.WinFormsHelper );
+                Logger.WriteException( x );
             }
         }
 
@@ -109,10 +108,10 @@ namespace PI
                 trackBar.Value = value;
             }
             catch ( ArgumentException x ) {
-                Logger.WriteException( x, LoggerSection.WinFormsHelper );
+                Logger.WriteException( x );
             }
             catch ( Exception x ) {
-                Logger.WriteException( x, LoggerSection.WinFormsHelper );
+                Logger.WriteException( x );
             }
         }
 
@@ -124,10 +123,10 @@ namespace PI
                 value = trackBar.Value;
             }
             catch ( ArgumentException x ) {
-                Logger.WriteException( x, LoggerSection.WinFormsHelper );
+                Logger.WriteException( x );
             }
             catch ( Exception x ) {
-                Logger.WriteException( x, LoggerSection.WinFormsHelper );
+                Logger.WriteException( x );
             }
 
             return value;
@@ -139,15 +138,15 @@ namespace PI
                 MessageBox.Show( text, caption, buttons, icon );
             }
             catch ( System.ComponentModel.InvalidEnumArgumentException x ) {
-                Logger.WriteException( x, LoggerSection.WinFormsHelper );
+                Logger.WriteException( x );
                 return Constants.Exceptions.INVALID_ENUM_ARGUMENT;
             }
             catch ( InvalidOperationException x ) {
-                Logger.WriteException( x, LoggerSection.WinFormsHelper );
+                Logger.WriteException( x );
                 return Constants.Exceptions.INVALID_OPERATION;
             }
             catch ( Exception x ) {
-                Logger.WriteException( x, LoggerSection.WinFormsHelper );
+                Logger.WriteException( x );
                 return Constants.Exceptions.EXCEPTION;
             }
 
@@ -162,23 +161,23 @@ namespace PI
                 value = (T) (Convert.ChangeType( textBox.Text, typeof( T ) ));
             }
             catch ( InvalidCastException x ) {
-                Logger.WriteException( x, LoggerSection.WinFormsHelper );
+                Logger.WriteException( x );
                 return false;
             }
             catch ( FormatException x ) {
-                Logger.WriteException( x, LoggerSection.WinFormsHelper );
+                Logger.WriteException( x );
                 return false;
             }
             catch ( OverflowException x ) {
-                Logger.WriteException( x, LoggerSection.WinFormsHelper );
+                Logger.WriteException( x );
                 return false;
             }
             catch ( ArgumentNullException x ) {
-                Logger.WriteException( x, LoggerSection.WinFormsHelper );
+                Logger.WriteException( x );
                 return false;
             }
             catch ( Exception x ) {
-                Logger.WriteException( x, LoggerSection.WinFormsHelper );
+                Logger.WriteException( x );
                 return false;
             }
 
@@ -193,10 +192,10 @@ namespace PI
                 rowStyle = new RowStyle( sizeType, height );
             }
             catch ( ArgumentOutOfRangeException x ) {
-                Logger.WriteException( x, LoggerSection.WinFormsHelper );
+                Logger.WriteException( x );
             }
             catch ( Exception x ) {
-                Logger.WriteException( x, LoggerSection.WinFormsHelper );
+                Logger.WriteException( x );
             }
 
             return rowStyle;

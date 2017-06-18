@@ -13,13 +13,13 @@ namespace PI
                 version = System.Diagnostics.FileVersionInfo.GetVersionInfo( typeof( int ).Assembly.Location ).ProductVersion;
             }
             catch ( NotSupportedException x ) {
-                Logger.WriteException( x, LoggerSection.SysInfoHelper );
+                Logger.WriteException( x );
             }
             catch ( System.IO.FileNotFoundException x ) {
-                Logger.WriteException( x, LoggerSection.SysInfoHelper );
+                Logger.WriteException( x );
             }
             catch ( Exception x ) {
-                Logger.WriteException( x, LoggerSection.SysInfoHelper );
+                Logger.WriteException( x );
             }
 
             return version;
@@ -33,10 +33,10 @@ namespace PI
                 osVersion = Environment.OSVersion.Version.ToString();
             }
             catch ( InvalidOperationException x ) {
-                Logger.WriteException( x, LoggerSection.SysInfoHelper );
+                Logger.WriteException( x );
             }
             catch ( Exception x ) {
-                Logger.WriteException( x, LoggerSection.SysInfoHelper );
+                Logger.WriteException( x );
             }
 
             return osVersion;

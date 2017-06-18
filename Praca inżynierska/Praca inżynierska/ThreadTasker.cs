@@ -12,19 +12,19 @@ namespace PI
                 thread.Start();
             }
             catch ( ObjectDisposedException x ) {
-                Logger.WriteException( x, LoggerSection.ThreadTasker );
+                Logger.WriteException( x );
                 return Constants.Exceptions.OBJECT_DISPOSED;
             }
             catch ( ThreadStateException x ) {
-                Logger.WriteException( x, LoggerSection.ThreadTasker );
+                Logger.WriteException( x );
                 return Constants.Exceptions.THREAD_STATE;
             }
             catch ( OutOfMemoryException x ) {
-                Logger.WriteException( x, LoggerSection.ThreadTasker );
+                Logger.WriteException( x );
                 return Constants.Exceptions.OUT_OF_MEMORY;
             }
             catch ( Exception x ) {
-                Logger.WriteException( x, LoggerSection.ThreadTasker );
+                Logger.WriteException( x );
                 return Constants.Exceptions.EXCEPTION;
             }
 

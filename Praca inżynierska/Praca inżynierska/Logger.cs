@@ -5,20 +5,6 @@ using System.Globalization;
 namespace PI
 {
 
-    internal enum LoggerSection
-    {
-        General,
-        Logger,
-        UiMainWindow,
-        WinFormsHelper,
-        ThreadTasker,
-        CurvesDataSet,
-        PatternCurveDefiner,
-        DataSetViewer,
-        SysInfoHelper,
-        StringFormatter
-    }
-
     static class Logger
     {
 
@@ -108,7 +94,7 @@ namespace PI
             return 0;
         }
 
-        public static int WriteException( Exception x, LoggerSection section )
+        public static int WriteException( Exception x )
         {
             NumberOfLoggedExceptions++;
 
@@ -116,7 +102,6 @@ namespace PI
             Write( Environment.NewLine + Environment.NewLine +
                     DateTime.Now.ToString( CultureInfo.InvariantCulture ) + Environment.NewLine +
                    "EXCEPTION TYPE: " + x.GetType() + Environment.NewLine +
-                   "PROVIDED SECTION: " + section.ToString() + Environment.NewLine +
                    "STACK TRACE:" + Environment.NewLine + x.StackTrace + Environment.NewLine +
                    "MESSAGE:" + Environment.NewLine + x.Message + Environment.NewLine +
                    "SOURCE: " + x.Source + Environment.NewLine +
@@ -130,10 +115,10 @@ namespace PI
                 LogWriter.Close();
             }
             catch ( System.Text.EncoderFallbackException x ) {
-                WriteException( x, LoggerSection.Logger );
+                WriteException( x );
             }
             catch ( Exception x ) {
-                WriteException( x, LoggerSection.Logger );
+                WriteException( x );
             }
         }
 
@@ -145,10 +130,10 @@ namespace PI
                 fullPath = ((FileStream) (LogWriter.BaseStream)).Name;
             }
             catch ( InvalidCastException x ) {
-                WriteException( x, LoggerSection.Logger );
+                WriteException( x );
             }
             catch ( Exception x ) {
-                WriteException( x, LoggerSection.Logger );
+                WriteException( x );
             }
 
             return fullPath;

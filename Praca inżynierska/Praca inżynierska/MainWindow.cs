@@ -1,31 +1,26 @@
 ﻿using System;
+using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
 // BACKLOG
-// TODO: Update info
 // TODO: Configuration file
 // TODO: Reading and saving set of curves from a file
 // TODO: I18N
 // TODO: Implement Gaussian noise option
 // TODO: Menu item - 'Adjust curves' for visual effects manipulations 
 // TODO: Add new pattern curve scaffold - rectangular function
-// TODO: In 'Datasheet' - showing dataset when there is no one, should be forbidden
-// TODO: In 'Datasheet' - showing dataset of pattern curve should be allowed, but alteration forbidden
-// >>>> TODO: Charts - validation after using 'Generate set'; <-2,76>, g=4.0 
 // TODO: Images - add a free expression to both curve scaffold patterns
 // TODO: Charts - density of points
-// TODO: Remove 'Malform' tab page and replace it under 'Datasheet' as a new section
-// TODO: Parameters A-G - surround by a hierarchy, both PCD & PreSets
 
 namespace PI
 {
     public partial class MainWindow : Form
     {
 
-        private Thread TimerThread { get; set; }
-        private CurvesDataset LeftChartDataset { get; set; }
+        private Thread Timer { get; set; }
+        private CurvesDataset ChartsData { get; set; }
 
         public MainWindow()
         {
@@ -35,8 +30,8 @@ namespace PI
 
         private void InitalizeFields()
         {
-            TimerThread = null;
-            LeftChartDataset = new CurvesDataset();
+            Timer = null;
+            ChartsData = new CurvesDataset();
         }
 
         private void UiMainWindow_FormClosed( object sender, FormClosedEventArgs e )
@@ -51,7 +46,7 @@ namespace PI
             UpdateUiByOsVersionName();
             UpdateUiByLogFileFullPathLocation();
             DefineTimerThread();
-            ThreadTasker.StartThreadSafe( TimerThread );
+            ThreadTasker.StartThreadSafe( Timer );
             UpdateUiByStatusOfTimerThread();
             UpdateUiByNumbersOfExceptionsCaught();
         }
@@ -63,7 +58,7 @@ namespace PI
 
         private void DefineTimerThread()
         {
-            TimerThread = new Thread( () => {
+            Timer = new Thread( () => {
                 try {
                     Thread.CurrentThread.IsBackground = true;
                     System.Timers.Timer timer = new System.Timers.Timer();
@@ -73,19 +68,19 @@ namespace PI
                     timer.Enabled = true;
                 }
                 catch ( ThreadStateException x ) {
-                    Logger.WriteException( x, LoggerSection.UiMainWindow );
+                    Logger.WriteException( x );
                 }
                 catch ( ObjectDisposedException x ) {
-                    Logger.WriteException( x, LoggerSection.UiMainWindow );
+                    Logger.WriteException( x );
                 }
                 catch ( ArgumentOutOfRangeException x ) {
-                    Logger.WriteException( x, LoggerSection.UiMainWindow );
+                    Logger.WriteException( x );
                 }
                 catch ( ArgumentException x ) {
-                    Logger.WriteException( x, LoggerSection.UiMainWindow );
+                    Logger.WriteException( x );
                 }
                 catch ( Exception x ) {
-                    Logger.WriteException( x, LoggerSection.UiMainWindow );
+                    Logger.WriteException( x );
                 }
             } );
         }
@@ -133,13 +128,13 @@ namespace PI
                 } );
             }
             catch ( ObjectDisposedException x ) {
-                Logger.WriteException( x, LoggerSection.UiMainWindow );
+                Logger.WriteException( x );
             }
             catch ( InvalidOperationException x ) {
-                Logger.WriteException( x, LoggerSection.UiMainWindow );
+                Logger.WriteException( x );
             }
             catch ( Exception x ) {
-                Logger.WriteException( x, LoggerSection.UiMainWindow );
+                Logger.WriteException( x );
             }
         }
 
@@ -152,19 +147,19 @@ namespace PI
                 } );
             }
             catch ( ObjectDisposedException x ) {
-                Logger.WriteException( x, LoggerSection.UiMainWindow );
+                Logger.WriteException( x );
             }
             catch ( InvalidOperationException x ) {
-                Logger.WriteException( x, LoggerSection.UiMainWindow );
+                Logger.WriteException( x );
             }
             catch ( Exception x ) {
-                Logger.WriteException( x, LoggerSection.UiMainWindow );
+                Logger.WriteException( x );
             }
         }
 
         private void UpdateUiByStatusOfTimerThread()
         {
-            if ( TimerThread == null ) {
+            if ( Timer == null ) {
                 uiPnlPrg_ActState2_TxtBx.Text = Constants.Ui.Panel.Program.TIMER_START_FAILURE;
             }
             else {
@@ -174,29 +169,34 @@ namespace PI
 
         private void UiPanelGenerate_Define_Click( object sender, EventArgs e )
         {
-            using ( var PCDDialog = new PatternCurveDefiner() ) {
-                WinFormsHelper.ShowDialogSafe( PCDDialog, this );
+            using ( var pcdDialog = new PatternCurveDefiner() ) {
+                WinFormsHelper.ShowDialogSafe( pcdDialog, this );
 
                 try {
-                    if ( PCDDialog.DialogResult == DialogResult.OK ) {
-                        PreSets.Pcd.ChosenScaffold = PCDDialog.ChosenCurve;
-                        PreSets.Pcd.ParameterA = PCDDialog.ParameterA;
-                        PreSets.Pcd.ParameterB = PCDDialog.ParameterB;
-                        PreSets.Pcd.ParameterC = PCDDialog.ParameterC;
-                        PreSets.Pcd.ParameterD = PCDDialog.ParameterD;
-                        PreSets.Pcd.ParameterE = PCDDialog.ParameterE;
-                        PreSets.Pcd.ParameterF = PCDDialog.ParameterF;
-                        PreSets.Pcd.ParameterG = PCDDialog.ParameterG;
+                    if ( pcdDialog.DialogResult == DialogResult.OK ) {
+                        CopyDialogPropertiesIntoPreSetsArea( pcdDialog );
                         UpdateUiByChosenScaffoldStatus();
                     }
                 }
                 catch ( System.ComponentModel.InvalidEnumArgumentException x ) {
-                    Logger.WriteException( x, LoggerSection.UiMainWindow );
+                    Logger.WriteException( x );
                 }
                 catch ( Exception x ) {
-                    Logger.WriteException( x, LoggerSection.UiMainWindow );
+                    Logger.WriteException( x );
                 }
             }
+        }
+
+        private void CopyDialogPropertiesIntoPreSetsArea( PatternCurveDefiner pcdDialog )
+        {
+            PreSets.Pcd.ChosenScaffold = pcdDialog.ChosenCurve;
+            PreSets.Pcd.Parameters.A = pcdDialog.ParameterA;
+            PreSets.Pcd.Parameters.B = pcdDialog.ParameterB;
+            PreSets.Pcd.Parameters.C = pcdDialog.ParameterC;
+            PreSets.Pcd.Parameters.D = pcdDialog.ParameterD;
+            PreSets.Pcd.Parameters.E = pcdDialog.ParameterE;
+            PreSets.Pcd.Parameters.F = pcdDialog.ParameterF;
+            PreSets.Pcd.Parameters.G = pcdDialog.ParameterG;
         }
 
         private void UpdateUiByChosenScaffoldStatus()
@@ -266,7 +266,7 @@ namespace PI
 
             GrabPreSetsForCurvesGeneration();
             GenerateAndShowPatternCurve();
-            LeftChartDataset.SpreadPatternCurveSetToGeneratedCurveSet( PreSets.Ui.NumberOfCurves );
+            ChartsData.SpreadPatternCurveSetToGeneratedCurveSet( PreSets.Ui.NumberOfCurves );
         }
 
         private void GrabPreSetsForCurvesGeneration()
@@ -287,7 +287,12 @@ namespace PI
 
         private void GenerateAndShowPatternCurve()
         {
-            if ( LeftChartDataset.GeneratePatternCurve( PreSets.Pcd.ChosenScaffold, PreSets.Ui.NumberOfPoints, PreSets.Ui.StartingXPoint ) ) {
+            if ( !ChartsData.GeneratePatternCurve( PreSets.Pcd.ChosenScaffold, PreSets.Ui.NumberOfPoints, PreSets.Ui.StartingXPoint ) ) {
+                ChartsData.RemoveInvalidPointsFromPatternCurveSet();
+                MsgBxShower.Ui.PointsNotValidToChartProblem();
+            }
+
+            if ( ChartsData.PatternCurveSet.Points.Count > 0 ) {
                 ShowPatternCurveSeriesOnChart();
             }
         }
@@ -296,7 +301,7 @@ namespace PI
         {
             try {
                 uiCharts_PtrnCrv.Series.Clear();
-                uiCharts_PtrnCrv.Series.Add( LeftChartDataset.PatternCurveSet );
+                uiCharts_PtrnCrv.Series.Add( ChartsData.PatternCurveSet );
                 uiCharts_PtrnCrv.Series[0].BorderWidth = 3;
                 uiCharts_PtrnCrv.Series[0].Color = System.Drawing.Color.Black;
                 uiCharts_PtrnCrv.ChartAreas[0].RecalculateAxesScale();
@@ -305,10 +310,10 @@ namespace PI
             }
             catch ( InvalidOperationException x ) {
                 MsgBxShower.Ui.ChartRefreshingError();
-                Logger.WriteException( x, LoggerSection.UiMainWindow );
+                Logger.WriteException( x );
             }
             catch ( Exception x ) {
-                Logger.WriteException( x, LoggerSection.UiMainWindow );
+                Logger.WriteException( x );
             }
         }
 
@@ -316,7 +321,7 @@ namespace PI
         {
             try {
                 uiCharts_PtrnCrv.Series.Clear();
-                uiCharts_PtrnCrv.Series.Add( LeftChartDataset.GeneratedCurvesSet[indexOfCurve - 1] );
+                uiCharts_PtrnCrv.Series.Add( ChartsData.GeneratedCurvesSet[indexOfCurve - 1] );
                 uiCharts_PtrnCrv.Series[0].BorderWidth = 3;
                 uiCharts_PtrnCrv.Series[0].Color = System.Drawing.Color.Crimson;
                 uiCharts_PtrnCrv.ChartAreas[0].RecalculateAxesScale();
@@ -325,14 +330,14 @@ namespace PI
             }
             catch ( InvalidOperationException x ) {
                 MsgBxShower.Ui.ChartRefreshingError();
-                Logger.WriteException( x, LoggerSection.UiMainWindow );
+                Logger.WriteException( x );
             }
             catch ( ArgumentOutOfRangeException x ) {
                 MsgBxShower.Ui.SeriesSelectionProblem();
-                Logger.WriteException( x, LoggerSection.UiMainWindow );
+                Logger.WriteException( x );
             }
             catch ( Exception x ) {
-                Logger.WriteException( x, LoggerSection.UiMainWindow );
+                Logger.WriteException( x );
             }
         }
 
@@ -398,7 +403,7 @@ namespace PI
 
                 try {
                     if ( DsvDialog.DialogResult == DialogResult.OK ) {
-                        LeftChartDataset.AbsorbSeriesPoints( DsvDialog.CurveDataSet, selectedCurveType, selectedCurveIndex );
+                        ChartsData.AbsorbSeriesPoints( DsvDialog.CurveDataSet, selectedCurveType, selectedCurveIndex );
                         uiCharts_PtrnCrv.Series.Clear();
                         uiCharts_PtrnCrv.Series.Add( DsvDialog.CurveDataSet );
                         uiCharts_PtrnCrv.Series[0].BorderWidth = 3;
@@ -410,13 +415,13 @@ namespace PI
                 }
                 catch ( InvalidOperationException x ) {
                     MsgBxShower.Ui.ChartRefreshingError();
-                    Logger.WriteException( x, LoggerSection.UiMainWindow );
+                    Logger.WriteException( x );
                 }
                 catch ( System.ComponentModel.InvalidEnumArgumentException x ) {
-                    Logger.WriteException( x, LoggerSection.UiMainWindow );
+                    Logger.WriteException( x );
                 }
                 catch ( Exception x ) {
-                    Logger.WriteException( x, LoggerSection.UiMainWindow );
+                    Logger.WriteException( x );
                 }
             }
         }
@@ -426,16 +431,16 @@ namespace PI
             try {
                 switch ( curveType ) {
                 case Constants.Ui.Panel.Datasheet.CURVE_TYPE_PATTERN:
-                    return LeftChartDataset.PatternCurveSet;
+                    return ChartsData.PatternCurveSet;
                 case Constants.Ui.Panel.Datasheet.CURVE_TYPE_GENERATED:
-                    return LeftChartDataset.GeneratedCurvesSet[curveIndex - 1];
+                    return ChartsData.GeneratedCurvesSet[curveIndex - 1];
                 }
             }
             catch ( ArgumentOutOfRangeException x ) {
-                Logger.WriteException( x, LoggerSection.UiMainWindow );
+                Logger.WriteException( x );
             }
             catch ( Exception x ) {
-                Logger.WriteException( x, LoggerSection.UiMainWindow );
+                Logger.WriteException( x );
             }
 
             return null;
@@ -444,6 +449,27 @@ namespace PI
         private void UpdateUiByLogFileFullPathLocation()
         {
             uiPnlPrg_LogPath2_TxtBx.Text = Logger.GetFullPathOfLogFileLocation();
+        }
+
+        private void UiMenuProgram_CheckUpdate_Click( object sender, EventArgs e )
+        {
+            // TODO: update this
+            string httpContent = WebHelper.GetContentThroughHttp( null );
+
+            if ( httpContent == null ) {
+                MsgBxShower.Menu.CannotDownloadUpdateInfoProblem();
+                return;
+            }
+
+            ulong currentVersion = 1010;
+            ulong latestVersion = 1000;
+
+            if ( currentVersion >= latestVersion ) {
+                MsgBxShower.Menu.RunningLatestReleaseAppInfo();
+            }
+            else {
+                MsgBxShower.Menu.RunningObsoleteAppInfo();
+            }
         }
 
     }

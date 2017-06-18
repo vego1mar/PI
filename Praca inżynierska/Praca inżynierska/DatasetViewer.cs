@@ -329,11 +329,11 @@ namespace PI
                 convertite = Convert.ToDecimal( number );
             }
             catch ( OverflowException x ) {
-                Logger.WriteException( x, LoggerSection.DataSetViewer );
+                Logger.WriteException( x );
                 return false;
             }
             catch ( Exception x ) {
-                Logger.WriteException( x, LoggerSection.DataSetViewer );
+                Logger.WriteException( x );
                 return false;
             }
 

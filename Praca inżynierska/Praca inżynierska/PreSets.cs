@@ -10,13 +10,18 @@ namespace PI
         internal static class Pcd
         {
             internal static int ChosenScaffold { get; set; } = Constants.Ui.Panel.Generate.SCAFFOLD_POLYNOMIAL;
-            internal static double ParameterA { get; set; } = 1.0;
-            internal static double ParameterB { get; set; } = 1.0;
-            internal static double ParameterC { get; set; } = 1.0;
-            internal static double ParameterD { get; set; } = 1.0;
-            internal static double ParameterE { get; set; } = 1.0;
-            internal static double ParameterF { get; set; } = 1.0;
-            internal static double ParameterG { get; set; } = 1.0;
+
+            internal static class Parameters
+            {
+                internal static double A { get; set; } = 1.0;
+                internal static double B { get; set; } = 1.0;
+                internal static double C { get; set; } = 1.0;
+                internal static double D { get; set; } = 1.0;
+                internal static double E { get; set; } = 1.0;
+                internal static double F { get; set; } = 1.0;
+                internal static double G { get; set; } = 1.0;
+            }
+
         }
 
         internal static class Ui

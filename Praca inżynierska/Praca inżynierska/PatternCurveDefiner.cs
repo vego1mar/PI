@@ -27,13 +27,13 @@ namespace PI
         private void DefinePropertiesInitialValues()
         {
             ChosenCurve = PreSets.Pcd.ChosenScaffold;
-            ParameterA = PreSets.Pcd.ParameterA;
-            ParameterB = PreSets.Pcd.ParameterB;
-            ParameterC = PreSets.Pcd.ParameterC;
-            ParameterD = PreSets.Pcd.ParameterD;
-            ParameterE = PreSets.Pcd.ParameterE;
-            ParameterF = PreSets.Pcd.ParameterF;
-            ParameterG = PreSets.Pcd.ParameterG;
+            ParameterA = PreSets.Pcd.Parameters.A;
+            ParameterB = PreSets.Pcd.Parameters.B;
+            ParameterC = PreSets.Pcd.Parameters.C;
+            ParameterD = PreSets.Pcd.Parameters.D;
+            ParameterE = PreSets.Pcd.Parameters.E;
+            ParameterF = PreSets.Pcd.Parameters.F;
+            ParameterG = PreSets.Pcd.Parameters.G;
         }
 
         private void SelectChosenCurveTab()
@@ -54,13 +54,13 @@ namespace PI
 
         private void UpdateUiByParametersValues()
         {
-            WinFormsHelper.SetValue( uiCntPol_a_Num, PreSets.Pcd.ParameterA );
-            WinFormsHelper.SetValue( uiCntPol_b_Num, PreSets.Pcd.ParameterB );
-            WinFormsHelper.SetValue( uiCntPol_c_Num, PreSets.Pcd.ParameterC );
-            WinFormsHelper.SetValue( uiCntPol_d_Num, PreSets.Pcd.ParameterD );
-            WinFormsHelper.SetValue( uiCntPol_e_Num, PreSets.Pcd.ParameterE );
-            WinFormsHelper.SetValue( uiCntPol_f_Num, PreSets.Pcd.ParameterF );
-            WinFormsHelper.SetValue( uiCntHyp_g_Num, PreSets.Pcd.ParameterG );
+            WinFormsHelper.SetValue( uiCntPol_a_Num, PreSets.Pcd.Parameters.A );
+            WinFormsHelper.SetValue( uiCntPol_b_Num, PreSets.Pcd.Parameters.B );
+            WinFormsHelper.SetValue( uiCntPol_c_Num, PreSets.Pcd.Parameters.C );
+            WinFormsHelper.SetValue( uiCntPol_d_Num, PreSets.Pcd.Parameters.D );
+            WinFormsHelper.SetValue( uiCntPol_e_Num, PreSets.Pcd.Parameters.E );
+            WinFormsHelper.SetValue( uiCntPol_f_Num, PreSets.Pcd.Parameters.F );
+            WinFormsHelper.SetValue( uiCntHyp_g_Num, PreSets.Pcd.Parameters.G );
         }
 
         private void UiTabs_Polynomial_Click( object sender, EventArgs e )
@@ -85,10 +85,10 @@ namespace PI
                 DialogResult = DialogResult.Cancel;
             }
             catch ( System.ComponentModel.InvalidEnumArgumentException x ) {
-                Logger.WriteException( x, LoggerSection.PatternCurveDefiner );
+                Logger.WriteException( x );
             }
             catch ( Exception x ) {
-                Logger.WriteException( x, LoggerSection.PatternCurveDefiner );
+                Logger.WriteException( x );
             }
         }
 
@@ -99,10 +99,10 @@ namespace PI
                 SaveParametersWhileClosingDialog();
             }
             catch ( System.ComponentModel.InvalidEnumArgumentException x ) {
-                Logger.WriteException( x, LoggerSection.PatternCurveDefiner );
+                Logger.WriteException( x );
             }
             catch ( Exception x ) {
-                Logger.WriteException( x, LoggerSection.PatternCurveDefiner );
+                Logger.WriteException( x );
             }
         }
 

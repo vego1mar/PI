@@ -14,13 +14,13 @@ namespace PI
                 result = string.Format( format, argument );
             }
             catch ( FormatException x ) {
-                Logger.WriteException( x, LoggerSection.StringFormatter );
+                Logger.WriteException( x );
             }
             catch ( ArgumentNullException x ) {
-                Logger.WriteException( x, LoggerSection.StringFormatter );
+                Logger.WriteException( x );
             }
             catch ( Exception x ) {
-                Logger.WriteException( x, LoggerSection.StringFormatter );
+                Logger.WriteException( x );
             }
 
             return result;

@@ -62,7 +62,20 @@ namespace PI
             {
                 internal const string REFRESHING_ERR_TEXT = "A problem occured when trying to refresh a chart or recalculating axes scales.";
                 internal const string REFRESHING_ERR_CAPTION = "Invalidating error";
+                internal const string GENERATING_WARN_TEXT = "Some of the generated points are not valid to display them on a chart. Those points will be removed from the set.";
+                internal const string GENERATING_WARN_CAPTION = "Generating points warning";
             }
+
+            internal static class Menu
+            {
+                internal const string DOWNLOADING_UPDATE_INFO_ERR_TEXT = "Cannot download update info due to some error.";
+                internal const string DOWNLOADING_UPDATE_INFO_ERR_CAPTION = "Web connection problem";
+                internal const string RUNNING_LATEST_APP_TEXT = "You're running the latest version.";
+                internal const string RUNNING_LATEST_APP_CAPTION = "Up to date";
+                internal const string RUNNING_OBSOLETE_APP_TEXT = "There is a newer version of this app. Visit https://github.com/vego1mar/PI.";
+                internal const string RUNNING_OBSOLETE_APP_CAPTION = "Update available";
+            }
+
         }
 
         internal static class Dsv
