@@ -13,7 +13,9 @@ namespace PI
         public double ParameterD { get; private set; }
         public double ParameterE { get; private set; }
         public double ParameterF { get; private set; }
+        public double ParameterI { get; private set; } 
         public double ParameterG { get; private set; }
+        public double ParameterJ { get; private set; }
 
         public PatternCurveDefiner()
         {
@@ -33,7 +35,9 @@ namespace PI
             ParameterD = PreSets.Pcd.Parameters.D;
             ParameterE = PreSets.Pcd.Parameters.E;
             ParameterF = PreSets.Pcd.Parameters.F;
+            ParameterI = PreSets.Pcd.Parameters.I;
             ParameterG = PreSets.Pcd.Parameters.G;
+            ParameterJ = PreSets.Pcd.Parameters.J;
         }
 
         private void SelectChosenCurveTab()
@@ -60,7 +64,9 @@ namespace PI
             WinFormsHelper.SetValue( uiCntPol_d_Num, PreSets.Pcd.Parameters.D );
             WinFormsHelper.SetValue( uiCntPol_e_Num, PreSets.Pcd.Parameters.E );
             WinFormsHelper.SetValue( uiCntPol_f_Num, PreSets.Pcd.Parameters.F );
+            WinFormsHelper.SetValue( uiCntPol_i_Num, PreSets.Pcd.Parameters.I );
             WinFormsHelper.SetValue( uiCntHyp_g_Num, PreSets.Pcd.Parameters.G );
+            WinFormsHelper.SetValue( uiCntHyp_j_Num, PreSets.Pcd.Parameters.J );
         }
 
         private void UiTabs_Polynomial_Click( object sender, EventArgs e )
@@ -126,6 +132,7 @@ namespace PI
             ParameterD = WinFormsHelper.GetValue<double>( uiCntPol_d_Num );
             ParameterE = WinFormsHelper.GetValue<double>( uiCntPol_e_Num );
             ParameterF = WinFormsHelper.GetValue<double>( uiCntPol_f_Num );
+            ParameterI = WinFormsHelper.GetValue<double>( uiCntPol_i_Num );
         }
 
         private void SaveParametersForHyperbolicPatternCurve()
@@ -140,6 +147,7 @@ namespace PI
             }
 
             ParameterG = userValue;
+            ParameterJ = WinFormsHelper.GetValue<double>( uiCntHyp_j_Num );
         }
 
     }

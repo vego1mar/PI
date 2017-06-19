@@ -19,7 +19,9 @@ namespace PI
                 internal static double D { get; set; } = 1.0;
                 internal static double E { get; set; } = 1.0;
                 internal static double F { get; set; } = 1.0;
+                internal static double I { get; set; } = 0.0;
                 internal static double G { get; set; } = 1.0;
+                internal static double J { get; set; } = 0.0;
             }
 
         }

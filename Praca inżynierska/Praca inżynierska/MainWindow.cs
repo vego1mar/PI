@@ -7,11 +7,12 @@ using System.Windows.Forms.DataVisualization.Charting;
 // TODO: Configuration file
 // TODO: Reading and saving set of curves from a file
 // TODO: I18N
-// TODO: Implement Gaussian noise option
 // TODO: Menu item - 'Adjust curves' for visual effects manipulations 
+// TODO: Rearrange Dsv dialog to use db context for efficienty
+// TODO: Implement Gaussian noise option
 // TODO: Add new pattern curve scaffold - rectangular function
-// TODO: Images - add a free expression to both curve scaffold patterns
-// TODO: Charts - density of points
+// TODO: Generate/Charts - change 'Interval' control
+// TODO: Charts - density of points (points per unit)
 
 namespace PI
 {
@@ -195,7 +196,9 @@ namespace PI
             PreSets.Pcd.Parameters.D = pcdDialog.ParameterD;
             PreSets.Pcd.Parameters.E = pcdDialog.ParameterE;
             PreSets.Pcd.Parameters.F = pcdDialog.ParameterF;
+            PreSets.Pcd.Parameters.I = pcdDialog.ParameterI;
             PreSets.Pcd.Parameters.G = pcdDialog.ParameterG;
+            PreSets.Pcd.Parameters.J = pcdDialog.ParameterJ;
         }
 
         private void UpdateUiByChosenScaffoldStatus()

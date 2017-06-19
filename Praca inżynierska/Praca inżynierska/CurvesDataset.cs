@@ -55,7 +55,7 @@ namespace PI
                 double offset = startingXPoint + i - 1;
                 double leftFraction = (PreSets.Pcd.Parameters.A * Math.Pow( offset, PreSets.Pcd.Parameters.B )) / PreSets.Pcd.Parameters.C;
                 double rightFraction = (PreSets.Pcd.Parameters.D * Math.Pow( offset, PreSets.Pcd.Parameters.E )) / PreSets.Pcd.Parameters.F;
-                double polynomial = leftFraction + rightFraction;
+                double polynomial = leftFraction + rightFraction + PreSets.Pcd.Parameters.I;
                 PatternCurveSet.Points.AddXY( offset, polynomial );
             }
         }
@@ -69,7 +69,7 @@ namespace PI
                 double offset = startingXPoint + i - 1;
                 double numerator = Math.Pow( Math.E, offset ) - Math.Pow( Math.E, -offset );
                 double fraction = numerator / PreSets.Pcd.Parameters.C;
-                PatternCurveSet.Points.AddXY( offset, fraction );
+                PatternCurveSet.Points.AddXY( offset, fraction + PreSets.Pcd.Parameters.J );
             }
         }
 

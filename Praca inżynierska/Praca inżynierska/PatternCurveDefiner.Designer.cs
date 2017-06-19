@@ -47,15 +47,19 @@
             this.uiCntPol_d_Num = new System.Windows.Forms.NumericUpDown();
             this.uiCntPol_c_Num = new System.Windows.Forms.NumericUpDown();
             this.uiCntPol_d_Lb = new System.Windows.Forms.Label();
-            this.uiCntPol_PicBx = new System.Windows.Forms.PictureBox();
             this.uiCntHyp_TbPg = new System.Windows.Forms.TabPage();
             this.uiCntHyp_Params_GrBx = new System.Windows.Forms.GroupBox();
             this.uiCntHyp_g_Num = new System.Windows.Forms.NumericUpDown();
             this.uiCntHyp_g_Lb = new System.Windows.Forms.Label();
-            this.uiCntHyp_PicBx = new System.Windows.Forms.PictureBox();
             this.uiCfrm_Pnl = new System.Windows.Forms.Panel();
             this.uiCfrmPnl_Cancel_Btn = new System.Windows.Forms.Button();
             this.uiCfrmPnl_Ok_Btn = new System.Windows.Forms.Button();
+            this.uiCntPol_i_Num = new System.Windows.Forms.NumericUpDown();
+            this.uiCntPol_i_Lb = new System.Windows.Forms.Label();
+            this.uiCntPol_PicBx = new System.Windows.Forms.PictureBox();
+            this.uiCntHyp_PicBx = new System.Windows.Forms.PictureBox();
+            this.uiCntHyp_j_Num = new System.Windows.Forms.NumericUpDown();
+            this.uiCntHyp_j_Lb = new System.Windows.Forms.Label();
             this.uiTabs_Pnl.SuspendLayout();
             this.uiTabs_TblLay.SuspendLayout();
             this.uiCnt_TbCtrl.SuspendLayout();
@@ -67,12 +71,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.uiCntPol_b_Num)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiCntPol_d_Num)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiCntPol_c_Num)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uiCntPol_PicBx)).BeginInit();
             this.uiCntHyp_TbPg.SuspendLayout();
             this.uiCntHyp_Params_GrBx.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_g_Num)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_PicBx)).BeginInit();
             this.uiCfrm_Pnl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntPol_i_Num)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntPol_PicBx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_PicBx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_j_Num)).BeginInit();
             this.SuspendLayout();
             // 
             // uiTabs_Pnl
@@ -82,7 +88,7 @@
             this.uiTabs_Pnl.Dock = System.Windows.Forms.DockStyle.Left;
             this.uiTabs_Pnl.Location = new System.Drawing.Point(0, 0);
             this.uiTabs_Pnl.Name = "uiTabs_Pnl";
-            this.uiTabs_Pnl.Size = new System.Drawing.Size(200, 350);
+            this.uiTabs_Pnl.Size = new System.Drawing.Size(200, 408);
             this.uiTabs_Pnl.TabIndex = 0;
             // 
             // uiTabs_TblLay
@@ -100,7 +106,7 @@
             this.uiTabs_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.uiTabs_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.uiTabs_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.uiTabs_TblLay.Size = new System.Drawing.Size(200, 350);
+            this.uiTabs_TblLay.Size = new System.Drawing.Size(200, 408);
             this.uiTabs_TblLay.TabIndex = 0;
             // 
             // uiTabs_Hyp_Btn
@@ -139,7 +145,7 @@
             this.uiCnt_TbCtrl.Location = new System.Drawing.Point(200, 0);
             this.uiCnt_TbCtrl.Name = "uiCnt_TbCtrl";
             this.uiCnt_TbCtrl.SelectedIndex = 0;
-            this.uiCnt_TbCtrl.Size = new System.Drawing.Size(545, 297);
+            this.uiCnt_TbCtrl.Size = new System.Drawing.Size(641, 355);
             this.uiCnt_TbCtrl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.uiCnt_TbCtrl.TabIndex = 1;
             // 
@@ -150,13 +156,15 @@
             this.uiCntPol_TbPg.Location = new System.Drawing.Point(4, 5);
             this.uiCntPol_TbPg.Name = "uiCntPol_TbPg";
             this.uiCntPol_TbPg.Padding = new System.Windows.Forms.Padding(3);
-            this.uiCntPol_TbPg.Size = new System.Drawing.Size(537, 288);
+            this.uiCntPol_TbPg.Size = new System.Drawing.Size(633, 346);
             this.uiCntPol_TbPg.TabIndex = 0;
             this.uiCntPol_TbPg.Text = "Polynomial";
             this.uiCntPol_TbPg.UseVisualStyleBackColor = true;
             // 
             // uiCntPol_Params_GrBx
             // 
+            this.uiCntPol_Params_GrBx.Controls.Add(this.uiCntPol_i_Num);
+            this.uiCntPol_Params_GrBx.Controls.Add(this.uiCntPol_i_Lb);
             this.uiCntPol_Params_GrBx.Controls.Add(this.uiCntPol_a_Num);
             this.uiCntPol_Params_GrBx.Controls.Add(this.uiCntPol_f_Num);
             this.uiCntPol_Params_GrBx.Controls.Add(this.uiCntPol_a_Lb);
@@ -171,7 +179,7 @@
             this.uiCntPol_Params_GrBx.Controls.Add(this.uiCntPol_d_Lb);
             this.uiCntPol_Params_GrBx.Location = new System.Drawing.Point(19, 151);
             this.uiCntPol_Params_GrBx.Name = "uiCntPol_Params_GrBx";
-            this.uiCntPol_Params_GrBx.Size = new System.Drawing.Size(488, 120);
+            this.uiCntPol_Params_GrBx.Size = new System.Drawing.Size(596, 174);
             this.uiCntPol_Params_GrBx.TabIndex = 13;
             this.uiCntPol_Params_GrBx.TabStop = false;
             this.uiCntPol_Params_GrBx.Text = "Parameters";
@@ -179,7 +187,7 @@
             // uiCntPol_a_Num
             // 
             this.uiCntPol_a_Num.DecimalPlaces = 4;
-            this.uiCntPol_a_Num.Location = new System.Drawing.Point(77, 22);
+            this.uiCntPol_a_Num.Location = new System.Drawing.Point(118, 22);
             this.uiCntPol_a_Num.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -199,7 +207,7 @@
             // uiCntPol_f_Num
             // 
             this.uiCntPol_f_Num.DecimalPlaces = 4;
-            this.uiCntPol_f_Num.Location = new System.Drawing.Point(319, 83);
+            this.uiCntPol_f_Num.Location = new System.Drawing.Point(391, 84);
             this.uiCntPol_f_Num.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -225,7 +233,7 @@
             // 
             this.uiCntPol_a_Lb.AutoSize = true;
             this.uiCntPol_a_Lb.Font = new System.Drawing.Font("Consolas", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.uiCntPol_a_Lb.Location = new System.Drawing.Point(36, 23);
+            this.uiCntPol_a_Lb.Location = new System.Drawing.Point(77, 23);
             this.uiCntPol_a_Lb.Name = "uiCntPol_a_Lb";
             this.uiCntPol_a_Lb.Size = new System.Drawing.Size(40, 17);
             this.uiCntPol_a_Lb.TabIndex = 1;
@@ -235,7 +243,7 @@
             // 
             this.uiCntPol_f_Lb.AutoSize = true;
             this.uiCntPol_f_Lb.Font = new System.Drawing.Font("Consolas", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.uiCntPol_f_Lb.Location = new System.Drawing.Point(278, 84);
+            this.uiCntPol_f_Lb.Location = new System.Drawing.Point(350, 85);
             this.uiCntPol_f_Lb.Name = "uiCntPol_f_Lb";
             this.uiCntPol_f_Lb.Size = new System.Drawing.Size(40, 17);
             this.uiCntPol_f_Lb.TabIndex = 11;
@@ -245,7 +253,7 @@
             // 
             this.uiCntPol_b_Lb.AutoSize = true;
             this.uiCntPol_b_Lb.Font = new System.Drawing.Font("Consolas", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.uiCntPol_b_Lb.Location = new System.Drawing.Point(36, 53);
+            this.uiCntPol_b_Lb.Location = new System.Drawing.Point(77, 53);
             this.uiCntPol_b_Lb.Name = "uiCntPol_b_Lb";
             this.uiCntPol_b_Lb.Size = new System.Drawing.Size(40, 17);
             this.uiCntPol_b_Lb.TabIndex = 3;
@@ -254,7 +262,7 @@
             // uiCntPol_e_Num
             // 
             this.uiCntPol_e_Num.DecimalPlaces = 4;
-            this.uiCntPol_e_Num.Location = new System.Drawing.Point(319, 53);
+            this.uiCntPol_e_Num.Location = new System.Drawing.Point(391, 54);
             this.uiCntPol_e_Num.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -269,7 +277,7 @@
             // uiCntPol_b_Num
             // 
             this.uiCntPol_b_Num.DecimalPlaces = 4;
-            this.uiCntPol_b_Num.Location = new System.Drawing.Point(77, 52);
+            this.uiCntPol_b_Num.Location = new System.Drawing.Point(118, 52);
             this.uiCntPol_b_Num.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -285,7 +293,7 @@
             // 
             this.uiCntPol_e_Lb.AutoSize = true;
             this.uiCntPol_e_Lb.Font = new System.Drawing.Font("Consolas", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.uiCntPol_e_Lb.Location = new System.Drawing.Point(278, 54);
+            this.uiCntPol_e_Lb.Location = new System.Drawing.Point(350, 55);
             this.uiCntPol_e_Lb.Name = "uiCntPol_e_Lb";
             this.uiCntPol_e_Lb.Size = new System.Drawing.Size(40, 17);
             this.uiCntPol_e_Lb.TabIndex = 9;
@@ -295,7 +303,7 @@
             // 
             this.uiCntPol_c_Lb.AutoSize = true;
             this.uiCntPol_c_Lb.Font = new System.Drawing.Font("Consolas", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.uiCntPol_c_Lb.Location = new System.Drawing.Point(36, 83);
+            this.uiCntPol_c_Lb.Location = new System.Drawing.Point(77, 83);
             this.uiCntPol_c_Lb.Name = "uiCntPol_c_Lb";
             this.uiCntPol_c_Lb.Size = new System.Drawing.Size(40, 17);
             this.uiCntPol_c_Lb.TabIndex = 5;
@@ -304,7 +312,7 @@
             // uiCntPol_d_Num
             // 
             this.uiCntPol_d_Num.DecimalPlaces = 4;
-            this.uiCntPol_d_Num.Location = new System.Drawing.Point(319, 23);
+            this.uiCntPol_d_Num.Location = new System.Drawing.Point(391, 24);
             this.uiCntPol_d_Num.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -324,7 +332,7 @@
             // uiCntPol_c_Num
             // 
             this.uiCntPol_c_Num.DecimalPlaces = 4;
-            this.uiCntPol_c_Num.Location = new System.Drawing.Point(77, 82);
+            this.uiCntPol_c_Num.Location = new System.Drawing.Point(118, 82);
             this.uiCntPol_c_Num.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -350,23 +358,11 @@
             // 
             this.uiCntPol_d_Lb.AutoSize = true;
             this.uiCntPol_d_Lb.Font = new System.Drawing.Font("Consolas", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.uiCntPol_d_Lb.Location = new System.Drawing.Point(278, 24);
+            this.uiCntPol_d_Lb.Location = new System.Drawing.Point(350, 25);
             this.uiCntPol_d_Lb.Name = "uiCntPol_d_Lb";
             this.uiCntPol_d_Lb.Size = new System.Drawing.Size(40, 17);
             this.uiCntPol_d_Lb.TabIndex = 7;
             this.uiCntPol_d_Lb.Text = "d = ";
-            // 
-            // uiCntPol_PicBx
-            // 
-            this.uiCntPol_PicBx.BackColor = System.Drawing.SystemColors.Window;
-            this.uiCntPol_PicBx.Dock = System.Windows.Forms.DockStyle.Top;
-            this.uiCntPol_PicBx.Image = global::PI.Properties.Resources.Pattern_scaffold_polynomial;
-            this.uiCntPol_PicBx.Location = new System.Drawing.Point(3, 3);
-            this.uiCntPol_PicBx.Name = "uiCntPol_PicBx";
-            this.uiCntPol_PicBx.Size = new System.Drawing.Size(531, 130);
-            this.uiCntPol_PicBx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.uiCntPol_PicBx.TabIndex = 0;
-            this.uiCntPol_PicBx.TabStop = false;
             // 
             // uiCntHyp_TbPg
             // 
@@ -375,18 +371,20 @@
             this.uiCntHyp_TbPg.Location = new System.Drawing.Point(4, 5);
             this.uiCntHyp_TbPg.Name = "uiCntHyp_TbPg";
             this.uiCntHyp_TbPg.Padding = new System.Windows.Forms.Padding(3);
-            this.uiCntHyp_TbPg.Size = new System.Drawing.Size(537, 288);
+            this.uiCntHyp_TbPg.Size = new System.Drawing.Size(633, 346);
             this.uiCntHyp_TbPg.TabIndex = 1;
             this.uiCntHyp_TbPg.Text = "Hyperbolic";
             this.uiCntHyp_TbPg.UseVisualStyleBackColor = true;
             // 
             // uiCntHyp_Params_GrBx
             // 
+            this.uiCntHyp_Params_GrBx.Controls.Add(this.uiCntHyp_j_Num);
+            this.uiCntHyp_Params_GrBx.Controls.Add(this.uiCntHyp_j_Lb);
             this.uiCntHyp_Params_GrBx.Controls.Add(this.uiCntHyp_g_Num);
             this.uiCntHyp_Params_GrBx.Controls.Add(this.uiCntHyp_g_Lb);
-            this.uiCntHyp_Params_GrBx.Location = new System.Drawing.Point(144, 161);
+            this.uiCntHyp_Params_GrBx.Location = new System.Drawing.Point(117, 151);
             this.uiCntHyp_Params_GrBx.Name = "uiCntHyp_Params_GrBx";
-            this.uiCntHyp_Params_GrBx.Size = new System.Drawing.Size(251, 88);
+            this.uiCntHyp_Params_GrBx.Size = new System.Drawing.Size(390, 145);
             this.uiCntHyp_Params_GrBx.TabIndex = 9;
             this.uiCntHyp_Params_GrBx.TabStop = false;
             this.uiCntHyp_Params_GrBx.Text = "Parameters";
@@ -426,26 +424,14 @@
             this.uiCntHyp_g_Lb.TabIndex = 7;
             this.uiCntHyp_g_Lb.Text = "g = ";
             // 
-            // uiCntHyp_PicBx
-            // 
-            this.uiCntHyp_PicBx.BackColor = System.Drawing.SystemColors.Window;
-            this.uiCntHyp_PicBx.Dock = System.Windows.Forms.DockStyle.Top;
-            this.uiCntHyp_PicBx.Image = global::PI.Properties.Resources.Pattern_scaffold_hyperbolic;
-            this.uiCntHyp_PicBx.Location = new System.Drawing.Point(3, 3);
-            this.uiCntHyp_PicBx.Name = "uiCntHyp_PicBx";
-            this.uiCntHyp_PicBx.Size = new System.Drawing.Size(531, 130);
-            this.uiCntHyp_PicBx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.uiCntHyp_PicBx.TabIndex = 0;
-            this.uiCntHyp_PicBx.TabStop = false;
-            // 
             // uiCfrm_Pnl
             // 
             this.uiCfrm_Pnl.Controls.Add(this.uiCfrmPnl_Cancel_Btn);
             this.uiCfrm_Pnl.Controls.Add(this.uiCfrmPnl_Ok_Btn);
             this.uiCfrm_Pnl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.uiCfrm_Pnl.Location = new System.Drawing.Point(200, 303);
+            this.uiCfrm_Pnl.Location = new System.Drawing.Point(200, 361);
             this.uiCfrm_Pnl.Name = "uiCfrm_Pnl";
-            this.uiCfrm_Pnl.Size = new System.Drawing.Size(545, 47);
+            this.uiCfrm_Pnl.Size = new System.Drawing.Size(641, 47);
             this.uiCfrm_Pnl.TabIndex = 2;
             // 
             // uiCfrmPnl_Cancel_Btn
@@ -472,11 +458,95 @@
             this.uiCfrmPnl_Ok_Btn.UseVisualStyleBackColor = true;
             this.uiCfrmPnl_Ok_Btn.Click += new System.EventHandler(this.UiConfirmationPanel_Ok_Click);
             // 
+            // uiCntPol_i_Num
+            // 
+            this.uiCntPol_i_Num.DecimalPlaces = 4;
+            this.uiCntPol_i_Num.Location = new System.Drawing.Point(270, 125);
+            this.uiCntPol_i_Num.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.uiCntPol_i_Num.Minimum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            -2147483648});
+            this.uiCntPol_i_Num.Name = "uiCntPol_i_Num";
+            this.uiCntPol_i_Num.Size = new System.Drawing.Size(120, 20);
+            this.uiCntPol_i_Num.TabIndex = 14;
+            this.uiCntPol_i_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.uiCntPol_i_Num.ThousandsSeparator = true;
+            // 
+            // uiCntPol_i_Lb
+            // 
+            this.uiCntPol_i_Lb.AutoSize = true;
+            this.uiCntPol_i_Lb.Font = new System.Drawing.Font("Consolas", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.uiCntPol_i_Lb.Location = new System.Drawing.Point(229, 126);
+            this.uiCntPol_i_Lb.Name = "uiCntPol_i_Lb";
+            this.uiCntPol_i_Lb.Size = new System.Drawing.Size(40, 17);
+            this.uiCntPol_i_Lb.TabIndex = 13;
+            this.uiCntPol_i_Lb.Text = "i = ";
+            // 
+            // uiCntPol_PicBx
+            // 
+            this.uiCntPol_PicBx.BackColor = System.Drawing.SystemColors.Window;
+            this.uiCntPol_PicBx.Dock = System.Windows.Forms.DockStyle.Top;
+            this.uiCntPol_PicBx.Image = global::PI.Properties.Resources.Pattern_scaffold_polynomial;
+            this.uiCntPol_PicBx.Location = new System.Drawing.Point(3, 3);
+            this.uiCntPol_PicBx.Name = "uiCntPol_PicBx";
+            this.uiCntPol_PicBx.Size = new System.Drawing.Size(627, 130);
+            this.uiCntPol_PicBx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.uiCntPol_PicBx.TabIndex = 0;
+            this.uiCntPol_PicBx.TabStop = false;
+            // 
+            // uiCntHyp_PicBx
+            // 
+            this.uiCntHyp_PicBx.BackColor = System.Drawing.SystemColors.Window;
+            this.uiCntHyp_PicBx.Dock = System.Windows.Forms.DockStyle.Top;
+            this.uiCntHyp_PicBx.Image = global::PI.Properties.Resources.Pattern_scaffold_hyperbolic;
+            this.uiCntHyp_PicBx.Location = new System.Drawing.Point(3, 3);
+            this.uiCntHyp_PicBx.Name = "uiCntHyp_PicBx";
+            this.uiCntHyp_PicBx.Size = new System.Drawing.Size(627, 130);
+            this.uiCntHyp_PicBx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.uiCntHyp_PicBx.TabIndex = 0;
+            this.uiCntHyp_PicBx.TabStop = false;
+            // 
+            // uiCntHyp_j_Num
+            // 
+            this.uiCntHyp_j_Num.DecimalPlaces = 4;
+            this.uiCntHyp_j_Num.Location = new System.Drawing.Point(86, 75);
+            this.uiCntHyp_j_Num.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.uiCntHyp_j_Num.Minimum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            -2147483648});
+            this.uiCntHyp_j_Num.Name = "uiCntHyp_j_Num";
+            this.uiCntHyp_j_Num.Size = new System.Drawing.Size(120, 20);
+            this.uiCntHyp_j_Num.TabIndex = 10;
+            this.uiCntHyp_j_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.uiCntHyp_j_Num.ThousandsSeparator = true;
+            // 
+            // uiCntHyp_j_Lb
+            // 
+            this.uiCntHyp_j_Lb.AutoSize = true;
+            this.uiCntHyp_j_Lb.Font = new System.Drawing.Font("Consolas", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.uiCntHyp_j_Lb.Location = new System.Drawing.Point(44, 76);
+            this.uiCntHyp_j_Lb.Name = "uiCntHyp_j_Lb";
+            this.uiCntHyp_j_Lb.Size = new System.Drawing.Size(40, 17);
+            this.uiCntHyp_j_Lb.TabIndex = 9;
+            this.uiCntHyp_j_Lb.Text = "j = ";
+            // 
             // PatternCurveDefiner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(745, 350);
+            this.ClientSize = new System.Drawing.Size(841, 408);
             this.Controls.Add(this.uiCfrm_Pnl);
             this.Controls.Add(this.uiCnt_TbCtrl);
             this.Controls.Add(this.uiTabs_Pnl);
@@ -498,13 +568,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.uiCntPol_b_Num)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiCntPol_d_Num)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiCntPol_c_Num)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uiCntPol_PicBx)).EndInit();
             this.uiCntHyp_TbPg.ResumeLayout(false);
             this.uiCntHyp_Params_GrBx.ResumeLayout(false);
             this.uiCntHyp_Params_GrBx.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_g_Num)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_PicBx)).EndInit();
             this.uiCfrm_Pnl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntPol_i_Num)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntPol_PicBx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_PicBx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_j_Num)).EndInit();
             this.ResumeLayout(false);
 
             }
@@ -538,5 +610,9 @@
         private System.Windows.Forms.NumericUpDown uiCntHyp_g_Num;
         private System.Windows.Forms.Label uiCntHyp_g_Lb;
         private System.Windows.Forms.GroupBox uiCntPol_Params_GrBx;
-        }
+        private System.Windows.Forms.NumericUpDown uiCntPol_i_Num;
+        private System.Windows.Forms.Label uiCntPol_i_Lb;
+        private System.Windows.Forms.NumericUpDown uiCntHyp_j_Num;
+        private System.Windows.Forms.Label uiCntHyp_j_Lb;
+    }
     }
