@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -453,23 +452,62 @@ namespace PI
 
         private void UiMenuProgram_CheckUpdate_Click( object sender, EventArgs e )
         {
-            // TODO: update this
-            string httpContent = WebHelper.GetContentThroughHttp( null );
+            string httpContent = WebHelper.GetContentThroughHttp( Properties.Settings.Default["UpdateUrl"].ToString() );
 
             if ( httpContent == null ) {
                 MsgBxShower.Menu.CannotDownloadUpdateInfoProblem();
                 return;
             }
 
-            ulong currentVersion = 1010;
-            ulong latestVersion = 1000;
+            ushort currentVersion = 0;
+            ushort latestVersion = 0;
+
+            try {
+                currentVersion = Convert.ToUInt16( Properties.Settings.Default["Commits"] );
+                latestVersion = GetCommitsNumber( httpContent );
+            }
+            catch ( ArgumentNullException x ) {
+                Logger.WriteException( x );
+            }
+            catch ( ArgumentOutOfRangeException x ) {
+                Logger.WriteException( x );
+            }
+            catch ( FormatException x ) {
+                Logger.WriteException( x );
+            }
+            catch ( InvalidCastException x ) {
+                Logger.WriteException( x );
+            }
+            catch ( OverflowException x ) {
+                Logger.WriteException( x );
+            }
+            catch ( Exception x ) {
+                Logger.WriteException( x );
+            }
+            finally {
+                if ( currentVersion == 0 || latestVersion == 0 ) {
+                    MsgBxShower.Menu.CannotMatchVersionsError();
+                }
+            }
 
             if ( currentVersion >= latestVersion ) {
                 MsgBxShower.Menu.RunningLatestReleaseAppInfo();
+                return;
             }
-            else {
-                MsgBxShower.Menu.RunningObsoleteAppInfo();
-            }
+
+            MsgBxShower.Menu.RunningObsoleteAppInfo();
+        }
+
+        private ushort GetCommitsNumber( string urlContent )
+        {
+            const int NUMBER_LINE_LENGTH = 32;
+            const string SEARCH_MARKER = "<span class=\"num text-emphasized\">";
+            int markerIndex = urlContent.IndexOf( SEARCH_MARKER );
+            string commitsLine = urlContent.Substring( markerIndex + 1, SEARCH_MARKER.Length + NUMBER_LINE_LENGTH );
+            int startIndex = commitsLine.IndexOf( '\n' ) + 1;
+            int numberLength = commitsLine.LastIndexOf( '\n' ) - startIndex;
+            string commits = commitsLine.Substring( startIndex, numberLength );
+            return Convert.ToUInt16( commits );
         }
 
     }

@@ -68,12 +68,19 @@ namespace PI
 
             internal static class Menu
             {
-                internal const string DOWNLOADING_UPDATE_INFO_ERR_TEXT = "Cannot download update info due to some error.";
-                internal const string DOWNLOADING_UPDATE_INFO_ERR_CAPTION = "Web connection problem";
-                internal const string RUNNING_LATEST_APP_TEXT = "You're running the latest version.";
-                internal const string RUNNING_LATEST_APP_CAPTION = "Up to date";
-                internal const string RUNNING_OBSOLETE_APP_TEXT = "There is a newer version of this app. Visit https://github.com/vego1mar/PI.";
-                internal const string RUNNING_OBSOLETE_APP_CAPTION = "Update available";
+
+                internal static class Update
+                {
+                    internal const string DOWNLOADING_UPDATE_INFO_ERR_TEXT = "Cannot download update info due to some error.";
+                    internal const string DOWNLOADING_UPDATE_INFO_ERR_CAPTION = "Web connection problem";
+                    internal const string RUNNING_LATEST_APP_TEXT = "You're running the latest version.";
+                    internal const string RUNNING_LATEST_APP_CAPTION = "Up-to-date";
+                    internal const string RUNNING_OBSOLETE_APP_TEXT = "There is a newer version of this app. Visit https://github.com/vego1mar/PI.";
+                    internal const string RUNNING_OBSOLETE_APP_CAPTION = "Update available";
+                    internal const string MATCHING_VERSIONS_ERR_TEXT = "An exception occured during matching current and latest versions.";
+                    internal const string MATCHING_VERSIONS_ERR_CAPTION = "Update info parsing error";
+                }
+
             }
 
         }

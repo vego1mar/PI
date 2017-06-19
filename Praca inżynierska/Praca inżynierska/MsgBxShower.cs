@@ -53,23 +53,30 @@ namespace PI
 
             internal static void CannotDownloadUpdateInfoProblem()
             {
-                string text = Constants.Ui.Menu.DOWNLOADING_UPDATE_INFO_ERR_TEXT;
-                string caption = Constants.Ui.Menu.DOWNLOADING_UPDATE_INFO_ERR_CAPTION;
+                string text = Constants.Ui.Menu.Update.DOWNLOADING_UPDATE_INFO_ERR_TEXT;
+                string caption = Constants.Ui.Menu.Update.DOWNLOADING_UPDATE_INFO_ERR_CAPTION;
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
             }
 
             internal static void RunningLatestReleaseAppInfo()
             {
-                string text = Constants.Ui.Menu.RUNNING_LATEST_APP_TEXT;
-                string caption = Constants.Ui.Menu.RUNNING_LATEST_APP_CAPTION;
+                string text = Constants.Ui.Menu.Update.RUNNING_LATEST_APP_TEXT;
+                string caption = Constants.Ui.Menu.Update.RUNNING_LATEST_APP_CAPTION;
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Information );
             }
 
             internal static void RunningObsoleteAppInfo()
             {
-                string text = Constants.Ui.Menu.RUNNING_OBSOLETE_APP_TEXT;
-                string caption = Constants.Ui.Menu.RUNNING_OBSOLETE_APP_CAPTION;
+                string text = Constants.Ui.Menu.Update.RUNNING_OBSOLETE_APP_TEXT;
+                string caption = Constants.Ui.Menu.Update.RUNNING_OBSOLETE_APP_CAPTION;
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Information );
+            }
+
+            internal static void CannotMatchVersionsError()
+            {
+                string text = Constants.Ui.Menu.Update.MATCHING_VERSIONS_ERR_TEXT;
+                string caption = Constants.Ui.Menu.Update.MATCHING_VERSIONS_ERR_CAPTION;
+                WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
             }
 
         }
