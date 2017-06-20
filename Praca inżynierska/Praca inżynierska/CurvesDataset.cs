@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Collections.Generic;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -18,58 +19,64 @@ namespace PI
         {
             PatternCurveSet = new Series();
             GeneratedCurvesSet = new List<Series>();
-            SetDefaultPropertiesForChartingSeries( PatternCurveSet, PATTERN_CURVE_SERIES_NAME );
+            SetDefaultProperties( PatternCurveSet, PATTERN_CURVE_SERIES_NAME );
         }
 
-        public static void SetDefaultPropertiesForChartingSeries( Series series, string name )
+        public static void SetDefaultProperties( Series series, string name )
         {
             series.Name = name;
-            series.Color = System.Drawing.Color.Black;
+            series.BorderWidth = 5;
+            series.ChartType = SeriesChartType.Line;
+            series.Color = Color.Black;
             series.IsVisibleInLegend = false;
             series.IsXValueIndexed = true;
-            series.ChartType = SeriesChartType.Line;
+            series.YValueType = ChartValueType.Double;
             series.YValueType = ChartValueType.Double;
             series.YValuesPerPoint = 1;
         }
 
-        public bool GeneratePatternCurve( int curveScaffoldType, int numberOfPoints, int startingXPoint )
+        public bool GeneratePatternCurve( int curveScaffoldType, double startingXPoint, double endingXPoint, int pointsDensity )
         {
             switch ( curveScaffoldType ) {
             case Constants.Ui.Panel.Generate.SCAFFOLD_POLYNOMIAL:
-                GeneratePolynomialPatternCurve( numberOfPoints, startingXPoint );
+                GeneratePolynomialPatternCurve( startingXPoint, endingXPoint, pointsDensity );
                 return IsPatternCurveSetPointsValid();
             case Constants.Ui.Panel.Generate.SCAFFOLD_HYPERBOLIC:
-                GenerateHyperbolicPatternCurve( numberOfPoints, startingXPoint );
+                GenerateHyperbolicPatternCurve( startingXPoint, endingXPoint, pointsDensity );
                 return IsPatternCurveSetPointsValid();
             }
 
             return false;
         }
 
-        private void GeneratePolynomialPatternCurve( int numberOfPoints, int startingXPoint )
+        private void GeneratePolynomialPatternCurve( double startingXPoint, double endingXPoint, int pointsDensity )
         {
             PatternCurveSet.Points.Clear();
-            SetDefaultPropertiesForChartingSeries( PatternCurveSet, PATTERN_CURVE_SERIES_NAME );
+            SetDefaultProperties( PatternCurveSet, PATTERN_CURVE_SERIES_NAME );
+            double intervalLength = endingXPoint - startingXPoint;
+            double densityUnit = intervalLength / pointsDensity;
 
-            for ( int i = 1; i <= numberOfPoints; i++ ) {
-                double offset = startingXPoint + i - 1;
-                double leftFraction = (PreSets.Pcd.Parameters.A * Math.Pow( offset, PreSets.Pcd.Parameters.B )) / PreSets.Pcd.Parameters.C;
-                double rightFraction = (PreSets.Pcd.Parameters.D * Math.Pow( offset, PreSets.Pcd.Parameters.E )) / PreSets.Pcd.Parameters.F;
+            for ( int i = 0; i <= pointsDensity; i++ ) {
+                double x = startingXPoint + (densityUnit * i);
+                double leftFraction = (PreSets.Pcd.Parameters.A * Math.Pow( x, PreSets.Pcd.Parameters.B )) / PreSets.Pcd.Parameters.C;
+                double rightFraction = (PreSets.Pcd.Parameters.D * Math.Pow( x, PreSets.Pcd.Parameters.E )) / PreSets.Pcd.Parameters.F;
                 double polynomial = leftFraction + rightFraction + PreSets.Pcd.Parameters.I;
-                PatternCurveSet.Points.AddXY( offset, polynomial );
+                PatternCurveSet.Points.AddXY( x, polynomial );
             }
         }
 
-        private void GenerateHyperbolicPatternCurve( int numberOfPoints, int startingXPoint )
+        private void GenerateHyperbolicPatternCurve( double startingXPoint, double endingXPoint, int pointsDensity )
         {
             PatternCurveSet.Points.Clear();
-            SetDefaultPropertiesForChartingSeries( PatternCurveSet, PATTERN_CURVE_SERIES_NAME );
+            SetDefaultProperties( PatternCurveSet, PATTERN_CURVE_SERIES_NAME );
+            double intervalLength = endingXPoint - startingXPoint;
+            double densityUnit = intervalLength / pointsDensity;
 
-            for ( int i = 1; i <= numberOfPoints; i++ ) {
-                double offset = startingXPoint + i - 1;
-                double numerator = Math.Pow( Math.E, offset ) - Math.Pow( Math.E, -offset );
-                double fraction = numerator / PreSets.Pcd.Parameters.C;
-                PatternCurveSet.Points.AddXY( offset, fraction + PreSets.Pcd.Parameters.J );
+            for ( int i = 0; i <= pointsDensity; i++ ) {
+                double x = startingXPoint + (densityUnit * i);
+                double numerator = Math.Pow( Math.E, x ) - Math.Pow( Math.E, -x );
+                double fraction = numerator / PreSets.Pcd.Parameters.G;
+                PatternCurveSet.Points.AddXY( x, fraction + PreSets.Pcd.Parameters.J );
             }
         }
 
@@ -111,7 +118,7 @@ namespace PI
 
             for ( int i = 0; i < numberOfCurves; i++ ) {
                 Series series = new Series();
-                SetDefaultPropertiesForChartingSeries( series, GENERATED_CURVE_SERIES_NAME + i );
+                SetDefaultProperties( series, GENERATED_CURVE_SERIES_NAME + i );
                 RecopySeriesPoints( PatternCurveSet, series );
                 GeneratedCurvesSet.Add( series );
             }
@@ -141,7 +148,7 @@ namespace PI
         public void RemoveInvalidPointsFromPatternCurveSet()
         {
             Series series = new Series();
-            SetDefaultPropertiesForChartingSeries( series, PATTERN_CURVE_SERIES_NAME + "Validated" );
+            SetDefaultProperties( series, PATTERN_CURVE_SERIES_NAME + "Validated" );
 
             for ( int i = 0; i < PatternCurveSet.Points.Count; i++ ) {
                 double x = PatternCurveSet.Points[i].XValue;
@@ -154,6 +161,39 @@ namespace PI
 
             PatternCurveSet.Points.Clear();
             RecopySeriesPoints( series, PatternCurveSet );
+        }
+
+        public static void SetDefaultProperties( Chart chart, int chartAreaIndex = 0, int legendIndex = 0, int seriesIndex = 0 )
+        {
+            chart.ChartAreas[chartAreaIndex].AxisX.IntervalType = DateTimeIntervalType.Number;
+            chart.ChartAreas[chartAreaIndex].AxisX.IsLabelAutoFit = false;
+            chart.ChartAreas[chartAreaIndex].AxisX.IsMarginVisible = false;
+            chart.ChartAreas[chartAreaIndex].AxisX.LabelAutoFitMaxFontSize = 8;
+            chart.ChartAreas[chartAreaIndex].AxisX.LabelAutoFitMinFontSize = 8;
+            chart.ChartAreas[chartAreaIndex].AxisX.LabelAutoFitStyle = LabelAutoFitStyles.None;
+            chart.ChartAreas[chartAreaIndex].AxisX.LabelStyle.Font = new Font( "Consolas", 8F );
+            chart.ChartAreas[chartAreaIndex].AxisX.MajorGrid.LineDashStyle = ChartDashStyle.Dot;
+            chart.ChartAreas[chartAreaIndex].AxisX.MajorTickMark.Enabled = false;
+            chart.ChartAreas[chartAreaIndex].AxisX.TitleFont = new Font( "Consolas", 8F );
+            chart.ChartAreas[chartAreaIndex].AxisY.IntervalType = DateTimeIntervalType.Number;
+            chart.ChartAreas[chartAreaIndex].AxisY.IsLabelAutoFit = false;
+            chart.ChartAreas[chartAreaIndex].AxisY.LabelAutoFitMaxFontSize = 8;
+            chart.ChartAreas[chartAreaIndex].AxisY.LabelStyle.Font = new Font( "Consolas", 8F );
+            chart.ChartAreas[chartAreaIndex].AxisY.MajorGrid.LineDashStyle = ChartDashStyle.Dot;
+            chart.ChartAreas[chartAreaIndex].AxisY.MajorTickMark.Enabled = false;
+            chart.ChartAreas[chartAreaIndex].AxisY.TitleFont = new Font( "Consolas", 8F );
+            chart.ChartAreas[chartAreaIndex].BackColor = Color.White;
+            chart.ChartAreas[chartAreaIndex].IsSameFontSizeForAllAxes = true;
+            chart.Legends[legendIndex].Enabled = false;
+            chart.Series[seriesIndex].BorderWidth = 5;
+            chart.Series[seriesIndex].ChartType = SeriesChartType.Line;
+            chart.Series[seriesIndex].Color = Color.Black;
+            chart.Series[seriesIndex].CustomProperties = "EmptyPointValue=Zero";
+            chart.Series[seriesIndex].Font = new Font( "Consolas", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 238 );
+            chart.Series[seriesIndex].IsVisibleInLegend = false;
+            chart.Series[seriesIndex].IsXValueIndexed = true;
+            chart.Series[seriesIndex].XValueType = ChartValueType.Double;
+            chart.Series[seriesIndex].YValueType = ChartValueType.Double;
         }
 
     }

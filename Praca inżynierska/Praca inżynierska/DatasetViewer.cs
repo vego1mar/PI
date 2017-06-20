@@ -67,9 +67,9 @@ namespace PI
         private void UpdateUiByRangesForPointIndexComponents()
         {
             uiPnl_PointIdx_Num.Minimum = 1;
-            uiPnl_PointIdx_Num.Maximum = PreSets.Ui.NumberOfPoints;
+            uiPnl_PointIdx_Num.Maximum = PreSets.Ui.PointsDensity + 1;
             uiPnl_PointIdx_TrBr.Minimum = 1;
-            uiPnl_PointIdx_TrBr.Maximum = PreSets.Ui.NumberOfPoints;
+            uiPnl_PointIdx_TrBr.Maximum = PreSets.Ui.PointsDensity + 1;
         }
 
         private void UiPanel_PointIndex_NumericUpDown_ValueChanged( object sender, EventArgs e )
@@ -343,7 +343,7 @@ namespace PI
         private Series GetCopyOfCurrentCurveSeriesPoints()
         {
             Series series = new Series();
-            CurvesDataset.SetDefaultPropertiesForChartingSeries( series, "CopyOfSeries" );
+            CurvesDataset.SetDefaultProperties( series, "CopyOfSeries" );
 
             for ( int i = 0; i < CurveDataSet.Points.Count; i++ ) {
                 series.Points.AddXY( CurveDataSet.Points[i].XValue, CurveDataSet.Points[i].YValues[0] );

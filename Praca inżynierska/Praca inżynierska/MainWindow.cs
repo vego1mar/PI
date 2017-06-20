@@ -4,15 +4,14 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
 // BACKLOG
-// TODO: Configuration file
-// TODO: Reading and saving set of curves from a file
-// TODO: I18N
-// TODO: Menu item - 'Adjust curves' for visual effects manipulations 
-// TODO: Rearrange Dsv dialog to use db context for efficienty
-// TODO: Implement Gaussian noise option
-// TODO: Add new pattern curve scaffold - rectangular function
-// TODO: Generate/Charts - change 'Interval' control
-// TODO: Charts - density of points (points per unit)
+// TODO: General - Configuration file
+// TODO: Localization - instantiating Constants
+// TODO: Menu - 'Adjust curves' for visual effects manipulations
+// TODO: Menu - Reading and saving set of curves from a file
+// TODO: Dataview - Rearrange Dsv dialog to use db context for efficiency
+// TODO: Dataview - 'Perform' is working like 'Save' because of switch into immediate alteration
+// TODO: Feature - Implement Gaussian noise option
+// TODO: Feature - New pattern curve scaffold of a rectangular function
 
 namespace PI
 {
@@ -45,6 +44,7 @@ namespace PI
             UpdateUiByDotNetFrameworkVersion();
             UpdateUiByOsVersionName();
             UpdateUiByLogFileFullPathLocation();
+            UpdateUiBySettingChartsProperties();
             DefineTimerThread();
             ThreadTasker.StartThreadSafe( Timer );
             UpdateUiByStatusOfTimerThread();
@@ -274,22 +274,19 @@ namespace PI
         private void GrabPreSetsForCurvesGeneration()
         {
             PreSets.Ui.NumberOfCurves = WinFormsHelper.GetValue<int>( uiPnlGen_Crvs1No_Num );
-            PreSets.Ui.NumberOfPoints = WinFormsHelper.GetValue<int>( uiPnlGen_PointsNo_Num );
-            PreSets.Ui.StartingXPoint = WinFormsHelper.GetValue<int>( uiPnlGen_StartX_Num );
-        }
-
-        private void UpdateUiByChartsInterval()
-        {
-            int lowerLimit = WinFormsHelper.GetValue<int>( uiPnlGen_StartX_Num );
-            int numberOfPoints = WinFormsHelper.GetValue<int>( uiPnlGen_PointsNo_Num );
-            int upperLimit = lowerLimit + numberOfPoints - 1;
-            string intervalText = '<' + lowerLimit.ToString() + ';' + upperLimit.ToString() + '>';
-            uiPnlGen_Interval2_TxtBx.Text = intervalText;
+            PreSets.Ui.StartingXPoint = WinFormsHelper.GetValue<double>( uiPnlGen_StartX_Num );
+            PreSets.Ui.EndingXPoint = WinFormsHelper.GetValue<double>( uiPnlGen_EndX_Num );
+            PreSets.Ui.PointsDensity = WinFormsHelper.GetValue<int>( uiPnlGen_Dens_Num );
         }
 
         private void GenerateAndShowPatternCurve()
         {
-            if ( !ChartsData.GeneratePatternCurve( PreSets.Pcd.ChosenScaffold, PreSets.Ui.NumberOfPoints, PreSets.Ui.StartingXPoint ) ) {
+            int scaffoldType = PreSets.Pcd.ChosenScaffold;
+            double xStart = PreSets.Ui.StartingXPoint;
+            double xEnd = PreSets.Ui.EndingXPoint;
+            int density = PreSets.Ui.PointsDensity;
+
+            if ( !ChartsData.GeneratePatternCurve( scaffoldType, xStart, xEnd, density ) ) {
                 ChartsData.RemoveInvalidPointsFromPatternCurveSet();
                 MsgBxShower.Ui.PointsNotValidToChartProblem();
             }
@@ -341,17 +338,6 @@ namespace PI
             catch ( Exception x ) {
                 Logger.WriteException( x );
             }
-        }
-
-        private void UiPanelGenerate_PointsNo_ValueChanged( object sender, EventArgs e )
-        {
-            UpdateUiByChartsInterval();
-            PreSets.Ui.NumberOfPoints = WinFormsHelper.GetValue<int>( uiPnlGen_PointsNo_Num );
-        }
-
-        private void UiPanelGenerate_StartingXPoint_ValueChanged( object sender, EventArgs e )
-        {
-            UpdateUiByChartsInterval();
         }
 
         private void UpdateUiByDotNetFrameworkVersion()
@@ -511,6 +497,12 @@ namespace PI
             int numberLength = commitsLine.LastIndexOf( '\n' ) - startIndex;
             string commits = commitsLine.Substring( startIndex, numberLength );
             return Convert.ToUInt16( commits );
+        }
+
+        private void UpdateUiBySettingChartsProperties()
+        {
+            CurvesDataset.SetDefaultProperties( uiCharts_PtrnCrv );
+            CurvesDataset.SetDefaultProperties( uiCharts_MeanCrv );
         }
 
     }
