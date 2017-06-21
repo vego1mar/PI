@@ -124,4 +124,16 @@
   <data name="Pattern_scaffold_hyperbolic" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Pictures\Pattern_scaffold_hyperbolic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Pattern_scaffold_waveform_sawtooth" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Pictures\Pattern_scaffold_waveform_sawtooth.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pattern_scaffold_waveform_sine" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Pictures\Pattern_scaffold_waveform_sine.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pattern_scaffold_waveform_square" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Pictures\Pattern_scaffold_waveform_square.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pattern_scaffold_waveform_triangle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Pictures\Pattern_scaffold_waveform_triangle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

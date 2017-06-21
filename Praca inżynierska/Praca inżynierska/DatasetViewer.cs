@@ -33,24 +33,24 @@ namespace PI
             }
 
             switch ( selectedOperationType ) {
-            case Constants.Dsv.Panel.OPERATION_TYPE_OVERRIDING:
+            case Consts.Dsv.Panel.OPERATION_TYPE_OVERRIDING:
                 isOperationValid = PerformOperationOverriding( selectedPointIndex, userValue );
                 break;
-            case Constants.Dsv.Panel.OPERATION_TYPE_ADDITION:
-            case Constants.Dsv.Panel.OPERATION_TYPE_SUBSTRACTION:
-            case Constants.Dsv.Panel.OPERATION_TYPE_MULTIPLICATION:
-            case Constants.Dsv.Panel.OPERATION_TYPE_DIVISION:
-            case Constants.Dsv.Panel.OPERATION_TYPE_EXPONENTIATION:
-            case Constants.Dsv.Panel.OPERATION_TYPE_LOGARITHMIC:
-            case Constants.Dsv.Panel.OPERATION_TYPE_ROOTING:
-            case Constants.Dsv.Panel.OPERATION_TYPE_CONSTANT:
+            case Consts.Dsv.Panel.OPERATION_TYPE_ADDITION:
+            case Consts.Dsv.Panel.OPERATION_TYPE_SUBSTRACTION:
+            case Consts.Dsv.Panel.OPERATION_TYPE_MULTIPLICATION:
+            case Consts.Dsv.Panel.OPERATION_TYPE_DIVISION:
+            case Consts.Dsv.Panel.OPERATION_TYPE_EXPONENTIATION:
+            case Consts.Dsv.Panel.OPERATION_TYPE_LOGARITHMIC:
+            case Consts.Dsv.Panel.OPERATION_TYPE_ROOTING:
+            case Consts.Dsv.Panel.OPERATION_TYPE_CONSTANT:
                 isOperationValid = PerformOperationOnSeriesPoints( userValue, selectedOperationType );
                 break;
-            case Constants.Dsv.Panel.OPERATION_TYPE_POSITIVE:
+            case Consts.Dsv.Panel.OPERATION_TYPE_POSITIVE:
                 PerformOperationPositive();
                 isOperationValid = true;
                 break;
-            case Constants.Dsv.Panel.OPERATION_TYPE_NEGATIVE:
+            case Consts.Dsv.Panel.OPERATION_TYPE_NEGATIVE:
                 PerformOperationNegative();
                 isOperationValid = true;
                 break;
@@ -201,37 +201,37 @@ namespace PI
             uiPnl_Value2_TxtBx.Enabled = true;
 
             switch ( selectedOperationType ) {
-            case Constants.Dsv.Panel.OPERATION_TYPE_CONSTANT:
-                uiPnl_Value1_TxtBx.Text = Constants.Dsv.Panel.EDIT_CONTROL_VALUE_TEXT;
+            case Consts.Dsv.Panel.OPERATION_TYPE_CONSTANT:
+                uiPnl_Value1_TxtBx.Text = Consts.Dsv.Panel.EDIT_CONTROL_VALUE_TEXT;
                 break;
-            case Constants.Dsv.Panel.OPERATION_TYPE_OVERRIDING:
+            case Consts.Dsv.Panel.OPERATION_TYPE_OVERRIDING:
                 uiPnl_PointIdx_Num.Enabled = true;
                 uiPnl_PointIdx_TrBr.Enabled = true;
-                uiPnl_Value1_TxtBx.Text = Constants.Dsv.Panel.EDIT_CONTROL_VALUE_TEXT;
+                uiPnl_Value1_TxtBx.Text = Consts.Dsv.Panel.EDIT_CONTROL_VALUE_TEXT;
                 break;
-            case Constants.Dsv.Panel.OPERATION_TYPE_ADDITION:
-                uiPnl_Value1_TxtBx.Text = Constants.Dsv.Panel.EDIT_CONTROL_ADDEND_TEXT;
+            case Consts.Dsv.Panel.OPERATION_TYPE_ADDITION:
+                uiPnl_Value1_TxtBx.Text = Consts.Dsv.Panel.EDIT_CONTROL_ADDEND_TEXT;
                 break;
-            case Constants.Dsv.Panel.OPERATION_TYPE_SUBSTRACTION:
-                uiPnl_Value1_TxtBx.Text = Constants.Dsv.Panel.EDIT_CONTROL_SUBTRAHEND_TEXT;
+            case Consts.Dsv.Panel.OPERATION_TYPE_SUBSTRACTION:
+                uiPnl_Value1_TxtBx.Text = Consts.Dsv.Panel.EDIT_CONTROL_SUBTRAHEND_TEXT;
                 break;
-            case Constants.Dsv.Panel.OPERATION_TYPE_MULTIPLICATION:
-                uiPnl_Value1_TxtBx.Text = Constants.Dsv.Panel.EDIT_CONTROL_MULTIPLIER_TEXT;
+            case Consts.Dsv.Panel.OPERATION_TYPE_MULTIPLICATION:
+                uiPnl_Value1_TxtBx.Text = Consts.Dsv.Panel.EDIT_CONTROL_MULTIPLIER_TEXT;
                 break;
-            case Constants.Dsv.Panel.OPERATION_TYPE_DIVISION:
-                uiPnl_Value1_TxtBx.Text = Constants.Dsv.Panel.EDIT_CONTROL_DIVISOR_TEXT;
+            case Consts.Dsv.Panel.OPERATION_TYPE_DIVISION:
+                uiPnl_Value1_TxtBx.Text = Consts.Dsv.Panel.EDIT_CONTROL_DIVISOR_TEXT;
                 break;
-            case Constants.Dsv.Panel.OPERATION_TYPE_EXPONENTIATION:
-                uiPnl_Value1_TxtBx.Text = Constants.Dsv.Panel.EDIT_CONTROL_EXPONENT_TEXT;
+            case Consts.Dsv.Panel.OPERATION_TYPE_EXPONENTIATION:
+                uiPnl_Value1_TxtBx.Text = Consts.Dsv.Panel.EDIT_CONTROL_EXPONENT_TEXT;
                 break;
-            case Constants.Dsv.Panel.OPERATION_TYPE_LOGARITHMIC:
-                uiPnl_Value1_TxtBx.Text = Constants.Dsv.Panel.EDIT_CONTROL_BASE_TEXT;
+            case Consts.Dsv.Panel.OPERATION_TYPE_LOGARITHMIC:
+                uiPnl_Value1_TxtBx.Text = Consts.Dsv.Panel.EDIT_CONTROL_BASE_TEXT;
                 break;
-            case Constants.Dsv.Panel.OPERATION_TYPE_ROOTING:
-                uiPnl_Value1_TxtBx.Text = Constants.Dsv.Panel.EDIT_CONTROL_LEVEL_TEXT;
+            case Consts.Dsv.Panel.OPERATION_TYPE_ROOTING:
+                uiPnl_Value1_TxtBx.Text = Consts.Dsv.Panel.EDIT_CONTROL_LEVEL_TEXT;
                 break;
-            case Constants.Dsv.Panel.OPERATION_TYPE_POSITIVE:
-            case Constants.Dsv.Panel.OPERATION_TYPE_NEGATIVE:
+            case Consts.Dsv.Panel.OPERATION_TYPE_POSITIVE:
+            case Consts.Dsv.Panel.OPERATION_TYPE_NEGATIVE:
                 uiPnl_Value2_TxtBx.Text = "0";
                 uiPnl_Value2_TxtBx.Enabled = false;
                 break;
@@ -291,28 +291,28 @@ namespace PI
             double result = userValue;
 
             switch ( operationType ) {
-            case Constants.Dsv.Panel.OPERATION_TYPE_ADDITION:
+            case Consts.Dsv.Panel.OPERATION_TYPE_ADDITION:
                 result = series.Points[pointIndex].YValues[0] + userValue;
                 break;
-            case Constants.Dsv.Panel.OPERATION_TYPE_SUBSTRACTION:
+            case Consts.Dsv.Panel.OPERATION_TYPE_SUBSTRACTION:
                 result = series.Points[pointIndex].YValues[0] - userValue;
                 break;
-            case Constants.Dsv.Panel.OPERATION_TYPE_MULTIPLICATION:
+            case Consts.Dsv.Panel.OPERATION_TYPE_MULTIPLICATION:
                 result = series.Points[pointIndex].YValues[0] * userValue;
                 break;
-            case Constants.Dsv.Panel.OPERATION_TYPE_DIVISION:
+            case Consts.Dsv.Panel.OPERATION_TYPE_DIVISION:
                 result = series.Points[pointIndex].YValues[0] / userValue;
                 break;
-            case Constants.Dsv.Panel.OPERATION_TYPE_EXPONENTIATION:
+            case Consts.Dsv.Panel.OPERATION_TYPE_EXPONENTIATION:
                 result = Math.Pow( series.Points[pointIndex].YValues[0], userValue );
                 break;
-            case Constants.Dsv.Panel.OPERATION_TYPE_LOGARITHMIC:
+            case Consts.Dsv.Panel.OPERATION_TYPE_LOGARITHMIC:
                 result = Math.Log( series.Points[pointIndex].YValues[0], userValue );
                 break;
-            case Constants.Dsv.Panel.OPERATION_TYPE_ROOTING:
+            case Consts.Dsv.Panel.OPERATION_TYPE_ROOTING:
                 result = Math.Pow( series.Points[pointIndex].YValues[0], 1.0 / userValue );
                 break;
-            case Constants.Dsv.Panel.OPERATION_TYPE_CONSTANT:
+            case Consts.Dsv.Panel.OPERATION_TYPE_CONSTANT:
                 result = userValue;
                 break;
             }
@@ -362,7 +362,7 @@ namespace PI
 
         private void UpdateUiByInfoAboutOverflow( double power )
         {
-            uiPnl_Value1_TxtBx.Text = Constants.Dsv.Panel.OPERATION_ERR_OVERFLOW_TEXT;
+            uiPnl_Value1_TxtBx.Text = Consts.Dsv.Panel.OPERATION_ERR_OVERFLOW_TEXT;
             uiPnl_Value2_TxtBx.Text = StringFormatter.FormatAsNumeric( 4, power );
         }
 

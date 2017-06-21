@@ -1,9 +1,6 @@
-﻿using System.ComponentModel;
-
-namespace PI
+﻿namespace PI
 {
-    [Description("Do not explicitly instantiate any class in this scope.")]
-    internal static class Constants
+    internal static class Consts
     {
 
         internal static class Exceptions
@@ -33,8 +30,14 @@ namespace PI
                 {
                     internal const int SCAFFOLD_POLYNOMIAL = 0;
                     internal const int SCAFFOLD_HYPERBOLIC = 1;
+                    internal const int SCAFFOLD_WAVEFORM = 2;
+                    internal const int SCAFFOLD_WAVE_SINE = -21;
+                    internal const int SCAFFOLD_WAVE_SQUARE = -22;
+                    internal const int SCAFFOLD_WAVE_TRIANGLE = -23;
+                    internal const int SCAFFOLD_WAVE_SAWTOOTH = -24;
                     internal const string SCAFFOLD_POLYNOMIAL_TEXT = "Polynomial";
                     internal const string SCAFFOLD_HYPERBOLIC_TEXT = "Hyperbolic";
+                    internal const string SCAFFOLD_WAVEFORM_TEXT = "Waveform";
                     internal const string SCAFFOLD_DEFAULT_TEXT = "Not chosen";
                     internal const string GENERATE_SET_BTN_PREREQUISITE_WARNING_TEXT = "Pattern curve scaffold has not been chosen.";
                     internal const string GENERATE_SET_BTN_PREREQUISITE_WARNING_CAPTION = "Prerequisite not matched!";

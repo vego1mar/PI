@@ -139,15 +139,15 @@ namespace PI
             }
             catch ( System.ComponentModel.InvalidEnumArgumentException x ) {
                 Logger.WriteException( x );
-                return Constants.Exceptions.INVALID_ENUM_ARGUMENT;
+                return Consts.Exceptions.INVALID_ENUM_ARGUMENT;
             }
             catch ( InvalidOperationException x ) {
                 Logger.WriteException( x );
-                return Constants.Exceptions.INVALID_OPERATION;
+                return Consts.Exceptions.INVALID_OPERATION;
             }
             catch ( Exception x ) {
                 Logger.WriteException( x );
-                return Constants.Exceptions.EXCEPTION;
+                return Consts.Exceptions.EXCEPTION;
             }
 
             return 0;

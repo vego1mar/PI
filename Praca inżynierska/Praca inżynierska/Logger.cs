@@ -20,31 +20,31 @@ namespace PI
                 PrintLogHeader();
             }
             catch ( ArgumentNullException ) {
-                return Constants.Exceptions.ARGUMENT_NULL;
+                return Consts.Exceptions.ARGUMENT_NULL;
             }
             catch ( ArgumentOutOfRangeException ) {
-                return Constants.Exceptions.ARGUMENT_OUT_OF_RANGE;
+                return Consts.Exceptions.ARGUMENT_OUT_OF_RANGE;
             }
             catch ( ArgumentException ) {
-                return Constants.Exceptions.ARGUMENT;
+                return Consts.Exceptions.ARGUMENT;
             }
             catch ( DirectoryNotFoundException ) {
-                return Constants.Exceptions.DIRECTORY_NOT_FOUND;
+                return Consts.Exceptions.DIRECTORY_NOT_FOUND;
             }
             catch ( PathTooLongException ) {
-                return Constants.Exceptions.PATH_TOO_LONG;
+                return Consts.Exceptions.PATH_TOO_LONG;
             }
             catch ( IOException ) {
-                return Constants.Exceptions.IO;
+                return Consts.Exceptions.IO;
             }
             catch ( System.Security.SecurityException ) {
-                return Constants.Exceptions.SECURITY;
+                return Consts.Exceptions.SECURITY;
             }
             catch ( UnauthorizedAccessException ) {
-                return Constants.Exceptions.UNAUTHORIZED_ACCESS;
+                return Consts.Exceptions.UNAUTHORIZED_ACCESS;
             }
             catch ( Exception ) {
-                return Constants.Exceptions.EXCEPTION;
+                return Consts.Exceptions.EXCEPTION;
             }
 
             return 0;
@@ -61,13 +61,13 @@ namespace PI
                 LogWriter.WriteLine( text );
             }
             catch ( ObjectDisposedException ) {
-                return Constants.Exceptions.OBJECT_DISPOSED;
+                return Consts.Exceptions.OBJECT_DISPOSED;
             }
             catch ( IOException ) {
-                return Constants.Exceptions.IO;
+                return Consts.Exceptions.IO;
             }
             catch ( Exception ) {
-                return Constants.Exceptions.EXCEPTION;
+                return Consts.Exceptions.EXCEPTION;
             }
 
             return 0;
@@ -79,16 +79,16 @@ namespace PI
                 LogWriter.Write( text );
             }
             catch ( ObjectDisposedException ) {
-                return Constants.Exceptions.OBJECT_DISPOSED;
+                return Consts.Exceptions.OBJECT_DISPOSED;
             }
             catch ( IOException ) {
-                return Constants.Exceptions.IO;
+                return Consts.Exceptions.IO;
             }
             catch ( NotSupportedException ) {
-                return Constants.Exceptions.NOT_SUPPORTED;
+                return Consts.Exceptions.NOT_SUPPORTED;
             }
             catch ( Exception ) {
-                return Constants.Exceptions.EXCEPTION;
+                return Consts.Exceptions.EXCEPTION;
             }
 
             return 0;

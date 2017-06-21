@@ -5,6 +5,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace PI
 {
+
     class CurvesDataset
     {
 
@@ -38,11 +39,17 @@ namespace PI
         public bool GeneratePatternCurve( int curveScaffoldType, double startingXPoint, double endingXPoint, int pointsDensity )
         {
             switch ( curveScaffoldType ) {
-            case Constants.Ui.Panel.Generate.SCAFFOLD_POLYNOMIAL:
+            case Consts.Ui.Panel.Generate.SCAFFOLD_POLYNOMIAL:
                 GeneratePolynomialPatternCurve( startingXPoint, endingXPoint, pointsDensity );
                 return IsPatternCurveSetPointsValid();
-            case Constants.Ui.Panel.Generate.SCAFFOLD_HYPERBOLIC:
+            case Consts.Ui.Panel.Generate.SCAFFOLD_HYPERBOLIC:
                 GenerateHyperbolicPatternCurve( startingXPoint, endingXPoint, pointsDensity );
+                return IsPatternCurveSetPointsValid();
+            case Consts.Ui.Panel.Generate.SCAFFOLD_WAVE_SINE:
+            case Consts.Ui.Panel.Generate.SCAFFOLD_WAVE_SQUARE:
+            case Consts.Ui.Panel.Generate.SCAFFOLD_WAVE_TRIANGLE:
+            case Consts.Ui.Panel.Generate.SCAFFOLD_WAVE_SAWTOOTH:
+                GenerateWaveformPatternCurve( startingXPoint, endingXPoint, pointsDensity, curveScaffoldType );
                 return IsPatternCurveSetPointsValid();
             }
 
@@ -51,32 +58,104 @@ namespace PI
 
         private void GeneratePolynomialPatternCurve( double startingXPoint, double endingXPoint, int pointsDensity )
         {
-            PatternCurveSet.Points.Clear();
-            SetDefaultProperties( PatternCurveSet, PATTERN_CURVE_SERIES_NAME );
-            double intervalLength = endingXPoint - startingXPoint;
-            double densityUnit = intervalLength / pointsDensity;
+            ClearPointsAndSetDefaults( PatternCurveSet );
+            ArgsGenerator args = new ArgsGenerator( startingXPoint, endingXPoint, pointsDensity );
 
-            for ( int i = 0; i <= pointsDensity; i++ ) {
-                double x = startingXPoint + (densityUnit * i);
-                double leftFraction = (PreSets.Pcd.Parameters.A * Math.Pow( x, PreSets.Pcd.Parameters.B )) / PreSets.Pcd.Parameters.C;
-                double rightFraction = (PreSets.Pcd.Parameters.D * Math.Pow( x, PreSets.Pcd.Parameters.E )) / PreSets.Pcd.Parameters.F;
-                double polynomial = leftFraction + rightFraction + PreSets.Pcd.Parameters.I;
+            while ( args.HasNextArgument() ) {
+                double x = args.GetNextArgument();
+                double leftFraction = (PreSets.Pcd.Parameters.Polynomial.A * Math.Pow( x, PreSets.Pcd.Parameters.Polynomial.B )) / PreSets.Pcd.Parameters.Polynomial.C;
+                double rightFraction = (PreSets.Pcd.Parameters.Polynomial.D * Math.Pow( x, PreSets.Pcd.Parameters.Polynomial.E )) / PreSets.Pcd.Parameters.Polynomial.F;
+                double polynomial = leftFraction + rightFraction + PreSets.Pcd.Parameters.Polynomial.I;
                 PatternCurveSet.Points.AddXY( x, polynomial );
             }
         }
 
         private void GenerateHyperbolicPatternCurve( double startingXPoint, double endingXPoint, int pointsDensity )
         {
-            PatternCurveSet.Points.Clear();
-            SetDefaultProperties( PatternCurveSet, PATTERN_CURVE_SERIES_NAME );
-            double intervalLength = endingXPoint - startingXPoint;
-            double densityUnit = intervalLength / pointsDensity;
+            ClearPointsAndSetDefaults( PatternCurveSet );
+            ArgsGenerator args = new ArgsGenerator( startingXPoint, endingXPoint, pointsDensity );
 
-            for ( int i = 0; i <= pointsDensity; i++ ) {
-                double x = startingXPoint + (densityUnit * i);
+            while ( args.HasNextArgument() ) {
+                double x = args.GetNextArgument();
                 double numerator = Math.Pow( Math.E, x ) - Math.Pow( Math.E, -x );
-                double fraction = numerator / PreSets.Pcd.Parameters.G;
-                PatternCurveSet.Points.AddXY( x, fraction + PreSets.Pcd.Parameters.J );
+                double fraction = numerator / PreSets.Pcd.Parameters.Hyperbolic.G;
+                PatternCurveSet.Points.AddXY( x, fraction + PreSets.Pcd.Parameters.Hyperbolic.J );
+            }
+        }
+
+        private void GenerateWaveformPatternCurve( double startingXPoint, double endingXPoint, int pointsDensity, int wavetype )
+        {
+            switch ( wavetype ) {
+            case Consts.Ui.Panel.Generate.SCAFFOLD_WAVE_SINE:
+                GenerateSineWavePatternCurve( startingXPoint, endingXPoint, pointsDensity );
+                break;
+            case Consts.Ui.Panel.Generate.SCAFFOLD_WAVE_SQUARE:
+                GenerateSquareWavePatternCurve( startingXPoint, endingXPoint, pointsDensity );
+                break;
+            case Consts.Ui.Panel.Generate.SCAFFOLD_WAVE_TRIANGLE:
+                GenerateTriangleWavePatternCurve( startingXPoint, endingXPoint, pointsDensity );
+                break;
+            case Consts.Ui.Panel.Generate.SCAFFOLD_WAVE_SAWTOOTH:
+                GenerateSawtoothWavePatternCurve( startingXPoint, endingXPoint, pointsDensity );
+                break;
+            }
+        }
+
+        private void GenerateSineWavePatternCurve( double startingXPoint, double endingXPoint, int pointsDensity )
+        {
+            ClearPointsAndSetDefaults( PatternCurveSet );
+            ArgsGenerator args = new ArgsGenerator( startingXPoint, endingXPoint, pointsDensity );
+
+            while ( args.HasNextArgument() ) {
+                double x = args.GetNextArgument();
+                double argument = (PreSets.Pcd.Parameters.Waveform.N * x) + PreSets.Pcd.Parameters.Waveform.O;
+                double amplitude = PreSets.Pcd.Parameters.Waveform.M * Math.Sin( argument );
+                PatternCurveSet.Points.AddXY( x, amplitude + PreSets.Pcd.Parameters.Waveform.K );
+            }
+        }
+
+        private void GenerateSquareWavePatternCurve( double startingXPoint, double endingXPoint, int pointsDensity )
+        {
+            ClearPointsAndSetDefaults( PatternCurveSet );
+            ArgsGenerator args = new ArgsGenerator( startingXPoint, endingXPoint, pointsDensity );
+
+            while ( args.HasNextArgument() ) {
+                double x = args.GetNextArgument();
+                double argument = (ArgsGenerator.PI_2 * x) / PreSets.Pcd.Parameters.Waveform.N;
+                double absolute = Math.Abs( Math.Sin( argument ) );
+                double cosecans = 1.0 / Math.Sin( argument );
+                double modifier = PreSets.Pcd.Parameters.Waveform.M * cosecans;
+                double expression = absolute * modifier;
+                PatternCurveSet.Points.AddXY( x, expression + PreSets.Pcd.Parameters.Waveform.K );
+            }
+        }
+
+        private void GenerateTriangleWavePatternCurve( double startingXPoint, double endingXPoint, int pointsDensity )
+        {
+            ClearPointsAndSetDefaults( PatternCurveSet );
+            ArgsGenerator args = new ArgsGenerator( startingXPoint, endingXPoint, pointsDensity );
+
+            while ( args.HasNextArgument() ) {
+                double x = args.GetNextArgument();
+                double factor = (2.0 * PreSets.Pcd.Parameters.Waveform.M) / Math.PI;
+                double argument = (ArgsGenerator.PI_2 * x) / PreSets.Pcd.Parameters.Waveform.N;
+                double expression = factor * Math.Asin( Math.Sin( argument ) );
+                PatternCurveSet.Points.AddXY( x, expression + PreSets.Pcd.Parameters.Waveform.K );
+            }
+        }
+
+        private void GenerateSawtoothWavePatternCurve( double startingXPoint, double endingXPoint, int pointsDensity )
+        {
+            ClearPointsAndSetDefaults( PatternCurveSet );
+            ArgsGenerator args = new ArgsGenerator( startingXPoint, endingXPoint, pointsDensity );
+
+            while ( args.HasNextArgument() ) {
+                double x = args.GetNextArgument();
+                double factor = (-2.0 * PreSets.Pcd.Parameters.Waveform.M) / Math.PI;
+                double argument = (Math.PI * x) / PreSets.Pcd.Parameters.Waveform.N;
+                double cotangens = 1.0 / Math.Tan( argument );
+                double expression = factor * Math.Atan( cotangens );
+                PatternCurveSet.Points.AddXY( x, expression + PreSets.Pcd.Parameters.Waveform.K );
             }
         }
 
@@ -87,10 +166,10 @@ namespace PI
             }
 
             switch ( curveType ) {
-            case Constants.Ui.Panel.Datasheet.CURVE_TYPE_PATTERN:
+            case Consts.Ui.Panel.Datasheet.CURVE_TYPE_PATTERN:
                 AbsorbSeriesForPatternCurve( series );
                 break;
-            case Constants.Ui.Panel.Datasheet.CURVE_TYPE_GENERATED:
+            case Consts.Ui.Panel.Datasheet.CURVE_TYPE_GENERATED:
                 AbsorbSeriesForSpecifiedGeneratedCurve( series, curveIndex - 1 );
                 break;
             }
@@ -194,6 +273,12 @@ namespace PI
             chart.Series[seriesIndex].IsXValueIndexed = true;
             chart.Series[seriesIndex].XValueType = ChartValueType.Double;
             chart.Series[seriesIndex].YValueType = ChartValueType.Double;
+        }
+
+        private void ClearPointsAndSetDefaults( Series series )
+        {
+            series.Points.Clear();
+            SetDefaultProperties( series, PATTERN_CURVE_SERIES_NAME );
         }
 
     }
