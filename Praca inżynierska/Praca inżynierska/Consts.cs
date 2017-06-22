@@ -121,6 +121,29 @@
             }
         }
 
+        internal static class Gprv
+        {
+            internal static class Panel
+            {
+                internal const string ADDEND_TXT = "Addend:";
+                internal const string SUBTRAHEND_TXT = "Subtrahend:";
+                internal const string MULTIPLIER_TXT = "Multiplier:";
+                internal const string DIVISOR_TXT = "Divisor:";
+                internal const string EXPONENT_TXT = "Exponent:";
+                internal const string BASIS_TXT = "Basis:";
+                internal const string VALUE_TXT = "Value:";
+                internal const string NOT_APPLICABLE_ABBR_TXT = "N/A:";
+                internal const string INDEX_GREATER_THAN_ALLOWED_TXT = "Specified index would be greater than allowed. Change rejected.";
+                internal const string INDEX_GREATER_THAN_ALLOWED_CPT = "Improper index value";
+                internal const string INDEX_LOWER_THAN_ALLOWED_TXT = "Specified index would be lower than allowed. Change revoked.";
+                internal const string INDEX_LOWER_THAN_ALLOWED_CPT = "Improper index value";
+                internal const string USER_VALUE_IMPROPER_TXT = "The given value is improper. Note, that numbers should be localized.";
+                internal const string USER_VALUE_IMPROPER_CPT = "Wrong cast, conversion or format";
+                internal const string OPERATION_ERR_TXT = "Cannot calculate values for all specified arguments. Overflow. Changes rejected.";
+                internal const string OPERATION_ERR_CPT = "Exception during calculation";
+            }
+        }
+
         internal static class Pcd
         {
             internal static class Hyperbolic

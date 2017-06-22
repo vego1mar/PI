@@ -107,6 +107,40 @@ namespace PI
 
         }
 
+        internal static class Gprv
+        {
+            internal static class Panel
+            {
+                internal static void IndexGreaterThanAllowedProblem()
+                {
+                    string text = Consts.Gprv.Panel.INDEX_GREATER_THAN_ALLOWED_TXT;
+                    string caption = Consts.Gprv.Panel.INDEX_GREATER_THAN_ALLOWED_CPT;
+                    WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+                }
+
+                internal static void IndexLowerThanAllowedProblem()
+                {
+                    string text = Consts.Gprv.Panel.INDEX_LOWER_THAN_ALLOWED_TXT;
+                    string caption = Consts.Gprv.Panel.INDEX_LOWER_THAN_ALLOWED_CPT;
+                    WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+                }
+
+                internal static void ImproperUserValueProblem()
+                {
+                    string text = Consts.Gprv.Panel.USER_VALUE_IMPROPER_TXT;
+                    string caption = Consts.Gprv.Panel.USER_VALUE_IMPROPER_CPT;
+                    WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+                }
+
+                internal static void PerformOperationError()
+                {
+                    string text = Consts.Gprv.Panel.OPERATION_ERR_TXT;
+                    string caption = Consts.Gprv.Panel.OPERATION_ERR_CPT;
+                    WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
+                }
+            }
+        }
+
         internal static class Pcd
         {
 

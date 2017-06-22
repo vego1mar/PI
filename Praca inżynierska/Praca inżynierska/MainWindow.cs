@@ -203,7 +203,7 @@ namespace PI
                 break;
             case Consts.Ui.Panel.Generate.SCAFFOLD_WAVE_SINE:
             case Consts.Ui.Panel.Generate.SCAFFOLD_WAVE_SQUARE:
-            case Consts.Ui.Panel.Generate.SCAFFOLD_WAVE_TRIANGLE: 
+            case Consts.Ui.Panel.Generate.SCAFFOLD_WAVE_TRIANGLE:
             case Consts.Ui.Panel.Generate.SCAFFOLD_WAVE_SAWTOOTH:
                 uiPnlGen_CrvScaff2_TxtBx.Text = Consts.Ui.Panel.Generate.SCAFFOLD_WAVEFORM_TEXT;
                 break;
@@ -362,6 +362,7 @@ namespace PI
             uiPnlPrg_OsVer2_TxtBx.Text = osVersion;
         }
 
+        [Obsolete( "Replace DatasetViewer with GridPreviewer" )]
         private void UiPanelDataSheet_ShowDataSet_Click( object sender, EventArgs e )
         {
             int selectedCurveType = WinFormsHelper.GetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx );
@@ -409,6 +410,12 @@ namespace PI
                     Logger.WriteException( x );
                 }
             }
+
+            /////////////////////////////////////////////////////////////////////////////////////
+            using ( var gprvDialog = new GridPreviewer( selectedCurveSeries ) ) {
+                WinFormsHelper.ShowDialogSafe( gprvDialog, this );
+            }
+            /////////////////////////////////////////////////////////////////////////////////////
         }
 
         private Series SpecifyCurveSeries( int curveType, int curveIndex )

@@ -57,6 +57,19 @@ namespace PI
             return selectedIndex;
         }
 
+        internal static void SetSelectedIndexSafe( ComboBox comboBox, int index )
+        {
+            try {
+                comboBox.SelectedIndex = index;
+            }
+            catch ( ArgumentOutOfRangeException x ) {
+                Logger.WriteException( x );
+            }
+            catch ( Exception x ) {
+                Logger.WriteException( x );
+            }
+        }
+
         internal static T GetValue<T>( NumericUpDown numeric )
         {
             T value = default( T );
