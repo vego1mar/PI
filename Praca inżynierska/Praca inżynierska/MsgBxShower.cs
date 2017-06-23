@@ -1,173 +1,150 @@
 ﻿using System.Windows.Forms;
-using System.ComponentModel;
 
 namespace PI
 {
 
-    [Description( "Do not explicitly instantiate any class in this scope." )]
     internal static class MsgBxShower
     {
+        internal static UiMsgBoxes Ui { get; } = new UiMsgBoxes();
+        internal static MenuMsgBoxes Menu { get; } = new MenuMsgBoxes();
+        internal static GridPreviewerMsgBoxes Gprv { get; } = new GridPreviewerMsgBoxes();
+        internal static PcdMsgBoxes Pcd { get; } = new PcdMsgBoxes();
 
-        internal static class Ui
+        internal class UiMsgBoxes
         {
 
-            internal static void SeriesSelectionProblem()
+            internal void SeriesSelectionProblem()
             {
-                string text = Consts.Ui.Panel.Datasheet.SELECTED_CURVE_SERIES_TEXT;
-                string caption = Consts.Ui.Panel.Datasheet.SELECTED_CURVE_SERIES_CAPTION;
+                string text = Consts.Ui.Panel.Datasheet.CrvSeriesSelectionTxt;
+                string caption = Consts.Ui.Panel.Datasheet.CrvSeriesSelectionCpt;
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
             }
 
-            internal static void ChartRefreshingError()
+            internal void ChartRefreshingError()
             {
-                string text = Consts.Ui.Charts.REFRESHING_ERR_TEXT;
-                string caption = Consts.Ui.Charts.REFRESHING_ERR_CAPTION;
+                string text = Consts.Ui.Charts.RefreshingErrTxt;
+                string caption = Consts.Ui.Charts.RefreshingErrCpt;
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
             }
 
-            internal static void CurveTypeNotSelectedInfo()
+            internal void CurveTypeNotSelectedInfo()
             {
-                string text = Consts.Ui.Panel.Datasheet.CURVE_TYPE_NOT_SELECTED_TEXT;
-                string caption = Consts.Ui.Panel.Datasheet.CURVE_TYPE_NOT_SELECTED_CAPTION;
+                string text = Consts.Ui.Panel.Datasheet.CrvTypeNotSelectedTxt;
+                string caption = Consts.Ui.Panel.Datasheet.CrvTypeNotSelectedCpt;
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Asterisk );
             }
 
-            internal static void PatternCurveNotChosenPrerequisite()
+            internal void PatternCurveNotChosenPrerequisite()
             {
-                string text = Consts.Ui.Panel.Generate.GENERATE_SET_BTN_PREREQUISITE_WARNING_TEXT;
-                string caption = Consts.Ui.Panel.Generate.GENERATE_SET_BTN_PREREQUISITE_WARNING_CAPTION;
+                string text = Consts.Ui.Panel.Generate.GenerateSetBtnPrerequisiteWarnTxt;
+                string caption = Consts.Ui.Panel.Generate.GenerateSetBtnPrerequisiteWarnCpt;
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Stop );
             }
 
-            internal static void PointsNotValidToChartProblem()
+            internal void PointsNotValidToChartProblem()
             {
-                string text = Consts.Ui.Charts.GENERATING_WARN_TEXT;
-                string caption = Consts.Ui.Charts.GENERATING_WARN_CAPTION;
+                string text = Consts.Ui.Charts.GeneratingWarnTxt;
+                string caption = Consts.Ui.Charts.GeneratingWarnCpt;
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
             }
 
         }
 
-        internal static class Menu
+        internal class MenuMsgBoxes
         {
 
-            internal static void CannotDownloadUpdateInfoProblem()
+            internal void CannotDownloadUpdateInfoProblem()
             {
-                string text = Consts.Ui.Menu.Update.DOWNLOADING_UPDATE_INFO_ERR_TEXT;
-                string caption = Consts.Ui.Menu.Update.DOWNLOADING_UPDATE_INFO_ERR_CAPTION;
+                string text = Consts.Ui.Menu.Update.DownloadingUpdateInfoErrTxt;
+                string caption = Consts.Ui.Menu.Update.DownloadingUpdateInfoErrCpt;
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
             }
 
-            internal static void RunningLatestReleaseAppInfo()
+            internal void RunningLatestReleaseAppInfo()
             {
-                string text = Consts.Ui.Menu.Update.RUNNING_LATEST_APP_TEXT;
-                string caption = Consts.Ui.Menu.Update.RUNNING_LATEST_APP_CAPTION;
+                string text = Consts.Ui.Menu.Update.RunningLatestAppTxt;
+                string caption = Consts.Ui.Menu.Update.RunningLatestAppCpt;
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Information );
             }
 
-            internal static void RunningObsoleteAppInfo()
+            internal void RunningObsoleteAppInfo()
             {
-                string text = Consts.Ui.Menu.Update.RUNNING_OBSOLETE_APP_TEXT;
-                string caption = Consts.Ui.Menu.Update.RUNNING_OBSOLETE_APP_CAPTION;
+                string text = Consts.Ui.Menu.Update.RunningObsoleteAppTxt;
+                string caption = Consts.Ui.Menu.Update.RunningObsoleteAppCpt;
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Information );
             }
 
-            internal static void CannotMatchVersionsError()
+            internal void CannotMatchVersionsError()
             {
-                string text = Consts.Ui.Menu.Update.MATCHING_VERSIONS_ERR_TEXT;
-                string caption = Consts.Ui.Menu.Update.MATCHING_VERSIONS_ERR_CAPTION;
+                string text = Consts.Ui.Menu.Update.MatchingVersionsErrTxt;
+                string caption = Consts.Ui.Menu.Update.MatchingVersionsErrCpt;
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
             }
 
         }
 
-        internal static class Dsv
+        internal class GridPreviewerMsgBoxes
         {
+            internal PanelMsgBoxes Panel { get; } = new PanelMsgBoxes();
+            internal ChartMsgBoxes Chart { get; } = new ChartMsgBoxes();
 
-            internal static void CastOrConversionProblem()
+            internal class PanelMsgBoxes
             {
-                string text = Consts.Dsv.Panel.USER_VALUE_NOT_VALID_TEXT;
-                string caption = Consts.Dsv.Panel.USER_VALUE_NOT_VALID_CAPTION;
-                WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
-            }
-
-            internal static void OperationTypeNotSelectedInfo()
-            {
-                string text = Consts.Dsv.Panel.OPERATION_TYPE_NOT_SELECTED_TEXT;
-                string caption = Consts.Dsv.Panel.OPERATION_TYPE_NOT_SELECTED_CAPTION;
-                WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Asterisk );
-            }
-
-            internal static void DecimalDataTypeOverflowStop()
-            {
-                string text = Consts.Dsv.Panel.NOT_VALID_DECIMAL_CHART_NUMBER_TEXT;
-                string caption = Consts.Dsv.Panel.NOT_VALID_DECIMAL_CHART_NUMBER_CAPTION;
-                WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Stop );
-            }
-
-        }
-
-        internal static class Gprv
-        {
-            internal static class Panel
-            {
-                internal static void IndexGreaterThanAllowedProblem()
+                internal void IndexGreaterThanAllowedProblem()
                 {
-                    string text = Consts.Gprv.Panel.IDX_GREATER_THAN_ALLOWED_TXT;
-                    string caption = Consts.Gprv.Panel.IDX_GREATER_THAN_ALLOWED_CPT;
+                    string text = Consts.Gprv.Panel.IdxGreaterThanAllowedTxt;
+                    string caption = Consts.Gprv.Panel.IdxGreaterThanAllowedCpt;
                     WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
                 }
 
-                internal static void IndexLowerThanAllowedProblem()
+                internal void IndexLowerThanAllowedProblem()
                 {
-                    string text = Consts.Gprv.Panel.IDX_LOWER_THAN_ALLOWED_TXT;
-                    string caption = Consts.Gprv.Panel.IDX_LOWER_THAN_ALLOWED_CPT;
+                    string text = Consts.Gprv.Panel.IdxLowerThanAllowedTxt;
+                    string caption = Consts.Gprv.Panel.IdxLowerThanAllowedCpt;
                     WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
                 }
 
-                internal static void ImproperUserValueProblem()
+                internal void ImproperUserValueProblem()
                 {
-                    string text = Consts.Gprv.Panel.USER_VALUE_IMPROPER_TXT;
-                    string caption = Consts.Gprv.Panel.USER_VALUE_IMPROPER_CPT;
+                    string text = Consts.Gprv.Panel.UserValueImproperTxt;
+                    string caption = Consts.Gprv.Panel.UserValueImproperCpt;
                     WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
                 }
 
-                internal static void PerformOperationError()
+                internal void PerformOperationError()
                 {
-                    string text = Consts.Gprv.Panel.OPERATION_ERR_TXT;
-                    string caption = Consts.Gprv.Panel.OPERATION_ERR_CPT;
+                    string text = Consts.Gprv.Panel.OperationErrTxt;
+                    string caption = Consts.Gprv.Panel.OperationErrCpt;
                     WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
                 }
 
-                internal static void InvalidCurvePointsError()
+                internal void InvalidCurvePointsError()
                 {
-                    string text = Consts.Gprv.Panel.INVL_CURVE_POINTS_TXT;
-                    string caption = Consts.Gprv.Panel.INVL_CURVE_POINTS_CPT;
+                    string text = Consts.Gprv.Panel.InvalCurvePointsTxt;
+                    string caption = Consts.Gprv.Panel.InvalCurvePointsCpt;
                     WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
                 }
             }
 
-            internal static class Chart
+            internal class ChartMsgBoxes
             {
-                internal static void ChartRefreshingError()
+                internal void ChartRefreshingError()
                 {
-                    string text = Consts.Gprv.Chart.REFRESH_ERR_TXT;
-                    string caption = Consts.Gprv.Chart.REFRESH_ERR_CPT;
+                    string text = Consts.Gprv.Chart.RefreshErrTxt;
+                    string caption = Consts.Gprv.Chart.RefreshErrCpt;
                     WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
                 }
             }
         }
 
-        internal static class Pcd
+        internal class PcdMsgBoxes
         {
-
-            internal static void DivisionByZeroProblem()
+            internal void DivisionByZeroProblem()
             {
-                string text = Consts.Pcd.Hyperbolic.PARAMS_ZERO_DIVISION_TEXT;
-                string caption = Consts.Pcd.Hyperbolic.PARAMS_ZERO_DIVISION_CAPTION;
+                string text = Consts.Pcd.Hyperbolic.ParamsZeroDivTxt;
+                string caption = Consts.Pcd.Hyperbolic.ParamsZeroDivCpt;
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
             }
-
         }
 
     }

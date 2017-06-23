@@ -1,24 +1,23 @@
-﻿using System.ComponentModel;
-
-namespace PI
+﻿namespace PI
 {
 
-    [Description( "Do not explicitly instantiate any class in this scope." )]
-    internal static class PreSets
+    internal static class Presets
     {
+        internal static PcdPresets Pcd { get; } = new PcdPresets();
+        internal static UiPresets Ui { get; } = new UiPresets();
 
-        internal static class Pcd
+        internal class PcdPresets
         {
-            internal static int ChosenScaffold { get; set; } = Consts.Ui.Panel.Generate.SCAFFOLD_POLYNOMIAL;
-            internal static Params Parameters { get; set; } = new Params();
+            internal Enums.PatternCurveScaffold ChosenScaffold { get; set; } = Enums.PatternCurveScaffold.WaveformSine;
+            internal Params Parameters { get; set; } = new Params();
         }
 
-        internal static class Ui
+        internal class UiPresets
         {
-            internal static int NumberOfCurves { get; set; } = 5;
-            internal static double StartingXPoint { get; set; } = -2.0;
-            internal static double EndingXPoint { get; set; } = 2.0;
-            internal static int PointsDensity { get; set; } = 200;
+            internal int NumberOfCurves { get; set; } = 5;
+            internal double StartingXPoint { get; set; } = -2.0;
+            internal double EndingXPoint { get; set; } = 2.0;
+            internal int PointsDensity { get; set; } = 200;
         }
 
     }

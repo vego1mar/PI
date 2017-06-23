@@ -24,7 +24,7 @@ namespace PI
             ChartDataSet = series;
             OriginalValues = GetPointsValues( series );
             WinFormsHelper.SetSelectedIndexSafe( uiPnl_AutoSize_ComBx, (int) Enums.AutoSizeColumnsMode.Fill );
-            WinFormsHelper.SetSelectedIndexSafe( uiPnl_OperT_ComBx, (int) Enums.OperationType.Positive );
+            WinFormsHelper.SetSelectedIndexSafe( uiPnl_OperT_ComBx, (int) Enums.Operation.Positive );
             uiPnl_StartIdx_Num.Minimum = 0;
             uiPnl_StartIdx_Num.Maximum = ChartDataSet.Points.Count - 1;
             uiPnl_StartIdx_Num.Value = 0;
@@ -33,7 +33,7 @@ namespace PI
             uiPnl_EndIdx_Num.Value = ChartDataSet.Points.Count - 1;
             UpdateUiByPopulatingGrid();
             UpdateUiByRefreshingChart();
-            UpdateUiByPanelStateInfo( Consts.Gprv.Panel.GPRV_LOADED_TXT );
+            UpdateUiByPanelStateInfo( Consts.Gprv.Panel.TxtGridPreviewerLoaded );
         }
 
         private List<double> GetPointsValues( Series series )
@@ -76,7 +76,7 @@ namespace PI
             }
 
             if ( !CurvesDataset.IsCurvePointsSetValid( series ) ) {
-                UpdateUiByPanelStateInfo( Consts.Gprv.Panel.OPERATION_REVOKED_TXT );
+                UpdateUiByPanelStateInfo( Consts.Gprv.Panel.TxtOperationRevoked );
                 MsgBxShower.Gprv.Panel.InvalidCurvePointsError();
                 return;
             }
@@ -85,7 +85,7 @@ namespace PI
                 ChartDataSet.Points[i].YValues[0] = (double) uiGrid_db_grid.Rows[i].Cells["y"].Value;
             }
 
-            UpdateUiByPanelStateInfo( Consts.Gprv.Panel.CHANGES_SAVED_TXT );
+            UpdateUiByPanelStateInfo( Consts.Gprv.Panel.TxtChangesSaved );
         }
 
         private void UiPanel_AutoSizeColumnsMode_SelectedIndexChanged( object sender, EventArgs e )
@@ -110,37 +110,37 @@ namespace PI
 
         private void UiPanel_OperationType_SelectedIndexChanged( object sender, EventArgs e )
         {
-            Enums.OperationType operation = (Enums.OperationType) uiPnl_OperT_ComBx.SelectedIndex;
+            Enums.Operation operation = (Enums.Operation) uiPnl_OperT_ComBx.SelectedIndex;
             uiPnl_Val2_TxtBx.Enabled = true;
 
             switch ( operation ) {
-            case Enums.OperationType.Addition:
-                uiPnl_Val1_TxtBx.Text = Consts.Gprv.Panel.ADDEND_TXT;
+            case Enums.Operation.Addition:
+                uiPnl_Val1_TxtBx.Text = Consts.Gprv.Panel.TxtAddend;
                 break;
-            case Enums.OperationType.Substraction:
-                uiPnl_Val1_TxtBx.Text = Consts.Gprv.Panel.SUBTRAHEND_TXT;
+            case Enums.Operation.Substraction:
+                uiPnl_Val1_TxtBx.Text = Consts.Gprv.Panel.TxtSubtrahend;
                 break;
-            case Enums.OperationType.Multiplication:
-                uiPnl_Val1_TxtBx.Text = Consts.Gprv.Panel.MULTIPLIER_TXT;
+            case Enums.Operation.Multiplication:
+                uiPnl_Val1_TxtBx.Text = Consts.Gprv.Panel.TxtMultiplier;
                 break;
-            case Enums.OperationType.Division:
-                uiPnl_Val1_TxtBx.Text = Consts.Gprv.Panel.DIVISOR_TXT;
+            case Enums.Operation.Division:
+                uiPnl_Val1_TxtBx.Text = Consts.Gprv.Panel.TxtDivisor;
                 break;
-            case Enums.OperationType.Exponentiation:
-                uiPnl_Val1_TxtBx.Text = Consts.Gprv.Panel.EXPONENT_TXT;
+            case Enums.Operation.Exponentiation:
+                uiPnl_Val1_TxtBx.Text = Consts.Gprv.Panel.TxtExponent;
                 break;
-            case Enums.OperationType.Logarithmic:
-                uiPnl_Val1_TxtBx.Text = Consts.Gprv.Panel.BASIS_TXT;
+            case Enums.Operation.Logarithmic:
+                uiPnl_Val1_TxtBx.Text = Consts.Gprv.Panel.TxtBasis;
                 break;
-            case Enums.OperationType.Rooting:
-                uiPnl_Val1_TxtBx.Text = Consts.Gprv.Panel.BASIS_TXT;
+            case Enums.Operation.Rooting:
+                uiPnl_Val1_TxtBx.Text = Consts.Gprv.Panel.TxtBasis;
                 break;
-            case Enums.OperationType.Constant:
-                uiPnl_Val1_TxtBx.Text = Consts.Gprv.Panel.VALUE_TXT;
+            case Enums.Operation.Constant:
+                uiPnl_Val1_TxtBx.Text = Consts.Gprv.Panel.TxtValue;
                 break;
-            case Enums.OperationType.Positive:
-            case Enums.OperationType.Negative:
-                uiPnl_Val1_TxtBx.Text = Consts.Gprv.Panel.NOT_APPLICABLE_ABBR_TXT;
+            case Enums.Operation.Positive:
+            case Enums.Operation.Negative:
+                uiPnl_Val1_TxtBx.Text = Consts.Gprv.Panel.TxtNotApplicableAbbr;
                 uiPnl_Val2_TxtBx.Enabled = false;
                 break;
             }
@@ -167,7 +167,7 @@ namespace PI
             double? userValue = GetUserValue();
 
             if ( userValue == null ) {
-                UpdateUiByPanelStateInfo( Consts.Gprv.Panel.INVL_USER_VALUE_TXT );
+                UpdateUiByPanelStateInfo( Consts.Gprv.Panel.TxtInvalidUserValue );
                 MsgBxShower.Gprv.Panel.ImproperUserValueProblem();
                 return;
             }
@@ -175,17 +175,17 @@ namespace PI
             int startIndex = WinFormsHelper.GetValue<int>( uiPnl_StartIdx_Num );
             int endIndex = WinFormsHelper.GetValue<int>( uiPnl_EndIdx_Num );
             Series seriesCopy = GetCopyOfSeriesPoints();
-            Enums.OperationType operation = (Enums.OperationType) uiPnl_OperT_ComBx.SelectedIndex;
+            Enums.Operation operation = (Enums.Operation) uiPnl_OperT_ComBx.SelectedIndex;
             bool result = PerformOperation( operation, startIndex, endIndex, userValue.Value, ref seriesCopy );
 
             if ( !result ) {
-                UpdateUiByPanelStateInfo( Consts.Gprv.Panel.OPERATION_REJECTED_TXT );
+                UpdateUiByPanelStateInfo( Consts.Gprv.Panel.TxtOperationRejected );
                 MsgBxShower.Gprv.Panel.PerformOperationError();
                 return;
             }
 
             if ( !CurvesDataset.IsCurvePointsSetValid( seriesCopy ) ) {
-                UpdateUiByPanelStateInfo( Consts.Gprv.Panel.OPERATION_REVOKED_TXT );
+                UpdateUiByPanelStateInfo( Consts.Gprv.Panel.TxtOperationRevoked );
                 MsgBxShower.Gprv.Panel.InvalidCurvePointsError();
                 return;
             }
@@ -193,14 +193,14 @@ namespace PI
             ApplyPointsAlteration( seriesCopy );
             UpdateUiByAlteringGrid();
             UpdateUiByRefreshingChart();
-            UpdateUiByPanelStateInfo( Consts.Gprv.Panel.PERFORMED_AND_REFRESHED_TXT );
+            UpdateUiByPanelStateInfo( Consts.Gprv.Panel.TxtPerformedAndRefreshed );
         }
 
         private double? GetUserValue()
         {
-            switch ( (Enums.OperationType) uiPnl_OperT_ComBx.SelectedIndex ) {
-            case Enums.OperationType.Positive:
-            case Enums.OperationType.Negative:
+            switch ( (Enums.Operation) uiPnl_OperT_ComBx.SelectedIndex ) {
+            case Enums.Operation.Positive:
+            case Enums.Operation.Negative:
                 return 0.0;
             }
 
@@ -244,38 +244,38 @@ namespace PI
             }
         }
 
-        private bool PerformOperation( Enums.OperationType operation, int startIndex, int endIndex, double value, ref Series series )
+        private bool PerformOperation( Enums.Operation operation, int startIndex, int endIndex, double value, ref Series series )
         {
             try {
                 switch ( operation ) {
-                case Enums.OperationType.Addition:
+                case Enums.Operation.Addition:
                     PerformAddition( startIndex, endIndex, value, ref series );
                     break;
-                case Enums.OperationType.Substraction:
+                case Enums.Operation.Substraction:
                     PerformSubstraction( startIndex, endIndex, value, ref series );
                     break;
-                case Enums.OperationType.Multiplication:
+                case Enums.Operation.Multiplication:
                     PerformMultiplication( startIndex, endIndex, value, ref series );
                     break;
-                case Enums.OperationType.Division:
+                case Enums.Operation.Division:
                     PerformDivision( startIndex, endIndex, value, ref series );
                     break;
-                case Enums.OperationType.Exponentiation:
+                case Enums.Operation.Exponentiation:
                     PerformExponentiation( startIndex, endIndex, value, ref series );
                     break;
-                case Enums.OperationType.Logarithmic:
+                case Enums.Operation.Logarithmic:
                     PerformLogarithmic( startIndex, endIndex, value, ref series );
                     break;
-                case Enums.OperationType.Rooting:
+                case Enums.Operation.Rooting:
                     PerformRooting( startIndex, endIndex, value, ref series );
                     break;
-                case Enums.OperationType.Constant:
+                case Enums.Operation.Constant:
                     PerformConstant( startIndex, endIndex, value, ref series );
                     break;
-                case Enums.OperationType.Positive:
+                case Enums.Operation.Positive:
                     PerformPositive( startIndex, endIndex, ref series );
                     break;
-                case Enums.OperationType.Negative:
+                case Enums.Operation.Negative:
                     PerformNegative( startIndex, endIndex, ref series );
                     break;
                 }
@@ -378,7 +378,7 @@ namespace PI
 
             UpdateUiByAlteringGrid();
             UpdateUiByRefreshingChart();
-            UpdateUiByPanelStateInfo( Consts.Gprv.Panel.VALUES_RESTORED_TXT );
+            UpdateUiByPanelStateInfo( Consts.Gprv.Panel.TxtValuesRestored );
         }
 
         private void UiPanel_Refresh_Click( object sender, EventArgs e )
@@ -399,15 +399,15 @@ namespace PI
             }
             catch ( InvalidOperationException x ) {
                 Logger.WriteException( x );
-                UpdateUiByPanelStateInfo( Consts.Gprv.Chart.CHART_NOT_REPAINTED_TXT );
+                UpdateUiByPanelStateInfo( Consts.Gprv.Chart.TxtChartNotRepainted );
                 MsgBxShower.Gprv.Chart.ChartRefreshingError();
             }
             catch ( Exception x ) {
                 Logger.WriteException( x );
-                UpdateUiByPanelStateInfo( Consts.Gprv.Chart.CHART_REFRESH_ERR_TXT );
+                UpdateUiByPanelStateInfo( Consts.Gprv.Chart.TxtChartRefreshError );
             }
 
-            UpdateUiByPanelStateInfo( Consts.Gprv.Chart.CHART_REFRESHED_TXT );
+            UpdateUiByPanelStateInfo( Consts.Gprv.Chart.TxtChartRefreshed );
         }
 
     }

@@ -9,7 +9,6 @@ using System.Windows.Forms.DataVisualization.Charting;
 // TODO: Menu - 'Adjust curves' for visual effects manipulations
 // TODO: Menu - Reading and saving set of curves from a file
 // TODO: Feature - Implement Gaussian noise option
-// TODO: Readability - Use enums instead of consts
 
 namespace PI
 {
@@ -158,10 +157,10 @@ namespace PI
         private void UpdateUiByStatusOfTimerThread()
         {
             if ( Timer == null ) {
-                uiPnlPrg_ActState2_TxtBx.Text = Consts.Ui.Panel.Program.TIMER_START_FAILURE;
+                uiPnlPrg_ActState2_TxtBx.Text = Consts.Ui.Panel.Program.TxtFailure;
             }
             else {
-                uiPnlPrg_ActState2_TxtBx.Text = Consts.Ui.Panel.Program.TIMER_START_SUCCESS;
+                uiPnlPrg_ActState2_TxtBx.Text = Consts.Ui.Panel.Program.TxtSuccess;
             }
         }
 
@@ -187,41 +186,41 @@ namespace PI
 
         private void CopyDialogPropertiesIntoPreSetsArea( PatternCurveDefiner pcdDialog )
         {
-            PreSets.Pcd.ChosenScaffold = pcdDialog.ChosenCurve;
-            PreSets.Pcd.Parameters = pcdDialog.Parameters;
+            Presets.Pcd.ChosenScaffold = pcdDialog.ChosenCurve;
+            Presets.Pcd.Parameters = pcdDialog.Parameters;
         }
 
         private void UpdateUiByChosenScaffoldStatus()
         {
-            switch ( PreSets.Pcd.ChosenScaffold ) {
-            case Consts.Ui.Panel.Generate.SCAFFOLD_POLYNOMIAL:
-                uiPnlGen_CrvScaff2_TxtBx.Text = Consts.Ui.Panel.Generate.SCAFFOLD_POLYNOMIAL_TEXT;
+            switch ( Presets.Pcd.ChosenScaffold ) {
+            case Enums.PatternCurveScaffold.Polynomial:
+                uiPnlGen_CrvScaff2_TxtBx.Text = Consts.Ui.Panel.Generate.TxtPolynomial;
                 break;
-            case Consts.Ui.Panel.Generate.SCAFFOLD_HYPERBOLIC:
-                uiPnlGen_CrvScaff2_TxtBx.Text = Consts.Ui.Panel.Generate.SCAFFOLD_HYPERBOLIC_TEXT;
+            case Enums.PatternCurveScaffold.Hyperbolic:
+                uiPnlGen_CrvScaff2_TxtBx.Text = Consts.Ui.Panel.Generate.TxtHyperbolic;
                 break;
-            case Consts.Ui.Panel.Generate.SCAFFOLD_WAVE_SINE:
-            case Consts.Ui.Panel.Generate.SCAFFOLD_WAVE_SQUARE:
-            case Consts.Ui.Panel.Generate.SCAFFOLD_WAVE_TRIANGLE:
-            case Consts.Ui.Panel.Generate.SCAFFOLD_WAVE_SAWTOOTH:
-                uiPnlGen_CrvScaff2_TxtBx.Text = Consts.Ui.Panel.Generate.SCAFFOLD_WAVEFORM_TEXT;
+            case Enums.PatternCurveScaffold.WaveformSine:
+            case Enums.PatternCurveScaffold.WaveformSquare:
+            case Enums.PatternCurveScaffold.WaveformTriangle:
+            case Enums.PatternCurveScaffold.WaveformSawtooth:
+                uiPnlGen_CrvScaff2_TxtBx.Text = Consts.Ui.Panel.Generate.TxtWaveform;
                 break;
             default:
-                uiPnlGen_CrvScaff2_TxtBx.Text = Consts.Ui.Panel.Generate.SCAFFOLD_DEFAULT_TEXT;
+                uiPnlGen_CrvScaff2_TxtBx.Text = Consts.Ui.Panel.Generate.TxtNotChosen;
                 break;
             }
         }
 
         private void UiPanelDataSheet_CurveType_SelectedIndexChanged( object sender, EventArgs e )
         {
-            switch ( WinFormsHelper.GetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx ) ) {
-            case Consts.Ui.Panel.Datasheet.CURVE_TYPE_GENERATED:
+            switch ( (Enums.DataSetCurveType) WinFormsHelper.GetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx ) ) {
+            case Enums.DataSetCurveType.Generated:
                 uiPnlDtSh_CrvIdx_Num.Enabled = true;
                 uiPnlDtSh_CrvIdx_TrBr.Enabled = true;
                 int selectedCurveIndex = WinFormsHelper.GetValue( uiPnlDtSh_CrvIdx_TrBr );
                 ShowGeneratedCurveSeriesOnChart( selectedCurveIndex );
                 break;
-            case Consts.Ui.Panel.Datasheet.CURVE_TYPE_PATTERN:
+            case Enums.DataSetCurveType.Pattern:
                 uiPnlDtSh_CrvIdx_Num.Enabled = false;
                 uiPnlDtSh_CrvIdx_TrBr.Enabled = false;
                 ShowPatternCurveSeriesOnChart();
@@ -250,37 +249,37 @@ namespace PI
             uiPnlDtSh_CrvIdx_Num.Maximum = numberOfCurves;
             uiPnlDtSh_CrvIdx_TrBr.Minimum = 1;
             uiPnlDtSh_CrvIdx_TrBr.Maximum = numberOfCurves;
-            PreSets.Ui.NumberOfCurves = numberOfCurves;
+            Presets.Ui.NumberOfCurves = numberOfCurves;
             uiPnlGen_Crvs2No_Nm.Minimum = 1;
             uiPnlGen_Crvs2No_Nm.Maximum = numberOfCurves;
         }
 
         private void UiPanelGenerate_GenerateSet_Click( object sender, EventArgs e )
         {
-            if ( uiPnlGen_CrvScaff2_TxtBx.Text == Consts.Ui.Panel.Generate.SCAFFOLD_DEFAULT_TEXT ) {
+            if ( uiPnlGen_CrvScaff2_TxtBx.Text == Consts.Ui.Panel.Generate.TxtNotChosen ) {
                 MsgBxShower.Ui.PatternCurveNotChosenPrerequisite();
                 return;
             }
 
             GrabPreSetsForCurvesGeneration();
             GenerateAndShowPatternCurve();
-            ChartsData.SpreadPatternCurveSetToGeneratedCurveSet( PreSets.Ui.NumberOfCurves );
+            ChartsData.SpreadPatternCurveSetToGeneratedCurveSet( Presets.Ui.NumberOfCurves );
         }
 
         private void GrabPreSetsForCurvesGeneration()
         {
-            PreSets.Ui.NumberOfCurves = WinFormsHelper.GetValue<int>( uiPnlGen_Crvs1No_Num );
-            PreSets.Ui.StartingXPoint = WinFormsHelper.GetValue<double>( uiPnlGen_StartX_Num );
-            PreSets.Ui.EndingXPoint = WinFormsHelper.GetValue<double>( uiPnlGen_EndX_Num );
-            PreSets.Ui.PointsDensity = WinFormsHelper.GetValue<int>( uiPnlGen_Dens_Num );
+            Presets.Ui.NumberOfCurves = WinFormsHelper.GetValue<int>( uiPnlGen_Crvs1No_Num );
+            Presets.Ui.StartingXPoint = WinFormsHelper.GetValue<double>( uiPnlGen_StartX_Num );
+            Presets.Ui.EndingXPoint = WinFormsHelper.GetValue<double>( uiPnlGen_EndX_Num );
+            Presets.Ui.PointsDensity = WinFormsHelper.GetValue<int>( uiPnlGen_Dens_Num );
         }
 
         private void GenerateAndShowPatternCurve()
         {
-            int scaffoldType = PreSets.Pcd.ChosenScaffold;
-            double xStart = PreSets.Ui.StartingXPoint;
-            double xEnd = PreSets.Ui.EndingXPoint;
-            int density = PreSets.Ui.PointsDensity;
+            Enums.PatternCurveScaffold scaffoldType = Presets.Pcd.ChosenScaffold;
+            double xStart = Presets.Ui.StartingXPoint;
+            double xEnd = Presets.Ui.EndingXPoint;
+            int density = Presets.Ui.PointsDensity;
 
             if ( !ChartsData.GeneratePatternCurve( scaffoldType, xStart, xEnd, density ) ) {
                 ChartsData.RemoveInvalidPointsFromPatternCurveSet();
@@ -341,7 +340,7 @@ namespace PI
             string dotNetVersion = SysInfoHelper.ObtainUsedDotNetFrameworkVersion();
 
             if ( dotNetVersion == null ) {
-                uiPnlPrg_DotNetFr2_TxtBx.Text = Consts.Ui.Panel.Program.INFO_OBTAINING_ERR_TEXT;
+                uiPnlPrg_DotNetFr2_TxtBx.Text = Consts.Ui.Panel.Program.InfoObtainingErrTxt;
                 return;
             }
 
@@ -354,7 +353,7 @@ namespace PI
             string osVersion = SysInfoHelper.ObtaingApplicationRunningOSVersion();
 
             if ( osVersion == null ) {
-                uiPnlPrg_OsVer2_TxtBx.Text = Consts.Ui.Panel.Program.INFO_OBTAINING_ERR_TEXT;
+                uiPnlPrg_OsVer2_TxtBx.Text = Consts.Ui.Panel.Program.InfoObtainingErrTxt;
                 return;
             }
 
@@ -366,9 +365,9 @@ namespace PI
             int selectedCurveType = WinFormsHelper.GetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx );
             int selectedCurveIndex = WinFormsHelper.GetValue<int>( uiPnlDtSh_CrvIdx_Num );
 
-            switch ( selectedCurveType ) {
-            case Consts.Ui.Panel.Datasheet.CURVE_TYPE_PATTERN:
-            case Consts.Ui.Panel.Datasheet.CURVE_TYPE_GENERATED:
+            switch ( (Enums.DataSetCurveType) selectedCurveType ) {
+            case Enums.DataSetCurveType.Pattern:
+            case Enums.DataSetCurveType.Generated:
                 break;
             default:
                 MsgBxShower.Ui.CurveTypeNotSelectedInfo();
@@ -413,10 +412,10 @@ namespace PI
         private Series SpecifyCurveSeries( int curveType, int curveIndex )
         {
             try {
-                switch ( curveType ) {
-                case Consts.Ui.Panel.Datasheet.CURVE_TYPE_PATTERN:
+                switch ( (Enums.DataSetCurveType) curveType ) {
+                case Enums.DataSetCurveType.Pattern:
                     return ChartsData.PatternCurveSet;
-                case Consts.Ui.Panel.Datasheet.CURVE_TYPE_GENERATED:
+                case Enums.DataSetCurveType.Generated:
                     return ChartsData.GeneratedCurvesSet[curveIndex - 1];
                 }
             }

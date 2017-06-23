@@ -6,26 +6,26 @@ namespace PI
     static class ThreadTasker
     {
 
-        internal static int StartThreadSafe( Thread thread )
+        internal static Enums.Exceptions StartThreadSafe( Thread thread )
         {
             try {
                 thread.Start();
             }
             catch ( ObjectDisposedException x ) {
                 Logger.WriteException( x );
-                return Consts.Exceptions.OBJECT_DISPOSED;
+                return Enums.Exceptions.ObjectDisposedException;
             }
             catch ( ThreadStateException x ) {
                 Logger.WriteException( x );
-                return Consts.Exceptions.THREAD_STATE;
+                return Enums.Exceptions.ThreadStateException;
             }
             catch ( OutOfMemoryException x ) {
                 Logger.WriteException( x );
-                return Consts.Exceptions.OUT_OF_MEMORY;
+                return Enums.Exceptions.OutOfMemoryException;
             }
             catch ( Exception x ) {
                 Logger.WriteException( x );
-                return Consts.Exceptions.EXCEPTION;
+                return Enums.Exceptions.Exception;
             }
 
             return 0;

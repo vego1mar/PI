@@ -145,25 +145,25 @@ namespace PI
             return value;
         }
 
-        internal static int ShowMessageBoxSafe( string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon )
+        internal static Enums.Exceptions ShowMessageBoxSafe( string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon )
         {
             try {
                 MessageBox.Show( text, caption, buttons, icon );
             }
             catch ( System.ComponentModel.InvalidEnumArgumentException x ) {
                 Logger.WriteException( x );
-                return Consts.Exceptions.INVALID_ENUM_ARGUMENT;
+                return Enums.Exceptions.InvalidEnumArgumentException;
             }
             catch ( InvalidOperationException x ) {
                 Logger.WriteException( x );
-                return Consts.Exceptions.INVALID_OPERATION;
+                return Enums.Exceptions.InvalidOperationException;
             }
             catch ( Exception x ) {
                 Logger.WriteException( x );
-                return Consts.Exceptions.EXCEPTION;
+                return Enums.Exceptions.Exception;
             }
 
-            return 0;
+            return Enums.Exceptions.Exception;
         }
 
         internal static bool GetValue<T>( TextBox textBox, out T value )

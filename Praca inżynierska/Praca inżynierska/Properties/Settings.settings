@@ -6,7 +6,7 @@
       <Value Profile="(Default)">https://github.com/vego1mar/PI</Value>
     </Setting>
     <Setting Name="Commits" Type="System.UInt16" Scope="Application">
-      <Value Profile="(Default)">22</Value>
+      <Value Profile="(Default)">23</Value>
     </Setting>
   </Settings>
 </SettingsFile>

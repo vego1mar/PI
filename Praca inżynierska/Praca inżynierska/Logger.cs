@@ -1,5 +1,5 @@
-﻿using System.IO;
-using System;
+﻿using System;
+using System.IO;
 using System.Globalization;
 
 namespace PI
@@ -13,41 +13,41 @@ namespace PI
         private static StreamWriter LogWriter { set; get; }
         public static uint NumberOfLoggedExceptions { get; private set; } = 0;
 
-        public static int Initialize()
+        public static Enums.Exceptions Initialize()
         {
             try {
                 LogWriter = new StreamWriter( WRITER_PATH, false, System.Text.Encoding.UTF8, WRITER_BUFFER_SIZE );
                 PrintLogHeader();
             }
             catch ( ArgumentNullException ) {
-                return Consts.Exceptions.ARGUMENT_NULL;
+                return Enums.Exceptions.ArgumentNullException;
             }
             catch ( ArgumentOutOfRangeException ) {
-                return Consts.Exceptions.ARGUMENT_OUT_OF_RANGE;
+                return Enums.Exceptions.ArgumentOutOfRangeException;
             }
             catch ( ArgumentException ) {
-                return Consts.Exceptions.ARGUMENT;
+                return Enums.Exceptions.ArgumentException;
             }
             catch ( DirectoryNotFoundException ) {
-                return Consts.Exceptions.DIRECTORY_NOT_FOUND;
+                return Enums.Exceptions.DirectoryNotFoundException;
             }
             catch ( PathTooLongException ) {
-                return Consts.Exceptions.PATH_TOO_LONG;
+                return Enums.Exceptions.PathTooLongException;
             }
             catch ( IOException ) {
-                return Consts.Exceptions.IO;
+                return Enums.Exceptions.IOException;
             }
             catch ( System.Security.SecurityException ) {
-                return Consts.Exceptions.SECURITY;
+                return Enums.Exceptions.SecurityException;
             }
             catch ( UnauthorizedAccessException ) {
-                return Consts.Exceptions.UNAUTHORIZED_ACCESS;
+                return Enums.Exceptions.UnauthorizedAccessException;
             }
             catch ( Exception ) {
-                return Consts.Exceptions.EXCEPTION;
+                return Enums.Exceptions.Exception;
             }
 
-            return 0;
+            return Enums.Exceptions.None;
         }
 
         private static void PrintLogHeader()
@@ -55,46 +55,46 @@ namespace PI
             WriteLine( DateTime.Now.ToString( CultureInfo.InvariantCulture ) + " " + DateTime.Now.DayOfWeek );
         }
 
-        public static int WriteLine( string text )
+        public static Enums.Exceptions WriteLine( string text )
         {
             try {
                 LogWriter.WriteLine( text );
             }
             catch ( ObjectDisposedException ) {
-                return Consts.Exceptions.OBJECT_DISPOSED;
+                return Enums.Exceptions.ObjectDisposedException;
             }
             catch ( IOException ) {
-                return Consts.Exceptions.IO;
+                return Enums.Exceptions.IOException;
             }
             catch ( Exception ) {
-                return Consts.Exceptions.EXCEPTION;
+                return Enums.Exceptions.Exception;
             }
 
-            return 0;
+            return Enums.Exceptions.None;
         }
 
-        public static int Write( string text )
+        public static Enums.Exceptions Write( string text )
         {
             try {
                 LogWriter.Write( text );
             }
             catch ( ObjectDisposedException ) {
-                return Consts.Exceptions.OBJECT_DISPOSED;
+                return Enums.Exceptions.ObjectDisposedException;
             }
             catch ( IOException ) {
-                return Consts.Exceptions.IO;
+                return Enums.Exceptions.IOException;
             }
             catch ( NotSupportedException ) {
-                return Consts.Exceptions.NOT_SUPPORTED;
+                return Enums.Exceptions.NotSupportedException;
             }
             catch ( Exception ) {
-                return Consts.Exceptions.EXCEPTION;
+                return Enums.Exceptions.Exception;
             }
 
-            return 0;
+            return Enums.Exceptions.None;
         }
 
-        public static int WriteException( Exception x )
+        public static Enums.Exceptions WriteException( Exception x )
         {
             NumberOfLoggedExceptions++;
 

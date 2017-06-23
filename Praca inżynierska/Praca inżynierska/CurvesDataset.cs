@@ -37,20 +37,20 @@ namespace PI
             series.YValuesPerPoint = 1;
         }
 
-        public bool GeneratePatternCurve( int curveScaffoldType, double startingXPoint, double endingXPoint, int pointsDensity )
+        public bool GeneratePatternCurve( Enums.PatternCurveScaffold type, double startingXPoint, double endingXPoint, int pointsDensity )
         {
-            switch ( curveScaffoldType ) {
-            case Consts.Ui.Panel.Generate.SCAFFOLD_POLYNOMIAL:
+            switch ( type ) {
+            case Enums.PatternCurveScaffold.Polynomial:
                 GeneratePolynomialPatternCurve( startingXPoint, endingXPoint, pointsDensity );
                 return IsCurvePointsSetValid( PatternCurveSet );
-            case Consts.Ui.Panel.Generate.SCAFFOLD_HYPERBOLIC:
+            case Enums.PatternCurveScaffold.Hyperbolic:
                 GenerateHyperbolicPatternCurve( startingXPoint, endingXPoint, pointsDensity );
                 return IsCurvePointsSetValid( PatternCurveSet );
-            case Consts.Ui.Panel.Generate.SCAFFOLD_WAVE_SINE:
-            case Consts.Ui.Panel.Generate.SCAFFOLD_WAVE_SQUARE:
-            case Consts.Ui.Panel.Generate.SCAFFOLD_WAVE_TRIANGLE:
-            case Consts.Ui.Panel.Generate.SCAFFOLD_WAVE_SAWTOOTH:
-                GenerateWaveformPatternCurve( startingXPoint, endingXPoint, pointsDensity, curveScaffoldType );
+            case Enums.PatternCurveScaffold.WaveformSine:
+            case Enums.PatternCurveScaffold.WaveformSquare:
+            case Enums.PatternCurveScaffold.WaveformTriangle:
+            case Enums.PatternCurveScaffold.WaveformSawtooth:
+                GenerateWaveformPatternCurve( startingXPoint, endingXPoint, pointsDensity, type );
                 return IsCurvePointsSetValid( PatternCurveSet );
             }
 
@@ -64,9 +64,9 @@ namespace PI
 
             while ( args.HasNextArgument() ) {
                 double x = args.GetNextArgument();
-                double leftFraction = (PreSets.Pcd.Parameters.Polynomial.A * Math.Pow( x, PreSets.Pcd.Parameters.Polynomial.B )) / PreSets.Pcd.Parameters.Polynomial.C;
-                double rightFraction = (PreSets.Pcd.Parameters.Polynomial.D * Math.Pow( x, PreSets.Pcd.Parameters.Polynomial.E )) / PreSets.Pcd.Parameters.Polynomial.F;
-                double polynomial = leftFraction + rightFraction + PreSets.Pcd.Parameters.Polynomial.I;
+                double leftFraction = (Presets.Pcd.Parameters.Polynomial.A * Math.Pow( x, Presets.Pcd.Parameters.Polynomial.B )) / Presets.Pcd.Parameters.Polynomial.C;
+                double rightFraction = (Presets.Pcd.Parameters.Polynomial.D * Math.Pow( x, Presets.Pcd.Parameters.Polynomial.E )) / Presets.Pcd.Parameters.Polynomial.F;
+                double polynomial = leftFraction + rightFraction + Presets.Pcd.Parameters.Polynomial.I;
                 PatternCurveSet.Points.AddXY( x, polynomial );
             }
         }
@@ -79,24 +79,24 @@ namespace PI
             while ( args.HasNextArgument() ) {
                 double x = args.GetNextArgument();
                 double numerator = Math.Pow( Math.E, x ) - Math.Pow( Math.E, -x );
-                double fraction = numerator / PreSets.Pcd.Parameters.Hyperbolic.G;
-                PatternCurveSet.Points.AddXY( x, fraction + PreSets.Pcd.Parameters.Hyperbolic.J );
+                double fraction = numerator / Presets.Pcd.Parameters.Hyperbolic.G;
+                PatternCurveSet.Points.AddXY( x, fraction + Presets.Pcd.Parameters.Hyperbolic.J );
             }
         }
 
-        private void GenerateWaveformPatternCurve( double startingXPoint, double endingXPoint, int pointsDensity, int wavetype )
+        private void GenerateWaveformPatternCurve( double startingXPoint, double endingXPoint, int pointsDensity, Enums.PatternCurveScaffold wavetype )
         {
             switch ( wavetype ) {
-            case Consts.Ui.Panel.Generate.SCAFFOLD_WAVE_SINE:
+            case Enums.PatternCurveScaffold.WaveformSine:
                 GenerateSineWavePatternCurve( startingXPoint, endingXPoint, pointsDensity );
                 break;
-            case Consts.Ui.Panel.Generate.SCAFFOLD_WAVE_SQUARE:
+            case Enums.PatternCurveScaffold.WaveformSquare:
                 GenerateSquareWavePatternCurve( startingXPoint, endingXPoint, pointsDensity );
                 break;
-            case Consts.Ui.Panel.Generate.SCAFFOLD_WAVE_TRIANGLE:
+            case Enums.PatternCurveScaffold.WaveformTriangle:
                 GenerateTriangleWavePatternCurve( startingXPoint, endingXPoint, pointsDensity );
                 break;
-            case Consts.Ui.Panel.Generate.SCAFFOLD_WAVE_SAWTOOTH:
+            case Enums.PatternCurveScaffold.WaveformSawtooth:
                 GenerateSawtoothWavePatternCurve( startingXPoint, endingXPoint, pointsDensity );
                 break;
             }
@@ -109,9 +109,9 @@ namespace PI
 
             while ( args.HasNextArgument() ) {
                 double x = args.GetNextArgument();
-                double argument = (PreSets.Pcd.Parameters.Waveform.N * x) + PreSets.Pcd.Parameters.Waveform.O;
-                double amplitude = PreSets.Pcd.Parameters.Waveform.M * Math.Sin( argument );
-                PatternCurveSet.Points.AddXY( x, amplitude + PreSets.Pcd.Parameters.Waveform.K );
+                double argument = (Presets.Pcd.Parameters.Waveform.N * x) + Presets.Pcd.Parameters.Waveform.O;
+                double amplitude = Presets.Pcd.Parameters.Waveform.M * Math.Sin( argument );
+                PatternCurveSet.Points.AddXY( x, amplitude + Presets.Pcd.Parameters.Waveform.K );
             }
         }
 
@@ -122,12 +122,12 @@ namespace PI
 
             while ( args.HasNextArgument() ) {
                 double x = args.GetNextArgument();
-                double argument = (ArgsGenerator.PI_2 * x) / PreSets.Pcd.Parameters.Waveform.N;
+                double argument = (ArgsGenerator.PI_2 * x) / Presets.Pcd.Parameters.Waveform.N;
                 double absolute = Math.Abs( Math.Sin( argument ) );
                 double cosecans = 1.0 / Math.Sin( argument );
-                double modifier = PreSets.Pcd.Parameters.Waveform.M * cosecans;
+                double modifier = Presets.Pcd.Parameters.Waveform.M * cosecans;
                 double expression = absolute * modifier;
-                PatternCurveSet.Points.AddXY( x, expression + PreSets.Pcd.Parameters.Waveform.K );
+                PatternCurveSet.Points.AddXY( x, expression + Presets.Pcd.Parameters.Waveform.K );
             }
         }
 
@@ -138,10 +138,10 @@ namespace PI
 
             while ( args.HasNextArgument() ) {
                 double x = args.GetNextArgument();
-                double factor = (2.0 * PreSets.Pcd.Parameters.Waveform.M) / Math.PI;
-                double argument = (ArgsGenerator.PI_2 * x) / PreSets.Pcd.Parameters.Waveform.N;
+                double factor = (2.0 * Presets.Pcd.Parameters.Waveform.M) / Math.PI;
+                double argument = (ArgsGenerator.PI_2 * x) / Presets.Pcd.Parameters.Waveform.N;
                 double expression = factor * Math.Asin( Math.Sin( argument ) );
-                PatternCurveSet.Points.AddXY( x, expression + PreSets.Pcd.Parameters.Waveform.K );
+                PatternCurveSet.Points.AddXY( x, expression + Presets.Pcd.Parameters.Waveform.K );
             }
         }
 
@@ -152,11 +152,11 @@ namespace PI
 
             while ( args.HasNextArgument() ) {
                 double x = args.GetNextArgument();
-                double factor = (-2.0 * PreSets.Pcd.Parameters.Waveform.M) / Math.PI;
-                double argument = (Math.PI * x) / PreSets.Pcd.Parameters.Waveform.N;
+                double factor = (-2.0 * Presets.Pcd.Parameters.Waveform.M) / Math.PI;
+                double argument = (Math.PI * x) / Presets.Pcd.Parameters.Waveform.N;
                 double cotangens = 1.0 / Math.Tan( argument );
                 double expression = factor * Math.Atan( cotangens );
-                PatternCurveSet.Points.AddXY( x, expression + PreSets.Pcd.Parameters.Waveform.K );
+                PatternCurveSet.Points.AddXY( x, expression + Presets.Pcd.Parameters.Waveform.K );
             }
         }
 
@@ -166,11 +166,11 @@ namespace PI
                 return;
             }
 
-            switch ( curveType ) {
-            case Consts.Ui.Panel.Datasheet.CURVE_TYPE_PATTERN:
+            switch ( (Enums.DataSetCurveType) curveType ) {
+            case Enums.DataSetCurveType.Pattern:
                 AbsorbSeriesForPatternCurve( series );
                 break;
-            case Consts.Ui.Panel.Datasheet.CURVE_TYPE_GENERATED:
+            case Enums.DataSetCurveType.Generated:
                 AbsorbSeriesForSpecifiedGeneratedCurve( series, curveIndex - 1 );
                 break;
             }
