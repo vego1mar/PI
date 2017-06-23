@@ -113,15 +113,15 @@ namespace PI
             {
                 internal static void IndexGreaterThanAllowedProblem()
                 {
-                    string text = Consts.Gprv.Panel.INDEX_GREATER_THAN_ALLOWED_TXT;
-                    string caption = Consts.Gprv.Panel.INDEX_GREATER_THAN_ALLOWED_CPT;
+                    string text = Consts.Gprv.Panel.IDX_GREATER_THAN_ALLOWED_TXT;
+                    string caption = Consts.Gprv.Panel.IDX_GREATER_THAN_ALLOWED_CPT;
                     WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
                 }
 
                 internal static void IndexLowerThanAllowedProblem()
                 {
-                    string text = Consts.Gprv.Panel.INDEX_LOWER_THAN_ALLOWED_TXT;
-                    string caption = Consts.Gprv.Panel.INDEX_LOWER_THAN_ALLOWED_CPT;
+                    string text = Consts.Gprv.Panel.IDX_LOWER_THAN_ALLOWED_TXT;
+                    string caption = Consts.Gprv.Panel.IDX_LOWER_THAN_ALLOWED_CPT;
                     WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
                 }
 
@@ -136,6 +136,23 @@ namespace PI
                 {
                     string text = Consts.Gprv.Panel.OPERATION_ERR_TXT;
                     string caption = Consts.Gprv.Panel.OPERATION_ERR_CPT;
+                    WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
+                }
+
+                internal static void InvalidCurvePointsError()
+                {
+                    string text = Consts.Gprv.Panel.INVL_CURVE_POINTS_TXT;
+                    string caption = Consts.Gprv.Panel.INVL_CURVE_POINTS_CPT;
+                    WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
+                }
+            }
+
+            internal static class Chart
+            {
+                internal static void ChartRefreshingError()
+                {
+                    string text = Consts.Gprv.Chart.REFRESH_ERR_TXT;
+                    string caption = Consts.Gprv.Chart.REFRESH_ERR_CPT;
                     WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
                 }
             }

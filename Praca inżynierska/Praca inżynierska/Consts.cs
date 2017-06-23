@@ -133,14 +133,32 @@
                 internal const string BASIS_TXT = "Basis:";
                 internal const string VALUE_TXT = "Value:";
                 internal const string NOT_APPLICABLE_ABBR_TXT = "N/A:";
-                internal const string INDEX_GREATER_THAN_ALLOWED_TXT = "Specified index would be greater than allowed. Change rejected.";
-                internal const string INDEX_GREATER_THAN_ALLOWED_CPT = "Improper index value";
-                internal const string INDEX_LOWER_THAN_ALLOWED_TXT = "Specified index would be lower than allowed. Change revoked.";
-                internal const string INDEX_LOWER_THAN_ALLOWED_CPT = "Improper index value";
+                internal const string IDX_GREATER_THAN_ALLOWED_TXT = "Specified index would be greater than allowed. Change rejected.";
+                internal const string IDX_GREATER_THAN_ALLOWED_CPT = "Improper index value";
+                internal const string IDX_LOWER_THAN_ALLOWED_TXT = "Specified index would be lower than allowed. Change revoked.";
+                internal const string IDX_LOWER_THAN_ALLOWED_CPT = "Improper index value";
                 internal const string USER_VALUE_IMPROPER_TXT = "The given value is improper. Note, that numbers should be localized.";
                 internal const string USER_VALUE_IMPROPER_CPT = "Wrong cast, conversion or format";
                 internal const string OPERATION_ERR_TXT = "Cannot calculate values for all specified arguments. Overflow. Changes rejected.";
                 internal const string OPERATION_ERR_CPT = "Exception during calculation";
+                internal const string GPRV_LOADED_TXT = "Grid Previewer loaded";
+                internal const string CHANGES_SAVED_TXT = "Changes saved";
+                internal const string PERFORMED_AND_REFRESHED_TXT = "Performed & refreshed";
+                internal const string OPERATION_REJECTED_TXT = "Operation rejected";
+                internal const string OPERATION_REVOKED_TXT = "Operation revoked";
+                internal const string INVL_USER_VALUE_TXT = "Invalid user value";
+                internal const string INVL_CURVE_POINTS_TXT = "At least one of points value is too large or improper to be displayed on a chart.";
+                internal const string INVL_CURVE_POINTS_CPT = "Invalid curve points";
+                internal const string VALUES_RESTORED_TXT = "Values restored";
+            }
+
+            internal static class Chart
+            {
+                internal const string REFRESH_ERR_TXT = "Chart refreshing error, possibly recalculating axes scales (too large to display).";
+                internal const string REFRESH_ERR_CPT = "Invalid operation";
+                internal const string CHART_REFRESHED_TXT = "Chart refreshed";
+                internal const string CHART_NOT_REPAINTED_TXT = "Chart not repainted";
+                internal const string CHART_REFRESH_ERR_TXT = "Chart refresh error";
             }
         }
 

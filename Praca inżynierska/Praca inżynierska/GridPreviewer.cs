@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Collections.Generic;
 using System.Windows.Forms.DataVisualization.Charting;
 
 namespace PI
@@ -9,6 +10,7 @@ namespace PI
     {
 
         public Series ChartDataSet { get; private set; }
+        private List<double> OriginalValues { get; set; }
 
         public GridPreviewer( Series series )
         {
@@ -20,7 +22,7 @@ namespace PI
         {
             CurvesDataset.SetDefaultProperties( uiChart_Prv );
             ChartDataSet = series;
-            UpdateUiByPopulatingGrid();
+            OriginalValues = GetPointsValues( series );
             WinFormsHelper.SetSelectedIndexSafe( uiPnl_AutoSize_ComBx, (int) Enums.AutoSizeColumnsMode.Fill );
             WinFormsHelper.SetSelectedIndexSafe( uiPnl_OperT_ComBx, (int) Enums.OperationType.Positive );
             uiPnl_StartIdx_Num.Minimum = 0;
@@ -29,6 +31,20 @@ namespace PI
             uiPnl_EndIdx_Num.Minimum = 0;
             uiPnl_EndIdx_Num.Maximum = ChartDataSet.Points.Count - 1;
             uiPnl_EndIdx_Num.Value = ChartDataSet.Points.Count - 1;
+            UpdateUiByPopulatingGrid();
+            UpdateUiByRefreshingChart();
+            UpdateUiByPanelStateInfo( Consts.Gprv.Panel.GPRV_LOADED_TXT );
+        }
+
+        private List<double> GetPointsValues( Series series )
+        {
+            List<double> values = new List<double>();
+
+            for ( int i = 0; i < series.Points.Count; i++ ) {
+                values.Add( series.Points[i].YValues[0] );
+            }
+
+            return values;
         }
 
         private void UpdateUiByPopulatingGrid()
@@ -44,11 +60,32 @@ namespace PI
             }
         }
 
+        private void UpdateUiByAlteringGrid()
+        {
+            for ( int i = 0; i < ChartDataSet.Points.Count; i++ ) {
+                uiGrid_db_grid.Rows[i].Cells["y"].Value = ChartDataSet.Points[i].YValues[0];
+            }
+        }
+
         private void UiPanel_Save_Click( object sender, EventArgs e )
         {
+            Series series = new Series();
+
+            for ( int i = 0; i < uiGrid_db_grid.Rows.Count; i++ ) {
+                series.Points.AddY( (double) uiGrid_db_grid.Rows[i].Cells["y"].Value );
+            }
+
+            if ( !CurvesDataset.IsCurvePointsSetValid( series ) ) {
+                UpdateUiByPanelStateInfo( Consts.Gprv.Panel.OPERATION_REVOKED_TXT );
+                MsgBxShower.Gprv.Panel.InvalidCurvePointsError();
+                return;
+            }
+
             for ( int i = 0; i < ChartDataSet.Points.Count; i++ ) {
                 ChartDataSet.Points[i].YValues[0] = (double) uiGrid_db_grid.Rows[i].Cells["y"].Value;
             }
+
+            UpdateUiByPanelStateInfo( Consts.Gprv.Panel.CHANGES_SAVED_TXT );
         }
 
         private void UiPanel_AutoSizeColumnsMode_SelectedIndexChanged( object sender, EventArgs e )
@@ -130,6 +167,7 @@ namespace PI
             double? userValue = GetUserValue();
 
             if ( userValue == null ) {
+                UpdateUiByPanelStateInfo( Consts.Gprv.Panel.INVL_USER_VALUE_TXT );
                 MsgBxShower.Gprv.Panel.ImproperUserValueProblem();
                 return;
             }
@@ -141,16 +179,21 @@ namespace PI
             bool result = PerformOperation( operation, startIndex, endIndex, userValue.Value, ref seriesCopy );
 
             if ( !result ) {
+                UpdateUiByPanelStateInfo( Consts.Gprv.Panel.OPERATION_REJECTED_TXT );
                 MsgBxShower.Gprv.Panel.PerformOperationError();
                 return;
             }
 
-            // TODO: watch this
-            // ValidatePointsAsDecimal  -->  ApplyPointsAlteration() if OK
+            if ( !CurvesDataset.IsCurvePointsSetValid( seriesCopy ) ) {
+                UpdateUiByPanelStateInfo( Consts.Gprv.Panel.OPERATION_REVOKED_TXT );
+                MsgBxShower.Gprv.Panel.InvalidCurvePointsError();
+                return;
+            }
+
             ApplyPointsAlteration( seriesCopy );
-            // Refresh Grid and Chart
-            uiGrid_db_grid.Rows.Clear();
-            UpdateUiByPopulatingGrid();
+            UpdateUiByAlteringGrid();
+            UpdateUiByRefreshingChart();
+            UpdateUiByPanelStateInfo( Consts.Gprv.Panel.PERFORMED_AND_REFRESHED_TXT );
         }
 
         private double? GetUserValue()
@@ -313,6 +356,58 @@ namespace PI
             for ( int i = startIndex; i <= endIndex; i++ ) {
                 series.Points[i].YValues[0] = -Math.Abs( series.Points[i].YValues[0] );
             }
+        }
+
+        private string GetStateInfoTimeHeader()
+        {
+            string date = DateTime.Now.ToString( System.Globalization.CultureInfo.InvariantCulture );
+            string time = date.Substring( date.IndexOf( ' ' ) + 1 );
+            return "(" + time + ") ";
+        }
+
+        private void UpdateUiByPanelStateInfo( string info )
+        {
+            uiPnl_Info_TxtBx.Text = GetStateInfoTimeHeader() + info;
+        }
+
+        private void UiPanel_Reset_Click( object sender, EventArgs e )
+        {
+            for ( int i = 0; i < OriginalValues.Count; i++ ) {
+                ChartDataSet.Points[i].YValues[0] = OriginalValues[i];
+            }
+
+            UpdateUiByAlteringGrid();
+            UpdateUiByRefreshingChart();
+            UpdateUiByPanelStateInfo( Consts.Gprv.Panel.VALUES_RESTORED_TXT );
+        }
+
+        private void UiPanel_Refresh_Click( object sender, EventArgs e )
+        {
+            UpdateUiByRefreshingChart();
+        }
+
+        private void UpdateUiByRefreshingChart()
+        {
+            try {
+                uiChart_Prv.Series.Clear();
+                Series series = GetCopyOfSeriesPoints();
+                CurvesDataset.SetDefaultProperties( series, "RefreshSeries" );
+                uiChart_Prv.Series.Add( series );
+                uiChart_Prv.ChartAreas[0].RecalculateAxesScale();
+                uiChart_Prv.Visible = true;
+                uiChart_Prv.Invalidate();
+            }
+            catch ( InvalidOperationException x ) {
+                Logger.WriteException( x );
+                UpdateUiByPanelStateInfo( Consts.Gprv.Chart.CHART_NOT_REPAINTED_TXT );
+                MsgBxShower.Gprv.Chart.ChartRefreshingError();
+            }
+            catch ( Exception x ) {
+                Logger.WriteException( x );
+                UpdateUiByPanelStateInfo( Consts.Gprv.Chart.CHART_REFRESH_ERR_TXT );
+            }
+
+            UpdateUiByPanelStateInfo( Consts.Gprv.Chart.CHART_REFRESHED_TXT );
         }
 
     }

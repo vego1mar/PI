@@ -18,7 +18,7 @@ namespace PI
             internal static int NumberOfCurves { get; set; } = 5;
             internal static double StartingXPoint { get; set; } = -2.0;
             internal static double EndingXPoint { get; set; } = 2.0;
-            internal static int PointsDensity { get; set; } = 25;
+            internal static int PointsDensity { get; set; } = 200;
         }
 
     }

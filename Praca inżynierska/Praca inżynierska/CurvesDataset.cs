@@ -26,9 +26,10 @@ namespace PI
         public static void SetDefaultProperties( Series series, string name )
         {
             series.Name = name;
-            series.BorderWidth = 5;
+            series.BorderWidth = 3;
             series.ChartType = SeriesChartType.Line;
             series.Color = Color.Black;
+            series.Font = new Font( "Consolas", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 238 );
             series.IsVisibleInLegend = false;
             series.IsXValueIndexed = true;
             series.YValueType = ChartValueType.Double;
@@ -41,16 +42,16 @@ namespace PI
             switch ( curveScaffoldType ) {
             case Consts.Ui.Panel.Generate.SCAFFOLD_POLYNOMIAL:
                 GeneratePolynomialPatternCurve( startingXPoint, endingXPoint, pointsDensity );
-                return IsPatternCurveSetPointsValid();
+                return IsCurvePointsSetValid( PatternCurveSet );
             case Consts.Ui.Panel.Generate.SCAFFOLD_HYPERBOLIC:
                 GenerateHyperbolicPatternCurve( startingXPoint, endingXPoint, pointsDensity );
-                return IsPatternCurveSetPointsValid();
+                return IsCurvePointsSetValid( PatternCurveSet );
             case Consts.Ui.Panel.Generate.SCAFFOLD_WAVE_SINE:
             case Consts.Ui.Panel.Generate.SCAFFOLD_WAVE_SQUARE:
             case Consts.Ui.Panel.Generate.SCAFFOLD_WAVE_TRIANGLE:
             case Consts.Ui.Panel.Generate.SCAFFOLD_WAVE_SAWTOOTH:
                 GenerateWaveformPatternCurve( startingXPoint, endingXPoint, pointsDensity, curveScaffoldType );
-                return IsPatternCurveSetPointsValid();
+                return IsCurvePointsSetValid( PatternCurveSet );
             }
 
             return false;
@@ -210,11 +211,11 @@ namespace PI
             }
         }
 
-        private bool IsPatternCurveSetPointsValid()
+        public static bool IsCurvePointsSetValid( Series series )
         {
-            for ( int i = 0; i < PatternCurveSet.Points.Count; i++ ) {
-                double x = PatternCurveSet.Points[i].XValue;
-                double y = PatternCurveSet.Points[i].YValues[0];
+            for ( int i = 0; i < series.Points.Count; i++ ) {
+                double x = series.Points[i].XValue;
+                double y = series.Points[i].YValues[0];
 
                 if ( x > ACCEPTABLE_MAX_VALUE || x < ACCEPTABLE_MIN_VALUE || y > ACCEPTABLE_MAX_VALUE || y < ACCEPTABLE_MIN_VALUE ) {
                     return false;
@@ -267,7 +268,6 @@ namespace PI
             chart.Series[seriesIndex].BorderWidth = 5;
             chart.Series[seriesIndex].ChartType = SeriesChartType.Line;
             chart.Series[seriesIndex].Color = Color.Black;
-            chart.Series[seriesIndex].CustomProperties = "EmptyPointValue=Zero";
             chart.Series[seriesIndex].Font = new Font( "Consolas", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 238 );
             chart.Series[seriesIndex].IsVisibleInLegend = false;
             chart.Series[seriesIndex].IsXValueIndexed = true;

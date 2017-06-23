@@ -5,12 +5,11 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 // BACKLOG
 // TODO: General - Configuration file
-// TODO: Localization - instantiating Constants
+// TODO: General - Localization
 // TODO: Menu - 'Adjust curves' for visual effects manipulations
 // TODO: Menu - Reading and saving set of curves from a file
-// TODO: Dataview - Create a new Dsv dialog to use db context for efficiency
-// TODO: Dataview - 'Perform' is working like 'Save' because of switch into immediate alteration
 // TODO: Feature - Implement Gaussian noise option
+// TODO: Readability - Use enums instead of consts
 
 namespace PI
 {
@@ -362,7 +361,6 @@ namespace PI
             uiPnlPrg_OsVer2_TxtBx.Text = osVersion;
         }
 
-        [Obsolete( "Replace DatasetViewer with GridPreviewer" )]
         private void UiPanelDataSheet_ShowDataSet_Click( object sender, EventArgs e )
         {
             int selectedCurveType = WinFormsHelper.GetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx );
@@ -379,19 +377,19 @@ namespace PI
 
             Series selectedCurveSeries = SpecifyCurveSeries( selectedCurveType, selectedCurveIndex );
 
-            if ( selectedCurveSeries == null ) {
+            if ( selectedCurveSeries == null || ChartsData.PatternCurveSet.Points.Count == 0 ) {
                 MsgBxShower.Ui.SeriesSelectionProblem();
                 return;
             }
 
-            using ( var DsvDialog = new DatasetViewer( selectedCurveSeries ) ) {
-                WinFormsHelper.ShowDialogSafe( DsvDialog, this );
+            using ( var gprvDialog = new GridPreviewer( selectedCurveSeries ) ) {
+                WinFormsHelper.ShowDialogSafe( gprvDialog, this );
 
                 try {
-                    if ( DsvDialog.DialogResult == DialogResult.OK ) {
-                        ChartsData.AbsorbSeriesPoints( DsvDialog.CurveDataSet, selectedCurveType, selectedCurveIndex );
+                    if ( gprvDialog.DialogResult == DialogResult.OK ) {
+                        ChartsData.AbsorbSeriesPoints( gprvDialog.ChartDataSet, selectedCurveType, selectedCurveIndex );
                         uiCharts_PtrnCrv.Series.Clear();
-                        uiCharts_PtrnCrv.Series.Add( DsvDialog.CurveDataSet );
+                        uiCharts_PtrnCrv.Series.Add( gprvDialog.ChartDataSet );
                         uiCharts_PtrnCrv.Series[0].BorderWidth = 3;
                         uiCharts_PtrnCrv.Series[0].Color = System.Drawing.Color.Indigo;
                         uiCharts_PtrnCrv.ChartAreas[0].RecalculateAxesScale();
@@ -410,12 +408,6 @@ namespace PI
                     Logger.WriteException( x );
                 }
             }
-
-            /////////////////////////////////////////////////////////////////////////////////////
-            using ( var gprvDialog = new GridPreviewer( selectedCurveSeries ) ) {
-                WinFormsHelper.ShowDialogSafe( gprvDialog, this );
-            }
-            /////////////////////////////////////////////////////////////////////////////////////
         }
 
         private Series SpecifyCurveSeries( int curveType, int curveIndex )

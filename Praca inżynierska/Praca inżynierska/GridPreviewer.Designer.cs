@@ -27,12 +27,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.ui_TbLay = new System.Windows.Forms.TableLayoutPanel();
             this.uiGrid_TbLay = new System.Windows.Forms.TableLayoutPanel();
             this.uiGrid_DtSet_TxtBx = new System.Windows.Forms.TextBox();
@@ -41,6 +41,8 @@
             this.x = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.y = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uiPnl_TbLay = new System.Windows.Forms.TableLayoutPanel();
+            this.uiPnl_Ok_Btn = new System.Windows.Forms.Button();
+            this.uiPnl_Refresh_Btn = new System.Windows.Forms.Button();
             this.uiPnl_Save_Btn = new System.Windows.Forms.Button();
             this.uiPnl_Reset_Btn = new System.Windows.Forms.Button();
             this.uiPnl_EndIdx_Num = new System.Windows.Forms.NumericUpDown();
@@ -57,11 +59,9 @@
             this.uiPnl_Perform_Btn = new System.Windows.Forms.Button();
             this.uiPnl_Val2_TxtBx = new System.Windows.Forms.TextBox();
             this.uiChart_TbLay = new System.Windows.Forms.TableLayoutPanel();
-            this.uiChart_Info_TxtBx = new System.Windows.Forms.TextBox();
             this.uiChart_Prv_TxtBx = new System.Windows.Forms.TextBox();
             this.uiChart_Prv = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.uiPnl_Refresh_Btn = new System.Windows.Forms.Button();
-            this.uiPnl_Ok_Btn = new System.Windows.Forms.Button();
+            this.uiPnl_Info_TxtBx = new System.Windows.Forms.TextBox();
             this.ui_TbLay.SuspendLayout();
             this.uiGrid_TbLay.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiGrid_db_grid)).BeginInit();
@@ -120,9 +120,9 @@
             // 
             this.uiGrid_db_grid.AllowUserToAddRows = false;
             this.uiGrid_db_grid.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.White;
-            this.uiGrid_db_grid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.uiGrid_db_grid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.uiGrid_db_grid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.uiGrid_db_grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.uiGrid_db_grid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -132,17 +132,17 @@
             this.uiGrid_db_grid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiGrid_db_grid.Location = new System.Drawing.Point(3, 28);
             this.uiGrid_db_grid.Name = "uiGrid_db_grid";
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.uiGrid_db_grid.RowHeadersDefaultCellStyle = dataGridViewCellStyle20;
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle21.BackColor = System.Drawing.Color.White;
-            this.uiGrid_db_grid.RowsDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.uiGrid_db_grid.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            this.uiGrid_db_grid.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.uiGrid_db_grid.Size = new System.Drawing.Size(332, 427);
             this.uiGrid_db_grid.TabIndex = 1;
             // 
@@ -169,7 +169,8 @@
             this.uiPnl_TbLay.ColumnCount = 2;
             this.uiPnl_TbLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.uiPnl_TbLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.uiPnl_TbLay.Controls.Add(this.uiPnl_Ok_Btn, 1, 13);
+            this.uiPnl_TbLay.Controls.Add(this.uiPnl_Info_TxtBx, 0, 12);
+            this.uiPnl_TbLay.Controls.Add(this.uiPnl_Ok_Btn, 1, 14);
             this.uiPnl_TbLay.Controls.Add(this.uiPnl_Refresh_Btn, 0, 11);
             this.uiPnl_TbLay.Controls.Add(this.uiPnl_Save_Btn, 1, 11);
             this.uiPnl_TbLay.Controls.Add(this.uiPnl_Reset_Btn, 0, 10);
@@ -189,7 +190,9 @@
             this.uiPnl_TbLay.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiPnl_TbLay.Location = new System.Drawing.Point(3, 3);
             this.uiPnl_TbLay.Name = "uiPnl_TbLay";
-            this.uiPnl_TbLay.RowCount = 16;
+            this.uiPnl_TbLay.RowCount = 18;
+            this.uiPnl_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.uiPnl_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.uiPnl_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.uiPnl_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.uiPnl_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
@@ -208,6 +211,29 @@
             this.uiPnl_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.uiPnl_TbLay.Size = new System.Drawing.Size(224, 458);
             this.uiPnl_TbLay.TabIndex = 1;
+            // 
+            // uiPnl_Ok_Btn
+            // 
+            this.uiPnl_Ok_Btn.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.uiPnl_Ok_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiPnl_Ok_Btn.ForeColor = System.Drawing.Color.Red;
+            this.uiPnl_Ok_Btn.Location = new System.Drawing.Point(115, 353);
+            this.uiPnl_Ok_Btn.Name = "uiPnl_Ok_Btn";
+            this.uiPnl_Ok_Btn.Size = new System.Drawing.Size(106, 19);
+            this.uiPnl_Ok_Btn.TabIndex = 16;
+            this.uiPnl_Ok_Btn.Text = "OK";
+            this.uiPnl_Ok_Btn.UseVisualStyleBackColor = true;
+            // 
+            // uiPnl_Refresh_Btn
+            // 
+            this.uiPnl_Refresh_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiPnl_Refresh_Btn.Location = new System.Drawing.Point(3, 278);
+            this.uiPnl_Refresh_Btn.Name = "uiPnl_Refresh_Btn";
+            this.uiPnl_Refresh_Btn.Size = new System.Drawing.Size(106, 19);
+            this.uiPnl_Refresh_Btn.TabIndex = 15;
+            this.uiPnl_Refresh_Btn.Text = "Refresh";
+            this.uiPnl_Refresh_Btn.UseVisualStyleBackColor = true;
+            this.uiPnl_Refresh_Btn.Click += new System.EventHandler(this.UiPanel_Refresh_Click);
             // 
             // uiPnl_Save_Btn
             // 
@@ -229,6 +255,7 @@
             this.uiPnl_Reset_Btn.TabIndex = 2;
             this.uiPnl_Reset_Btn.Text = "Reset";
             this.uiPnl_Reset_Btn.UseVisualStyleBackColor = true;
+            this.uiPnl_Reset_Btn.Click += new System.EventHandler(this.UiPanel_Reset_Click);
             // 
             // uiPnl_EndIdx_Num
             // 
@@ -401,30 +428,17 @@
             // 
             this.uiChart_TbLay.ColumnCount = 1;
             this.uiChart_TbLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.uiChart_TbLay.Controls.Add(this.uiChart_Info_TxtBx, 0, 1);
             this.uiChart_TbLay.Controls.Add(this.uiChart_Prv_TxtBx, 0, 0);
-            this.uiChart_TbLay.Controls.Add(this.uiChart_Prv, 0, 2);
+            this.uiChart_TbLay.Controls.Add(this.uiChart_Prv, 0, 1);
             this.uiChart_TbLay.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiChart_TbLay.Location = new System.Drawing.Point(577, 3);
             this.uiChart_TbLay.Name = "uiChart_TbLay";
-            this.uiChart_TbLay.RowCount = 3;
-            this.uiChart_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.uiChart_TbLay.RowCount = 2;
             this.uiChart_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.uiChart_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.uiChart_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.uiChart_TbLay.Size = new System.Drawing.Size(339, 458);
             this.uiChart_TbLay.TabIndex = 2;
-            // 
-            // uiChart_Info_TxtBx
-            // 
-            this.uiChart_Info_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.uiChart_Info_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiChart_Info_TxtBx.Location = new System.Drawing.Point(3, 28);
-            this.uiChart_Info_TxtBx.Name = "uiChart_Info_TxtBx";
-            this.uiChart_Info_TxtBx.ReadOnly = true;
-            this.uiChart_Info_TxtBx.Size = new System.Drawing.Size(333, 20);
-            this.uiChart_Info_TxtBx.TabIndex = 1;
-            this.uiChart_Info_TxtBx.Text = "Info";
-            this.uiChart_Info_TxtBx.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // uiChart_Prv_TxtBx
             // 
@@ -439,42 +453,32 @@
             // 
             // uiChart_Prv
             // 
-            chartArea7.Name = "ChartArea1";
-            this.uiChart_Prv.ChartAreas.Add(chartArea7);
+            chartArea1.Name = "ChartArea1";
+            this.uiChart_Prv.ChartAreas.Add(chartArea1);
             this.uiChart_Prv.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend7.Name = "Legend1";
-            this.uiChart_Prv.Legends.Add(legend7);
-            this.uiChart_Prv.Location = new System.Drawing.Point(3, 53);
+            legend1.Name = "Legend1";
+            this.uiChart_Prv.Legends.Add(legend1);
+            this.uiChart_Prv.Location = new System.Drawing.Point(3, 28);
             this.uiChart_Prv.Name = "uiChart_Prv";
-            series7.ChartArea = "ChartArea1";
-            series7.Legend = "Legend1";
-            series7.Name = "Series1";
-            this.uiChart_Prv.Series.Add(series7);
-            this.uiChart_Prv.Size = new System.Drawing.Size(333, 402);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.uiChart_Prv.Series.Add(series1);
+            this.uiChart_Prv.Size = new System.Drawing.Size(333, 427);
             this.uiChart_Prv.TabIndex = 2;
             this.uiChart_Prv.Text = "chart1";
             // 
-            // uiPnl_Refresh_Btn
+            // uiPnl_Info_TxtBx
             // 
-            this.uiPnl_Refresh_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnl_Refresh_Btn.Location = new System.Drawing.Point(3, 278);
-            this.uiPnl_Refresh_Btn.Name = "uiPnl_Refresh_Btn";
-            this.uiPnl_Refresh_Btn.Size = new System.Drawing.Size(106, 19);
-            this.uiPnl_Refresh_Btn.TabIndex = 15;
-            this.uiPnl_Refresh_Btn.Text = "Refresh";
-            this.uiPnl_Refresh_Btn.UseVisualStyleBackColor = true;
-            // 
-            // uiPnl_Ok_Btn
-            // 
-            this.uiPnl_Ok_Btn.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.uiPnl_Ok_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnl_Ok_Btn.ForeColor = System.Drawing.Color.Red;
-            this.uiPnl_Ok_Btn.Location = new System.Drawing.Point(115, 328);
-            this.uiPnl_Ok_Btn.Name = "uiPnl_Ok_Btn";
-            this.uiPnl_Ok_Btn.Size = new System.Drawing.Size(106, 19);
-            this.uiPnl_Ok_Btn.TabIndex = 16;
-            this.uiPnl_Ok_Btn.Text = "OK";
-            this.uiPnl_Ok_Btn.UseVisualStyleBackColor = true;
+            this.uiPnl_Info_TxtBx.BackColor = System.Drawing.Color.Ivory;
+            this.uiPnl_TbLay.SetColumnSpan(this.uiPnl_Info_TxtBx, 2);
+            this.uiPnl_Info_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiPnl_Info_TxtBx.Location = new System.Drawing.Point(3, 303);
+            this.uiPnl_Info_TxtBx.Name = "uiPnl_Info_TxtBx";
+            this.uiPnl_Info_TxtBx.ReadOnly = true;
+            this.uiPnl_Info_TxtBx.Size = new System.Drawing.Size(218, 20);
+            this.uiPnl_Info_TxtBx.TabIndex = 17;
+            this.uiPnl_Info_TxtBx.Text = "Info";
             // 
             // GridPreviewer
             // 
@@ -528,10 +532,10 @@
         private System.Windows.Forms.Button uiPnl_Perform_Btn;
         private System.Windows.Forms.TextBox uiPnl_Val2_TxtBx;
         private System.Windows.Forms.TableLayoutPanel uiChart_TbLay;
-        private System.Windows.Forms.TextBox uiChart_Info_TxtBx;
         private System.Windows.Forms.TextBox uiChart_Prv_TxtBx;
         private System.Windows.Forms.DataVisualization.Charting.Chart uiChart_Prv;
         private System.Windows.Forms.Button uiPnl_Refresh_Btn;
         private System.Windows.Forms.Button uiPnl_Ok_Btn;
+        private System.Windows.Forms.TextBox uiPnl_Info_TxtBx;
     }
 }
