@@ -70,7 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums.cs" />
-    <Compile Include="CurvesDataset.cs" />
+    <Compile Include="CurvesDataManager.cs" />
     <Compile Include="ArgsGenerator.cs" />
     <Compile Include="GridPreviewer.cs">
       <SubType>Form</SubType>
@@ -89,6 +89,7 @@
     </Compile>
     <Compile Include="PreSets.cs" />
     <Compile Include="Consts.cs" />
+    <Compile Include="Randomizer.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="StringFormatter.cs" />
     <Compile Include="SysInfoHelper.cs" />

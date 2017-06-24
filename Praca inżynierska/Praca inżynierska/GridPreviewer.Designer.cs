@@ -41,6 +41,7 @@
             this.x = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.y = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uiPnl_TbLay = new System.Windows.Forms.TableLayoutPanel();
+            this.uiPnl_Info_TxtBx = new System.Windows.Forms.TextBox();
             this.uiPnl_Ok_Btn = new System.Windows.Forms.Button();
             this.uiPnl_Refresh_Btn = new System.Windows.Forms.Button();
             this.uiPnl_Save_Btn = new System.Windows.Forms.Button();
@@ -61,7 +62,6 @@
             this.uiChart_TbLay = new System.Windows.Forms.TableLayoutPanel();
             this.uiChart_Prv_TxtBx = new System.Windows.Forms.TextBox();
             this.uiChart_Prv = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.uiPnl_Info_TxtBx = new System.Windows.Forms.TextBox();
             this.ui_TbLay.SuspendLayout();
             this.uiGrid_TbLay.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiGrid_db_grid)).BeginInit();
@@ -113,7 +113,7 @@
             this.uiGrid_DtSet_TxtBx.Name = "uiGrid_DtSet_TxtBx";
             this.uiGrid_DtSet_TxtBx.ReadOnly = true;
             this.uiGrid_DtSet_TxtBx.Size = new System.Drawing.Size(332, 20);
-            this.uiGrid_DtSet_TxtBx.TabIndex = 0;
+            this.uiGrid_DtSet_TxtBx.TabIndex = 18;
             this.uiGrid_DtSet_TxtBx.Text = "Dataset";
             // 
             // uiGrid_db_grid
@@ -144,7 +144,7 @@
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             this.uiGrid_db_grid.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.uiGrid_db_grid.Size = new System.Drawing.Size(332, 427);
-            this.uiGrid_db_grid.TabIndex = 1;
+            this.uiGrid_db_grid.TabIndex = 19;
             // 
             // Index
             // 
@@ -212,6 +212,18 @@
             this.uiPnl_TbLay.Size = new System.Drawing.Size(224, 458);
             this.uiPnl_TbLay.TabIndex = 1;
             // 
+            // uiPnl_Info_TxtBx
+            // 
+            this.uiPnl_Info_TxtBx.BackColor = System.Drawing.Color.Ivory;
+            this.uiPnl_TbLay.SetColumnSpan(this.uiPnl_Info_TxtBx, 2);
+            this.uiPnl_Info_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiPnl_Info_TxtBx.Location = new System.Drawing.Point(3, 303);
+            this.uiPnl_Info_TxtBx.Name = "uiPnl_Info_TxtBx";
+            this.uiPnl_Info_TxtBx.ReadOnly = true;
+            this.uiPnl_Info_TxtBx.Size = new System.Drawing.Size(218, 20);
+            this.uiPnl_Info_TxtBx.TabIndex = 17;
+            this.uiPnl_Info_TxtBx.Text = "Info";
+            // 
             // uiPnl_Ok_Btn
             // 
             this.uiPnl_Ok_Btn.DialogResult = System.Windows.Forms.DialogResult.OK;
@@ -220,7 +232,7 @@
             this.uiPnl_Ok_Btn.Location = new System.Drawing.Point(115, 353);
             this.uiPnl_Ok_Btn.Name = "uiPnl_Ok_Btn";
             this.uiPnl_Ok_Btn.Size = new System.Drawing.Size(106, 19);
-            this.uiPnl_Ok_Btn.TabIndex = 16;
+            this.uiPnl_Ok_Btn.TabIndex = 0;
             this.uiPnl_Ok_Btn.Text = "OK";
             this.uiPnl_Ok_Btn.UseVisualStyleBackColor = true;
             // 
@@ -241,7 +253,7 @@
             this.uiPnl_Save_Btn.Location = new System.Drawing.Point(115, 278);
             this.uiPnl_Save_Btn.Name = "uiPnl_Save_Btn";
             this.uiPnl_Save_Btn.Size = new System.Drawing.Size(106, 19);
-            this.uiPnl_Save_Btn.TabIndex = 1;
+            this.uiPnl_Save_Btn.TabIndex = 16;
             this.uiPnl_Save_Btn.Text = "Save";
             this.uiPnl_Save_Btn.UseVisualStyleBackColor = true;
             this.uiPnl_Save_Btn.Click += new System.EventHandler(this.UiPanel_Save_Click);
@@ -252,7 +264,7 @@
             this.uiPnl_Reset_Btn.Location = new System.Drawing.Point(3, 253);
             this.uiPnl_Reset_Btn.Name = "uiPnl_Reset_Btn";
             this.uiPnl_Reset_Btn.Size = new System.Drawing.Size(106, 19);
-            this.uiPnl_Reset_Btn.TabIndex = 2;
+            this.uiPnl_Reset_Btn.TabIndex = 13;
             this.uiPnl_Reset_Btn.Text = "Reset";
             this.uiPnl_Reset_Btn.UseVisualStyleBackColor = true;
             this.uiPnl_Reset_Btn.Click += new System.EventHandler(this.UiPanel_Reset_Click);
@@ -268,7 +280,7 @@
             0});
             this.uiPnl_EndIdx_Num.Name = "uiPnl_EndIdx_Num";
             this.uiPnl_EndIdx_Num.Size = new System.Drawing.Size(106, 20);
-            this.uiPnl_EndIdx_Num.TabIndex = 12;
+            this.uiPnl_EndIdx_Num.TabIndex = 10;
             this.uiPnl_EndIdx_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.uiPnl_EndIdx_Num.ThousandsSeparator = true;
             this.uiPnl_EndIdx_Num.ValueChanged += new System.EventHandler(this.UiPanel_EndIndex_ValueChanged);
@@ -281,7 +293,7 @@
             this.uiPnl_Val1_TxtBx.Name = "uiPnl_Val1_TxtBx";
             this.uiPnl_Val1_TxtBx.ReadOnly = true;
             this.uiPnl_Val1_TxtBx.Size = new System.Drawing.Size(106, 20);
-            this.uiPnl_Val1_TxtBx.TabIndex = 13;
+            this.uiPnl_Val1_TxtBx.TabIndex = 11;
             this.uiPnl_Val1_TxtBx.Text = "Value:";
             // 
             // uiPnl_EndIdx_TxtBx
@@ -292,7 +304,7 @@
             this.uiPnl_EndIdx_TxtBx.Name = "uiPnl_EndIdx_TxtBx";
             this.uiPnl_EndIdx_TxtBx.ReadOnly = true;
             this.uiPnl_EndIdx_TxtBx.Size = new System.Drawing.Size(106, 20);
-            this.uiPnl_EndIdx_TxtBx.TabIndex = 11;
+            this.uiPnl_EndIdx_TxtBx.TabIndex = 9;
             this.uiPnl_EndIdx_TxtBx.Text = "End index:";
             // 
             // uiPnl_StartIdx_TxtBx
@@ -303,7 +315,7 @@
             this.uiPnl_StartIdx_TxtBx.Name = "uiPnl_StartIdx_TxtBx";
             this.uiPnl_StartIdx_TxtBx.ReadOnly = true;
             this.uiPnl_StartIdx_TxtBx.Size = new System.Drawing.Size(106, 20);
-            this.uiPnl_StartIdx_TxtBx.TabIndex = 9;
+            this.uiPnl_StartIdx_TxtBx.TabIndex = 7;
             this.uiPnl_StartIdx_TxtBx.Text = "Start index:";
             // 
             // uiPnl_OperT_ComBx
@@ -325,7 +337,7 @@
             this.uiPnl_OperT_ComBx.Location = new System.Drawing.Point(115, 128);
             this.uiPnl_OperT_ComBx.Name = "uiPnl_OperT_ComBx";
             this.uiPnl_OperT_ComBx.Size = new System.Drawing.Size(106, 21);
-            this.uiPnl_OperT_ComBx.TabIndex = 8;
+            this.uiPnl_OperT_ComBx.TabIndex = 6;
             this.uiPnl_OperT_ComBx.SelectedIndexChanged += new System.EventHandler(this.UiPanel_OperationType_SelectedIndexChanged);
             // 
             // uiPnl_OperT_TxtBx
@@ -336,7 +348,7 @@
             this.uiPnl_OperT_TxtBx.Name = "uiPnl_OperT_TxtBx";
             this.uiPnl_OperT_TxtBx.ReadOnly = true;
             this.uiPnl_OperT_TxtBx.Size = new System.Drawing.Size(106, 20);
-            this.uiPnl_OperT_TxtBx.TabIndex = 7;
+            this.uiPnl_OperT_TxtBx.TabIndex = 5;
             this.uiPnl_OperT_TxtBx.Text = "Operation type:";
             // 
             // uiPnl_Edit_TxtBx
@@ -347,7 +359,7 @@
             this.uiPnl_Edit_TxtBx.Name = "uiPnl_Edit_TxtBx";
             this.uiPnl_Edit_TxtBx.ReadOnly = true;
             this.uiPnl_Edit_TxtBx.Size = new System.Drawing.Size(218, 20);
-            this.uiPnl_Edit_TxtBx.TabIndex = 6;
+            this.uiPnl_Edit_TxtBx.TabIndex = 4;
             this.uiPnl_Edit_TxtBx.Text = "Fast edit";
             // 
             // uiPnl_DtGrid_TxtBx
@@ -358,7 +370,7 @@
             this.uiPnl_DtGrid_TxtBx.Name = "uiPnl_DtGrid_TxtBx";
             this.uiPnl_DtGrid_TxtBx.ReadOnly = true;
             this.uiPnl_DtGrid_TxtBx.Size = new System.Drawing.Size(218, 20);
-            this.uiPnl_DtGrid_TxtBx.TabIndex = 3;
+            this.uiPnl_DtGrid_TxtBx.TabIndex = 1;
             this.uiPnl_DtGrid_TxtBx.Text = "Dataset grid";
             // 
             // uiPnl_AutoSize_TxtBx
@@ -369,7 +381,7 @@
             this.uiPnl_AutoSize_TxtBx.Name = "uiPnl_AutoSize_TxtBx";
             this.uiPnl_AutoSize_TxtBx.ReadOnly = true;
             this.uiPnl_AutoSize_TxtBx.Size = new System.Drawing.Size(106, 20);
-            this.uiPnl_AutoSize_TxtBx.TabIndex = 4;
+            this.uiPnl_AutoSize_TxtBx.TabIndex = 2;
             this.uiPnl_AutoSize_TxtBx.Text = "AutoSizeColumnsMode:";
             // 
             // uiPnl_AutoSize_ComBx
@@ -385,7 +397,7 @@
             this.uiPnl_AutoSize_ComBx.Location = new System.Drawing.Point(115, 28);
             this.uiPnl_AutoSize_ComBx.Name = "uiPnl_AutoSize_ComBx";
             this.uiPnl_AutoSize_ComBx.Size = new System.Drawing.Size(106, 21);
-            this.uiPnl_AutoSize_ComBx.TabIndex = 5;
+            this.uiPnl_AutoSize_ComBx.TabIndex = 3;
             this.uiPnl_AutoSize_ComBx.SelectedIndexChanged += new System.EventHandler(this.UiPanel_AutoSizeColumnsMode_SelectedIndexChanged);
             // 
             // uiPnl_StartIdx_Num
@@ -399,7 +411,7 @@
             0});
             this.uiPnl_StartIdx_Num.Name = "uiPnl_StartIdx_Num";
             this.uiPnl_StartIdx_Num.Size = new System.Drawing.Size(106, 20);
-            this.uiPnl_StartIdx_Num.TabIndex = 10;
+            this.uiPnl_StartIdx_Num.TabIndex = 8;
             this.uiPnl_StartIdx_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.uiPnl_StartIdx_Num.ThousandsSeparator = true;
             this.uiPnl_StartIdx_Num.ValueChanged += new System.EventHandler(this.UiPanel_StartIndex_ValueChanged);
@@ -410,7 +422,7 @@
             this.uiPnl_Perform_Btn.Location = new System.Drawing.Point(115, 253);
             this.uiPnl_Perform_Btn.Name = "uiPnl_Perform_Btn";
             this.uiPnl_Perform_Btn.Size = new System.Drawing.Size(106, 19);
-            this.uiPnl_Perform_Btn.TabIndex = 0;
+            this.uiPnl_Perform_Btn.TabIndex = 14;
             this.uiPnl_Perform_Btn.Text = "Perform";
             this.uiPnl_Perform_Btn.UseVisualStyleBackColor = true;
             this.uiPnl_Perform_Btn.Click += new System.EventHandler(this.UiPanel_Perform_Click);
@@ -422,7 +434,7 @@
             this.uiPnl_Val2_TxtBx.Location = new System.Drawing.Point(115, 203);
             this.uiPnl_Val2_TxtBx.Name = "uiPnl_Val2_TxtBx";
             this.uiPnl_Val2_TxtBx.Size = new System.Drawing.Size(106, 20);
-            this.uiPnl_Val2_TxtBx.TabIndex = 14;
+            this.uiPnl_Val2_TxtBx.TabIndex = 12;
             // 
             // uiChart_TbLay
             // 
@@ -448,7 +460,7 @@
             this.uiChart_Prv_TxtBx.Name = "uiChart_Prv_TxtBx";
             this.uiChart_Prv_TxtBx.ReadOnly = true;
             this.uiChart_Prv_TxtBx.Size = new System.Drawing.Size(333, 20);
-            this.uiChart_Prv_TxtBx.TabIndex = 0;
+            this.uiChart_Prv_TxtBx.TabIndex = 20;
             this.uiChart_Prv_TxtBx.Text = "Preview";
             // 
             // uiChart_Prv
@@ -465,20 +477,8 @@
             series1.Name = "Series1";
             this.uiChart_Prv.Series.Add(series1);
             this.uiChart_Prv.Size = new System.Drawing.Size(333, 427);
-            this.uiChart_Prv.TabIndex = 2;
+            this.uiChart_Prv.TabIndex = 21;
             this.uiChart_Prv.Text = "chart1";
-            // 
-            // uiPnl_Info_TxtBx
-            // 
-            this.uiPnl_Info_TxtBx.BackColor = System.Drawing.Color.Ivory;
-            this.uiPnl_TbLay.SetColumnSpan(this.uiPnl_Info_TxtBx, 2);
-            this.uiPnl_Info_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnl_Info_TxtBx.Location = new System.Drawing.Point(3, 303);
-            this.uiPnl_Info_TxtBx.Name = "uiPnl_Info_TxtBx";
-            this.uiPnl_Info_TxtBx.ReadOnly = true;
-            this.uiPnl_Info_TxtBx.Size = new System.Drawing.Size(218, 20);
-            this.uiPnl_Info_TxtBx.TabIndex = 17;
-            this.uiPnl_Info_TxtBx.Text = "Info";
             // 
             // GridPreviewer
             // 

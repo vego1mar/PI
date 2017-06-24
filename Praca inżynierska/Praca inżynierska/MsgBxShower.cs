@@ -48,6 +48,19 @@ namespace PI
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
             }
 
+            internal void SpecifiedCurveDoesntExistProblem()
+            {
+                string text = Consts.Ui.Panel.Datasheet.SpecifiedCrvDoesntExistTxt;
+                string caption = Consts.Ui.Panel.Datasheet.SpecifiedCrvDoesntExistCpt;
+                WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+            }
+
+            internal void OperationMalformRejectedStop()
+            {
+                string text = Consts.Ui.Panel.Datasheet.OperationMalformRejectedTxt;
+                string caption = Consts.Ui.Panel.Datasheet.OperationMalformRejectedCpt;
+                WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Stop );
+            }
         }
 
         internal class MenuMsgBoxes

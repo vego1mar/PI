@@ -48,7 +48,8 @@
         internal enum DataSetCurveType
         {
             Generated = 0,
-            Pattern = 1
+            Pattern = 1,
+            Average = 2
         }
 
         internal enum PatternCurveScaffold
@@ -60,6 +61,22 @@
             WaveformSquare = -22,
             WaveformTriangle = -23,
             WaveformSawtooth = -24
+        }
+
+        internal enum MeanType
+        {
+            Mediana = 0,
+            Dominant = 1,
+            Maximum = 2,
+            Minimum = 3,
+            Arithmetic = 4,
+            Geometric = 5,
+            ArithmeticGeometric = 6,
+            Harmonic = 7,
+            Square = 8,
+            Power = 9,
+            Logarithmic = 10,
+            Exponential = 11
         }
 
     }

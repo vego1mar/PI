@@ -6,9 +6,8 @@ using System.Windows.Forms.DataVisualization.Charting;
 // BACKLOG
 // TODO: General - Configuration file
 // TODO: General - Localization
-// TODO: Menu - 'Adjust curves' for visual effects manipulations
+// TODO: Menu - 'Adjust chart' for visual effects manipulations
 // TODO: Menu - Reading and saving set of curves from a file
-// TODO: Feature - Implement Gaussian noise option
 
 namespace PI
 {
@@ -16,7 +15,8 @@ namespace PI
     {
 
         private Thread Timer { get; set; }
-        private CurvesDataset ChartsData { get; set; }
+        private CurvesDataManager ChartData { get; set; }
+        private bool KeepPanelProportions { get; set; }
 
         public MainWindow()
         {
@@ -27,7 +27,8 @@ namespace PI
         private void InitalizeFields()
         {
             Timer = null;
-            ChartsData = new CurvesDataset();
+            ChartData = new CurvesDataManager();
+            KeepPanelProportions = true;
         }
 
         private void UiMainWindow_FormClosed( object sender, FormClosedEventArgs e )
@@ -41,7 +42,7 @@ namespace PI
             UpdateUiByDotNetFrameworkVersion();
             UpdateUiByOsVersionName();
             UpdateUiByLogFileFullPathLocation();
-            UpdateUiBySettingChartsProperties();
+            UpdateUiByDefaultSettings();
             DefineTimerThread();
             ThreadTasker.StartThreadSafe( Timer );
             UpdateUiByStatusOfTimerThread();
@@ -217,13 +218,16 @@ namespace PI
             case Enums.DataSetCurveType.Generated:
                 uiPnlDtSh_CrvIdx_Num.Enabled = true;
                 uiPnlDtSh_CrvIdx_TrBr.Enabled = true;
-                int selectedCurveIndex = WinFormsHelper.GetValue( uiPnlDtSh_CrvIdx_TrBr );
-                ShowGeneratedCurveSeriesOnChart( selectedCurveIndex );
+                UpdateUiByShowingGeneratedCurveOnChart( WinFormsHelper.GetValue( uiPnlDtSh_CrvIdx_TrBr ) );
                 break;
             case Enums.DataSetCurveType.Pattern:
                 uiPnlDtSh_CrvIdx_Num.Enabled = false;
                 uiPnlDtSh_CrvIdx_TrBr.Enabled = false;
-                ShowPatternCurveSeriesOnChart();
+                UpdateUiByShowingPatternCurveOnChart();
+                break;
+            case Enums.DataSetCurveType.Average:
+                uiPnlDtSh_CrvIdx_Num.Enabled = false;
+                uiPnlDtSh_CrvIdx_TrBr.Enabled = false;
                 break;
             }
         }
@@ -232,26 +236,14 @@ namespace PI
         {
             int numericUpDownValue = WinFormsHelper.GetValue<int>( uiPnlDtSh_CrvIdx_Num );
             WinFormsHelper.SetValue( uiPnlDtSh_CrvIdx_TrBr, numericUpDownValue );
-            ShowGeneratedCurveSeriesOnChart( numericUpDownValue );
+            UpdateUiByShowingGeneratedCurveOnChart( numericUpDownValue );
         }
 
         private void UiPanelDataSheet_CurveIndex_TrackBar_Scroll( object sender, EventArgs e )
         {
             int trackBarValue = WinFormsHelper.GetValue( uiPnlDtSh_CrvIdx_TrBr );
             WinFormsHelper.SetValue( uiPnlDtSh_CrvIdx_Num, trackBarValue );
-            ShowGeneratedCurveSeriesOnChart( trackBarValue );
-        }
-
-        private void UiPanelGenerate_Curves1No_ValueChanged( object sender, EventArgs e )
-        {
-            int numberOfCurves = WinFormsHelper.GetValue<int>( uiPnlGen_Crvs1No_Num );
-            uiPnlDtSh_CrvIdx_Num.Minimum = 1;
-            uiPnlDtSh_CrvIdx_Num.Maximum = numberOfCurves;
-            uiPnlDtSh_CrvIdx_TrBr.Minimum = 1;
-            uiPnlDtSh_CrvIdx_TrBr.Maximum = numberOfCurves;
-            Presets.Ui.NumberOfCurves = numberOfCurves;
-            uiPnlGen_Crvs2No_Nm.Minimum = 1;
-            uiPnlGen_Crvs2No_Nm.Maximum = numberOfCurves;
+            UpdateUiByShowingGeneratedCurveOnChart( trackBarValue );
         }
 
         private void UiPanelGenerate_GenerateSet_Click( object sender, EventArgs e )
@@ -263,7 +255,8 @@ namespace PI
 
             GrabPreSetsForCurvesGeneration();
             GenerateAndShowPatternCurve();
-            ChartsData.SpreadPatternCurveSetToGeneratedCurveSet( Presets.Ui.NumberOfCurves );
+            ChartData.SpreadPatternCurveSetToGeneratedCurveSet( Presets.Ui.NumberOfCurves );
+            UpdateUiBySettingRangesForCurvesNumber();
         }
 
         private void GrabPreSetsForCurvesGeneration()
@@ -281,21 +274,21 @@ namespace PI
             double xEnd = Presets.Ui.EndingXPoint;
             int density = Presets.Ui.PointsDensity;
 
-            if ( !ChartsData.GeneratePatternCurve( scaffoldType, xStart, xEnd, density ) ) {
-                ChartsData.RemoveInvalidPointsFromPatternCurveSet();
+            if ( !ChartData.GeneratePatternCurve( scaffoldType, xStart, xEnd, density ) ) {
+                ChartData.RemoveInvalidPointsFromPatternCurveSet();
                 MsgBxShower.Ui.PointsNotValidToChartProblem();
             }
 
-            if ( ChartsData.PatternCurveSet.Points.Count > 0 ) {
-                ShowPatternCurveSeriesOnChart();
+            if ( ChartData.PatternCurveSet.Points.Count > 0 ) {
+                UpdateUiByShowingPatternCurveOnChart();
             }
         }
 
-        private void ShowPatternCurveSeriesOnChart()
+        private void UpdateUiByShowingPatternCurveOnChart()
         {
             try {
                 uiCharts_PtrnCrv.Series.Clear();
-                uiCharts_PtrnCrv.Series.Add( ChartsData.PatternCurveSet );
+                uiCharts_PtrnCrv.Series.Add( ChartData.PatternCurveSet );
                 uiCharts_PtrnCrv.Series[0].BorderWidth = 3;
                 uiCharts_PtrnCrv.Series[0].Color = System.Drawing.Color.Black;
                 uiCharts_PtrnCrv.ChartAreas[0].RecalculateAxesScale();
@@ -311,11 +304,11 @@ namespace PI
             }
         }
 
-        private void ShowGeneratedCurveSeriesOnChart( int indexOfCurve )
+        private void UpdateUiByShowingGeneratedCurveOnChart( int indexOfCurve = 1 )
         {
             try {
                 uiCharts_PtrnCrv.Series.Clear();
-                uiCharts_PtrnCrv.Series.Add( ChartsData.GeneratedCurvesSet[indexOfCurve - 1] );
+                uiCharts_PtrnCrv.Series.Add( ChartData.GeneratedCurvesSet[indexOfCurve - 1] );
                 uiCharts_PtrnCrv.Series[0].BorderWidth = 3;
                 uiCharts_PtrnCrv.Series[0].Color = System.Drawing.Color.Crimson;
                 uiCharts_PtrnCrv.ChartAreas[0].RecalculateAxesScale();
@@ -333,6 +326,22 @@ namespace PI
             catch ( Exception x ) {
                 Logger.WriteException( x );
             }
+        }
+
+        private void UpdateUiBySettingRangesForCurvesNumber()
+        {
+            uiPnlGen_Crvs2No_Nm.Minimum = 1;
+            uiPnlGen_Crvs2No_Nm.Maximum = Presets.Ui.NumberOfCurves;
+            uiPnlGen_Crvs2No_Nm.Value = uiPnlGen_Crvs2No_Nm.Maximum;
+            uiPnlDtSh_CrvIdx_Num.Minimum = 1;
+            uiPnlDtSh_CrvIdx_Num.Maximum = Presets.Ui.NumberOfCurves;
+            uiPnlDtSh_CrvIdx_Num.Value = uiPnlDtSh_CrvIdx_Num.Minimum;
+            uiPnlDtSh_CrvIdx_TrBr.Minimum = 1;
+            uiPnlDtSh_CrvIdx_TrBr.Maximum = Presets.Ui.NumberOfCurves;
+            uiPnlDtSh_CrvIdx_TrBr.Value = uiPnlDtSh_CrvIdx_TrBr.Minimum;
+            uiPnlDtSh_CrvNo_Num.Minimum = 1;
+            uiPnlDtSh_CrvNo_Num.Maximum = Presets.Ui.NumberOfCurves;
+            uiPnlDtSh_CrvNo_Num.Value = uiPnlDtSh_CrvNo_Num.Maximum;
         }
 
         private void UpdateUiByDotNetFrameworkVersion()
@@ -368,6 +377,7 @@ namespace PI
             switch ( (Enums.DataSetCurveType) selectedCurveType ) {
             case Enums.DataSetCurveType.Pattern:
             case Enums.DataSetCurveType.Generated:
+            case Enums.DataSetCurveType.Average:
                 break;
             default:
                 MsgBxShower.Ui.CurveTypeNotSelectedInfo();
@@ -376,7 +386,7 @@ namespace PI
 
             Series selectedCurveSeries = SpecifyCurveSeries( selectedCurveType, selectedCurveIndex );
 
-            if ( selectedCurveSeries == null || ChartsData.PatternCurveSet.Points.Count == 0 ) {
+            if ( selectedCurveSeries == null || ChartData.PatternCurveSet.Points.Count == 0 ) {
                 MsgBxShower.Ui.SeriesSelectionProblem();
                 return;
             }
@@ -386,7 +396,7 @@ namespace PI
 
                 try {
                     if ( gprvDialog.DialogResult == DialogResult.OK ) {
-                        ChartsData.AbsorbSeriesPoints( gprvDialog.ChartDataSet, selectedCurveType, selectedCurveIndex );
+                        ChartData.AbsorbSeriesPoints( gprvDialog.ChartDataSet, selectedCurveType, selectedCurveIndex );
                         uiCharts_PtrnCrv.Series.Clear();
                         uiCharts_PtrnCrv.Series.Add( gprvDialog.ChartDataSet );
                         uiCharts_PtrnCrv.Series[0].BorderWidth = 3;
@@ -414,9 +424,9 @@ namespace PI
             try {
                 switch ( (Enums.DataSetCurveType) curveType ) {
                 case Enums.DataSetCurveType.Pattern:
-                    return ChartsData.PatternCurveSet;
+                    return ChartData.PatternCurveSet;
                 case Enums.DataSetCurveType.Generated:
-                    return ChartsData.GeneratedCurvesSet[curveIndex - 1];
+                    return ChartData.GeneratedCurvesSet[curveIndex - 1];
                 }
             }
             catch ( ArgumentOutOfRangeException x ) {
@@ -494,10 +504,57 @@ namespace PI
             return Convert.ToUInt16( commits );
         }
 
-        private void UpdateUiBySettingChartsProperties()
+        private void UiPanelDataSheet_Malform_Click( object sender, EventArgs e )
         {
-            CurvesDataset.SetDefaultProperties( uiCharts_PtrnCrv );
-            CurvesDataset.SetDefaultProperties( uiCharts_MeanCrv );
+            if ( ChartData.PatternCurveSet.Points.Count == 0 ) {
+                MsgBxShower.Ui.SeriesSelectionProblem();
+                return;
+            }
+
+            int numberOfCurves = WinFormsHelper.GetValue<int>( uiPnlDtSh_CrvNo_Num );
+            double surrounding = WinFormsHelper.GetValue<double>( uiPnlDtSh_Surr_Num );
+            bool? result = ChartData.MakeGaussianNoiseForGeneratedCurves( numberOfCurves, surrounding );
+
+            if ( result == null ) {
+                MsgBxShower.Ui.SpecifiedCurveDoesntExistProblem();
+                return;
+            }
+
+            if ( !result.Value ) {
+                MsgBxShower.Ui.OperationMalformRejectedStop();
+                return;
+            }
+
+            WinFormsHelper.SetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx, (int) Enums.DataSetCurveType.Generated );
+            UpdateUiByShowingGeneratedCurveOnChart();
+        }
+
+        private void UiPanelGenerate_Apply_Click( object sender, EventArgs e )
+        {
+            if ( ChartData.PatternCurveSet.Points.Count == 0 ) {
+                MsgBxShower.Ui.SeriesSelectionProblem();
+                return;
+            }
+
+            // AverageGeneratedCurves
+        }
+
+        private void UpdateUiByDefaultSettings()
+        {
+            CurvesDataManager.SetDefaultProperties( uiCharts_PtrnCrv );
+            WinFormsHelper.SetSelectedIndexSafe( uiPnlGen_MeanT_ComBx, (int) Enums.MeanType.Maximum );
+        }
+
+        private void UiMainWindow_Resize( object sender, EventArgs e )
+        {
+            if ( KeepPanelProportions ) {
+                uiMw_SpCtn.SplitterDistance = 275;
+            }
+        }
+
+        private void UiMenuProgram_KeepPanelProportions_Click( object sender, EventArgs e )
+        {
+            KeepPanelProportions = !KeepPanelProportions;
         }
 
     }

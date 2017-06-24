@@ -31,9 +31,13 @@
                 internal class DatasheetConsts
                 {
                     internal string CrvTypeNotSelectedTxt { get; } = "You must choose a curve type from 'Dataset control' section.";
-                    internal string CrvTypeNotSelectedCpt = "Prerequisite not matched!";
+                    internal string CrvTypeNotSelectedCpt { get; } = "Prerequisite not matched!";
                     internal string CrvSeriesSelectionTxt { get; } = "Any curve has not been generated yet.";
                     internal string CrvSeriesSelectionCpt { get; } = "Data selection problem";
+                    internal string SpecifiedCrvDoesntExistTxt { get; } = "The specified curve data doesn't exist.";
+                    internal string SpecifiedCrvDoesntExistCpt { get; } = "Invalid curve index";
+                    internal string OperationMalformRejectedTxt { get; } = "Results of this operation was rejected due to improper values.";
+                    internal string OperationMalformRejectedCpt { get; } = "Not supported operation";
                 }
 
                 internal class ProgramConsts

@@ -6,7 +6,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 namespace PI
 {
 
-    class CurvesDataset
+    class CurvesDataManager
     {
 
         public const string PATTERN_CURVE_SERIES_NAME = "PatternCurveSeries";
@@ -16,7 +16,7 @@ namespace PI
         public Series PatternCurveSet { get; private set; }
         public List<Series> GeneratedCurvesSet { get; private set; }
 
-        public CurvesDataset()
+        public CurvesDataManager()
         {
             PatternCurveSet = new Series();
             GeneratedCurvesSet = new List<Series>();
@@ -279,6 +279,50 @@ namespace PI
         {
             series.Points.Clear();
             SetDefaultProperties( series, PATTERN_CURVE_SERIES_NAME );
+        }
+
+        public bool? MakeGaussianNoiseForGeneratedCurves( int numberOfCurves, double surrounding )
+        {
+            if ( numberOfCurves < 0 || numberOfCurves > GeneratedCurvesSet.Count ) {
+                return null;
+            }
+
+            List<Series> curves = GetCopyOfGeneratedCurves( numberOfCurves );
+
+            for ( int i = 0; i < curves.Count; i++ ) {
+                MakeGaussianNoise( curves[i], surrounding );
+
+                if ( !IsCurvePointsSetValid( curves[i] ) ) {
+                    return false;
+                }
+            }
+
+            for ( int i = 0; i < curves.Count; i++ ) {
+                AbsorbSeriesForSpecifiedGeneratedCurve( curves[i], i );
+            }
+
+            return true;
+        }
+
+        private List<Series> GetCopyOfGeneratedCurves( int numberOfCurves )
+        {
+            List<Series> curves = new List<Series>();
+
+            for ( int i = 0; i < numberOfCurves; i++ ) {
+                curves.Add( new Series() );
+                RecopySeriesPoints( GeneratedCurvesSet[i], curves[i] );
+            }
+
+            return curves;
+        }
+
+        private void MakeGaussianNoise( Series series, double surrounding )
+        {
+            for ( int i = 0; i < series.Points.Count; i++ ) {
+                double y = series.Points[i].YValues[0];
+                double newValue = Randomizer.NextDouble( y - surrounding, y + surrounding );
+                series.Points[i].YValues[0] = newValue;
+            }
         }
 
     }

@@ -20,7 +20,7 @@ namespace PI
 
         private void SetWindowDefaults( Series series )
         {
-            CurvesDataset.SetDefaultProperties( uiChart_Prv );
+            CurvesDataManager.SetDefaultProperties( uiChart_Prv );
             ChartDataSet = series;
             OriginalValues = GetPointsValues( series );
             WinFormsHelper.SetSelectedIndexSafe( uiPnl_AutoSize_ComBx, (int) Enums.AutoSizeColumnsMode.Fill );
@@ -75,7 +75,7 @@ namespace PI
                 series.Points.AddY( (double) uiGrid_db_grid.Rows[i].Cells["y"].Value );
             }
 
-            if ( !CurvesDataset.IsCurvePointsSetValid( series ) ) {
+            if ( !CurvesDataManager.IsCurvePointsSetValid( series ) ) {
                 UpdateUiByPanelStateInfo( Consts.Gprv.Panel.TxtOperationRevoked );
                 MsgBxShower.Gprv.Panel.InvalidCurvePointsError();
                 return;
@@ -184,7 +184,7 @@ namespace PI
                 return;
             }
 
-            if ( !CurvesDataset.IsCurvePointsSetValid( seriesCopy ) ) {
+            if ( !CurvesDataManager.IsCurvePointsSetValid( seriesCopy ) ) {
                 UpdateUiByPanelStateInfo( Consts.Gprv.Panel.TxtOperationRevoked );
                 MsgBxShower.Gprv.Panel.InvalidCurvePointsError();
                 return;
@@ -391,7 +391,7 @@ namespace PI
             try {
                 uiChart_Prv.Series.Clear();
                 Series series = GetCopyOfSeriesPoints();
-                CurvesDataset.SetDefaultProperties( series, "RefreshSeries" );
+                CurvesDataManager.SetDefaultProperties( series, "RefreshSeries" );
                 uiChart_Prv.Series.Add( series );
                 uiChart_Prv.ChartAreas[0].RecalculateAxesScale();
                 uiChart_Prv.Visible = true;
