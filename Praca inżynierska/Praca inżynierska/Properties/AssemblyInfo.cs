@@ -1,15 +1,16 @@
-﻿using System.Reflection;
+﻿using System.Resources;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Praca inżynierska")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription( "Praca inżynierska na potrzeby Wydziału Fizyki i Informatyki Stosowanej Uniwersytetu Łódzkiego." )]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Praca inżynierska")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyCompany( "Wydział Fizyki i Informatyki Stosowanej, Uniwersytet Łódzki" )]
+[assembly: AssemblyProduct( "Engineer's thesis" )]
+[assembly: AssemblyCopyright( "2017, Paweł Siciński" )]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -31,5 +32,7 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.1.0")]
-[assembly: AssemblyFileVersion("1.0.1.0")]
+[assembly: AssemblyVersion( "1.0.1.1" )]
+[assembly: AssemblyFileVersion( "1.0.1.1" )]
+[assembly: NeutralResourcesLanguage( "en" )]
+

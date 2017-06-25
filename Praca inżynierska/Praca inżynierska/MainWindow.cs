@@ -218,32 +218,33 @@ namespace PI
             case Enums.DataSetCurveType.Generated:
                 uiPnlDtSh_CrvIdx_Num.Enabled = true;
                 uiPnlDtSh_CrvIdx_TrBr.Enabled = true;
-                UpdateUiByShowingGeneratedCurveOnChart( WinFormsHelper.GetValue( uiPnlDtSh_CrvIdx_TrBr ) );
+                UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Generated, WinFormsHelper.GetValue( uiPnlDtSh_CrvIdx_TrBr ) );
                 break;
             case Enums.DataSetCurveType.Pattern:
                 uiPnlDtSh_CrvIdx_Num.Enabled = false;
                 uiPnlDtSh_CrvIdx_TrBr.Enabled = false;
-                UpdateUiByShowingPatternCurveOnChart();
+                UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Pattern );
                 break;
             case Enums.DataSetCurveType.Average:
                 uiPnlDtSh_CrvIdx_Num.Enabled = false;
                 uiPnlDtSh_CrvIdx_TrBr.Enabled = false;
+                UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Average );
                 break;
             }
         }
 
         private void UiPanelDataSheet_CurveIndex_NumericUpDown_ValueChanged( object sender, EventArgs e )
         {
-            int numericUpDownValue = WinFormsHelper.GetValue<int>( uiPnlDtSh_CrvIdx_Num );
-            WinFormsHelper.SetValue( uiPnlDtSh_CrvIdx_TrBr, numericUpDownValue );
-            UpdateUiByShowingGeneratedCurveOnChart( numericUpDownValue );
+            int curveIndex = WinFormsHelper.GetValue<int>( uiPnlDtSh_CrvIdx_Num );
+            WinFormsHelper.SetValue( uiPnlDtSh_CrvIdx_TrBr, curveIndex );
+            UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Generated, curveIndex );
         }
 
         private void UiPanelDataSheet_CurveIndex_TrackBar_Scroll( object sender, EventArgs e )
         {
-            int trackBarValue = WinFormsHelper.GetValue( uiPnlDtSh_CrvIdx_TrBr );
-            WinFormsHelper.SetValue( uiPnlDtSh_CrvIdx_Num, trackBarValue );
-            UpdateUiByShowingGeneratedCurveOnChart( trackBarValue );
+            int curveIndex = WinFormsHelper.GetValue( uiPnlDtSh_CrvIdx_TrBr );
+            WinFormsHelper.SetValue( uiPnlDtSh_CrvIdx_Num, curveIndex );
+            UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Generated, curveIndex );
         }
 
         private void UiPanelGenerate_GenerateSet_Click( object sender, EventArgs e )
@@ -256,7 +257,9 @@ namespace PI
             GrabPreSetsForCurvesGeneration();
             GenerateAndShowPatternCurve();
             ChartData.SpreadPatternCurveSetToGeneratedCurveSet( Presets.Ui.NumberOfCurves );
+            ChartData.ClearAverageCurveSetPoints();
             UpdateUiBySettingRangesForCurvesNumber();
+            WinFormsHelper.SetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx, (int) Enums.DataSetCurveType.Generated );
         }
 
         private void GrabPreSetsForCurvesGeneration()
@@ -280,37 +283,31 @@ namespace PI
             }
 
             if ( ChartData.PatternCurveSet.Points.Count > 0 ) {
-                UpdateUiByShowingPatternCurveOnChart();
+                UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Pattern );
             }
         }
 
-        private void UpdateUiByShowingPatternCurveOnChart()
+        private void UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType curveType, int indexOfGeneratedCurve = 1 )
         {
             try {
                 uiCharts_PtrnCrv.Series.Clear();
-                uiCharts_PtrnCrv.Series.Add( ChartData.PatternCurveSet );
-                uiCharts_PtrnCrv.Series[0].BorderWidth = 3;
-                uiCharts_PtrnCrv.Series[0].Color = System.Drawing.Color.Black;
-                uiCharts_PtrnCrv.ChartAreas[0].RecalculateAxesScale();
-                uiCharts_PtrnCrv.Visible = true;
-                uiCharts_PtrnCrv.Invalidate();
-            }
-            catch ( InvalidOperationException x ) {
-                MsgBxShower.Ui.ChartRefreshingError();
-                Logger.WriteException( x );
-            }
-            catch ( Exception x ) {
-                Logger.WriteException( x );
-            }
-        }
 
-        private void UpdateUiByShowingGeneratedCurveOnChart( int indexOfCurve = 1 )
-        {
-            try {
-                uiCharts_PtrnCrv.Series.Clear();
-                uiCharts_PtrnCrv.Series.Add( ChartData.GeneratedCurvesSet[indexOfCurve - 1] );
+                switch ( curveType ) {
+                case Enums.DataSetCurveType.Pattern:
+                    uiCharts_PtrnCrv.Series.Add( ChartData.PatternCurveSet );
+                    uiCharts_PtrnCrv.Series[0].Color = System.Drawing.Color.Black;
+                    break;
+                case Enums.DataSetCurveType.Generated:
+                    uiCharts_PtrnCrv.Series.Add( ChartData.GeneratedCurvesSet[indexOfGeneratedCurve - 1] );
+                    uiCharts_PtrnCrv.Series[0].Color = System.Drawing.Color.Crimson;
+                    break;
+                case Enums.DataSetCurveType.Average:
+                    uiCharts_PtrnCrv.Series.Add( ChartData.AverageCurveSet );
+                    uiCharts_PtrnCrv.Series[0].Color = System.Drawing.Color.ForestGreen;
+                    break;
+                }
+
                 uiCharts_PtrnCrv.Series[0].BorderWidth = 3;
-                uiCharts_PtrnCrv.Series[0].Color = System.Drawing.Color.Crimson;
                 uiCharts_PtrnCrv.ChartAreas[0].RecalculateAxesScale();
                 uiCharts_PtrnCrv.Visible = true;
                 uiCharts_PtrnCrv.Invalidate();
@@ -321,9 +318,6 @@ namespace PI
             }
             catch ( ArgumentOutOfRangeException x ) {
                 MsgBxShower.Ui.SeriesSelectionProblem();
-                Logger.WriteException( x );
-            }
-            catch ( Exception x ) {
                 Logger.WriteException( x );
             }
         }
@@ -427,6 +421,8 @@ namespace PI
                     return ChartData.PatternCurveSet;
                 case Enums.DataSetCurveType.Generated:
                     return ChartData.GeneratedCurvesSet[curveIndex - 1];
+                case Enums.DataSetCurveType.Average:
+                    return ChartData.AverageCurveSet;
                 }
             }
             catch ( ArgumentOutOfRangeException x ) {
@@ -525,8 +521,9 @@ namespace PI
                 return;
             }
 
+            ChartData.ClearAverageCurveSetPoints();
             WinFormsHelper.SetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx, (int) Enums.DataSetCurveType.Generated );
-            UpdateUiByShowingGeneratedCurveOnChart();
+            UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Generated );
         }
 
         private void UiPanelGenerate_Apply_Click( object sender, EventArgs e )
@@ -536,7 +533,10 @@ namespace PI
                 return;
             }
 
-            // AverageGeneratedCurves
+            Enums.MeanType meanType = (Enums.MeanType) WinFormsHelper.GetSelectedIndexSafe( uiPnlGen_MeanT_ComBx );
+            int numberOfCurves = WinFormsHelper.GetValue<int>( uiPnlGen_Crvs2No_Nm );
+            ChartData.MakeAverageCurveFromGeneratedCurves( meanType, numberOfCurves );
+            WinFormsHelper.SetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx, (int) Enums.DataSetCurveType.Average );
         }
 
         private void UpdateUiByDefaultSettings()

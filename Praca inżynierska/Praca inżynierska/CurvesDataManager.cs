@@ -11,16 +11,20 @@ namespace PI
 
         public const string PATTERN_CURVE_SERIES_NAME = "PatternCurveSeries";
         public const string GENERATED_CURVE_SERIES_NAME = "GeneratedCurveSeries";
+        public const string AVERAGE_CURVE_SERIES_NAME = "AverageCurveSeries";
         private const double ACCEPTABLE_MAX_VALUE = 9228162514264337593543950335.0;
         private const double ACCEPTABLE_MIN_VALUE = -ACCEPTABLE_MAX_VALUE;
         public Series PatternCurveSet { get; private set; }
         public List<Series> GeneratedCurvesSet { get; private set; }
+        public Series AverageCurveSet { get; private set; }
 
         public CurvesDataManager()
         {
             PatternCurveSet = new Series();
             GeneratedCurvesSet = new List<Series>();
+            AverageCurveSet = new Series();
             SetDefaultProperties( PatternCurveSet, PATTERN_CURVE_SERIES_NAME );
+            SetDefaultProperties( AverageCurveSet, AVERAGE_CURVE_SERIES_NAME );
         }
 
         public static void SetDefaultProperties( Series series, string name )
@@ -57,10 +61,10 @@ namespace PI
             return false;
         }
 
-        private void GeneratePolynomialPatternCurve( double startingXPoint, double endingXPoint, int pointsDensity )
+        private void GeneratePolynomialPatternCurve( double startX, double endX, int pointsDensity )
         {
             ClearPointsAndSetDefaults( PatternCurveSet );
-            ArgsGenerator args = new ArgsGenerator( startingXPoint, endingXPoint, pointsDensity );
+            ArgsGenerator args = new ArgsGenerator( startX, endX, pointsDensity );
 
             while ( args.HasNextArgument() ) {
                 double x = args.GetNextArgument();
@@ -71,10 +75,10 @@ namespace PI
             }
         }
 
-        private void GenerateHyperbolicPatternCurve( double startingXPoint, double endingXPoint, int pointsDensity )
+        private void GenerateHyperbolicPatternCurve( double startX, double endX, int pointsDensity )
         {
             ClearPointsAndSetDefaults( PatternCurveSet );
-            ArgsGenerator args = new ArgsGenerator( startingXPoint, endingXPoint, pointsDensity );
+            ArgsGenerator args = new ArgsGenerator( startX, endX, pointsDensity );
 
             while ( args.HasNextArgument() ) {
                 double x = args.GetNextArgument();
@@ -84,28 +88,28 @@ namespace PI
             }
         }
 
-        private void GenerateWaveformPatternCurve( double startingXPoint, double endingXPoint, int pointsDensity, Enums.PatternCurveScaffold wavetype )
+        private void GenerateWaveformPatternCurve( double startX, double endX, int pointsDensity, Enums.PatternCurveScaffold wavetype )
         {
             switch ( wavetype ) {
             case Enums.PatternCurveScaffold.WaveformSine:
-                GenerateSineWavePatternCurve( startingXPoint, endingXPoint, pointsDensity );
+                GenerateSineWavePatternCurve( startX, endX, pointsDensity );
                 break;
             case Enums.PatternCurveScaffold.WaveformSquare:
-                GenerateSquareWavePatternCurve( startingXPoint, endingXPoint, pointsDensity );
+                GenerateSquareWavePatternCurve( startX, endX, pointsDensity );
                 break;
             case Enums.PatternCurveScaffold.WaveformTriangle:
-                GenerateTriangleWavePatternCurve( startingXPoint, endingXPoint, pointsDensity );
+                GenerateTriangleWavePatternCurve( startX, endX, pointsDensity );
                 break;
             case Enums.PatternCurveScaffold.WaveformSawtooth:
-                GenerateSawtoothWavePatternCurve( startingXPoint, endingXPoint, pointsDensity );
+                GenerateSawtoothWavePatternCurve( startX, endX, pointsDensity );
                 break;
             }
         }
 
-        private void GenerateSineWavePatternCurve( double startingXPoint, double endingXPoint, int pointsDensity )
+        private void GenerateSineWavePatternCurve( double startX, double endX, int pointsDensity )
         {
             ClearPointsAndSetDefaults( PatternCurveSet );
-            ArgsGenerator args = new ArgsGenerator( startingXPoint, endingXPoint, pointsDensity );
+            ArgsGenerator args = new ArgsGenerator( startX, endX, pointsDensity );
 
             while ( args.HasNextArgument() ) {
                 double x = args.GetNextArgument();
@@ -115,10 +119,10 @@ namespace PI
             }
         }
 
-        private void GenerateSquareWavePatternCurve( double startingXPoint, double endingXPoint, int pointsDensity )
+        private void GenerateSquareWavePatternCurve( double startX, double endX, int pointsDensity )
         {
             ClearPointsAndSetDefaults( PatternCurveSet );
-            ArgsGenerator args = new ArgsGenerator( startingXPoint, endingXPoint, pointsDensity );
+            ArgsGenerator args = new ArgsGenerator( startX, endX, pointsDensity );
 
             while ( args.HasNextArgument() ) {
                 double x = args.GetNextArgument();
@@ -131,10 +135,10 @@ namespace PI
             }
         }
 
-        private void GenerateTriangleWavePatternCurve( double startingXPoint, double endingXPoint, int pointsDensity )
+        private void GenerateTriangleWavePatternCurve( double startX, double endX, int pointsDensity )
         {
             ClearPointsAndSetDefaults( PatternCurveSet );
-            ArgsGenerator args = new ArgsGenerator( startingXPoint, endingXPoint, pointsDensity );
+            ArgsGenerator args = new ArgsGenerator( startX, endX, pointsDensity );
 
             while ( args.HasNextArgument() ) {
                 double x = args.GetNextArgument();
@@ -145,10 +149,10 @@ namespace PI
             }
         }
 
-        private void GenerateSawtoothWavePatternCurve( double startingXPoint, double endingXPoint, int pointsDensity )
+        private void GenerateSawtoothWavePatternCurve( double startX, double endX, int pointsDensity )
         {
             ClearPointsAndSetDefaults( PatternCurveSet );
-            ArgsGenerator args = new ArgsGenerator( startingXPoint, endingXPoint, pointsDensity );
+            ArgsGenerator args = new ArgsGenerator( startX, endX, pointsDensity );
 
             while ( args.HasNextArgument() ) {
                 double x = args.GetNextArgument();
@@ -323,6 +327,72 @@ namespace PI
                 double newValue = Randomizer.NextDouble( y - surrounding, y + surrounding );
                 series.Points[i].YValues[0] = newValue;
             }
+        }
+
+        public bool? MakeAverageCurveFromGeneratedCurves( Enums.MeanType averageMethod, int numberOfCurves )
+        {
+            if ( numberOfCurves < 0 || numberOfCurves > GeneratedCurvesSet.Count ) {
+                return null;
+            }
+
+            switch ( averageMethod ) {
+            case Enums.MeanType.Mediana:
+            case Enums.MeanType.Dominant:
+                break;
+            case Enums.MeanType.Maximum:
+            case Enums.MeanType.Minimum:
+                MakeAverageCurveOfMaximumOrMinimum( averageMethod, numberOfCurves );
+                return true;
+            case Enums.MeanType.Arithmetic:
+            case Enums.MeanType.Geometric:
+            case Enums.MeanType.ArithmeticGeometric:
+            case Enums.MeanType.Harmonic:
+            case Enums.MeanType.Square:
+            case Enums.MeanType.Power:
+            case Enums.MeanType.Logarithmic:
+            case Enums.MeanType.Exponential:
+                break;
+            }
+
+            return false;
+        }
+
+        private void MakeAverageCurveOfMaximumOrMinimum( Enums.MeanType type, int numberOfCurves )
+        {
+            AverageCurveSet.Points.Clear();
+            List<double> maxYValues = new List<double>();
+
+            for ( int i = 0; i < GeneratedCurvesSet[0].Points.Count; i++ ) {
+                maxYValues.Add( GeneratedCurvesSet[0].Points[i].YValues[0] );
+            }
+
+            for ( int i = 1; i < numberOfCurves; i++ ) {
+                for ( int j = 0; j < GeneratedCurvesSet[i].Points.Count; j++ ) {
+                    double y = GeneratedCurvesSet[i].Points[j].YValues[0];
+                    maxYValues[j] = GetMaximumOrMinimum( type, y, maxYValues[j] ).Value;
+                }
+            }
+
+            for ( int i = 0; i < PatternCurveSet.Points.Count; i++ ) {
+                AverageCurveSet.Points.AddXY( PatternCurveSet.Points[i].XValue, maxYValues[i] );
+            }
+        }
+
+        private double? GetMaximumOrMinimum( Enums.MeanType type, double leftValue, double rightValue )
+        {
+            switch ( type ) {
+            case Enums.MeanType.Maximum:
+                return ((leftValue > rightValue) ? leftValue : rightValue);
+            case Enums.MeanType.Minimum:
+                return ((leftValue < rightValue) ? leftValue : rightValue);
+            }
+
+            return null;
+        }
+
+        public void ClearAverageCurveSetPoints()
+        {
+            AverageCurveSet.Points.Clear();
         }
 
     }
