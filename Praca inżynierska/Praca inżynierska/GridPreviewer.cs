@@ -410,5 +410,11 @@ namespace PI
             UpdateUiByPanelStateInfo( Consts.Gprv.Chart.TxtChartRefreshed );
         }
 
+        private void UiGridPreviewer_Load( object sender, EventArgs e )
+        {
+            uiPnl_Ok_Btn.Select();
+            uiPnl_Ok_Btn.Focus();
+        }
+
     }
 }

@@ -320,6 +320,21 @@ namespace PI
             return curves;
         }
 
+        private List<double> GetCopyOfGeneratedCurvePointsValues( int numberOfCurve = 0 )
+        {
+            if ( numberOfCurve < 0 || numberOfCurve >= GeneratedCurvesSet.Count ) {
+                return null;
+            }
+
+            List<double> yValues = new List<double>();
+
+            for ( int i = 0; i < GeneratedCurvesSet[numberOfCurve].Points.Count; i++ ) {
+                yValues.Add( GeneratedCurvesSet[numberOfCurve].Points[i].YValues[0] );
+            }
+
+            return yValues;
+        }
+
         private void MakeGaussianNoise( Series series, double surrounding )
         {
             for ( int i = 0; i < series.Points.Count; i++ ) {
@@ -337,6 +352,8 @@ namespace PI
 
             switch ( averageMethod ) {
             case Enums.MeanType.Mediana:
+                MakeAverageCurveOfMediana( numberOfCurves );
+                break;
             case Enums.MeanType.Dominant:
                 break;
             case Enums.MeanType.Maximum:
@@ -359,12 +376,7 @@ namespace PI
 
         private void MakeAverageCurveOfMaximumOrMinimum( Enums.MeanType type, int numberOfCurves )
         {
-            AverageCurveSet.Points.Clear();
-            List<double> maxYValues = new List<double>();
-
-            for ( int i = 0; i < GeneratedCurvesSet[0].Points.Count; i++ ) {
-                maxYValues.Add( GeneratedCurvesSet[0].Points[i].YValues[0] );
-            }
+            List<double> maxYValues = GetCopyOfGeneratedCurvePointsValues();
 
             for ( int i = 1; i < numberOfCurves; i++ ) {
                 for ( int j = 0; j < GeneratedCurvesSet[i].Points.Count; j++ ) {
@@ -373,9 +385,7 @@ namespace PI
                 }
             }
 
-            for ( int i = 0; i < PatternCurveSet.Points.Count; i++ ) {
-                AverageCurveSet.Points.AddXY( PatternCurveSet.Points[i].XValue, maxYValues[i] );
-            }
+            DefineAverageCurveSetValues( maxYValues );
         }
 
         private double? GetMaximumOrMinimum( Enums.MeanType type, double leftValue, double rightValue )
@@ -393,6 +403,61 @@ namespace PI
         public void ClearAverageCurveSetPoints()
         {
             AverageCurveSet.Points.Clear();
+        }
+
+        private void MakeAverageCurveOfMediana( int numberOfCurves = 3 )
+        {
+            List<List<double>> argValues = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
+            List<double> medianas = new List<double>();
+
+            for ( int i = 0; i < argValues.Count; i++ ) {
+                argValues[i].Sort();
+            }
+
+            for ( int i = 0; i < argValues.Count; i++ ) {
+                int oddIndex = argValues[i].Count / 2;
+
+                if ( argValues[i].Count % 2 == 0 ) {
+                    double value = (argValues[i][oddIndex] + argValues[i][oddIndex + 1]) / 2.0;
+                    medianas.Add( value );
+                }
+                else {
+                    medianas.Add( argValues[i][oddIndex] );
+                }
+            }
+
+            DefineAverageCurveSetValues( medianas );
+        }
+
+        private List<List<double>> GetGeneratedCurvesValuesReorderedIntoXByY( int numberOfCurves )
+        {
+            List<List<double>> argValues = new List<List<double>>();
+
+            for ( int i = 0; i < PatternCurveSet.Points.Count; i++ ) {
+                argValues.Add( new List<double>() );
+
+                for ( int j = 0; j < numberOfCurves; j++ ) {
+                    argValues[i].Add( 0.0 );
+                }
+            }
+
+            for ( int i = 0; i < numberOfCurves; i++ ) {
+                for ( int j = 0; j < GeneratedCurvesSet[i].Points.Count; j++ ) {
+                    double y = GeneratedCurvesSet[i].Points[j].YValues[0];
+                    argValues[j][i] = y;
+                }
+            }
+
+            return argValues;
+        }
+
+        private void DefineAverageCurveSetValues( List<double> newValues )
+        {
+            AverageCurveSet.Points.Clear();
+
+            for ( int i = 0; i < PatternCurveSet.Points.Count; i++ ) {
+                AverageCurveSet.Points.AddXY( PatternCurveSet.Points[i].XValue, newValues[i] );
+            }
         }
 
     }

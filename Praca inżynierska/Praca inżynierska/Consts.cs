@@ -26,6 +26,8 @@
                     internal string TxtNotChosen { get; } = "Not chosen";
                     internal string GenerateSetBtnPrerequisiteWarnTxt { get; } = "Pattern curve scaffold has not been chosen.";
                     internal string GenerateSetBtnPrerequisiteWarnCpt { get; } = "Prerequisite not matched!";
+                    internal string NotEnoughCurvesForMedianaTxt { get; } = "You must specify at least 3 curves to average them using mediana.";
+                    internal string NotEnoughCurvesForMedianaCpt { get; } = "Averaging method problem";
                 }
 
                 internal class DatasheetConsts

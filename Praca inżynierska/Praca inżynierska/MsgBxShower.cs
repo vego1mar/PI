@@ -61,6 +61,14 @@ namespace PI
                 string caption = Consts.Ui.Panel.Datasheet.OperationMalformRejectedCpt;
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Stop );
             }
+
+            internal void NotEnoughCurvesForMedianaStop()
+            {
+                string text = Consts.Ui.Panel.Generate.NotEnoughCurvesForMedianaTxt;
+                string caption = Consts.Ui.Panel.Generate.NotEnoughCurvesForMedianaCpt;
+                WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
+            }
+
         }
 
         internal class MenuMsgBoxes

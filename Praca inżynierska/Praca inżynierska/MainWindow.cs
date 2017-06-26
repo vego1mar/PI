@@ -535,6 +535,12 @@ namespace PI
 
             Enums.MeanType meanType = (Enums.MeanType) WinFormsHelper.GetSelectedIndexSafe( uiPnlGen_MeanT_ComBx );
             int numberOfCurves = WinFormsHelper.GetValue<int>( uiPnlGen_Crvs2No_Nm );
+
+            if ( meanType == Enums.MeanType.Mediana && numberOfCurves < 3 ) {
+                MsgBxShower.Ui.NotEnoughCurvesForMedianaStop();
+                return;
+            }
+
             ChartData.MakeAverageCurveFromGeneratedCurves( meanType, numberOfCurves );
             WinFormsHelper.SetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx, (int) Enums.DataSetCurveType.Average );
         }
