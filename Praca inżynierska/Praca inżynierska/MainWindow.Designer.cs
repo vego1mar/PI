@@ -558,14 +558,14 @@
             this.uiPnlGen_MeanT_ComBx.FormattingEnabled = true;
             this.uiPnlGen_MeanT_ComBx.Items.AddRange(new object[] {
             "Mediana",
-            "Dominant (modal)",
             "Maximum",
             "Minimum",
             "Arithmetic",
             "Geometric",
             "Arithmetic-geometric",
+            "Heronian",
             "Harmonic",
-            "Square",
+            "Quadrature",
             "Power",
             "Logarithmic",
             "Exponential"});

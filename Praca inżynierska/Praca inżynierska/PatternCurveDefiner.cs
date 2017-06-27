@@ -213,7 +213,7 @@ namespace PI
             if ( uiCntWaveT_Sine_RdBtn.Checked ) {
                 ChosenCurve = Enums.PatternCurveScaffold.WaveformSine;
                 uiCntWave_o_Num.Enabled = true;
-                uiCntWave_PicBx.Image = Properties.Resources.Pattern_scaffold_waveform_sine;
+                uiCntWave_PicBx.Image = Properties.Resources.PatternScaffold_WaveformSine;
             }
         }
 
@@ -222,7 +222,7 @@ namespace PI
             if ( uiCntWaveT_Sq_RdBtn.Checked ) {
                 ChosenCurve = Enums.PatternCurveScaffold.WaveformSquare;
                 uiCntWave_o_Num.Enabled = false;
-                uiCntWave_PicBx.Image = Properties.Resources.Pattern_scaffold_waveform_square;
+                uiCntWave_PicBx.Image = Properties.Resources.PatternScaffold_WaveformSquare;
             }
         }
 
@@ -231,7 +231,7 @@ namespace PI
             if ( uiCntWaveT_Trg_RdBtn.Checked ) {
                 ChosenCurve = Enums.PatternCurveScaffold.WaveformTriangle;
                 uiCntWave_o_Num.Enabled = false;
-                uiCntWave_PicBx.Image = Properties.Resources.Pattern_scaffold_waveform_triangle;
+                uiCntWave_PicBx.Image = Properties.Resources.PatternScaffold_WaveformTriangle;
             }
         }
 
@@ -240,7 +240,7 @@ namespace PI
             if ( uiCntWaveT_Saw_RdBtn.Checked ) {
                 ChosenCurve = Enums.PatternCurveScaffold.WaveformSawtooth;
                 uiCntWave_o_Num.Enabled = false;
-                uiCntWave_PicBx.Image = Properties.Resources.Pattern_scaffold_waveform_sawtooth;
+                uiCntWave_PicBx.Image = Properties.Resources.PatternScaffold_WaveformSawtooth;
             }
         }
 

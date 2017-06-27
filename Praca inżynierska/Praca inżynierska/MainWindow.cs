@@ -16,7 +16,7 @@ namespace PI
 
         private Thread Timer { get; set; }
         private CurvesDataManager ChartData { get; set; }
-        private bool KeepPanelProportions { get; set; }
+        private UiSettings Settings { get; set; }
 
         public MainWindow()
         {
@@ -28,7 +28,7 @@ namespace PI
         {
             Timer = null;
             ChartData = new CurvesDataManager();
-            KeepPanelProportions = true;
+            Settings = new UiSettings();
         }
 
         private void UiMainWindow_FormClosed( object sender, FormClosedEventArgs e )
@@ -541,6 +541,7 @@ namespace PI
                 return;
             }
 
+            ShowMeansWarnings( meanType );
             ChartData.MakeAverageCurveFromGeneratedCurves( meanType, numberOfCurves );
             WinFormsHelper.SetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx, (int) Enums.DataSetCurveType.Average );
         }
@@ -548,19 +549,47 @@ namespace PI
         private void UpdateUiByDefaultSettings()
         {
             CurvesDataManager.SetDefaultProperties( uiCharts_PtrnCrv );
-            WinFormsHelper.SetSelectedIndexSafe( uiPnlGen_MeanT_ComBx, (int) Enums.MeanType.Maximum );
+            WinFormsHelper.SetSelectedIndexSafe( uiPnlGen_MeanT_ComBx, (int) Enums.MeanType.Geometric );
         }
 
         private void UiMainWindow_Resize( object sender, EventArgs e )
         {
-            if ( KeepPanelProportions ) {
+            if ( Settings.Menu.Program.KeepPanelProportions ) {
                 uiMw_SpCtn.SplitterDistance = 275;
             }
         }
 
         private void UiMenuProgram_KeepPanelProportions_Click( object sender, EventArgs e )
         {
-            KeepPanelProportions = !KeepPanelProportions;
+            Settings.Menu.Program.KeepPanelProportions = !Settings.Menu.Program.KeepPanelProportions;
+        }
+
+        private void ShowMeansWarnings( Enums.MeanType mean )
+        {
+            switch ( mean ) {
+            case Enums.MeanType.Geometric:
+                ShowGeometricMeanWarningIfNeeded();
+                break;
+            }
+        }
+
+        private void ShowGeometricMeanWarningIfNeeded()
+        {
+            if ( Settings.Panel.Generate.GeometricMeanApplyingWarning ) {
+                using ( var msgBox = new ExplMsgBox() ) {
+                    msgBox.SetInfo1Text( Consts.Expl.Means.Geometric.MainTxt );
+                    msgBox.SetInfo2Text1( Consts.Expl.Means.Geometric.AuxTxt1 );
+                    msgBox.SetInfo2Text2( Consts.Expl.Means.Geometric.AuxTxt2 );
+                    msgBox.SetTitleBarText( Consts.Expl.Means.Geometric.TitleBarTxt );
+                    msgBox.SetInfo2Image1( Properties.Resources.GeometricMean_OriginEquation );
+                    msgBox.SetInfo2Image2( Properties.Resources.GeometricMean_ModifiedEquation );
+                    WinFormsHelper.ShowDialogSafe( msgBox, this );
+
+                    if ( msgBox.DialogResult == DialogResult.OK && msgBox.IsChecked() ) {
+                        Settings.Panel.Generate.GeometricMeanApplyingWarning = false;
+                    }
+                }
+            }
         }
 
     }

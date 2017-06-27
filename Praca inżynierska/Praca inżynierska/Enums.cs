@@ -66,14 +66,14 @@
         internal enum MeanType
         {
             Mediana = 0,
-            Dominant = 1,
-            Maximum = 2,
-            Minimum = 3,
-            Arithmetic = 4,
-            Geometric = 5,
-            ArithmeticGeometric = 6,
+            Maximum = 1,
+            Minimum = 2,
+            Arithmetic = 3,
+            Geometric = 4,
+            ArithmeticGeometric = 5,
+            Heronian = 6,
             Harmonic = 7,
-            Square = 8,
+            Quadrature = 8,
             Power = 9,
             Logarithmic = 10,
             Exponential = 11

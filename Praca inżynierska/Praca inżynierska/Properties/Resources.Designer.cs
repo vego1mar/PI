@@ -63,9 +63,9 @@ namespace PI.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Pattern_scaffold_hyperbolic {
+        internal static System.Drawing.Bitmap GeometricMean_ModifiedEquation {
             get {
-                object obj = ResourceManager.GetObject("Pattern_scaffold_hyperbolic", resourceCulture);
+                object obj = ResourceManager.GetObject("GeometricMean_ModifiedEquation", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace PI.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Pattern_scaffold_polynomial {
+        internal static System.Drawing.Bitmap GeometricMean_OriginEquation {
             get {
-                object obj = ResourceManager.GetObject("Pattern_scaffold_polynomial", resourceCulture);
+                object obj = ResourceManager.GetObject("GeometricMean_OriginEquation", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace PI.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Pattern_scaffold_waveform_sawtooth {
+        internal static System.Drawing.Bitmap PatternScaffold_Hyperbolic {
             get {
-                object obj = ResourceManager.GetObject("Pattern_scaffold_waveform_sawtooth", resourceCulture);
+                object obj = ResourceManager.GetObject("PatternScaffold_Hyperbolic", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace PI.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Pattern_scaffold_waveform_sine {
+        internal static System.Drawing.Bitmap PatternScaffold_Polynomial {
             get {
-                object obj = ResourceManager.GetObject("Pattern_scaffold_waveform_sine", resourceCulture);
+                object obj = ResourceManager.GetObject("PatternScaffold_Polynomial", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace PI.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Pattern_scaffold_waveform_square {
+        internal static System.Drawing.Bitmap PatternScaffold_WaveformSawtooth {
             get {
-                object obj = ResourceManager.GetObject("Pattern_scaffold_waveform_square", resourceCulture);
+                object obj = ResourceManager.GetObject("PatternScaffold_WaveformSawtooth", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +113,29 @@ namespace PI.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Pattern_scaffold_waveform_triangle {
+        internal static System.Drawing.Bitmap PatternScaffold_WaveformSine {
             get {
-                object obj = ResourceManager.GetObject("Pattern_scaffold_waveform_triangle", resourceCulture);
+                object obj = ResourceManager.GetObject("PatternScaffold_WaveformSine", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PatternScaffold_WaveformSquare {
+            get {
+                object obj = ResourceManager.GetObject("PatternScaffold_WaveformSquare", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PatternScaffold_WaveformTriangle {
+            get {
+                object obj = ResourceManager.GetObject("PatternScaffold_WaveformTriangle", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

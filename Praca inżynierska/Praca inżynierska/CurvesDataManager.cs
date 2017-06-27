@@ -354,17 +354,20 @@ namespace PI
             case Enums.MeanType.Mediana:
                 MakeAverageCurveOfMediana( numberOfCurves );
                 break;
-            case Enums.MeanType.Dominant:
-                break;
             case Enums.MeanType.Maximum:
             case Enums.MeanType.Minimum:
                 MakeAverageCurveOfMaximumOrMinimum( averageMethod, numberOfCurves );
                 return true;
             case Enums.MeanType.Arithmetic:
+                MakeAverageCurveOfArithmeticMean( numberOfCurves );
+                return true;
             case Enums.MeanType.Geometric:
+                MakeAverageCurveOfGeometricMean( numberOfCurves );
+                return true;
             case Enums.MeanType.ArithmeticGeometric:
+            case Enums.MeanType.Heronian:
             case Enums.MeanType.Harmonic:
-            case Enums.MeanType.Square:
+            case Enums.MeanType.Quadrature:
             case Enums.MeanType.Power:
             case Enums.MeanType.Logarithmic:
             case Enums.MeanType.Exponential:
@@ -458,6 +461,49 @@ namespace PI
             for ( int i = 0; i < PatternCurveSet.Points.Count; i++ ) {
                 AverageCurveSet.Points.AddXY( PatternCurveSet.Points[i].XValue, newValues[i] );
             }
+        }
+
+        private void MakeAverageCurveOfArithmeticMean( int numberOfCurves )
+        {
+            List<List<double>> argValues = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
+            List<double> arithmeticMeans = new List<double>();
+            double sum;
+
+            for ( int i = 0; i < argValues.Count; i++ ) {
+                sum = 0.0;
+
+                for ( int j = 0; j < argValues[i].Count; j++ ) {
+                    sum += argValues[i][j];
+                }
+
+                arithmeticMeans.Add( sum / Convert.ToDouble( argValues[i].Count ) );
+            }
+
+            DefineAverageCurveSetValues( arithmeticMeans );
+        }
+
+        private void MakeAverageCurveOfGeometricMean( int numberOfCurves )
+        {
+            List<List<double>> argValues = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
+            List<double> geometricMeans = new List<double>();
+            double product;
+
+            for ( int i = 0; i < argValues.Count; i++ ) {
+                product = 1.0;
+
+                for ( int j = 0; j < argValues[i].Count; j++ ) {
+                    product *= argValues[i][j];
+                }
+
+                geometricMeans.Add( GetSquareRoot( Math.Abs( product ), argValues[i].Count ) );
+            }
+
+            DefineAverageCurveSetValues( geometricMeans );
+        }
+
+        private double GetSquareRoot( double value, double basis )
+        {
+            return Math.Pow( value, 1.0 / basis );
         }
 
     }

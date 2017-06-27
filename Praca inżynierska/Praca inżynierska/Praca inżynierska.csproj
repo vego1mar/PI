@@ -72,6 +72,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExplMsgBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExplMsgBox.Designer.cs">
+      <DependentUpon>ExplMsgBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Enums.cs" />
     <Compile Include="CurvesDataManager.cs" />
     <Compile Include="ArgsGenerator.cs" />
@@ -105,8 +111,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UiSettings.cs" />
     <Compile Include="WebHelper.cs" />
     <Compile Include="WinFormsHelper.cs" />
+    <EmbeddedResource Include="ExplMsgBox.resx">
+      <DependentUpon>ExplMsgBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GridPreviewer.resx">
       <DependentUpon>GridPreviewer.cs</DependentUpon>
     </EmbeddedResource>
@@ -152,22 +162,28 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Pictures\Pattern_scaffold_polynomial.png" />
+    <None Include="Pictures\GeometricMean_ModifiedEquation.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Pictures\Pattern_scaffold_hyperbolic.png" />
+    <None Include="Pictures\GeometricMean_OriginEquation.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Pictures\Pattern_scaffold_waveform_sawtooth.png" />
+    <None Include="Pictures\PatternScaffold_Hyperbolic.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Pictures\Pattern_scaffold_waveform_sine.png" />
+    <None Include="Pictures\PatternScaffold_Polynomial.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Pictures\Pattern_scaffold_waveform_square.png" />
+    <None Include="Pictures\PatternScaffold_WaveformSawtooth.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Pictures\Pattern_scaffold_waveform_triangle.png" />
+    <None Include="Pictures\PatternScaffold_WaveformSine.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\PatternScaffold_WaveformSquare.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\PatternScaffold_WaveformTriangle.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

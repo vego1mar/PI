@@ -781,7 +781,7 @@
             // 
             this.uiCntPol_PicBx.BackColor = System.Drawing.SystemColors.Window;
             this.uiCntPol_PicBx.Dock = System.Windows.Forms.DockStyle.Top;
-            this.uiCntPol_PicBx.Image = global::PI.Properties.Resources.Pattern_scaffold_polynomial;
+            this.uiCntPol_PicBx.Image = global::PI.Properties.Resources.PatternScaffold_Polynomial;
             this.uiCntPol_PicBx.Location = new System.Drawing.Point(3, 3);
             this.uiCntPol_PicBx.Name = "uiCntPol_PicBx";
             this.uiCntPol_PicBx.Size = new System.Drawing.Size(646, 130);
@@ -793,7 +793,7 @@
             // 
             this.uiCntHyp_PicBx.BackColor = System.Drawing.SystemColors.Window;
             this.uiCntHyp_PicBx.Dock = System.Windows.Forms.DockStyle.Top;
-            this.uiCntHyp_PicBx.Image = global::PI.Properties.Resources.Pattern_scaffold_hyperbolic;
+            this.uiCntHyp_PicBx.Image = global::PI.Properties.Resources.PatternScaffold_Hyperbolic;
             this.uiCntHyp_PicBx.Location = new System.Drawing.Point(3, 3);
             this.uiCntHyp_PicBx.Name = "uiCntHyp_PicBx";
             this.uiCntHyp_PicBx.Size = new System.Drawing.Size(646, 130);
@@ -805,7 +805,7 @@
             // 
             this.uiCntWave_PicBx.BackColor = System.Drawing.SystemColors.Window;
             this.uiCntWave_PicBx.Dock = System.Windows.Forms.DockStyle.Top;
-            this.uiCntWave_PicBx.Image = global::PI.Properties.Resources.Pattern_scaffold_waveform_sine;
+            this.uiCntWave_PicBx.Image = global::PI.Properties.Resources.PatternScaffold_WaveformSine;
             this.uiCntWave_PicBx.Location = new System.Drawing.Point(0, 0);
             this.uiCntWave_PicBx.Name = "uiCntWave_PicBx";
             this.uiCntWave_PicBx.Size = new System.Drawing.Size(652, 130);

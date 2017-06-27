@@ -5,6 +5,7 @@
         internal static UiConsts Ui { get; } = new UiConsts();
         internal static GridPreviewerConsts Gprv { get; } = new GridPreviewerConsts();
         internal static PcdConsts Pcd { get; } = new PcdConsts();
+        internal static ExplanationMessageBoxConsts Expl { get; } = new ExplanationMessageBoxConsts();
 
         internal class UiConsts
         {
@@ -129,6 +130,31 @@
             {
                 internal string ParamsZeroDivTxt { get; } = "Cannot divide by 0.0000. A value of 0.0001 will be used instead.";
                 internal string ParamsZeroDivCpt { get; } = "Division by zero";
+            }
+        }
+
+        internal class ExplanationMessageBoxConsts
+        {
+            internal MeansConsts Means { get; } = new MeansConsts();
+
+            internal class MeansConsts
+            {
+                internal GeometricMeanConsts Geometric { get; } = new GeometricMeanConsts();
+
+                internal class GeometricMeanConsts
+                {
+                    internal string TitleBarTxt { get; } = "Geometric mean usage";
+                    internal string MainTxt { get; } = "Geometric mean is defined for real positive numbers, especially for functions with " +
+                        "logarithmically normal distribution. If, in specified set of curves, there will be at least one negative " +
+                        "value, then it will be absoluted. Thus, using this averaging method for curves with not log-normal " +
+                        "distribution provides incorrect result." + System.Environment.NewLine +
+                        System.Environment.NewLine + 
+                        "The geometry mean is used in finance where the actual values (amounts invested) do not need to be known. " + 
+                        "Instead we can use percentages. Still, the geometry mean has its sense in terms of geometry to finding " + 
+                        "square that have sides as an area of other rectangle calculated that way." + System.Environment.NewLine;
+                    internal string AuxTxt1 { get; } = "Geometric mean is defined as follows:";
+                    internal string AuxTxt2 { get; } = "This was modified into:";
+                }
             }
         }
 
