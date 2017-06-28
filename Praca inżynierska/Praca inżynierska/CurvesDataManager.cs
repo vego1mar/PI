@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Globalization;
 using System.Collections.Generic;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -365,6 +366,8 @@ namespace PI
                 MakeAverageCurveOfGeometricMean( numberOfCurves );
                 return true;
             case Enums.MeanType.ArithmeticGeometric:
+                MakeAverageCurveOfArithmeticGeometricMean( numberOfCurves );
+                return true;
             case Enums.MeanType.Heronian:
             case Enums.MeanType.Harmonic:
             case Enums.MeanType.Quadrature:
@@ -504,6 +507,72 @@ namespace PI
         private double GetSquareRoot( double value, double basis )
         {
             return Math.Pow( value, 1.0 / basis );
+        }
+
+        private void MakeAverageCurveOfArithmeticGeometricMean( int numberOfCurves )
+        {
+            List<List<double>> argValues = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
+            List<double> agm = new List<double>();
+
+            for ( int i = 0; i < argValues.Count; i++ ) {
+                List<double> args = CalculateFirstAgmValues( argValues[i] );
+
+                for ( int j = 0; j < argValues[i].Count; j++ ) {
+                    args = CalculateNextAgmValues( args );
+                }
+
+                agm.Add( GetFinalAgmValue( args[0], args[1] ) );
+            }
+
+            DefineAverageCurveSetValues( agm );
+        }
+
+        private List<double> CalculateFirstAgmValues( List<double> values )
+        {
+            double sum = 0.0;
+            double product = 1.0;
+
+            for ( int i = 0; i < values.Count; i++ ) {
+                sum += values[i];
+                product *= values[i];
+            }
+
+            return new List<double>() {
+                Math.Abs( sum / Convert.ToDouble( values.Count ) ),
+                GetSquareRoot( Math.Abs( product ), values.Count )
+            };
+        }
+
+        private List<double> CalculateNextAgmValues( List<double> previousArgs )
+        {
+            return new List<double>() {
+                Math.Abs( (previousArgs[0] + previousArgs[1]) / 2.0 ),
+                GetSquareRoot( Math.Abs( previousArgs[0] * previousArgs[1] ), 2.0 )
+            };
+        }
+
+        private double GetFinalAgmValue( double arithmeticMean, double geometricMean )
+        {
+            string a = arithmeticMean.ToString( CultureInfo.InvariantCulture );
+            string g = geometricMean.ToString( CultureInfo.InvariantCulture );
+
+            if ( a == g ) {
+                return Convert.ToDouble( a, CultureInfo.InvariantCulture );
+            }
+
+            System.Text.StringBuilder builder = new System.Text.StringBuilder();
+            int commonLength = Math.Min( a.Length, g.Length );
+
+            for ( int i = 0; i < commonLength; i++ ) {
+                if ( a[i] == g[i] ) {
+                    builder.Append( g[i] );
+                }
+                else {
+                    break;
+                }
+            }
+
+            return Convert.ToDouble( builder.ToString(), CultureInfo.InvariantCulture );
         }
 
     }

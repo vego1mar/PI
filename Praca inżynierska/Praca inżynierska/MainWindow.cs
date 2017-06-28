@@ -570,6 +570,9 @@ namespace PI
             case Enums.MeanType.Geometric:
                 ShowGeometricMeanWarningIfNeeded();
                 break;
+            case Enums.MeanType.ArithmeticGeometric:
+                ShowAgmWarningIfNeeded();
+                break;
             }
         }
 
@@ -587,6 +590,25 @@ namespace PI
 
                     if ( msgBox.DialogResult == DialogResult.OK && msgBox.IsChecked() ) {
                         Settings.Panel.Generate.GeometricMeanApplyingWarning = false;
+                    }
+                }
+            }
+        }
+
+        private void ShowAgmWarningIfNeeded()
+        {
+            if ( Settings.Panel.Generate.AgmMeanApplyingWarning ) {
+                using ( var msgBox = new ExplMsgBox() ) {
+                    msgBox.SetInfo1Text( Consts.Expl.Means.Agm.MainTxt );
+                    msgBox.SetInfo2Text1( Consts.Expl.Means.Agm.AuxTxt1 );
+                    msgBox.SetInfo2Text2( Consts.Expl.Means.Agm.AuxTxt2 );
+                    msgBox.SetTitleBarText( Consts.Expl.Means.Agm.TitleBarTxt );
+                    msgBox.SetInfo2Image1( Properties.Resources.AGM_OriginalEquation );
+                    msgBox.SetInfo2Image2( Properties.Resources.AGM_ModifiedEquation );
+                    WinFormsHelper.ShowDialogSafe( msgBox, this );
+
+                    if ( msgBox.DialogResult == DialogResult.OK && msgBox.IsChecked() ) {
+                        Settings.Panel.Generate.AgmMeanApplyingWarning = false;
                     }
                 }
             }

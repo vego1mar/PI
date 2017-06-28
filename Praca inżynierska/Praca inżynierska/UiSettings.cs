@@ -22,6 +22,7 @@
             internal class GenerateSettings
             {
                 internal bool GeometricMeanApplyingWarning { get; set; } = true;
+                internal bool AgmMeanApplyingWarning { get; set; } = true;
             }
         }
 

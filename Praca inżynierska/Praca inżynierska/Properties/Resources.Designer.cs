@@ -63,6 +63,26 @@ namespace PI.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AGM_ModifiedEquation {
+            get {
+                object obj = ResourceManager.GetObject("AGM_ModifiedEquation", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap AGM_OriginalEquation {
+            get {
+                object obj = ResourceManager.GetObject("AGM_OriginalEquation", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap GeometricMean_ModifiedEquation {
             get {
                 object obj = ResourceManager.GetObject("GeometricMean_ModifiedEquation", resourceCulture);

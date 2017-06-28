@@ -140,6 +140,7 @@
             internal class MeansConsts
             {
                 internal GeometricMeanConsts Geometric { get; } = new GeometricMeanConsts();
+                internal ArithmeticGeometricMeanConsts Agm { get; } = new ArithmeticGeometricMeanConsts();
 
                 internal class GeometricMeanConsts
                 {
@@ -155,6 +156,22 @@
                     internal string AuxTxt1 { get; } = "Geometric mean is defined as follows:";
                     internal string AuxTxt2 { get; } = "This was modified into:";
                 }
+
+                internal class ArithmeticGeometricMeanConsts
+                {
+                    internal string TitleBarTxt { get; } = "AGM mean usage";
+                    internal string MainTxt { get; } = "Arithmetic-geometric mean is defined for two positive real numbers as a common limit " +
+                        "of arithmetic and geometric means sequences. This have to be extended to use it with a set of values for the first " +
+                        "iteration. Also, there must be condition of geometric mean fulfilled, so the values are absoluted. Thus, this extended " + 
+                        "version of AGM is standard AGM only for two specified curves in log-normal distribution." + System.Environment.NewLine +
+                        System.Environment.NewLine +
+                        "AGM method can be used for algorithmic purposes, which make it possible to construct fast algorithms for calculation " +
+                        "exponential and trigonometric functions, as well as some mathematical constants, pi in " +
+                        "particular." + System.Environment.NewLine;
+                    internal string AuxTxt1 { get; } = "AGM mean is defined as follows:";
+                    internal string AuxTxt2 { get; } = "This was modified into:";
+                }
+
             }
         }
 
