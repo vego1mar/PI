@@ -3,26 +3,17 @@
     internal class UiSettings
     {
         internal MenuSettings Menu { get; set; } = new MenuSettings();
-        internal PanelSettings Panel { get; set; } = new PanelSettings();
 
         internal class MenuSettings
         {
-            internal ProgramSettings Program { get; set; } = new ProgramSettings();
+            internal PanelSettings Panel { get; set; } = new PanelSettings();
 
-            internal class ProgramSettings
+            internal class PanelSettings
             {
-                internal bool KeepPanelProportions { get; set; } = true;
-            }
-        }
-
-        internal class PanelSettings
-        {
-            internal GenerateSettings Generate { get; set; } = new GenerateSettings();
-
-            internal class GenerateSettings
-            {
-                internal bool GeometricMeanApplyingWarning { get; set; } = true;
-                internal bool AgmMeanApplyingWarning { get; set; } = true;
+                internal bool KeepProportions { get; set; } = true;
+                internal bool Hide { get; set; } = false;
+                internal int SplitterDistance { get; set; } = 248;
+                internal bool Lock { get; set; } = false;
             }
         }
 

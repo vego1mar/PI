@@ -541,7 +541,6 @@ namespace PI
                 return;
             }
 
-            ShowMeansWarnings( meanType );
             ChartData.MakeAverageCurveFromGeneratedCurves( meanType, numberOfCurves );
             WinFormsHelper.SetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx, (int) Enums.DataSetCurveType.Average );
         }
@@ -554,63 +553,50 @@ namespace PI
 
         private void UiMainWindow_Resize( object sender, EventArgs e )
         {
-            if ( Settings.Menu.Program.KeepPanelProportions ) {
+            if ( Settings.Menu.Panel.Hide ) {
+                return;
+            }
+
+            if ( Settings.Menu.Panel.KeepProportions ) {
                 uiMw_SpCtn.SplitterDistance = 275;
             }
         }
 
-        private void UiMenuProgram_KeepPanelProportions_Click( object sender, EventArgs e )
+        private void UiMenuPanel_KeepProportions_Click( object sender, EventArgs e )
         {
-            Settings.Menu.Program.KeepPanelProportions = !Settings.Menu.Program.KeepPanelProportions;
+            Settings.Menu.Panel.KeepProportions = !Settings.Menu.Panel.KeepProportions;
+            uiMenuPnl_KeepProp.Checked = Settings.Menu.Panel.KeepProportions;
         }
 
-        private void ShowMeansWarnings( Enums.MeanType mean )
+        private void UiMenuPanel_Hide_Click( object sender, EventArgs e )
         {
-            switch ( mean ) {
-            case Enums.MeanType.Geometric:
-                ShowGeometricMeanWarningIfNeeded();
-                break;
-            case Enums.MeanType.ArithmeticGeometric:
-                ShowAgmWarningIfNeeded();
-                break;
+            Settings.Menu.Panel.Hide = !Settings.Menu.Panel.Hide;
+            uiMenuPnl_Hide.Checked = Settings.Menu.Panel.Hide;
+
+            if ( uiMenuPnl_Hide.Checked ) {
+                Settings.Menu.Panel.SplitterDistance = uiMw_SpCtn.SplitterDistance;
+                uiMw_SpCtn.SplitterDistance = 0;
+                uiMw_SpCtn.Panel1.Hide();
+                uiMw_SpCtn.Enabled = false;
+                return;
             }
+
+            uiMw_SpCtn.SplitterDistance = Settings.Menu.Panel.SplitterDistance;
+            uiMw_SpCtn.Panel1.Show();
+            uiMw_SpCtn.Enabled = true;
         }
 
-        private void ShowGeometricMeanWarningIfNeeded()
+        private void UiMenuPanel_Lock_Click( object sender, EventArgs e )
         {
-            if ( Settings.Panel.Generate.GeometricMeanApplyingWarning ) {
-                using ( var msgBox = new ExplMsgBox() ) {
-                    msgBox.SetInfo1Text( Consts.Expl.Means.Geometric.MainTxt );
-                    msgBox.SetInfo2Text1( Consts.Expl.Means.Geometric.AuxTxt1 );
-                    msgBox.SetInfo2Text2( Consts.Expl.Means.Geometric.AuxTxt2 );
-                    msgBox.SetTitleBarText( Consts.Expl.Means.Geometric.TitleBarTxt );
-                    msgBox.SetInfo2Image1( Properties.Resources.GeometricMean_OriginEquation );
-                    msgBox.SetInfo2Image2( Properties.Resources.GeometricMean_ModifiedEquation );
-                    WinFormsHelper.ShowDialogSafe( msgBox, this );
-
-                    if ( msgBox.DialogResult == DialogResult.OK && msgBox.IsChecked() ) {
-                        Settings.Panel.Generate.GeometricMeanApplyingWarning = false;
-                    }
-                }
-            }
+            Settings.Menu.Panel.Lock = !Settings.Menu.Panel.Lock;
+            uiMenuPnl_Lock.Checked = Settings.Menu.Panel.Lock;
+            uiMw_SpCtn.Panel1.Enabled = !Settings.Menu.Panel.Lock;
         }
 
-        private void ShowAgmWarningIfNeeded()
+        private void UiMenuPanel_AveragingInfo_Click( object sender, EventArgs e )
         {
-            if ( Settings.Panel.Generate.AgmMeanApplyingWarning ) {
-                using ( var msgBox = new ExplMsgBox() ) {
-                    msgBox.SetInfo1Text( Consts.Expl.Means.Agm.MainTxt );
-                    msgBox.SetInfo2Text1( Consts.Expl.Means.Agm.AuxTxt1 );
-                    msgBox.SetInfo2Text2( Consts.Expl.Means.Agm.AuxTxt2 );
-                    msgBox.SetTitleBarText( Consts.Expl.Means.Agm.TitleBarTxt );
-                    msgBox.SetInfo2Image1( Properties.Resources.AGM_OriginalEquation );
-                    msgBox.SetInfo2Image2( Properties.Resources.AGM_ModifiedEquation );
-                    WinFormsHelper.ShowDialogSafe( msgBox, this );
-
-                    if ( msgBox.DialogResult == DialogResult.OK && msgBox.IsChecked() ) {
-                        Settings.Panel.Generate.AgmMeanApplyingWarning = false;
-                    }
-                }
+            using ( var msgBox = new AvgInfo() ) {
+                WinFormsHelper.ShowDialogSafe( msgBox, this );
             }
         }
 

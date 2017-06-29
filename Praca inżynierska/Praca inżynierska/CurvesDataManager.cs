@@ -498,7 +498,12 @@ namespace PI
                     product *= argValues[i][j];
                 }
 
-                geometricMeans.Add( GetSquareRoot( Math.Abs( product ), argValues[i].Count ) );
+                if ( product < 0.0 ) {
+                    geometricMeans.Add( -GetSquareRoot( Math.Abs( product ), argValues[i].Count ) );
+                }
+                else {
+                    geometricMeans.Add( GetSquareRoot( product, argValues[i].Count ) );
+                }
             }
 
             DefineAverageCurveSetValues( geometricMeans );

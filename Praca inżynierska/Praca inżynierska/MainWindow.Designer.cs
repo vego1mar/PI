@@ -90,9 +90,13 @@
             this.uiPnlPrg_Timer_TxtBx = new System.Windows.Forms.TextBox();
             this.uiMenu = new System.Windows.Forms.MenuStrip();
             this.uiMenu_Prg = new System.Windows.Forms.ToolStripMenuItem();
-            this.uiMenuPrg_PnlProp = new System.Windows.Forms.ToolStripMenuItem();
             this.uiMenuPrg_Update = new System.Windows.Forms.ToolStripMenuItem();
             this.uiMenuPrg_Exit = new System.Windows.Forms.ToolStripMenuItem();
+            this.uiMenu_Pnl = new System.Windows.Forms.ToolStripMenuItem();
+            this.uiMenuPnl_KeepProp = new System.Windows.Forms.ToolStripMenuItem();
+            this.uiMenuPnl_Hide = new System.Windows.Forms.ToolStripMenuItem();
+            this.uiMenuPnl_Lock = new System.Windows.Forms.ToolStripMenuItem();
+            this.uiMenuPnl_AvgInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.uiMw_SpCtn = new System.Windows.Forms.SplitContainer();
             ((System.ComponentModel.ISupportInitialize)(this.uiCharts_PtrnCrv)).BeginInit();
             this.ui_Pnl.SuspendLayout();
@@ -1090,7 +1094,8 @@
             // uiMenu
             // 
             this.uiMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.uiMenu_Prg});
+            this.uiMenu_Prg,
+            this.uiMenu_Pnl});
             this.uiMenu.Location = new System.Drawing.Point(0, 0);
             this.uiMenu.Name = "uiMenu";
             this.uiMenu.Size = new System.Drawing.Size(862, 24);
@@ -1101,7 +1106,6 @@
             // 
             this.uiMenu_Prg.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.uiMenu_Prg.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.uiMenuPrg_PnlProp,
             this.uiMenuPrg_Update,
             this.uiMenuPrg_Exit});
             this.uiMenu_Prg.Font = new System.Drawing.Font("Consolas", 8.25F);
@@ -1109,29 +1113,62 @@
             this.uiMenu_Prg.Size = new System.Drawing.Size(61, 20);
             this.uiMenu_Prg.Text = "Program";
             // 
-            // uiMenuPrg_PnlProp
-            // 
-            this.uiMenuPrg_PnlProp.Checked = true;
-            this.uiMenuPrg_PnlProp.CheckOnClick = true;
-            this.uiMenuPrg_PnlProp.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.uiMenuPrg_PnlProp.Name = "uiMenuPrg_PnlProp";
-            this.uiMenuPrg_PnlProp.Size = new System.Drawing.Size(206, 22);
-            this.uiMenuPrg_PnlProp.Text = "Keep panel proportions";
-            this.uiMenuPrg_PnlProp.Click += new System.EventHandler(this.UiMenuProgram_KeepPanelProportions_Click);
-            // 
             // uiMenuPrg_Update
             // 
             this.uiMenuPrg_Update.Name = "uiMenuPrg_Update";
-            this.uiMenuPrg_Update.Size = new System.Drawing.Size(206, 22);
+            this.uiMenuPrg_Update.Size = new System.Drawing.Size(146, 22);
             this.uiMenuPrg_Update.Text = "Check update";
             this.uiMenuPrg_Update.Click += new System.EventHandler(this.UiMenuProgram_CheckUpdate_Click);
             // 
             // uiMenuPrg_Exit
             // 
             this.uiMenuPrg_Exit.Name = "uiMenuPrg_Exit";
-            this.uiMenuPrg_Exit.Size = new System.Drawing.Size(206, 22);
+            this.uiMenuPrg_Exit.Size = new System.Drawing.Size(146, 22);
             this.uiMenuPrg_Exit.Text = "Exit";
             this.uiMenuPrg_Exit.Click += new System.EventHandler(this.UiMenuProgram_Exit_Click);
+            // 
+            // uiMenu_Pnl
+            // 
+            this.uiMenu_Pnl.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.uiMenu_Pnl.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.uiMenuPnl_KeepProp,
+            this.uiMenuPnl_Hide,
+            this.uiMenuPnl_Lock,
+            this.uiMenuPnl_AvgInfo});
+            this.uiMenu_Pnl.Font = new System.Drawing.Font("Consolas", 8.25F);
+            this.uiMenu_Pnl.Name = "uiMenu_Pnl";
+            this.uiMenu_Pnl.Size = new System.Drawing.Size(49, 20);
+            this.uiMenu_Pnl.Text = "Panel";
+            // 
+            // uiMenuPnl_KeepProp
+            // 
+            this.uiMenuPnl_KeepProp.Checked = true;
+            this.uiMenuPnl_KeepProp.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.uiMenuPnl_KeepProp.Name = "uiMenuPnl_KeepProp";
+            this.uiMenuPnl_KeepProp.Size = new System.Drawing.Size(170, 22);
+            this.uiMenuPnl_KeepProp.Text = "Keep proportions";
+            this.uiMenuPnl_KeepProp.Click += new System.EventHandler(this.UiMenuPanel_KeepProportions_Click);
+            // 
+            // uiMenuPnl_Hide
+            // 
+            this.uiMenuPnl_Hide.Name = "uiMenuPnl_Hide";
+            this.uiMenuPnl_Hide.Size = new System.Drawing.Size(170, 22);
+            this.uiMenuPnl_Hide.Text = "Hide";
+            this.uiMenuPnl_Hide.Click += new System.EventHandler(this.UiMenuPanel_Hide_Click);
+            // 
+            // uiMenuPnl_Lock
+            // 
+            this.uiMenuPnl_Lock.Name = "uiMenuPnl_Lock";
+            this.uiMenuPnl_Lock.Size = new System.Drawing.Size(170, 22);
+            this.uiMenuPnl_Lock.Text = "Lock";
+            this.uiMenuPnl_Lock.Click += new System.EventHandler(this.UiMenuPanel_Lock_Click);
+            // 
+            // uiMenuPnl_AvgInfo
+            // 
+            this.uiMenuPnl_AvgInfo.Name = "uiMenuPnl_AvgInfo";
+            this.uiMenuPnl_AvgInfo.Size = new System.Drawing.Size(170, 22);
+            this.uiMenuPnl_AvgInfo.Text = "Averaging info";
+            this.uiMenuPnl_AvgInfo.Click += new System.EventHandler(this.UiMenuPanel_AveragingInfo_Click);
             // 
             // uiMw_SpCtn
             // 
@@ -1259,7 +1296,11 @@
         private System.Windows.Forms.TextBox uiPnlDtSh_Surr_TxtBx;
         private System.Windows.Forms.TextBox uiPnlDtSh_CrvNo_TxtBx;
         private System.Windows.Forms.Button uiPnlDtSh_Malform_Btn;
-        private System.Windows.Forms.ToolStripMenuItem uiMenuPrg_PnlProp;
+        private System.Windows.Forms.ToolStripMenuItem uiMenu_Pnl;
+        private System.Windows.Forms.ToolStripMenuItem uiMenuPnl_KeepProp;
+        private System.Windows.Forms.ToolStripMenuItem uiMenuPnl_Hide;
+        private System.Windows.Forms.ToolStripMenuItem uiMenuPnl_Lock;
+        private System.Windows.Forms.ToolStripMenuItem uiMenuPnl_AvgInfo;
     }
     }
 

@@ -72,12 +72,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExplMsgBox.cs">
+    <Compile Include="AvgInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ExplMsgBox.Designer.cs">
-      <DependentUpon>ExplMsgBox.cs</DependentUpon>
+    <Compile Include="AvgInfo.Designer.cs">
+      <DependentUpon>AvgInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="AvgInfoConsts.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="CurvesDataManager.cs" />
     <Compile Include="ArgsGenerator.cs" />
@@ -114,8 +115,8 @@
     <Compile Include="UiSettings.cs" />
     <Compile Include="WebHelper.cs" />
     <Compile Include="WinFormsHelper.cs" />
-    <EmbeddedResource Include="ExplMsgBox.resx">
-      <DependentUpon>ExplMsgBox.cs</DependentUpon>
+    <EmbeddedResource Include="AvgInfo.resx">
+      <DependentUpon>AvgInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GridPreviewer.resx">
       <DependentUpon>GridPreviewer.cs</DependentUpon>
