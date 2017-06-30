@@ -18,6 +18,9 @@ namespace PI
             Harmonic = 3,
             Power = 4,
             RMS = 5,
+            Logarithmic = 6,
+            EMA = 7,
+            LnWages = 8
         }
 
         private struct BuildNames
@@ -189,6 +192,15 @@ namespace PI
             case Tabs.RMS:
                 SetNamesForRmsTab( ref names );
                 return true;
+            case Tabs.Logarithmic:
+                SetNamesForLogarithmicTab( ref names );
+                return true;
+            case Tabs.EMA:
+                SetNamesForEmaTab( ref names );
+                return true;
+            case Tabs.LnWages:
+                SetNamesForLnWagesTab( ref names );
+                return true;
             }
 
             return false;
@@ -254,6 +266,36 @@ namespace PI
             names.PictureBox2 = Consts.Rms.PictureBox2Name;
         }
 
+        private void SetNamesForLogarithmicTab( ref BuildNames names )
+        {
+            names.TabPage = Consts.Logarithmic.TabPageName;
+            names.TableLayout = Consts.Logarithmic.TableLayoutName;
+            names.TextBox1 = Consts.Logarithmic.TextBox1Name;
+            names.TextBox2 = Consts.Logarithmic.TextBox2Name;
+            names.PictureBox1 = Consts.Logarithmic.PictureBox1Name;
+            names.PictureBox2 = Consts.Logarithmic.PictureBox2Name;
+        }
+
+        private void SetNamesForEmaTab( ref BuildNames names )
+        {
+            names.TabPage = Consts.Ema.TabPageName;
+            names.TableLayout = Consts.Ema.TableLayoutName;
+            names.TextBox1 = Consts.Ema.TextBox1Name;
+            names.TextBox2 = Consts.Ema.TextBox2Name;
+            names.PictureBox1 = Consts.Ema.PictureBox1Name;
+            names.PictureBox2 = Consts.Ema.PictureBox2Name;
+        }
+
+        private void SetNamesForLnWagesTab( ref BuildNames names )
+        {
+            names.TabPage = Consts.LnWages.TabPageName;
+            names.TableLayout = Consts.LnWages.TableLayoutName;
+            names.TextBox1 = Consts.LnWages.TextBox1Name;
+            names.TextBox2 = Consts.LnWages.TextBox2Name;
+            names.PictureBox1 = Consts.LnWages.PictureBox1Name;
+            names.PictureBox2 = Consts.LnWages.PictureBox2Name;
+        }
+
         private void SetText1( Tabs tab, string text )
         {
             Control layout = null;
@@ -282,6 +324,18 @@ namespace PI
             case Tabs.RMS:
                 layout = ui_TbCtrl.TabPages[Consts.Rms.TabPageName].Controls[Consts.Rms.TableLayoutName];
                 layout.Controls[Consts.Rms.TextBox1Name].Text = text;
+                break;
+            case Tabs.Logarithmic:
+                layout = ui_TbCtrl.TabPages[Consts.Logarithmic.TabPageName].Controls[Consts.Logarithmic.TableLayoutName];
+                layout.Controls[Consts.Logarithmic.TextBox1Name].Text = text;
+                break;
+            case Tabs.EMA:
+                layout = ui_TbCtrl.TabPages[Consts.Ema.TabPageName].Controls[Consts.Ema.TableLayoutName];
+                layout.Controls[Consts.Ema.TextBox1Name].Text = text;
+                break;
+            case Tabs.LnWages:
+                layout = ui_TbCtrl.TabPages[Consts.LnWages.TabPageName].Controls[Consts.LnWages.TableLayoutName];
+                layout.Controls[Consts.LnWages.TextBox1Name].Text = text;
                 break;
             }
         }
@@ -315,6 +369,18 @@ namespace PI
                 layout = ui_TbCtrl.TabPages[Consts.Rms.TabPageName].Controls[Consts.Rms.TableLayoutName];
                 layout.Controls[Consts.Rms.TextBox2Name].Text = text;
                 break;
+            case Tabs.Logarithmic:
+                layout = ui_TbCtrl.TabPages[Consts.Logarithmic.TabPageName].Controls[Consts.Logarithmic.TableLayoutName];
+                layout.Controls[Consts.Logarithmic.TextBox2Name].Text = text;
+                break;
+            case Tabs.EMA:
+                layout = ui_TbCtrl.TabPages[Consts.Ema.TabPageName].Controls[Consts.Ema.TableLayoutName];
+                layout.Controls[Consts.Ema.TextBox2Name].Text = text;
+                break;
+            case Tabs.LnWages:
+                layout = ui_TbCtrl.TabPages[Consts.LnWages.TabPageName].Controls[Consts.LnWages.TableLayoutName];
+                layout.Controls[Consts.LnWages.TextBox2Name].Text = text;
+                break;
             }
         }
 
@@ -347,6 +413,18 @@ namespace PI
                 layout = ui_TbCtrl.TabPages[Consts.Rms.TabPageName].Controls[Consts.Rms.TableLayoutName];
                 ((PictureBox) layout.Controls[Consts.Rms.PictureBox1Name]).Image = image;
                 break;
+            case Tabs.Logarithmic:
+                layout = ui_TbCtrl.TabPages[Consts.Logarithmic.TabPageName].Controls[Consts.Logarithmic.TableLayoutName];
+                ((PictureBox) layout.Controls[Consts.Logarithmic.PictureBox1Name]).Image = image;
+                break;
+            case Tabs.EMA:
+                layout = ui_TbCtrl.TabPages[Consts.Ema.TabPageName].Controls[Consts.Ema.TableLayoutName];
+                ((PictureBox) layout.Controls[Consts.Ema.PictureBox1Name]).Image = image;
+                break;
+            case Tabs.LnWages:
+                layout = ui_TbCtrl.TabPages[Consts.LnWages.TabPageName].Controls[Consts.LnWages.TableLayoutName];
+                ((PictureBox) layout.Controls[Consts.LnWages.PictureBox1Name]).Image = image;
+                break;
             }
         }
 
@@ -378,6 +456,18 @@ namespace PI
             case Tabs.RMS:
                 layout = ui_TbCtrl.TabPages[Consts.Rms.TabPageName].Controls[Consts.Rms.TableLayoutName];
                 ((PictureBox) layout.Controls[Consts.Rms.PictureBox2Name]).Image = image;
+                break;
+            case Tabs.Logarithmic:
+                layout = ui_TbCtrl.TabPages[Consts.Logarithmic.TabPageName].Controls[Consts.Logarithmic.TableLayoutName];
+                ((PictureBox) layout.Controls[Consts.Logarithmic.PictureBox2Name]).Image = image;
+                break;
+            case Tabs.EMA:
+                layout = ui_TbCtrl.TabPages[Consts.Ema.TabPageName].Controls[Consts.Ema.TableLayoutName];
+                ((PictureBox) layout.Controls[Consts.Ema.PictureBox2Name]).Image = image;
+                break;
+            case Tabs.LnWages:
+                layout = ui_TbCtrl.TabPages[Consts.LnWages.TabPageName].Controls[Consts.LnWages.TableLayoutName];
+                ((PictureBox) layout.Controls[Consts.LnWages.PictureBox2Name]).Image = image;
                 break;
             }
         }
@@ -430,6 +520,30 @@ namespace PI
             SetPicture2( Tabs.RMS, Properties.Resources.RMS_ComputedForm );
         }
 
+        private void ComposeLogarithmicTabPage()
+        {
+            SetText1( Tabs.Logarithmic, Consts.Logarithmic.TextBox1Text );
+            SetPicture1( Tabs.Logarithmic, Properties.Resources.Logarithmic_OriginalEquation );
+            SetText2( Tabs.Logarithmic, Consts.Logarithmic.TextBox2Text );
+            SetPicture2( Tabs.Logarithmic, Properties.Resources.Logarithmic_ModifiedEquation );
+        }
+
+        private void ComposeEmaTabPage()
+        {
+            SetText1( Tabs.EMA, Consts.Ema.TextBox1Text );
+            SetPicture1( Tabs.EMA, Properties.Resources.EMA_OriginalEquation );
+            SetText2( Tabs.EMA, Consts.Ema.TextBox2Text );
+            SetPicture2( Tabs.EMA, Properties.Resources.EMA_ModifiedEquation );
+        }
+
+        private void ComposeLnWagesTabPage()
+        {
+            SetText1( Tabs.LnWages, Consts.LnWages.TextBox1Text );
+            SetPicture1( Tabs.LnWages, Properties.Resources.LnWages_OriginalEquation );
+            SetText2( Tabs.LnWages, Consts.LnWages.TextBox2Text );
+            SetPicture2( Tabs.LnWages, Properties.Resources.LnWages_ModifiedEquation );
+        }
+
         private void BuildTabPages()
         {
             BuildTabPage( Consts.Geometric.TabPageTitle );
@@ -438,6 +552,9 @@ namespace PI
             BuildTabPage( Consts.Harmonic.TabPageTitle );
             BuildTabPage( Consts.Power.TabPageTitle );
             BuildTabPage( Consts.Rms.TabPageTitle );
+            BuildTabPage( Consts.Logarithmic.TabPageTitle );
+            BuildTabPage( Consts.Ema.TabPageTitle );
+            BuildTabPage( Consts.LnWages.TabPageTitle );
         }
 
         private void ComposeTabPages()
@@ -448,6 +565,9 @@ namespace PI
             ComposeHarmonicTabPage();
             ComposePowerTabPage();
             ComposeRmsTabPage();
+            ComposeLogarithmicTabPage();
+            ComposeEmaTabPage();
+            ComposeLnWagesTabPage();
         }
 
     }

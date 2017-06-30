@@ -83,6 +83,26 @@ namespace PI.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap EMA_ModifiedEquation {
+            get {
+                object obj = ResourceManager.GetObject("EMA_ModifiedEquation", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EMA_OriginalEquation {
+            get {
+                object obj = ResourceManager.GetObject("EMA_OriginalEquation", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap GeometricMean_ModifiedEquation {
             get {
                 object obj = ResourceManager.GetObject("GeometricMean_ModifiedEquation", resourceCulture);
@@ -136,6 +156,46 @@ namespace PI.Properties {
         internal static System.Drawing.Bitmap Heronian_OriginalEquation {
             get {
                 object obj = ResourceManager.GetObject("Heronian_OriginalEquation", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LnWages_ModifiedEquation {
+            get {
+                object obj = ResourceManager.GetObject("LnWages_ModifiedEquation", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LnWages_OriginalEquation {
+            get {
+                object obj = ResourceManager.GetObject("LnWages_OriginalEquation", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Logarithmic_ModifiedEquation {
+            get {
+                object obj = ResourceManager.GetObject("Logarithmic_ModifiedEquation", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Logarithmic_OriginalEquation {
+            get {
+                object obj = ResourceManager.GetObject("Logarithmic_OriginalEquation", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

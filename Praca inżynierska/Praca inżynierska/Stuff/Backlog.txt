@@ -2,14 +2,13 @@
 
 TODO: General - Configuration file
 TODO: General - Localization (remember about designer setters)
-TODO: Menu - 'Adjust chart' for visual effects manipulations
 TODO: Menu - Reading and saving set of curves from a file
-TODO: Menu - Means settings, for rank k of a power mean
 TODO: Pcd - Generalize hyperbolic pattern with new parameters, possibly reorganize dialog
+
+NEXT:
+TODO: Menu - 'Adjust chart' for visual effects manipulations
+TODO: Menu - Means settings, for rank k of a power mean
 TODO: Cdm - Encapsulate constants and properties into xSettings classes
 
 CURRENT:
-TODO: Feature - AvgInfo for logarithmic average
-TODO: Feature - Exponential moving average (EMA) + AvgInfo
-TODO: Feature - Mean 'waged logarithmically' + AvgInfo
 TODO: Flow - Validate means generated series, especially for logarithmic average

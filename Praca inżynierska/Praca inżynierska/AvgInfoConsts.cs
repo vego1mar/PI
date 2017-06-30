@@ -2,14 +2,17 @@
 {
     internal class AvgInfoConsts
     {
-        internal GeometricConsts Geometric { get; } = new GeometricConsts();
-        internal ArithmeticGeometricConsts Agm { get; } = new ArithmeticGeometricConsts();
-        internal HeronianConsts Heronian { get; } = new HeronianConsts();
-        internal HarmonicConsts Harmonic { get; } = new HarmonicConsts();
-        internal PowerConsts Power { get; } = new PowerConsts();
+        internal GeometricMeanConsts Geometric { get; } = new GeometricMeanConsts();
+        internal ArithmeticGeometricMeanConsts Agm { get; } = new ArithmeticGeometricMeanConsts();
+        internal HeronianMeanConsts Heronian { get; } = new HeronianMeanConsts();
+        internal HarmonicMeanConsts Harmonic { get; } = new HarmonicMeanConsts();
+        internal PowerMeanConsts Power { get; } = new PowerMeanConsts();
         internal RootMeanSquareConsts Rms { get; } = new RootMeanSquareConsts();
+        internal LogarithmicMeanConsts Logarithmic { get; } = new LogarithmicMeanConsts();
+        internal ExponentialMovingAverageConsts Ema { get; } = new ExponentialMovingAverageConsts();
+        internal LogarithmicallyWagedMeanConsts LnWages { get; } = new LogarithmicallyWagedMeanConsts();
 
-        internal class GeometricConsts
+        internal class GeometricMeanConsts
         {
             internal string TabPageName { get; } = "ui_Gm_TbPg";
             internal string TabPageTitle { get; } = "Geometric";
@@ -22,7 +25,7 @@
             internal string TextBox2Text { get; } = "This was modified into:";
         }
 
-        internal class ArithmeticGeometricConsts
+        internal class ArithmeticGeometricMeanConsts
         {
             internal string TabPageName { get; } = "ui_Agm_TbPg";
             internal string TabPageTitle { get; } = "AGM";
@@ -35,7 +38,7 @@
             internal string TextBox2Text { get; } = "This was modified into:";
         }
 
-        internal class HeronianConsts
+        internal class HeronianMeanConsts
         {
             internal string TabPageName { get; } = "ui_Her_TbPg";
             internal string TabPageTitle { get; } = "Heronian";
@@ -48,7 +51,7 @@
             internal string TextBox2Text { get; } = "This was modified into:";
         }
 
-        internal class HarmonicConsts
+        internal class HarmonicMeanConsts
         {
             internal string TabPageName { get; } = "ui_Harm_TbPg";
             internal string TabPageTitle { get; } = "Harmonic";
@@ -61,7 +64,7 @@
             internal string TextBox2Text { get; } = "This has not been modified, hence it can be also expressed as:";
         }
 
-        internal class PowerConsts
+        internal class PowerMeanConsts
         {
             internal string TabPageName { get; } = "ui_Pow_TbPg";
             internal string TabPageTitle { get; } = "Power";
@@ -85,6 +88,45 @@
             internal string PictureBox2Name { get; } = "uiRms_Pic2_PicBx";
             internal string TextBox1Text { get; } = "Root mean square is defined as follows:";
             internal string TextBox2Text { get; } = "This is computed using a power mean in a form as below:";
+        }
+
+        internal class LogarithmicMeanConsts
+        {
+            internal string TabPageName { get; } = "ui_Log_TbPg";
+            internal string TabPageTitle { get; } = "Logarithmic";
+            internal string TableLayoutName { get; } = "uiLog_TbLay";
+            internal string TextBox1Name { get; } = "uiLog_Text1_TxtBx";
+            internal string TextBox2Name { get; } = "uiLog_Text2_TxtBx";
+            internal string PictureBox1Name { get; } = "uiLog_Pic1_PicBx";
+            internal string PictureBox2Name { get; } = "uiLog_Pic2_PicBx";
+            internal string TextBox1Text { get; } = "Logarithmic mean is defined as follows:";
+            internal string TextBox2Text { get; } = "This has been modified into:";
+        }
+
+        internal class ExponentialMovingAverageConsts
+        {
+            internal string TabPageName { get; } = "ui_Ema_TbPg";
+            internal string TabPageTitle { get; } = "EMA";
+            internal string TableLayoutName { get; } = "uiEma_TbLay";
+            internal string TextBox1Name { get; } = "uiEma_Text1_TxtBx";
+            internal string TextBox2Name { get; } = "uiEma_Text2_TxtBx";
+            internal string PictureBox1Name { get; } = "uiEma_Pic1_PicBx";
+            internal string PictureBox2Name { get; } = "uiEma_Pic2_PicBx";
+            internal string TextBox1Text { get; } = "Exponential moving average is defined as follows:";
+            internal string TextBox2Text { get; } = "This has been modified into:";
+        }
+
+        internal class LogarithmicallyWagedMeanConsts
+        {
+            internal string TabPageName { get; } = "ui_LnWgs_TbPg";
+            internal string TabPageTitle { get; } = "Ln-wages";
+            internal string TableLayoutName { get; } = "uiLnWgs_TbLay";
+            internal string TextBox1Name { get; } = "uiLnWgs_Text1_TxtBx";
+            internal string TextBox2Name { get; } = "uiLnWgs_Text2_TxtBx";
+            internal string PictureBox1Name { get; } = "uiLnWgs_Pic1_PicBx";
+            internal string PictureBox2Name { get; } = "uiLnWgs_Pic2_PicBx";
+            internal string TextBox1Text { get; } = "The standard waged mean is defined as follows:";
+            internal string TextBox2Text { get; } = "This has been modified into logarithmically waged mean as below:";
         }
 
     }

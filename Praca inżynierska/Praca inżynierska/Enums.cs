@@ -76,7 +76,8 @@
             RMS = 8,
             Power = 9,
             Logarithmic = 10,
-            Exponential = 11
+            EMA = 11,
+            LnWages = 12
         }
 
     }

@@ -217,7 +217,13 @@
     <None Include="Pictures\RMS_OriginalEquation.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Backlog.txt" />
+    <None Include="Pictures\EMA_ModifiedEquation.png" />
+    <None Include="Pictures\EMA_OriginalEquation.png" />
+    <None Include="Pictures\LnWages_ModifiedEquation.png" />
+    <None Include="Pictures\LnWages_OriginalEquation.png" />
+    <None Include="Pictures\Logarithmic_ModifiedEquation.png" />
+    <None Include="Pictures\Logarithmic_OriginalEquation.png" />
+    <Content Include="Stuff\Backlog.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

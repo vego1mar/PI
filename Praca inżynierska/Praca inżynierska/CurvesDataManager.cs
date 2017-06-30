@@ -385,8 +385,12 @@ namespace PI
                 case Enums.MeanType.Logarithmic:
                     MakeAverageCurveOfLogarithmicMean( numberOfCurves );
                     return true;
-                case Enums.MeanType.Exponential:
-                    break;
+                case Enums.MeanType.EMA:
+                    MakeAverageCurveOfExponentialMean( numberOfCurves );
+                    return true;
+                case Enums.MeanType.LnWages:
+                    MakeAverageCurveOfLogarithmicallyWagedMean( numberOfCurves );
+                    return true;
                 }
             }
             catch ( ArgumentOutOfRangeException x ) {
@@ -706,6 +710,57 @@ namespace PI
             }
 
             DefineAverageCurveSetValues( logMeans );
+        }
+
+        private void MakeAverageCurveOfExponentialMean( int numberOfCurves )
+        {
+            List<List<double>> argValues = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
+            List<double> emas = new List<double>();
+            double sum = 0.0;
+            double alfa;
+
+            for ( int i = 0; i < argValues[0].Count; i++ ) {
+                sum += argValues[0][i];
+            }
+
+            emas.Add( sum );
+
+            for ( int i = 1; i < argValues.Count; i++ ) {
+                sum = 0.0;
+                alfa = 2.0 / (i + 2);
+
+                for ( int j = 0; j < argValues[i].Count; j++ ) {
+                    sum += argValues[i][j];
+                }
+
+                emas.Add( (alfa * sum) + ((1.0 - alfa) * emas[i - 1]) );
+            }
+
+            DefineAverageCurveSetValues( emas );
+        }
+
+        private void MakeAverageCurveOfLogarithmicallyWagedMean( int numberOfCurves )
+        {
+            List<List<double>> argValues = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
+            List<double> wagedMeans = new List<double>();
+            double nominator;
+            double denominator;
+            double logWage;
+
+            for ( int i = 0; i < argValues.Count; i++ ) {
+                nominator = 0.0;
+                denominator = 0.0;
+
+                for ( int j = 0; j < argValues[i].Count; j++ ) {
+                    logWage = Math.Log( Math.Abs( argValues[i][j] ), Math.E );
+                    nominator += logWage * argValues[i][j];
+                    denominator += logWage;
+                }
+
+                wagedMeans.Add( nominator / denominator );
+            }
+
+            DefineAverageCurveSetValues( wagedMeans );
         }
 
     }

@@ -572,7 +572,8 @@
             "RMS",
             "Power",
             "Logarithmic",
-            "Exponential"});
+            "EMA",
+            "Ln-wages"});
             this.uiPnlGen_MeanT_ComBx.Location = new System.Drawing.Point(109, 403);
             this.uiPnlGen_MeanT_ComBx.Name = "uiPnlGen_MeanT_ComBx";
             this.uiPnlGen_MeanT_ComBx.Size = new System.Drawing.Size(100, 21);
