@@ -28,6 +28,9 @@
                     internal string GenerateSetBtnPrerequisiteWarnCpt { get; } = "Prerequisite not matched!";
                     internal string NotEnoughCurvesForMedianaTxt { get; } = "You must specify at least 3 curves to average them using mediana.";
                     internal string NotEnoughCurvesForMedianaCpt { get; } = "Averaging method problem";
+                    internal string NoSuchMethodOrExpThrownTxt { get; } = "Method has not been switched properly or an exception has been " +
+                        "thrown during calculations. See log.";
+                    internal string NoSuchMethodOrExpThrownCpt { get; } = "Exception or implementation error";
                 }
 
                 internal class DatasheetConsts

@@ -70,10 +70,10 @@
             Minimum = 2,
             Arithmetic = 3,
             Geometric = 4,
-            ArithmeticGeometric = 5,
+            AGM = 5,
             Heronian = 6,
             Harmonic = 7,
-            Quadrature = 8,
+            RMS = 8,
             Power = 9,
             Logarithmic = 10,
             Exponential = 11

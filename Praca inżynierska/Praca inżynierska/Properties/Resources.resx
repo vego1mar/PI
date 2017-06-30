@@ -130,6 +130,18 @@
   <data name="GeometricMean_OriginEquation" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Pictures\GeometricMean_OriginEquation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Harmonic_OriginalEquation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Pictures\Harmonic_OriginalEquation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Harmonic_TransformedEquation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Pictures\Harmonic_TransformedEquation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Heronian_ModifiedEquation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Pictures\Heronian_ModifiedEquation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Heronian_OriginalEquation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Pictures\Heronian_OriginalEquation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="PatternScaffold_Hyperbolic" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Pictures\PatternScaffold_Hyperbolic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -147,5 +159,17 @@
   </data>
   <data name="PatternScaffold_WaveformTriangle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Pictures\PatternScaffold_WaveformTriangle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Power_DefaultRank" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Pictures\Power_DefaultRank.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Power_OriginalEquation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Pictures\Power_OriginalEquation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RMS_ComputedForm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Pictures\RMS_ComputedForm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RMS_OriginalEquation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Pictures\RMS_OriginalEquation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

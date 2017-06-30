@@ -3,12 +3,6 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
-// BACKLOG
-// TODO: General - Configuration file
-// TODO: General - Localization
-// TODO: Menu - 'Adjust chart' for visual effects manipulations
-// TODO: Menu - Reading and saving set of curves from a file
-
 namespace PI
 {
     public partial class MainWindow : Form
@@ -541,7 +535,13 @@ namespace PI
                 return;
             }
 
-            ChartData.MakeAverageCurveFromGeneratedCurves( meanType, numberOfCurves );
+            bool? averageResult = ChartData.MakeAverageCurveFromGeneratedCurves( meanType, numberOfCurves );
+
+            if ( !averageResult.Value ) {
+                MsgBxShower.Ui.NoSuchMethodOrExceptionThrownError();
+                return;
+            }
+
             WinFormsHelper.SetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx, (int) Enums.DataSetCurveType.Average );
         }
 

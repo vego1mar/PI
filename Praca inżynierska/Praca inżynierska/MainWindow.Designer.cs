@@ -566,10 +566,10 @@
             "Minimum",
             "Arithmetic",
             "Geometric",
-            "Arithmetic-geometric",
+            "AGM",
             "Heronian",
             "Harmonic",
-            "Quadrature",
+            "RMS",
             "Power",
             "Logarithmic",
             "Exponential"});

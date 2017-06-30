@@ -13,7 +13,11 @@ namespace PI
         private enum Tabs
         {
             Geometric = 0,
-            AGM = 1
+            AGM = 1,
+            Heronian = 2,
+            Harmonic = 3,
+            Power = 4,
+            RMS = 5,
         }
 
         private struct BuildNames
@@ -173,6 +177,18 @@ namespace PI
             case Tabs.AGM:
                 SetNamesForAgmTab( ref names );
                 return true;
+            case Tabs.Heronian:
+                SetNamesForHeronianTab( ref names );
+                return true;
+            case Tabs.Harmonic:
+                SetNamesForHarmonicTab( ref names );
+                return true;
+            case Tabs.Power:
+                SetNamesForPowerTab( ref names );
+                return true;
+            case Tabs.RMS:
+                SetNamesForRmsTab( ref names );
+                return true;
             }
 
             return false;
@@ -198,6 +214,46 @@ namespace PI
             names.PictureBox2 = Consts.Agm.PictureBox2Name;
         }
 
+        private void SetNamesForHeronianTab( ref BuildNames names )
+        {
+            names.TabPage = Consts.Heronian.TabPageName;
+            names.TableLayout = Consts.Heronian.TableLayoutName;
+            names.TextBox1 = Consts.Heronian.TextBox1Name;
+            names.TextBox2 = Consts.Heronian.TextBox2Name;
+            names.PictureBox1 = Consts.Heronian.PictureBox1Name;
+            names.PictureBox2 = Consts.Heronian.PictureBox2Name;
+        }
+
+        private void SetNamesForHarmonicTab( ref BuildNames names )
+        {
+            names.TabPage = Consts.Harmonic.TabPageName;
+            names.TableLayout = Consts.Harmonic.TableLayoutName;
+            names.TextBox1 = Consts.Harmonic.TextBox1Name;
+            names.TextBox2 = Consts.Harmonic.TextBox2Name;
+            names.PictureBox1 = Consts.Harmonic.PictureBox1Name;
+            names.PictureBox2 = Consts.Harmonic.PictureBox2Name;
+        }
+
+        private void SetNamesForPowerTab( ref BuildNames names )
+        {
+            names.TabPage = Consts.Power.TabPageName;
+            names.TableLayout = Consts.Power.TableLayoutName;
+            names.TextBox1 = Consts.Power.TextBox1Name;
+            names.TextBox2 = Consts.Power.TextBox2Name;
+            names.PictureBox1 = Consts.Power.PictureBox1Name;
+            names.PictureBox2 = Consts.Power.PictureBox2Name;
+        }
+
+        private void SetNamesForRmsTab( ref BuildNames names )
+        {
+            names.TabPage = Consts.Rms.TabPageName;
+            names.TableLayout = Consts.Rms.TableLayoutName;
+            names.TextBox1 = Consts.Rms.TextBox1Name;
+            names.TextBox2 = Consts.Rms.TextBox2Name;
+            names.PictureBox1 = Consts.Rms.PictureBox1Name;
+            names.PictureBox2 = Consts.Rms.PictureBox2Name;
+        }
+
         private void SetText1( Tabs tab, string text )
         {
             Control layout = null;
@@ -210,6 +266,22 @@ namespace PI
             case Tabs.AGM:
                 layout = ui_TbCtrl.TabPages[Consts.Agm.TabPageName].Controls[Consts.Agm.TableLayoutName];
                 layout.Controls[Consts.Agm.TextBox1Name].Text = text;
+                break;
+            case Tabs.Heronian:
+                layout = ui_TbCtrl.TabPages[Consts.Heronian.TabPageName].Controls[Consts.Heronian.TableLayoutName];
+                layout.Controls[Consts.Heronian.TextBox1Name].Text = text;
+                break;
+            case Tabs.Harmonic:
+                layout = ui_TbCtrl.TabPages[Consts.Harmonic.TabPageName].Controls[Consts.Harmonic.TableLayoutName];
+                layout.Controls[Consts.Harmonic.TextBox1Name].Text = text;
+                break;
+            case Tabs.Power:
+                layout = ui_TbCtrl.TabPages[Consts.Power.TabPageName].Controls[Consts.Power.TableLayoutName];
+                layout.Controls[Consts.Power.TextBox1Name].Text = text;
+                break;
+            case Tabs.RMS:
+                layout = ui_TbCtrl.TabPages[Consts.Rms.TabPageName].Controls[Consts.Rms.TableLayoutName];
+                layout.Controls[Consts.Rms.TextBox1Name].Text = text;
                 break;
             }
         }
@@ -227,6 +299,22 @@ namespace PI
                 layout = ui_TbCtrl.TabPages[Consts.Agm.TabPageName].Controls[Consts.Agm.TableLayoutName];
                 layout.Controls[Consts.Agm.TextBox2Name].Text = text;
                 break;
+            case Tabs.Heronian:
+                layout = ui_TbCtrl.TabPages[Consts.Heronian.TabPageName].Controls[Consts.Heronian.TableLayoutName];
+                layout.Controls[Consts.Heronian.TextBox2Name].Text = text;
+                break;
+            case Tabs.Harmonic:
+                layout = ui_TbCtrl.TabPages[Consts.Harmonic.TabPageName].Controls[Consts.Harmonic.TableLayoutName];
+                layout.Controls[Consts.Harmonic.TextBox2Name].Text = text;
+                break;
+            case Tabs.Power:
+                layout = ui_TbCtrl.TabPages[Consts.Power.TabPageName].Controls[Consts.Power.TableLayoutName];
+                layout.Controls[Consts.Power.TextBox2Name].Text = text;
+                break;
+            case Tabs.RMS:
+                layout = ui_TbCtrl.TabPages[Consts.Rms.TabPageName].Controls[Consts.Rms.TableLayoutName];
+                layout.Controls[Consts.Rms.TextBox2Name].Text = text;
+                break;
             }
         }
 
@@ -243,6 +331,22 @@ namespace PI
                 layout = ui_TbCtrl.TabPages[Consts.Agm.TabPageName].Controls[Consts.Agm.TableLayoutName];
                 ((PictureBox) layout.Controls[Consts.Agm.PictureBox1Name]).Image = image;
                 break;
+            case Tabs.Heronian:
+                layout = ui_TbCtrl.TabPages[Consts.Heronian.TabPageName].Controls[Consts.Heronian.TableLayoutName];
+                ((PictureBox) layout.Controls[Consts.Heronian.PictureBox1Name]).Image = image;
+                break;
+            case Tabs.Harmonic:
+                layout = ui_TbCtrl.TabPages[Consts.Harmonic.TabPageName].Controls[Consts.Harmonic.TableLayoutName];
+                ((PictureBox) layout.Controls[Consts.Harmonic.PictureBox1Name]).Image = image;
+                break;
+            case Tabs.Power:
+                layout = ui_TbCtrl.TabPages[Consts.Power.TabPageName].Controls[Consts.Power.TableLayoutName];
+                ((PictureBox) layout.Controls[Consts.Power.PictureBox1Name]).Image = image;
+                break;
+            case Tabs.RMS:
+                layout = ui_TbCtrl.TabPages[Consts.Rms.TabPageName].Controls[Consts.Rms.TableLayoutName];
+                ((PictureBox) layout.Controls[Consts.Rms.PictureBox1Name]).Image = image;
+                break;
             }
         }
 
@@ -258,6 +362,22 @@ namespace PI
             case Tabs.AGM:
                 layout = ui_TbCtrl.TabPages[Consts.Agm.TabPageName].Controls[Consts.Agm.TableLayoutName];
                 ((PictureBox) layout.Controls[Consts.Agm.PictureBox2Name]).Image = image;
+                break;
+            case Tabs.Heronian:
+                layout = ui_TbCtrl.TabPages[Consts.Heronian.TabPageName].Controls[Consts.Heronian.TableLayoutName];
+                ((PictureBox) layout.Controls[Consts.Heronian.PictureBox2Name]).Image = image;
+                break;
+            case Tabs.Harmonic:
+                layout = ui_TbCtrl.TabPages[Consts.Harmonic.TabPageName].Controls[Consts.Harmonic.TableLayoutName];
+                ((PictureBox) layout.Controls[Consts.Harmonic.PictureBox2Name]).Image = image;
+                break;
+            case Tabs.Power:
+                layout = ui_TbCtrl.TabPages[Consts.Power.TabPageName].Controls[Consts.Power.TableLayoutName];
+                ((PictureBox) layout.Controls[Consts.Power.PictureBox2Name]).Image = image;
+                break;
+            case Tabs.RMS:
+                layout = ui_TbCtrl.TabPages[Consts.Rms.TabPageName].Controls[Consts.Rms.TableLayoutName];
+                ((PictureBox) layout.Controls[Consts.Rms.PictureBox2Name]).Image = image;
                 break;
             }
         }
@@ -278,16 +398,56 @@ namespace PI
             SetPicture2( Tabs.AGM, Properties.Resources.AGM_ModifiedEquation );
         }
 
+        private void ComposeHeronianTabPage()
+        {
+            SetText1( Tabs.Heronian, Consts.Heronian.TextBox1Text );
+            SetPicture1( Tabs.Heronian, Properties.Resources.Heronian_OriginalEquation );
+            SetText2( Tabs.Heronian, Consts.Heronian.TextBox2Text );
+            SetPicture2( Tabs.Heronian, Properties.Resources.Heronian_ModifiedEquation );
+        }
+
+        private void ComposeHarmonicTabPage()
+        {
+            SetText1( Tabs.Harmonic, Consts.Harmonic.TextBox1Text );
+            SetPicture1( Tabs.Harmonic, Properties.Resources.Harmonic_OriginalEquation );
+            SetText2( Tabs.Harmonic, Consts.Harmonic.TextBox2Text );
+            SetPicture2( Tabs.Harmonic, Properties.Resources.Harmonic_TransformedEquation );
+        }
+
+        private void ComposePowerTabPage()
+        {
+            SetText1( Tabs.Power, Consts.Power.TextBox1Text );
+            SetPicture1( Tabs.Power, Properties.Resources.Power_OriginalEquation );
+            SetText2( Tabs.Power, Consts.Power.TextBox2Text );
+            SetPicture2( Tabs.Power, Properties.Resources.Power_DefaultRank );
+        }
+
+        private void ComposeRmsTabPage()
+        {
+            SetText1( Tabs.RMS, Consts.Rms.TextBox1Text );
+            SetPicture1( Tabs.RMS, Properties.Resources.RMS_OriginalEquation );
+            SetText2( Tabs.RMS, Consts.Rms.TextBox2Text );
+            SetPicture2( Tabs.RMS, Properties.Resources.RMS_ComputedForm );
+        }
+
         private void BuildTabPages()
         {
             BuildTabPage( Consts.Geometric.TabPageTitle );
             BuildTabPage( Consts.Agm.TabPageTitle );
+            BuildTabPage( Consts.Heronian.TabPageTitle );
+            BuildTabPage( Consts.Harmonic.TabPageTitle );
+            BuildTabPage( Consts.Power.TabPageTitle );
+            BuildTabPage( Consts.Rms.TabPageTitle );
         }
 
         private void ComposeTabPages()
         {
             ComposeGeometricTabPage();
             ComposeAgmTabPage();
+            ComposeHeronianTabPage();
+            ComposeHarmonicTabPage();
+            ComposePowerTabPage();
+            ComposeRmsTabPage();
         }
 
     }

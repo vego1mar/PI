@@ -192,6 +192,33 @@
   <ItemGroup>
     <None Include="Pictures\AGM_ModifiedEquation.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Heronian_ModifiedEquation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Heronian_OriginalEquation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Harmonic_OriginalEquation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Harmonic_TransformedEquation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Power_DefaultRank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Power_OriginalEquation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\RMS_ComputedForm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\RMS_OriginalEquation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Backlog.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

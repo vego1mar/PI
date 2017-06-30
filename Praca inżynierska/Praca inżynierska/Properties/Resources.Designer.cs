@@ -103,6 +103,46 @@ namespace PI.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Harmonic_OriginalEquation {
+            get {
+                object obj = ResourceManager.GetObject("Harmonic_OriginalEquation", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Harmonic_TransformedEquation {
+            get {
+                object obj = ResourceManager.GetObject("Harmonic_TransformedEquation", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Heronian_ModifiedEquation {
+            get {
+                object obj = ResourceManager.GetObject("Heronian_ModifiedEquation", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Heronian_OriginalEquation {
+            get {
+                object obj = ResourceManager.GetObject("Heronian_OriginalEquation", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap PatternScaffold_Hyperbolic {
             get {
                 object obj = ResourceManager.GetObject("PatternScaffold_Hyperbolic", resourceCulture);
@@ -156,6 +196,46 @@ namespace PI.Properties {
         internal static System.Drawing.Bitmap PatternScaffold_WaveformTriangle {
             get {
                 object obj = ResourceManager.GetObject("PatternScaffold_WaveformTriangle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Power_DefaultRank {
+            get {
+                object obj = ResourceManager.GetObject("Power_DefaultRank", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Power_OriginalEquation {
+            get {
+                object obj = ResourceManager.GetObject("Power_OriginalEquation", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RMS_ComputedForm {
+            get {
+                object obj = ResourceManager.GetObject("RMS_ComputedForm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RMS_OriginalEquation {
+            get {
+                object obj = ResourceManager.GetObject("RMS_OriginalEquation", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

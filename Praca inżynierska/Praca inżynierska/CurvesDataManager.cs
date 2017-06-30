@@ -18,6 +18,7 @@ namespace PI
         public Series PatternCurveSet { get; private set; }
         public List<Series> GeneratedCurvesSet { get; private set; }
         public Series AverageCurveSet { get; private set; }
+        public double PowerMeanRank { get; set; } = 0.5;
 
         public CurvesDataManager()
         {
@@ -42,20 +43,20 @@ namespace PI
             series.YValuesPerPoint = 1;
         }
 
-        public bool GeneratePatternCurve( Enums.PatternCurveScaffold type, double startingXPoint, double endingXPoint, int pointsDensity )
+        public bool GeneratePatternCurve( Enums.PatternCurveScaffold type, double startX, double endX, int pointsDensity )
         {
             switch ( type ) {
             case Enums.PatternCurveScaffold.Polynomial:
-                GeneratePolynomialPatternCurve( startingXPoint, endingXPoint, pointsDensity );
+                GeneratePolynomialPatternCurve( startX, endX, pointsDensity );
                 return IsCurvePointsSetValid( PatternCurveSet );
             case Enums.PatternCurveScaffold.Hyperbolic:
-                GenerateHyperbolicPatternCurve( startingXPoint, endingXPoint, pointsDensity );
+                GenerateHyperbolicPatternCurve( startX, endX, pointsDensity );
                 return IsCurvePointsSetValid( PatternCurveSet );
             case Enums.PatternCurveScaffold.WaveformSine:
             case Enums.PatternCurveScaffold.WaveformSquare:
             case Enums.PatternCurveScaffold.WaveformTriangle:
             case Enums.PatternCurveScaffold.WaveformSawtooth:
-                GenerateWaveformPatternCurve( startingXPoint, endingXPoint, pointsDensity, type );
+                GenerateWaveformPatternCurve( startX, endX, pointsDensity, type );
                 return IsCurvePointsSetValid( PatternCurveSet );
             }
 
@@ -89,20 +90,20 @@ namespace PI
             }
         }
 
-        private void GenerateWaveformPatternCurve( double startX, double endX, int pointsDensity, Enums.PatternCurveScaffold wavetype )
+        private void GenerateWaveformPatternCurve( double startX, double endX, int density, Enums.PatternCurveScaffold wavetype )
         {
             switch ( wavetype ) {
             case Enums.PatternCurveScaffold.WaveformSine:
-                GenerateSineWavePatternCurve( startX, endX, pointsDensity );
+                GenerateSineWavePatternCurve( startX, endX, density );
                 break;
             case Enums.PatternCurveScaffold.WaveformSquare:
-                GenerateSquareWavePatternCurve( startX, endX, pointsDensity );
+                GenerateSquareWavePatternCurve( startX, endX, density );
                 break;
             case Enums.PatternCurveScaffold.WaveformTriangle:
-                GenerateTriangleWavePatternCurve( startX, endX, pointsDensity );
+                GenerateTriangleWavePatternCurve( startX, endX, density );
                 break;
             case Enums.PatternCurveScaffold.WaveformSawtooth:
-                GenerateSawtoothWavePatternCurve( startX, endX, pointsDensity );
+                GenerateSawtoothWavePatternCurve( startX, endX, density );
                 break;
             }
         }
@@ -351,30 +352,54 @@ namespace PI
                 return null;
             }
 
-            switch ( averageMethod ) {
-            case Enums.MeanType.Mediana:
-                MakeAverageCurveOfMediana( numberOfCurves );
-                break;
-            case Enums.MeanType.Maximum:
-            case Enums.MeanType.Minimum:
-                MakeAverageCurveOfMaximumOrMinimum( averageMethod, numberOfCurves );
-                return true;
-            case Enums.MeanType.Arithmetic:
-                MakeAverageCurveOfArithmeticMean( numberOfCurves );
-                return true;
-            case Enums.MeanType.Geometric:
-                MakeAverageCurveOfGeometricMean( numberOfCurves );
-                return true;
-            case Enums.MeanType.ArithmeticGeometric:
-                MakeAverageCurveOfArithmeticGeometricMean( numberOfCurves );
-                return true;
-            case Enums.MeanType.Heronian:
-            case Enums.MeanType.Harmonic:
-            case Enums.MeanType.Quadrature:
-            case Enums.MeanType.Power:
-            case Enums.MeanType.Logarithmic:
-            case Enums.MeanType.Exponential:
-                break;
+            try {
+                switch ( averageMethod ) {
+                case Enums.MeanType.Mediana:
+                    MakeAverageCurveOfMediana( numberOfCurves );
+                    return true;
+                case Enums.MeanType.Maximum:
+                case Enums.MeanType.Minimum:
+                    MakeAverageCurveOfMaximumOrMinimum( averageMethod, numberOfCurves );
+                    return true;
+                case Enums.MeanType.Arithmetic:
+                    MakeAverageCurveOfArithmeticMean( numberOfCurves );
+                    return true;
+                case Enums.MeanType.Geometric:
+                    MakeAverageCurveOfGeometricMean( numberOfCurves );
+                    return true;
+                case Enums.MeanType.AGM:
+                    MakeAverageCurveOfArithmeticGeometricMean( numberOfCurves );
+                    return true;
+                case Enums.MeanType.Heronian:
+                    MakeAverageCurveOfHeronianMean( numberOfCurves );
+                    return true;
+                case Enums.MeanType.Harmonic:
+                    MakeAverageCurveOfHarmonicMean( numberOfCurves );
+                    return true;
+                case Enums.MeanType.RMS:
+                    MakeAverageCurveOfRootMeanSquare( numberOfCurves );
+                    return true;
+                case Enums.MeanType.Power:
+                    MakeAverageCurveOfPowerMean( numberOfCurves );
+                    return true;
+                case Enums.MeanType.Logarithmic:
+                    MakeAverageCurveOfLogarithmicMean( numberOfCurves );
+                    return true;
+                case Enums.MeanType.Exponential:
+                    break;
+                }
+            }
+            catch ( ArgumentOutOfRangeException x ) {
+                Logger.WriteException( x );
+                return false;
+            }
+            catch ( OverflowException x ) {
+                Logger.WriteException( x );
+                return false;
+            }
+            catch ( Exception x ) {
+                Logger.WriteException( x );
+                return false;
             }
 
             return false;
@@ -499,17 +524,17 @@ namespace PI
                 }
 
                 if ( product < 0.0 ) {
-                    geometricMeans.Add( -GetSquareRoot( Math.Abs( product ), argValues[i].Count ) );
+                    geometricMeans.Add( -GetNthRoot( Math.Abs( product ), argValues[i].Count ) );
                 }
                 else {
-                    geometricMeans.Add( GetSquareRoot( product, argValues[i].Count ) );
+                    geometricMeans.Add( GetNthRoot( product, argValues[i].Count ) );
                 }
             }
 
             DefineAverageCurveSetValues( geometricMeans );
         }
 
-        private double GetSquareRoot( double value, double basis )
+        private double GetNthRoot( double value, double basis )
         {
             return Math.Pow( value, 1.0 / basis );
         }
@@ -544,7 +569,7 @@ namespace PI
 
             return new List<double>() {
                 Math.Abs( sum / Convert.ToDouble( values.Count ) ),
-                GetSquareRoot( Math.Abs( product ), values.Count )
+                GetNthRoot( Math.Abs( product ), values.Count )
             };
         }
 
@@ -552,7 +577,7 @@ namespace PI
         {
             return new List<double>() {
                 Math.Abs( (previousArgs[0] + previousArgs[1]) / 2.0 ),
-                GetSquareRoot( Math.Abs( previousArgs[0] * previousArgs[1] ), 2.0 )
+                GetNthRoot( Math.Abs( previousArgs[0] * previousArgs[1] ), 2.0 )
             };
         }
 
@@ -578,6 +603,109 @@ namespace PI
             }
 
             return Convert.ToDouble( builder.ToString(), CultureInfo.InvariantCulture );
+        }
+
+        private void MakeAverageCurveOfHeronianMean( int numberOfCurves )
+        {
+            List<List<double>> argValues = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
+            List<double> heronians = new List<double>();
+            double sum;
+            double product;
+
+            for ( int i = 0; i < argValues.Count; i++ ) {
+                sum = 0.0;
+                product = 1.0;
+
+                for ( int j = 0; j < argValues[i].Count; j++ ) {
+                    sum += argValues[i][j];
+                    product *= argValues[i][j];
+                }
+
+                if ( product > 0.0 ) {
+                    heronians.Add( (sum + GetNthRoot( product, argValues[i].Count )) / (argValues[i].Count + 1) );
+                    continue;
+                }
+
+                heronians.Add( (sum - GetNthRoot( Math.Abs( product ), argValues[i].Count )) / (argValues[i].Count + 1) );
+            }
+
+            DefineAverageCurveSetValues( heronians );
+        }
+
+        private void MakeAverageCurveOfHarmonicMean( int numberOfCurves )
+        {
+            List<List<double>> argValues = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
+            List<double> harmonics = new List<double>();
+            double sumOfReciprocals;
+
+            for ( int i = 0; i < argValues.Count; i++ ) {
+                sumOfReciprocals = 0.0;
+
+                for ( int j = 0; j < argValues[i].Count; j++ ) {
+                    sumOfReciprocals += 1.0 / argValues[i][j];
+                }
+
+                harmonics.Add( Convert.ToDouble( argValues[i].Count ) / sumOfReciprocals );
+            }
+
+            DefineAverageCurveSetValues( harmonics );
+        }
+
+        private void MakeAverageCurveOfRootMeanSquare( int numberOfCurves )
+        {
+            List<List<double>> argValues = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
+            List<double> rms = new List<double>();
+
+            for ( int i = 0; i < argValues.Count; i++ ) {
+                rms.Add( CalculatePowerMean( argValues[i], 2 ) );
+            }
+
+            DefineAverageCurveSetValues( rms );
+        }
+
+        private void MakeAverageCurveOfPowerMean( int numberOfCurves )
+        {
+            List<List<double>> argValues = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
+            List<double> powers = new List<double>();
+
+            for ( int i = 0; i < argValues.Count; i++ ) {
+                powers.Add( CalculatePowerMean( argValues[i], PowerMeanRank ) );
+            }
+
+            DefineAverageCurveSetValues( powers );
+        }
+
+        private double CalculatePowerMean( List<double> args, double rank )
+        {
+            double powerSum = 0.0;
+
+            for ( int i = 0; i < args.Count; i++ ) {
+                powerSum += Math.Pow( args[i], rank );
+            }
+
+            return GetNthRoot( powerSum / args.Count, rank );
+        }
+
+        private void MakeAverageCurveOfLogarithmicMean( int numberOfCurves )
+        {
+            List<List<double>> argValues = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
+            List<double> logMeans = new List<double>();
+            double distinction;
+            double distinctionOfLogs;
+
+            for ( int i = 0; i < argValues.Count; i++ ) {
+                distinction = Math.Abs( argValues[i][0] );
+                distinctionOfLogs = Math.Log( Math.Abs( argValues[i][0] ), Math.E );
+
+                for ( int j = 1; j < argValues[i].Count; j++ ) {
+                    distinction -= Math.Abs( argValues[i][j] );
+                    distinctionOfLogs -= Math.Log( Math.Abs( argValues[i][j] ), Math.E );
+                }
+
+                logMeans.Add( distinction / distinctionOfLogs );
+            }
+
+            DefineAverageCurveSetValues( logMeans );
         }
 
     }
