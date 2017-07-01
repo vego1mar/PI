@@ -69,13 +69,6 @@ namespace PI
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
             }
 
-            internal void NoSuchMethodOrExceptionThrownError()
-            {
-                string text = Consts.Ui.Panel.Generate.NoSuchMethodOrExpThrownTxt;
-                string caption = Consts.Ui.Panel.Generate.NoSuchMethodOrExpThrownCpt;
-                WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
-            }
-
         }
 
         internal class MenuMsgBoxes

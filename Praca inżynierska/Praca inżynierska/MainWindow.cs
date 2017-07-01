@@ -272,7 +272,7 @@ namespace PI
             int density = Presets.Ui.PointsDensity;
 
             if ( !ChartData.GeneratePatternCurve( scaffoldType, xStart, xEnd, density ) ) {
-                ChartData.RemoveInvalidPointsFromPatternCurveSet();
+                ChartData.RemoveInvalidPoints( Enums.DataSetCurveType.Pattern );
                 MsgBxShower.Ui.PointsNotValidToChartProblem();
             }
 
@@ -538,8 +538,8 @@ namespace PI
             bool? averageResult = ChartData.MakeAverageCurveFromGeneratedCurves( meanType, numberOfCurves );
 
             if ( !averageResult.Value ) {
-                MsgBxShower.Ui.NoSuchMethodOrExceptionThrownError();
-                return;
+                ChartData.RemoveInvalidPoints( Enums.DataSetCurveType.Average );
+                MsgBxShower.Ui.PointsNotValidToChartProblem();
             }
 
             WinFormsHelper.SetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx, (int) Enums.DataSetCurveType.Average );
@@ -593,10 +593,22 @@ namespace PI
             uiMw_SpCtn.Panel1.Enabled = !Settings.Menu.Panel.Lock;
         }
 
-        private void UiMenuPanel_AveragingInfo_Click( object sender, EventArgs e )
+        private void UiMenuMeans_AveragingInfo_Click( object sender, EventArgs e )
         {
             using ( var msgBox = new AvgInfo() ) {
                 WinFormsHelper.ShowDialogSafe( msgBox, this );
+            }
+        }
+
+        private void UiMenuMeans_Settings_Click( object sender, EventArgs e )
+        {
+            using ( var dialog = new MeansSettings() ) {
+                dialog.SetPowerMeanRank( ChartData.PowerMeanRank );
+                WinFormsHelper.ShowDialogSafe( dialog, this );
+
+                if ( dialog.DialogResult == DialogResult.OK ) {
+                    ChartData.PowerMeanRank = dialog.PowerMeanRank;
+                }
             }
         }
 

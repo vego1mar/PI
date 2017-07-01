@@ -79,6 +79,7 @@
       <DependentUpon>AvgInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="AvgInfoConsts.cs" />
+    <Compile Include="CurvesDataManagerConsts.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="CurvesDataManager.cs" />
     <Compile Include="ArgsGenerator.cs" />
@@ -89,6 +90,12 @@
       <DependentUpon>GridPreviewer.cs</DependentUpon>
     </Compile>
     <Compile Include="Logger.cs" />
+    <Compile Include="MeansSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MeansSettings.Designer.cs">
+      <DependentUpon>MeansSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="MsgBxShower.cs" />
     <Compile Include="Params.cs" />
     <Compile Include="PatternCurveDefiner.cs">
@@ -120,6 +127,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GridPreviewer.resx">
       <DependentUpon>GridPreviewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MeansSettings.resx">
+      <DependentUpon>MeansSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PatternCurveDefiner.resx">
       <DependentUpon>PatternCurveDefiner.cs</DependentUpon>

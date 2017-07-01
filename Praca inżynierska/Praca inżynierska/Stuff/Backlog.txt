@@ -3,12 +3,9 @@
 TODO: General - Configuration file
 TODO: General - Localization (remember about designer setters)
 TODO: Menu - Reading and saving set of curves from a file
-TODO: Pcd - Generalize hyperbolic pattern with new parameters, possibly reorganize dialog
 
 NEXT:
-TODO: Menu - 'Adjust chart' for visual effects manipulations
-TODO: Menu - Means settings, for rank k of a power mean
-TODO: Cdm - Encapsulate constants and properties into xSettings classes
+TODO: Pcd - Generalize hyperbolic pattern with new parameters, possibly reorganize dialog
 
 CURRENT:
-TODO: Flow - Validate means generated series, especially for logarithmic average
+TODO: Menu - 'Adjust chart' for visual effects manipulations

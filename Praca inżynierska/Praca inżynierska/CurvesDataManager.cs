@@ -10,23 +10,22 @@ namespace PI
     class CurvesDataManager
     {
 
-        public const string PATTERN_CURVE_SERIES_NAME = "PatternCurveSeries";
-        public const string GENERATED_CURVE_SERIES_NAME = "GeneratedCurveSeries";
-        public const string AVERAGE_CURVE_SERIES_NAME = "AverageCurveSeries";
-        private const double ACCEPTABLE_MAX_VALUE = 9228162514264337593543950335.0;
-        private const double ACCEPTABLE_MIN_VALUE = -ACCEPTABLE_MAX_VALUE;
         public Series PatternCurveSet { get; private set; }
         public List<Series> GeneratedCurvesSet { get; private set; }
         public Series AverageCurveSet { get; private set; }
-        public double PowerMeanRank { get; set; } = 0.5;
+
+        public double PowerMeanRank { get; set; } 
+        internal CurvesDataManagerConsts Consts { get; } 
 
         public CurvesDataManager()
         {
             PatternCurveSet = new Series();
             GeneratedCurvesSet = new List<Series>();
             AverageCurveSet = new Series();
-            SetDefaultProperties( PatternCurveSet, PATTERN_CURVE_SERIES_NAME );
-            SetDefaultProperties( AverageCurveSet, AVERAGE_CURVE_SERIES_NAME );
+            PowerMeanRank = 0.5;
+            Consts = new CurvesDataManagerConsts();
+            SetDefaultProperties( PatternCurveSet, Consts.SeriesNames.PatternCurve );
+            SetDefaultProperties( AverageCurveSet, Consts.SeriesNames.AverageCurve );
         }
 
         public static void SetDefaultProperties( Series series, string name )
@@ -204,7 +203,7 @@ namespace PI
 
             for ( int i = 0; i < numberOfCurves; i++ ) {
                 Series series = new Series();
-                SetDefaultProperties( series, GENERATED_CURVE_SERIES_NAME + i );
+                SetDefaultProperties( series, Consts.SeriesNames.GeneratedCurve + i );
                 RecopySeriesPoints( PatternCurveSet, series );
                 GeneratedCurvesSet.Add( series );
             }
@@ -219,11 +218,13 @@ namespace PI
 
         public static bool IsCurvePointsSetValid( Series series )
         {
+            CurvesDataManagerConsts.ChartValuesConsts consts = new CurvesDataManagerConsts.ChartValuesConsts();
+
             for ( int i = 0; i < series.Points.Count; i++ ) {
                 double x = series.Points[i].XValue;
                 double y = series.Points[i].YValues[0];
 
-                if ( x > ACCEPTABLE_MAX_VALUE || x < ACCEPTABLE_MIN_VALUE || y > ACCEPTABLE_MAX_VALUE || y < ACCEPTABLE_MIN_VALUE ) {
+                if ( x > consts.AcceptableMax || x < consts.AcceptableMin || y > consts.AcceptableMax || y < consts.AcceptableMin ) {
                     return false;
                 }
             }
@@ -231,22 +232,39 @@ namespace PI
             return true;
         }
 
-        public void RemoveInvalidPointsFromPatternCurveSet()
+        public void RemoveInvalidPoints( Enums.DataSetCurveType curveType, int generatedCurveIndex = 0 )
         {
-            Series series = new Series();
-            SetDefaultProperties( series, PATTERN_CURVE_SERIES_NAME + "Validated" );
+            switch ( curveType ) {
+            case Enums.DataSetCurveType.Generated:
+                RemoveInvalidPoints( GeneratedCurvesSet[generatedCurveIndex] );
+                break;
+            case Enums.DataSetCurveType.Pattern:
+                RemoveInvalidPoints( PatternCurveSet );
+                break;
+            case Enums.DataSetCurveType.Average:
+                RemoveInvalidPoints( AverageCurveSet );
+                break;
+            }
+        }
 
-            for ( int i = 0; i < PatternCurveSet.Points.Count; i++ ) {
-                double x = PatternCurveSet.Points[i].XValue;
-                double y = PatternCurveSet.Points[i].YValues[0];
+        private void RemoveInvalidPoints( Series series )
+        {
+            Series newSeries = new Series();
+            SetDefaultProperties( newSeries, Consts.SeriesNames.ValidatedCurve );
+            double maxValue = Consts.ChartValues.AcceptableMax;
+            double minValue = Consts.ChartValues.AcceptableMin;
 
-                if ( (x < ACCEPTABLE_MAX_VALUE && x > ACCEPTABLE_MIN_VALUE) && (y < ACCEPTABLE_MAX_VALUE && y > ACCEPTABLE_MIN_VALUE) ) {
-                    series.Points.AddXY( x, y );
+            for ( int i = 0; i < series.Points.Count; i++ ) {
+                double x = series.Points[i].XValue;
+                double y = series.Points[i].YValues[0];
+
+                if ( (x < maxValue && x > minValue) && (y < maxValue && y > minValue) ) {
+                    newSeries.Points.AddXY( x, y );
                 }
             }
 
-            PatternCurveSet.Points.Clear();
-            RecopySeriesPoints( series, PatternCurveSet );
+            series.Points.Clear();
+            RecopySeriesPoints( newSeries, series );
         }
 
         public static void SetDefaultProperties( Chart chart, int chartAreaIndex = 0, int legendIndex = 0, int seriesIndex = 0 )
@@ -284,7 +302,7 @@ namespace PI
         private void ClearPointsAndSetDefaults( Series series )
         {
             series.Points.Clear();
-            SetDefaultProperties( series, PATTERN_CURVE_SERIES_NAME );
+            SetDefaultProperties( series, Consts.SeriesNames.PatternCurve );
         }
 
         public bool? MakeGaussianNoiseForGeneratedCurves( int numberOfCurves, double surrounding )
@@ -356,41 +374,41 @@ namespace PI
                 switch ( averageMethod ) {
                 case Enums.MeanType.Mediana:
                     MakeAverageCurveOfMediana( numberOfCurves );
-                    return true;
+                    return IsCurvePointsSetValid( AverageCurveSet );
                 case Enums.MeanType.Maximum:
                 case Enums.MeanType.Minimum:
                     MakeAverageCurveOfMaximumOrMinimum( averageMethod, numberOfCurves );
-                    return true;
+                    return IsCurvePointsSetValid( AverageCurveSet );
                 case Enums.MeanType.Arithmetic:
                     MakeAverageCurveOfArithmeticMean( numberOfCurves );
-                    return true;
+                    return IsCurvePointsSetValid( AverageCurveSet );
                 case Enums.MeanType.Geometric:
                     MakeAverageCurveOfGeometricMean( numberOfCurves );
-                    return true;
+                    return IsCurvePointsSetValid( AverageCurveSet );
                 case Enums.MeanType.AGM:
                     MakeAverageCurveOfArithmeticGeometricMean( numberOfCurves );
-                    return true;
+                    return IsCurvePointsSetValid( AverageCurveSet );
                 case Enums.MeanType.Heronian:
                     MakeAverageCurveOfHeronianMean( numberOfCurves );
-                    return true;
+                    return IsCurvePointsSetValid( AverageCurveSet );
                 case Enums.MeanType.Harmonic:
                     MakeAverageCurveOfHarmonicMean( numberOfCurves );
-                    return true;
+                    return IsCurvePointsSetValid( AverageCurveSet );
                 case Enums.MeanType.RMS:
                     MakeAverageCurveOfRootMeanSquare( numberOfCurves );
-                    return true;
+                    return IsCurvePointsSetValid( AverageCurveSet );
                 case Enums.MeanType.Power:
                     MakeAverageCurveOfPowerMean( numberOfCurves );
-                    return true;
+                    return IsCurvePointsSetValid( AverageCurveSet );
                 case Enums.MeanType.Logarithmic:
                     MakeAverageCurveOfLogarithmicMean( numberOfCurves );
-                    return true;
+                    return IsCurvePointsSetValid( AverageCurveSet );
                 case Enums.MeanType.EMA:
                     MakeAverageCurveOfExponentialMean( numberOfCurves );
-                    return true;
+                    return IsCurvePointsSetValid( AverageCurveSet );
                 case Enums.MeanType.LnWages:
                     MakeAverageCurveOfLogarithmicallyWagedMean( numberOfCurves );
-                    return true;
+                    return IsCurvePointsSetValid( AverageCurveSet );
                 }
             }
             catch ( ArgumentOutOfRangeException x ) {
