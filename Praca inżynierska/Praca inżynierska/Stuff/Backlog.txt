@@ -9,3 +9,6 @@ TODO: Pcd - Generalize hyperbolic pattern with new parameters, possibly reorgani
 
 CURRENT:
 TODO: Menu - 'Adjust chart' for visual effects manipulations
+       (1) Possibly replace switches by copy of changable UI controls
+	   (2) Hanle event of 'UiTop_ApplyToCurve_SelectedIndexChanged' with Enable... method for 'Series' tab page
+	   (3) Handle set and get in MainWindow context + using ChartSettingsPool.ApplyMode property

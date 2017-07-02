@@ -79,6 +79,13 @@
       <DependentUpon>AvgInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="AvgInfoConsts.cs" />
+    <Compile Include="ChartSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChartSettings.Designer.cs">
+      <DependentUpon>ChartSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChartSettingsPool.cs" />
     <Compile Include="CurvesDataManagerConsts.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="CurvesDataManager.cs" />
@@ -124,6 +131,9 @@
     <Compile Include="WinFormsHelper.cs" />
     <EmbeddedResource Include="AvgInfo.resx">
       <DependentUpon>AvgInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChartSettings.resx">
+      <DependentUpon>ChartSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GridPreviewer.resx">
       <DependentUpon>GridPreviewer.cs</DependentUpon>

@@ -284,27 +284,27 @@ namespace PI
         private void UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType curveType, int indexOfGeneratedCurve = 1 )
         {
             try {
-                uiCharts_PtrnCrv.Series.Clear();
+                uiCharts_Crv.Series.Clear();
 
                 switch ( curveType ) {
                 case Enums.DataSetCurveType.Pattern:
-                    uiCharts_PtrnCrv.Series.Add( ChartData.PatternCurveSet );
-                    uiCharts_PtrnCrv.Series[0].Color = System.Drawing.Color.Black;
+                    uiCharts_Crv.Series.Add( ChartData.PatternCurveSet );
+                    uiCharts_Crv.Series[0].Color = System.Drawing.Color.Black;
                     break;
                 case Enums.DataSetCurveType.Generated:
-                    uiCharts_PtrnCrv.Series.Add( ChartData.GeneratedCurvesSet[indexOfGeneratedCurve - 1] );
-                    uiCharts_PtrnCrv.Series[0].Color = System.Drawing.Color.Crimson;
+                    uiCharts_Crv.Series.Add( ChartData.GeneratedCurvesSet[indexOfGeneratedCurve - 1] );
+                    uiCharts_Crv.Series[0].Color = System.Drawing.Color.Crimson;
                     break;
                 case Enums.DataSetCurveType.Average:
-                    uiCharts_PtrnCrv.Series.Add( ChartData.AverageCurveSet );
-                    uiCharts_PtrnCrv.Series[0].Color = System.Drawing.Color.ForestGreen;
+                    uiCharts_Crv.Series.Add( ChartData.AverageCurveSet );
+                    uiCharts_Crv.Series[0].Color = System.Drawing.Color.ForestGreen;
                     break;
                 }
 
-                uiCharts_PtrnCrv.Series[0].BorderWidth = 3;
-                uiCharts_PtrnCrv.ChartAreas[0].RecalculateAxesScale();
-                uiCharts_PtrnCrv.Visible = true;
-                uiCharts_PtrnCrv.Invalidate();
+                uiCharts_Crv.Series[0].BorderWidth = 3;
+                uiCharts_Crv.ChartAreas[0].RecalculateAxesScale();
+                uiCharts_Crv.Visible = true;
+                uiCharts_Crv.Invalidate();
             }
             catch ( InvalidOperationException x ) {
                 MsgBxShower.Ui.ChartRefreshingError();
@@ -385,13 +385,13 @@ namespace PI
                 try {
                     if ( gprvDialog.DialogResult == DialogResult.OK ) {
                         ChartData.AbsorbSeriesPoints( gprvDialog.ChartDataSet, selectedCurveType, selectedCurveIndex );
-                        uiCharts_PtrnCrv.Series.Clear();
-                        uiCharts_PtrnCrv.Series.Add( gprvDialog.ChartDataSet );
-                        uiCharts_PtrnCrv.Series[0].BorderWidth = 3;
-                        uiCharts_PtrnCrv.Series[0].Color = System.Drawing.Color.Indigo;
-                        uiCharts_PtrnCrv.ChartAreas[0].RecalculateAxesScale();
-                        uiCharts_PtrnCrv.Visible = true;
-                        uiCharts_PtrnCrv.Invalidate();
+                        uiCharts_Crv.Series.Clear();
+                        uiCharts_Crv.Series.Add( gprvDialog.ChartDataSet );
+                        uiCharts_Crv.Series[0].BorderWidth = 3;
+                        uiCharts_Crv.Series[0].Color = System.Drawing.Color.Indigo;
+                        uiCharts_Crv.ChartAreas[0].RecalculateAxesScale();
+                        uiCharts_Crv.Visible = true;
+                        uiCharts_Crv.Invalidate();
                     }
                 }
                 catch ( InvalidOperationException x ) {
@@ -547,7 +547,7 @@ namespace PI
 
         private void UpdateUiByDefaultSettings()
         {
-            CurvesDataManager.SetDefaultProperties( uiCharts_PtrnCrv );
+            CurvesDataManager.SetDefaultProperties( uiCharts_Crv );
             WinFormsHelper.SetSelectedIndexSafe( uiPnlGen_MeanT_ComBx, (int) Enums.MeanType.Geometric );
         }
 
@@ -610,6 +610,57 @@ namespace PI
                     ChartData.PowerMeanRank = dialog.PowerMeanRank;
                 }
             }
+        }
+
+        private void UiMenuChart_Settings_Click( object sender, EventArgs e )
+        {
+            using ( var dialog = new ChartSettings( GetChartSettingsPool() ) ) {
+                WinFormsHelper.ShowDialogSafe( dialog, this );
+
+                if ( dialog.DialogResult == DialogResult.OK ) {
+                    SetChartSettings( dialog.Settings );
+                }
+            }
+        }
+
+        private ChartSettingsPool GetChartSettingsPool()
+        {
+            ChartSettingsPool settings = new ChartSettingsPool();
+            settings.Common.AntiAliasing = uiCharts_Crv.AntiAliasing;
+            settings.Common.SuppressExceptions = uiCharts_Crv.SuppressExceptions;
+            settings.Common.BackColor = uiCharts_Crv.BackColor;
+            settings.Areas.Common.Area3dStyle = uiCharts_Crv.ChartAreas[0].Area3DStyle.Enable3D;
+            settings.Areas.Common.BackColor = uiCharts_Crv.ChartAreas[0].BackColor;
+            settings.Areas.X.MajorGrid.Enabled = uiCharts_Crv.ChartAreas[0].AxisX.MajorGrid.Enabled;
+            settings.Areas.X.MajorGrid.LineColor = uiCharts_Crv.ChartAreas[0].AxisX.MajorGrid.LineColor;
+            settings.Areas.X.MajorGrid.LineDashStyle = uiCharts_Crv.ChartAreas[0].AxisX.MajorGrid.LineDashStyle;
+            settings.Areas.X.MajorGrid.LineWidth = uiCharts_Crv.ChartAreas[0].AxisX.MajorGrid.LineWidth;
+            settings.Areas.X.MinorGrid.Enabled = uiCharts_Crv.ChartAreas[0].AxisX.MinorGrid.Enabled;
+            settings.Areas.X.MinorGrid.LineColor = uiCharts_Crv.ChartAreas[0].AxisX.MinorGrid.LineColor;
+            settings.Areas.X.MinorGrid.LineDashStyle = uiCharts_Crv.ChartAreas[0].AxisX.MinorGrid.LineDashStyle;
+            settings.Areas.X.MinorGrid.LineWidth = uiCharts_Crv.ChartAreas[0].AxisX.MinorGrid.LineWidth;
+            settings.Areas.Y.MajorGrid.Enabled = uiCharts_Crv.ChartAreas[0].AxisY.MajorGrid.Enabled;
+            settings.Areas.Y.MajorGrid.LineColor = uiCharts_Crv.ChartAreas[0].AxisY.MajorGrid.LineColor;
+            settings.Areas.Y.MajorGrid.LineDashStyle = uiCharts_Crv.ChartAreas[0].AxisY.MajorGrid.LineDashStyle;
+            settings.Areas.Y.MajorGrid.LineWidth = uiCharts_Crv.ChartAreas[0].AxisY.MajorGrid.LineWidth;
+            settings.Areas.Y.MinorGrid.Enabled = uiCharts_Crv.ChartAreas[0].AxisY.MinorGrid.Enabled;
+            settings.Areas.Y.MinorGrid.LineColor = uiCharts_Crv.ChartAreas[0].AxisY.MinorGrid.LineColor;
+            settings.Areas.Y.MinorGrid.LineDashStyle = uiCharts_Crv.ChartAreas[0].AxisY.MinorGrid.LineDashStyle;
+            settings.Areas.Y.MinorGrid.LineWidth = uiCharts_Crv.ChartAreas[0].AxisY.MinorGrid.LineWidth;
+            return settings;
+        }
+
+        private void SetChartSettings( ChartSettingsPool settings )
+        {
+            uiCharts_Crv.AntiAliasing = settings.Common.AntiAliasing;
+            uiCharts_Crv.SuppressExceptions = settings.Common.SuppressExceptions;
+            uiCharts_Crv.BackColor = settings.Common.BackColor;
+            uiCharts_Crv.ChartAreas[0].Area3DStyle.Enable3D = settings.Areas.Common.Area3dStyle;
+            uiCharts_Crv.ChartAreas[0].BackColor = settings.Areas.Common.BackColor;
+            uiCharts_Crv.ChartAreas[0].AxisX.MajorGrid.Enabled = settings.Areas.X.MajorGrid.Enabled;
+            uiCharts_Crv.ChartAreas[0].AxisX.MajorGrid.LineColor = settings.Areas.X.MajorGrid.LineColor;
+            uiCharts_Crv.ChartAreas[0].AxisX.MajorGrid.LineDashStyle = settings.Areas.X.MajorGrid.LineDashStyle;
+            uiCharts_Crv.ChartAreas[0].AxisX.MajorGrid.LineWidth = settings.Areas.X.MajorGrid.LineWidth;
         }
 
     }
