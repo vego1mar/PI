@@ -289,19 +289,18 @@ namespace PI
                 switch ( curveType ) {
                 case Enums.DataSetCurveType.Pattern:
                     uiCharts_Crv.Series.Add( ChartData.PatternCurveSet );
-                    uiCharts_Crv.Series[0].Color = System.Drawing.Color.Black;
+                    SetPatternCurveSeriesSettings( uiCharts_Crv );
                     break;
                 case Enums.DataSetCurveType.Generated:
                     uiCharts_Crv.Series.Add( ChartData.GeneratedCurvesSet[indexOfGeneratedCurve - 1] );
-                    uiCharts_Crv.Series[0].Color = System.Drawing.Color.Crimson;
+                    SetGeneratedCurveSeriesSettings( uiCharts_Crv );
                     break;
                 case Enums.DataSetCurveType.Average:
                     uiCharts_Crv.Series.Add( ChartData.AverageCurveSet );
-                    uiCharts_Crv.Series[0].Color = System.Drawing.Color.ForestGreen;
+                    SetAverageCurveSeriesSettings( uiCharts_Crv );
                     break;
                 }
 
-                uiCharts_Crv.Series[0].BorderWidth = 3;
                 uiCharts_Crv.ChartAreas[0].RecalculateAxesScale();
                 uiCharts_Crv.Visible = true;
                 uiCharts_Crv.Invalidate();
@@ -314,6 +313,30 @@ namespace PI
                 MsgBxShower.Ui.SeriesSelectionProblem();
                 Logger.WriteException( x );
             }
+        }
+
+        private void SetPatternCurveSeriesSettings( Chart chart, int seriesNo = 0 )
+        {
+            chart.Series[seriesNo].Color = Settings.Series.Pattern.Color;
+            chart.Series[seriesNo].BorderWidth = Settings.Series.Pattern.BorderWidth;
+            chart.Series[seriesNo].BorderDashStyle = Settings.Series.Pattern.BorderDashStyle;
+            chart.Series[seriesNo].ChartType = Settings.Series.Pattern.ChartType;
+        }
+
+        private void SetGeneratedCurveSeriesSettings( Chart chart, int seriesNo = 0 )
+        {
+            chart.Series[seriesNo].Color = Settings.Series.Generated.Color;
+            chart.Series[seriesNo].BorderWidth = Settings.Series.Generated.BorderWidth;
+            chart.Series[seriesNo].BorderDashStyle = Settings.Series.Generated.BorderDashStyle;
+            chart.Series[seriesNo].ChartType = Settings.Series.Generated.ChartType;
+        }
+
+        private void SetAverageCurveSeriesSettings( Chart chart, int seriesNo = 0 )
+        {
+            chart.Series[seriesNo].Color = Settings.Series.Average.Color;
+            chart.Series[seriesNo].BorderWidth = Settings.Series.Average.BorderWidth;
+            chart.Series[seriesNo].BorderDashStyle = Settings.Series.Average.BorderDashStyle;
+            chart.Series[seriesNo].ChartType = Settings.Series.Average.ChartType;
         }
 
         private void UpdateUiBySettingRangesForCurvesNumber()
@@ -614,53 +637,146 @@ namespace PI
 
         private void UiMenuChart_Settings_Click( object sender, EventArgs e )
         {
-            using ( var dialog = new ChartSettings( GetChartSettingsPool() ) ) {
+            using ( var dialog = new ChartSettings( GetChartSettings( uiCharts_Crv ) ) ) {
                 WinFormsHelper.ShowDialogSafe( dialog, this );
 
                 if ( dialog.DialogResult == DialogResult.OK ) {
-                    SetChartSettings( dialog.Settings );
+                    SetChartSettings( dialog.Settings, uiCharts_Crv );
+                    UpdateUiByInvalidatingChartSettings();
                 }
             }
         }
 
-        private ChartSettingsPool GetChartSettingsPool()
+        private ChartSettingsPool GetChartSettings( Chart chart, int areaNo = 0 )
         {
             ChartSettingsPool settings = new ChartSettingsPool();
-            settings.Common.AntiAliasing = uiCharts_Crv.AntiAliasing;
-            settings.Common.SuppressExceptions = uiCharts_Crv.SuppressExceptions;
-            settings.Common.BackColor = uiCharts_Crv.BackColor;
-            settings.Areas.Common.Area3dStyle = uiCharts_Crv.ChartAreas[0].Area3DStyle.Enable3D;
-            settings.Areas.Common.BackColor = uiCharts_Crv.ChartAreas[0].BackColor;
-            settings.Areas.X.MajorGrid.Enabled = uiCharts_Crv.ChartAreas[0].AxisX.MajorGrid.Enabled;
-            settings.Areas.X.MajorGrid.LineColor = uiCharts_Crv.ChartAreas[0].AxisX.MajorGrid.LineColor;
-            settings.Areas.X.MajorGrid.LineDashStyle = uiCharts_Crv.ChartAreas[0].AxisX.MajorGrid.LineDashStyle;
-            settings.Areas.X.MajorGrid.LineWidth = uiCharts_Crv.ChartAreas[0].AxisX.MajorGrid.LineWidth;
-            settings.Areas.X.MinorGrid.Enabled = uiCharts_Crv.ChartAreas[0].AxisX.MinorGrid.Enabled;
-            settings.Areas.X.MinorGrid.LineColor = uiCharts_Crv.ChartAreas[0].AxisX.MinorGrid.LineColor;
-            settings.Areas.X.MinorGrid.LineDashStyle = uiCharts_Crv.ChartAreas[0].AxisX.MinorGrid.LineDashStyle;
-            settings.Areas.X.MinorGrid.LineWidth = uiCharts_Crv.ChartAreas[0].AxisX.MinorGrid.LineWidth;
-            settings.Areas.Y.MajorGrid.Enabled = uiCharts_Crv.ChartAreas[0].AxisY.MajorGrid.Enabled;
-            settings.Areas.Y.MajorGrid.LineColor = uiCharts_Crv.ChartAreas[0].AxisY.MajorGrid.LineColor;
-            settings.Areas.Y.MajorGrid.LineDashStyle = uiCharts_Crv.ChartAreas[0].AxisY.MajorGrid.LineDashStyle;
-            settings.Areas.Y.MajorGrid.LineWidth = uiCharts_Crv.ChartAreas[0].AxisY.MajorGrid.LineWidth;
-            settings.Areas.Y.MinorGrid.Enabled = uiCharts_Crv.ChartAreas[0].AxisY.MinorGrid.Enabled;
-            settings.Areas.Y.MinorGrid.LineColor = uiCharts_Crv.ChartAreas[0].AxisY.MinorGrid.LineColor;
-            settings.Areas.Y.MinorGrid.LineDashStyle = uiCharts_Crv.ChartAreas[0].AxisY.MinorGrid.LineDashStyle;
-            settings.Areas.Y.MinorGrid.LineWidth = uiCharts_Crv.ChartAreas[0].AxisY.MinorGrid.LineWidth;
+            settings.Common.AntiAliasing = chart.AntiAliasing;
+            settings.Common.SuppressExceptions = chart.SuppressExceptions;
+            settings.Common.BackColor = chart.BackColor;
+            settings.Areas.Common.Area3dStyle = chart.ChartAreas[areaNo].Area3DStyle.Enable3D;
+            settings.Areas.Common.BackColor = chart.ChartAreas[areaNo].BackColor;
+            settings.Areas.X.MajorGrid.Enabled = chart.ChartAreas[areaNo].AxisX.MajorGrid.Enabled;
+            settings.Areas.X.MajorGrid.LineColor = chart.ChartAreas[areaNo].AxisX.MajorGrid.LineColor;
+            settings.Areas.X.MajorGrid.LineDashStyle = chart.ChartAreas[areaNo].AxisX.MajorGrid.LineDashStyle;
+            settings.Areas.X.MajorGrid.LineWidth = chart.ChartAreas[areaNo].AxisX.MajorGrid.LineWidth;
+            settings.Areas.X.MinorGrid.Enabled = chart.ChartAreas[areaNo].AxisX.MinorGrid.Enabled;
+            settings.Areas.X.MinorGrid.LineColor = chart.ChartAreas[areaNo].AxisX.MinorGrid.LineColor;
+            settings.Areas.X.MinorGrid.LineDashStyle = chart.ChartAreas[areaNo].AxisX.MinorGrid.LineDashStyle;
+            settings.Areas.X.MinorGrid.LineWidth = chart.ChartAreas[areaNo].AxisX.MinorGrid.LineWidth;
+            settings.Areas.Y.MajorGrid.Enabled = chart.ChartAreas[areaNo].AxisY.MajorGrid.Enabled;
+            settings.Areas.Y.MajorGrid.LineColor = chart.ChartAreas[areaNo].AxisY.MajorGrid.LineColor;
+            settings.Areas.Y.MajorGrid.LineDashStyle = chart.ChartAreas[areaNo].AxisY.MajorGrid.LineDashStyle;
+            settings.Areas.Y.MajorGrid.LineWidth = chart.ChartAreas[areaNo].AxisY.MajorGrid.LineWidth;
+            settings.Areas.Y.MinorGrid.Enabled = chart.ChartAreas[areaNo].AxisY.MinorGrid.Enabled;
+            settings.Areas.Y.MinorGrid.LineColor = chart.ChartAreas[areaNo].AxisY.MinorGrid.LineColor;
+            settings.Areas.Y.MinorGrid.LineDashStyle = chart.ChartAreas[areaNo].AxisY.MinorGrid.LineDashStyle;
+            settings.Areas.Y.MinorGrid.LineWidth = chart.ChartAreas[areaNo].AxisY.MinorGrid.LineWidth;
+            settings.Series.Pattern.Color = Settings.Series.Pattern.Color;
+            settings.Series.Pattern.BorderWidth = Settings.Series.Pattern.BorderWidth;
+            settings.Series.Pattern.BorderDashStyle = Settings.Series.Pattern.BorderDashStyle;
+            settings.Series.Pattern.ChartType = Settings.Series.Pattern.ChartType;
+            settings.Series.Generated.Color = Settings.Series.Generated.Color;
+            settings.Series.Generated.BorderWidth = Settings.Series.Generated.BorderWidth;
+            settings.Series.Generated.BorderDashStyle = Settings.Series.Generated.BorderDashStyle;
+            settings.Series.Generated.ChartType = Settings.Series.Generated.ChartType;
+            settings.Series.Average.Color = Settings.Series.Average.Color;
+            settings.Series.Average.BorderWidth = Settings.Series.Average.BorderWidth;
+            settings.Series.Average.BorderDashStyle = Settings.Series.Average.BorderDashStyle;
+            settings.Series.Average.ChartType = Settings.Series.Average.ChartType;
             return settings;
         }
 
-        private void SetChartSettings( ChartSettingsPool settings )
+        private void SetChartSettings( ChartSettingsPool settings, Chart chart, int areaNo = 0 )
         {
-            uiCharts_Crv.AntiAliasing = settings.Common.AntiAliasing;
-            uiCharts_Crv.SuppressExceptions = settings.Common.SuppressExceptions;
-            uiCharts_Crv.BackColor = settings.Common.BackColor;
-            uiCharts_Crv.ChartAreas[0].Area3DStyle.Enable3D = settings.Areas.Common.Area3dStyle;
-            uiCharts_Crv.ChartAreas[0].BackColor = settings.Areas.Common.BackColor;
-            uiCharts_Crv.ChartAreas[0].AxisX.MajorGrid.Enabled = settings.Areas.X.MajorGrid.Enabled;
-            uiCharts_Crv.ChartAreas[0].AxisX.MajorGrid.LineColor = settings.Areas.X.MajorGrid.LineColor;
-            uiCharts_Crv.ChartAreas[0].AxisX.MajorGrid.LineDashStyle = settings.Areas.X.MajorGrid.LineDashStyle;
-            uiCharts_Crv.ChartAreas[0].AxisX.MajorGrid.LineWidth = settings.Areas.X.MajorGrid.LineWidth;
+            switch ( settings.ApplyMode ) {
+            case ChartSettings.ApplyToCurve.All:
+                SetCommonChartSettings( settings, chart, areaNo );
+                break;
+            case ChartSettings.ApplyToCurve.Average:
+            case ChartSettings.ApplyToCurve.Generated:
+            case ChartSettings.ApplyToCurve.Pattern:
+                SetSeriesChartSettings( settings );
+                break;
+            }
+        }
+
+        private void SetCommonChartSettings( ChartSettingsPool settings, Chart chart, int areaNo = 0 )
+        {
+            chart.AntiAliasing = settings.Common.AntiAliasing;
+            chart.SuppressExceptions = settings.Common.SuppressExceptions;
+            chart.BackColor = settings.Common.BackColor;
+            chart.ChartAreas[areaNo].Area3DStyle.Enable3D = settings.Areas.Common.Area3dStyle;
+            chart.ChartAreas[areaNo].BackColor = settings.Areas.Common.BackColor;
+            chart.ChartAreas[areaNo].AxisX.MajorGrid.Enabled = settings.Areas.X.MajorGrid.Enabled;
+            chart.ChartAreas[areaNo].AxisX.MajorGrid.LineColor = settings.Areas.X.MajorGrid.LineColor;
+            chart.ChartAreas[areaNo].AxisX.MajorGrid.LineDashStyle = settings.Areas.X.MajorGrid.LineDashStyle;
+            chart.ChartAreas[areaNo].AxisX.MajorGrid.LineWidth = settings.Areas.X.MajorGrid.LineWidth;
+            chart.ChartAreas[areaNo].AxisX.MinorGrid.Enabled = settings.Areas.X.MinorGrid.Enabled;
+            chart.ChartAreas[areaNo].AxisX.MinorGrid.LineColor = settings.Areas.X.MinorGrid.LineColor;
+            chart.ChartAreas[areaNo].AxisX.MinorGrid.LineDashStyle = settings.Areas.X.MinorGrid.LineDashStyle;
+            chart.ChartAreas[areaNo].AxisX.MinorGrid.LineWidth = settings.Areas.X.MinorGrid.LineWidth;
+            chart.ChartAreas[areaNo].AxisY.MajorGrid.Enabled = settings.Areas.Y.MajorGrid.Enabled;
+            chart.ChartAreas[areaNo].AxisY.MajorGrid.LineColor = settings.Areas.Y.MajorGrid.LineColor;
+            chart.ChartAreas[areaNo].AxisY.MajorGrid.LineDashStyle = settings.Areas.Y.MajorGrid.LineDashStyle;
+            chart.ChartAreas[areaNo].AxisY.MajorGrid.LineWidth = settings.Areas.Y.MajorGrid.LineWidth;
+            chart.ChartAreas[areaNo].AxisY.MinorGrid.Enabled = settings.Areas.Y.MinorGrid.Enabled;
+            chart.ChartAreas[areaNo].AxisY.MinorGrid.LineColor = settings.Areas.Y.MinorGrid.LineColor;
+            chart.ChartAreas[areaNo].AxisY.MinorGrid.LineDashStyle = settings.Areas.Y.MinorGrid.LineDashStyle;
+            chart.ChartAreas[areaNo].AxisY.MinorGrid.LineWidth = settings.Areas.Y.MinorGrid.LineWidth;
+        }
+
+        private void SetSeriesChartSettings( ChartSettingsPool settings )
+        {
+            switch ( settings.ApplyMode ) {
+            case ChartSettings.ApplyToCurve.Pattern:
+                SetPatternSeriesChartSettings( settings );
+                break;
+            case ChartSettings.ApplyToCurve.Generated:
+                SetGeneratedSeriesChartSettings( settings );
+                break;
+            case ChartSettings.ApplyToCurve.Average:
+                SetAverageSeriesChartSettings( settings );
+                break;
+            }
+        }
+
+        private void SetPatternSeriesChartSettings( ChartSettingsPool settings )
+        {
+            Settings.Series.Pattern.Color = settings.Series.Pattern.Color;
+            Settings.Series.Pattern.BorderWidth = settings.Series.Pattern.BorderWidth;
+            Settings.Series.Pattern.BorderDashStyle = settings.Series.Pattern.BorderDashStyle;
+            Settings.Series.Pattern.ChartType = settings.Series.Pattern.ChartType;
+        }
+
+        private void SetGeneratedSeriesChartSettings( ChartSettingsPool settings )
+        {
+            Settings.Series.Generated.Color = settings.Series.Generated.Color;
+            Settings.Series.Generated.BorderWidth = settings.Series.Generated.BorderWidth;
+            Settings.Series.Generated.BorderDashStyle = settings.Series.Generated.BorderDashStyle;
+            Settings.Series.Generated.ChartType = settings.Series.Generated.ChartType;
+        }
+
+        private void SetAverageSeriesChartSettings( ChartSettingsPool settings )
+        {
+            Settings.Series.Average.Color = settings.Series.Average.Color;
+            Settings.Series.Average.BorderWidth = settings.Series.Average.BorderWidth;
+            Settings.Series.Average.BorderDashStyle = settings.Series.Average.BorderDashStyle;
+            Settings.Series.Average.ChartType = settings.Series.Average.ChartType;
+        }
+
+        private void UpdateUiByInvalidatingChartSettings()
+        {
+            switch ( (Enums.DataSetCurveType) WinFormsHelper.GetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx ) ) {
+            case Enums.DataSetCurveType.Pattern:
+                UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Pattern );
+                break;
+            case Enums.DataSetCurveType.Generated:
+                UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Generated );
+                break;
+            case Enums.DataSetCurveType.Average:
+                UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Average );
+                break;
+            }
         }
 
     }

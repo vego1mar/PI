@@ -57,18 +57,28 @@ namespace PI
         {
             DefineChartTabPageComboBoxes();
             DefineChartAreaTabPageComboBoxes();
+            DefineSeriesTabPageComboBoxes();
         }
 
         private void UpdateUiByDefaultSettings()
         {
-            WinFormsHelper.SetSelectedIndexSafe( uiTop_ApplyTo_ComBx, (int) ApplyToCurve.All );
+            WinFormsHelper.SetSelectedIndexSafe( uiTop_ApplyTo_ComBx, (int) ApplyToCurve.Average );
+            SetChartTabPageDefaults();
+            SetChartAreaTabPageDefaults();
+            SetSeriesTabPageDefaults();
+        }
+
+        private void SetChartTabPageDefaults()
+        {
             WinFormsHelper.SetSelectedIndexSafe( uiCtrChart_Aa_ComBx, (int) Settings.Common.AntiAliasing );
             WinFormsHelper.SetSelectedIndexSafe( uiCtrChart_SupEx_ComBx, Convert.ToInt32( Settings.Common.SuppressExceptions ) );
             WinFormsHelper.SetSelectedIndexSafe( uiCtrChart_BkCol_ComBx, uiCtrChart_BkCol_ComBx.Items.IndexOf( Settings.Common.BackColor.Name ) );
+        }
 
+        private void SetChartAreaTabPageDefaults()
+        {
             WinFormsHelper.SetSelectedIndexSafe( uiCtrArea_3d_ComBx, Convert.ToInt32( Settings.Areas.Common.Area3dStyle ) );
             WinFormsHelper.SetSelectedIndexSafe( uiCtrArea_BkCol_ComBx, uiCtrArea_BkCol_ComBx.Items.IndexOf( Settings.Areas.Common.BackColor.Name ) );
-
             WinFormsHelper.SetSelectedIndexSafe( uiCtrArea_Axis_ComBx, (int) ChartAreaAxis.X );
             WinFormsHelper.SetSelectedIndexSafe( uiCtrArea_Grid_ComBx, (int) ChartAreaGrid.MajorGrid );
             WinFormsHelper.SetSelectedIndexSafe( uiCtrArea_En_ComBx, Convert.ToInt32( Settings.Areas.X.MajorGrid.Enabled ) );
@@ -77,6 +87,13 @@ namespace PI
             WinFormsHelper.SetValue( uiCtrArea_LnWth_Num, Settings.Areas.X.MajorGrid.LineWidth );
         }
 
+        private void SetSeriesTabPageDefaults()
+        {
+            WinFormsHelper.SetSelectedIndexSafe( uiCtrSrs_Color_ComBx, uiCtrSrs_Color_ComBx.Items.IndexOf( Settings.Series.Average.Color.Name ) );
+            WinFormsHelper.SetValue( uiCtrSrs_BorWth_Num, Settings.Series.Average.BorderWidth );
+            WinFormsHelper.SetSelectedIndexSafe( uiCtrSrs_BorStyle_ComBx, (int) Settings.Series.Average.BorderDashStyle );
+            WinFormsHelper.SetSelectedIndexSafe( uiCtrSrs_ChT_ComBx, (int) Settings.Series.Average.ChartType );
+        }
 
         private void ChartSettings_Load( object sender, EventArgs e )
         {
@@ -283,18 +300,30 @@ namespace PI
         {
             switch ( (ApplyToCurve) uiTop_ApplyTo_ComBx.SelectedIndex ) {
             case ApplyToCurve.All:
-                WinFormsHelper.SelectTabSafe( uiCtr_TbCtrl, (int) ChartSettingsTabs.Chart );
-                EnableChartTabPageControls( true );
-                EnableChartAreaTabPageControls( true );
+                PerformApplyToCurveAllSwitch();
                 break;
             case ApplyToCurve.Generated:
             case ApplyToCurve.Pattern:
             case ApplyToCurve.Average:
-                WinFormsHelper.SelectTabSafe( uiCtr_TbCtrl, (int) ChartSettingsTabs.Series );
-                EnableChartTabPageControls( false );
-                EnableChartAreaTabPageControls( false );
+                PerformApplyToCurveNotAllSwitch();
                 break;
             }
+        }
+
+        private void PerformApplyToCurveAllSwitch()
+        {
+            WinFormsHelper.SelectTabSafe( uiCtr_TbCtrl, (int) ChartSettingsTabs.Chart );
+            EnableChartTabPageControls( true );
+            EnableChartAreaTabPageControls( true );
+            EnableSeriesTabPageControls( false );
+        }
+
+        private void PerformApplyToCurveNotAllSwitch()
+        {
+            WinFormsHelper.SelectTabSafe( uiCtr_TbCtrl, (int) ChartSettingsTabs.Series );
+            EnableChartTabPageControls( false );
+            EnableChartAreaTabPageControls( false );
+            EnableSeriesTabPageControls( true );
         }
 
         private void EnableChartTabPageControls( bool value )
@@ -329,6 +358,18 @@ namespace PI
             uiCtrArea_LnWth_Num.Enabled = value;
         }
 
+        private void EnableSeriesTabPageControls( bool value )
+        {
+            uiCtrSrs_Color_TxtBx.Enabled = value;
+            uiCtrSrs_Color_ComBx.Enabled = value;
+            uiCtrSrs_BorWth_TxtBx.Enabled = value;
+            uiCtrSrs_BorWth_Num.Enabled = value;
+            uiCtrSrs_BorStyle_TxtBx.Enabled = value;
+            uiCtrSrs_BorStyle_ComBx.Enabled = value;
+            uiCtrSrs_ChT_TxtBx.Enabled = value;
+            uiCtrSrs_ChT_ComBx.Enabled = value;
+        }
+
         private void UiBottom_Ok_Click( object sender, EventArgs e )
         {
             SaveAllSettings();
@@ -339,6 +380,7 @@ namespace PI
             Settings.ApplyMode = (ApplyToCurve) WinFormsHelper.GetSelectedIndexSafe( uiTop_ApplyTo_ComBx );
             SaveChartSettings();
             SaveChartAreaSettings();
+            SaveSeriesSettings();
         }
 
         private void SaveChartSettings()
@@ -352,6 +394,48 @@ namespace PI
         {
             Settings.Areas.Common.Area3dStyle = Convert.ToBoolean( WinFormsHelper.GetSelectedIndexSafe( uiCtrArea_3d_ComBx ) );
             Settings.Areas.Common.BackColor = Color.FromName( uiCtrArea_BkCol_ComBx.Items[uiCtrArea_BkCol_ComBx.SelectedIndex].ToString() );
+            ChartAreaAxis axis = (ChartAreaAxis) WinFormsHelper.GetSelectedIndexSafe( uiCtrArea_Axis_ComBx );
+            ChartAreaGrid grid = (ChartAreaGrid) WinFormsHelper.GetSelectedIndexSafe( uiCtrArea_Grid_ComBx );
+            SaveAxesSettings( axis, grid );
+        }
+
+        private void SaveSeriesSettings()
+        {
+            switch ( (ApplyToCurve) WinFormsHelper.GetSelectedIndexSafe( uiTop_ApplyTo_ComBx ) ) {
+            case ApplyToCurve.Pattern:
+                SaveSeriesPatternSettings();
+                break;
+            case ApplyToCurve.Generated:
+                SaveSeriesGeneratedSettings();
+                break;
+            case ApplyToCurve.Average:
+                SaveSeriesAverageSettings();
+                break;
+            }
+        }
+
+        private void SaveSeriesPatternSettings()
+        {
+            Settings.Series.Pattern.Color = Color.FromName( uiCtrSrs_Color_ComBx.Items[uiCtrSrs_Color_ComBx.SelectedIndex].ToString() );
+            Settings.Series.Pattern.BorderWidth = WinFormsHelper.GetValue<int>( uiCtrSrs_BorWth_Num );
+            Settings.Series.Pattern.BorderDashStyle = (ChartDashStyle) WinFormsHelper.GetSelectedIndexSafe( uiCtrSrs_BorStyle_ComBx );
+            Settings.Series.Pattern.ChartType = (SeriesChartType) WinFormsHelper.GetSelectedIndexSafe( uiCtrSrs_ChT_ComBx );
+        }
+
+        private void SaveSeriesGeneratedSettings()
+        {
+            Settings.Series.Generated.Color = Color.FromName( uiCtrSrs_Color_ComBx.Items[uiCtrSrs_Color_ComBx.SelectedIndex].ToString() );
+            Settings.Series.Generated.BorderWidth = WinFormsHelper.GetValue<int>( uiCtrSrs_BorWth_Num );
+            Settings.Series.Generated.BorderDashStyle = (ChartDashStyle) WinFormsHelper.GetSelectedIndexSafe( uiCtrSrs_BorStyle_ComBx );
+            Settings.Series.Generated.ChartType = (SeriesChartType) WinFormsHelper.GetSelectedIndexSafe( uiCtrSrs_ChT_ComBx );
+        }
+
+        private void SaveSeriesAverageSettings()
+        {
+            Settings.Series.Average.Color = Color.FromName( uiCtrSrs_Color_ComBx.Items[uiCtrSrs_Color_ComBx.SelectedIndex].ToString() );
+            Settings.Series.Average.BorderWidth = WinFormsHelper.GetValue<int>( uiCtrSrs_BorWth_Num );
+            Settings.Series.Average.BorderDashStyle = (ChartDashStyle) WinFormsHelper.GetSelectedIndexSafe( uiCtrSrs_BorStyle_ComBx );
+            Settings.Series.Average.ChartType = (SeriesChartType) WinFormsHelper.GetSelectedIndexSafe( uiCtrSrs_ChT_ComBx );
         }
 
         private void DefineChartAreaTabPageComboBoxes()
@@ -578,6 +662,71 @@ namespace PI
         private void UiCenterArea_Grid_SelectedIndexChanged( object sender, EventArgs e )
         {
             PerformAxisGridSwitch();
+        }
+
+        private void DefineSeriesTabPageComboBoxes()
+        {
+            DefineSeriesColorComboBox();
+            DefineSeriesBorderDashStyleComboBox();
+            DefineSeriesChartTypeComboBox();
+        }
+
+        private void DefineSeriesColorComboBox()
+        {
+            uiCtrSrs_Color_ComBx.Items.Clear();
+            AddSystemDrawingColors( uiCtrSrs_Color_ComBx );
+        }
+
+        private void DefineSeriesBorderDashStyleComboBox()
+        {
+            uiCtrSrs_BorStyle_ComBx.Items.Clear();
+            AddChartDashStyles( uiCtrSrs_BorStyle_ComBx );
+        }
+
+        private void DefineSeriesChartTypeComboBox()
+        {
+            uiCtrSrs_ChT_ComBx.Items.Clear();
+            AddChartTypes( uiCtrSrs_ChT_ComBx );
+
+        }
+
+        private void AddChartTypes( ComboBox comboBox )
+        {
+            comboBox.Items.Add( SeriesChartType.Point.ToString() );
+            comboBox.Items.Add( SeriesChartType.FastPoint.ToString() );
+            comboBox.Items.Add( SeriesChartType.Bubble.ToString() );
+            comboBox.Items.Add( SeriesChartType.Line.ToString() );
+            comboBox.Items.Add( SeriesChartType.Spline.ToString() );
+            comboBox.Items.Add( SeriesChartType.StepLine.ToString() );
+            comboBox.Items.Add( SeriesChartType.FastLine.ToString() );
+            comboBox.Items.Add( SeriesChartType.Bar.ToString() );
+            comboBox.Items.Add( SeriesChartType.StackedBar.ToString() );
+            comboBox.Items.Add( SeriesChartType.StackedBar100.ToString() );
+            comboBox.Items.Add( SeriesChartType.Column.ToString() );
+            comboBox.Items.Add( SeriesChartType.StackedColumn.ToString() );
+            comboBox.Items.Add( SeriesChartType.StackedColumn100.ToString() );
+            comboBox.Items.Add( SeriesChartType.Area.ToString() );
+            comboBox.Items.Add( SeriesChartType.SplineArea.ToString() );
+            comboBox.Items.Add( SeriesChartType.StackedArea.ToString() );
+            comboBox.Items.Add( SeriesChartType.StackedArea100.ToString() );
+            comboBox.Items.Add( SeriesChartType.Pie.ToString() );
+            comboBox.Items.Add( SeriesChartType.Doughnut.ToString() );
+            comboBox.Items.Add( SeriesChartType.Stock.ToString() );
+            comboBox.Items.Add( SeriesChartType.Candlestick.ToString() );
+            comboBox.Items.Add( SeriesChartType.Range.ToString() );
+            comboBox.Items.Add( SeriesChartType.SplineRange.ToString() );
+            comboBox.Items.Add( SeriesChartType.RangeBar.ToString() );
+            comboBox.Items.Add( SeriesChartType.RangeColumn.ToString() );
+            comboBox.Items.Add( SeriesChartType.Radar.ToString() );
+            comboBox.Items.Add( SeriesChartType.Polar.ToString() );
+            comboBox.Items.Add( SeriesChartType.ErrorBar.ToString() );
+            comboBox.Items.Add( SeriesChartType.BoxPlot.ToString() );
+            comboBox.Items.Add( SeriesChartType.Renko.ToString() );
+            comboBox.Items.Add( SeriesChartType.ThreeLineBreak.ToString() );
+            comboBox.Items.Add( SeriesChartType.Kagi.ToString() );
+            comboBox.Items.Add( SeriesChartType.PointAndFigure.ToString() );
+            comboBox.Items.Add( SeriesChartType.Funnel.ToString() );
+            comboBox.Items.Add( SeriesChartType.Pyramid.ToString() );
         }
 
     }

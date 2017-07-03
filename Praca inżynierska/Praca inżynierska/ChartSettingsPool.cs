@@ -8,6 +8,7 @@ namespace PI
         internal ChartSettings.ApplyToCurve ApplyMode { get; set; }
         internal ChartCommonSettings Common { get; set; } = new ChartCommonSettings();
         internal ChartAreasSettings Areas { get; set; } = new ChartAreasSettings();
+        internal CurveTypeSettings Series { get; set; } = new CurveTypeSettings();
 
         internal class ChartCommonSettings
         {
@@ -40,6 +41,21 @@ namespace PI
                     internal ChartDashStyle LineDashStyle { get; set; }
                     internal int LineWidth { get; set; }
                 }
+            }
+        }
+
+        internal class CurveTypeSettings
+        {
+            internal ChartSeriesSettings Pattern { get; set; } = new ChartSeriesSettings();
+            internal ChartSeriesSettings Generated { get; set; } = new ChartSeriesSettings();
+            internal ChartSeriesSettings Average { get; set; } = new ChartSeriesSettings();
+
+            internal class ChartSeriesSettings
+            {
+                internal Color Color { get; set; }
+                internal int BorderWidth { get; set; }
+                internal ChartDashStyle BorderDashStyle { get; set; }
+                internal SeriesChartType ChartType { get; set; }
             }
         }
 
