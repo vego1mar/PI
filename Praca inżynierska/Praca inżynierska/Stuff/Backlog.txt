@@ -4,11 +4,5 @@ TODO: General - Configuration file
 TODO: General - Localization (remember about designer setters)
 TODO: Menu - Reading and saving set of curves from a file
 
-NEXT:
 TODO: Pcd - Generalize hyperbolic pattern with new parameters, possibly reorganize dialog
 TODO: PreSets - Replace it by xSettings class
-
-CURRENT:
-TODO: Menu - 'Adjust chart' for visual effects manipulations
-	   (1) Handle ApplyToCurve.SelectedIndexChanged to update specified curve settings
-	   (2) Search for ArgumentOutOfRangeException in ChartSettings when using combo boxes

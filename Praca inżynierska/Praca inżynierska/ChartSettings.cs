@@ -8,8 +8,8 @@ namespace PI
     public partial class ChartSettings : Form
     {
         internal ChartSettingsPool Settings { get; private set; }
-        private ChartAreaAxis PreviousAxisSelected { get; set; }
-        private ChartAreaGrid PreviousGridSelected { get; set; }
+        private PreviousValue Previous { get; set; }
+        private bool IsFormInitialized { get; set; }
 
         internal enum ApplyToCurve
         {
@@ -38,19 +38,31 @@ namespace PI
             MinorGrid = 1
         }
 
+        private class PreviousValue
+        {
+            public ChartAreaAxis AxisSelected { get; set; }
+            public ChartAreaGrid GridSelected { get; set; }
+            public ApplyToCurve ApplyMode { get; set; } 
+        }
+
         internal ChartSettings( ChartSettingsPool settings )
         {
             InitializeComponent();
             InitializeProperties( settings );
             UpdateUiByComposingControls();
             UpdateUiByDefaultSettings();
+            IsFormInitialized = true;
         }
 
         private void InitializeProperties( ChartSettingsPool settings )
         {
             Settings = settings;
-            PreviousAxisSelected = ChartAreaAxis.X;
-            PreviousGridSelected = ChartAreaGrid.MajorGrid;
+            Previous = new PreviousValue() {
+                AxisSelected = ChartAreaAxis.X,
+                GridSelected = ChartAreaGrid.MajorGrid,
+                ApplyMode = ApplyToCurve.Average
+            };
+            IsFormInitialized = false;
         }
 
         private void UpdateUiByComposingControls()
@@ -98,7 +110,6 @@ namespace PI
         private void ChartSettings_Load( object sender, EventArgs e )
         {
             uiBtm_Ok_Btn.Select();
-            uiBtm_Ok_Btn.Focus();
         }
 
         private void DefineChartApplyToCurveComboBox()
@@ -298,16 +309,32 @@ namespace PI
 
         private void UiTop_ApplyToCurve_SelectedIndexChanged( object sender, EventArgs e )
         {
+            if ( !IsFormInitialized ) {
+                return;
+            }
+
             switch ( (ApplyToCurve) uiTop_ApplyTo_ComBx.SelectedIndex ) {
             case ApplyToCurve.All:
                 PerformApplyToCurveAllSwitch();
                 break;
             case ApplyToCurve.Generated:
+                PerformApplyToCurveNotAllSwitch();
+                SaveSeriesSettings( Previous.ApplyMode );
+                UpdateUiByGeneratedCurveSettings();
+                break;
             case ApplyToCurve.Pattern:
+                PerformApplyToCurveNotAllSwitch();
+                SaveSeriesSettings( Previous.ApplyMode );
+                UpdateUiByPatternCurveSettings();
+                break;
             case ApplyToCurve.Average:
                 PerformApplyToCurveNotAllSwitch();
+                SaveSeriesSettings( Previous.ApplyMode );
+                SetSeriesTabPageDefaults();
                 break;
             }
+
+            Previous.ApplyMode = (ApplyToCurve) uiTop_ApplyTo_ComBx.SelectedIndex;
         }
 
         private void PerformApplyToCurveAllSwitch()
@@ -324,6 +351,22 @@ namespace PI
             EnableChartTabPageControls( false );
             EnableChartAreaTabPageControls( false );
             EnableSeriesTabPageControls( true );
+        }
+
+        private void UpdateUiByGeneratedCurveSettings()
+        {
+            WinFormsHelper.SetSelectedIndexSafe( uiCtrSrs_Color_ComBx, uiCtrSrs_Color_ComBx.Items.IndexOf( Settings.Series.Generated.Color.Name ) );
+            WinFormsHelper.SetValue( uiCtrSrs_BorWth_Num, Settings.Series.Generated.BorderWidth );
+            WinFormsHelper.SetSelectedIndexSafe( uiCtrSrs_BorStyle_ComBx, (int) Settings.Series.Generated.BorderDashStyle );
+            WinFormsHelper.SetSelectedIndexSafe( uiCtrSrs_ChT_ComBx, (int) Settings.Series.Generated.ChartType );
+        }
+
+        private void UpdateUiByPatternCurveSettings()
+        {
+            WinFormsHelper.SetSelectedIndexSafe( uiCtrSrs_Color_ComBx, uiCtrSrs_Color_ComBx.Items.IndexOf( Settings.Series.Pattern.Color.Name ) );
+            WinFormsHelper.SetValue( uiCtrSrs_BorWth_Num, Settings.Series.Pattern.BorderWidth );
+            WinFormsHelper.SetSelectedIndexSafe( uiCtrSrs_BorStyle_ComBx, (int) Settings.Series.Pattern.BorderDashStyle );
+            WinFormsHelper.SetSelectedIndexSafe( uiCtrSrs_ChT_ComBx, (int) Settings.Series.Pattern.ChartType );
         }
 
         private void EnableChartTabPageControls( bool value )
@@ -380,7 +423,7 @@ namespace PI
             Settings.ApplyMode = (ApplyToCurve) WinFormsHelper.GetSelectedIndexSafe( uiTop_ApplyTo_ComBx );
             SaveChartSettings();
             SaveChartAreaSettings();
-            SaveSeriesSettings();
+            SaveSeriesSettings( Settings.ApplyMode );
         }
 
         private void SaveChartSettings()
@@ -399,9 +442,9 @@ namespace PI
             SaveAxesSettings( axis, grid );
         }
 
-        private void SaveSeriesSettings()
+        private void SaveSeriesSettings( ApplyToCurve applyMode )
         {
-            switch ( (ApplyToCurve) WinFormsHelper.GetSelectedIndexSafe( uiTop_ApplyTo_ComBx ) ) {
+            switch ( applyMode ) {
             case ApplyToCurve.Pattern:
                 SaveSeriesPatternSettings();
                 break;
@@ -505,14 +548,18 @@ namespace PI
 
         private void PerformAxisGridSwitch()
         {
-            SaveAxesSettings( PreviousAxisSelected, PreviousGridSelected );
-            PreviousAxisSelected = (ChartAreaAxis) WinFormsHelper.GetSelectedIndexSafe( uiCtrArea_Axis_ComBx );
-            PreviousGridSelected = (ChartAreaGrid) WinFormsHelper.GetSelectedIndexSafe( uiCtrArea_Grid_ComBx );
+            SaveAxesSettings( Previous.AxisSelected, Previous.GridSelected );
+            Previous.AxisSelected = (ChartAreaAxis) WinFormsHelper.GetSelectedIndexSafe( uiCtrArea_Axis_ComBx );
+            Previous.GridSelected = (ChartAreaGrid) WinFormsHelper.GetSelectedIndexSafe( uiCtrArea_Grid_ComBx );
             UpdateUiByAxesSettings();
         }
 
         private void UiCenterChartArea_Axis_SelectedIndexChanged( object sender, EventArgs e )
         {
+            if ( !IsFormInitialized ) {
+                return;
+            }
+
             PerformAxisGridSwitch();
         }
 
@@ -661,6 +708,10 @@ namespace PI
 
         private void UiCenterArea_Grid_SelectedIndexChanged( object sender, EventArgs e )
         {
+            if ( !IsFormInitialized ) {
+                return;
+            }
+
             PerformAxisGridSwitch();
         }
 

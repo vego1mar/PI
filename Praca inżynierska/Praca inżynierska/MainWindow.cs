@@ -27,6 +27,7 @@ namespace PI
 
         private void UiMainWindow_FormClosed( object sender, FormClosedEventArgs e )
         {
+            Logger.WriteLine( Environment.NewLine + nameof( Logger.NumberOfLoggedExceptions ) + ": " + Logger.NumberOfLoggedExceptions );
             Logger.Close();
         }
 
