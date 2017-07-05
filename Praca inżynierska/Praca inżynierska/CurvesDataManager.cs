@@ -14,9 +14,9 @@ namespace PI
         public List<Series> GeneratedCurvesSet { get; private set; }
         public Series AverageCurveSet { get; private set; }
 
-        public double PowerMeanRank { get; set; } 
-        internal CurvesDataManagerConsts Consts { get; } 
-        private Params Parameters { get; set; } 
+        public double PowerMeanRank { get; set; }
+        internal CurvesDataManagerConsts Consts { get; }
+        private Params Parameters { get; set; }
 
         public CurvesDataManager( Params parameters )
         {
@@ -85,9 +85,10 @@ namespace PI
 
             while ( args.HasNextArgument() ) {
                 double x = args.GetNextArgument();
-                double numerator = Math.Pow( Math.E, x ) - Math.Pow( Math.E, -x );
-                double fraction = numerator / Parameters.Hyperbolic.G;
-                PatternCurveSet.Points.AddXY( x, fraction + Parameters.Hyperbolic.J );
+                double leftFactor = Parameters.Hyperbolic.A * Math.Pow( Math.E, Parameters.Hyperbolic.B * x );
+                double rightFactor = Parameters.Hyperbolic.C * Math.Pow( Math.E, Parameters.Hyperbolic.D * (-x) );
+                double fraction = (leftFactor - rightFactor) / Parameters.Hyperbolic.F;
+                PatternCurveSet.Points.AddXY( x, fraction + Parameters.Hyperbolic.I );
             }
         }
 

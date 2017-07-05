@@ -4,4 +4,4 @@ TODO: General - Configuration file
 TODO: General - Localization (remember about designer setters)
 TODO: Menu - Reading and saving set of curves from a file
 
-TODO: Pcd - Generalize hyperbolic pattern with new parameters, possibly reorganize dialog
+TODO: Pcd - Drawing a curve on a chart in a fixed interval of <0;10>

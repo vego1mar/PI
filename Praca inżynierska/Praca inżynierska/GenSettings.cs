@@ -8,7 +8,7 @@
 
         internal class PcdGenSettings
         {
-            internal Enums.PatternCurveScaffold Scaffold { get; set; } = Enums.PatternCurveScaffold.WaveformSine;
+            internal Enums.PatternCurveScaffold Scaffold { get; set; } = Enums.PatternCurveScaffold.Hyperbolic;
             internal Params Parameters { get; set; } = new Params();
         }
 

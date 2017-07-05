@@ -18,8 +18,10 @@ namespace PI
 
         private void DefinePropertiesInitialValues( GenSettings.PcdGenSettings presets )
         {
-            MaximizeBox = false;
             Settings = presets;
+            uiTabs_Wave_Btn.BackColor = System.Drawing.Color.White;
+            uiTabs_Pol_Btn.BackColor = System.Drawing.Color.White;
+            uiTabs_Hyp_Btn.BackColor = System.Drawing.Color.White;
         }
 
         private void SelectChosenCurveTab()
@@ -71,8 +73,12 @@ namespace PI
             WinFormsHelper.SetValue( uiCntPol_e_Num, Settings.Parameters.Polynomial.E );
             WinFormsHelper.SetValue( uiCntPol_f_Num, Settings.Parameters.Polynomial.F );
             WinFormsHelper.SetValue( uiCntPol_i_Num, Settings.Parameters.Polynomial.I );
-            WinFormsHelper.SetValue( uiCntHyp_g_Num, Settings.Parameters.Hyperbolic.G );
-            WinFormsHelper.SetValue( uiCntHyp_j_Num, Settings.Parameters.Hyperbolic.J );
+            WinFormsHelper.SetValue( uiCntHyp_a_Num, Settings.Parameters.Hyperbolic.A );
+            WinFormsHelper.SetValue( uiCntHyp_b_Num, Settings.Parameters.Hyperbolic.B );
+            WinFormsHelper.SetValue( uiCntHyp_c_Num, Settings.Parameters.Hyperbolic.C );
+            WinFormsHelper.SetValue( uiCntHyp_d_Num, Settings.Parameters.Hyperbolic.D );
+            WinFormsHelper.SetValue( uiCntHyp_f_Num, Settings.Parameters.Hyperbolic.F );
+            WinFormsHelper.SetValue( uiCntHyp_i_Num, Settings.Parameters.Hyperbolic.I );
             WinFormsHelper.SetValue( uiCntWave_m_Num, Settings.Parameters.Waveform.M );
             WinFormsHelper.SetValue( uiCntWave_n_Num, Settings.Parameters.Waveform.N );
             WinFormsHelper.SetValue( uiCntWave_o_Num, Settings.Parameters.Waveform.O );
@@ -164,7 +170,7 @@ namespace PI
 
         private void SaveParametersForHyperbolicPatternCurve()
         {
-            double userValue = WinFormsHelper.GetValue<double>( uiCntHyp_g_Num );
+            double userValue = WinFormsHelper.GetValue<double>( uiCntHyp_f_Num );
 
             // Checking 'decimal' value, not 'double'.
             // Four zeros after decimal separator are revelant here, not floating-point precision.
@@ -173,8 +179,12 @@ namespace PI
                 userValue = 0.0001;
             }
 
-            Settings.Parameters.Hyperbolic.G = userValue;
-            Settings.Parameters.Hyperbolic.J = WinFormsHelper.GetValue<double>( uiCntHyp_j_Num );
+            Settings.Parameters.Hyperbolic.F = userValue;
+            Settings.Parameters.Hyperbolic.A = WinFormsHelper.GetValue<double>( uiCntHyp_a_Num );
+            Settings.Parameters.Hyperbolic.B = WinFormsHelper.GetValue<double>( uiCntHyp_b_Num );
+            Settings.Parameters.Hyperbolic.C = WinFormsHelper.GetValue<double>( uiCntHyp_c_Num );
+            Settings.Parameters.Hyperbolic.D = WinFormsHelper.GetValue<double>( uiCntHyp_d_Num );
+            Settings.Parameters.Hyperbolic.I = WinFormsHelper.GetValue<double>( uiCntHyp_i_Num );
         }
 
         private void SaveParametersForWaveformPatternCurve( Enums.PatternCurveScaffold type )
@@ -239,6 +249,34 @@ namespace PI
                 Settings.Scaffold = Enums.PatternCurveScaffold.WaveformSawtooth;
                 uiCntWave_o_Num.Enabled = false;
                 uiCntWave_PicBx.Image = Properties.Resources.PatternScaffold_WaveformSawtooth;
+            }
+        }
+
+        private void UiContentHyperbolic_ParameterA_ValueChanged( object sender, EventArgs e )
+        {
+            if ( uiCntHyp_ac_ChBx.Checked ) {
+                WinFormsHelper.SetValue( uiCntHyp_c_Num, WinFormsHelper.GetValue<decimal>( uiCntHyp_a_Num ) );
+            }
+        }
+
+        private void UiContentHyperbolic_ParameterC_ValueChanged( object sender, EventArgs e )
+        {
+            if ( uiCntHyp_ac_ChBx.Checked ) {
+                WinFormsHelper.SetValue( uiCntHyp_a_Num, WinFormsHelper.GetValue<decimal>( uiCntHyp_c_Num ) );
+            }
+        }
+
+        private void UiContentHyperbolic_ParameterB_ValueChanged( object sender, EventArgs e )
+        {
+            if ( uiCntHyp_bd_ChBx.Checked ) {
+                WinFormsHelper.SetValue( uiCntHyp_d_Num, WinFormsHelper.GetValue<decimal>( uiCntHyp_b_Num ) );
+            }
+        }
+
+        private void UiContentHyperbolic_ParameterD_ValueChanged( object sender, EventArgs e )
+        {
+            if ( uiCntHyp_bd_ChBx.Checked ) {
+                WinFormsHelper.SetValue( uiCntHyp_b_Num, WinFormsHelper.GetValue<decimal>( uiCntHyp_d_Num ) );
             }
         }
 
