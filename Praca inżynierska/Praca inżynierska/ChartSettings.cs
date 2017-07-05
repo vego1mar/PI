@@ -51,7 +51,7 @@ namespace PI
             InitializeProperties( settings );
             UpdateUiByComposingControls();
             UpdateUiByDefaultSettings();
-            IsFormInitialized = true;
+            UpdateUiByFormInitializeSettings();
         }
 
         private void InitializeProperties( ChartSettingsPool settings )
@@ -74,7 +74,7 @@ namespace PI
 
         private void UpdateUiByDefaultSettings()
         {
-            WinFormsHelper.SetSelectedIndexSafe( uiTop_ApplyTo_ComBx, (int) ApplyToCurve.Average );
+            WinFormsHelper.SetSelectedIndexSafe( uiTop_ApplyTo_ComBx, (int) ApplyToCurve.Pattern );
             SetChartTabPageDefaults();
             SetChartAreaTabPageDefaults();
             SetSeriesTabPageDefaults();
@@ -105,6 +105,12 @@ namespace PI
             WinFormsHelper.SetValue( uiCtrSrs_BorWth_Num, Settings.Series.Average.BorderWidth );
             WinFormsHelper.SetSelectedIndexSafe( uiCtrSrs_BorStyle_ComBx, (int) Settings.Series.Average.BorderDashStyle );
             WinFormsHelper.SetSelectedIndexSafe( uiCtrSrs_ChT_ComBx, (int) Settings.Series.Average.ChartType );
+        }
+
+        private void UpdateUiByFormInitializeSettings()
+        {
+            IsFormInitialized = true;
+            WinFormsHelper.SetSelectedIndexSafe( uiTop_ApplyTo_ComBx, (int) ApplyToCurve.Average );
         }
 
         private void ChartSettings_Load( object sender, EventArgs e )

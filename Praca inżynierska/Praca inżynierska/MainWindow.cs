@@ -9,8 +9,8 @@ namespace PI
     {
 
         private Thread Timer { get; set; }
-        private CurvesDataManager ChartData { get; set; }
         private UiSettings Settings { get; set; }
+        private CurvesDataManager DataChart { get; set; }
 
         public MainWindow()
         {
@@ -21,8 +21,8 @@ namespace PI
         private void InitalizeFields()
         {
             Timer = null;
-            ChartData = new CurvesDataManager();
             Settings = new UiSettings();
+            DataChart = new CurvesDataManager( Settings.Presets.Pcd.Parameters );
         }
 
         private void UiMainWindow_FormClosed( object sender, FormClosedEventArgs e )
@@ -162,7 +162,7 @@ namespace PI
 
         private void UiPanelGenerate_Define_Click( object sender, EventArgs e )
         {
-            using ( var pcdDialog = new PatternCurveDefiner() ) {
+            using ( var pcdDialog = new PatternCurveDefiner( Settings.Presets.Pcd ) ) {
                 WinFormsHelper.ShowDialogSafe( pcdDialog, this );
 
                 try {
@@ -182,13 +182,13 @@ namespace PI
 
         private void CopyDialogPropertiesIntoPreSetsArea( PatternCurveDefiner pcdDialog )
         {
-            Presets.Pcd.ChosenScaffold = pcdDialog.ChosenCurve;
-            Presets.Pcd.Parameters = pcdDialog.Parameters;
+            Settings.Presets.Pcd.Scaffold = pcdDialog.Settings.Scaffold;
+            Settings.Presets.Pcd.Parameters = pcdDialog.Settings.Parameters;
         }
 
         private void UpdateUiByChosenScaffoldStatus()
         {
-            switch ( Presets.Pcd.ChosenScaffold ) {
+            switch ( Settings.Presets.Pcd.Scaffold ) {
             case Enums.PatternCurveScaffold.Polynomial:
                 uiPnlGen_CrvScaff2_TxtBx.Text = Consts.Ui.Panel.Generate.TxtPolynomial;
                 break;
@@ -251,33 +251,33 @@ namespace PI
 
             GrabPreSetsForCurvesGeneration();
             GenerateAndShowPatternCurve();
-            ChartData.SpreadPatternCurveSetToGeneratedCurveSet( Presets.Ui.NumberOfCurves );
-            ChartData.ClearAverageCurveSetPoints();
+            DataChart.SpreadPatternCurveSetToGeneratedCurveSet( Settings.Presets.Ui.NumberOfCurves );
+            DataChart.ClearAverageCurveSetPoints();
             UpdateUiBySettingRangesForCurvesNumber();
             WinFormsHelper.SetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx, (int) Enums.DataSetCurveType.Generated );
         }
 
         private void GrabPreSetsForCurvesGeneration()
         {
-            Presets.Ui.NumberOfCurves = WinFormsHelper.GetValue<int>( uiPnlGen_Crvs1No_Num );
-            Presets.Ui.StartingXPoint = WinFormsHelper.GetValue<double>( uiPnlGen_StartX_Num );
-            Presets.Ui.EndingXPoint = WinFormsHelper.GetValue<double>( uiPnlGen_EndX_Num );
-            Presets.Ui.PointsDensity = WinFormsHelper.GetValue<int>( uiPnlGen_Dens_Num );
+            Settings.Presets.Ui.NumberOfCurves = WinFormsHelper.GetValue<int>( uiPnlGen_Crvs1No_Num );
+            Settings.Presets.Ui.StartingXPoint = WinFormsHelper.GetValue<double>( uiPnlGen_StartX_Num );
+            Settings.Presets.Ui.EndingXPoint = WinFormsHelper.GetValue<double>( uiPnlGen_EndX_Num );
+            Settings.Presets.Ui.PointsDensity = WinFormsHelper.GetValue<int>( uiPnlGen_Dens_Num );
         }
 
         private void GenerateAndShowPatternCurve()
         {
-            Enums.PatternCurveScaffold scaffoldType = Presets.Pcd.ChosenScaffold;
-            double xStart = Presets.Ui.StartingXPoint;
-            double xEnd = Presets.Ui.EndingXPoint;
-            int density = Presets.Ui.PointsDensity;
+            Enums.PatternCurveScaffold scaffoldType = Settings.Presets.Pcd.Scaffold;
+            double xStart = Settings.Presets.Ui.StartingXPoint;
+            double xEnd = Settings.Presets.Ui.EndingXPoint;
+            int density = Settings.Presets.Ui.PointsDensity;
 
-            if ( !ChartData.GeneratePatternCurve( scaffoldType, xStart, xEnd, density ) ) {
-                ChartData.RemoveInvalidPoints( Enums.DataSetCurveType.Pattern );
+            if ( !DataChart.GeneratePatternCurve( scaffoldType, xStart, xEnd, density ) ) {
+                DataChart.RemoveInvalidPoints( Enums.DataSetCurveType.Pattern );
                 MsgBxShower.Ui.PointsNotValidToChartProblem();
             }
 
-            if ( ChartData.PatternCurveSet.Points.Count > 0 ) {
+            if ( DataChart.PatternCurveSet.Points.Count > 0 ) {
                 UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Pattern );
             }
         }
@@ -289,15 +289,15 @@ namespace PI
 
                 switch ( curveType ) {
                 case Enums.DataSetCurveType.Pattern:
-                    uiCharts_Crv.Series.Add( ChartData.PatternCurveSet );
+                    uiCharts_Crv.Series.Add( DataChart.PatternCurveSet );
                     SetPatternCurveSeriesSettings( uiCharts_Crv );
                     break;
                 case Enums.DataSetCurveType.Generated:
-                    uiCharts_Crv.Series.Add( ChartData.GeneratedCurvesSet[indexOfGeneratedCurve - 1] );
+                    uiCharts_Crv.Series.Add( DataChart.GeneratedCurvesSet[indexOfGeneratedCurve - 1] );
                     SetGeneratedCurveSeriesSettings( uiCharts_Crv );
                     break;
                 case Enums.DataSetCurveType.Average:
-                    uiCharts_Crv.Series.Add( ChartData.AverageCurveSet );
+                    uiCharts_Crv.Series.Add( DataChart.AverageCurveSet );
                     SetAverageCurveSeriesSettings( uiCharts_Crv );
                     break;
                 }
@@ -343,16 +343,16 @@ namespace PI
         private void UpdateUiBySettingRangesForCurvesNumber()
         {
             uiPnlGen_Crvs2No_Nm.Minimum = 1;
-            uiPnlGen_Crvs2No_Nm.Maximum = Presets.Ui.NumberOfCurves;
+            uiPnlGen_Crvs2No_Nm.Maximum = Settings.Presets.Ui.NumberOfCurves;
             uiPnlGen_Crvs2No_Nm.Value = uiPnlGen_Crvs2No_Nm.Maximum;
             uiPnlDtSh_CrvIdx_Num.Minimum = 1;
-            uiPnlDtSh_CrvIdx_Num.Maximum = Presets.Ui.NumberOfCurves;
+            uiPnlDtSh_CrvIdx_Num.Maximum = Settings.Presets.Ui.NumberOfCurves;
             uiPnlDtSh_CrvIdx_Num.Value = uiPnlDtSh_CrvIdx_Num.Minimum;
             uiPnlDtSh_CrvIdx_TrBr.Minimum = 1;
-            uiPnlDtSh_CrvIdx_TrBr.Maximum = Presets.Ui.NumberOfCurves;
+            uiPnlDtSh_CrvIdx_TrBr.Maximum = Settings.Presets.Ui.NumberOfCurves;
             uiPnlDtSh_CrvIdx_TrBr.Value = uiPnlDtSh_CrvIdx_TrBr.Minimum;
             uiPnlDtSh_CrvNo_Num.Minimum = 1;
-            uiPnlDtSh_CrvNo_Num.Maximum = Presets.Ui.NumberOfCurves;
+            uiPnlDtSh_CrvNo_Num.Maximum = Settings.Presets.Ui.NumberOfCurves;
             uiPnlDtSh_CrvNo_Num.Value = uiPnlDtSh_CrvNo_Num.Maximum;
         }
 
@@ -398,7 +398,7 @@ namespace PI
 
             Series selectedCurveSeries = SpecifyCurveSeries( selectedCurveType, selectedCurveIndex );
 
-            if ( selectedCurveSeries == null || ChartData.PatternCurveSet.Points.Count == 0 ) {
+            if ( selectedCurveSeries == null || DataChart.PatternCurveSet.Points.Count == 0 ) {
                 MsgBxShower.Ui.SeriesSelectionProblem();
                 return;
             }
@@ -408,7 +408,7 @@ namespace PI
 
                 try {
                     if ( gprvDialog.DialogResult == DialogResult.OK ) {
-                        ChartData.AbsorbSeriesPoints( gprvDialog.ChartDataSet, selectedCurveType, selectedCurveIndex );
+                        DataChart.AbsorbSeriesPoints( gprvDialog.ChartDataSet, selectedCurveType, selectedCurveIndex );
                         uiCharts_Crv.Series.Clear();
                         uiCharts_Crv.Series.Add( gprvDialog.ChartDataSet );
                         uiCharts_Crv.Series[0].BorderWidth = 3;
@@ -436,11 +436,11 @@ namespace PI
             try {
                 switch ( (Enums.DataSetCurveType) curveType ) {
                 case Enums.DataSetCurveType.Pattern:
-                    return ChartData.PatternCurveSet;
+                    return DataChart.PatternCurveSet;
                 case Enums.DataSetCurveType.Generated:
-                    return ChartData.GeneratedCurvesSet[curveIndex - 1];
+                    return DataChart.GeneratedCurvesSet[curveIndex - 1];
                 case Enums.DataSetCurveType.Average:
-                    return ChartData.AverageCurveSet;
+                    return DataChart.AverageCurveSet;
                 }
             }
             catch ( ArgumentOutOfRangeException x ) {
@@ -520,14 +520,14 @@ namespace PI
 
         private void UiPanelDataSheet_Malform_Click( object sender, EventArgs e )
         {
-            if ( ChartData.PatternCurveSet.Points.Count == 0 ) {
+            if ( DataChart.PatternCurveSet.Points.Count == 0 ) {
                 MsgBxShower.Ui.SeriesSelectionProblem();
                 return;
             }
 
             int numberOfCurves = WinFormsHelper.GetValue<int>( uiPnlDtSh_CrvNo_Num );
             double surrounding = WinFormsHelper.GetValue<double>( uiPnlDtSh_Surr_Num );
-            bool? result = ChartData.MakeGaussianNoiseForGeneratedCurves( numberOfCurves, surrounding );
+            bool? result = DataChart.MakeGaussianNoiseForGeneratedCurves( numberOfCurves, surrounding );
 
             if ( result == null ) {
                 MsgBxShower.Ui.SpecifiedCurveDoesntExistProblem();
@@ -539,14 +539,14 @@ namespace PI
                 return;
             }
 
-            ChartData.ClearAverageCurveSetPoints();
+            DataChart.ClearAverageCurveSetPoints();
             WinFormsHelper.SetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx, (int) Enums.DataSetCurveType.Generated );
             UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Generated );
         }
 
         private void UiPanelGenerate_Apply_Click( object sender, EventArgs e )
         {
-            if ( ChartData.PatternCurveSet.Points.Count == 0 ) {
+            if ( DataChart.PatternCurveSet.Points.Count == 0 ) {
                 MsgBxShower.Ui.SeriesSelectionProblem();
                 return;
             }
@@ -559,10 +559,10 @@ namespace PI
                 return;
             }
 
-            bool? averageResult = ChartData.MakeAverageCurveFromGeneratedCurves( meanType, numberOfCurves );
+            bool? averageResult = DataChart.MakeAverageCurveFromGeneratedCurves( meanType, numberOfCurves );
 
             if ( !averageResult.Value ) {
-                ChartData.RemoveInvalidPoints( Enums.DataSetCurveType.Average );
+                DataChart.RemoveInvalidPoints( Enums.DataSetCurveType.Average );
                 MsgBxShower.Ui.PointsNotValidToChartProblem();
             }
 
@@ -627,11 +627,11 @@ namespace PI
         private void UiMenuMeans_Settings_Click( object sender, EventArgs e )
         {
             using ( var dialog = new MeansSettings() ) {
-                dialog.SetPowerMeanRank( ChartData.PowerMeanRank );
+                dialog.SetPowerMeanRank( DataChart.PowerMeanRank );
                 WinFormsHelper.ShowDialogSafe( dialog, this );
 
                 if ( dialog.DialogResult == DialogResult.OK ) {
-                    ChartData.PowerMeanRank = dialog.PowerMeanRank;
+                    DataChart.PowerMeanRank = dialog.PowerMeanRank;
                 }
             }
         }

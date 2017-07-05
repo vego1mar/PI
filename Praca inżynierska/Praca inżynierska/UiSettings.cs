@@ -4,6 +4,7 @@
     {
         internal MenuSettings Menu { get; set; } = new MenuSettings();
         internal ChartSettingsPool.CurveTypeSettings Series { get; set; } = new ChartSettingsPool.CurveTypeSettings();
+        internal GenSettings Presets { get; set; } = new GenSettings();
 
         internal class MenuSettings
         {

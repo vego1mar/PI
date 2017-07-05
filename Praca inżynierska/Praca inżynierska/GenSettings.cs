@@ -1,18 +1,18 @@
 ﻿namespace PI
 {
 
-    internal static class Presets
+    internal class GenSettings
     {
-        internal static PcdPresets Pcd { get; } = new PcdPresets();
-        internal static UiPresets Ui { get; } = new UiPresets();
+        internal PcdGenSettings Pcd { get; } = new PcdGenSettings();
+        internal UiGenSettings Ui { get; } = new UiGenSettings();
 
-        internal class PcdPresets
+        internal class PcdGenSettings
         {
-            internal Enums.PatternCurveScaffold ChosenScaffold { get; set; } = Enums.PatternCurveScaffold.WaveformSine;
+            internal Enums.PatternCurveScaffold Scaffold { get; set; } = Enums.PatternCurveScaffold.WaveformSine;
             internal Params Parameters { get; set; } = new Params();
         }
 
-        internal class UiPresets
+        internal class UiGenSettings
         {
             internal int NumberOfCurves { get; set; } = 5;
             internal double StartingXPoint { get; set; } = -2.0;

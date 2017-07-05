@@ -111,7 +111,7 @@
     <Compile Include="PatternCurveDefiner.Designer.cs">
       <DependentUpon>PatternCurveDefiner.cs</DependentUpon>
     </Compile>
-    <Compile Include="PreSets.cs" />
+    <Compile Include="GenSettings.cs" />
     <Compile Include="Consts.cs" />
     <Compile Include="Randomizer.cs" />
     <Compile Include="Settings.cs" />

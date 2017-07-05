@@ -16,14 +16,16 @@ namespace PI
 
         public double PowerMeanRank { get; set; } 
         internal CurvesDataManagerConsts Consts { get; } 
+        private Params Parameters { get; set; } 
 
-        public CurvesDataManager()
+        public CurvesDataManager( Params parameters )
         {
             PatternCurveSet = new Series();
             GeneratedCurvesSet = new List<Series>();
             AverageCurveSet = new Series();
             PowerMeanRank = 0.5;
             Consts = new CurvesDataManagerConsts();
+            Parameters = parameters;
             SetDefaultProperties( PatternCurveSet, Consts.SeriesNames.PatternCurve );
             SetDefaultProperties( AverageCurveSet, Consts.SeriesNames.AverageCurve );
         }
@@ -69,9 +71,9 @@ namespace PI
 
             while ( args.HasNextArgument() ) {
                 double x = args.GetNextArgument();
-                double leftFraction = (Presets.Pcd.Parameters.Polynomial.A * Math.Pow( x, Presets.Pcd.Parameters.Polynomial.B )) / Presets.Pcd.Parameters.Polynomial.C;
-                double rightFraction = (Presets.Pcd.Parameters.Polynomial.D * Math.Pow( x, Presets.Pcd.Parameters.Polynomial.E )) / Presets.Pcd.Parameters.Polynomial.F;
-                double polynomial = leftFraction + rightFraction + Presets.Pcd.Parameters.Polynomial.I;
+                double leftFraction = (Parameters.Polynomial.A * Math.Pow( x, Parameters.Polynomial.B )) / Parameters.Polynomial.C;
+                double rightFraction = (Parameters.Polynomial.D * Math.Pow( x, Parameters.Polynomial.E )) / Parameters.Polynomial.F;
+                double polynomial = leftFraction + rightFraction + Parameters.Polynomial.I;
                 PatternCurveSet.Points.AddXY( x, polynomial );
             }
         }
@@ -84,8 +86,8 @@ namespace PI
             while ( args.HasNextArgument() ) {
                 double x = args.GetNextArgument();
                 double numerator = Math.Pow( Math.E, x ) - Math.Pow( Math.E, -x );
-                double fraction = numerator / Presets.Pcd.Parameters.Hyperbolic.G;
-                PatternCurveSet.Points.AddXY( x, fraction + Presets.Pcd.Parameters.Hyperbolic.J );
+                double fraction = numerator / Parameters.Hyperbolic.G;
+                PatternCurveSet.Points.AddXY( x, fraction + Parameters.Hyperbolic.J );
             }
         }
 
@@ -114,9 +116,9 @@ namespace PI
 
             while ( args.HasNextArgument() ) {
                 double x = args.GetNextArgument();
-                double argument = (Presets.Pcd.Parameters.Waveform.N * x) + Presets.Pcd.Parameters.Waveform.O;
-                double amplitude = Presets.Pcd.Parameters.Waveform.M * Math.Sin( argument );
-                PatternCurveSet.Points.AddXY( x, amplitude + Presets.Pcd.Parameters.Waveform.K );
+                double argument = (Parameters.Waveform.N * x) + Parameters.Waveform.O;
+                double amplitude = Parameters.Waveform.M * Math.Sin( argument );
+                PatternCurveSet.Points.AddXY( x, amplitude + Parameters.Waveform.K );
             }
         }
 
@@ -127,12 +129,12 @@ namespace PI
 
             while ( args.HasNextArgument() ) {
                 double x = args.GetNextArgument();
-                double argument = (ArgsGenerator.PI_2 * x) / Presets.Pcd.Parameters.Waveform.N;
+                double argument = (ArgsGenerator.PI_2 * x) / Parameters.Waveform.N;
                 double absolute = Math.Abs( Math.Sin( argument ) );
                 double cosecans = 1.0 / Math.Sin( argument );
-                double modifier = Presets.Pcd.Parameters.Waveform.M * cosecans;
+                double modifier = Parameters.Waveform.M * cosecans;
                 double expression = absolute * modifier;
-                PatternCurveSet.Points.AddXY( x, expression + Presets.Pcd.Parameters.Waveform.K );
+                PatternCurveSet.Points.AddXY( x, expression + Parameters.Waveform.K );
             }
         }
 
@@ -143,10 +145,10 @@ namespace PI
 
             while ( args.HasNextArgument() ) {
                 double x = args.GetNextArgument();
-                double factor = (2.0 * Presets.Pcd.Parameters.Waveform.M) / Math.PI;
-                double argument = (ArgsGenerator.PI_2 * x) / Presets.Pcd.Parameters.Waveform.N;
+                double factor = (2.0 * Parameters.Waveform.M) / Math.PI;
+                double argument = (ArgsGenerator.PI_2 * x) / Parameters.Waveform.N;
                 double expression = factor * Math.Asin( Math.Sin( argument ) );
-                PatternCurveSet.Points.AddXY( x, expression + Presets.Pcd.Parameters.Waveform.K );
+                PatternCurveSet.Points.AddXY( x, expression + Parameters.Waveform.K );
             }
         }
 
@@ -157,11 +159,11 @@ namespace PI
 
             while ( args.HasNextArgument() ) {
                 double x = args.GetNextArgument();
-                double factor = (-2.0 * Presets.Pcd.Parameters.Waveform.M) / Math.PI;
-                double argument = (Math.PI * x) / Presets.Pcd.Parameters.Waveform.N;
+                double factor = (-2.0 * Parameters.Waveform.M) / Math.PI;
+                double argument = (Math.PI * x) / Parameters.Waveform.N;
                 double cotangens = 1.0 / Math.Tan( argument );
                 double expression = factor * Math.Atan( cotangens );
-                PatternCurveSet.Points.AddXY( x, expression + Presets.Pcd.Parameters.Waveform.K );
+                PatternCurveSet.Points.AddXY( x, expression + Parameters.Waveform.K );
             }
         }
 
