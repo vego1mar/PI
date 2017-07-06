@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
             {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.uiTabs_TblLay = new System.Windows.Forms.TableLayoutPanel();
             this.uiTabs_Wave_Btn = new System.Windows.Forms.Button();
             this.uiTabs_Hyp_Btn = new System.Windows.Forms.Button();
@@ -57,6 +55,16 @@
             this.uiCntHyp_TbLay = new System.Windows.Forms.TableLayoutPanel();
             this.uiCntHyp_PicBx = new System.Windows.Forms.PictureBox();
             this.uiCntHyp_Params_GrBx = new System.Windows.Forms.GroupBox();
+            this.uiCntHyp_bd_ChBx = new System.Windows.Forms.CheckBox();
+            this.uiCntHyp_ac_ChBx = new System.Windows.Forms.CheckBox();
+            this.uiCntHyp_f_Num = new System.Windows.Forms.NumericUpDown();
+            this.uiCntHyp_f_Lb = new System.Windows.Forms.Label();
+            this.uiCntHyp_d_Num = new System.Windows.Forms.NumericUpDown();
+            this.uiCntHyp_d_Lb = new System.Windows.Forms.Label();
+            this.uiCntHyp_c_Num = new System.Windows.Forms.NumericUpDown();
+            this.uiCntHyp_c_Lb = new System.Windows.Forms.Label();
+            this.uiCntHyp_i_Num = new System.Windows.Forms.NumericUpDown();
+            this.uiCntHyp_i_Lb = new System.Windows.Forms.Label();
             this.uiCntHyp_b_Num = new System.Windows.Forms.NumericUpDown();
             this.uiCntHyp_b_Lb = new System.Windows.Forms.Label();
             this.uiCntHyp_a_Num = new System.Windows.Forms.NumericUpDown();
@@ -84,17 +92,6 @@
             this.ui_tbLay = new System.Windows.Forms.TableLayoutPanel();
             this.uiCnt_TbLay = new System.Windows.Forms.TableLayoutPanel();
             this.uiCfrm_TbLay = new System.Windows.Forms.TableLayoutPanel();
-            this.uiChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.uiCntHyp_i_Num = new System.Windows.Forms.NumericUpDown();
-            this.uiCntHyp_i_Lb = new System.Windows.Forms.Label();
-            this.uiCntHyp_c_Num = new System.Windows.Forms.NumericUpDown();
-            this.uiCntHyp_c_Lb = new System.Windows.Forms.Label();
-            this.uiCntHyp_d_Num = new System.Windows.Forms.NumericUpDown();
-            this.uiCntHyp_d_Lb = new System.Windows.Forms.Label();
-            this.uiCntHyp_f_Num = new System.Windows.Forms.NumericUpDown();
-            this.uiCntHyp_f_Lb = new System.Windows.Forms.Label();
-            this.uiCntHyp_ac_ChBx = new System.Windows.Forms.CheckBox();
-            this.uiCntHyp_bd_ChBx = new System.Windows.Forms.CheckBox();
             this.uiTabs_TblLay.SuspendLayout();
             this.uiCnt_TbCtrl.SuspendLayout();
             this.uiCntPol_TbPg.SuspendLayout();
@@ -112,6 +109,10 @@
             this.uiCntHyp_TbLay.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_PicBx)).BeginInit();
             this.uiCntHyp_Params_GrBx.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_f_Num)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_d_Num)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_c_Num)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_i_Num)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_b_Num)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_a_Num)).BeginInit();
             this.uiCntWave_TbPg.SuspendLayout();
@@ -127,15 +128,11 @@
             this.ui_tbLay.SuspendLayout();
             this.uiCnt_TbLay.SuspendLayout();
             this.uiCfrm_TbLay.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.uiChart)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_i_Num)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_c_Num)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_d_Num)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_f_Num)).BeginInit();
             this.SuspendLayout();
             // 
             // uiTabs_TblLay
             // 
+            this.uiTabs_TblLay.AutoScroll = true;
             this.uiTabs_TblLay.BackColor = System.Drawing.Color.WhiteSmoke;
             this.uiTabs_TblLay.ColumnCount = 1;
             this.uiTabs_TblLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -153,7 +150,7 @@
             this.uiTabs_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.uiTabs_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.uiTabs_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.uiTabs_TblLay.Size = new System.Drawing.Size(133, 379);
+            this.uiTabs_TblLay.Size = new System.Drawing.Size(168, 379);
             this.uiTabs_TblLay.TabIndex = 0;
             // 
             // uiTabs_Wave_Btn
@@ -164,7 +161,7 @@
             this.uiTabs_Wave_Btn.Location = new System.Drawing.Point(2, 83);
             this.uiTabs_Wave_Btn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.uiTabs_Wave_Btn.Name = "uiTabs_Wave_Btn";
-            this.uiTabs_Wave_Btn.Size = new System.Drawing.Size(129, 34);
+            this.uiTabs_Wave_Btn.Size = new System.Drawing.Size(164, 34);
             this.uiTabs_Wave_Btn.TabIndex = 2;
             this.uiTabs_Wave_Btn.Text = "Waveform";
             this.uiTabs_Wave_Btn.UseVisualStyleBackColor = true;
@@ -178,7 +175,7 @@
             this.uiTabs_Hyp_Btn.Location = new System.Drawing.Point(2, 43);
             this.uiTabs_Hyp_Btn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.uiTabs_Hyp_Btn.Name = "uiTabs_Hyp_Btn";
-            this.uiTabs_Hyp_Btn.Size = new System.Drawing.Size(129, 34);
+            this.uiTabs_Hyp_Btn.Size = new System.Drawing.Size(164, 34);
             this.uiTabs_Hyp_Btn.TabIndex = 1;
             this.uiTabs_Hyp_Btn.Text = "Hyperbolic";
             this.uiTabs_Hyp_Btn.UseVisualStyleBackColor = true;
@@ -192,7 +189,7 @@
             this.uiTabs_Pol_Btn.Location = new System.Drawing.Point(2, 3);
             this.uiTabs_Pol_Btn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.uiTabs_Pol_Btn.Name = "uiTabs_Pol_Btn";
-            this.uiTabs_Pol_Btn.Size = new System.Drawing.Size(129, 34);
+            this.uiTabs_Pol_Btn.Size = new System.Drawing.Size(164, 34);
             this.uiTabs_Pol_Btn.TabIndex = 0;
             this.uiTabs_Pol_Btn.Text = "Polynomial";
             this.uiTabs_Pol_Btn.UseVisualStyleBackColor = true;
@@ -210,7 +207,7 @@
             this.uiCnt_TbCtrl.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.uiCnt_TbCtrl.Name = "uiCnt_TbCtrl";
             this.uiCnt_TbCtrl.SelectedIndex = 0;
-            this.uiCnt_TbCtrl.Size = new System.Drawing.Size(494, 335);
+            this.uiCnt_TbCtrl.Size = new System.Drawing.Size(624, 335);
             this.uiCnt_TbCtrl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.uiCnt_TbCtrl.TabIndex = 1;
             // 
@@ -221,7 +218,7 @@
             this.uiCntPol_TbPg.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.uiCntPol_TbPg.Name = "uiCntPol_TbPg";
             this.uiCntPol_TbPg.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.uiCntPol_TbPg.Size = new System.Drawing.Size(484, 323);
+            this.uiCntPol_TbPg.Size = new System.Drawing.Size(616, 326);
             this.uiCntPol_TbPg.TabIndex = 0;
             this.uiCntPol_TbPg.Text = "Polynomial";
             this.uiCntPol_TbPg.UseVisualStyleBackColor = true;
@@ -241,7 +238,7 @@
             this.uiCntPol_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39.4F));
             this.uiCntPol_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60.6F));
             this.uiCntPol_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 19F));
-            this.uiCntPol_TbLay.Size = new System.Drawing.Size(480, 317);
+            this.uiCntPol_TbLay.Size = new System.Drawing.Size(612, 320);
             this.uiCntPol_TbLay.TabIndex = 3;
             // 
             // uiCntPol_PicBx
@@ -252,7 +249,7 @@
             this.uiCntPol_PicBx.Location = new System.Drawing.Point(2, 3);
             this.uiCntPol_PicBx.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.uiCntPol_PicBx.Name = "uiCntPol_PicBx";
-            this.uiCntPol_PicBx.Size = new System.Drawing.Size(476, 118);
+            this.uiCntPol_PicBx.Size = new System.Drawing.Size(608, 120);
             this.uiCntPol_PicBx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.uiCntPol_PicBx.TabIndex = 0;
             this.uiCntPol_PicBx.TabStop = false;
@@ -275,11 +272,11 @@
             this.uiCntPol_Params_GrBx.Controls.Add(this.uiCntPol_c_Num);
             this.uiCntPol_Params_GrBx.Controls.Add(this.uiCntPol_d_Lb);
             this.uiCntPol_Params_GrBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiCntPol_Params_GrBx.Location = new System.Drawing.Point(2, 127);
+            this.uiCntPol_Params_GrBx.Location = new System.Drawing.Point(2, 129);
             this.uiCntPol_Params_GrBx.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.uiCntPol_Params_GrBx.Name = "uiCntPol_Params_GrBx";
             this.uiCntPol_Params_GrBx.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.uiCntPol_Params_GrBx.Size = new System.Drawing.Size(476, 187);
+            this.uiCntPol_Params_GrBx.Size = new System.Drawing.Size(608, 188);
             this.uiCntPol_Params_GrBx.TabIndex = 13;
             this.uiCntPol_Params_GrBx.TabStop = false;
             this.uiCntPol_Params_GrBx.Text = "Parameters";
@@ -515,7 +512,7 @@
             this.uiCntHyp_TbPg.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.uiCntHyp_TbPg.Name = "uiCntHyp_TbPg";
             this.uiCntHyp_TbPg.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.uiCntHyp_TbPg.Size = new System.Drawing.Size(486, 326);
+            this.uiCntHyp_TbPg.Size = new System.Drawing.Size(616, 326);
             this.uiCntHyp_TbPg.TabIndex = 1;
             this.uiCntHyp_TbPg.Text = "Hyperbolic";
             this.uiCntHyp_TbPg.UseVisualStyleBackColor = true;
@@ -534,7 +531,7 @@
             this.uiCntHyp_TbLay.RowCount = 2;
             this.uiCntHyp_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39.4F));
             this.uiCntHyp_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60.6F));
-            this.uiCntHyp_TbLay.Size = new System.Drawing.Size(482, 320);
+            this.uiCntHyp_TbLay.Size = new System.Drawing.Size(612, 320);
             this.uiCntHyp_TbLay.TabIndex = 3;
             // 
             // uiCntHyp_PicBx
@@ -545,7 +542,7 @@
             this.uiCntHyp_PicBx.Location = new System.Drawing.Point(2, 3);
             this.uiCntHyp_PicBx.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.uiCntHyp_PicBx.Name = "uiCntHyp_PicBx";
-            this.uiCntHyp_PicBx.Size = new System.Drawing.Size(478, 120);
+            this.uiCntHyp_PicBx.Size = new System.Drawing.Size(608, 120);
             this.uiCntHyp_PicBx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.uiCntHyp_PicBx.TabIndex = 0;
             this.uiCntHyp_PicBx.TabStop = false;
@@ -571,10 +568,179 @@
             this.uiCntHyp_Params_GrBx.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.uiCntHyp_Params_GrBx.Name = "uiCntHyp_Params_GrBx";
             this.uiCntHyp_Params_GrBx.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.uiCntHyp_Params_GrBx.Size = new System.Drawing.Size(478, 188);
+            this.uiCntHyp_Params_GrBx.Size = new System.Drawing.Size(608, 188);
             this.uiCntHyp_Params_GrBx.TabIndex = 9;
             this.uiCntHyp_Params_GrBx.TabStop = false;
             this.uiCntHyp_Params_GrBx.Text = "Parameters";
+            // 
+            // uiCntHyp_bd_ChBx
+            // 
+            this.uiCntHyp_bd_ChBx.AutoSize = true;
+            this.uiCntHyp_bd_ChBx.Checked = true;
+            this.uiCntHyp_bd_ChBx.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.uiCntHyp_bd_ChBx.Location = new System.Drawing.Point(394, 81);
+            this.uiCntHyp_bd_ChBx.Name = "uiCntHyp_bd_ChBx";
+            this.uiCntHyp_bd_ChBx.Size = new System.Drawing.Size(56, 17);
+            this.uiCntHyp_bd_ChBx.TabIndex = 20;
+            this.uiCntHyp_bd_ChBx.Text = "Bound";
+            this.uiCntHyp_bd_ChBx.UseVisualStyleBackColor = true;
+            // 
+            // uiCntHyp_ac_ChBx
+            // 
+            this.uiCntHyp_ac_ChBx.AutoSize = true;
+            this.uiCntHyp_ac_ChBx.Checked = true;
+            this.uiCntHyp_ac_ChBx.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.uiCntHyp_ac_ChBx.Location = new System.Drawing.Point(394, 38);
+            this.uiCntHyp_ac_ChBx.Name = "uiCntHyp_ac_ChBx";
+            this.uiCntHyp_ac_ChBx.Size = new System.Drawing.Size(56, 17);
+            this.uiCntHyp_ac_ChBx.TabIndex = 19;
+            this.uiCntHyp_ac_ChBx.Text = "Bound";
+            this.uiCntHyp_ac_ChBx.UseVisualStyleBackColor = true;
+            // 
+            // uiCntHyp_f_Num
+            // 
+            this.uiCntHyp_f_Num.DecimalPlaces = 4;
+            this.uiCntHyp_f_Num.Location = new System.Drawing.Point(54, 119);
+            this.uiCntHyp_f_Num.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.uiCntHyp_f_Num.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.uiCntHyp_f_Num.Minimum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            -2147483648});
+            this.uiCntHyp_f_Num.Name = "uiCntHyp_f_Num";
+            this.uiCntHyp_f_Num.Size = new System.Drawing.Size(120, 20);
+            this.uiCntHyp_f_Num.TabIndex = 18;
+            this.uiCntHyp_f_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.uiCntHyp_f_Num.ThousandsSeparator = true;
+            this.uiCntHyp_f_Num.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // uiCntHyp_f_Lb
+            // 
+            this.uiCntHyp_f_Lb.AutoSize = true;
+            this.uiCntHyp_f_Lb.Font = new System.Drawing.Font("Consolas", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.uiCntHyp_f_Lb.Location = new System.Drawing.Point(26, 122);
+            this.uiCntHyp_f_Lb.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.uiCntHyp_f_Lb.Name = "uiCntHyp_f_Lb";
+            this.uiCntHyp_f_Lb.Size = new System.Drawing.Size(25, 12);
+            this.uiCntHyp_f_Lb.TabIndex = 17;
+            this.uiCntHyp_f_Lb.Text = "f = ";
+            // 
+            // uiCntHyp_d_Num
+            // 
+            this.uiCntHyp_d_Num.DecimalPlaces = 4;
+            this.uiCntHyp_d_Num.Location = new System.Drawing.Point(243, 79);
+            this.uiCntHyp_d_Num.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.uiCntHyp_d_Num.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.uiCntHyp_d_Num.Minimum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            -2147483648});
+            this.uiCntHyp_d_Num.Name = "uiCntHyp_d_Num";
+            this.uiCntHyp_d_Num.Size = new System.Drawing.Size(120, 20);
+            this.uiCntHyp_d_Num.TabIndex = 16;
+            this.uiCntHyp_d_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.uiCntHyp_d_Num.ThousandsSeparator = true;
+            this.uiCntHyp_d_Num.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.uiCntHyp_d_Num.ValueChanged += new System.EventHandler(this.UiContentHyperbolic_ParameterD_ValueChanged);
+            // 
+            // uiCntHyp_d_Lb
+            // 
+            this.uiCntHyp_d_Lb.AutoSize = true;
+            this.uiCntHyp_d_Lb.Font = new System.Drawing.Font("Consolas", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.uiCntHyp_d_Lb.Location = new System.Drawing.Point(215, 82);
+            this.uiCntHyp_d_Lb.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.uiCntHyp_d_Lb.Name = "uiCntHyp_d_Lb";
+            this.uiCntHyp_d_Lb.Size = new System.Drawing.Size(25, 12);
+            this.uiCntHyp_d_Lb.TabIndex = 15;
+            this.uiCntHyp_d_Lb.Text = "d = ";
+            // 
+            // uiCntHyp_c_Num
+            // 
+            this.uiCntHyp_c_Num.DecimalPlaces = 4;
+            this.uiCntHyp_c_Num.Location = new System.Drawing.Point(243, 35);
+            this.uiCntHyp_c_Num.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.uiCntHyp_c_Num.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.uiCntHyp_c_Num.Minimum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            -2147483648});
+            this.uiCntHyp_c_Num.Name = "uiCntHyp_c_Num";
+            this.uiCntHyp_c_Num.Size = new System.Drawing.Size(120, 20);
+            this.uiCntHyp_c_Num.TabIndex = 14;
+            this.uiCntHyp_c_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.uiCntHyp_c_Num.ThousandsSeparator = true;
+            this.uiCntHyp_c_Num.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.uiCntHyp_c_Num.ValueChanged += new System.EventHandler(this.UiContentHyperbolic_ParameterC_ValueChanged);
+            // 
+            // uiCntHyp_c_Lb
+            // 
+            this.uiCntHyp_c_Lb.AutoSize = true;
+            this.uiCntHyp_c_Lb.Font = new System.Drawing.Font("Consolas", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.uiCntHyp_c_Lb.Location = new System.Drawing.Point(215, 38);
+            this.uiCntHyp_c_Lb.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.uiCntHyp_c_Lb.Name = "uiCntHyp_c_Lb";
+            this.uiCntHyp_c_Lb.Size = new System.Drawing.Size(25, 12);
+            this.uiCntHyp_c_Lb.TabIndex = 13;
+            this.uiCntHyp_c_Lb.Text = "c = ";
+            // 
+            // uiCntHyp_i_Num
+            // 
+            this.uiCntHyp_i_Num.DecimalPlaces = 4;
+            this.uiCntHyp_i_Num.Location = new System.Drawing.Point(243, 121);
+            this.uiCntHyp_i_Num.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.uiCntHyp_i_Num.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.uiCntHyp_i_Num.Minimum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            -2147483648});
+            this.uiCntHyp_i_Num.Name = "uiCntHyp_i_Num";
+            this.uiCntHyp_i_Num.Size = new System.Drawing.Size(120, 20);
+            this.uiCntHyp_i_Num.TabIndex = 12;
+            this.uiCntHyp_i_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.uiCntHyp_i_Num.ThousandsSeparator = true;
+            // 
+            // uiCntHyp_i_Lb
+            // 
+            this.uiCntHyp_i_Lb.AutoSize = true;
+            this.uiCntHyp_i_Lb.Font = new System.Drawing.Font("Consolas", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.uiCntHyp_i_Lb.Location = new System.Drawing.Point(215, 124);
+            this.uiCntHyp_i_Lb.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.uiCntHyp_i_Lb.Name = "uiCntHyp_i_Lb";
+            this.uiCntHyp_i_Lb.Size = new System.Drawing.Size(25, 12);
+            this.uiCntHyp_i_Lb.TabIndex = 11;
+            this.uiCntHyp_i_Lb.Text = "i = ";
             // 
             // uiCntHyp_b_Num
             // 
@@ -658,7 +824,7 @@
             this.uiCntWave_TbPg.Location = new System.Drawing.Point(4, 5);
             this.uiCntWave_TbPg.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.uiCntWave_TbPg.Name = "uiCntWave_TbPg";
-            this.uiCntWave_TbPg.Size = new System.Drawing.Size(486, 326);
+            this.uiCntWave_TbPg.Size = new System.Drawing.Size(616, 326);
             this.uiCntWave_TbPg.TabIndex = 2;
             this.uiCntWave_TbPg.Text = "Waveform";
             this.uiCntWave_TbPg.UseVisualStyleBackColor = true;
@@ -677,7 +843,7 @@
             this.uiCntWave_TbLay.RowCount = 2;
             this.uiCntWave_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39.4F));
             this.uiCntWave_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60.6F));
-            this.uiCntWave_TbLay.Size = new System.Drawing.Size(486, 326);
+            this.uiCntWave_TbLay.Size = new System.Drawing.Size(616, 326);
             this.uiCntWave_TbLay.TabIndex = 3;
             // 
             // uiCntWave_PicBx
@@ -688,7 +854,7 @@
             this.uiCntWave_PicBx.Location = new System.Drawing.Point(2, 3);
             this.uiCntWave_PicBx.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.uiCntWave_PicBx.Name = "uiCntWave_PicBx";
-            this.uiCntWave_PicBx.Size = new System.Drawing.Size(482, 122);
+            this.uiCntWave_PicBx.Size = new System.Drawing.Size(612, 122);
             this.uiCntWave_PicBx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.uiCntWave_PicBx.TabIndex = 1;
             this.uiCntWave_PicBx.TabStop = false;
@@ -707,7 +873,7 @@
             this.uiCntWave2_TbLay.Name = "uiCntWave2_TbLay";
             this.uiCntWave2_TbLay.RowCount = 1;
             this.uiCntWave2_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.uiCntWave2_TbLay.Size = new System.Drawing.Size(482, 192);
+            this.uiCntWave2_TbLay.Size = new System.Drawing.Size(612, 192);
             this.uiCntWave2_TbLay.TabIndex = 2;
             // 
             // uiCntWave_Params_GrBx
@@ -721,11 +887,11 @@
             this.uiCntWave_Params_GrBx.Controls.Add(this.uiCntWave_m_Num);
             this.uiCntWave_Params_GrBx.Controls.Add(this.uiCntWave_m_Lb);
             this.uiCntWave_Params_GrBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiCntWave_Params_GrBx.Location = new System.Drawing.Point(122, 3);
+            this.uiCntWave_Params_GrBx.Location = new System.Drawing.Point(155, 3);
             this.uiCntWave_Params_GrBx.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.uiCntWave_Params_GrBx.Name = "uiCntWave_Params_GrBx";
             this.uiCntWave_Params_GrBx.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.uiCntWave_Params_GrBx.Size = new System.Drawing.Size(358, 186);
+            this.uiCntWave_Params_GrBx.Size = new System.Drawing.Size(455, 186);
             this.uiCntWave_Params_GrBx.TabIndex = 4;
             this.uiCntWave_Params_GrBx.TabStop = false;
             this.uiCntWave_Params_GrBx.Text = "Parameters";
@@ -879,7 +1045,7 @@
             this.uiCntWave_T_GrBx.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.uiCntWave_T_GrBx.Name = "uiCntWave_T_GrBx";
             this.uiCntWave_T_GrBx.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.uiCntWave_T_GrBx.Size = new System.Drawing.Size(116, 186);
+            this.uiCntWave_T_GrBx.Size = new System.Drawing.Size(149, 186);
             this.uiCntWave_T_GrBx.TabIndex = 2;
             this.uiCntWave_T_GrBx.TabStop = false;
             this.uiCntWave_T_GrBx.Text = "Wavetype";
@@ -939,10 +1105,10 @@
             this.uiCfrm_Cancel_Btn.Cursor = System.Windows.Forms.Cursors.Default;
             this.uiCfrm_Cancel_Btn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.uiCfrm_Cancel_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiCfrm_Cancel_Btn.Location = new System.Drawing.Point(347, 3);
+            this.uiCfrm_Cancel_Btn.Location = new System.Drawing.Point(438, 3);
             this.uiCfrm_Cancel_Btn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.uiCfrm_Cancel_Btn.Name = "uiCfrm_Cancel_Btn";
-            this.uiCfrm_Cancel_Btn.Size = new System.Drawing.Size(70, 26);
+            this.uiCfrm_Cancel_Btn.Size = new System.Drawing.Size(89, 26);
             this.uiCfrm_Cancel_Btn.TabIndex = 1;
             this.uiCfrm_Cancel_Btn.Text = "Cancel";
             this.uiCfrm_Cancel_Btn.UseVisualStyleBackColor = true;
@@ -953,10 +1119,10 @@
             this.uiCfrm_Ok_Btn.Cursor = System.Windows.Forms.Cursors.Default;
             this.uiCfrm_Ok_Btn.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.uiCfrm_Ok_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiCfrm_Ok_Btn.Location = new System.Drawing.Point(421, 3);
+            this.uiCfrm_Ok_Btn.Location = new System.Drawing.Point(531, 3);
             this.uiCfrm_Ok_Btn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.uiCfrm_Ok_Btn.Name = "uiCfrm_Ok_Btn";
-            this.uiCfrm_Ok_Btn.Size = new System.Drawing.Size(71, 26);
+            this.uiCfrm_Ok_Btn.Size = new System.Drawing.Size(91, 26);
             this.uiCfrm_Ok_Btn.TabIndex = 0;
             this.uiCfrm_Ok_Btn.Text = "OK";
             this.uiCfrm_Ok_Btn.UseVisualStyleBackColor = true;
@@ -964,20 +1130,19 @@
             // 
             // ui_tbLay
             // 
-            this.ui_tbLay.ColumnCount = 3;
-            this.ui_tbLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.ui_tbLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
-            this.ui_tbLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.ui_tbLay.ColumnCount = 2;
+            this.ui_tbLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.42857F));
+            this.ui_tbLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 78.57143F));
+            this.ui_tbLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.ui_tbLay.Controls.Add(this.uiTabs_TblLay, 0, 0);
             this.ui_tbLay.Controls.Add(this.uiCnt_TbLay, 1, 0);
-            this.ui_tbLay.Controls.Add(this.uiChart, 2, 0);
             this.ui_tbLay.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ui_tbLay.Location = new System.Drawing.Point(0, 0);
             this.ui_tbLay.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.ui_tbLay.Name = "ui_tbLay";
             this.ui_tbLay.RowCount = 1;
             this.ui_tbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.ui_tbLay.Size = new System.Drawing.Size(914, 385);
+            this.ui_tbLay.Size = new System.Drawing.Size(804, 385);
             this.ui_tbLay.TabIndex = 3;
             // 
             // uiCnt_TbLay
@@ -987,13 +1152,13 @@
             this.uiCnt_TbLay.Controls.Add(this.uiCnt_TbCtrl, 0, 0);
             this.uiCnt_TbLay.Controls.Add(this.uiCfrm_TbLay, 0, 1);
             this.uiCnt_TbLay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiCnt_TbLay.Location = new System.Drawing.Point(139, 3);
+            this.uiCnt_TbLay.Location = new System.Drawing.Point(174, 3);
             this.uiCnt_TbLay.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.uiCnt_TbLay.Name = "uiCnt_TbLay";
             this.uiCnt_TbLay.RowCount = 2;
             this.uiCnt_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
             this.uiCnt_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.uiCnt_TbLay.Size = new System.Drawing.Size(498, 379);
+            this.uiCnt_TbLay.Size = new System.Drawing.Size(628, 379);
             this.uiCnt_TbLay.TabIndex = 1;
             // 
             // uiCfrm_TbLay
@@ -1011,202 +1176,19 @@
             this.uiCfrm_TbLay.Name = "uiCfrm_TbLay";
             this.uiCfrm_TbLay.RowCount = 1;
             this.uiCfrm_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.uiCfrm_TbLay.Size = new System.Drawing.Size(494, 32);
+            this.uiCfrm_TbLay.Size = new System.Drawing.Size(624, 32);
             this.uiCfrm_TbLay.TabIndex = 2;
-            // 
-            // uiChart
-            // 
-            chartArea4.Name = "ChartArea1";
-            this.uiChart.ChartAreas.Add(chartArea4);
-            this.uiChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiChart.Location = new System.Drawing.Point(642, 3);
-            this.uiChart.Name = "uiChart";
-            series4.ChartArea = "ChartArea1";
-            series4.Name = "Series1";
-            this.uiChart.Series.Add(series4);
-            this.uiChart.Size = new System.Drawing.Size(269, 379);
-            this.uiChart.TabIndex = 2;
-            this.uiChart.Text = "chart1";
-            // 
-            // uiCntHyp_i_Num
-            // 
-            this.uiCntHyp_i_Num.DecimalPlaces = 4;
-            this.uiCntHyp_i_Num.Location = new System.Drawing.Point(243, 121);
-            this.uiCntHyp_i_Num.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.uiCntHyp_i_Num.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.uiCntHyp_i_Num.Minimum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            -2147483648});
-            this.uiCntHyp_i_Num.Name = "uiCntHyp_i_Num";
-            this.uiCntHyp_i_Num.Size = new System.Drawing.Size(120, 20);
-            this.uiCntHyp_i_Num.TabIndex = 12;
-            this.uiCntHyp_i_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.uiCntHyp_i_Num.ThousandsSeparator = true;
-            // 
-            // uiCntHyp_i_Lb
-            // 
-            this.uiCntHyp_i_Lb.AutoSize = true;
-            this.uiCntHyp_i_Lb.Font = new System.Drawing.Font("Consolas", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.uiCntHyp_i_Lb.Location = new System.Drawing.Point(215, 124);
-            this.uiCntHyp_i_Lb.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.uiCntHyp_i_Lb.Name = "uiCntHyp_i_Lb";
-            this.uiCntHyp_i_Lb.Size = new System.Drawing.Size(25, 12);
-            this.uiCntHyp_i_Lb.TabIndex = 11;
-            this.uiCntHyp_i_Lb.Text = "i = ";
-            // 
-            // uiCntHyp_c_Num
-            // 
-            this.uiCntHyp_c_Num.DecimalPlaces = 4;
-            this.uiCntHyp_c_Num.Location = new System.Drawing.Point(243, 35);
-            this.uiCntHyp_c_Num.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.uiCntHyp_c_Num.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.uiCntHyp_c_Num.Minimum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            -2147483648});
-            this.uiCntHyp_c_Num.Name = "uiCntHyp_c_Num";
-            this.uiCntHyp_c_Num.Size = new System.Drawing.Size(120, 20);
-            this.uiCntHyp_c_Num.TabIndex = 14;
-            this.uiCntHyp_c_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.uiCntHyp_c_Num.ThousandsSeparator = true;
-            this.uiCntHyp_c_Num.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.uiCntHyp_c_Num.ValueChanged += new System.EventHandler(this.UiContentHyperbolic_ParameterC_ValueChanged);
-            // 
-            // uiCntHyp_c_Lb
-            // 
-            this.uiCntHyp_c_Lb.AutoSize = true;
-            this.uiCntHyp_c_Lb.Font = new System.Drawing.Font("Consolas", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.uiCntHyp_c_Lb.Location = new System.Drawing.Point(215, 38);
-            this.uiCntHyp_c_Lb.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.uiCntHyp_c_Lb.Name = "uiCntHyp_c_Lb";
-            this.uiCntHyp_c_Lb.Size = new System.Drawing.Size(25, 12);
-            this.uiCntHyp_c_Lb.TabIndex = 13;
-            this.uiCntHyp_c_Lb.Text = "c = ";
-            // 
-            // uiCntHyp_d_Num
-            // 
-            this.uiCntHyp_d_Num.DecimalPlaces = 4;
-            this.uiCntHyp_d_Num.Location = new System.Drawing.Point(243, 79);
-            this.uiCntHyp_d_Num.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.uiCntHyp_d_Num.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.uiCntHyp_d_Num.Minimum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            -2147483648});
-            this.uiCntHyp_d_Num.Name = "uiCntHyp_d_Num";
-            this.uiCntHyp_d_Num.Size = new System.Drawing.Size(120, 20);
-            this.uiCntHyp_d_Num.TabIndex = 16;
-            this.uiCntHyp_d_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.uiCntHyp_d_Num.ThousandsSeparator = true;
-            this.uiCntHyp_d_Num.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this.uiCntHyp_d_Num.ValueChanged += new System.EventHandler(this.UiContentHyperbolic_ParameterD_ValueChanged);
-            // 
-            // uiCntHyp_d_Lb
-            // 
-            this.uiCntHyp_d_Lb.AutoSize = true;
-            this.uiCntHyp_d_Lb.Font = new System.Drawing.Font("Consolas", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.uiCntHyp_d_Lb.Location = new System.Drawing.Point(215, 82);
-            this.uiCntHyp_d_Lb.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.uiCntHyp_d_Lb.Name = "uiCntHyp_d_Lb";
-            this.uiCntHyp_d_Lb.Size = new System.Drawing.Size(25, 12);
-            this.uiCntHyp_d_Lb.TabIndex = 15;
-            this.uiCntHyp_d_Lb.Text = "d = ";
-            // 
-            // uiCntHyp_f_Num
-            // 
-            this.uiCntHyp_f_Num.DecimalPlaces = 4;
-            this.uiCntHyp_f_Num.Location = new System.Drawing.Point(54, 119);
-            this.uiCntHyp_f_Num.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.uiCntHyp_f_Num.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.uiCntHyp_f_Num.Minimum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            -2147483648});
-            this.uiCntHyp_f_Num.Name = "uiCntHyp_f_Num";
-            this.uiCntHyp_f_Num.Size = new System.Drawing.Size(120, 20);
-            this.uiCntHyp_f_Num.TabIndex = 18;
-            this.uiCntHyp_f_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.uiCntHyp_f_Num.ThousandsSeparator = true;
-            this.uiCntHyp_f_Num.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // uiCntHyp_f_Lb
-            // 
-            this.uiCntHyp_f_Lb.AutoSize = true;
-            this.uiCntHyp_f_Lb.Font = new System.Drawing.Font("Consolas", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.uiCntHyp_f_Lb.Location = new System.Drawing.Point(26, 122);
-            this.uiCntHyp_f_Lb.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.uiCntHyp_f_Lb.Name = "uiCntHyp_f_Lb";
-            this.uiCntHyp_f_Lb.Size = new System.Drawing.Size(25, 12);
-            this.uiCntHyp_f_Lb.TabIndex = 17;
-            this.uiCntHyp_f_Lb.Text = "f = ";
-            // 
-            // uiCntHyp_ac_ChBx
-            // 
-            this.uiCntHyp_ac_ChBx.AutoSize = true;
-            this.uiCntHyp_ac_ChBx.Checked = true;
-            this.uiCntHyp_ac_ChBx.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.uiCntHyp_ac_ChBx.Location = new System.Drawing.Point(394, 38);
-            this.uiCntHyp_ac_ChBx.Name = "uiCntHyp_ac_ChBx";
-            this.uiCntHyp_ac_ChBx.Size = new System.Drawing.Size(56, 17);
-            this.uiCntHyp_ac_ChBx.TabIndex = 19;
-            this.uiCntHyp_ac_ChBx.Text = "Bound";
-            this.uiCntHyp_ac_ChBx.UseVisualStyleBackColor = true;
-            // 
-            // uiCntHyp_bd_ChBx
-            // 
-            this.uiCntHyp_bd_ChBx.AutoSize = true;
-            this.uiCntHyp_bd_ChBx.Checked = true;
-            this.uiCntHyp_bd_ChBx.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.uiCntHyp_bd_ChBx.Location = new System.Drawing.Point(394, 81);
-            this.uiCntHyp_bd_ChBx.Name = "uiCntHyp_bd_ChBx";
-            this.uiCntHyp_bd_ChBx.Size = new System.Drawing.Size(56, 17);
-            this.uiCntHyp_bd_ChBx.TabIndex = 20;
-            this.uiCntHyp_bd_ChBx.Text = "Bound";
-            this.uiCntHyp_bd_ChBx.UseVisualStyleBackColor = true;
             // 
             // PatternCurveDefiner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(914, 385);
+            this.ClientSize = new System.Drawing.Size(804, 385);
             this.Controls.Add(this.ui_tbLay);
             this.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.MaximumSize = new System.Drawing.Size(1000, 500);
-            this.MinimumSize = new System.Drawing.Size(930, 420);
+            this.MinimumSize = new System.Drawing.Size(820, 420);
             this.Name = "PatternCurveDefiner";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -1231,6 +1213,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_PicBx)).EndInit();
             this.uiCntHyp_Params_GrBx.ResumeLayout(false);
             this.uiCntHyp_Params_GrBx.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_f_Num)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_d_Num)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_c_Num)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_i_Num)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_b_Num)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_a_Num)).EndInit();
             this.uiCntWave_TbPg.ResumeLayout(false);
@@ -1248,11 +1234,6 @@
             this.ui_tbLay.ResumeLayout(false);
             this.uiCnt_TbLay.ResumeLayout(false);
             this.uiCfrm_TbLay.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.uiChart)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_i_Num)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_c_Num)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_d_Num)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uiCntHyp_f_Num)).EndInit();
             this.ResumeLayout(false);
 
             }
@@ -1312,7 +1293,6 @@
         private System.Windows.Forms.TableLayoutPanel uiCntHyp_TbLay;
         private System.Windows.Forms.TableLayoutPanel uiCntWave_TbLay;
         private System.Windows.Forms.TableLayoutPanel uiCntWave2_TbLay;
-        private System.Windows.Forms.DataVisualization.Charting.Chart uiChart;
         private System.Windows.Forms.NumericUpDown uiCntHyp_f_Num;
         private System.Windows.Forms.Label uiCntHyp_f_Lb;
         private System.Windows.Forms.NumericUpDown uiCntHyp_d_Num;

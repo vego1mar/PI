@@ -75,9 +75,7 @@
             this.uiPnlPrg_TblLay = new System.Windows.Forms.TableLayoutPanel();
             this.uiPnlPrg_LogPath2_TxtBx = new System.Windows.Forms.TextBox();
             this.uiPnlPrg_LogPath1_TxtBx = new System.Windows.Forms.TextBox();
-            this.uiPnlPrg_Excp2_TxtBx = new System.Windows.Forms.TextBox();
-            this.uiPnlPrg_Excp1_TxtBx = new System.Windows.Forms.TextBox();
-            this.uiPnlPrg_Excp_TxtBx = new System.Windows.Forms.TextBox();
+            this.uiPnlPrg_Log_TxtBx = new System.Windows.Forms.TextBox();
             this.uiPnlPrg_OsVer2_TxtBx = new System.Windows.Forms.TextBox();
             this.uiPnlPrg_OsVer1_TxtBx = new System.Windows.Forms.TextBox();
             this.uiPnlPrg_DotNetFr2_TxtBx = new System.Windows.Forms.TextBox();
@@ -862,11 +860,9 @@
             this.uiPnlPrg_TblLay.ColumnCount = 2;
             this.uiPnlPrg_TblLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.uiPnlPrg_TblLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.uiPnlPrg_TblLay.Controls.Add(this.uiPnlPrg_LogPath2_TxtBx, 1, 10);
-            this.uiPnlPrg_TblLay.Controls.Add(this.uiPnlPrg_LogPath1_TxtBx, 0, 10);
-            this.uiPnlPrg_TblLay.Controls.Add(this.uiPnlPrg_Excp2_TxtBx, 1, 9);
-            this.uiPnlPrg_TblLay.Controls.Add(this.uiPnlPrg_Excp1_TxtBx, 0, 9);
-            this.uiPnlPrg_TblLay.Controls.Add(this.uiPnlPrg_Excp_TxtBx, 0, 8);
+            this.uiPnlPrg_TblLay.Controls.Add(this.uiPnlPrg_LogPath2_TxtBx, 1, 9);
+            this.uiPnlPrg_TblLay.Controls.Add(this.uiPnlPrg_LogPath1_TxtBx, 0, 9);
+            this.uiPnlPrg_TblLay.Controls.Add(this.uiPnlPrg_Log_TxtBx, 0, 8);
             this.uiPnlPrg_TblLay.Controls.Add(this.uiPnlPrg_OsVer2_TxtBx, 1, 6);
             this.uiPnlPrg_TblLay.Controls.Add(this.uiPnlPrg_OsVer1_TxtBx, 0, 6);
             this.uiPnlPrg_TblLay.Controls.Add(this.uiPnlPrg_DotNetFr2_TxtBx, 1, 5);
@@ -903,7 +899,7 @@
             this.uiPnlPrg_LogPath2_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
             this.uiPnlPrg_LogPath2_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
             this.uiPnlPrg_LogPath2_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlPrg_LogPath2_TxtBx.Location = new System.Drawing.Point(123, 253);
+            this.uiPnlPrg_LogPath2_TxtBx.Location = new System.Drawing.Point(123, 228);
             this.uiPnlPrg_LogPath2_TxtBx.Name = "uiPnlPrg_LogPath2_TxtBx";
             this.uiPnlPrg_LogPath2_TxtBx.ReadOnly = true;
             this.uiPnlPrg_LogPath2_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -916,7 +912,7 @@
             this.uiPnlPrg_LogPath1_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
             this.uiPnlPrg_LogPath1_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
             this.uiPnlPrg_LogPath1_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlPrg_LogPath1_TxtBx.Location = new System.Drawing.Point(3, 253);
+            this.uiPnlPrg_LogPath1_TxtBx.Location = new System.Drawing.Point(3, 228);
             this.uiPnlPrg_LogPath1_TxtBx.Name = "uiPnlPrg_LogPath1_TxtBx";
             this.uiPnlPrg_LogPath1_TxtBx.ReadOnly = true;
             this.uiPnlPrg_LogPath1_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -924,45 +920,19 @@
             this.uiPnlPrg_LogPath1_TxtBx.TabIndex = 18;
             this.uiPnlPrg_LogPath1_TxtBx.Text = "Log path:";
             // 
-            // uiPnlPrg_Excp2_TxtBx
+            // uiPnlPrg_Log_TxtBx
             // 
-            this.uiPnlPrg_Excp2_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.uiPnlPrg_Excp2_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
-            this.uiPnlPrg_Excp2_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlPrg_Excp2_TxtBx.Location = new System.Drawing.Point(123, 228);
-            this.uiPnlPrg_Excp2_TxtBx.Name = "uiPnlPrg_Excp2_TxtBx";
-            this.uiPnlPrg_Excp2_TxtBx.ReadOnly = true;
-            this.uiPnlPrg_Excp2_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiPnlPrg_Excp2_TxtBx.Size = new System.Drawing.Size(114, 20);
-            this.uiPnlPrg_Excp2_TxtBx.TabIndex = 17;
-            this.uiPnlPrg_Excp2_TxtBx.Text = "0";
-            // 
-            // uiPnlPrg_Excp1_TxtBx
-            // 
-            this.uiPnlPrg_Excp1_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.uiPnlPrg_Excp1_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
-            this.uiPnlPrg_Excp1_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlPrg_Excp1_TxtBx.Location = new System.Drawing.Point(3, 228);
-            this.uiPnlPrg_Excp1_TxtBx.Name = "uiPnlPrg_Excp1_TxtBx";
-            this.uiPnlPrg_Excp1_TxtBx.ReadOnly = true;
-            this.uiPnlPrg_Excp1_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiPnlPrg_Excp1_TxtBx.Size = new System.Drawing.Size(114, 20);
-            this.uiPnlPrg_Excp1_TxtBx.TabIndex = 16;
-            this.uiPnlPrg_Excp1_TxtBx.Text = "Exceptions caught:";
-            // 
-            // uiPnlPrg_Excp_TxtBx
-            // 
-            this.uiPnlPrg_Excp_TxtBx.BackColor = System.Drawing.SystemColors.Control;
-            this.uiPnlPrg_TblLay.SetColumnSpan(this.uiPnlPrg_Excp_TxtBx, 2);
-            this.uiPnlPrg_Excp_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlPrg_Excp_TxtBx.Enabled = false;
-            this.uiPnlPrg_Excp_TxtBx.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.uiPnlPrg_Excp_TxtBx.Location = new System.Drawing.Point(3, 203);
-            this.uiPnlPrg_Excp_TxtBx.Name = "uiPnlPrg_Excp_TxtBx";
-            this.uiPnlPrg_Excp_TxtBx.ReadOnly = true;
-            this.uiPnlPrg_Excp_TxtBx.Size = new System.Drawing.Size(234, 20);
-            this.uiPnlPrg_Excp_TxtBx.TabIndex = 15;
-            this.uiPnlPrg_Excp_TxtBx.Text = "Exceptions";
+            this.uiPnlPrg_Log_TxtBx.BackColor = System.Drawing.SystemColors.Control;
+            this.uiPnlPrg_TblLay.SetColumnSpan(this.uiPnlPrg_Log_TxtBx, 2);
+            this.uiPnlPrg_Log_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiPnlPrg_Log_TxtBx.Enabled = false;
+            this.uiPnlPrg_Log_TxtBx.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.uiPnlPrg_Log_TxtBx.Location = new System.Drawing.Point(3, 203);
+            this.uiPnlPrg_Log_TxtBx.Name = "uiPnlPrg_Log_TxtBx";
+            this.uiPnlPrg_Log_TxtBx.ReadOnly = true;
+            this.uiPnlPrg_Log_TxtBx.Size = new System.Drawing.Size(234, 20);
+            this.uiPnlPrg_Log_TxtBx.TabIndex = 15;
+            this.uiPnlPrg_Log_TxtBx.Text = "Log";
             // 
             // uiPnlPrg_OsVer2_TxtBx
             // 
@@ -1322,9 +1292,7 @@
         private System.Windows.Forms.TextBox uiPnlPrg_OsVer1_TxtBx;
         private System.Windows.Forms.SplitContainer uiMw_SpCtn;
         private System.Windows.Forms.Button uiPnlDtSh_ShowDtSet_Btn;
-        private System.Windows.Forms.TextBox uiPnlPrg_Excp2_TxtBx;
-        private System.Windows.Forms.TextBox uiPnlPrg_Excp1_TxtBx;
-        private System.Windows.Forms.TextBox uiPnlPrg_Excp_TxtBx;
+        private System.Windows.Forms.TextBox uiPnlPrg_Log_TxtBx;
         private System.Windows.Forms.TextBox uiPnlPrg_LogPath2_TxtBx;
         private System.Windows.Forms.TextBox uiPnlPrg_LogPath1_TxtBx;
         private System.Windows.Forms.TextBox uiPnlDtSh_GsNoise_TxtBx;

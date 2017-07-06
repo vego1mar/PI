@@ -41,7 +41,6 @@ namespace PI
             DefineTimerThread();
             ThreadTasker.StartThreadSafe( Timer );
             UpdateUiByStatusOfTimerThread();
-            UpdateUiByNumbersOfExceptionsCaught();
         }
 
         private void UiMenuProgram_Exit_Click( object sender, EventArgs e )
@@ -108,7 +107,6 @@ namespace PI
                 string numberOfSecondsText = numberOfSeconds.ToString( "00" );
                 string numberOfDaysText = numberOfDays.ToString();
                 UpdateUiByTimerCounts( numberOfDaysText + ":" + numberOfHoursText + ":" + numberOfMinutesText + ":" + numberOfSecondsText );
-                UpdateUiByNumbersOfExceptionsCaught();
             };
         }
 
@@ -118,25 +116,6 @@ namespace PI
                 BeginInvoke( (MethodInvoker) delegate {
                     uiPnlPrg_Cnts2_TxtBx.Text = text;
                     uiPnlPrg_Cnts2_TxtBx.Refresh();
-                } );
-            }
-            catch ( ObjectDisposedException x ) {
-                Logger.WriteException( x );
-            }
-            catch ( InvalidOperationException x ) {
-                Logger.WriteException( x );
-            }
-            catch ( Exception x ) {
-                Logger.WriteException( x );
-            }
-        }
-
-        private void UpdateUiByNumbersOfExceptionsCaught()
-        {
-            try {
-                BeginInvoke( (MethodInvoker) delegate {
-                    uiPnlPrg_Excp2_TxtBx.Text = Logger.NumberOfLoggedExceptions.ToString();
-                    uiPnlPrg_Excp2_TxtBx.Refresh();
                 } );
             }
             catch ( ObjectDisposedException x ) {
@@ -573,6 +552,7 @@ namespace PI
         {
             CurvesDataManager.SetDefaultProperties( uiCharts_Crv );
             WinFormsHelper.SetSelectedIndexSafe( uiPnlGen_MeanT_ComBx, (int) Enums.MeanType.Geometric );
+            UpdateUiByChosenScaffoldStatus();
         }
 
         private void UiMainWindow_Resize( object sender, EventArgs e )
