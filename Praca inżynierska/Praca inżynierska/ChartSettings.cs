@@ -562,6 +562,11 @@ namespace PI
 
         private void UiCenterChartArea_Axis_SelectedIndexChanged( object sender, EventArgs e )
         {
+            CheckFormInitialization();
+        }
+
+        private void CheckFormInitialization()
+        {
             if ( !IsFormInitialized ) {
                 return;
             }
@@ -714,11 +719,7 @@ namespace PI
 
         private void UiCenterArea_Grid_SelectedIndexChanged( object sender, EventArgs e )
         {
-            if ( !IsFormInitialized ) {
-                return;
-            }
-
-            PerformAxisGridSwitch();
+            CheckFormInitialization();
         }
 
         private void DefineSeriesTabPageComboBoxes()

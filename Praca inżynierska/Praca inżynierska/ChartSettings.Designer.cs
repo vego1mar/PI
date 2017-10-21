@@ -61,16 +61,16 @@
             this.uiCtrArea_ChA_TxtBx = new System.Windows.Forms.TextBox();
             this.uiCtrArea_LnWth_Num = new System.Windows.Forms.NumericUpDown();
             this.uiCtr_Srs_TbPg = new System.Windows.Forms.TabPage();
-            this.uiBtm_Ok_Btn = new System.Windows.Forms.Button();
             this.uiCtrSrs_TbLay = new System.Windows.Forms.TableLayoutPanel();
-            this.uiCtrSrs_Color_TxtBx = new System.Windows.Forms.TextBox();
-            this.uiCtrSrs_ChT_TxtBx = new System.Windows.Forms.TextBox();
-            this.uiCtrSrs_BorStyle_TxtBx = new System.Windows.Forms.TextBox();
-            this.uiCtrSrs_BorWth_TxtBx = new System.Windows.Forms.TextBox();
-            this.uiCtrSrs_ChT_ComBx = new System.Windows.Forms.ComboBox();
-            this.uiCtrSrs_Color_ComBx = new System.Windows.Forms.ComboBox();
-            this.uiCtrSrs_BorStyle_ComBx = new System.Windows.Forms.ComboBox();
             this.uiCtrSrs_BorWth_Num = new System.Windows.Forms.NumericUpDown();
+            this.uiCtrSrs_BorStyle_ComBx = new System.Windows.Forms.ComboBox();
+            this.uiCtrSrs_Color_ComBx = new System.Windows.Forms.ComboBox();
+            this.uiCtrSrs_ChT_ComBx = new System.Windows.Forms.ComboBox();
+            this.uiCtrSrs_BorWth_TxtBx = new System.Windows.Forms.TextBox();
+            this.uiCtrSrs_BorStyle_TxtBx = new System.Windows.Forms.TextBox();
+            this.uiCtrSrs_ChT_TxtBx = new System.Windows.Forms.TextBox();
+            this.uiCtrSrs_Color_TxtBx = new System.Windows.Forms.TextBox();
+            this.uiBtm_Ok_Btn = new System.Windows.Forms.Button();
             this.ui_TbLay.SuspendLayout();
             this.uiTop_TbLay.SuspendLayout();
             this.uiCtr_TbCtrl.SuspendLayout();
@@ -158,7 +158,7 @@
             this.uCtr_Chart_TbPg.Location = new System.Drawing.Point(4, 22);
             this.uCtr_Chart_TbPg.Name = "uCtr_Chart_TbPg";
             this.uCtr_Chart_TbPg.Padding = new System.Windows.Forms.Padding(3);
-            this.uCtr_Chart_TbPg.Size = new System.Drawing.Size(370, 333);
+            this.uCtr_Chart_TbPg.Size = new System.Drawing.Size(270, 333);
             this.uCtr_Chart_TbPg.TabIndex = 0;
             this.uCtr_Chart_TbPg.Text = "Chart";
             this.uCtr_Chart_TbPg.UseVisualStyleBackColor = true;
@@ -185,7 +185,7 @@
             this.uiCtrChart_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.uiCtrChart_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.uiCtrChart_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.uiCtrChart_TbLay.Size = new System.Drawing.Size(364, 327);
+            this.uiCtrChart_TbLay.Size = new System.Drawing.Size(264, 327);
             this.uiCtrChart_TbLay.TabIndex = 0;
             // 
             // uiCtrChart_BkCol_ComBx
@@ -193,9 +193,9 @@
             this.uiCtrChart_BkCol_ComBx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiCtrChart_BkCol_ComBx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.uiCtrChart_BkCol_ComBx.FormattingEnabled = true;
-            this.uiCtrChart_BkCol_ComBx.Location = new System.Drawing.Point(182, 53);
+            this.uiCtrChart_BkCol_ComBx.Location = new System.Drawing.Point(132, 53);
             this.uiCtrChart_BkCol_ComBx.Name = "uiCtrChart_BkCol_ComBx";
-            this.uiCtrChart_BkCol_ComBx.Size = new System.Drawing.Size(174, 21);
+            this.uiCtrChart_BkCol_ComBx.Size = new System.Drawing.Size(124, 21);
             this.uiCtrChart_BkCol_ComBx.TabIndex = 6;
             // 
             // uiCtrChart_SupEx_ComBx
@@ -203,9 +203,9 @@
             this.uiCtrChart_SupEx_ComBx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiCtrChart_SupEx_ComBx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.uiCtrChart_SupEx_ComBx.FormattingEnabled = true;
-            this.uiCtrChart_SupEx_ComBx.Location = new System.Drawing.Point(182, 28);
+            this.uiCtrChart_SupEx_ComBx.Location = new System.Drawing.Point(132, 28);
             this.uiCtrChart_SupEx_ComBx.Name = "uiCtrChart_SupEx_ComBx";
-            this.uiCtrChart_SupEx_ComBx.Size = new System.Drawing.Size(174, 21);
+            this.uiCtrChart_SupEx_ComBx.Size = new System.Drawing.Size(124, 21);
             this.uiCtrChart_SupEx_ComBx.TabIndex = 5;
             // 
             // uiCtrChart_BkCol_TxtBx
@@ -214,7 +214,7 @@
             this.uiCtrChart_BkCol_TxtBx.Location = new System.Drawing.Point(3, 53);
             this.uiCtrChart_BkCol_TxtBx.Name = "uiCtrChart_BkCol_TxtBx";
             this.uiCtrChart_BkCol_TxtBx.ReadOnly = true;
-            this.uiCtrChart_BkCol_TxtBx.Size = new System.Drawing.Size(173, 20);
+            this.uiCtrChart_BkCol_TxtBx.Size = new System.Drawing.Size(123, 20);
             this.uiCtrChart_BkCol_TxtBx.TabIndex = 2;
             this.uiCtrChart_BkCol_TxtBx.Text = "BackColor";
             // 
@@ -224,7 +224,7 @@
             this.uiCtrChart_SupEx_TxtBx.Location = new System.Drawing.Point(3, 28);
             this.uiCtrChart_SupEx_TxtBx.Name = "uiCtrChart_SupEx_TxtBx";
             this.uiCtrChart_SupEx_TxtBx.ReadOnly = true;
-            this.uiCtrChart_SupEx_TxtBx.Size = new System.Drawing.Size(173, 20);
+            this.uiCtrChart_SupEx_TxtBx.Size = new System.Drawing.Size(123, 20);
             this.uiCtrChart_SupEx_TxtBx.TabIndex = 1;
             this.uiCtrChart_SupEx_TxtBx.Text = "SuppressExceptions";
             // 
@@ -234,7 +234,7 @@
             this.uiCtrChart_Aa_TxtBx.Location = new System.Drawing.Point(3, 3);
             this.uiCtrChart_Aa_TxtBx.Name = "uiCtrChart_Aa_TxtBx";
             this.uiCtrChart_Aa_TxtBx.ReadOnly = true;
-            this.uiCtrChart_Aa_TxtBx.Size = new System.Drawing.Size(173, 20);
+            this.uiCtrChart_Aa_TxtBx.Size = new System.Drawing.Size(123, 20);
             this.uiCtrChart_Aa_TxtBx.TabIndex = 0;
             this.uiCtrChart_Aa_TxtBx.Text = "AntiAliasing";
             // 
@@ -243,9 +243,9 @@
             this.uiCtrChart_Aa_ComBx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiCtrChart_Aa_ComBx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.uiCtrChart_Aa_ComBx.FormattingEnabled = true;
-            this.uiCtrChart_Aa_ComBx.Location = new System.Drawing.Point(182, 3);
+            this.uiCtrChart_Aa_ComBx.Location = new System.Drawing.Point(132, 3);
             this.uiCtrChart_Aa_ComBx.Name = "uiCtrChart_Aa_ComBx";
-            this.uiCtrChart_Aa_ComBx.Size = new System.Drawing.Size(174, 21);
+            this.uiCtrChart_Aa_ComBx.Size = new System.Drawing.Size(124, 21);
             this.uiCtrChart_Aa_ComBx.TabIndex = 4;
             // 
             // uiCtr_Area_TbPg
@@ -253,7 +253,7 @@
             this.uiCtr_Area_TbPg.Controls.Add(this.uiCtrArea_TbLay);
             this.uiCtr_Area_TbPg.Location = new System.Drawing.Point(4, 22);
             this.uiCtr_Area_TbPg.Name = "uiCtr_Area_TbPg";
-            this.uiCtr_Area_TbPg.Size = new System.Drawing.Size(370, 333);
+            this.uiCtr_Area_TbPg.Size = new System.Drawing.Size(270, 333);
             this.uiCtr_Area_TbPg.TabIndex = 2;
             this.uiCtr_Area_TbPg.Text = "Chart area";
             this.uiCtr_Area_TbPg.UseVisualStyleBackColor = true;
@@ -301,7 +301,7 @@
             this.uiCtrArea_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.uiCtrArea_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.uiCtrArea_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.uiCtrArea_TbLay.Size = new System.Drawing.Size(370, 333);
+            this.uiCtrArea_TbLay.Size = new System.Drawing.Size(270, 333);
             this.uiCtrArea_TbLay.TabIndex = 0;
             // 
             // uiCtrArea_Grid_ComBx
@@ -309,9 +309,9 @@
             this.uiCtrArea_Grid_ComBx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiCtrArea_Grid_ComBx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.uiCtrArea_Grid_ComBx.FormattingEnabled = true;
-            this.uiCtrArea_Grid_ComBx.Location = new System.Drawing.Point(185, 153);
+            this.uiCtrArea_Grid_ComBx.Location = new System.Drawing.Point(135, 153);
             this.uiCtrArea_Grid_ComBx.Name = "uiCtrArea_Grid_ComBx";
-            this.uiCtrArea_Grid_ComBx.Size = new System.Drawing.Size(177, 21);
+            this.uiCtrArea_Grid_ComBx.Size = new System.Drawing.Size(127, 21);
             this.uiCtrArea_Grid_ComBx.TabIndex = 19;
             this.uiCtrArea_Grid_ComBx.SelectedIndexChanged += new System.EventHandler(this.UiCenterArea_Grid_SelectedIndexChanged);
             // 
@@ -320,9 +320,9 @@
             this.uiCtrArea_Axis_ComBx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiCtrArea_Axis_ComBx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.uiCtrArea_Axis_ComBx.FormattingEnabled = true;
-            this.uiCtrArea_Axis_ComBx.Location = new System.Drawing.Point(185, 128);
+            this.uiCtrArea_Axis_ComBx.Location = new System.Drawing.Point(135, 128);
             this.uiCtrArea_Axis_ComBx.Name = "uiCtrArea_Axis_ComBx";
-            this.uiCtrArea_Axis_ComBx.Size = new System.Drawing.Size(177, 21);
+            this.uiCtrArea_Axis_ComBx.Size = new System.Drawing.Size(127, 21);
             this.uiCtrArea_Axis_ComBx.TabIndex = 18;
             this.uiCtrArea_Axis_ComBx.SelectedIndexChanged += new System.EventHandler(this.UiCenterChartArea_Axis_SelectedIndexChanged);
             // 
@@ -332,7 +332,7 @@
             this.uiCtrArea_Grid_TxtBx.Location = new System.Drawing.Point(3, 153);
             this.uiCtrArea_Grid_TxtBx.Name = "uiCtrArea_Grid_TxtBx";
             this.uiCtrArea_Grid_TxtBx.ReadOnly = true;
-            this.uiCtrArea_Grid_TxtBx.Size = new System.Drawing.Size(176, 20);
+            this.uiCtrArea_Grid_TxtBx.Size = new System.Drawing.Size(126, 20);
             this.uiCtrArea_Grid_TxtBx.TabIndex = 17;
             this.uiCtrArea_Grid_TxtBx.Text = "Grid";
             // 
@@ -342,7 +342,7 @@
             this.uiCtrArea_Axis_TxtBx.Location = new System.Drawing.Point(3, 128);
             this.uiCtrArea_Axis_TxtBx.Name = "uiCtrArea_Axis_TxtBx";
             this.uiCtrArea_Axis_TxtBx.ReadOnly = true;
-            this.uiCtrArea_Axis_TxtBx.Size = new System.Drawing.Size(176, 20);
+            this.uiCtrArea_Axis_TxtBx.Size = new System.Drawing.Size(126, 20);
             this.uiCtrArea_Axis_TxtBx.TabIndex = 16;
             this.uiCtrArea_Axis_TxtBx.Text = "Axis";
             // 
@@ -352,7 +352,7 @@
             this.uiCtrArea_LnWth_TxtBx.Location = new System.Drawing.Point(3, 253);
             this.uiCtrArea_LnWth_TxtBx.Name = "uiCtrArea_LnWth_TxtBx";
             this.uiCtrArea_LnWth_TxtBx.ReadOnly = true;
-            this.uiCtrArea_LnWth_TxtBx.Size = new System.Drawing.Size(176, 20);
+            this.uiCtrArea_LnWth_TxtBx.Size = new System.Drawing.Size(126, 20);
             this.uiCtrArea_LnWth_TxtBx.TabIndex = 14;
             this.uiCtrArea_LnWth_TxtBx.Text = "LineWidth";
             // 
@@ -361,9 +361,9 @@
             this.uiCtrArea_LnStyle_ComBx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiCtrArea_LnStyle_ComBx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.uiCtrArea_LnStyle_ComBx.FormattingEnabled = true;
-            this.uiCtrArea_LnStyle_ComBx.Location = new System.Drawing.Point(185, 228);
+            this.uiCtrArea_LnStyle_ComBx.Location = new System.Drawing.Point(135, 228);
             this.uiCtrArea_LnStyle_ComBx.Name = "uiCtrArea_LnStyle_ComBx";
-            this.uiCtrArea_LnStyle_ComBx.Size = new System.Drawing.Size(177, 21);
+            this.uiCtrArea_LnStyle_ComBx.Size = new System.Drawing.Size(127, 21);
             this.uiCtrArea_LnStyle_ComBx.TabIndex = 13;
             // 
             // uiCtrArea_LnStyle_TxtBx
@@ -372,7 +372,7 @@
             this.uiCtrArea_LnStyle_TxtBx.Location = new System.Drawing.Point(3, 228);
             this.uiCtrArea_LnStyle_TxtBx.Name = "uiCtrArea_LnStyle_TxtBx";
             this.uiCtrArea_LnStyle_TxtBx.ReadOnly = true;
-            this.uiCtrArea_LnStyle_TxtBx.Size = new System.Drawing.Size(176, 20);
+            this.uiCtrArea_LnStyle_TxtBx.Size = new System.Drawing.Size(126, 20);
             this.uiCtrArea_LnStyle_TxtBx.TabIndex = 12;
             this.uiCtrArea_LnStyle_TxtBx.Text = "LineDashStyle";
             // 
@@ -381,9 +381,9 @@
             this.uiCtrArea_LnCol_ComBx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiCtrArea_LnCol_ComBx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.uiCtrArea_LnCol_ComBx.FormattingEnabled = true;
-            this.uiCtrArea_LnCol_ComBx.Location = new System.Drawing.Point(185, 203);
+            this.uiCtrArea_LnCol_ComBx.Location = new System.Drawing.Point(135, 203);
             this.uiCtrArea_LnCol_ComBx.Name = "uiCtrArea_LnCol_ComBx";
-            this.uiCtrArea_LnCol_ComBx.Size = new System.Drawing.Size(177, 21);
+            this.uiCtrArea_LnCol_ComBx.Size = new System.Drawing.Size(127, 21);
             this.uiCtrArea_LnCol_ComBx.TabIndex = 11;
             // 
             // uiCtrArea_LnCol_TxtBx
@@ -392,7 +392,7 @@
             this.uiCtrArea_LnCol_TxtBx.Location = new System.Drawing.Point(3, 203);
             this.uiCtrArea_LnCol_TxtBx.Name = "uiCtrArea_LnCol_TxtBx";
             this.uiCtrArea_LnCol_TxtBx.ReadOnly = true;
-            this.uiCtrArea_LnCol_TxtBx.Size = new System.Drawing.Size(176, 20);
+            this.uiCtrArea_LnCol_TxtBx.Size = new System.Drawing.Size(126, 20);
             this.uiCtrArea_LnCol_TxtBx.TabIndex = 10;
             this.uiCtrArea_LnCol_TxtBx.Text = "LineColor";
             // 
@@ -401,9 +401,9 @@
             this.uiCtrArea_En_ComBx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiCtrArea_En_ComBx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.uiCtrArea_En_ComBx.FormattingEnabled = true;
-            this.uiCtrArea_En_ComBx.Location = new System.Drawing.Point(185, 178);
+            this.uiCtrArea_En_ComBx.Location = new System.Drawing.Point(135, 178);
             this.uiCtrArea_En_ComBx.Name = "uiCtrArea_En_ComBx";
-            this.uiCtrArea_En_ComBx.Size = new System.Drawing.Size(177, 21);
+            this.uiCtrArea_En_ComBx.Size = new System.Drawing.Size(127, 21);
             this.uiCtrArea_En_ComBx.TabIndex = 9;
             // 
             // uiCtrArea_En_TxtBx
@@ -412,7 +412,7 @@
             this.uiCtrArea_En_TxtBx.Location = new System.Drawing.Point(3, 178);
             this.uiCtrArea_En_TxtBx.Name = "uiCtrArea_En_TxtBx";
             this.uiCtrArea_En_TxtBx.ReadOnly = true;
-            this.uiCtrArea_En_TxtBx.Size = new System.Drawing.Size(176, 20);
+            this.uiCtrArea_En_TxtBx.Size = new System.Drawing.Size(126, 20);
             this.uiCtrArea_En_TxtBx.TabIndex = 8;
             this.uiCtrArea_En_TxtBx.Text = "Enabled";
             // 
@@ -424,7 +424,7 @@
             this.uiCtrArea_Axes_TxtBx.Location = new System.Drawing.Point(3, 103);
             this.uiCtrArea_Axes_TxtBx.Name = "uiCtrArea_Axes_TxtBx";
             this.uiCtrArea_Axes_TxtBx.ReadOnly = true;
-            this.uiCtrArea_Axes_TxtBx.Size = new System.Drawing.Size(359, 20);
+            this.uiCtrArea_Axes_TxtBx.Size = new System.Drawing.Size(259, 20);
             this.uiCtrArea_Axes_TxtBx.TabIndex = 7;
             this.uiCtrArea_Axes_TxtBx.Text = "Axes";
             // 
@@ -433,9 +433,9 @@
             this.uiCtrArea_BkCol_ComBx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiCtrArea_BkCol_ComBx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.uiCtrArea_BkCol_ComBx.FormattingEnabled = true;
-            this.uiCtrArea_BkCol_ComBx.Location = new System.Drawing.Point(185, 53);
+            this.uiCtrArea_BkCol_ComBx.Location = new System.Drawing.Point(135, 53);
             this.uiCtrArea_BkCol_ComBx.Name = "uiCtrArea_BkCol_ComBx";
-            this.uiCtrArea_BkCol_ComBx.Size = new System.Drawing.Size(177, 21);
+            this.uiCtrArea_BkCol_ComBx.Size = new System.Drawing.Size(127, 21);
             this.uiCtrArea_BkCol_ComBx.TabIndex = 6;
             // 
             // uiCtrArea_3d_ComBx
@@ -443,9 +443,9 @@
             this.uiCtrArea_3d_ComBx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiCtrArea_3d_ComBx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.uiCtrArea_3d_ComBx.FormattingEnabled = true;
-            this.uiCtrArea_3d_ComBx.Location = new System.Drawing.Point(185, 28);
+            this.uiCtrArea_3d_ComBx.Location = new System.Drawing.Point(135, 28);
             this.uiCtrArea_3d_ComBx.Name = "uiCtrArea_3d_ComBx";
-            this.uiCtrArea_3d_ComBx.Size = new System.Drawing.Size(177, 21);
+            this.uiCtrArea_3d_ComBx.Size = new System.Drawing.Size(127, 21);
             this.uiCtrArea_3d_ComBx.TabIndex = 5;
             // 
             // uiCtrArea_BkCol_TxtBx
@@ -454,7 +454,7 @@
             this.uiCtrArea_BkCol_TxtBx.Location = new System.Drawing.Point(3, 53);
             this.uiCtrArea_BkCol_TxtBx.Name = "uiCtrArea_BkCol_TxtBx";
             this.uiCtrArea_BkCol_TxtBx.ReadOnly = true;
-            this.uiCtrArea_BkCol_TxtBx.Size = new System.Drawing.Size(176, 20);
+            this.uiCtrArea_BkCol_TxtBx.Size = new System.Drawing.Size(126, 20);
             this.uiCtrArea_BkCol_TxtBx.TabIndex = 2;
             this.uiCtrArea_BkCol_TxtBx.Text = "BackColor";
             // 
@@ -464,7 +464,7 @@
             this.uiCtrArea_3d_TxtBx.Location = new System.Drawing.Point(3, 28);
             this.uiCtrArea_3d_TxtBx.Name = "uiCtrArea_3d_TxtBx";
             this.uiCtrArea_3d_TxtBx.ReadOnly = true;
-            this.uiCtrArea_3d_TxtBx.Size = new System.Drawing.Size(176, 20);
+            this.uiCtrArea_3d_TxtBx.Size = new System.Drawing.Size(126, 20);
             this.uiCtrArea_3d_TxtBx.TabIndex = 1;
             this.uiCtrArea_3d_TxtBx.Text = "Area3DStyle";
             // 
@@ -476,14 +476,14 @@
             this.uiCtrArea_ChA_TxtBx.Location = new System.Drawing.Point(3, 3);
             this.uiCtrArea_ChA_TxtBx.Name = "uiCtrArea_ChA_TxtBx";
             this.uiCtrArea_ChA_TxtBx.ReadOnly = true;
-            this.uiCtrArea_ChA_TxtBx.Size = new System.Drawing.Size(359, 20);
+            this.uiCtrArea_ChA_TxtBx.Size = new System.Drawing.Size(259, 20);
             this.uiCtrArea_ChA_TxtBx.TabIndex = 0;
             this.uiCtrArea_ChA_TxtBx.Text = "Chart area";
             // 
             // uiCtrArea_LnWth_Num
             // 
             this.uiCtrArea_LnWth_Num.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiCtrArea_LnWth_Num.Location = new System.Drawing.Point(185, 253);
+            this.uiCtrArea_LnWth_Num.Location = new System.Drawing.Point(135, 253);
             this.uiCtrArea_LnWth_Num.Maximum = new decimal(new int[] {
             10,
             0,
@@ -495,7 +495,7 @@
             0,
             0});
             this.uiCtrArea_LnWth_Num.Name = "uiCtrArea_LnWth_Num";
-            this.uiCtrArea_LnWth_Num.Size = new System.Drawing.Size(177, 20);
+            this.uiCtrArea_LnWth_Num.Size = new System.Drawing.Size(127, 20);
             this.uiCtrArea_LnWth_Num.TabIndex = 15;
             this.uiCtrArea_LnWth_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.uiCtrArea_LnWth_Num.ThousandsSeparator = true;
@@ -515,18 +515,6 @@
             this.uiCtr_Srs_TbPg.TabIndex = 1;
             this.uiCtr_Srs_TbPg.Text = "Series";
             this.uiCtr_Srs_TbPg.UseVisualStyleBackColor = true;
-            // 
-            // uiBtm_Ok_Btn
-            // 
-            this.uiBtm_Ok_Btn.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.uiBtm_Ok_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiBtm_Ok_Btn.Location = new System.Drawing.Point(3, 398);
-            this.uiBtm_Ok_Btn.Name = "uiBtm_Ok_Btn";
-            this.uiBtm_Ok_Btn.Size = new System.Drawing.Size(278, 24);
-            this.uiBtm_Ok_Btn.TabIndex = 2;
-            this.uiBtm_Ok_Btn.Text = "OK";
-            this.uiBtm_Ok_Btn.UseVisualStyleBackColor = true;
-            this.uiBtm_Ok_Btn.Click += new System.EventHandler(this.UiBottom_Ok_Click);
             // 
             // uiCtrSrs_TbLay
             // 
@@ -557,76 +545,6 @@
             this.uiCtrSrs_TbLay.Size = new System.Drawing.Size(264, 327);
             this.uiCtrSrs_TbLay.TabIndex = 0;
             // 
-            // uiCtrSrs_Color_TxtBx
-            // 
-            this.uiCtrSrs_Color_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiCtrSrs_Color_TxtBx.Location = new System.Drawing.Point(3, 3);
-            this.uiCtrSrs_Color_TxtBx.Name = "uiCtrSrs_Color_TxtBx";
-            this.uiCtrSrs_Color_TxtBx.ReadOnly = true;
-            this.uiCtrSrs_Color_TxtBx.Size = new System.Drawing.Size(123, 20);
-            this.uiCtrSrs_Color_TxtBx.TabIndex = 17;
-            this.uiCtrSrs_Color_TxtBx.Text = "Color";
-            // 
-            // uiCtrSrs_ChT_TxtBx
-            // 
-            this.uiCtrSrs_ChT_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiCtrSrs_ChT_TxtBx.Location = new System.Drawing.Point(3, 78);
-            this.uiCtrSrs_ChT_TxtBx.Name = "uiCtrSrs_ChT_TxtBx";
-            this.uiCtrSrs_ChT_TxtBx.ReadOnly = true;
-            this.uiCtrSrs_ChT_TxtBx.Size = new System.Drawing.Size(123, 20);
-            this.uiCtrSrs_ChT_TxtBx.TabIndex = 18;
-            this.uiCtrSrs_ChT_TxtBx.Text = "ChartType";
-            // 
-            // uiCtrSrs_BorStyle_TxtBx
-            // 
-            this.uiCtrSrs_BorStyle_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiCtrSrs_BorStyle_TxtBx.Location = new System.Drawing.Point(3, 53);
-            this.uiCtrSrs_BorStyle_TxtBx.Name = "uiCtrSrs_BorStyle_TxtBx";
-            this.uiCtrSrs_BorStyle_TxtBx.ReadOnly = true;
-            this.uiCtrSrs_BorStyle_TxtBx.Size = new System.Drawing.Size(123, 20);
-            this.uiCtrSrs_BorStyle_TxtBx.TabIndex = 19;
-            this.uiCtrSrs_BorStyle_TxtBx.Text = "BorderDashStyle";
-            // 
-            // uiCtrSrs_BorWth_TxtBx
-            // 
-            this.uiCtrSrs_BorWth_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiCtrSrs_BorWth_TxtBx.Location = new System.Drawing.Point(3, 28);
-            this.uiCtrSrs_BorWth_TxtBx.Name = "uiCtrSrs_BorWth_TxtBx";
-            this.uiCtrSrs_BorWth_TxtBx.ReadOnly = true;
-            this.uiCtrSrs_BorWth_TxtBx.Size = new System.Drawing.Size(123, 20);
-            this.uiCtrSrs_BorWth_TxtBx.TabIndex = 20;
-            this.uiCtrSrs_BorWth_TxtBx.Text = "BorderWidth";
-            // 
-            // uiCtrSrs_ChT_ComBx
-            // 
-            this.uiCtrSrs_ChT_ComBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiCtrSrs_ChT_ComBx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.uiCtrSrs_ChT_ComBx.FormattingEnabled = true;
-            this.uiCtrSrs_ChT_ComBx.Location = new System.Drawing.Point(132, 78);
-            this.uiCtrSrs_ChT_ComBx.Name = "uiCtrSrs_ChT_ComBx";
-            this.uiCtrSrs_ChT_ComBx.Size = new System.Drawing.Size(124, 21);
-            this.uiCtrSrs_ChT_ComBx.TabIndex = 21;
-            // 
-            // uiCtrSrs_Color_ComBx
-            // 
-            this.uiCtrSrs_Color_ComBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiCtrSrs_Color_ComBx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.uiCtrSrs_Color_ComBx.FormattingEnabled = true;
-            this.uiCtrSrs_Color_ComBx.Location = new System.Drawing.Point(132, 3);
-            this.uiCtrSrs_Color_ComBx.Name = "uiCtrSrs_Color_ComBx";
-            this.uiCtrSrs_Color_ComBx.Size = new System.Drawing.Size(124, 21);
-            this.uiCtrSrs_Color_ComBx.TabIndex = 22;
-            // 
-            // uiCtrSrs_BorStyle_ComBx
-            // 
-            this.uiCtrSrs_BorStyle_ComBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiCtrSrs_BorStyle_ComBx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.uiCtrSrs_BorStyle_ComBx.FormattingEnabled = true;
-            this.uiCtrSrs_BorStyle_ComBx.Location = new System.Drawing.Point(132, 53);
-            this.uiCtrSrs_BorStyle_ComBx.Name = "uiCtrSrs_BorStyle_ComBx";
-            this.uiCtrSrs_BorStyle_ComBx.Size = new System.Drawing.Size(124, 21);
-            this.uiCtrSrs_BorStyle_ComBx.TabIndex = 23;
-            // 
             // uiCtrSrs_BorWth_Num
             // 
             this.uiCtrSrs_BorWth_Num.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -651,6 +569,88 @@
             0,
             0,
             0});
+            // 
+            // uiCtrSrs_BorStyle_ComBx
+            // 
+            this.uiCtrSrs_BorStyle_ComBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiCtrSrs_BorStyle_ComBx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.uiCtrSrs_BorStyle_ComBx.FormattingEnabled = true;
+            this.uiCtrSrs_BorStyle_ComBx.Location = new System.Drawing.Point(132, 53);
+            this.uiCtrSrs_BorStyle_ComBx.Name = "uiCtrSrs_BorStyle_ComBx";
+            this.uiCtrSrs_BorStyle_ComBx.Size = new System.Drawing.Size(124, 21);
+            this.uiCtrSrs_BorStyle_ComBx.TabIndex = 23;
+            // 
+            // uiCtrSrs_Color_ComBx
+            // 
+            this.uiCtrSrs_Color_ComBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiCtrSrs_Color_ComBx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.uiCtrSrs_Color_ComBx.FormattingEnabled = true;
+            this.uiCtrSrs_Color_ComBx.Location = new System.Drawing.Point(132, 3);
+            this.uiCtrSrs_Color_ComBx.Name = "uiCtrSrs_Color_ComBx";
+            this.uiCtrSrs_Color_ComBx.Size = new System.Drawing.Size(124, 21);
+            this.uiCtrSrs_Color_ComBx.TabIndex = 22;
+            // 
+            // uiCtrSrs_ChT_ComBx
+            // 
+            this.uiCtrSrs_ChT_ComBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiCtrSrs_ChT_ComBx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.uiCtrSrs_ChT_ComBx.FormattingEnabled = true;
+            this.uiCtrSrs_ChT_ComBx.Location = new System.Drawing.Point(132, 78);
+            this.uiCtrSrs_ChT_ComBx.Name = "uiCtrSrs_ChT_ComBx";
+            this.uiCtrSrs_ChT_ComBx.Size = new System.Drawing.Size(124, 21);
+            this.uiCtrSrs_ChT_ComBx.TabIndex = 21;
+            // 
+            // uiCtrSrs_BorWth_TxtBx
+            // 
+            this.uiCtrSrs_BorWth_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiCtrSrs_BorWth_TxtBx.Location = new System.Drawing.Point(3, 28);
+            this.uiCtrSrs_BorWth_TxtBx.Name = "uiCtrSrs_BorWth_TxtBx";
+            this.uiCtrSrs_BorWth_TxtBx.ReadOnly = true;
+            this.uiCtrSrs_BorWth_TxtBx.Size = new System.Drawing.Size(123, 20);
+            this.uiCtrSrs_BorWth_TxtBx.TabIndex = 20;
+            this.uiCtrSrs_BorWth_TxtBx.Text = "BorderWidth";
+            // 
+            // uiCtrSrs_BorStyle_TxtBx
+            // 
+            this.uiCtrSrs_BorStyle_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiCtrSrs_BorStyle_TxtBx.Location = new System.Drawing.Point(3, 53);
+            this.uiCtrSrs_BorStyle_TxtBx.Name = "uiCtrSrs_BorStyle_TxtBx";
+            this.uiCtrSrs_BorStyle_TxtBx.ReadOnly = true;
+            this.uiCtrSrs_BorStyle_TxtBx.Size = new System.Drawing.Size(123, 20);
+            this.uiCtrSrs_BorStyle_TxtBx.TabIndex = 19;
+            this.uiCtrSrs_BorStyle_TxtBx.Text = "BorderDashStyle";
+            // 
+            // uiCtrSrs_ChT_TxtBx
+            // 
+            this.uiCtrSrs_ChT_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiCtrSrs_ChT_TxtBx.Location = new System.Drawing.Point(3, 78);
+            this.uiCtrSrs_ChT_TxtBx.Name = "uiCtrSrs_ChT_TxtBx";
+            this.uiCtrSrs_ChT_TxtBx.ReadOnly = true;
+            this.uiCtrSrs_ChT_TxtBx.Size = new System.Drawing.Size(123, 20);
+            this.uiCtrSrs_ChT_TxtBx.TabIndex = 18;
+            this.uiCtrSrs_ChT_TxtBx.Text = "ChartType";
+            // 
+            // uiCtrSrs_Color_TxtBx
+            // 
+            this.uiCtrSrs_Color_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiCtrSrs_Color_TxtBx.Location = new System.Drawing.Point(3, 3);
+            this.uiCtrSrs_Color_TxtBx.Name = "uiCtrSrs_Color_TxtBx";
+            this.uiCtrSrs_Color_TxtBx.ReadOnly = true;
+            this.uiCtrSrs_Color_TxtBx.Size = new System.Drawing.Size(123, 20);
+            this.uiCtrSrs_Color_TxtBx.TabIndex = 17;
+            this.uiCtrSrs_Color_TxtBx.Text = "Color";
+            // 
+            // uiBtm_Ok_Btn
+            // 
+            this.uiBtm_Ok_Btn.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.uiBtm_Ok_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiBtm_Ok_Btn.Location = new System.Drawing.Point(3, 398);
+            this.uiBtm_Ok_Btn.Name = "uiBtm_Ok_Btn";
+            this.uiBtm_Ok_Btn.Size = new System.Drawing.Size(278, 24);
+            this.uiBtm_Ok_Btn.TabIndex = 2;
+            this.uiBtm_Ok_Btn.Text = "OK";
+            this.uiBtm_Ok_Btn.UseVisualStyleBackColor = true;
+            this.uiBtm_Ok_Btn.Click += new System.EventHandler(this.UiBottom_Ok_Click);
             // 
             // ChartSettings
             // 

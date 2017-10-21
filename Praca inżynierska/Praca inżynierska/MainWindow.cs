@@ -532,8 +532,12 @@ namespace PI
 
             Enums.MeanType meanType = (Enums.MeanType) WinFormsHelper.GetSelectedIndexSafe( uiPnlGen_MeanT_ComBx );
             int numberOfCurves = WinFormsHelper.GetValue<int>( uiPnlGen_Crvs2No_Nm );
+            bool isNumberOfCurvesInsufficient = (meanType == Enums.MeanType.Mediana
+                || meanType == Enums.MeanType.CustomDifferential
+                || meanType == Enums.MeanType.CustomTolerance)
+                && numberOfCurves < 3;
 
-            if ( meanType == Enums.MeanType.Mediana && numberOfCurves < 3 ) {
+            if ( isNumberOfCurvesInsufficient ) {
                 MsgBxShower.Ui.NotEnoughCurvesForMedianaStop();
                 return;
             }
@@ -561,7 +565,7 @@ namespace PI
                 return;
             }
 
-            if ( Settings.Menu.Panel.KeepProportions ) {
+            if ( Settings.Menu.Panel.KeepProportions && !MinimizeBox ) {
                 uiMw_SpCtn.SplitterDistance = 275;
             }
         }
@@ -607,13 +611,29 @@ namespace PI
         private void UiMenuMeans_Settings_Click( object sender, EventArgs e )
         {
             using ( var dialog = new MeansSettings() ) {
-                dialog.SetPowerMeanRank( DataChart.PowerMeanRank );
+                ProvideMeansSettings( dialog );
                 WinFormsHelper.ShowDialogSafe( dialog, this );
 
                 if ( dialog.DialogResult == DialogResult.OK ) {
-                    DataChart.PowerMeanRank = dialog.PowerMeanRank;
+                    GrabMeansSettings( dialog );
                 }
             }
+        }
+
+        private void ProvideMeansSettings( MeansSettings dialog )
+        {
+            dialog.SetPowerMeanRank( DataChart.MeansParams.PowerMean.Rank );
+            dialog.SetCustomDifferentialMeanMode( DataChart.MeansParams.CustomDifferentialMean.Mode );
+            dialog.SetCustomToleranceMeanComparer( DataChart.MeansParams.CustomToleranceMean.Comparer );
+            dialog.SetCustomToleranceMeanTolerance( DataChart.MeansParams.CustomToleranceMean.Tolerance );
+            dialog.SetCustomToleranceMeanFinisher( DataChart.MeansParams.CustomToleranceMean.Finisher );
+        }
+
+        private void GrabMeansSettings( MeansSettings dialog )
+        {
+            DataChart.MeansParams.PowerMean = dialog.MeansParams.PowerMean;
+            DataChart.MeansParams.CustomDifferentialMean = dialog.MeansParams.CustomDifferentialMean;
+            DataChart.MeansParams.CustomToleranceMean = dialog.MeansParams.CustomToleranceMean;
         }
 
         private void UiMenuChart_Settings_Click( object sender, EventArgs e )

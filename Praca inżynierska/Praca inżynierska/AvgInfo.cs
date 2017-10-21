@@ -83,7 +83,7 @@ namespace PI
             ui_TbCtrl.ResumeLayout( false );
         }
 
-        private void SetTabPage( string title, string name, TabPage tab, TableLayoutPanel tbLay )
+        private void SetTabPage( string title, string name, TabPage tab, Control tbLay )
         {
             tab.Controls.Add( tbLay );
             tab.Location = new Point( 4, 25 );
@@ -95,7 +95,7 @@ namespace PI
             tab.UseVisualStyleBackColor = true;
         }
 
-        private void SetTableLayout( string name, TableLayoutPanel tbLay, TextBox txt1, PictureBox pic1, TextBox txt2, PictureBox pic2 )
+        private void SetTableLayout( string name, TableLayoutPanel tbLay, Control txt1, Control pic1, Control txt2, Control pic2 )
         {
             tbLay.AutoScroll = true;
             tbLay.ColumnCount = 1;

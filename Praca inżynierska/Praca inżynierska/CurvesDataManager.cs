@@ -13,8 +13,7 @@ namespace PI
         public Series PatternCurveSet { get; private set; }
         public List<Series> GeneratedCurvesSet { get; private set; }
         public Series AverageCurveSet { get; private set; }
-
-        public double PowerMeanRank { get; set; }
+        public MeansSettings.Params MeansParams;
         internal CurvesDataManagerConsts Consts { get; }
         private Params Parameters { get; set; }
 
@@ -23,7 +22,7 @@ namespace PI
             PatternCurveSet = new Series();
             GeneratedCurvesSet = new List<Series>();
             AverageCurveSet = new Series();
-            PowerMeanRank = 0.5;
+            MeansParams = new MeansSettings.Params();
             Consts = new CurvesDataManagerConsts();
             Parameters = parameters;
             SetDefaultProperties( PatternCurveSet, Consts.SeriesNames.PatternCurve );
@@ -346,7 +345,7 @@ namespace PI
         private List<double> GetCopyOfGeneratedCurvePointsValues( int numberOfCurve = 0 )
         {
             if ( numberOfCurve < 0 || numberOfCurve >= GeneratedCurvesSet.Count ) {
-                return null;
+                return new List<double>();
             }
 
             List<double> yValues = new List<double>();
@@ -411,6 +410,12 @@ namespace PI
                     return IsCurvePointsSetValid( AverageCurveSet );
                 case Enums.MeanType.LnWages:
                     MakeAverageCurveOfLogarithmicallyWagedMean( numberOfCurves );
+                    return IsCurvePointsSetValid( AverageCurveSet );
+                case Enums.MeanType.CustomDifferential:
+                    MakeAverageCurveOfCustomDifferentialMean( numberOfCurves );
+                    return IsCurvePointsSetValid( AverageCurveSet );
+                case Enums.MeanType.CustomTolerance:
+                    MakeAverageCurveOfCustomToleranceMean( numberOfCurves );
                     return IsCurvePointsSetValid( AverageCurveSet );
                 }
             }
@@ -518,45 +523,26 @@ namespace PI
 
         private void MakeAverageCurveOfArithmeticMean( int numberOfCurves )
         {
-            List<List<double>> argValues = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
-            List<double> arithmeticMeans = new List<double>();
-            double sum;
+            List<List<double>> values = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
+            List<double> arithmetics = new List<double>();
 
-            for ( int i = 0; i < argValues.Count; i++ ) {
-                sum = 0.0;
-
-                for ( int j = 0; j < argValues[i].Count; j++ ) {
-                    sum += argValues[i][j];
-                }
-
-                arithmeticMeans.Add( sum / Convert.ToDouble( argValues[i].Count ) );
+            for ( int x = 0; x < values.Count; x++ ) {
+                arithmetics.Add( GetArithmeticMeanFromSet( values[x] ) );
             }
 
-            DefineAverageCurveSetValues( arithmeticMeans );
+            DefineAverageCurveSetValues( arithmetics );
         }
 
         private void MakeAverageCurveOfGeometricMean( int numberOfCurves )
         {
-            List<List<double>> argValues = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
-            List<double> geometricMeans = new List<double>();
-            double product;
+            List<List<double>> values = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
+            List<double> geometrics = new List<double>();
 
-            for ( int i = 0; i < argValues.Count; i++ ) {
-                product = 1.0;
-
-                for ( int j = 0; j < argValues[i].Count; j++ ) {
-                    product *= argValues[i][j];
-                }
-
-                if ( product < 0.0 ) {
-                    geometricMeans.Add( -GetNthRoot( Math.Abs( product ), argValues[i].Count ) );
-                }
-                else {
-                    geometricMeans.Add( GetNthRoot( product, argValues[i].Count ) );
-                }
+            for ( int x = 0; x < values.Count; x++ ) {
+                geometrics.Add( GetGeometricMeanFromSet( values[x] ) );
             }
 
-            DefineAverageCurveSetValues( geometricMeans );
+            DefineAverageCurveSetValues( geometrics );
         }
 
         private double GetNthRoot( double value, double basis )
@@ -694,7 +680,7 @@ namespace PI
             List<double> powers = new List<double>();
 
             for ( int i = 0; i < argValues.Count; i++ ) {
-                powers.Add( CalculatePowerMean( argValues[i], PowerMeanRank ) );
+                powers.Add( CalculatePowerMean( argValues[i], MeansParams.PowerMean.Rank ) );
             }
 
             DefineAverageCurveSetValues( powers );
@@ -782,6 +768,179 @@ namespace PI
             }
 
             DefineAverageCurveSetValues( wagedMeans );
+        }
+
+        private void MakeAverageCurveOfCustomDifferentialMean( int numberOfCurves )
+        {
+            List<List<double>> argValues = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
+            List<double> diffMeans = new List<double>();
+
+            for ( int i = 0; i < argValues.Count; i++ ) {
+                double minimum = GetMinimumFromSet( argValues[i] );
+                double maximum = GetMaximumFromSet( argValues[i] );
+
+                switch ( MeansParams.CustomDifferentialMean.Mode ) {
+                case MeansSettings.CustomDifferentialMeanMode.Mediana:
+                    diffMeans.Add( GetMedianaFromSet( argValues[i] ) / (maximum - minimum) );
+                    break;
+                case MeansSettings.CustomDifferentialMeanMode.Sum:
+                    diffMeans.Add( GetSumFromSet( argValues[i] ) / (maximum - minimum) );
+                    break;
+                }
+            }
+
+            DefineAverageCurveSetValues( diffMeans );
+        }
+
+        private List<double> GetListCopy( List<double> source )
+        {
+            List<double> copy = new List<double>();
+
+            for ( int i = 0; i < source.Count; i++ ) {
+                copy.Add( source[i] );
+            }
+
+            return copy;
+        }
+
+        private double GetMedianaFromSet( List<double> set )
+        {
+            List<double> values = GetListCopy( set );
+            values.Sort();
+            int oddIndex = values.Count / 2;
+
+            if ( values.Count % 2 == 0 ) {
+                return (values[oddIndex] + values[oddIndex + 1]) / 2.0;
+            }
+            else {
+                return values[oddIndex];
+            }
+        }
+
+        private double GetSumFromSet( List<double> values )
+        {
+            double sum = 0.0;
+
+            for ( int i = 0; i < values.Count; i++ ) {
+                sum += values[i];
+            }
+
+            return sum;
+        }
+
+        private double GetMaximumFromSet( List<double> values )
+        {
+            double maximum = values[0];
+
+            for ( int i = 1; i < values.Count; i++ ) {
+                maximum = Math.Max( maximum, values[i] );
+            }
+
+            return maximum;
+        }
+
+        private double GetMinimumFromSet( List<double> values )
+        {
+            double minimum = values[0];
+
+            for ( int i = 1; i < values.Count; i++ ) {
+                minimum = Math.Min( minimum, values[i] );
+            }
+
+            return minimum;
+        }
+
+        private void MakeAverageCurveOfCustomToleranceMean( int numberOfCurves )
+        {
+            List<List<double>> values = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
+            List<List<double>> origins = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
+            List<List<double>> acceptables = new List<List<double>>();
+            List<double> tolerants = new List<double>();
+            List<double> maximums = new List<double>();
+            List<double> minimums = new List<double>();
+            double comparer = 0.0;
+
+            for ( int x = 0; x < values.Count; x++ ) {
+                acceptables.Add( new List<double>() );
+                maximums.Add( GetMaximumFromSet( values[x] ) );
+                minimums.Add( GetMinimumFromSet( values[x] ) );
+            }
+
+            switch ( MeansParams.CustomToleranceMean.Comparer ) {
+            case MeansSettings.CustomToleranceComparerType.Mediana:
+                comparer = GetMedianaFromSet( maximums ) - GetMedianaFromSet( minimums );
+                break;
+            case MeansSettings.CustomToleranceComparerType.ArithmeticMean:
+                comparer = GetArithmeticMeanFromSet( maximums ) - GetArithmeticMeanFromSet( minimums );
+                break;
+            }
+
+            for ( int x = 0; x < values.Count; x++ ) {
+                SubtractFromSet( values[x], GetMedianaFromSet( values[x] ) );
+            }
+
+            for ( int x = 0; x < values.Count; x++ ) {
+                for ( int y = 0; y < values[x].Count; y++ ) {
+                    if ( Math.Abs( values[x][y] ) < Math.Abs( MeansParams.CustomToleranceMean.Tolerance * comparer ) ) {
+                        acceptables[x].Add( origins[x][y] );
+                    }
+                }
+            }
+
+            for ( int x = 0; x < acceptables.Count; x++ ) {
+                switch ( MeansParams.CustomToleranceMean.Finisher ) {
+                case MeansSettings.CustomToleranceFinisherFunction.Mediana:
+                    tolerants.Add( GetMedianaFromSet( acceptables[x] ) );
+                    break;
+                case MeansSettings.CustomToleranceFinisherFunction.ArithmeticMean:
+                    tolerants.Add( GetArithmeticMeanFromSet( acceptables[x] ) );
+                    break;
+                case MeansSettings.CustomToleranceFinisherFunction.GeometricMean:
+                    tolerants.Add( GetGeometricMeanFromSet( acceptables[x] ) );
+                    break;
+                case MeansSettings.CustomToleranceFinisherFunction.Maximum:
+                    tolerants.Add( GetMaximumFromSet( acceptables[x] ) );
+                    break;
+                case MeansSettings.CustomToleranceFinisherFunction.Minimum:
+                    tolerants.Add( GetMinimumFromSet( acceptables[x] ) );
+                    break;
+                }
+            }
+
+            DefineAverageCurveSetValues( tolerants );
+        }
+
+        private void SubtractFromSet( List<double> set, double subtrahend )
+        {
+            for ( int i = 0; i < set.Count; i++ ) {
+                set[i] -= subtrahend;
+            }
+        }
+
+        private double GetArithmeticMeanFromSet( List<double> set )
+        {
+            double sum = 0.0;
+
+            for ( int i = 0; i < set.Count; i++ ) {
+                sum += set[i];
+            }
+
+            return sum / Convert.ToDouble( set.Count );
+        }
+
+        private double GetGeometricMeanFromSet( List<double> set )
+        {
+            double product = 1.0;
+
+            for ( int i = 0; i < set.Count; i++ ) {
+                product *= set[i];
+            }
+
+            if ( product < 0.0 ) {
+                return -GetNthRoot( Math.Abs( product ), set.Count );
+            }
+
+            return GetNthRoot( product, set.Count );
         }
 
     }

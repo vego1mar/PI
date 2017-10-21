@@ -77,7 +77,9 @@
             Power = 9,
             Logarithmic = 10,
             EMA = 11,
-            LnWages = 12
+            LnWages = 12,
+            CustomDifferential = 13,
+            CustomTolerance = 14
         }
 
     }
