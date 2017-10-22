@@ -417,6 +417,9 @@ namespace PI
                 case Enums.MeanType.CustomTolerance:
                     MakeAverageCurveOfCustomToleranceMean( numberOfCurves );
                     return IsCurvePointsSetValid( AverageCurveSet );
+                case Enums.MeanType.CustomGeometric:
+                    MakeAverageCurveOfCustomGeomericMean( numberOfCurves );
+                    return IsCurvePointsSetValid( AverageCurveSet );
                 }
             }
             catch ( ArgumentOutOfRangeException x ) {
@@ -942,6 +945,34 @@ namespace PI
 
             return GetNthRoot( product, set.Count );
         }
+
+        private void MakeAverageCurveOfCustomGeomericMean( int numberOfCurves )
+        {
+            List<List<double>> values = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
+            List<double> geometrics = new List<double>();
+
+            for ( int x = 0; x < values.Count; x++ ) {
+                geometrics.Add( GetCustomGeometricMeanFromSet( values[x] ) );
+            }
+
+            DefineAverageCurveSetValues( geometrics );
+        }
+
+        private double GetCustomGeometricMeanFromSet( List<double> set )
+        {
+            double product = 1.0;
+
+            for ( int i = 0; i < set.Count; i++ ) {
+                product *= set[i];
+            }
+
+            if ( set.Count % 2 == 0 ) {
+                return GetNthRoot( Math.Abs( product ), set.Count );
+            }
+
+            return GetNthRoot( product, set.Count );
+        }
+
 
     }
 }

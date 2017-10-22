@@ -11,6 +11,9 @@
         internal LogarithmicMeanConsts Logarithmic { get; } = new LogarithmicMeanConsts();
         internal ExponentialMovingAverageConsts Ema { get; } = new ExponentialMovingAverageConsts();
         internal LogarithmicallyWagedMeanConsts LnWages { get; } = new LogarithmicallyWagedMeanConsts();
+        internal CustomDifferentialMeanConsts Differential { get; } = new CustomDifferentialMeanConsts();
+        internal CustomToleranceMeanConsts Tolerance { get; } = new CustomToleranceMeanConsts();
+        internal CustomGeometricMeanConsts CustomGeo { get; } = new CustomGeometricMeanConsts();
 
         internal class GeometricMeanConsts
         {
@@ -127,6 +130,45 @@
             internal string PictureBox2Name { get; } = "uiLnWgs_Pic2_PicBx";
             internal string TextBox1Text { get; } = "The standard waged mean is defined as follows:";
             internal string TextBox2Text { get; } = "This has been modified into logarithmically waged mean as below:";
+        }
+
+        internal class CustomDifferentialMeanConsts
+        {
+            internal string TabPageName { get; } = "ui_CstDiff_TbPg";
+            internal string TabPageTitle { get; } = "Custom1";
+            internal string TableLayoutName { get; } = "uiCstDiff_TbLay";
+            internal string TextBox1Name { get; } = "uiCstDiff_Text1_TxtBx";
+            internal string TextBox2Name { get; } = "uiCstDiff_Text2_TxtBx";
+            internal string PictureBox1Name { get; } = "uiCstDiff_Pic1_PicBx";
+            internal string PictureBox2Name { get; } = "uiCstDiff_Pic2_PicBx";
+            internal string TextBox1Text { get; } = "The Custom-Differential approach presents as follows:";
+            internal string TextBox2Text { get; } = "This has its alternative version, that is:";
+        }
+
+        internal class CustomToleranceMeanConsts
+        {
+            internal string TabPageName { get; } = "ui_CstToler_TbPg";
+            internal string TabPageTitle { get; } = "Custom2";
+            internal string TableLayoutName { get; } = "uiCstToler_TbLay";
+            internal string TextBox1Name { get; } = "uiCstToler_Text1_TxtBx";
+            internal string TextBox2Name { get; } = "uiCstToler_Text2_TxtBx";
+            internal string PictureBox1Name { get; } = "uiCstToler_Pic1_PicBx";
+            internal string PictureBox2Name { get; } = "uiCstToler_Pic2_PicBx";
+            internal string TextBox1Text { get; } = "The Custom-Tolerance approach filters values using a comparer (M is mediana or arithmetic mean):";
+            internal string TextBox2Text { get; } = "The comparer is used for classifying values that will be processed further (FUNC is finisher mean):";
+        }
+
+        internal class CustomGeometricMeanConsts
+        {
+            internal string TabPageName { get; } = "ui_CstGeo_TbPg";
+            internal string TabPageTitle { get; } = "Custom3";
+            internal string TableLayoutName { get; } = "uiCstGeo_TbLay";
+            internal string TextBox1Name { get; } = "uiCstGeo_Text1_TxtBx";
+            internal string TextBox2Name { get; } = "uiCstGeo_Text2_TxtBx";
+            internal string PictureBox1Name { get; } = "uiCstGeo_Pic1_PicBx";
+            internal string PictureBox2Name { get; } = "uiCstGeo_Pic2_PicBx";
+            internal string TextBox1Text { get; } = "Geometric mean is defined as follows:";
+            internal string TextBox2Text { get; } = "This was modified into:";
         }
 
     }

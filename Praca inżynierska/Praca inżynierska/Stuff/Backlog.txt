@@ -1,5 +1,6 @@
 ﻿BACKLOG
 
 TODO: General - Configuration file
-TODO: General - Localization (remember about designer setters)
-TODO: Menu - Import from/Export into a file set of curves
+TODO: General - Localization
+TODO: Menu - New update notification system
+TODO: Feature - Statistical analysis

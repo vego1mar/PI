@@ -244,6 +244,11 @@
     <None Include="Pictures\LnWages_OriginalEquation.png" />
     <None Include="Pictures\Logarithmic_ModifiedEquation.png" />
     <None Include="Pictures\Logarithmic_OriginalEquation.png" />
+    <None Include="Pictures\CustomDifferential_Approach1.png" />
+    <None Include="Pictures\CustomDifferential_Approach2.png" />
+    <None Include="Pictures\CustomGeometric_ModifiedEquation.png" />
+    <None Include="Pictures\CustomTolerance_Classifier.png" />
+    <None Include="Pictures\CustomTolerance_Comparer.png" />
     <Content Include="Stuff\Backlog.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

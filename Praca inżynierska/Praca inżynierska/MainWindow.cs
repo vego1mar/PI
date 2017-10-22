@@ -565,8 +565,23 @@ namespace PI
                 return;
             }
 
-            if ( Settings.Menu.Panel.KeepProportions && !MinimizeBox ) {
-                uiMw_SpCtn.SplitterDistance = 275;
+            if ( WindowState == FormWindowState.Minimized ) {
+                return;
+            }
+
+            try {
+                if ( Settings.Menu.Panel.KeepProportions ) {
+                    uiMw_SpCtn.SplitterDistance = 275;
+                }
+            }
+            catch ( ArgumentOutOfRangeException ex ) {
+                Logger.WriteException( ex );
+            }
+            catch ( InvalidOperationException ex ) {
+                Logger.WriteException( ex );
+            }
+            catch ( Exception ex ) {
+                Logger.WriteException( ex );
             }
         }
 

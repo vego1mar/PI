@@ -20,7 +20,10 @@ namespace PI
             RMS = 5,
             Logarithmic = 6,
             EMA = 7,
-            LnWages = 8
+            LnWages = 8,
+            CustomDifferential = 9,
+            CustomTolerance = 10,
+            CustomGeometric = 11
         }
 
         private struct BuildNames
@@ -201,6 +204,15 @@ namespace PI
             case Tabs.LnWages:
                 SetNamesForLnWagesTab( ref names );
                 return true;
+            case Tabs.CustomDifferential:
+                SetNamesForCustomDifferentialTab( ref names );
+                return true;
+            case Tabs.CustomTolerance:
+                SetNamesForCustomToleranceTab( ref names );
+                return true;
+            case Tabs.CustomGeometric:
+                SetNamesForCustomGeometricTab( ref names );
+                return true;
             }
 
             return false;
@@ -296,6 +308,36 @@ namespace PI
             names.PictureBox2 = Consts.LnWages.PictureBox2Name;
         }
 
+        private void SetNamesForCustomDifferentialTab( ref BuildNames names )
+        {
+            names.TabPage = Consts.Differential.TabPageName;
+            names.TableLayout = Consts.Differential.TableLayoutName;
+            names.TextBox1 = Consts.Differential.TextBox1Name;
+            names.TextBox2 = Consts.Differential.TextBox2Name;
+            names.PictureBox1 = Consts.Differential.PictureBox1Name;
+            names.PictureBox2 = Consts.Differential.PictureBox2Name;
+        }
+
+        private void SetNamesForCustomToleranceTab( ref BuildNames names )
+        {
+            names.TabPage = Consts.Tolerance.TabPageName;
+            names.TableLayout = Consts.Tolerance.TableLayoutName;
+            names.TextBox1 = Consts.Tolerance.TextBox1Name;
+            names.TextBox2 = Consts.Tolerance.TextBox2Name;
+            names.PictureBox1 = Consts.Tolerance.PictureBox1Name;
+            names.PictureBox2 = Consts.Tolerance.PictureBox2Name;
+        }
+
+        private void SetNamesForCustomGeometricTab( ref BuildNames names )
+        {
+            names.TabPage = Consts.CustomGeo.TabPageName;
+            names.TableLayout = Consts.CustomGeo.TableLayoutName;
+            names.TextBox1 = Consts.CustomGeo.TextBox1Name;
+            names.TextBox2 = Consts.CustomGeo.TextBox2Name;
+            names.PictureBox1 = Consts.CustomGeo.PictureBox1Name;
+            names.PictureBox2 = Consts.CustomGeo.PictureBox2Name;
+        }
+
         private void SetText1( Tabs tab, string text )
         {
             Control layout = null;
@@ -336,6 +378,18 @@ namespace PI
             case Tabs.LnWages:
                 layout = ui_TbCtrl.TabPages[Consts.LnWages.TabPageName].Controls[Consts.LnWages.TableLayoutName];
                 layout.Controls[Consts.LnWages.TextBox1Name].Text = text;
+                break;
+            case Tabs.CustomDifferential:
+                layout = ui_TbCtrl.TabPages[Consts.Differential.TabPageName].Controls[Consts.Differential.TableLayoutName];
+                layout.Controls[Consts.Differential.TextBox1Name].Text = text;
+                break;
+            case Tabs.CustomTolerance:
+                layout = ui_TbCtrl.TabPages[Consts.Tolerance.TabPageName].Controls[Consts.Tolerance.TableLayoutName];
+                layout.Controls[Consts.Tolerance.TextBox1Name].Text = text;
+                break;
+            case Tabs.CustomGeometric:
+                layout = ui_TbCtrl.TabPages[Consts.CustomGeo.TabPageName].Controls[Consts.CustomGeo.TableLayoutName];
+                layout.Controls[Consts.CustomGeo.TextBox1Name].Text = text;
                 break;
             }
         }
@@ -381,6 +435,18 @@ namespace PI
                 layout = ui_TbCtrl.TabPages[Consts.LnWages.TabPageName].Controls[Consts.LnWages.TableLayoutName];
                 layout.Controls[Consts.LnWages.TextBox2Name].Text = text;
                 break;
+            case Tabs.CustomDifferential:
+                layout = ui_TbCtrl.TabPages[Consts.Differential.TabPageName].Controls[Consts.Differential.TableLayoutName];
+                layout.Controls[Consts.Differential.TextBox2Name].Text = text;
+                break;
+            case Tabs.CustomTolerance:
+                layout = ui_TbCtrl.TabPages[Consts.Tolerance.TabPageName].Controls[Consts.Tolerance.TableLayoutName];
+                layout.Controls[Consts.Tolerance.TextBox2Name].Text = text;
+                break;
+            case Tabs.CustomGeometric:
+                layout = ui_TbCtrl.TabPages[Consts.CustomGeo.TabPageName].Controls[Consts.CustomGeo.TableLayoutName];
+                layout.Controls[Consts.CustomGeo.TextBox2Name].Text = text;
+                break;
             }
         }
 
@@ -425,6 +491,18 @@ namespace PI
                 layout = ui_TbCtrl.TabPages[Consts.LnWages.TabPageName].Controls[Consts.LnWages.TableLayoutName];
                 ((PictureBox) layout.Controls[Consts.LnWages.PictureBox1Name]).Image = image;
                 break;
+            case Tabs.CustomDifferential:
+                layout = ui_TbCtrl.TabPages[Consts.Differential.TabPageName].Controls[Consts.Differential.TableLayoutName];
+                ((PictureBox) layout.Controls[Consts.Differential.PictureBox1Name]).Image = image;
+                break;
+            case Tabs.CustomTolerance:
+                layout = ui_TbCtrl.TabPages[Consts.Tolerance.TabPageName].Controls[Consts.Tolerance.TableLayoutName];
+                ((PictureBox) layout.Controls[Consts.Tolerance.PictureBox1Name]).Image = image;
+                break;
+            case Tabs.CustomGeometric:
+                layout = ui_TbCtrl.TabPages[Consts.CustomGeo.TabPageName].Controls[Consts.CustomGeo.TableLayoutName];
+                ((PictureBox) layout.Controls[Consts.CustomGeo.PictureBox1Name]).Image = image;
+                break;
             }
         }
 
@@ -468,6 +546,18 @@ namespace PI
             case Tabs.LnWages:
                 layout = ui_TbCtrl.TabPages[Consts.LnWages.TabPageName].Controls[Consts.LnWages.TableLayoutName];
                 ((PictureBox) layout.Controls[Consts.LnWages.PictureBox2Name]).Image = image;
+                break;
+            case Tabs.CustomDifferential:
+                layout = ui_TbCtrl.TabPages[Consts.Differential.TabPageName].Controls[Consts.Differential.TableLayoutName];
+                ((PictureBox) layout.Controls[Consts.Differential.PictureBox2Name]).Image = image;
+                break;
+            case Tabs.CustomTolerance:
+                layout = ui_TbCtrl.TabPages[Consts.Tolerance.TabPageName].Controls[Consts.Tolerance.TableLayoutName];
+                ((PictureBox) layout.Controls[Consts.Tolerance.PictureBox2Name]).Image = image;
+                break;
+            case Tabs.CustomGeometric:
+                layout = ui_TbCtrl.TabPages[Consts.CustomGeo.TabPageName].Controls[Consts.CustomGeo.TableLayoutName];
+                ((PictureBox) layout.Controls[Consts.CustomGeo.PictureBox2Name]).Image = image;
                 break;
             }
         }
@@ -544,6 +634,30 @@ namespace PI
             SetPicture2( Tabs.LnWages, Properties.Resources.LnWages_ModifiedEquation );
         }
 
+        private void ComposeCustomDifferentialTabPage()
+        {
+            SetText1( Tabs.CustomDifferential, Consts.Differential.TextBox1Text );
+            SetPicture1( Tabs.CustomDifferential, Properties.Resources.CustomDifferential_Approach1 );
+            SetText2( Tabs.CustomDifferential, Consts.Differential.TextBox2Text );
+            SetPicture2( Tabs.CustomDifferential, Properties.Resources.CustomDifferential_Approach2 );
+        }
+
+        private void ComposeCustomToleranceTabPage()
+        {
+            SetText1( Tabs.CustomTolerance, Consts.Tolerance.TextBox1Text );
+            SetPicture1( Tabs.CustomTolerance, Properties.Resources.CustomTolerance_Comparer );
+            SetText2( Tabs.CustomTolerance, Consts.Tolerance.TextBox2Text );
+            SetPicture2( Tabs.CustomTolerance, Properties.Resources.CustomTolerance_Classifier );
+        }
+
+        private void ComposeCustomGeometricTabPage()
+        {
+            SetText1( Tabs.CustomGeometric, Consts.CustomGeo.TextBox1Text );
+            SetPicture1( Tabs.CustomGeometric, Properties.Resources.GeometricMean_OriginEquation );
+            SetText2( Tabs.CustomGeometric, Consts.CustomGeo.TextBox2Text );
+            SetPicture2( Tabs.CustomGeometric, Properties.Resources.CustomGeometric_ModifiedEquation );
+        }
+
         private void BuildTabPages()
         {
             BuildTabPage( Consts.Geometric.TabPageTitle );
@@ -555,6 +669,9 @@ namespace PI
             BuildTabPage( Consts.Logarithmic.TabPageTitle );
             BuildTabPage( Consts.Ema.TabPageTitle );
             BuildTabPage( Consts.LnWages.TabPageTitle );
+            BuildTabPage( Consts.Differential.TabPageTitle );
+            BuildTabPage( Consts.Tolerance.TabPageTitle );
+            BuildTabPage( Consts.CustomGeo.TabPageTitle );
         }
 
         private void ComposeTabPages()
@@ -568,6 +685,9 @@ namespace PI
             ComposeLogarithmicTabPage();
             ComposeEmaTabPage();
             ComposeLnWagesTabPage();
+            ComposeCustomDifferentialTabPage();
+            ComposeCustomToleranceTabPage();
+            ComposeCustomGeometricTabPage();
         }
 
     }

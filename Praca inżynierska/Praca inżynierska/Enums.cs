@@ -79,7 +79,8 @@
             EMA = 11,
             LnWages = 12,
             CustomDifferential = 13,
-            CustomTolerance = 14
+            CustomTolerance = 14,
+            CustomGeometric = 15
         }
 
     }
