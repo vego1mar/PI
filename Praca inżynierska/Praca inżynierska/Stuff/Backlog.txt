@@ -3,4 +3,6 @@
 TODO: General - Configuration file
 TODO: General - Localization
 TODO: Menu - New update notification system
+
 TODO: Feature - Statistical analysis
+TODO: Feature - Progress bar when starting StatAnalysis

@@ -795,6 +795,13 @@ namespace PI
             }
         }
 
+        private void UiMenuProgram_StatisticalAnalysis_Click( object sender, EventArgs e )
+        {
+            using ( var dialog = new StatAnalysis() ) {
+                WinFormsHelper.ShowDialogSafe( dialog, this );
+            }
+        }
+
     }
 
 }

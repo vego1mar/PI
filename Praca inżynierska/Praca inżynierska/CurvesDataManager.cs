@@ -13,7 +13,7 @@ namespace PI
         public Series PatternCurveSet { get; private set; }
         public List<Series> GeneratedCurvesSet { get; private set; }
         public Series AverageCurveSet { get; private set; }
-        public MeansSettings.Params MeansParams;
+        public MeansSettings.Params MeansParams { get; private set; } 
         internal CurvesDataManagerConsts Consts { get; }
         private Params Parameters { get; set; }
 

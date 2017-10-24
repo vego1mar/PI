@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
             {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.uiCharts_Crv = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.ui_Pnl = new System.Windows.Forms.Panel();
             this.uiPnl_TabCtrl = new System.Windows.Forms.TabControl();
@@ -88,6 +88,7 @@
             this.uiPnlPrg_Timer_TxtBx = new System.Windows.Forms.TextBox();
             this.uiMenu = new System.Windows.Forms.MenuStrip();
             this.uiMenu_Prg = new System.Windows.Forms.ToolStripMenuItem();
+            this.uiMenuPrg_StatAnal = new System.Windows.Forms.ToolStripMenuItem();
             this.uiMenuPrg_Update = new System.Windows.Forms.ToolStripMenuItem();
             this.uiMenuPrg_Exit = new System.Windows.Forms.ToolStripMenuItem();
             this.uiMenu_Pnl = new System.Windows.Forms.ToolStripMenuItem();
@@ -127,46 +128,46 @@
             // 
             // uiCharts_Crv
             // 
-            chartArea2.AxisX.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
-            chartArea2.AxisX.IsLabelAutoFit = false;
-            chartArea2.AxisX.IsMarginVisible = false;
-            chartArea2.AxisX.LabelAutoFitMaxFontSize = 8;
-            chartArea2.AxisX.LabelAutoFitMinFontSize = 8;
-            chartArea2.AxisX.LabelAutoFitStyle = System.Windows.Forms.DataVisualization.Charting.LabelAutoFitStyles.None;
-            chartArea2.AxisX.LabelStyle.Font = new System.Drawing.Font("Consolas", 8F);
-            chartArea2.AxisX.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea2.AxisX.MajorTickMark.Enabled = false;
-            chartArea2.AxisX.TitleFont = new System.Drawing.Font("Consolas", 8F);
-            chartArea2.AxisY.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
-            chartArea2.AxisY.IsLabelAutoFit = false;
-            chartArea2.AxisY.LabelAutoFitMaxFontSize = 8;
-            chartArea2.AxisY.LabelStyle.Font = new System.Drawing.Font("Consolas", 8F);
-            chartArea2.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea2.AxisY.MajorTickMark.Enabled = false;
-            chartArea2.AxisY.TitleFont = new System.Drawing.Font("Consolas", 8F);
-            chartArea2.BackColor = System.Drawing.Color.White;
-            chartArea2.IsSameFontSizeForAllAxes = true;
-            chartArea2.Name = "PatternCurveChartArea";
-            this.uiCharts_Crv.ChartAreas.Add(chartArea2);
+            chartArea1.AxisX.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
+            chartArea1.AxisX.IsLabelAutoFit = false;
+            chartArea1.AxisX.IsMarginVisible = false;
+            chartArea1.AxisX.LabelAutoFitMaxFontSize = 8;
+            chartArea1.AxisX.LabelAutoFitMinFontSize = 8;
+            chartArea1.AxisX.LabelAutoFitStyle = System.Windows.Forms.DataVisualization.Charting.LabelAutoFitStyles.None;
+            chartArea1.AxisX.LabelStyle.Font = new System.Drawing.Font("Consolas", 8F);
+            chartArea1.AxisX.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea1.AxisX.MajorTickMark.Enabled = false;
+            chartArea1.AxisX.TitleFont = new System.Drawing.Font("Consolas", 8F);
+            chartArea1.AxisY.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
+            chartArea1.AxisY.IsLabelAutoFit = false;
+            chartArea1.AxisY.LabelAutoFitMaxFontSize = 8;
+            chartArea1.AxisY.LabelStyle.Font = new System.Drawing.Font("Consolas", 8F);
+            chartArea1.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea1.AxisY.MajorTickMark.Enabled = false;
+            chartArea1.AxisY.TitleFont = new System.Drawing.Font("Consolas", 8F);
+            chartArea1.BackColor = System.Drawing.Color.White;
+            chartArea1.IsSameFontSizeForAllAxes = true;
+            chartArea1.Name = "PatternCurveChartArea";
+            this.uiCharts_Crv.ChartAreas.Add(chartArea1);
             this.uiCharts_Crv.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Enabled = false;
-            legend2.Name = "Legend1";
-            this.uiCharts_Crv.Legends.Add(legend2);
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.uiCharts_Crv.Legends.Add(legend1);
             this.uiCharts_Crv.Location = new System.Drawing.Point(0, 0);
             this.uiCharts_Crv.Name = "uiCharts_Crv";
-            series2.BorderWidth = 5;
-            series2.ChartArea = "PatternCurveChartArea";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Color = System.Drawing.Color.Black;
-            series2.CustomProperties = "EmptyPointValue=Zero";
-            series2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            series2.IsVisibleInLegend = false;
-            series2.IsXValueIndexed = true;
-            series2.Legend = "Legend1";
-            series2.Name = "PatternCurveSeries";
-            series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            series2.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            this.uiCharts_Crv.Series.Add(series2);
+            series1.BorderWidth = 5;
+            series1.ChartArea = "PatternCurveChartArea";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Color = System.Drawing.Color.Black;
+            series1.CustomProperties = "EmptyPointValue=Zero";
+            series1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            series1.IsVisibleInLegend = false;
+            series1.IsXValueIndexed = true;
+            series1.Legend = "Legend1";
+            series1.Name = "PatternCurveSeries";
+            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            this.uiCharts_Crv.Series.Add(series1);
             this.uiCharts_Crv.Size = new System.Drawing.Size(681, 614);
             this.uiCharts_Crv.TabIndex = 0;
             this.uiCharts_Crv.Text = "uiCurveChart";
@@ -600,7 +601,7 @@
             this.uiPnlDtSh_TbPg.Controls.Add(this.uiPnlDtSh_TblLay);
             this.uiPnlDtSh_TbPg.Location = new System.Drawing.Point(4, 22);
             this.uiPnlDtSh_TbPg.Name = "uiPnlDtSh_TbPg";
-            this.uiPnlDtSh_TbPg.Size = new System.Drawing.Size(293, 588);
+            this.uiPnlDtSh_TbPg.Size = new System.Drawing.Size(267, 588);
             this.uiPnlDtSh_TbPg.TabIndex = 2;
             this.uiPnlDtSh_TbPg.Text = "Datasheet";
             this.uiPnlDtSh_TbPg.UseVisualStyleBackColor = true;
@@ -645,16 +646,16 @@
             this.uiPnlDtSh_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.uiPnlDtSh_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.uiPnlDtSh_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.uiPnlDtSh_TblLay.Size = new System.Drawing.Size(293, 588);
+            this.uiPnlDtSh_TblLay.Size = new System.Drawing.Size(267, 588);
             this.uiPnlDtSh_TblLay.TabIndex = 0;
             // 
             // uiPnlDtSh_Surr_Num
             // 
             this.uiPnlDtSh_Surr_Num.DecimalPlaces = 2;
             this.uiPnlDtSh_Surr_Num.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlDtSh_Surr_Num.Location = new System.Drawing.Point(147, 253);
+            this.uiPnlDtSh_Surr_Num.Location = new System.Drawing.Point(134, 253);
             this.uiPnlDtSh_Surr_Num.Name = "uiPnlDtSh_Surr_Num";
-            this.uiPnlDtSh_Surr_Num.Size = new System.Drawing.Size(138, 20);
+            this.uiPnlDtSh_Surr_Num.Size = new System.Drawing.Size(125, 20);
             this.uiPnlDtSh_Surr_Num.TabIndex = 33;
             this.uiPnlDtSh_Surr_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.uiPnlDtSh_Surr_Num.ThousandsSeparator = true;
@@ -667,7 +668,7 @@
             // uiPnlDtSh_CrvNo_Num
             // 
             this.uiPnlDtSh_CrvNo_Num.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlDtSh_CrvNo_Num.Location = new System.Drawing.Point(147, 228);
+            this.uiPnlDtSh_CrvNo_Num.Location = new System.Drawing.Point(134, 228);
             this.uiPnlDtSh_CrvNo_Num.Maximum = new decimal(new int[] {
             1,
             0,
@@ -679,7 +680,7 @@
             0,
             0});
             this.uiPnlDtSh_CrvNo_Num.Name = "uiPnlDtSh_CrvNo_Num";
-            this.uiPnlDtSh_CrvNo_Num.Size = new System.Drawing.Size(138, 20);
+            this.uiPnlDtSh_CrvNo_Num.Size = new System.Drawing.Size(125, 20);
             this.uiPnlDtSh_CrvNo_Num.TabIndex = 32;
             this.uiPnlDtSh_CrvNo_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.uiPnlDtSh_CrvNo_Num.ThousandsSeparator = true;
@@ -698,7 +699,7 @@
             this.uiPnlDtSh_Surr_TxtBx.Name = "uiPnlDtSh_Surr_TxtBx";
             this.uiPnlDtSh_Surr_TxtBx.ReadOnly = true;
             this.uiPnlDtSh_Surr_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiPnlDtSh_Surr_TxtBx.Size = new System.Drawing.Size(138, 20);
+            this.uiPnlDtSh_Surr_TxtBx.Size = new System.Drawing.Size(125, 20);
             this.uiPnlDtSh_Surr_TxtBx.TabIndex = 31;
             this.uiPnlDtSh_Surr_TxtBx.Text = "Surrounding:";
             // 
@@ -711,7 +712,7 @@
             this.uiPnlDtSh_CrvNo_TxtBx.Name = "uiPnlDtSh_CrvNo_TxtBx";
             this.uiPnlDtSh_CrvNo_TxtBx.ReadOnly = true;
             this.uiPnlDtSh_CrvNo_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiPnlDtSh_CrvNo_TxtBx.Size = new System.Drawing.Size(138, 20);
+            this.uiPnlDtSh_CrvNo_TxtBx.Size = new System.Drawing.Size(125, 20);
             this.uiPnlDtSh_CrvNo_TxtBx.TabIndex = 30;
             this.uiPnlDtSh_CrvNo_TxtBx.Text = "Number of curves:";
             // 
@@ -725,16 +726,16 @@
             this.uiPnlDtSh_GsNoise_TxtBx.Location = new System.Drawing.Point(3, 203);
             this.uiPnlDtSh_GsNoise_TxtBx.Name = "uiPnlDtSh_GsNoise_TxtBx";
             this.uiPnlDtSh_GsNoise_TxtBx.ReadOnly = true;
-            this.uiPnlDtSh_GsNoise_TxtBx.Size = new System.Drawing.Size(282, 20);
+            this.uiPnlDtSh_GsNoise_TxtBx.Size = new System.Drawing.Size(256, 20);
             this.uiPnlDtSh_GsNoise_TxtBx.TabIndex = 29;
             this.uiPnlDtSh_GsNoise_TxtBx.Text = "Gaussian noise";
             // 
             // uiPnlDtSh_ShowDtSet_Btn
             // 
             this.uiPnlDtSh_ShowDtSet_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlDtSh_ShowDtSet_Btn.Location = new System.Drawing.Point(147, 128);
+            this.uiPnlDtSh_ShowDtSet_Btn.Location = new System.Drawing.Point(134, 128);
             this.uiPnlDtSh_ShowDtSet_Btn.Name = "uiPnlDtSh_ShowDtSet_Btn";
-            this.uiPnlDtSh_ShowDtSet_Btn.Size = new System.Drawing.Size(138, 19);
+            this.uiPnlDtSh_ShowDtSet_Btn.Size = new System.Drawing.Size(125, 19);
             this.uiPnlDtSh_ShowDtSet_Btn.TabIndex = 28;
             this.uiPnlDtSh_ShowDtSet_Btn.Text = "Show dataset";
             this.uiPnlDtSh_ShowDtSet_Btn.UseVisualStyleBackColor = true;
@@ -749,7 +750,7 @@
             this.uiPnlDtSh_CrvT_TxtBx.Name = "uiPnlDtSh_CrvT_TxtBx";
             this.uiPnlDtSh_CrvT_TxtBx.ReadOnly = true;
             this.uiPnlDtSh_CrvT_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiPnlDtSh_CrvT_TxtBx.Size = new System.Drawing.Size(138, 20);
+            this.uiPnlDtSh_CrvT_TxtBx.Size = new System.Drawing.Size(125, 20);
             this.uiPnlDtSh_CrvT_TxtBx.TabIndex = 5;
             this.uiPnlDtSh_CrvT_TxtBx.Text = "Curve type:";
             // 
@@ -757,7 +758,7 @@
             // 
             this.uiPnlDtSh_CrvIdx_Num.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiPnlDtSh_CrvIdx_Num.Enabled = false;
-            this.uiPnlDtSh_CrvIdx_Num.Location = new System.Drawing.Point(147, 53);
+            this.uiPnlDtSh_CrvIdx_Num.Location = new System.Drawing.Point(134, 53);
             this.uiPnlDtSh_CrvIdx_Num.Maximum = new decimal(new int[] {
             5,
             0,
@@ -769,7 +770,7 @@
             0,
             0});
             this.uiPnlDtSh_CrvIdx_Num.Name = "uiPnlDtSh_CrvIdx_Num";
-            this.uiPnlDtSh_CrvIdx_Num.Size = new System.Drawing.Size(138, 20);
+            this.uiPnlDtSh_CrvIdx_Num.Size = new System.Drawing.Size(125, 20);
             this.uiPnlDtSh_CrvIdx_Num.TabIndex = 4;
             this.uiPnlDtSh_CrvIdx_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.uiPnlDtSh_CrvIdx_Num.ThousandsSeparator = true;
@@ -789,7 +790,7 @@
             this.uiPnlDtSh_CrvIdx_TxtBx.Name = "uiPnlDtSh_CrvIdx_TxtBx";
             this.uiPnlDtSh_CrvIdx_TxtBx.ReadOnly = true;
             this.uiPnlDtSh_CrvIdx_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiPnlDtSh_CrvIdx_TxtBx.Size = new System.Drawing.Size(138, 20);
+            this.uiPnlDtSh_CrvIdx_TxtBx.Size = new System.Drawing.Size(125, 20);
             this.uiPnlDtSh_CrvIdx_TxtBx.TabIndex = 3;
             this.uiPnlDtSh_CrvIdx_TxtBx.Text = "Curve index:";
             // 
@@ -803,7 +804,7 @@
             this.uiPnlDtSh_DtSetCtrl_TxtBx.Location = new System.Drawing.Point(3, 3);
             this.uiPnlDtSh_DtSetCtrl_TxtBx.Name = "uiPnlDtSh_DtSetCtrl_TxtBx";
             this.uiPnlDtSh_DtSetCtrl_TxtBx.ReadOnly = true;
-            this.uiPnlDtSh_DtSetCtrl_TxtBx.Size = new System.Drawing.Size(282, 20);
+            this.uiPnlDtSh_DtSetCtrl_TxtBx.Size = new System.Drawing.Size(256, 20);
             this.uiPnlDtSh_DtSetCtrl_TxtBx.TabIndex = 2;
             this.uiPnlDtSh_DtSetCtrl_TxtBx.Text = "Dataset control";
             // 
@@ -816,9 +817,9 @@
             "Generated",
             "Pattern",
             "Average"});
-            this.uiPnlDtSh_CrvT_ComBx.Location = new System.Drawing.Point(147, 28);
+            this.uiPnlDtSh_CrvT_ComBx.Location = new System.Drawing.Point(134, 28);
             this.uiPnlDtSh_CrvT_ComBx.Name = "uiPnlDtSh_CrvT_ComBx";
-            this.uiPnlDtSh_CrvT_ComBx.Size = new System.Drawing.Size(138, 21);
+            this.uiPnlDtSh_CrvT_ComBx.Size = new System.Drawing.Size(125, 21);
             this.uiPnlDtSh_CrvT_ComBx.TabIndex = 6;
             this.uiPnlDtSh_CrvT_ComBx.SelectedIndexChanged += new System.EventHandler(this.UiPanelDataSheet_CurveType_SelectedIndexChanged);
             // 
@@ -826,11 +827,11 @@
             // 
             this.uiPnlDtSh_CrvIdx_TrBr.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiPnlDtSh_CrvIdx_TrBr.Enabled = false;
-            this.uiPnlDtSh_CrvIdx_TrBr.Location = new System.Drawing.Point(147, 78);
+            this.uiPnlDtSh_CrvIdx_TrBr.Location = new System.Drawing.Point(134, 78);
             this.uiPnlDtSh_CrvIdx_TrBr.Maximum = 5;
             this.uiPnlDtSh_CrvIdx_TrBr.Minimum = 1;
             this.uiPnlDtSh_CrvIdx_TrBr.Name = "uiPnlDtSh_CrvIdx_TrBr";
-            this.uiPnlDtSh_CrvIdx_TrBr.Size = new System.Drawing.Size(138, 19);
+            this.uiPnlDtSh_CrvIdx_TrBr.Size = new System.Drawing.Size(125, 19);
             this.uiPnlDtSh_CrvIdx_TrBr.TabIndex = 23;
             this.uiPnlDtSh_CrvIdx_TrBr.TickStyle = System.Windows.Forms.TickStyle.None;
             this.uiPnlDtSh_CrvIdx_TrBr.Value = 1;
@@ -839,9 +840,9 @@
             // uiPnlDtSh_Malform_Btn
             // 
             this.uiPnlDtSh_Malform_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlDtSh_Malform_Btn.Location = new System.Drawing.Point(147, 303);
+            this.uiPnlDtSh_Malform_Btn.Location = new System.Drawing.Point(134, 303);
             this.uiPnlDtSh_Malform_Btn.Name = "uiPnlDtSh_Malform_Btn";
-            this.uiPnlDtSh_Malform_Btn.Size = new System.Drawing.Size(138, 19);
+            this.uiPnlDtSh_Malform_Btn.Size = new System.Drawing.Size(125, 19);
             this.uiPnlDtSh_Malform_Btn.TabIndex = 34;
             this.uiPnlDtSh_Malform_Btn.Text = "Malform";
             this.uiPnlDtSh_Malform_Btn.UseVisualStyleBackColor = true;
@@ -852,7 +853,7 @@
             this.uiPnlPrg_TbPg.Controls.Add(this.uiPnlPrg_TblLay);
             this.uiPnlPrg_TbPg.Location = new System.Drawing.Point(4, 22);
             this.uiPnlPrg_TbPg.Name = "uiPnlPrg_TbPg";
-            this.uiPnlPrg_TbPg.Size = new System.Drawing.Size(293, 588);
+            this.uiPnlPrg_TbPg.Size = new System.Drawing.Size(267, 588);
             this.uiPnlPrg_TbPg.TabIndex = 3;
             this.uiPnlPrg_TbPg.Text = "Program";
             this.uiPnlPrg_TbPg.UseVisualStyleBackColor = true;
@@ -894,7 +895,7 @@
             this.uiPnlPrg_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.uiPnlPrg_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.uiPnlPrg_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.uiPnlPrg_TblLay.Size = new System.Drawing.Size(293, 588);
+            this.uiPnlPrg_TblLay.Size = new System.Drawing.Size(267, 588);
             this.uiPnlPrg_TblLay.TabIndex = 0;
             // 
             // uiPnlPrg_LogPath2_TxtBx
@@ -902,11 +903,11 @@
             this.uiPnlPrg_LogPath2_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
             this.uiPnlPrg_LogPath2_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
             this.uiPnlPrg_LogPath2_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlPrg_LogPath2_TxtBx.Location = new System.Drawing.Point(149, 228);
+            this.uiPnlPrg_LogPath2_TxtBx.Location = new System.Drawing.Point(136, 228);
             this.uiPnlPrg_LogPath2_TxtBx.Name = "uiPnlPrg_LogPath2_TxtBx";
             this.uiPnlPrg_LogPath2_TxtBx.ReadOnly = true;
             this.uiPnlPrg_LogPath2_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiPnlPrg_LogPath2_TxtBx.Size = new System.Drawing.Size(141, 20);
+            this.uiPnlPrg_LogPath2_TxtBx.Size = new System.Drawing.Size(128, 20);
             this.uiPnlPrg_LogPath2_TxtBx.TabIndex = 19;
             this.uiPnlPrg_LogPath2_TxtBx.Text = "Not known";
             // 
@@ -919,7 +920,7 @@
             this.uiPnlPrg_LogPath1_TxtBx.Name = "uiPnlPrg_LogPath1_TxtBx";
             this.uiPnlPrg_LogPath1_TxtBx.ReadOnly = true;
             this.uiPnlPrg_LogPath1_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiPnlPrg_LogPath1_TxtBx.Size = new System.Drawing.Size(140, 20);
+            this.uiPnlPrg_LogPath1_TxtBx.Size = new System.Drawing.Size(127, 20);
             this.uiPnlPrg_LogPath1_TxtBx.TabIndex = 18;
             this.uiPnlPrg_LogPath1_TxtBx.Text = "Log path:";
             // 
@@ -933,7 +934,7 @@
             this.uiPnlPrg_Log_TxtBx.Location = new System.Drawing.Point(3, 203);
             this.uiPnlPrg_Log_TxtBx.Name = "uiPnlPrg_Log_TxtBx";
             this.uiPnlPrg_Log_TxtBx.ReadOnly = true;
-            this.uiPnlPrg_Log_TxtBx.Size = new System.Drawing.Size(287, 20);
+            this.uiPnlPrg_Log_TxtBx.Size = new System.Drawing.Size(261, 20);
             this.uiPnlPrg_Log_TxtBx.TabIndex = 15;
             this.uiPnlPrg_Log_TxtBx.Text = "Log";
             // 
@@ -942,11 +943,11 @@
             this.uiPnlPrg_OsVer2_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
             this.uiPnlPrg_OsVer2_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
             this.uiPnlPrg_OsVer2_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlPrg_OsVer2_TxtBx.Location = new System.Drawing.Point(149, 153);
+            this.uiPnlPrg_OsVer2_TxtBx.Location = new System.Drawing.Point(136, 153);
             this.uiPnlPrg_OsVer2_TxtBx.Name = "uiPnlPrg_OsVer2_TxtBx";
             this.uiPnlPrg_OsVer2_TxtBx.ReadOnly = true;
             this.uiPnlPrg_OsVer2_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiPnlPrg_OsVer2_TxtBx.Size = new System.Drawing.Size(141, 20);
+            this.uiPnlPrg_OsVer2_TxtBx.Size = new System.Drawing.Size(128, 20);
             this.uiPnlPrg_OsVer2_TxtBx.TabIndex = 14;
             this.uiPnlPrg_OsVer2_TxtBx.Text = "Not known";
             // 
@@ -959,7 +960,7 @@
             this.uiPnlPrg_OsVer1_TxtBx.Name = "uiPnlPrg_OsVer1_TxtBx";
             this.uiPnlPrg_OsVer1_TxtBx.ReadOnly = true;
             this.uiPnlPrg_OsVer1_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiPnlPrg_OsVer1_TxtBx.Size = new System.Drawing.Size(140, 20);
+            this.uiPnlPrg_OsVer1_TxtBx.Size = new System.Drawing.Size(127, 20);
             this.uiPnlPrg_OsVer1_TxtBx.TabIndex = 13;
             this.uiPnlPrg_OsVer1_TxtBx.Text = "OS version:";
             // 
@@ -968,11 +969,11 @@
             this.uiPnlPrg_DotNetFr2_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
             this.uiPnlPrg_DotNetFr2_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
             this.uiPnlPrg_DotNetFr2_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlPrg_DotNetFr2_TxtBx.Location = new System.Drawing.Point(149, 128);
+            this.uiPnlPrg_DotNetFr2_TxtBx.Location = new System.Drawing.Point(136, 128);
             this.uiPnlPrg_DotNetFr2_TxtBx.Name = "uiPnlPrg_DotNetFr2_TxtBx";
             this.uiPnlPrg_DotNetFr2_TxtBx.ReadOnly = true;
             this.uiPnlPrg_DotNetFr2_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiPnlPrg_DotNetFr2_TxtBx.Size = new System.Drawing.Size(141, 20);
+            this.uiPnlPrg_DotNetFr2_TxtBx.Size = new System.Drawing.Size(128, 20);
             this.uiPnlPrg_DotNetFr2_TxtBx.TabIndex = 12;
             this.uiPnlPrg_DotNetFr2_TxtBx.Text = "Not known";
             // 
@@ -985,7 +986,7 @@
             this.uiPnlPrg_DotNetFr1_TxtBx.Name = "uiPnlPrg_DotNetFr1_TxtBx";
             this.uiPnlPrg_DotNetFr1_TxtBx.ReadOnly = true;
             this.uiPnlPrg_DotNetFr1_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiPnlPrg_DotNetFr1_TxtBx.Size = new System.Drawing.Size(140, 20);
+            this.uiPnlPrg_DotNetFr1_TxtBx.Size = new System.Drawing.Size(127, 20);
             this.uiPnlPrg_DotNetFr1_TxtBx.TabIndex = 11;
             this.uiPnlPrg_DotNetFr1_TxtBx.Text = ".NET Framework:";
             // 
@@ -999,7 +1000,7 @@
             this.uiPnlPrg_Info_TxtBx.Location = new System.Drawing.Point(3, 103);
             this.uiPnlPrg_Info_TxtBx.Name = "uiPnlPrg_Info_TxtBx";
             this.uiPnlPrg_Info_TxtBx.ReadOnly = true;
-            this.uiPnlPrg_Info_TxtBx.Size = new System.Drawing.Size(287, 20);
+            this.uiPnlPrg_Info_TxtBx.Size = new System.Drawing.Size(261, 20);
             this.uiPnlPrg_Info_TxtBx.TabIndex = 10;
             this.uiPnlPrg_Info_TxtBx.Text = "Information";
             // 
@@ -1008,11 +1009,11 @@
             this.uiPnlPrg_Cnts2_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
             this.uiPnlPrg_Cnts2_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
             this.uiPnlPrg_Cnts2_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlPrg_Cnts2_TxtBx.Location = new System.Drawing.Point(149, 53);
+            this.uiPnlPrg_Cnts2_TxtBx.Location = new System.Drawing.Point(136, 53);
             this.uiPnlPrg_Cnts2_TxtBx.Name = "uiPnlPrg_Cnts2_TxtBx";
             this.uiPnlPrg_Cnts2_TxtBx.ReadOnly = true;
             this.uiPnlPrg_Cnts2_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiPnlPrg_Cnts2_TxtBx.Size = new System.Drawing.Size(141, 20);
+            this.uiPnlPrg_Cnts2_TxtBx.Size = new System.Drawing.Size(128, 20);
             this.uiPnlPrg_Cnts2_TxtBx.TabIndex = 9;
             this.uiPnlPrg_Cnts2_TxtBx.Text = "0";
             // 
@@ -1021,11 +1022,11 @@
             this.uiPnlPrg_ActState2_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
             this.uiPnlPrg_ActState2_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
             this.uiPnlPrg_ActState2_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlPrg_ActState2_TxtBx.Location = new System.Drawing.Point(149, 28);
+            this.uiPnlPrg_ActState2_TxtBx.Location = new System.Drawing.Point(136, 28);
             this.uiPnlPrg_ActState2_TxtBx.Name = "uiPnlPrg_ActState2_TxtBx";
             this.uiPnlPrg_ActState2_TxtBx.ReadOnly = true;
             this.uiPnlPrg_ActState2_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiPnlPrg_ActState2_TxtBx.Size = new System.Drawing.Size(141, 20);
+            this.uiPnlPrg_ActState2_TxtBx.Size = new System.Drawing.Size(128, 20);
             this.uiPnlPrg_ActState2_TxtBx.TabIndex = 8;
             this.uiPnlPrg_ActState2_TxtBx.Text = "Pending";
             // 
@@ -1038,7 +1039,7 @@
             this.uiPnlPrg_Cnts1_TxtBx.Name = "uiPnlPrg_Cnts1_TxtBx";
             this.uiPnlPrg_Cnts1_TxtBx.ReadOnly = true;
             this.uiPnlPrg_Cnts1_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiPnlPrg_Cnts1_TxtBx.Size = new System.Drawing.Size(140, 20);
+            this.uiPnlPrg_Cnts1_TxtBx.Size = new System.Drawing.Size(127, 20);
             this.uiPnlPrg_Cnts1_TxtBx.TabIndex = 7;
             this.uiPnlPrg_Cnts1_TxtBx.Text = "Counts:";
             // 
@@ -1051,7 +1052,7 @@
             this.uiPnlPrg_ActState1_TxtBx.Name = "uiPnlPrg_ActState1_TxtBx";
             this.uiPnlPrg_ActState1_TxtBx.ReadOnly = true;
             this.uiPnlPrg_ActState1_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiPnlPrg_ActState1_TxtBx.Size = new System.Drawing.Size(140, 20);
+            this.uiPnlPrg_ActState1_TxtBx.Size = new System.Drawing.Size(127, 20);
             this.uiPnlPrg_ActState1_TxtBx.TabIndex = 6;
             this.uiPnlPrg_ActState1_TxtBx.Text = "Actual state:";
             // 
@@ -1065,7 +1066,7 @@
             this.uiPnlPrg_Timer_TxtBx.Location = new System.Drawing.Point(3, 3);
             this.uiPnlPrg_Timer_TxtBx.Name = "uiPnlPrg_Timer_TxtBx";
             this.uiPnlPrg_Timer_TxtBx.ReadOnly = true;
-            this.uiPnlPrg_Timer_TxtBx.Size = new System.Drawing.Size(287, 20);
+            this.uiPnlPrg_Timer_TxtBx.Size = new System.Drawing.Size(261, 20);
             this.uiPnlPrg_Timer_TxtBx.TabIndex = 3;
             this.uiPnlPrg_Timer_TxtBx.Text = "Timer";
             // 
@@ -1086,6 +1087,7 @@
             // 
             this.uiMenu_Prg.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.uiMenu_Prg.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.uiMenuPrg_StatAnal,
             this.uiMenuPrg_Update,
             this.uiMenuPrg_Exit});
             this.uiMenu_Prg.Font = new System.Drawing.Font("Consolas", 8.25F);
@@ -1093,17 +1095,24 @@
             this.uiMenu_Prg.Size = new System.Drawing.Size(61, 20);
             this.uiMenu_Prg.Text = "Program";
             // 
+            // uiMenuPrg_StatAnal
+            // 
+            this.uiMenuPrg_StatAnal.Name = "uiMenuPrg_StatAnal";
+            this.uiMenuPrg_StatAnal.Size = new System.Drawing.Size(194, 22);
+            this.uiMenuPrg_StatAnal.Text = "Statistical analysis";
+            this.uiMenuPrg_StatAnal.Click += new System.EventHandler(this.UiMenuProgram_StatisticalAnalysis_Click);
+            // 
             // uiMenuPrg_Update
             // 
             this.uiMenuPrg_Update.Name = "uiMenuPrg_Update";
-            this.uiMenuPrg_Update.Size = new System.Drawing.Size(146, 22);
+            this.uiMenuPrg_Update.Size = new System.Drawing.Size(194, 22);
             this.uiMenuPrg_Update.Text = "Check update";
             this.uiMenuPrg_Update.Click += new System.EventHandler(this.UiMenuProgram_CheckUpdate_Click);
             // 
             // uiMenuPrg_Exit
             // 
             this.uiMenuPrg_Exit.Name = "uiMenuPrg_Exit";
-            this.uiMenuPrg_Exit.Size = new System.Drawing.Size(146, 22);
+            this.uiMenuPrg_Exit.Size = new System.Drawing.Size(194, 22);
             this.uiMenuPrg_Exit.Text = "Exit";
             this.uiMenuPrg_Exit.Click += new System.EventHandler(this.UiMenuProgram_Exit_Click);
             // 
@@ -1317,6 +1326,7 @@
         private System.Windows.Forms.ToolStripMenuItem uiMenuMeans_Settings;
         private System.Windows.Forms.ToolStripMenuItem uiMenu_Chart;
         private System.Windows.Forms.ToolStripMenuItem uiMenuChart_Settings;
+        private System.Windows.Forms.ToolStripMenuItem uiMenuPrg_StatAnal;
     }
     }
 

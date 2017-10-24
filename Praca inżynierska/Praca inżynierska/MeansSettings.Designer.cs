@@ -31,6 +31,8 @@
             this.ui_TbLay = new System.Windows.Forms.TableLayoutPanel();
             this.ui_Ok_Btn = new System.Windows.Forms.Button();
             this.ui_Grid_TbLay = new System.Windows.Forms.TableLayoutPanel();
+            this.uiGrid_Finish_ComBx = new System.Windows.Forms.ComboBox();
+            this.uiGrid_Finish_TxtBx = new System.Windows.Forms.TextBox();
             this.uiGrid_Toler_Num = new System.Windows.Forms.NumericUpDown();
             this.uiGrid_Toler_TxtBx = new System.Windows.Forms.TextBox();
             this.uiGrid_Comp_ComBx = new System.Windows.Forms.ComboBox();
@@ -41,8 +43,6 @@
             this.uiGrid_DiffMode_ComBx = new System.Windows.Forms.ComboBox();
             this.uiGrid_DiffMode_TxtBx = new System.Windows.Forms.TextBox();
             this.uiGrid_PowRank_TxtBx = new System.Windows.Forms.TextBox();
-            this.uiGrid_Finish_TxtBx = new System.Windows.Forms.TextBox();
-            this.uiGrid_Finish_ComBx = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.uiGrid_PowRank_Num)).BeginInit();
             this.ui_TbLay.SuspendLayout();
             this.ui_Grid_TbLay.SuspendLayout();
@@ -135,6 +135,29 @@
             this.ui_Grid_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.ui_Grid_TbLay.Size = new System.Drawing.Size(398, 340);
             this.ui_Grid_TbLay.TabIndex = 2;
+            // 
+            // uiGrid_Finish_ComBx
+            // 
+            this.uiGrid_Finish_ComBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiGrid_Finish_ComBx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.uiGrid_Finish_ComBx.FormattingEnabled = true;
+            this.uiGrid_Finish_ComBx.Location = new System.Drawing.Point(202, 228);
+            this.uiGrid_Finish_ComBx.Name = "uiGrid_Finish_ComBx";
+            this.uiGrid_Finish_ComBx.Size = new System.Drawing.Size(193, 21);
+            this.uiGrid_Finish_ComBx.TabIndex = 36;
+            // 
+            // uiGrid_Finish_TxtBx
+            // 
+            this.uiGrid_Finish_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.uiGrid_Finish_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
+            this.uiGrid_Finish_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiGrid_Finish_TxtBx.Location = new System.Drawing.Point(3, 228);
+            this.uiGrid_Finish_TxtBx.Name = "uiGrid_Finish_TxtBx";
+            this.uiGrid_Finish_TxtBx.ReadOnly = true;
+            this.uiGrid_Finish_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.uiGrid_Finish_TxtBx.Size = new System.Drawing.Size(193, 20);
+            this.uiGrid_Finish_TxtBx.TabIndex = 35;
+            this.uiGrid_Finish_TxtBx.Text = "Finisher function:";
             // 
             // uiGrid_Toler_Num
             // 
@@ -275,29 +298,6 @@
             this.uiGrid_PowRank_TxtBx.Size = new System.Drawing.Size(193, 20);
             this.uiGrid_PowRank_TxtBx.TabIndex = 25;
             this.uiGrid_PowRank_TxtBx.Text = "Rank k:";
-            // 
-            // uiGrid_Finish_TxtBx
-            // 
-            this.uiGrid_Finish_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.uiGrid_Finish_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
-            this.uiGrid_Finish_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiGrid_Finish_TxtBx.Location = new System.Drawing.Point(3, 228);
-            this.uiGrid_Finish_TxtBx.Name = "uiGrid_Finish_TxtBx";
-            this.uiGrid_Finish_TxtBx.ReadOnly = true;
-            this.uiGrid_Finish_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiGrid_Finish_TxtBx.Size = new System.Drawing.Size(193, 20);
-            this.uiGrid_Finish_TxtBx.TabIndex = 35;
-            this.uiGrid_Finish_TxtBx.Text = "Finisher function:";
-            // 
-            // uiGrid_Finish_ComBx
-            // 
-            this.uiGrid_Finish_ComBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiGrid_Finish_ComBx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.uiGrid_Finish_ComBx.FormattingEnabled = true;
-            this.uiGrid_Finish_ComBx.Location = new System.Drawing.Point(202, 228);
-            this.uiGrid_Finish_ComBx.Name = "uiGrid_Finish_ComBx";
-            this.uiGrid_Finish_ComBx.Size = new System.Drawing.Size(193, 21);
-            this.uiGrid_Finish_ComBx.TabIndex = 36;
             // 
             // MeansSettings
             // 
