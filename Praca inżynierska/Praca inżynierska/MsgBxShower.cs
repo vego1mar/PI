@@ -9,6 +9,7 @@ namespace PI
         internal static MenuMsgBoxes Menu { get; } = new MenuMsgBoxes();
         internal static GridPreviewerMsgBoxes Gprv { get; } = new GridPreviewerMsgBoxes();
         internal static PcdMsgBoxes Pcd { get; } = new PcdMsgBoxes();
+        internal static StatMsgBoxes Stat { get; } = new StatMsgBoxes();
 
         internal class UiMsgBoxes
         {
@@ -165,6 +166,40 @@ namespace PI
                 string text = Consts.Pcd.Hyperbolic.ParamsZeroDivTxt;
                 string caption = Consts.Pcd.Hyperbolic.ParamsZeroDivCpt;
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+            }
+        }
+
+        internal class StatMsgBoxes
+        {
+            internal PreviewMsgBoxes Preview { get; } = new PreviewMsgBoxes();
+
+            internal class PreviewMsgBoxes
+            {
+                internal ChartMsgBoxes Chart { get; } = new ChartMsgBoxes();
+
+                internal class ChartMsgBoxes
+                {
+                    internal void ValueOutOfRangeProblem()
+                    {
+                        string text = Consts.Stat.Preview.Chart.OutOfRangeTxt;
+                        string caption = Consts.Stat.Preview.Chart.OutOfRangeCpt;
+                        WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+                    }
+
+                    internal void UnrecognizedError()
+                    {
+                        string text = Consts.Stat.Preview.Chart.UnrecognizedErrTxt;
+                        string caption = Consts.Stat.Preview.Chart.UnrecognizedErrCpt;
+                        WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
+                    }
+
+                    internal void PointsNotValidToChartProblem()
+                    {
+                        string text = Consts.Stat.Preview.Chart.PointsNotValidTxt;
+                        string caption = Consts.Stat.Preview.Chart.PointsNotValidCpt;
+                        WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+                    }
+                }
             }
         }
 

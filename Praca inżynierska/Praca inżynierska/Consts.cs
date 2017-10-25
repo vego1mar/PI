@@ -5,6 +5,7 @@
         internal static UiConsts Ui { get; } = new UiConsts();
         internal static GridPreviewerConsts Gprv { get; } = new GridPreviewerConsts();
         internal static PcdConsts Pcd { get; } = new PcdConsts();
+        internal static StatConsts Stat { get; } = new StatConsts();
 
         internal class UiConsts
         {
@@ -129,6 +130,26 @@
             {
                 internal string ParamsZeroDivTxt { get; } = "Cannot divide by 0.0000. A value of 0.0001 will be used instead.";
                 internal string ParamsZeroDivCpt { get; } = "Division by zero";
+            }
+        }
+
+        internal class StatConsts
+        {
+            internal PreviewConsts Preview { get; } = new PreviewConsts();
+
+            internal class PreviewConsts
+            {
+                internal ChartConsts Chart { get; } = new ChartConsts();
+
+                internal class ChartConsts
+                {
+                    internal string OutOfRangeTxt { get; } = "The provided value is not within a specified range.";
+                    internal string OutOfRangeCpt { get; } = "Out of range";
+                    internal string UnrecognizedErrTxt { get; } = "An unkown error has occured while refreshing chart.";
+                    internal string UnrecognizedErrCpt { get; } = "Unrecognized error";
+                    internal string PointsNotValidTxt { get; } = "Some points cannot be shown on a chart. The chart will not be refreshed.";
+                    internal string PointsNotValidCpt { get; } = "Data selection problem";
+                }
             }
         }
 

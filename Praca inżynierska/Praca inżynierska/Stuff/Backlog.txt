@@ -6,3 +6,5 @@ TODO: Menu - New update notification system
 
 TODO: Feature - Statistical analysis
 TODO: Feature - Progress bar when starting StatAnalysis
+TODO: StatAnalysis - Add formula and info about GenSets
+TODO: StatAnalysis - Colors when displaying different types of curves
