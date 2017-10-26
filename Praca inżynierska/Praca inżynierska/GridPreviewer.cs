@@ -416,5 +416,11 @@ namespace PI
             uiPnl_Ok_Btn.Focus();
         }
 
+        private void GridPreviewer_FormClosing( object sender, FormClosingEventArgs e )
+        {
+            OriginalValues = null;
+            Dispose();
+        }
+
     }
 }

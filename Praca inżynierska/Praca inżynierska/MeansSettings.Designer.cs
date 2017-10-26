@@ -314,6 +314,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Means Settings";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MeansSettings_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.uiGrid_PowRank_Num)).EndInit();
             this.ui_TbLay.ResumeLayout(false);
             this.ui_Grid_TbLay.ResumeLayout(false);

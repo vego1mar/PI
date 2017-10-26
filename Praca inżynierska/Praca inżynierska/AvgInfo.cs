@@ -690,6 +690,11 @@ namespace PI
             ComposeCustomGeometricTabPage();
         }
 
+        private void AvgInfo_FormClosing( object sender, FormClosingEventArgs e )
+        {
+            Dispose();
+        }
+
     }
 
 }

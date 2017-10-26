@@ -258,6 +258,7 @@
     <None Include="Pictures\CustomGeometric_ModifiedEquation.png" />
     <None Include="Pictures\CustomTolerance_Classifier.png" />
     <None Include="Pictures\CustomTolerance_Comparer.png" />
+    <None Include="Pictures\StandardDeviation_Formula.png" />
     <Content Include="Stuff\Backlog.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

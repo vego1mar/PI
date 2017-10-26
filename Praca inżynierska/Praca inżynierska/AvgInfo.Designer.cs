@@ -56,6 +56,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Averaging info";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AvgInfo_FormClosing);
             this.ResumeLayout(false);
 
         }

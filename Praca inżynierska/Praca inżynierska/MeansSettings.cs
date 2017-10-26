@@ -146,5 +146,10 @@ namespace PI
             comboBox.Items.Add( CustomToleranceFinisherFunction.Minimum.ToString() );
         }
 
+        private void MeansSettings_FormClosing( object sender, FormClosingEventArgs e )
+        {
+            Dispose();
+        }
+
     }
 }

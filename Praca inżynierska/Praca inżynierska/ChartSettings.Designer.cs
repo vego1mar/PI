@@ -665,6 +665,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Chart Settings";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChartSettings_FormClosing);
             this.Load += new System.EventHandler(this.ChartSettings_Load);
             this.ui_TbLay.ResumeLayout(false);
             this.uiTop_TbLay.ResumeLayout(false);

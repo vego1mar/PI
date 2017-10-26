@@ -280,5 +280,10 @@ namespace PI
             }
         }
 
+        private void PatternCurveDefiner_FormClosing( object sender, FormClosingEventArgs e )
+        {
+            Dispose();
+        }
+
     }
 }

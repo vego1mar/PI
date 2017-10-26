@@ -787,5 +787,11 @@ namespace PI
             comboBox.Items.Add( SeriesChartType.Pyramid.ToString() );
         }
 
+        private void ChartSettings_FormClosing( object sender, FormClosingEventArgs e )
+        {
+            Previous = null;
+            Dispose();
+        }
+
     }
 }

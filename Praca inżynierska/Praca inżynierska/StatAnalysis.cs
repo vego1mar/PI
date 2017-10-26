@@ -14,6 +14,7 @@ namespace PI
         private List<double> Surroundings { get; set; }
         private List<List<List<Series>>> Averages { get; set; }
         private bool IsFormShown = false;
+        private List<List<List<double>>> StdDeviations { get; set; }
 
         public enum PhenomenonIndex
         {
@@ -36,6 +37,8 @@ namespace PI
             InitializeProperties();
             SetWindowDefaults();
             PerformStatisticalAnalysis();
+            UpdateUiByPopulatingGridWithStandardDeviations();
+            UpdateUiByColoringUiGrids();
         }
 
         private void InitializeProperties()
@@ -45,12 +48,13 @@ namespace PI
             InitializePropertyData();
             InitializePropertyAverages();
             InitializeDataGridViewUiFields();
+            InitializePropertyStdDeviations();
         }
 
         private void InitializePropertyGenSets()
         {
             GenSets = new GenSettings.UiGenSettings() {
-                NumberOfCurves = 23,
+                NumberOfCurves = 100,
                 StartingXPoint = -2,
                 EndingXPoint = 2,
                 PointsDensity = 400
@@ -75,13 +79,16 @@ namespace PI
              *  b := { 0.1, 0.5, 1.0, 2.0 } - noise surrounding no.
              */
 
+            Params parameters = new Params();
+            parameters.Polynomial.I = 10.0;
+
             Data = new List<List<CurvesDataManager>>();
 
             foreach ( PhenomenonIndex idx in Enum.GetValues( typeof( PhenomenonIndex ) ) ) {
                 Data.Add( new List<CurvesDataManager>() );                                      // [a][-] 
 
                 for ( int i = 0; i < Surroundings.Count; i++ ) {
-                    Data[(int) idx].Add( new CurvesDataManager( new Params() ) );               // [-][b] 
+                    Data[(int) idx].Add( new CurvesDataManager( parameters ) );                 // [-][b] 
                 }
             }
 
@@ -93,7 +100,7 @@ namespace PI
              *  Averages[a][b][c]
              *  a := { peek, deformation } - malformation type no.
              *  b := { 0.1, 0.5, 1.0, 2.0 } - noise surrounding no.
-             *  c := { arithemtic, geometric, mediana, ... } - mean type no.
+             *  c := { arithmetic, geometric, mediana, ... } - mean type no.
              */
 
             Averages = new List<List<List<Series>>>();
@@ -106,7 +113,7 @@ namespace PI
 
                     for ( int j = 0; j < Enum.GetNames( typeof( Enums.MeanType ) ).Length; j++ ) {
                         Averages[(int) idx][i].Add( new Series() );                                 // [-][-][c]
-                        string seriesName = "Averages[" + (int) idx + "][" + i + "][" + j + "]";
+                        string seriesName = nameof( Averages ) + "[" + (int) idx + "][" + i + "][" + j + "]";
                         CurvesDataManager.SetDefaultProperties( Averages[(int) idx][i][j], seriesName );
                     }
                 }
@@ -140,6 +147,30 @@ namespace PI
             uiLDeform_Grid.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
+        private void InitializePropertyStdDeviations()
+        {
+            /*
+             *  StdDeviations[a][b][c]
+             *  a := { peek, deformation } - malformation type no.
+             *  b := { 0.1, 0.5, 1.0, 2.0 } - noise surrounding no.
+             *  c := { arithmetic, geometric, mediana, ... } - mean type no.
+             */
+
+            StdDeviations = new List<List<List<double>>>();
+
+            foreach ( PhenomenonIndex idx in Enum.GetValues( typeof( PhenomenonIndex ) ) ) {
+                StdDeviations.Add( new List<List<double>>() );                                           // [a][-][-] 
+
+                for ( int i = 0; i < Surroundings.Count; i++ ) {
+                    StdDeviations[(int) idx].Add( new List<double>() );                                  // [-][b][-] 
+
+                    for ( int j = 0; j < Enum.GetNames( typeof( Enums.MeanType ) ).Length; j++ ) {
+                        StdDeviations[(int) idx][i].Add( new double() );                                 // [-][-][c]
+                    }
+                }
+            }
+        }
+
         private void SetWindowDefaults()
         {
             WinFormsHelper.SelectTabSafe( uiL_TbCtrl, (int) PhenomenonIndex.Peek );
@@ -156,6 +187,8 @@ namespace PI
             WinFormsHelper.SetSelectedIndexSafe( uiRChartDown_Surr_ComBx, 0 );
             AddMeanTypes( uiRChartDown_MeanT_ComBx );
             WinFormsHelper.SetSelectedIndexSafe( uiRChartDown_MeanT_ComBx, (int) Enums.MeanType.CustomTolerance );
+            uiRFormulaDown_CrvsNo2_TxtBx.Text = GenSets.NumberOfCurves.ToString();
+            uiRFormulaDown_Dens2_TxtBx.Text = (GenSets.PointsDensity + 1).ToString();
         }
 
         private void UiStatAnalysis_Load( object sender, EventArgs e )
@@ -206,8 +239,7 @@ namespace PI
                         Data[i][j].MakeAverageCurveFromGeneratedCurves( meanType, GenSets.NumberOfCurves );
                         AddSeriesPoints( Averages[i][j][Convert.ToInt32( meanType )], Data[i][j].AverageCurveSet );
                         double stdDeviation = GetRelativeStandardDeviationFromSeriesValues( Averages[i][j][(int) meanType], patternCurveMean );
-                        // TODO: Count the standard deviation
-                        // TODO: UpdateUiBy...Grid in the outer scope
+                        StdDeviations[i][j][Convert.ToInt32( meanType )] = stdDeviation;
                     }
                 }
             }
@@ -337,6 +369,8 @@ namespace PI
             if ( IsFormShown ) {
                 UpdateUiByRefreshingChart();
             }
+
+            WinFormsHelper.SelectTabSafe( uiL_TbCtrl, WinFormsHelper.GetSelectedIndexSafe( uiRChartDown_Phen_ComBx ) );
         }
 
         private void UiRightChartDown_Surroundings_ComboBox_SelectedIndexChanged( object sender, EventArgs e )
@@ -365,6 +399,7 @@ namespace PI
                     return;
                 }
 
+                ChooseChartSeriesColor( uiRChart_Chart );
                 uiRChart_Chart.ChartAreas[0].RecalculateAxesScale();
                 uiRChart_Chart.Visible = true;
                 uiRChart_Chart.Invalidate();
@@ -372,6 +407,21 @@ namespace PI
             catch ( Exception ex ) {
                 MsgBxShower.Stat.Preview.Chart.UnrecognizedError();
                 Logger.WriteException( ex );
+            }
+        }
+
+        private void ChooseChartSeriesColor( Chart chart, int seriesIdx = 0 )
+        {
+            switch ( (Enums.DataSetCurveType) WinFormsHelper.GetSelectedIndexSafe( uiRChartDown_CrvT_ComBx ) ) {
+            case Enums.DataSetCurveType.Generated:
+                chart.Series[seriesIdx].Color = System.Drawing.Color.Crimson;
+                break;
+            case Enums.DataSetCurveType.Pattern:
+                chart.Series[seriesIdx].Color = System.Drawing.Color.Black;
+                break;
+            case Enums.DataSetCurveType.Average:
+                chart.Series[seriesIdx].Color = System.Drawing.Color.ForestGreen;
+                break;
             }
         }
 
@@ -421,7 +471,101 @@ namespace PI
 
         private double GetRelativeStandardDeviationFromSeriesValues( Series series, double patternMean, int yValuesIdx = 0 )
         {
-            throw new NotImplementedException();
+            double sum = 0.0;
+            double difference;
+
+            foreach ( DataPoint point in series.Points ) {
+                difference = point.YValues[yValuesIdx] - patternMean;
+                sum += difference * difference;
+            }
+
+            return Math.Sqrt( sum / Convert.ToDouble( series.Points.Count ) );
+        }
+
+        private void UpdateUiByPopulatingGridWithStandardDeviations()
+        {
+            DataGridView[] grids = { uiLPeek_Grid, uiLDeform_Grid };
+
+            if ( grids.Count() != Enum.GetNames( typeof( PhenomenonIndex ) ).Count() ) {
+                return;
+            }
+
+            foreach ( string name in Enum.GetNames( typeof( PhenomenonIndex ) ) ) {
+                Enum.TryParse( name, out PhenomenonIndex phenomenon );
+                List<string> columns = GetDataGridColumnsNames( phenomenon );
+
+                foreach ( string mean in Enum.GetNames( typeof( Enums.MeanType ) ) ) {
+                    Enum.TryParse( mean, out Enums.MeanType type );
+
+                    for ( int k = 0; k < Surroundings.Count; k++ ) {
+                        string stdDeviation = StringFormatter.FormatAsNumeric( 4, StdDeviations[(int) phenomenon][k][(int) type] );
+                        grids[(int) phenomenon].Rows[(int) type].Cells[columns[k]].Value = stdDeviation;
+                    }
+                }
+            }
+        }
+
+        private void UiLeft_TabControl_SelectedIndexChanged( object sender, EventArgs e )
+        {
+            WinFormsHelper.SetSelectedIndexSafe( uiRChartDown_Phen_ComBx, WinFormsHelper.GetSelectedTab( uiL_TbCtrl ) );
+        }
+
+        private void UpdateUiByColoringUiGrids()
+        {
+            DataGridView[] grids = { uiLPeek_Grid, uiLDeform_Grid };
+
+            if ( grids.Count() != Enum.GetValues( typeof( PhenomenonIndex ) ).Length ) {
+                return;
+            }
+
+            for ( int i = 0; i < Enum.GetValues( typeof( PhenomenonIndex ) ).Length; i++ ) {
+                for ( int j = 0; j < Surroundings.Count; j++ ) {
+                    int maxValueIdx = GetIndexOfMaximumValue( StdDeviations[i][j] );
+                    int minValueIdx = GetIndexOfMinimumValue( StdDeviations[i][j] );
+                    grids[i].Rows[maxValueIdx].Cells[j].Style.BackColor = System.Drawing.Color.OrangeRed;
+                    grids[i].Rows[minValueIdx].Cells[j].Style.BackColor = System.Drawing.Color.SpringGreen;
+                }
+            }
+        }
+
+        private int GetIndexOfMaximumValue( List<double> list )
+        {
+            double maxValue = Double.MinValue;
+            int idx = -1;
+
+            for ( int i = 0; i < list.Count; i++ ) {
+                if ( list[i] > maxValue ) {
+                    maxValue = list[i];
+                    idx = i;
+                }
+            }
+
+            return idx;
+        }
+
+        private int GetIndexOfMinimumValue( List<double> list )
+        {
+            double minValue = Double.MaxValue;
+            int idx = -1;
+
+            for ( int i = 0; i < list.Count; i++ ) {
+                if ( list[i] < minValue ) {
+                    minValue = list[i];
+                    idx = i;
+                }
+            }
+
+            return idx;
+        }
+
+        private void StatAnalysis_FormClosing( object sender, FormClosingEventArgs e )
+        {
+            GenSets = null;
+            Data = null;
+            Surroundings = null;
+            Averages = null;
+            StdDeviations = null;
+            Dispose();
         }
 
     }

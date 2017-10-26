@@ -75,6 +75,16 @@ namespace PI
                     Logger.WriteException( x );
                 }
             } );
+
+            try {
+                Timer.Name = nameof( Timer );
+            }
+            catch ( InvalidOperationException ex ) {
+                Logger.WriteException( ex );
+            }
+            catch ( Exception ex ) {
+                Logger.WriteException( ex );
+            }
         }
 
         private void InstallEventForTimer( ref System.Timers.Timer timer )
@@ -797,9 +807,44 @@ namespace PI
 
         private void UiMenuProgram_StatisticalAnalysis_Click( object sender, EventArgs e )
         {
-            using ( var dialog = new StatAnalysis() ) {
-                WinFormsHelper.ShowDialogSafe( dialog, this );
+            try {
+                Thread window = new Thread( DelegatorForStatAnalysis ) {
+                    Name = nameof( StatAnalysis ),
+                    IsBackground = true
+                };
+
+                window.Start();
             }
+            catch ( ThreadStateException ex ) {
+                Logger.WriteException( ex );
+            }
+            catch ( OutOfMemoryException ex ) {
+                Logger.WriteException( ex );
+            }
+            catch ( ArgumentNullException ex ) {
+                Logger.WriteException( ex );
+            }
+            catch ( InvalidOperationException ex ) {
+                Logger.WriteException( ex );
+            }
+            catch ( Exception ex ) {
+                Logger.WriteException( ex );
+            }
+        }
+
+        private void DelegatorForStatAnalysis()
+        {
+            using ( var dialog = new StatAnalysis() ) {
+                dialog.ShowDialog();
+            }
+        }
+
+        private void MainWindow_FormClosing( object sender, FormClosingEventArgs e )
+        {
+            Timer = null;
+            Settings = null;
+            DataChart = null;
+            Dispose();
         }
 
     }

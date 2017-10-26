@@ -214,5 +214,22 @@ namespace PI
             return rowStyle;
         }
 
+        internal static int GetSelectedTab( TabControl tabControl )
+        {
+            int selectedIdx = -1;
+
+            try {
+                selectedIdx = tabControl.SelectedIndex;
+            }
+            catch ( ArgumentOutOfRangeException ex ) {
+                Logger.WriteException( ex );
+            }
+            catch ( Exception ex ) {
+                Logger.WriteException( ex );
+            }
+
+            return selectedIdx;
+        }
+
     }
 }

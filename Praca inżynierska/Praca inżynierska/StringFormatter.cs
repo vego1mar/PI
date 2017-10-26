@@ -11,7 +11,7 @@ namespace PI
             string format = "{0:N" + numberOfDecimalPlaces + "}";
 
             try {
-                result = string.Format( format, argument );
+                result = string.Format( System.Globalization.CultureInfo.InvariantCulture, format, argument );
             }
             catch ( FormatException x ) {
                 Logger.WriteException( x );

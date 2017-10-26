@@ -1193,6 +1193,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Pattern Curve Definer";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PatternCurveDefiner_FormClosing);
             this.uiTabs_TblLay.ResumeLayout(false);
             this.uiCnt_TbCtrl.ResumeLayout(false);
             this.uiCntPol_TbPg.ResumeLayout(false);

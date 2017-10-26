@@ -497,6 +497,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Grid Previewer";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GridPreviewer_FormClosing);
             this.Load += new System.EventHandler(this.UiGridPreviewer_Load);
             this.ui_TbLay.ResumeLayout(false);
             this.uiGrid_TbLay.ResumeLayout(false);
