@@ -45,7 +45,19 @@ namespace PI
 
         private void UiMenuProgram_Exit_Click( object sender, EventArgs e )
         {
-            Application.Exit();
+            try {
+                Close();
+                Application.Exit();
+            }
+            catch ( ObjectDisposedException ex ) {
+                Logger.WriteException( ex );
+            }
+            catch ( InvalidOperationException ex ) {
+                Logger.WriteException( ex );
+            }
+            catch ( Exception ex ) {
+                Logger.WriteException( ex );
+            }
         }
 
         private void DefineTimerThread()
@@ -834,8 +846,16 @@ namespace PI
 
         private void DelegatorForStatAnalysis()
         {
-            using ( var dialog = new StatAnalysis() ) {
-                dialog.ShowDialog();
+            using ( var dialog1 = new PatternCurveDefiner( Settings.Presets.Pcd ) ) {
+                dialog1.ShowDialog();
+
+                if ( dialog1.DialogResult != DialogResult.OK ) {
+                    return;
+                }
+
+                using ( var dialog2 = new StatAnalysis( dialog1.Settings ) ) {
+                    dialog2.ShowDialog();
+                }
             }
         }
 

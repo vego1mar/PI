@@ -9,7 +9,7 @@ namespace PI
     public partial class StatAnalysis : Form
     {
 
-        internal GenSettings.UiGenSettings GenSets { get; private set; }
+        internal GenSettings Settings { get; private set; }
         private List<List<CurvesDataManager>> Data { get; set; }
         private List<double> Surroundings { get; set; }
         private List<List<List<Series>>> Averages { get; set; }
@@ -31,9 +31,10 @@ namespace PI
             public int CrvT { get; set; }
         }
 
-        public StatAnalysis()
+        internal StatAnalysis( GenSettings.PcdGenSettings genSets )
         {
             InitializeComponent();
+            InitializePropertySettings( genSets );
             InitializeProperties();
             SetWindowDefaults();
             PerformStatisticalAnalysis();
@@ -43,7 +44,6 @@ namespace PI
 
         private void InitializeProperties()
         {
-            InitializePropertyGenSets();
             InitializePropertySurroundings();
             InitializePropertyData();
             InitializePropertyAverages();
@@ -51,14 +51,19 @@ namespace PI
             InitializePropertyStdDeviations();
         }
 
-        private void InitializePropertyGenSets()
+        private void InitializePropertySettings( GenSettings.PcdGenSettings genSets )
         {
-            GenSets = new GenSettings.UiGenSettings() {
-                NumberOfCurves = 100,
-                StartingXPoint = -2,
-                EndingXPoint = 2,
-                PointsDensity = 400
-            };
+            Settings = new GenSettings();
+
+            if ( genSets != null ) {
+                Settings.Pcd.Scaffold = genSets.Scaffold;
+                Settings.Pcd.Parameters = genSets.Parameters;
+            }
+
+            Settings.Ui.NumberOfCurves = 100;
+            Settings.Ui.StartingXPoint = -2;
+            Settings.Ui.EndingXPoint = 2;
+            Settings.Ui.PointsDensity = 400;
         }
 
         private void InitializePropertySurroundings()
@@ -79,16 +84,13 @@ namespace PI
              *  b := { 0.1, 0.5, 1.0, 2.0 } - noise surrounding no.
              */
 
-            Params parameters = new Params();
-            parameters.Polynomial.I = 10.0;
-
             Data = new List<List<CurvesDataManager>>();
 
             foreach ( PhenomenonIndex idx in Enum.GetValues( typeof( PhenomenonIndex ) ) ) {
                 Data.Add( new List<CurvesDataManager>() );                                      // [a][-] 
 
                 for ( int i = 0; i < Surroundings.Count; i++ ) {
-                    Data[(int) idx].Add( new CurvesDataManager( parameters ) );                 // [-][b] 
+                    Data[(int) idx].Add( new CurvesDataManager( Settings.Pcd.Parameters ) );    // [-][b] 
                 }
             }
 
@@ -179,16 +181,16 @@ namespace PI
             AddDataSetCurveTypes( uiRChartDown_CrvT_ComBx );
             WinFormsHelper.SetSelectedIndexSafe( uiRChartDown_CrvT_ComBx, (int) Enums.DataSetCurveType.Pattern );
             uiRChartDown_CrvIdx_Num.Minimum = 0;
-            uiRChartDown_CrvIdx_Num.Maximum = GenSets.NumberOfCurves - 1;
-            WinFormsHelper.SetValue( uiRChartDown_CrvIdx_Num, GenSets.NumberOfCurves / 2 );
+            uiRChartDown_CrvIdx_Num.Maximum = Settings.Ui.NumberOfCurves - 1;
+            WinFormsHelper.SetValue( uiRChartDown_CrvIdx_Num, Settings.Ui.NumberOfCurves / 2 );
             AddPhenomenonsIndexNames( uiRChartDown_Phen_ComBx );
             WinFormsHelper.SetSelectedIndexSafe( uiRChartDown_Phen_ComBx, (int) PhenomenonIndex.Peek );
             AddSurroundings( uiRChartDown_Surr_ComBx );
             WinFormsHelper.SetSelectedIndexSafe( uiRChartDown_Surr_ComBx, 0 );
             AddMeanTypes( uiRChartDown_MeanT_ComBx );
             WinFormsHelper.SetSelectedIndexSafe( uiRChartDown_MeanT_ComBx, (int) Enums.MeanType.CustomTolerance );
-            uiRFormulaDown_CrvsNo2_TxtBx.Text = GenSets.NumberOfCurves.ToString();
-            uiRFormulaDown_Dens2_TxtBx.Text = (GenSets.PointsDensity + 1).ToString();
+            uiRFormulaDown_CrvsNo2_TxtBx.Text = Settings.Ui.NumberOfCurves.ToString();
+            uiRFormulaDown_Dens2_TxtBx.Text = (Settings.Ui.PointsDensity + 1).ToString();
         }
 
         private void UiStatAnalysis_Load( object sender, EventArgs e )
@@ -228,15 +230,15 @@ namespace PI
         {
             for ( int i = 0; i < Data.Count; i++ ) {
                 for ( int j = 0; j < Surroundings.Count; j++ ) {
-                    Data[i][j].GeneratePatternCurve( Enums.PatternCurveScaffold.Polynomial, GenSets.StartingXPoint, GenSets.EndingXPoint, GenSets.PointsDensity );
-                    Data[i][j].SpreadPatternCurveSetToGeneratedCurveSet( GenSets.NumberOfCurves );
-                    Data[i][j].MakeGaussianNoiseForGeneratedCurves( GenSets.NumberOfCurves, Surroundings[j] );
-                    MakePeekOrDeformation( (PhenomenonIndex) i, Data[i][j], GenSets.NumberOfCurves / 2 );
+                    Data[i][j].GeneratePatternCurve( Settings.Pcd.Scaffold, Settings.Ui.StartingXPoint, Settings.Ui.EndingXPoint, Settings.Ui.PointsDensity );
+                    Data[i][j].SpreadPatternCurveSetToGeneratedCurveSet( Settings.Ui.NumberOfCurves );
+                    Data[i][j].MakeGaussianNoiseForGeneratedCurves( Settings.Ui.NumberOfCurves, Surroundings[j] );
+                    MakePeekOrDeformation( (PhenomenonIndex) i, Data[i][j], Settings.Ui.NumberOfCurves / 2 );
                     double patternCurveMean = GetArithmeticMeanFromSeriesValues( Data[i][j].PatternCurveSet );
 
                     foreach ( string type in Enum.GetNames( typeof( Enums.MeanType ) ) ) {
                         Enum.TryParse( type, out Enums.MeanType meanType );
-                        Data[i][j].MakeAverageCurveFromGeneratedCurves( meanType, GenSets.NumberOfCurves );
+                        Data[i][j].MakeAverageCurveFromGeneratedCurves( meanType, Settings.Ui.NumberOfCurves );
                         AddSeriesPoints( Averages[i][j][Convert.ToInt32( meanType )], Data[i][j].AverageCurveSet );
                         double stdDeviation = GetRelativeStandardDeviationFromSeriesValues( Averages[i][j][(int) meanType], patternCurveMean );
                         StdDeviations[i][j][Convert.ToInt32( meanType )] = stdDeviation;
@@ -357,7 +359,7 @@ namespace PI
         {
             int value = WinFormsHelper.GetValue<int>( uiRChartDown_CrvIdx_Num );
 
-            if ( value < 0 || value >= GenSets.NumberOfCurves ) {
+            if ( value < 0 || value >= Settings.Ui.NumberOfCurves ) {
                 return false;
             }
 
@@ -560,7 +562,7 @@ namespace PI
 
         private void StatAnalysis_FormClosing( object sender, FormClosingEventArgs e )
         {
-            GenSets = null;
+            Settings = null;
             Data = null;
             Surroundings = null;
             Averages = null;
