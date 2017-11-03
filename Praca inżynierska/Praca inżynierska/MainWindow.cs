@@ -41,6 +41,8 @@ namespace PI
             DefineTimerThread();
             ThreadTasker.StartThreadSafe( Timer );
             UpdateUiByStatusOfTimerThread();
+            Translator.GetInstance();
+            Translator.SetLanguage( LangSelector.Languages.Default );
         }
 
         private void UiMenuProgram_Exit_Click( object sender, EventArgs e )
@@ -865,6 +867,61 @@ namespace PI
             Settings = null;
             DataChart = null;
             Dispose();
+        }
+
+        private void UiMenuProgram_SelectLanguage_Click( object sender, EventArgs e )
+        {
+            using ( var dialog = new LangSelector() ) {
+                WinFormsHelper.ShowDialogSafe( dialog, this );
+
+                if ( dialog.DialogResult == DialogResult.OK ) {
+                    Translator.SetLanguage( dialog.SelectedLanguage );
+                    LocalizeWindow();
+                }
+            }
+        }
+
+        private void LocalizeWindow()
+        {
+            LocalizeMenu();
+        }
+
+        private void LocalizeMenu()
+        {
+            LocalizeMenuProgram();
+            LocalizeMenuPanel();
+            LocalizeMenuMeans();
+            LocalizeMenuChart();
+        }
+
+        private void LocalizeMenuProgram()
+        {
+            uiMenu_Prg.Text = Translator.GetInstance().Strings.MainWnd.Menu.Prg.Title.GetString();
+            uiMenuPrg_StatAnal.Text = Translator.GetInstance().Strings.MainWnd.Menu.Prg.StatAnal.GetString();
+            uiMenuPrg_Lang.Text = Translator.GetInstance().Strings.MainWnd.Menu.Prg.Lang.GetString();
+            uiMenuPrg_Update.Text = Translator.GetInstance().Strings.MainWnd.Menu.Prg.Update.GetString();
+            uiMenuPrg_Exit.Text = Translator.GetInstance().Strings.MainWnd.Menu.Prg.Exit.GetString();
+        }
+
+        private void LocalizeMenuPanel()
+        {
+            uiMenu_Pnl.Text = Translator.GetInstance().Strings.MainWnd.Menu.Pnl.Title.GetString();
+            uiMenuPnl_KeepProp.Text = Translator.GetInstance().Strings.MainWnd.Menu.Pnl.KeepProp.GetString();
+            uiMenuPnl_Hide.Text = Translator.GetInstance().Strings.MainWnd.Menu.Pnl.Hide.GetString();
+            uiMenuPnl_Lock.Text = Translator.GetInstance().Strings.MainWnd.Menu.Pnl.Lock.GetString();
+        }
+
+        private void LocalizeMenuMeans()
+        {
+            uiMenu_Means.Text = Translator.GetInstance().Strings.MainWnd.Menu.Means.Title.GetString();
+            uiMenuMeans_AvgInfo.Text = Translator.GetInstance().Strings.MainWnd.Menu.Means.AvgInfo.GetString();
+            uiMenuMeans_Settings.Text = Translator.GetInstance().Strings.MainWnd.Menu.Means.Settings.GetString();
+        }
+
+        private void LocalizeMenuChart()
+        {
+            uiMenu_Chart.Text = Translator.GetInstance().Strings.MainWnd.Menu.Chart.Title.GetString();
+            uiMenuChart_Settings.Text = Translator.GetInstance().Strings.MainWnd.Menu.Chart.Settings.GetString();
         }
 
     }

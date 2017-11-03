@@ -57,12 +57,48 @@ namespace PI
             return selectedIndex;
         }
 
+        internal static int GetSelectedIndexSafe( ListBox listBox )
+        {
+            int selectedIndex = -1;
+
+            try {
+                selectedIndex = listBox.SelectedIndex;
+            }
+            catch ( ArgumentOutOfRangeException x ) {
+                Logger.WriteException( x );
+            }
+            catch ( ArgumentException x ) {
+                Logger.WriteException( x );
+            }
+            catch ( Exception x ) {
+                Logger.WriteException( x );
+            }
+
+            return selectedIndex;
+        }
+
         internal static void SetSelectedIndexSafe( ComboBox comboBox, int index )
         {
             try {
                 comboBox.SelectedIndex = index;
             }
             catch ( ArgumentOutOfRangeException x ) {
+                Logger.WriteException( x );
+            }
+            catch ( Exception x ) {
+                Logger.WriteException( x );
+            }
+        }
+
+        internal static void SetSelectedIndexSafe( ListBox listBox, int index )
+        {
+            try {
+                listBox.SelectedIndex = index;
+            }
+            catch ( ArgumentOutOfRangeException x ) {
+                Logger.WriteException( x );
+            }
+            catch ( ArgumentException x ) {
                 Logger.WriteException( x );
             }
             catch ( Exception x ) {

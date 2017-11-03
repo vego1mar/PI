@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
             {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.uiCharts_Crv = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.ui_Pnl = new System.Windows.Forms.Panel();
             this.uiPnl_TabCtrl = new System.Windows.Forms.TabControl();
@@ -89,6 +89,7 @@
             this.uiMenu = new System.Windows.Forms.MenuStrip();
             this.uiMenu_Prg = new System.Windows.Forms.ToolStripMenuItem();
             this.uiMenuPrg_StatAnal = new System.Windows.Forms.ToolStripMenuItem();
+            this.uiMenuPrg_Lang = new System.Windows.Forms.ToolStripMenuItem();
             this.uiMenuPrg_Update = new System.Windows.Forms.ToolStripMenuItem();
             this.uiMenuPrg_Exit = new System.Windows.Forms.ToolStripMenuItem();
             this.uiMenu_Pnl = new System.Windows.Forms.ToolStripMenuItem();
@@ -128,46 +129,46 @@
             // 
             // uiCharts_Crv
             // 
-            chartArea2.AxisX.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
-            chartArea2.AxisX.IsLabelAutoFit = false;
-            chartArea2.AxisX.IsMarginVisible = false;
-            chartArea2.AxisX.LabelAutoFitMaxFontSize = 8;
-            chartArea2.AxisX.LabelAutoFitMinFontSize = 8;
-            chartArea2.AxisX.LabelAutoFitStyle = System.Windows.Forms.DataVisualization.Charting.LabelAutoFitStyles.None;
-            chartArea2.AxisX.LabelStyle.Font = new System.Drawing.Font("Consolas", 8F);
-            chartArea2.AxisX.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea2.AxisX.MajorTickMark.Enabled = false;
-            chartArea2.AxisX.TitleFont = new System.Drawing.Font("Consolas", 8F);
-            chartArea2.AxisY.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
-            chartArea2.AxisY.IsLabelAutoFit = false;
-            chartArea2.AxisY.LabelAutoFitMaxFontSize = 8;
-            chartArea2.AxisY.LabelStyle.Font = new System.Drawing.Font("Consolas", 8F);
-            chartArea2.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea2.AxisY.MajorTickMark.Enabled = false;
-            chartArea2.AxisY.TitleFont = new System.Drawing.Font("Consolas", 8F);
-            chartArea2.BackColor = System.Drawing.Color.White;
-            chartArea2.IsSameFontSizeForAllAxes = true;
-            chartArea2.Name = "PatternCurveChartArea";
-            this.uiCharts_Crv.ChartAreas.Add(chartArea2);
+            chartArea1.AxisX.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
+            chartArea1.AxisX.IsLabelAutoFit = false;
+            chartArea1.AxisX.IsMarginVisible = false;
+            chartArea1.AxisX.LabelAutoFitMaxFontSize = 8;
+            chartArea1.AxisX.LabelAutoFitMinFontSize = 8;
+            chartArea1.AxisX.LabelAutoFitStyle = System.Windows.Forms.DataVisualization.Charting.LabelAutoFitStyles.None;
+            chartArea1.AxisX.LabelStyle.Font = new System.Drawing.Font("Consolas", 8F);
+            chartArea1.AxisX.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea1.AxisX.MajorTickMark.Enabled = false;
+            chartArea1.AxisX.TitleFont = new System.Drawing.Font("Consolas", 8F);
+            chartArea1.AxisY.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
+            chartArea1.AxisY.IsLabelAutoFit = false;
+            chartArea1.AxisY.LabelAutoFitMaxFontSize = 8;
+            chartArea1.AxisY.LabelStyle.Font = new System.Drawing.Font("Consolas", 8F);
+            chartArea1.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea1.AxisY.MajorTickMark.Enabled = false;
+            chartArea1.AxisY.TitleFont = new System.Drawing.Font("Consolas", 8F);
+            chartArea1.BackColor = System.Drawing.Color.White;
+            chartArea1.IsSameFontSizeForAllAxes = true;
+            chartArea1.Name = "PatternCurveChartArea";
+            this.uiCharts_Crv.ChartAreas.Add(chartArea1);
             this.uiCharts_Crv.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Enabled = false;
-            legend2.Name = "Legend1";
-            this.uiCharts_Crv.Legends.Add(legend2);
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.uiCharts_Crv.Legends.Add(legend1);
             this.uiCharts_Crv.Location = new System.Drawing.Point(0, 0);
             this.uiCharts_Crv.Name = "uiCharts_Crv";
-            series2.BorderWidth = 5;
-            series2.ChartArea = "PatternCurveChartArea";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Color = System.Drawing.Color.Black;
-            series2.CustomProperties = "EmptyPointValue=Zero";
-            series2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            series2.IsVisibleInLegend = false;
-            series2.IsXValueIndexed = true;
-            series2.Legend = "Legend1";
-            series2.Name = "PatternCurveSeries";
-            series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            series2.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            this.uiCharts_Crv.Series.Add(series2);
+            series1.BorderWidth = 5;
+            series1.ChartArea = "PatternCurveChartArea";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Color = System.Drawing.Color.Black;
+            series1.CustomProperties = "EmptyPointValue=Zero";
+            series1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            series1.IsVisibleInLegend = false;
+            series1.IsXValueIndexed = true;
+            series1.Legend = "Legend1";
+            series1.Name = "PatternCurveSeries";
+            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            this.uiCharts_Crv.Series.Add(series1);
             this.uiCharts_Crv.Size = new System.Drawing.Size(681, 614);
             this.uiCharts_Crv.TabIndex = 0;
             this.uiCharts_Crv.Text = "uiCurveChart";
@@ -1088,6 +1089,7 @@
             this.uiMenu_Prg.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.uiMenu_Prg.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.uiMenuPrg_StatAnal,
+            this.uiMenuPrg_Lang,
             this.uiMenuPrg_Update,
             this.uiMenuPrg_Exit});
             this.uiMenu_Prg.Font = new System.Drawing.Font("Consolas", 8.25F);
@@ -1101,6 +1103,13 @@
             this.uiMenuPrg_StatAnal.Size = new System.Drawing.Size(194, 22);
             this.uiMenuPrg_StatAnal.Text = "Statistical analysis";
             this.uiMenuPrg_StatAnal.Click += new System.EventHandler(this.UiMenuProgram_StatisticalAnalysis_Click);
+            // 
+            // uiMenuPrg_Lang
+            // 
+            this.uiMenuPrg_Lang.Name = "uiMenuPrg_Lang";
+            this.uiMenuPrg_Lang.Size = new System.Drawing.Size(194, 22);
+            this.uiMenuPrg_Lang.Text = "Select language";
+            this.uiMenuPrg_Lang.Click += new System.EventHandler(this.UiMenuProgram_SelectLanguage_Click);
             // 
             // uiMenuPrg_Update
             // 
@@ -1189,7 +1198,7 @@
             // uiMenuChart_Settings
             // 
             this.uiMenuChart_Settings.Name = "uiMenuChart_Settings";
-            this.uiMenuChart_Settings.Size = new System.Drawing.Size(122, 22);
+            this.uiMenuChart_Settings.Size = new System.Drawing.Size(152, 22);
             this.uiMenuChart_Settings.Text = "Settings";
             this.uiMenuChart_Settings.Click += new System.EventHandler(this.UiMenuChart_Settings_Click);
             // 
@@ -1220,7 +1229,7 @@
             this.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.MainMenuStrip = this.uiMenu;
             this.Name = "MainWindow";
-            this.Text = "Praca inżynierska 1.2";
+            this.Text = "Praca inżynierska 1.3";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.UiMainWindow_FormClosed);
             this.Load += new System.EventHandler(this.UiMainWindow_Load);
@@ -1328,6 +1337,7 @@
         private System.Windows.Forms.ToolStripMenuItem uiMenu_Chart;
         private System.Windows.Forms.ToolStripMenuItem uiMenuChart_Settings;
         private System.Windows.Forms.ToolStripMenuItem uiMenuPrg_StatAnal;
+        private System.Windows.Forms.ToolStripMenuItem uiMenuPrg_Lang;
     }
     }
 
