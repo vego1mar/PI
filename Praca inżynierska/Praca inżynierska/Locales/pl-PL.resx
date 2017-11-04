@@ -353,4 +353,76 @@
   <data name="MainWindow_Ui_Form_Text" xml:space="preserve">
     <value>Praca inżynierska 1.3</value>
   </data>
+  <data name="MessageBoxShower_GridPreviewer_Panel_IndexGreaterThanAllowedProblem_Caption" xml:space="preserve">
+    <value>Niewłaściwa wartość indeksu</value>
+  </data>
+  <data name="MessageBoxShower_GridPreviewer_Panel_IndexGreaterThanAllowedProblem_Text" xml:space="preserve">
+    <value>Wskazany indeks byłby wyższy niż dozwolony. Zmiana odrzucona.</value>
+  </data>
+  <data name="MessageBoxShower_MainWindow_Menu_Update_CannotDownloadUpdateInfoProblem_Caption" xml:space="preserve">
+    <value>Problem połączenia z siecią</value>
+  </data>
+  <data name="MessageBoxShower_MainWindow_Menu_Update_CannotDownloadUpdateInfoProblem_Text" xml:space="preserve">
+    <value>Nie można pobrać informacji o aktualizacji ze względu na jakiś błąd.</value>
+  </data>
+  <data name="MessageBoxShower_MainWindow_Menu_Update_CannotMatchVersionsError_Caption" xml:space="preserve">
+    <value>Błąd parsowania informacji o aktualizacji</value>
+  </data>
+  <data name="MessageBoxShower_MainWindow_Menu_Update_CannotMatchVersionsError_Text" xml:space="preserve">
+    <value>Wystąpił wyjątek podczas porównywania obecnej wersji z bieżącą.</value>
+  </data>
+  <data name="MessageBoxShower_MainWindow_Menu_Update_RunningLatestReleaseAppInfo_Text" xml:space="preserve">
+    <value>Masz uruchomioną najnowszą wersję.</value>
+  </data>
+  <data name="MessageBoxShower_MainWindow_Menu_Update_RunningObsoleteAppInfo_Caption" xml:space="preserve">
+    <value>Aktualizacja dostępna</value>
+  </data>
+  <data name="MessageBoxShower_MainWindow_Menu_Update_RunningObsoleteAppInfo_Text" xml:space="preserve">
+    <value>Jest dostępna nowa wersja tej aplikacji. Odwiedź https://github.com/vego1mar/PI.</value>
+  </data>
+  <data name="MessageBoxShower_MainWindow_Ui_ChartRefreshingError_Caption" xml:space="preserve">
+    <value>Unieważnione dane</value>
+  </data>
+  <data name="MessageBoxShower_MainWindow_Ui_ChartRefreshingError_Text" xml:space="preserve">
+    <value>Wystąpił problem podczas próby odświeżania wykresu lub ponownego obliczania wymiarów osi.</value>
+  </data>
+  <data name="MessageBoxShower_MainWindow_Ui_CurveTypeNotSelectedInfo_Caption" xml:space="preserve">
+    <value>Niespełnione wymaganie wstępne</value>
+  </data>
+  <data name="MessageBoxShower_MainWindow_Ui_CurveTypeNotSelectedInfo_Text" xml:space="preserve">
+    <value>Musisz wybrać typ krzywej z sekcji "Kontrola zestawem danych".</value>
+  </data>
+  <data name="MessageBoxShower_MainWindow_Ui_NotEnoughCurvesForMedianaStop_Caption" xml:space="preserve">
+    <value>Problem metody uśredniania</value>
+  </data>
+  <data name="MessageBoxShower_MainWindow_Ui_NotEnoughCurvesForMedianaStop_Text" xml:space="preserve">
+    <value>Musisz wskazać przynajmniej trzy krzywe, aby uśrednić je korzystając z mediany.</value>
+  </data>
+  <data name="MessageBoxShower_MainWindow_Ui_OperationMalformRejectedStop_Caption" xml:space="preserve">
+    <value>Niewspierana operacja</value>
+  </data>
+  <data name="MessageBoxShower_MainWindow_Ui_OperationMalformRejectedStop_Text" xml:space="preserve">
+    <value>Wyniki tej operacji zostały odrzucone ze względu na niewłaściwe wartości.</value>
+  </data>
+  <data name="MessageBoxShower_MainWindow_Ui_PatternCurveNotChosenPrerequisite_Caption" xml:space="preserve">
+    <value>Niespełnione wymaganie wstępne</value>
+  </data>
+  <data name="MessageBoxShower_MainWindow_Ui_PatternCurveNotChosenPrerequisite_Text" xml:space="preserve">
+    <value>Szkielet krzywej wzorcowej nie został wybrany.</value>
+  </data>
+  <data name="MessageBoxShower_MainWindow_Ui_PointsNotValidToChartProblem_Text" xml:space="preserve">
+    <value>Część z wygenerowanych punktów jest niewłaściwa, żeby wyświetlić je na wykresie. Punkty te zostaną usunięte z zestawu.</value>
+  </data>
+  <data name="MessageBoxShower_MainWindow_Ui_SeriesSelectionProblem_Caption" xml:space="preserve">
+    <value>Problem wyboru danych</value>
+  </data>
+  <data name="MessageBoxShower_MainWindow_Ui_SeriesSelectionProblem_Text" xml:space="preserve">
+    <value>Żadna krzywa nie została jeszcze wygenerowana.</value>
+  </data>
+  <data name="MessageBoxShower_MainWindow_Ui_SpecifiedCurveDoesntExistProblem_Caption" xml:space="preserve">
+    <value>Nieważny indeks krzywej</value>
+  </data>
+  <data name="MessageBoxShower_MainWindow_Ui_SpecifiedCurveDoesntExistProblem_Text" xml:space="preserve">
+    <value>Dane określonej krzywej nie istnieją.</value>
+  </data>
 </root>

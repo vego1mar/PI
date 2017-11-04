@@ -94,22 +94,23 @@ namespace PI
             public LangSelectorStrings LngSel { get; private set; } = new LangSelectorStrings();
             public MainWindowStrings MainWnd { get; private set; } = new MainWindowStrings();
             public EnumsStrings Enums { get; private set; } = new EnumsStrings();
+            public MessageBoxShowerStrings MsgBxs { get; private set; } = new MessageBoxShowerStrings();
 
             public class LangSelectorStrings
             {
-                public UiStrings Ui { get; private set; } = new UiStrings();
+                public LsUiStrings Ui { get; private set; } = new LsUiStrings();
 
-                public class UiStrings
+                public class LsUiStrings
                 {
-                    public DownStrings Up { get; private set; } = new DownStrings();
-                    public FormStrings Form { get; private set; } = new FormStrings();
+                    public LsUiDownStrings Up { get; private set; } = new LsUiDownStrings();
+                    public LsUiFormStrings Form { get; private set; } = new LsUiFormStrings();
 
-                    public class DownStrings
+                    public class LsUiDownStrings
                     {
                         public TaggedString OkBtn { get { return new TaggedString( CurrentLanguage, "LangSelector_Ui_Down_OkBtn" ); } }
                     }
 
-                    public class FormStrings
+                    public class LsUiFormStrings
                     {
                         public TaggedString Text { get { return new TaggedString( CurrentLanguage, "LangSelector_Ui_Form_Text" ); } }
                     }
@@ -118,18 +119,18 @@ namespace PI
 
             public class MainWindowStrings
             {
-                public MenuStrings Menu { get; private set; } = new MenuStrings();
-                public UiStrings Ui { get; private set; } = new UiStrings();
-                public PanelStrings Pnl { get; private set; } = new PanelStrings();
+                public MwMenuStrings Menu { get; private set; } = new MwMenuStrings();
+                public MwUiStrings Ui { get; private set; } = new MwUiStrings();
+                public MwPanelStrings Pnl { get; private set; } = new MwPanelStrings();
 
-                public class MenuStrings
+                public class MwMenuStrings
                 {
-                    public ProgramStrings Prg { get; private set; } = new ProgramStrings();
-                    public PanelStrings Pnl { get; private set; } = new PanelStrings();
-                    public MeansStrings Means { get; private set; } = new MeansStrings();
-                    public ChartStrings Chart { get; private set; } = new ChartStrings();
+                    public MwProgramMenuStrings Prg { get; private set; } = new MwProgramMenuStrings();
+                    public MwPanelMenuStrings Pnl { get; private set; } = new MwPanelMenuStrings();
+                    public MwMeansMenuStrings Means { get; private set; } = new MwMeansMenuStrings();
+                    public MwChartMenuStrings Chart { get; private set; } = new MwChartMenuStrings();
 
-                    public class ProgramStrings
+                    public class MwProgramMenuStrings
                     {
                         public TaggedString Title { get { return new TaggedString( CurrentLanguage, "MainWindow_Menu_Program" ); } }
                         public TaggedString StatAnal { get { return new TaggedString( CurrentLanguage, "MainWindow_Menu_Program_StatisticalAnalysis" ); } }
@@ -138,7 +139,7 @@ namespace PI
                         public TaggedString Exit { get { return new TaggedString( CurrentLanguage, "MainWindow_Menu_Program_Exit" ); } }
                     }
 
-                    public class PanelStrings
+                    public class MwPanelMenuStrings
                     {
                         public TaggedString Title { get { return new TaggedString( CurrentLanguage, "MainWindow_Menu_Panel" ); } }
                         public TaggedString KeepProp { get { return new TaggedString( CurrentLanguage, "MainWindow_Menu_Panel_KeepProportions" ); } }
@@ -146,37 +147,37 @@ namespace PI
                         public TaggedString Lock { get { return new TaggedString( CurrentLanguage, "MainWindow_Menu_Panel_Lock" ); } }
                     }
 
-                    public class MeansStrings
+                    public class MwMeansMenuStrings
                     {
                         public TaggedString Title { get { return new TaggedString( CurrentLanguage, "MainWindow_Menu_Means" ); } }
                         public TaggedString AvgInfo { get { return new TaggedString( CurrentLanguage, "MainWindow_Menu_Means_AveragingInfo" ); } }
                         public TaggedString Settings { get { return new TaggedString( CurrentLanguage, "MainWindow_Menu_Means_Settings" ); } }
                     }
 
-                    public class ChartStrings
+                    public class MwChartMenuStrings
                     {
                         public TaggedString Title { get { return new TaggedString( CurrentLanguage, "MainWindow_Menu_Chart" ); } }
                         public TaggedString Settings { get { return new TaggedString( CurrentLanguage, "MainWindow_Menu_Chart_Settings" ); } }
                     }
                 }
 
-                public class UiStrings
+                public class MwUiStrings
                 {
-                    public FormStrings Form { get; private set; } = new FormStrings();
+                    public MwFormStrings Form { get; private set; } = new MwFormStrings();
 
-                    public class FormStrings
+                    public class MwFormStrings
                     {
                         public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MainWindow_Ui_Form_Text" ); } }
                     }
                 }
 
-                public class PanelStrings
+                public class MwPanelStrings
                 {
-                    public GenerateTabStrings Gen { get; private set; } = new GenerateTabStrings();
-                    public DatasheetTabStrings DtSh { get; private set; } = new DatasheetTabStrings();
-                    public ProgramTabStrings Prg { get; private set; } = new ProgramTabStrings();
+                    public MwGenerateTabStrings Gen { get; private set; } = new MwGenerateTabStrings();
+                    public MwDatasheetTabStrings DtSh { get; private set; } = new MwDatasheetTabStrings();
+                    public MwProgramTabStrings Prg { get; private set; } = new MwProgramTabStrings();
 
-                    public class GenerateTabStrings
+                    public class MwGenerateTabStrings
                     {
                         public TaggedString Title { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Generate" ); } }
                         public TaggedString PattCrvScaff { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Generate_PatternCurveScaffold" ); } }
@@ -198,7 +199,7 @@ namespace PI
                         public TaggedString Apply { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Generate_Apply" ); } }
                     }
 
-                    public class DatasheetTabStrings
+                    public class MwDatasheetTabStrings
                     {
                         public TaggedString Title { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Datasheet" ); } }
                         public TaggedString DtSetCtrl { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Datasheet_DatasetControl" ); } }
@@ -211,7 +212,7 @@ namespace PI
                         public TaggedString Malform { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Datasheet_Malform" ); } }
                     }
 
-                    public class ProgramTabStrings
+                    public class MwProgramTabStrings
                     {
                         public TaggedString Title { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Program" ); } }
                         public TaggedString Timer { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Program_Timer" ); } }
@@ -343,6 +344,138 @@ namespace PI
                     IEnumerator IEnumerable.GetEnumerator()
                     {
                         return GetEnumerator();
+                    }
+
+                }
+
+            }
+
+            public class MessageBoxShowerStrings
+            {
+                public MbsMainWindowStrings MainWnd { get; private set; } = new MbsMainWindowStrings();
+                public MbsGridPreviewerStrings Gprv { get; private set; } = new MbsGridPreviewerStrings();
+
+                public class MbsMainWindowStrings
+                {
+                    public MbsUiStrings Ui { get; private set; } = new MbsUiStrings();
+                    public MbsMenuStrings Menu { get; private set; } = new MbsMenuStrings();
+
+                    public class MbsUiStrings
+                    {
+                        public MbsSeriesSelectionProblemStrings ProblemSeriesSelection { get; private set; } = new MbsSeriesSelectionProblemStrings();
+                        public MbsChartRefreshingErrorStrings ErrorChartRefreshing { get; private set; } = new MbsChartRefreshingErrorStrings();
+                        public MbsCurveTypeNotSelectedInfoStrings InfoCurveTypeNotSelected { get; private set; } = new MbsCurveTypeNotSelectedInfoStrings();
+                        public MbsPatternCurveNotChosenPrerequisiteStrings PrerequisitePatternCurveNotChosen { get; private set; } = new MbsPatternCurveNotChosenPrerequisiteStrings();
+                        public MbsPointsNotValidToChartProblemStrings ProblemPointsNotValidToChart { get; private set; } = new MbsPointsNotValidToChartProblemStrings();
+                        public MbsSpecifiedCurveDoesntExistProblemStrings ProblemSpecifiedCurveDoesntExist { get; private set; } = new MbsSpecifiedCurveDoesntExistProblemStrings();
+                        public MbsOperationMalformRejectedStopStrings StopOperationMalformRejected { get; private set; } = new MbsOperationMalformRejectedStopStrings();
+                        public MbsNotEnoughCurvesForMedianaStopStrings StopNotEnoughCurvesForMediana { get; private set; } = new MbsNotEnoughCurvesForMedianaStopStrings();
+
+                        public class MbsSeriesSelectionProblemStrings
+                        {
+                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_SeriesSelectionProblem_Text" ); } }
+                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_SeriesSelectionProblem_Caption" ); } }
+                        }
+
+                        public class MbsChartRefreshingErrorStrings
+                        {
+                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_ChartRefreshingError_Text" ); } }
+                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_ChartRefreshingError_Caption" ); } }
+                        }
+
+                        public class MbsCurveTypeNotSelectedInfoStrings
+                        {
+                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_CurveTypeNotSelectedInfo_Text" ); } }
+                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_CurveTypeNotSelectedInfo_Caption" ); } }
+                        }
+
+                        public class MbsPatternCurveNotChosenPrerequisiteStrings
+                        {
+                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_PatternCurveNotChosenPrerequisite_Text" ); } }
+                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_PatternCurveNotChosenPrerequisite_Caption" ); } }
+                        }
+
+                        public class MbsPointsNotValidToChartProblemStrings
+                        {
+                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_PointsNotValidToChartProblem_Text" ); } }
+                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_PointsNotValidToChartProblem_Caption" ); } }
+                        }
+
+                        public class MbsSpecifiedCurveDoesntExistProblemStrings
+                        {
+                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_SpecifiedCurveDoesntExistProblem_Text" ); } }
+                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_SpecifiedCurveDoesntExistProblem_Caption" ); } }
+                        }
+
+                        public class MbsOperationMalformRejectedStopStrings
+                        {
+                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_OperationMalformRejectedStop_Text" ); } }
+                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_OperationMalformRejectedStop_Caption" ); } }
+                        }
+
+                        public class MbsNotEnoughCurvesForMedianaStopStrings
+                        {
+                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_NotEnoughCurvesForMedianaStop_Text" ); } }
+                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_NotEnoughCurvesForMedianaStop_Caption" ); } }
+                        }
+
+                    }
+
+                    public class MbsMenuStrings
+                    {
+                        public MbsMenuUpdateStrings Update { get; private set; } = new MbsMenuUpdateStrings();
+
+                        public class MbsMenuUpdateStrings
+                        {
+                            public MbsCannotDownloadUpdateInfoProblemStrings ProblemCannotDownloadUpdateInfo { get; private set; } = new MbsCannotDownloadUpdateInfoProblemStrings();
+                            public MbsRunningLatestReleaseAppInfoStrings InfoRunningLatestReleaseApp { get; private set; } = new MbsRunningLatestReleaseAppInfoStrings();
+                            public MbsRunningObsoleteAppInfoStrings InfoRunningObsoleteApp { get; private set; } = new MbsRunningObsoleteAppInfoStrings();
+                            public MbsCannotMatchVersionsErrorStrings ErrorCannotMatchVersions { get; private set; } = new MbsCannotMatchVersionsErrorStrings();
+
+                            public class MbsCannotDownloadUpdateInfoProblemStrings
+                            {
+                                public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Menu_Update_CannotDownloadUpdateInfoProblem_Text" ); } }
+                                public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Menu_Update_CannotDownloadUpdateInfoProblem_Caption" ); } }
+                            }
+
+                            public class MbsRunningLatestReleaseAppInfoStrings
+                            {
+                                public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Menu_Update_RunningLatestReleaseAppInfo_Text" ); } }
+                                public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Menu_Update_RunningLatestReleaseAppInfo_Caption" ); } }
+                            }
+
+                            public class MbsRunningObsoleteAppInfoStrings
+                            {
+                                public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Menu_Update_RunningObsoleteAppInfo_Text" ); } }
+                                public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Menu_Update_RunningObsoleteAppInfo_Caption" ); } }
+                            }
+
+                            public class MbsCannotMatchVersionsErrorStrings
+                            {
+                                public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Menu_Update_CannotMatchVersionsError_Text" ); } }
+                                public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Menu_Update_CannotMatchVersionsError_Caption" ); } }
+                            }
+
+                        }
+
+                    }
+
+                }
+
+                public class MbsGridPreviewerStrings
+                {
+                    public MbsGprvPanelStrings Pnl { get; private set; } = new MbsGprvPanelStrings();
+
+                    public class MbsGprvPanelStrings
+                    {
+                        public MbsIndexGreaterThanAllowedProblemStrings ProblemIndexGreaterThanAllowed { get; private set; } = new MbsIndexGreaterThanAllowedProblemStrings();
+
+                        public class MbsIndexGreaterThanAllowedProblemStrings
+                        {
+                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Panel_IndexGreaterThanAllowedProblem_Text" ); } }
+                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Panel_IndexGreaterThanAllowedProblem_Caption" ); } }
+                        }
+
                     }
 
                 }

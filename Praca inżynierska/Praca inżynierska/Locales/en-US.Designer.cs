@@ -761,5 +761,221 @@ namespace PI.Locales {
                 return ResourceManager.GetString("MainWindow_Ui_Form_Text", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Improper index value.
+        /// </summary>
+        internal static string MessageBoxShower_GridPreviewer_Panel_IndexGreaterThanAllowedProblem_Caption {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_GridPreviewer_Panel_IndexGreaterThanAllowedProblem_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specified index would be greater than allowed. Change rejected..
+        /// </summary>
+        internal static string MessageBoxShower_GridPreviewer_Panel_IndexGreaterThanAllowedProblem_Text {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_GridPreviewer_Panel_IndexGreaterThanAllowedProblem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Web connection problem.
+        /// </summary>
+        internal static string MessageBoxShower_MainWindow_Menu_Update_CannotDownloadUpdateInfoProblem_Caption {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_MainWindow_Menu_Update_CannotDownloadUpdateInfoProblem_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot download update info due to some error..
+        /// </summary>
+        internal static string MessageBoxShower_MainWindow_Menu_Update_CannotDownloadUpdateInfoProblem_Text {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_MainWindow_Menu_Update_CannotDownloadUpdateInfoProblem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update info parsing error.
+        /// </summary>
+        internal static string MessageBoxShower_MainWindow_Menu_Update_CannotMatchVersionsError_Caption {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_MainWindow_Menu_Update_CannotMatchVersionsError_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An exception occured during matching current and latest versions..
+        /// </summary>
+        internal static string MessageBoxShower_MainWindow_Menu_Update_CannotMatchVersionsError_Text {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_MainWindow_Menu_Update_CannotMatchVersionsError_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You&apos;re running the latest version..
+        /// </summary>
+        internal static string MessageBoxShower_MainWindow_Menu_Update_RunningLatestReleaseAppInfo_Text {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_MainWindow_Menu_Update_RunningLatestReleaseAppInfo_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update available.
+        /// </summary>
+        internal static string MessageBoxShower_MainWindow_Menu_Update_RunningObsoleteAppInfo_Caption {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_MainWindow_Menu_Update_RunningObsoleteAppInfo_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is a newer version of this app. Visit https://github.com/vego1mar/PI..
+        /// </summary>
+        internal static string MessageBoxShower_MainWindow_Menu_Update_RunningObsoleteAppInfo_Text {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_MainWindow_Menu_Update_RunningObsoleteAppInfo_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalidated data.
+        /// </summary>
+        internal static string MessageBoxShower_MainWindow_Ui_ChartRefreshingError_Caption {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_MainWindow_Ui_ChartRefreshingError_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A problem occured when trying to refresh a chart or recalculating axes scales..
+        /// </summary>
+        internal static string MessageBoxShower_MainWindow_Ui_ChartRefreshingError_Text {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_MainWindow_Ui_ChartRefreshingError_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prerequisite not matched.
+        /// </summary>
+        internal static string MessageBoxShower_MainWindow_Ui_CurveTypeNotSelectedInfo_Caption {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_MainWindow_Ui_CurveTypeNotSelectedInfo_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must choose a curve type from &apos;Dataset control&apos; section..
+        /// </summary>
+        internal static string MessageBoxShower_MainWindow_Ui_CurveTypeNotSelectedInfo_Text {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_MainWindow_Ui_CurveTypeNotSelectedInfo_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Averaging method problem.
+        /// </summary>
+        internal static string MessageBoxShower_MainWindow_Ui_NotEnoughCurvesForMedianaStop_Caption {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_MainWindow_Ui_NotEnoughCurvesForMedianaStop_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must specify at least 3 curves to average them using mediana..
+        /// </summary>
+        internal static string MessageBoxShower_MainWindow_Ui_NotEnoughCurvesForMedianaStop_Text {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_MainWindow_Ui_NotEnoughCurvesForMedianaStop_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not supported operation.
+        /// </summary>
+        internal static string MessageBoxShower_MainWindow_Ui_OperationMalformRejectedStop_Caption {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_MainWindow_Ui_OperationMalformRejectedStop_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Results of this operation was rejected due to improper values..
+        /// </summary>
+        internal static string MessageBoxShower_MainWindow_Ui_OperationMalformRejectedStop_Text {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_MainWindow_Ui_OperationMalformRejectedStop_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prerequisite not matched.
+        /// </summary>
+        internal static string MessageBoxShower_MainWindow_Ui_PatternCurveNotChosenPrerequisite_Caption {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_MainWindow_Ui_PatternCurveNotChosenPrerequisite_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pattern curve scaffold has not been chosen..
+        /// </summary>
+        internal static string MessageBoxShower_MainWindow_Ui_PatternCurveNotChosenPrerequisite_Text {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_MainWindow_Ui_PatternCurveNotChosenPrerequisite_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Some of the generated points are not valid to display them on a chart. Those points will be removed from the set..
+        /// </summary>
+        internal static string MessageBoxShower_MainWindow_Ui_PointsNotValidToChartProblem_Text {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_MainWindow_Ui_PointsNotValidToChartProblem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data selection problem.
+        /// </summary>
+        internal static string MessageBoxShower_MainWindow_Ui_SeriesSelectionProblem_Caption {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_MainWindow_Ui_SeriesSelectionProblem_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Any curve has not been generated yet..
+        /// </summary>
+        internal static string MessageBoxShower_MainWindow_Ui_SeriesSelectionProblem_Text {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_MainWindow_Ui_SeriesSelectionProblem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid curve index.
+        /// </summary>
+        internal static string MessageBoxShower_MainWindow_Ui_SpecifiedCurveDoesntExistProblem_Caption {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_MainWindow_Ui_SpecifiedCurveDoesntExistProblem_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The specified curve data doesn&apos;t exist..
+        /// </summary>
+        internal static string MessageBoxShower_MainWindow_Ui_SpecifiedCurveDoesntExistProblem_Text {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_MainWindow_Ui_SpecifiedCurveDoesntExistProblem_Text", resourceCulture);
+            }
+        }
     }
 }

@@ -16,57 +16,57 @@ namespace PI
 
             internal void SeriesSelectionProblem()
             {
-                string text = Consts.Ui.Panel.Datasheet.CrvSeriesSelectionTxt;
-                string caption = Consts.Ui.Panel.Datasheet.CrvSeriesSelectionCpt;
+                string text = Translator.GetInstance().Strings.MsgBxs.MainWnd.Ui.ProblemSeriesSelection.Text.GetString();
+                string caption = Translator.GetInstance().Strings.MsgBxs.MainWnd.Ui.ProblemSeriesSelection.Caption.GetString();
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
             }
 
             internal void ChartRefreshingError()
             {
-                string text = Consts.Ui.Charts.RefreshingErrTxt;
-                string caption = Consts.Ui.Charts.RefreshingErrCpt;
+                string text = Translator.GetInstance().Strings.MsgBxs.MainWnd.Ui.ErrorChartRefreshing.Text.GetString();
+                string caption = Translator.GetInstance().Strings.MsgBxs.MainWnd.Ui.ErrorChartRefreshing.Caption.GetString();
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
             }
 
             internal void CurveTypeNotSelectedInfo()
             {
-                string text = Consts.Ui.Panel.Datasheet.CrvTypeNotSelectedTxt;
-                string caption = Consts.Ui.Panel.Datasheet.CrvTypeNotSelectedCpt;
+                string text = Translator.GetInstance().Strings.MsgBxs.MainWnd.Ui.InfoCurveTypeNotSelected.Text.GetString();
+                string caption = Translator.GetInstance().Strings.MsgBxs.MainWnd.Ui.InfoCurveTypeNotSelected.Caption.GetString();
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Asterisk );
             }
 
             internal void PatternCurveNotChosenPrerequisite()
             {
-                string text = Consts.Ui.Panel.Generate.GenerateSetBtnPrerequisiteWarnTxt;
-                string caption = Consts.Ui.Panel.Generate.GenerateSetBtnPrerequisiteWarnCpt;
+                string text = Translator.GetInstance().Strings.MsgBxs.MainWnd.Ui.PrerequisitePatternCurveNotChosen.Text.GetString();
+                string caption = Translator.GetInstance().Strings.MsgBxs.MainWnd.Ui.PrerequisitePatternCurveNotChosen.Caption.GetString();
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Stop );
             }
 
             internal void PointsNotValidToChartProblem()
             {
-                string text = Consts.Ui.Charts.GeneratingWarnTxt;
-                string caption = Consts.Ui.Charts.GeneratingWarnCpt;
+                string text = Translator.GetInstance().Strings.MsgBxs.MainWnd.Ui.ProblemPointsNotValidToChart.Text.GetString();
+                string caption = Translator.GetInstance().Strings.MsgBxs.MainWnd.Ui.ProblemPointsNotValidToChart.Caption.GetString();
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
             }
 
             internal void SpecifiedCurveDoesntExistProblem()
             {
-                string text = Consts.Ui.Panel.Datasheet.SpecifiedCrvDoesntExistTxt;
-                string caption = Consts.Ui.Panel.Datasheet.SpecifiedCrvDoesntExistCpt;
+                string text = Translator.GetInstance().Strings.MsgBxs.MainWnd.Ui.ProblemSpecifiedCurveDoesntExist.Text.GetString();
+                string caption = Translator.GetInstance().Strings.MsgBxs.MainWnd.Ui.ProblemSpecifiedCurveDoesntExist.Caption.GetString();
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
             }
 
             internal void OperationMalformRejectedStop()
             {
-                string text = Consts.Ui.Panel.Datasheet.OperationMalformRejectedTxt;
-                string caption = Consts.Ui.Panel.Datasheet.OperationMalformRejectedCpt;
+                string text = Translator.GetInstance().Strings.MsgBxs.MainWnd.Ui.StopOperationMalformRejected.Text.GetString();
+                string caption = Translator.GetInstance().Strings.MsgBxs.MainWnd.Ui.StopOperationMalformRejected.Caption.GetString();
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Stop );
             }
 
             internal void NotEnoughCurvesForMedianaStop()
             {
-                string text = Consts.Ui.Panel.Generate.NotEnoughCurvesForMedianaTxt;
-                string caption = Consts.Ui.Panel.Generate.NotEnoughCurvesForMedianaCpt;
+                string text = Translator.GetInstance().Strings.MsgBxs.MainWnd.Ui.StopNotEnoughCurvesForMediana.Text.GetString();
+                string caption = Translator.GetInstance().Strings.MsgBxs.MainWnd.Ui.StopNotEnoughCurvesForMediana.Caption.GetString();
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
             }
 
@@ -77,29 +77,29 @@ namespace PI
 
             internal void CannotDownloadUpdateInfoProblem()
             {
-                string text = Consts.Ui.Menu.Update.DownloadingUpdateInfoErrTxt;
-                string caption = Consts.Ui.Menu.Update.DownloadingUpdateInfoErrCpt;
+                string text = Translator.GetInstance().Strings.MsgBxs.MainWnd.Menu.Update.ProblemCannotDownloadUpdateInfo.Text.GetString();
+                string caption = Translator.GetInstance().Strings.MsgBxs.MainWnd.Menu.Update.ProblemCannotDownloadUpdateInfo.Caption.GetString();
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
             }
 
             internal void RunningLatestReleaseAppInfo()
             {
-                string text = Consts.Ui.Menu.Update.RunningLatestAppTxt;
-                string caption = Consts.Ui.Menu.Update.RunningLatestAppCpt;
+                string text = Translator.GetInstance().Strings.MsgBxs.MainWnd.Menu.Update.InfoRunningLatestReleaseApp.Text.GetString();
+                string caption = Translator.GetInstance().Strings.MsgBxs.MainWnd.Menu.Update.InfoRunningLatestReleaseApp.Caption.GetString();
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Information );
             }
 
             internal void RunningObsoleteAppInfo()
             {
-                string text = Consts.Ui.Menu.Update.RunningObsoleteAppTxt;
-                string caption = Consts.Ui.Menu.Update.RunningObsoleteAppCpt;
+                string text = Translator.GetInstance().Strings.MsgBxs.MainWnd.Menu.Update.InfoRunningObsoleteApp.Text.GetString();
+                string caption = Translator.GetInstance().Strings.MsgBxs.MainWnd.Menu.Update.InfoRunningObsoleteApp.Caption.GetString();
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Information );
             }
 
             internal void CannotMatchVersionsError()
             {
-                string text = Consts.Ui.Menu.Update.MatchingVersionsErrTxt;
-                string caption = Consts.Ui.Menu.Update.MatchingVersionsErrCpt;
+                string text = Translator.GetInstance().Strings.MsgBxs.MainWnd.Menu.Update.ErrorCannotMatchVersions.Text.GetString();
+                string caption = Translator.GetInstance().Strings.MsgBxs.MainWnd.Menu.Update.ErrorCannotMatchVersions.Caption.GetString();
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
             }
 
@@ -114,8 +114,8 @@ namespace PI
             {
                 internal void IndexGreaterThanAllowedProblem()
                 {
-                    string text = Consts.Gprv.Panel.IdxGreaterThanAllowedTxt;
-                    string caption = Consts.Gprv.Panel.IdxGreaterThanAllowedCpt;
+                    string text = Translator.GetInstance().Strings.MsgBxs.Gprv.Pnl.ProblemIndexGreaterThanAllowed.Text.GetString();
+                    string caption = Translator.GetInstance().Strings.MsgBxs.Gprv.Pnl.ProblemIndexGreaterThanAllowed.Caption.GetString();
                     WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
                 }
 
