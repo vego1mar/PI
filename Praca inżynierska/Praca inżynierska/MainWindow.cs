@@ -36,6 +36,7 @@ namespace PI
             Logger.Initialize();
             UpdateUiByDotNetFrameworkVersion();
             UpdateUiByOsVersionName();
+            uiPnlPrg_LogPath2_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.Prg.InfoObtErrTxt.GetString();
             UpdateUiByLogFileFullPathLocation();
             UpdateUiByDefaultSettings();
             DefineTimerThread();
@@ -43,6 +44,7 @@ namespace PI
             UpdateUiByStatusOfTimerThread();
             Translator.GetInstance();
             Translator.SetLanguage( LangSelector.Languages.Default );
+            LocalizeCulture( LangSelector.Languages.Default );
         }
 
         private void UiMenuProgram_Exit_Click( object sender, EventArgs e )
@@ -156,10 +158,10 @@ namespace PI
         private void UpdateUiByStatusOfTimerThread()
         {
             if ( Timer == null ) {
-                uiPnlPrg_ActState2_TxtBx.Text = Consts.Ui.Panel.Program.TxtFailure;
+                uiPnlPrg_ActState2_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.Prg.StateFail.GetString();
             }
             else {
-                uiPnlPrg_ActState2_TxtBx.Text = Consts.Ui.Panel.Program.TxtSuccess;
+                uiPnlPrg_ActState2_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.Prg.StateSucc.GetString();
             }
         }
 
@@ -193,19 +195,19 @@ namespace PI
         {
             switch ( Settings.Presets.Pcd.Scaffold ) {
             case Enums.PatternCurveScaffold.Polynomial:
-                uiPnlGen_CrvScaff2_TxtBx.Text = Consts.Ui.Panel.Generate.TxtPolynomial;
+                uiPnlGen_CrvScaff2_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.Gen.ScaffPoly.GetString();
                 break;
             case Enums.PatternCurveScaffold.Hyperbolic:
-                uiPnlGen_CrvScaff2_TxtBx.Text = Consts.Ui.Panel.Generate.TxtHyperbolic;
+                uiPnlGen_CrvScaff2_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.Gen.ScaffHyp.GetString();
                 break;
             case Enums.PatternCurveScaffold.WaveformSine:
             case Enums.PatternCurveScaffold.WaveformSquare:
             case Enums.PatternCurveScaffold.WaveformTriangle:
             case Enums.PatternCurveScaffold.WaveformSawtooth:
-                uiPnlGen_CrvScaff2_TxtBx.Text = Consts.Ui.Panel.Generate.TxtWaveform;
+                uiPnlGen_CrvScaff2_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.Gen.ScaffWave.GetString();
                 break;
             default:
-                uiPnlGen_CrvScaff2_TxtBx.Text = Consts.Ui.Panel.Generate.TxtNotChosen;
+                uiPnlGen_CrvScaff2_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.Gen.ScaffNone.GetString();
                 break;
             }
         }
@@ -364,7 +366,7 @@ namespace PI
             string dotNetVersion = SysInfoHelper.ObtainUsedDotNetFrameworkVersion();
 
             if ( dotNetVersion == null ) {
-                uiPnlPrg_DotNetFr2_TxtBx.Text = Consts.Ui.Panel.Program.InfoObtainingErrTxt;
+                uiPnlPrg_DotNetFr2_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.Prg.InfoObtErrTxt.GetString();
                 return;
             }
 
@@ -377,7 +379,7 @@ namespace PI
             string osVersion = SysInfoHelper.ObtaingApplicationRunningOSVersion();
 
             if ( osVersion == null ) {
-                uiPnlPrg_OsVer2_TxtBx.Text = Consts.Ui.Panel.Program.InfoObtainingErrTxt;
+                uiPnlPrg_OsVer2_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.Prg.InfoObtErrTxt.GetString();
                 return;
             }
 
@@ -876,6 +878,7 @@ namespace PI
 
                 if ( dialog.DialogResult == DialogResult.OK ) {
                     Translator.SetLanguage( dialog.SelectedLanguage );
+                    LocalizeCulture( dialog.SelectedLanguage );
                     LocalizeWindow();
                 }
             }
@@ -883,7 +886,9 @@ namespace PI
 
         private void LocalizeWindow()
         {
+            Text = Translator.GetInstance().Strings.MainWnd.Ui.Form.Text.GetString();
             LocalizeMenu();
+            LocalizePanel();
         }
 
         private void LocalizeMenu()
@@ -922,6 +927,127 @@ namespace PI
         {
             uiMenu_Chart.Text = Translator.GetInstance().Strings.MainWnd.Menu.Chart.Title.GetString();
             uiMenuChart_Settings.Text = Translator.GetInstance().Strings.MainWnd.Menu.Chart.Settings.GetString();
+        }
+
+        private void LocalizePanel()
+        {
+            LocalizePanelTabGenerate();
+            LocalizePanelTabDatasheet();
+            LocalizePanelTabProgram();
+        }
+
+        private void LocalizePanelTabGenerate()
+        {
+            uiPnlGen_TbPg.Text = Translator.GetInstance().Strings.MainWnd.Pnl.Gen.Title.GetString();
+            uiPnlGen_PattCrvScaff_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.Gen.PattCrvScaff.GetString();
+            uiPnlGen_CrvScaff1_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.Gen.CrvScaff1.GetString();
+            UpdateUiByChosenScaffoldStatus();
+            uiPnlGen_Def_Btn.Text = Translator.GetInstance().Strings.MainWnd.Pnl.Gen.Def.GetString();
+            uiPnlGen_CrvsSet_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.Gen.CrvsSet.GetString();
+            uiPnlGen_Crvs1No_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.Gen.Crvs1No.GetString();
+            uiPnlGen_StartX_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.Gen.StartX.GetString();
+            uiPnlGen_EndX_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.Gen.EndX.GetString();
+            uiPnlGen_Dens_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.Gen.Dens.GetString();
+            RefreshControlToLocalize( uiPnlGen_Crvs1No_Num );
+            RefreshControlToLocalize( uiPnlGen_StartX_Num );
+            RefreshControlToLocalize( uiPnlGen_EndX_Num );
+            RefreshControlToLocalize( uiPnlGen_Dens_Num );
+            uiPnlGen_GenSet_Btn.Text = Translator.GetInstance().Strings.MainWnd.Pnl.Gen.GenSet.GetString();
+            uiPnlGen_Avg_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.Gen.Avg.GetString();
+            uiPnlGen_MeanT_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.Gen.MeanT.GetString();
+            uiPnlGen_Crvs2No_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.Gen.Crvs2No.GetString();
+            Translator.AddLocalizedMeanTypes( uiPnlGen_MeanT_ComBx );
+            RefreshControlToLocalize( uiPnlGen_Crvs2No_Nm );
+            uiPnlGen_Apply_Btn.Text = Translator.GetInstance().Strings.MainWnd.Pnl.Gen.Apply.GetString();
+        }
+
+        private void LocalizeCulture( LangSelector.Languages language )
+        {
+            try {
+                switch ( language ) {
+                case LangSelector.Languages.Default:
+                case LangSelector.Languages.English:
+                    Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo( "en-US" );
+                    break;
+                case LangSelector.Languages.Polish:
+                    Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo( "pl-PL" );
+                    break;
+                }
+            }
+            catch ( System.Globalization.CultureNotFoundException ex ) {
+                // TODO: Add a message box here.
+                Logger.WriteException( ex );
+            }
+            catch ( ArgumentNullException ex ) {
+                Logger.WriteException( ex );
+            }
+            catch ( Exception ex ) {
+                Logger.WriteException( ex );
+            }
+        }
+
+        private void RefreshControlToLocalize( Control control )
+        {
+            try {
+                if ( control is NumericUpDown ) {
+                    decimal originalValue = (control as NumericUpDown).Value;
+
+                    if ( originalValue == (control as NumericUpDown).Minimum ) {
+                        WinFormsHelper.SetValue( control as NumericUpDown, originalValue + (control as NumericUpDown).Increment );
+                        WinFormsHelper.SetValue( control as NumericUpDown, originalValue );
+                        return;
+                    }
+
+                    WinFormsHelper.SetValue( control as NumericUpDown, originalValue - (control as NumericUpDown).Increment );
+                    WinFormsHelper.SetValue( control as NumericUpDown, originalValue );
+                }
+            }
+            catch ( ArgumentOutOfRangeException ex ) {
+                Logger.WriteException( ex );
+            }
+            catch ( Exception ex ) {
+                Logger.WriteException( ex );
+            }
+        }
+
+        private void UiMainWindow_Shown( object sender, EventArgs e )
+        {
+            LocalizeWindow();
+        }
+
+        private void LocalizePanelTabDatasheet()
+        {
+            uiPnlDtSh_TbPg.Text = Translator.GetInstance().Strings.MainWnd.Pnl.DtSh.Title.GetString();
+            uiPnlDtSh_DtSetCtrl_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.DtSh.DtSetCtrl.GetString();
+            uiPnlDtSh_CrvT_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.DtSh.CrvT.GetString();
+            Translator.AddLocalizedDataSetCurveTypes( uiPnlDtSh_CrvT_ComBx );
+            uiPnlDtSh_CrvIdx_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.DtSh.CrvIdx.GetString();
+
+            if ( DataChart.PatternCurveSet.Points.Count != 0 ) {
+                RefreshControlToLocalize( uiPnlDtSh_CrvIdx_Num );
+            }
+
+            uiPnlDtSh_ShowDtSet_Btn.Text = Translator.GetInstance().Strings.MainWnd.Pnl.DtSh.ShowDtSet.GetString();
+            uiPnlDtSh_GsNoise_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.DtSh.GsNoise.GetString();
+            uiPnlDtSh_CrvNo_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.DtSh.CrvNo.GetString();
+            RefreshControlToLocalize( uiPnlDtSh_CrvNo_Num );
+            uiPnlDtSh_Surr_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.DtSh.Surr.GetString();
+            RefreshControlToLocalize( uiPnlDtSh_Surr_Num );
+            uiPnlDtSh_Malform_Btn.Text = Translator.GetInstance().Strings.MainWnd.Pnl.DtSh.Malform.GetString();
+        }
+
+        private void LocalizePanelTabProgram()
+        {
+            uiPnlPrg_TbPg.Text = Translator.GetInstance().Strings.MainWnd.Pnl.Prg.Title.GetString();
+            uiPnlPrg_Timer_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.Prg.Timer.GetString();
+            uiPnlPrg_ActState1_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.Prg.ActState1.GetString();
+            UpdateUiByStatusOfTimerThread();
+            uiPnlPrg_Cnts1_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.Prg.Cnts1.GetString();
+            uiPnlPrg_Info_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.Prg.Info.GetString();
+            uiPnlPrg_DotNetFr1_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.Prg.DotNetFr1.GetString();
+            uiPnlPrg_OsVer1_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.Prg.OsVer1.GetString();
+            uiPnlPrg_Log_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.Prg.Log.GetString();
+            uiPnlPrg_LogPath1_TxtBx.Text = Translator.GetInstance().Strings.MainWnd.Pnl.Prg.LogPath1.GetString();
         }
 
     }

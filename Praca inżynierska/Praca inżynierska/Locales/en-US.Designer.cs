@@ -61,6 +61,177 @@ namespace PI.Locales {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to average.
+        /// </summary>
+        internal static string Enums_DataSetCurvesTypes_Average {
+            get {
+                return ResourceManager.GetString("Enums_DataSetCurvesTypes_Average", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to generated.
+        /// </summary>
+        internal static string Enums_DataSetCurvesTypes_Generated {
+            get {
+                return ResourceManager.GetString("Enums_DataSetCurvesTypes_Generated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to pattern.
+        /// </summary>
+        internal static string Enums_DataSetCurvesTypes_Pattern {
+            get {
+                return ResourceManager.GetString("Enums_DataSetCurvesTypes_Pattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AGM.
+        /// </summary>
+        internal static string Enums_MeanTypes_AGM {
+            get {
+                return ResourceManager.GetString("Enums_MeanTypes_AGM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to arithmetic.
+        /// </summary>
+        internal static string Enums_MeanTypes_Arithmetic {
+            get {
+                return ResourceManager.GetString("Enums_MeanTypes_Arithmetic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to custom-differential.
+        /// </summary>
+        internal static string Enums_MeanTypes_CustomDifferential {
+            get {
+                return ResourceManager.GetString("Enums_MeanTypes_CustomDifferential", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to custom-geometric.
+        /// </summary>
+        internal static string Enums_MeanTypes_CustomGeometric {
+            get {
+                return ResourceManager.GetString("Enums_MeanTypes_CustomGeometric", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to custom-tolerance.
+        /// </summary>
+        internal static string Enums_MeanTypes_CustomTolerance {
+            get {
+                return ResourceManager.GetString("Enums_MeanTypes_CustomTolerance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EMA.
+        /// </summary>
+        internal static string Enums_MeanTypes_EMA {
+            get {
+                return ResourceManager.GetString("Enums_MeanTypes_EMA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to geometric.
+        /// </summary>
+        internal static string Enums_MeanTypes_Geometric {
+            get {
+                return ResourceManager.GetString("Enums_MeanTypes_Geometric", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to harmonic.
+        /// </summary>
+        internal static string Enums_MeanTypes_Harmonic {
+            get {
+                return ResourceManager.GetString("Enums_MeanTypes_Harmonic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Heronian.
+        /// </summary>
+        internal static string Enums_MeanTypes_Heronian {
+            get {
+                return ResourceManager.GetString("Enums_MeanTypes_Heronian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to log waged.
+        /// </summary>
+        internal static string Enums_MeanTypes_LnWages {
+            get {
+                return ResourceManager.GetString("Enums_MeanTypes_LnWages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to logarithmic.
+        /// </summary>
+        internal static string Enums_MeanTypes_Logarithmic {
+            get {
+                return ResourceManager.GetString("Enums_MeanTypes_Logarithmic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to maximum.
+        /// </summary>
+        internal static string Enums_MeanTypes_Maximum {
+            get {
+                return ResourceManager.GetString("Enums_MeanTypes_Maximum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mediana.
+        /// </summary>
+        internal static string Enums_MeanTypes_Mediana {
+            get {
+                return ResourceManager.GetString("Enums_MeanTypes_Mediana", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to minimum.
+        /// </summary>
+        internal static string Enums_MeanTypes_Minimum {
+            get {
+                return ResourceManager.GetString("Enums_MeanTypes_Minimum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to power.
+        /// </summary>
+        internal static string Enums_MeanTypes_Power {
+            get {
+                return ResourceManager.GetString("Enums_MeanTypes_Power", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RMS.
+        /// </summary>
+        internal static string Enums_MeanTypes_RMS {
+            get {
+                return ResourceManager.GetString("Enums_MeanTypes_RMS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Default.
         /// </summary>
         internal static string LangSelector_Languages_Default {
@@ -228,6 +399,366 @@ namespace PI.Locales {
         internal static string MainWindow_Menu_Program_StatisticalAnalysis {
             get {
                 return ResourceManager.GetString("MainWindow_Menu_Program_StatisticalAnalysis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datasheet.
+        /// </summary>
+        internal static string MainWindow_Panel_Datasheet {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Datasheet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Curve index:.
+        /// </summary>
+        internal static string MainWindow_Panel_Datasheet_CurveIndex {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Datasheet_CurveIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of curves:.
+        /// </summary>
+        internal static string MainWindow_Panel_Datasheet_CurvesNumber {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Datasheet_CurvesNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Curve type:.
+        /// </summary>
+        internal static string MainWindow_Panel_Datasheet_CurveType {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Datasheet_CurveType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dataset control.
+        /// </summary>
+        internal static string MainWindow_Panel_Datasheet_DatasetControl {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Datasheet_DatasetControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gaussian noise.
+        /// </summary>
+        internal static string MainWindow_Panel_Datasheet_GaussianNoise {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Datasheet_GaussianNoise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Malform.
+        /// </summary>
+        internal static string MainWindow_Panel_Datasheet_Malform {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Datasheet_Malform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show dataset.
+        /// </summary>
+        internal static string MainWindow_Panel_Datasheet_ShowDataSet {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Datasheet_ShowDataSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Surrounding:.
+        /// </summary>
+        internal static string MainWindow_Panel_Datasheet_Surrounding {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Datasheet_Surrounding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate.
+        /// </summary>
+        internal static string MainWindow_Panel_Generate {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Generate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply.
+        /// </summary>
+        internal static string MainWindow_Panel_Generate_Apply {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Generate_Apply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Averaging.
+        /// </summary>
+        internal static string MainWindow_Panel_Generate_Averaging {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Generate_Averaging", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Curve scaffold:.
+        /// </summary>
+        internal static string MainWindow_Panel_Generate_CurveScaffold1 {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Generate_CurveScaffold1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hyperbolic.
+        /// </summary>
+        internal static string MainWindow_Panel_Generate_CurveScaffold2_Hyperbolic {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Generate_CurveScaffold2_Hyperbolic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not chosen.
+        /// </summary>
+        internal static string MainWindow_Panel_Generate_CurveScaffold2_NotChosen {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Generate_CurveScaffold2_NotChosen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Polynomial.
+        /// </summary>
+        internal static string MainWindow_Panel_Generate_CurveScaffold2_Polynomial {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Generate_CurveScaffold2_Polynomial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Waveform.
+        /// </summary>
+        internal static string MainWindow_Panel_Generate_CurveScaffold2_Waveform {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Generate_CurveScaffold2_Waveform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Whole set of curves.
+        /// </summary>
+        internal static string MainWindow_Panel_Generate_CurvesSet {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Generate_CurvesSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Define.
+        /// </summary>
+        internal static string MainWindow_Panel_Generate_Define {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Generate_Define", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Interval points:.
+        /// </summary>
+        internal static string MainWindow_Panel_Generate_Density {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Generate_Density", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ending X point:.
+        /// </summary>
+        internal static string MainWindow_Panel_Generate_EndingXPoint {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Generate_EndingXPoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate set.
+        /// </summary>
+        internal static string MainWindow_Panel_Generate_GenerateSet {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Generate_GenerateSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mean type:.
+        /// </summary>
+        internal static string MainWindow_Panel_Generate_MeanType {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Generate_MeanType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of curves:.
+        /// </summary>
+        internal static string MainWindow_Panel_Generate_NumberOfCurves1 {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Generate_NumberOfCurves1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of curves:.
+        /// </summary>
+        internal static string MainWindow_Panel_Generate_NumberOfCurves2 {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Generate_NumberOfCurves2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pattern curve scaffold.
+        /// </summary>
+        internal static string MainWindow_Panel_Generate_PatternCurveScaffold {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Generate_PatternCurveScaffold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Starting X point:.
+        /// </summary>
+        internal static string MainWindow_Panel_Generate_StartingXPoint {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Generate_StartingXPoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Program.
+        /// </summary>
+        internal static string MainWindow_Panel_Program {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Program", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Actual state:.
+        /// </summary>
+        internal static string MainWindow_Panel_Program_ActualState1 {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Program_ActualState1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Counts:.
+        /// </summary>
+        internal static string MainWindow_Panel_Program_ActualState2_Counts1 {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Program_ActualState2_Counts1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .NET Framework:.
+        /// </summary>
+        internal static string MainWindow_Panel_Program_ActualState2_DotNetFramework {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Program_ActualState2_DotNetFramework", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failure.
+        /// </summary>
+        internal static string MainWindow_Panel_Program_ActualState2_Failure {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Program_ActualState2_Failure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown.
+        /// </summary>
+        internal static string MainWindow_Panel_Program_ActualState2_InfoObtainingErrorText {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Program_ActualState2_InfoObtainingErrorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Informations.
+        /// </summary>
+        internal static string MainWindow_Panel_Program_ActualState2_Informations {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Program_ActualState2_Informations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logging.
+        /// </summary>
+        internal static string MainWindow_Panel_Program_ActualState2_Logging {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Program_ActualState2_Logging", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log path:.
+        /// </summary>
+        internal static string MainWindow_Panel_Program_ActualState2_LogPath1 {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Program_ActualState2_LogPath1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OS version:.
+        /// </summary>
+        internal static string MainWindow_Panel_Program_ActualState2_OsVersion1 {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Program_ActualState2_OsVersion1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Success.
+        /// </summary>
+        internal static string MainWindow_Panel_Program_ActualState2_Success {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Program_ActualState2_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Timer.
+        /// </summary>
+        internal static string MainWindow_Panel_Program_Timer {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Program_Timer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Engineer&apos;s thesis 1.3.
+        /// </summary>
+        internal static string MainWindow_Ui_Form_Text {
+            get {
+                return ResourceManager.GetString("MainWindow_Ui_Form_Text", resourceCulture);
             }
         }
     }

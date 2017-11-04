@@ -1198,7 +1198,7 @@
             // uiMenuChart_Settings
             // 
             this.uiMenuChart_Settings.Name = "uiMenuChart_Settings";
-            this.uiMenuChart_Settings.Size = new System.Drawing.Size(152, 22);
+            this.uiMenuChart_Settings.Size = new System.Drawing.Size(122, 22);
             this.uiMenuChart_Settings.Text = "Settings";
             this.uiMenuChart_Settings.Click += new System.EventHandler(this.UiMenuChart_Settings_Click);
             // 
@@ -1233,6 +1233,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.UiMainWindow_FormClosed);
             this.Load += new System.EventHandler(this.UiMainWindow_Load);
+            this.Shown += new System.EventHandler(this.UiMainWindow_Shown);
             this.Resize += new System.EventHandler(this.UiMainWindow_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.uiCharts_Crv)).EndInit();
             this.ui_Pnl.ResumeLayout(false);

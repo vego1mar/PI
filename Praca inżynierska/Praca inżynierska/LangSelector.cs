@@ -30,14 +30,7 @@ namespace PI
         private void LocalizeWindow()
         {
             Text = Translator.GetInstance().Strings.LngSel.Ui.Form.Text.GetString();
-            AddLocalizedLanguages( uiUp_LstBx );
-        }
-
-        private void AddLocalizedLanguages( ListBox listBox )
-        {
-            foreach ( var item in Translator.GetInstance().Strings.LngSel.Languages ) {
-                listBox.Items.Add( item.GetString() );
-            }
+            Translator.AddLocalizedLanguages( uiUp_LstBx );
         }
 
         private void LangSelector_Load( object sender, EventArgs e )

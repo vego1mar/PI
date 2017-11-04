@@ -117,6 +117,65 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Enums_DataSetCurvesTypes_Average" xml:space="preserve">
+    <value>uśredniona</value>
+  </data>
+  <data name="Enums_DataSetCurvesTypes_Generated" xml:space="preserve">
+    <value>wygenerowana</value>
+  </data>
+  <data name="Enums_DataSetCurvesTypes_Pattern" xml:space="preserve">
+    <value>wzorcowa</value>
+  </data>
+  <data name="Enums_MeanTypes_AGM" xml:space="preserve">
+    <value>arytm.-geom.</value>
+    <comment>Średnia arytmetyczno-geometryczna</comment>
+  </data>
+  <data name="Enums_MeanTypes_Arithmetic" xml:space="preserve">
+    <value>arytmetyczna</value>
+  </data>
+  <data name="Enums_MeanTypes_CustomDifferential" xml:space="preserve">
+    <value>własna-różnicowa</value>
+  </data>
+  <data name="Enums_MeanTypes_CustomGeometric" xml:space="preserve">
+    <value>własna-geometryczna</value>
+  </data>
+  <data name="Enums_MeanTypes_CustomTolerance" xml:space="preserve">
+    <value>własna-tolerująca</value>
+  </data>
+  <data name="Enums_MeanTypes_EMA" xml:space="preserve">
+    <value>krocząca</value>
+    <comment>Wykładnicza średnia krocząca</comment>
+  </data>
+  <data name="Enums_MeanTypes_Geometric" xml:space="preserve">
+    <value>geometryczna</value>
+  </data>
+  <data name="Enums_MeanTypes_Harmonic" xml:space="preserve">
+    <value>harmoniczna</value>
+  </data>
+  <data name="Enums_MeanTypes_Heronian" xml:space="preserve">
+    <value>Herona</value>
+  </data>
+  <data name="Enums_MeanTypes_LnWages" xml:space="preserve">
+    <value>log. ważona</value>
+  </data>
+  <data name="Enums_MeanTypes_Logarithmic" xml:space="preserve">
+    <value>logarytmiczna</value>
+  </data>
+  <data name="Enums_MeanTypes_Maximum" xml:space="preserve">
+    <value>maksimum</value>
+  </data>
+  <data name="Enums_MeanTypes_Mediana" xml:space="preserve">
+    <value>mediana</value>
+  </data>
+  <data name="Enums_MeanTypes_Minimum" xml:space="preserve">
+    <value>minimum</value>
+  </data>
+  <data name="Enums_MeanTypes_Power" xml:space="preserve">
+    <value>potęgowa</value>
+  </data>
+  <data name="Enums_MeanTypes_RMS" xml:space="preserve">
+    <value>kwadratowa</value>
+  </data>
   <data name="LangSelector_Languages_Default" xml:space="preserve">
     <value>domyślny</value>
   </data>
@@ -173,5 +232,125 @@
   </data>
   <data name="MainWindow_Menu_Program_StatisticalAnalysis" xml:space="preserve">
     <value>Analiza statystyczna</value>
+  </data>
+  <data name="MainWindow_Panel_Datasheet" xml:space="preserve">
+    <value>Dane</value>
+  </data>
+  <data name="MainWindow_Panel_Datasheet_CurveIndex" xml:space="preserve">
+    <value>Indeks krzywej:</value>
+  </data>
+  <data name="MainWindow_Panel_Datasheet_CurvesNumber" xml:space="preserve">
+    <value>Ilość krzywych:</value>
+  </data>
+  <data name="MainWindow_Panel_Datasheet_CurveType" xml:space="preserve">
+    <value>Typ krzywej:</value>
+  </data>
+  <data name="MainWindow_Panel_Datasheet_DatasetControl" xml:space="preserve">
+    <value>Kontrola zestawem danych</value>
+  </data>
+  <data name="MainWindow_Panel_Datasheet_GaussianNoise" xml:space="preserve">
+    <value>Szum Gaussa</value>
+  </data>
+  <data name="MainWindow_Panel_Datasheet_Malform" xml:space="preserve">
+    <value>Zniekształć</value>
+  </data>
+  <data name="MainWindow_Panel_Datasheet_ShowDataSet" xml:space="preserve">
+    <value>Pokaż zestaw danych</value>
+  </data>
+  <data name="MainWindow_Panel_Datasheet_Surrounding" xml:space="preserve">
+    <value>Otoczenie:</value>
+  </data>
+  <data name="MainWindow_Panel_Generate" xml:space="preserve">
+    <value>Generowanie</value>
+  </data>
+  <data name="MainWindow_Panel_Generate_Apply" xml:space="preserve">
+    <value>Zastosuj</value>
+  </data>
+  <data name="MainWindow_Panel_Generate_Averaging" xml:space="preserve">
+    <value>Uśrednianie</value>
+  </data>
+  <data name="MainWindow_Panel_Generate_CurveScaffold1" xml:space="preserve">
+    <value>Szkielet krzywej:</value>
+  </data>
+  <data name="MainWindow_Panel_Generate_CurveScaffold2_Hyperbolic" xml:space="preserve">
+    <value>hiperboliczny</value>
+  </data>
+  <data name="MainWindow_Panel_Generate_CurveScaffold2_NotChosen" xml:space="preserve">
+    <value>nie wybrany</value>
+  </data>
+  <data name="MainWindow_Panel_Generate_CurveScaffold2_Polynomial" xml:space="preserve">
+    <value>wielomianowy</value>
+  </data>
+  <data name="MainWindow_Panel_Generate_CurveScaffold2_Waveform" xml:space="preserve">
+    <value>falowy</value>
+  </data>
+  <data name="MainWindow_Panel_Generate_CurvesSet" xml:space="preserve">
+    <value>Cały zestaw krzywych</value>
+  </data>
+  <data name="MainWindow_Panel_Generate_Define" xml:space="preserve">
+    <value>Zdefiniuj</value>
+  </data>
+  <data name="MainWindow_Panel_Generate_Density" xml:space="preserve">
+    <value>Punkty przedziału:</value>
+  </data>
+  <data name="MainWindow_Panel_Generate_EndingXPoint" xml:space="preserve">
+    <value>Końcowy punkt x:</value>
+  </data>
+  <data name="MainWindow_Panel_Generate_GenerateSet" xml:space="preserve">
+    <value>Wygeneruj zestaw</value>
+  </data>
+  <data name="MainWindow_Panel_Generate_MeanType" xml:space="preserve">
+    <value>Typ średniej:</value>
+  </data>
+  <data name="MainWindow_Panel_Generate_NumberOfCurves1" xml:space="preserve">
+    <value>Ilość krzywych:</value>
+  </data>
+  <data name="MainWindow_Panel_Generate_NumberOfCurves2" xml:space="preserve">
+    <value>Ilość krzywych:</value>
+  </data>
+  <data name="MainWindow_Panel_Generate_PatternCurveScaffold" xml:space="preserve">
+    <value>Szkielet krzywej wzorcowej</value>
+  </data>
+  <data name="MainWindow_Panel_Generate_StartingXPoint" xml:space="preserve">
+    <value>Początkowy punkt x:</value>
+  </data>
+  <data name="MainWindow_Panel_Program" xml:space="preserve">
+    <value>Program</value>
+  </data>
+  <data name="MainWindow_Panel_Program_ActualState1" xml:space="preserve">
+    <value>Stan obecny:</value>
+  </data>
+  <data name="MainWindow_Panel_Program_ActualState2_Counts1" xml:space="preserve">
+    <value>Czas:</value>
+  </data>
+  <data name="MainWindow_Panel_Program_ActualState2_DotNetFramework" xml:space="preserve">
+    <value>.NET Framework:</value>
+  </data>
+  <data name="MainWindow_Panel_Program_ActualState2_Failure" xml:space="preserve">
+    <value>Porażka</value>
+  </data>
+  <data name="MainWindow_Panel_Program_ActualState2_InfoObtainingErrorText" xml:space="preserve">
+    <value>Nieznany</value>
+  </data>
+  <data name="MainWindow_Panel_Program_ActualState2_Informations" xml:space="preserve">
+    <value>Informacje</value>
+  </data>
+  <data name="MainWindow_Panel_Program_ActualState2_Logging" xml:space="preserve">
+    <value>Logowanie</value>
+  </data>
+  <data name="MainWindow_Panel_Program_ActualState2_LogPath1" xml:space="preserve">
+    <value>Ścieżka logu:</value>
+  </data>
+  <data name="MainWindow_Panel_Program_ActualState2_OsVersion1" xml:space="preserve">
+    <value>Wersja sys. oper.:</value>
+  </data>
+  <data name="MainWindow_Panel_Program_ActualState2_Success" xml:space="preserve">
+    <value>Sukces</value>
+  </data>
+  <data name="MainWindow_Panel_Program_Timer" xml:space="preserve">
+    <value>Czasomierz</value>
+  </data>
+  <data name="MainWindow_Ui_Form_Text" xml:space="preserve">
+    <value>Praca inżynierska 1.3</value>
   </data>
 </root>
