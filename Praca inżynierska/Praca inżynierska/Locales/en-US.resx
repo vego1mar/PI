@@ -177,9 +177,6 @@
     <value>RMS</value>
     <comment>Root mean square</comment>
   </data>
-  <data name="LangSelector_Languages_Default" xml:space="preserve">
-    <value>Default</value>
-  </data>
   <data name="LangSelector_Languages_English" xml:space="preserve">
     <value>English</value>
   </data>
@@ -425,5 +422,191 @@
   </data>
   <data name="MessageBoxShower_MainWindow_Ui_SpecifiedCurveDoesntExistProblem_Text" xml:space="preserve">
     <value>The specified curve data doesn't exist.</value>
+  </data>
+  <data name="Enums_Operations_Addition" xml:space="preserve">
+    <value>addition</value>
+  </data>
+  <data name="Enums_Operations_Constant" xml:space="preserve">
+    <value>constant</value>
+  </data>
+  <data name="Enums_Operations_Division" xml:space="preserve">
+    <value>division</value>
+  </data>
+  <data name="Enums_Operations_Exponentiation" xml:space="preserve">
+    <value>exponentiation</value>
+  </data>
+  <data name="Enums_Operations_Logarithmic" xml:space="preserve">
+    <value>logarithmic</value>
+  </data>
+  <data name="Enums_Operations_Multiplication" xml:space="preserve">
+    <value>multiplication</value>
+  </data>
+  <data name="Enums_Operations_Negative" xml:space="preserve">
+    <value>negative</value>
+  </data>
+  <data name="Enums_Operations_Positive" xml:space="preserve">
+    <value>positive</value>
+  </data>
+  <data name="Enums_Operations_Rooting" xml:space="preserve">
+    <value>rooting</value>
+  </data>
+  <data name="Enums_Operations_Substraction" xml:space="preserve">
+    <value>substraction</value>
+  </data>
+  <data name="GridPreviewer_Ui_Dataset_Dataset" xml:space="preserve">
+    <value>Dataset</value>
+  </data>
+  <data name="GridPreviewer_Ui_Form_Text" xml:space="preserve">
+    <value>Grid previewer</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_AutoSizeColumnsMode" xml:space="preserve">
+    <value>AutoSizeColumnsMode:</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_DatasetGrid" xml:space="preserve">
+    <value>Dataset grid</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_EndIndex" xml:space="preserve">
+    <value>End index:</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_FastEdit" xml:space="preserve">
+    <value>Fast edit</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Info_ChangesSaved" xml:space="preserve">
+    <value>Changes saved</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Info_GridPreviewerLoaded" xml:space="preserve">
+    <value>Grid Previewer loaded</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Info_InvalidUserValue" xml:space="preserve">
+    <value>Invalid user value</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Info_OperationRejected" xml:space="preserve">
+    <value>Operation rejected</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Info_OperationRevoked" xml:space="preserve">
+    <value>Operation revoked</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Info_PerformedAndRefreshed" xml:space="preserve">
+    <value>Performed &amp; refreshed</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Info_ValuesRestored" xml:space="preserve">
+    <value>Values restored</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_OperationType" xml:space="preserve">
+    <value>Operation type:</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Perform" xml:space="preserve">
+    <value>Perform</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_StartIndex" xml:space="preserve">
+    <value>Start index:</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Value1_Addend" xml:space="preserve">
+    <value>Addend:</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Value1_Basis" xml:space="preserve">
+    <value>Basis:</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Value1_Divisor" xml:space="preserve">
+    <value>Divisor:</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Value1_Exponent" xml:space="preserve">
+    <value>Exponent:</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Value1_Multiplier" xml:space="preserve">
+    <value>Multiplier:</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Value1_NotApplicable" xml:space="preserve">
+    <value>N/A:</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Value1_Subtrahend" xml:space="preserve">
+    <value>Subtrahend:</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Value1_Value" xml:space="preserve">
+    <value>Value:</value>
+  </data>
+  <data name="GridPreviewer_Ui_Preview_Info_ChartNotRepainted" xml:space="preserve">
+    <value>Chart not repainted</value>
+  </data>
+  <data name="GridPreviewer_Ui_Preview_Info_ChartRefreshed" xml:space="preserve">
+    <value>Chart refreshed</value>
+  </data>
+  <data name="GridPreviewer_Ui_Preview_Info_ChartRefreshError" xml:space="preserve">
+    <value>Chart refresh error</value>
+  </data>
+  <data name="GridPreviewer_Ui_Preview_Preview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="MessageBoxShower_GridPreviewer_Chart_ChartRefreshingError_Caption" xml:space="preserve">
+    <value>Invalid operation</value>
+  </data>
+  <data name="MessageBoxShower_GridPreviewer_Chart_ChartRefreshingError_Text" xml:space="preserve">
+    <value>Chart refreshing error, possibly recalculating axes scales (too large to display).</value>
+  </data>
+  <data name="MessageBoxShower_GridPreviewer_Panel_ImproperUserValueProblem_Caption" xml:space="preserve">
+    <value>Wrong cast, conversion or format</value>
+  </data>
+  <data name="MessageBoxShower_GridPreviewer_Panel_ImproperUserValueProblem_Text" xml:space="preserve">
+    <value>The given value is improper. Note, that numbers should be localized in accord with your operating system current regional settings.</value>
+  </data>
+  <data name="MessageBoxShower_GridPreviewer_Panel_IndexLowerThanAllowedProblem_Caption" xml:space="preserve">
+    <value>Improper index value</value>
+  </data>
+  <data name="MessageBoxShower_GridPreviewer_Panel_IndexLowerThanAllowedProblem_Text" xml:space="preserve">
+    <value>Specified index would be lower than allowed. Change revoked.</value>
+  </data>
+  <data name="MessageBoxShower_GridPreviewer_Panel_InvalidCurvePointsError_Caption" xml:space="preserve">
+    <value>Invalid curve points</value>
+  </data>
+  <data name="MessageBoxShower_GridPreviewer_Panel_InvalidCurvePointsError_Text" xml:space="preserve">
+    <value>At least one of points value is too large or improper to be displayed on a chart.</value>
+  </data>
+  <data name="MessageBoxShower_GridPreviewer_Panel_PerformOperationError_Caption" xml:space="preserve">
+    <value>Exception during calculation</value>
+  </data>
+  <data name="MessageBoxShower_GridPreviewer_Panel_PerformOperationError_Text" xml:space="preserve">
+    <value>Cannot calculate values for all specified arguments. Overflow. Changes rejected.</value>
+  </data>
+  <data name="MessageBoxShower_MainWindow_Menu_Update_RunningLatestReleaseAppInfo_Caption" xml:space="preserve">
+    <value>Up-to-date</value>
+  </data>
+  <data name="MessageBoxShower_MainWindow_Ui_PointsNotValidToChartProblem_Caption" xml:space="preserve">
+    <value>Generating points warning</value>
+  </data>
+  <data name="MessageBoxShower_PatternCurveDefiner_Hyperbolic_DivisionByZeroProblem_Caption" xml:space="preserve">
+    <value>Division by zero</value>
+  </data>
+  <data name="MessageBoxShower_PatternCurveDefiner_Hyperbolic_DivisionByZeroProblem_Text" xml:space="preserve">
+    <value>Cannot divide by 0.0000. A value of 0.0001 will be used instead.</value>
+  </data>
+  <data name="MessageBoxShower_StatisticalAnalysis_Preview_PointsNotValidToChartProblem_Caption" xml:space="preserve">
+    <value>Data selection problem</value>
+  </data>
+  <data name="MessageBoxShower_StatisticalAnalysis_Preview_PointsNotValidToChartProblem_Text" xml:space="preserve">
+    <value>Some points cannot be shown on a chart. The chart will not be refreshed.</value>
+  </data>
+  <data name="MessageBoxShower_StatisticalAnalysis_Preview_UnrecognizedError_Caption" xml:space="preserve">
+    <value>Unrecognized error</value>
+  </data>
+  <data name="MessageBoxShower_StatisticalAnalysis_Preview_UnrecognizedError_Text" xml:space="preserve">
+    <value>An unkown error has occured while refreshing chart.</value>
+  </data>
+  <data name="MessageBoxShower_StatisticalAnalysis_Preview_ValueOutOfRangeProblem_Caption" xml:space="preserve">
+    <value>Out of range</value>
+  </data>
+  <data name="MessageBoxShower_StatisticalAnalysis_Preview_ValueOutOfRangeProblem_Text" xml:space="preserve">
+    <value>The provided value is not within a specified range.</value>
   </data>
 </root>

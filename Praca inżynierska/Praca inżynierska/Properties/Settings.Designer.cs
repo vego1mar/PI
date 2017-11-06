@@ -34,7 +34,7 @@ namespace PI.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("47")]
+        [global::System.Configuration.DefaultSettingValueAttribute("48")]
         public ushort Commits {
             get {
                 return ((ushort)(this["Commits"]));

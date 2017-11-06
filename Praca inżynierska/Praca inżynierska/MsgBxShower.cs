@@ -16,57 +16,57 @@ namespace PI
 
             internal void SeriesSelectionProblem()
             {
-                string text = Translator.GetInstance().Strings.MsgBxs.MainWnd.Ui.ProblemSeriesSelection.Text.GetString();
-                string caption = Translator.GetInstance().Strings.MsgBxs.MainWnd.Ui.ProblemSeriesSelection.Caption.GetString();
+                string text = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Ui.ProblemSeriesSelection.Text.GetString();
+                string caption = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Ui.ProblemSeriesSelection.Caption.GetString();
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
             }
 
             internal void ChartRefreshingError()
             {
-                string text = Translator.GetInstance().Strings.MsgBxs.MainWnd.Ui.ErrorChartRefreshing.Text.GetString();
-                string caption = Translator.GetInstance().Strings.MsgBxs.MainWnd.Ui.ErrorChartRefreshing.Caption.GetString();
+                string text = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Ui.ErrorChartRefreshing.Text.GetString();
+                string caption = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Ui.ErrorChartRefreshing.Caption.GetString();
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
             }
 
             internal void CurveTypeNotSelectedInfo()
             {
-                string text = Translator.GetInstance().Strings.MsgBxs.MainWnd.Ui.InfoCurveTypeNotSelected.Text.GetString();
-                string caption = Translator.GetInstance().Strings.MsgBxs.MainWnd.Ui.InfoCurveTypeNotSelected.Caption.GetString();
+                string text = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Ui.InfoCurveTypeNotSelected.Text.GetString();
+                string caption = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Ui.InfoCurveTypeNotSelected.Caption.GetString();
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Asterisk );
             }
 
             internal void PatternCurveNotChosenPrerequisite()
             {
-                string text = Translator.GetInstance().Strings.MsgBxs.MainWnd.Ui.PrerequisitePatternCurveNotChosen.Text.GetString();
-                string caption = Translator.GetInstance().Strings.MsgBxs.MainWnd.Ui.PrerequisitePatternCurveNotChosen.Caption.GetString();
+                string text = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Ui.PrerequisitePatternCurveNotChosen.Text.GetString();
+                string caption = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Ui.PrerequisitePatternCurveNotChosen.Caption.GetString();
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Stop );
             }
 
             internal void PointsNotValidToChartProblem()
             {
-                string text = Translator.GetInstance().Strings.MsgBxs.MainWnd.Ui.ProblemPointsNotValidToChart.Text.GetString();
-                string caption = Translator.GetInstance().Strings.MsgBxs.MainWnd.Ui.ProblemPointsNotValidToChart.Caption.GetString();
+                string text = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Ui.ProblemPointsNotValidToChart.Text.GetString();
+                string caption = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Ui.ProblemPointsNotValidToChart.Caption.GetString();
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
             }
 
             internal void SpecifiedCurveDoesntExistProblem()
             {
-                string text = Translator.GetInstance().Strings.MsgBxs.MainWnd.Ui.ProblemSpecifiedCurveDoesntExist.Text.GetString();
-                string caption = Translator.GetInstance().Strings.MsgBxs.MainWnd.Ui.ProblemSpecifiedCurveDoesntExist.Caption.GetString();
+                string text = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Ui.ProblemSpecifiedCurveDoesntExist.Text.GetString();
+                string caption = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Ui.ProblemSpecifiedCurveDoesntExist.Caption.GetString();
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
             }
 
             internal void OperationMalformRejectedStop()
             {
-                string text = Translator.GetInstance().Strings.MsgBxs.MainWnd.Ui.StopOperationMalformRejected.Text.GetString();
-                string caption = Translator.GetInstance().Strings.MsgBxs.MainWnd.Ui.StopOperationMalformRejected.Caption.GetString();
+                string text = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Ui.StopOperationMalformRejected.Text.GetString();
+                string caption = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Ui.StopOperationMalformRejected.Caption.GetString();
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Stop );
             }
 
             internal void NotEnoughCurvesForMedianaStop()
             {
-                string text = Translator.GetInstance().Strings.MsgBxs.MainWnd.Ui.StopNotEnoughCurvesForMediana.Text.GetString();
-                string caption = Translator.GetInstance().Strings.MsgBxs.MainWnd.Ui.StopNotEnoughCurvesForMediana.Caption.GetString();
+                string text = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Ui.StopNotEnoughCurvesForMediana.Text.GetString();
+                string caption = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Ui.StopNotEnoughCurvesForMediana.Caption.GetString();
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
             }
 
@@ -77,29 +77,29 @@ namespace PI
 
             internal void CannotDownloadUpdateInfoProblem()
             {
-                string text = Translator.GetInstance().Strings.MsgBxs.MainWnd.Menu.Update.ProblemCannotDownloadUpdateInfo.Text.GetString();
-                string caption = Translator.GetInstance().Strings.MsgBxs.MainWnd.Menu.Update.ProblemCannotDownloadUpdateInfo.Caption.GetString();
+                string text = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Menu.Update.ProblemCannotDownloadUpdateInfo.Text.GetString();
+                string caption = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Menu.Update.ProblemCannotDownloadUpdateInfo.Caption.GetString();
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
             }
 
             internal void RunningLatestReleaseAppInfo()
             {
-                string text = Translator.GetInstance().Strings.MsgBxs.MainWnd.Menu.Update.InfoRunningLatestReleaseApp.Text.GetString();
-                string caption = Translator.GetInstance().Strings.MsgBxs.MainWnd.Menu.Update.InfoRunningLatestReleaseApp.Caption.GetString();
+                string text = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Menu.Update.InfoRunningLatestReleaseApp.Text.GetString();
+                string caption = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Menu.Update.InfoRunningLatestReleaseApp.Caption.GetString();
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Information );
             }
 
             internal void RunningObsoleteAppInfo()
             {
-                string text = Translator.GetInstance().Strings.MsgBxs.MainWnd.Menu.Update.InfoRunningObsoleteApp.Text.GetString();
-                string caption = Translator.GetInstance().Strings.MsgBxs.MainWnd.Menu.Update.InfoRunningObsoleteApp.Caption.GetString();
+                string text = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Menu.Update.InfoRunningObsoleteApp.Text.GetString();
+                string caption = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Menu.Update.InfoRunningObsoleteApp.Caption.GetString();
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Information );
             }
 
             internal void CannotMatchVersionsError()
             {
-                string text = Translator.GetInstance().Strings.MsgBxs.MainWnd.Menu.Update.ErrorCannotMatchVersions.Text.GetString();
-                string caption = Translator.GetInstance().Strings.MsgBxs.MainWnd.Menu.Update.ErrorCannotMatchVersions.Caption.GetString();
+                string text = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Menu.Update.ErrorCannotMatchVersions.Text.GetString();
+                string caption = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Menu.Update.ErrorCannotMatchVersions.Caption.GetString();
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
             }
 
@@ -114,36 +114,36 @@ namespace PI
             {
                 internal void IndexGreaterThanAllowedProblem()
                 {
-                    string text = Translator.GetInstance().Strings.MsgBxs.Gprv.Pnl.ProblemIndexGreaterThanAllowed.Text.GetString();
-                    string caption = Translator.GetInstance().Strings.MsgBxs.Gprv.Pnl.ProblemIndexGreaterThanAllowed.Caption.GetString();
+                    string text = Translator.GetInstance().Strings.MsgBxShower.GridPreviewer.Panel.ProblemIndexGreaterThanAllowed.Text.GetString();
+                    string caption = Translator.GetInstance().Strings.MsgBxShower.GridPreviewer.Panel.ProblemIndexGreaterThanAllowed.Caption.GetString();
                     WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
                 }
 
                 internal void IndexLowerThanAllowedProblem()
                 {
-                    string text = Consts.Gprv.Panel.IdxLowerThanAllowedTxt;
-                    string caption = Consts.Gprv.Panel.IdxLowerThanAllowedCpt;
+                    string text = Translator.GetInstance().Strings.MsgBxShower.GridPreviewer.Panel.ProblemIndexLowerThanAllowed.Text.GetString();
+                    string caption = Translator.GetInstance().Strings.MsgBxShower.GridPreviewer.Panel.ProblemIndexLowerThanAllowed.Caption.GetString();
                     WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
                 }
 
                 internal void ImproperUserValueProblem()
                 {
-                    string text = Consts.Gprv.Panel.UserValueImproperTxt;
-                    string caption = Consts.Gprv.Panel.UserValueImproperCpt;
+                    string text = Translator.GetInstance().Strings.MsgBxShower.GridPreviewer.Panel.ProblemImproperUserValue.Text.GetString();
+                    string caption = Translator.GetInstance().Strings.MsgBxShower.GridPreviewer.Panel.ProblemImproperUserValue.Caption.GetString();
                     WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
                 }
 
                 internal void PerformOperationError()
                 {
-                    string text = Consts.Gprv.Panel.OperationErrTxt;
-                    string caption = Consts.Gprv.Panel.OperationErrCpt;
+                    string text = Translator.GetInstance().Strings.MsgBxShower.GridPreviewer.Panel.ErrorPerformOperation.Text.GetString();
+                    string caption = Translator.GetInstance().Strings.MsgBxShower.GridPreviewer.Panel.ErrorPerformOperation.Caption.GetString();
                     WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
                 }
 
                 internal void InvalidCurvePointsError()
                 {
-                    string text = Consts.Gprv.Panel.InvalCurvePointsTxt;
-                    string caption = Consts.Gprv.Panel.InvalCurvePointsCpt;
+                    string text = Translator.GetInstance().Strings.MsgBxShower.GridPreviewer.Panel.ErrorInvalidCurvePoints.Text.GetString();
+                    string caption = Translator.GetInstance().Strings.MsgBxShower.GridPreviewer.Panel.ErrorInvalidCurvePoints.Caption.GetString();
                     WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
                 }
             }
@@ -152,8 +152,8 @@ namespace PI
             {
                 internal void ChartRefreshingError()
                 {
-                    string text = Consts.Gprv.Chart.RefreshErrTxt;
-                    string caption = Consts.Gprv.Chart.RefreshErrCpt;
+                    string text = Translator.GetInstance().Strings.MsgBxShower.GridPreviewer.Chart.ErrorChartRefreshing.Text.GetString();
+                    string caption = Translator.GetInstance().Strings.MsgBxShower.GridPreviewer.Chart.ErrorChartRefreshing.Caption.GetString();
                     WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
                 }
             }
@@ -163,8 +163,8 @@ namespace PI
         {
             internal void DivisionByZeroProblem()
             {
-                string text = Consts.Pcd.Hyperbolic.ParamsZeroDivTxt;
-                string caption = Consts.Pcd.Hyperbolic.ParamsZeroDivCpt;
+                string text = Translator.GetInstance().Strings.MsgBxShower.GridPreviewer.Chart.ErrorChartRefreshing.Text.GetString();
+                string caption = Translator.GetInstance().Strings.MsgBxShower.GridPreviewer.Chart.ErrorChartRefreshing.Caption.GetString();
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
             }
         }
@@ -175,31 +175,27 @@ namespace PI
 
             internal class PreviewMsgBoxes
             {
-                internal ChartMsgBoxes Chart { get; } = new ChartMsgBoxes();
-
-                internal class ChartMsgBoxes
+                internal void ValueOutOfRangeProblem()
                 {
-                    internal void ValueOutOfRangeProblem()
-                    {
-                        string text = Consts.Stat.Preview.Chart.OutOfRangeTxt;
-                        string caption = Consts.Stat.Preview.Chart.OutOfRangeCpt;
-                        WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
-                    }
-
-                    internal void UnrecognizedError()
-                    {
-                        string text = Consts.Stat.Preview.Chart.UnrecognizedErrTxt;
-                        string caption = Consts.Stat.Preview.Chart.UnrecognizedErrCpt;
-                        WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
-                    }
-
-                    internal void PointsNotValidToChartProblem()
-                    {
-                        string text = Consts.Stat.Preview.Chart.PointsNotValidTxt;
-                        string caption = Consts.Stat.Preview.Chart.PointsNotValidCpt;
-                        WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
-                    }
+                    string text = Translator.GetInstance().Strings.MsgBxShower.StatAnalysis.Preview.ProblemValueOutOfRange.Text.GetString();
+                    string caption = Translator.GetInstance().Strings.MsgBxShower.StatAnalysis.Preview.ProblemValueOutOfRange.Caption.GetString();
+                    WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
                 }
+
+                internal void UnrecognizedError()
+                {
+                    string text = Translator.GetInstance().Strings.MsgBxShower.StatAnalysis.Preview.ErrorUnrecognized.Text.GetString();
+                    string caption = Translator.GetInstance().Strings.MsgBxShower.StatAnalysis.Preview.ErrorUnrecognized.Caption.GetString();
+                    WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
+                }
+
+                internal void PointsNotValidToChartProblem()
+                {
+                    string text = Translator.GetInstance().Strings.MsgBxShower.StatAnalysis.Preview.ProblemPointsNotValidToChart.Text.GetString();
+                    string caption = Translator.GetInstance().Strings.MsgBxShower.StatAnalysis.Preview.ProblemPointsNotValidToChart.Caption.GetString();
+                    WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+                }
+
             }
         }
 

@@ -30,11 +30,6 @@ namespace PI
 
         public static void SetLanguage( LangSelector.Languages language )
         {
-            if ( language == LangSelector.Languages.Default ) {
-                CurrentLanguage = LangSelector.Languages.English;
-                return;
-            }
-
             CurrentLanguage = language;
         }
 
@@ -60,7 +55,6 @@ namespace PI
 
                 try {
                     switch ( lang ) {
-                    case LangSelector.Languages.Default:
                     case LangSelector.Languages.English:
                         resourceString = Locales.en_US.ResourceManager.GetString( name );
                         break;
@@ -91,10 +85,11 @@ namespace PI
 
         public class StringsHierarchy
         {
-            public LangSelectorStrings LngSel { get; private set; } = new LangSelectorStrings();
-            public MainWindowStrings MainWnd { get; private set; } = new MainWindowStrings();
+            public LangSelectorStrings LangSelector { get; private set; } = new LangSelectorStrings();
+            public MainWindowStrings MainWindow { get; private set; } = new MainWindowStrings();
             public EnumsStrings Enums { get; private set; } = new EnumsStrings();
-            public MessageBoxShowerStrings MsgBxs { get; private set; } = new MessageBoxShowerStrings();
+            public MessageBoxShowerStrings MsgBxShower { get; private set; } = new MessageBoxShowerStrings();
+            public GridPreviewerStrings GridPreviewer { get; private set; } = new GridPreviewerStrings();
 
             public class LangSelectorStrings
             {
@@ -121,12 +116,12 @@ namespace PI
             {
                 public MwMenuStrings Menu { get; private set; } = new MwMenuStrings();
                 public MwUiStrings Ui { get; private set; } = new MwUiStrings();
-                public MwPanelStrings Pnl { get; private set; } = new MwPanelStrings();
+                public MwPanelStrings Panel { get; private set; } = new MwPanelStrings();
 
                 public class MwMenuStrings
                 {
-                    public MwProgramMenuStrings Prg { get; private set; } = new MwProgramMenuStrings();
-                    public MwPanelMenuStrings Pnl { get; private set; } = new MwPanelMenuStrings();
+                    public MwProgramMenuStrings Program { get; private set; } = new MwProgramMenuStrings();
+                    public MwPanelMenuStrings Panel { get; private set; } = new MwPanelMenuStrings();
                     public MwMeansMenuStrings Means { get; private set; } = new MwMeansMenuStrings();
                     public MwChartMenuStrings Chart { get; private set; } = new MwChartMenuStrings();
 
@@ -173,9 +168,9 @@ namespace PI
 
                 public class MwPanelStrings
                 {
-                    public MwGenerateTabStrings Gen { get; private set; } = new MwGenerateTabStrings();
-                    public MwDatasheetTabStrings DtSh { get; private set; } = new MwDatasheetTabStrings();
-                    public MwProgramTabStrings Prg { get; private set; } = new MwProgramTabStrings();
+                    public MwGenerateTabStrings Generate { get; private set; } = new MwGenerateTabStrings();
+                    public MwDatasheetTabStrings Datasheet { get; private set; } = new MwDatasheetTabStrings();
+                    public MwProgramTabStrings Program { get; private set; } = new MwProgramTabStrings();
 
                     public class MwGenerateTabStrings
                     {
@@ -237,6 +232,7 @@ namespace PI
                 public MeanTypesStrings MeanTypes { get; private set; } = new MeanTypesStrings();
                 public LanguagesStrings Languages { get; private set; } = new LanguagesStrings();
                 public DataSetCurveTypeStrings DataSetCurveTypes { get; private set; } = new DataSetCurveTypeStrings();
+                public OperationsStrings Operations { get; private set; } = new OperationsStrings();
 
                 public class MeanTypesStrings : IEnumerable<TaggedString>
                 {
@@ -297,14 +293,12 @@ namespace PI
                     private List<TaggedString> Languages {
                         get {
                             return new List<TaggedString>() {
-                                Default,
                                 English,
                                 Polish
                             };
                         }
                     }
 
-                    public TaggedString Default { get { return new TaggedString( CurrentLanguage, "LangSelector_Languages_Default" ); } }
                     public TaggedString English { get { return new TaggedString( CurrentLanguage, "LangSelector_Languages_English" ); } }
                     public TaggedString Polish { get { return new TaggedString( CurrentLanguage, "LangSelector_Languages_Polish" ); } }
 
@@ -348,12 +342,55 @@ namespace PI
 
                 }
 
+                public class OperationsStrings : IEnumerable<TaggedString>
+                {
+                    private List<TaggedString> Operations {
+                        get {
+                            return new List<TaggedString>() {
+                                Addition,
+                                Substraction,
+                                Multiplication,
+                                Division,
+                                Exponentiation,
+                                Logarithmic,
+                                Rooting,
+                                Constant,
+                                Positive,
+                                Negative
+                            };
+                        }
+                    }
+
+                    public TaggedString Addition { get { return new TaggedString( CurrentLanguage, "Enums_Operations_Addition" ); } }
+                    public TaggedString Substraction { get { return new TaggedString( CurrentLanguage, "Enums_Operations_Substraction" ); } }
+                    public TaggedString Multiplication { get { return new TaggedString( CurrentLanguage, "Enums_Operations_Multiplication" ); } }
+                    public TaggedString Division { get { return new TaggedString( CurrentLanguage, "Enums_Operations_Division" ); } }
+                    public TaggedString Exponentiation { get { return new TaggedString( CurrentLanguage, "Enums_Operations_Exponentiation" ); } }
+                    public TaggedString Logarithmic { get { return new TaggedString( CurrentLanguage, "Enums_Operations_Logarithmic" ); } }
+                    public TaggedString Rooting { get { return new TaggedString( CurrentLanguage, "Enums_Operations_Rooting" ); } }
+                    public TaggedString Constant { get { return new TaggedString( CurrentLanguage, "Enums_Operations_Constant" ); } }
+                    public TaggedString Positive { get { return new TaggedString( CurrentLanguage, "Enums_Operations_Positive" ); } }
+                    public TaggedString Negative { get { return new TaggedString( CurrentLanguage, "Enums_Operations_Negative" ); } }
+
+                    public IEnumerator<TaggedString> GetEnumerator()
+                    {
+                        return Operations.GetEnumerator();
+                    }
+
+                    IEnumerator IEnumerable.GetEnumerator()
+                    {
+                        return GetEnumerator();
+                    }
+
+                }
+
             }
 
             public class MessageBoxShowerStrings
             {
-                public MbsMainWindowStrings MainWnd { get; private set; } = new MbsMainWindowStrings();
-                public MbsGridPreviewerStrings Gprv { get; private set; } = new MbsGridPreviewerStrings();
+                public MbsMainWindowStrings MainWindow { get; private set; } = new MbsMainWindowStrings();
+                public MbsGridPreviewerStrings GridPreviewer { get; private set; } = new MbsGridPreviewerStrings();
+                public MbsStatisticalAnalysisStrings StatAnalysis { get; private set; } = new MbsStatisticalAnalysisStrings();
 
                 public class MbsMainWindowStrings
                 {
@@ -464,11 +501,16 @@ namespace PI
 
                 public class MbsGridPreviewerStrings
                 {
-                    public MbsGprvPanelStrings Pnl { get; private set; } = new MbsGprvPanelStrings();
+                    public MbsGprvPanelStrings Panel { get; private set; } = new MbsGprvPanelStrings();
+                    public MbsGprvChartStrings Chart { get; private set; } = new MbsGprvChartStrings();
 
                     public class MbsGprvPanelStrings
                     {
                         public MbsIndexGreaterThanAllowedProblemStrings ProblemIndexGreaterThanAllowed { get; private set; } = new MbsIndexGreaterThanAllowedProblemStrings();
+                        public MbsIndexLowerThanAllowedProblemStrings ProblemIndexLowerThanAllowed { get; private set; } = new MbsIndexLowerThanAllowedProblemStrings();
+                        public MbsImproperUserValueProblemStrings ProblemImproperUserValue { get; private set; } = new MbsImproperUserValueProblemStrings();
+                        public MbsPerformOperationErrorStrings ErrorPerformOperation { get; private set; } = new MbsPerformOperationErrorStrings();
+                        public MbsInvalidCurvePointsErrorStrings ErrorInvalidCurvePoints { get; private set; } = new MbsInvalidCurvePointsErrorStrings();
 
                         public class MbsIndexGreaterThanAllowedProblemStrings
                         {
@@ -476,6 +518,152 @@ namespace PI
                             public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Panel_IndexGreaterThanAllowedProblem_Caption" ); } }
                         }
 
+                        public class MbsIndexLowerThanAllowedProblemStrings
+                        {
+                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Panel_IndexLowerThanAllowedProblem_Text" ); } }
+                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Panel_IndexLowerThanAllowedProblem_Caption" ); } }
+                        }
+
+                        public class MbsImproperUserValueProblemStrings
+                        {
+                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Panel_ImproperUserValueProblem_Text" ); } }
+                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Panel_ImproperUserValueProblem_Caption" ); } }
+                        }
+
+                        public class MbsPerformOperationErrorStrings
+                        {
+                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Panel_PerformOperationError_Text" ); } }
+                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Panel_PerformOperationError_Caption" ); } }
+                        }
+
+                        public class MbsInvalidCurvePointsErrorStrings
+                        {
+                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Panel_InvalidCurvePointsError_Text" ); } }
+                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Panel_InvalidCurvePointsError_Caption" ); } }
+                        }
+
+                    }
+
+                    public class MbsGprvChartStrings
+                    {
+                        public MbsChartRefreshingErrorStrings ErrorChartRefreshing { get; private set; } = new MbsChartRefreshingErrorStrings();
+
+                        public class MbsChartRefreshingErrorStrings
+                        {
+                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Chart_ChartRefreshingError_Text" ); } }
+                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Chart_ChartRefreshingError_Caption" ); } }
+                        }
+
+                    }
+
+                }
+
+                public class MbsPatternCurveDefinerStrings
+                {
+                    public MbsPcdHyperbolicTabStrings Hyperbolic { get; private set; } = new MbsPcdHyperbolicTabStrings();
+
+                    public class MbsPcdHyperbolicTabStrings
+                    {
+                        public MbsPcdHyperbolicTabStrings ProblemDivisionByZero { get; private set; } = new MbsPcdHyperbolicTabStrings();
+
+                        public class MbsPcdDivisionByZeroProblemStrings
+                        {
+                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_PatternCurveDefiner_Hyperbolic_DivisionByZeroProblem_Text" ); } }
+                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_PatternCurveDefiner_Hyperbolic_DivisionByZeroProblem_Caption" ); } }
+                        }
+                    }
+                }
+
+                public class MbsStatisticalAnalysisStrings
+                {
+                    public MbsSaPreviewStrings Preview { get; private set; } = new MbsSaPreviewStrings();
+
+                    public class MbsSaPreviewStrings
+                    {
+                        public MbsSaValueOutOfRangeProblemStrings ProblemValueOutOfRange { get; private set; } = new MbsSaValueOutOfRangeProblemStrings();
+                        public MbsSaUnrecognizedErrorStrings ErrorUnrecognized { get; private set; } = new MbsSaUnrecognizedErrorStrings();
+                        public MbsSaPointsNotValidToChartProblemStrings ProblemPointsNotValidToChart { get; private set; } = new MbsSaPointsNotValidToChartProblemStrings();
+
+                        public class MbsSaValueOutOfRangeProblemStrings
+                        {
+                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_StatisticalAnalysis_Preview_ValueOutOfRangeProblem_Text" ); } }
+                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_StatisticalAnalysis_Preview_ValueOutOfRangeProblem_Caption" ); } }
+                        }
+
+                        public class MbsSaUnrecognizedErrorStrings
+                        {
+                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_StatisticalAnalysis_Preview_UnrecognizedError_Text" ); } }
+                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_StatisticalAnalysis_Preview_UnrecognizedError_Caption" ); } }
+                        }
+
+                        public class MbsSaPointsNotValidToChartProblemStrings
+                        {
+                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_StatisticalAnalysis_Preview_PointsNotValidToChartProblem_Text" ); } }
+                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_StatisticalAnalysis_Preview_PointsNotValidToChartProblem_Caption" ); } }
+                        }
+
+                    }
+                }
+
+            }
+
+            public class GridPreviewerStrings
+            {
+                public GprvUiStrings Ui { get; private set; } = new GprvUiStrings();
+
+                public class GprvUiStrings
+                {
+                    public GprvUiFormStrings Form { get; private set; } = new GprvUiFormStrings();
+                    public GprvUiPanelStrings Panel { get; private set; } = new GprvUiPanelStrings();
+                    public GprvUiPreviewStrings Preview { get; private set; } = new GprvUiPreviewStrings();
+                    public GprvUiDatasetStrings Dataset { get; private set; } = new GprvUiDatasetStrings();
+
+                    public class GprvUiFormStrings
+                    {
+                        public TaggedString Text { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Form_Text" ); } }
+                    }
+
+                    public class GprvUiPanelStrings
+                    {
+                        public TaggedString DtGrid { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_DatasetGrid" ); } }
+                        public TaggedString AutoSize { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_AutoSizeColumnsMode" ); } }
+                        public TaggedString Edit { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_FastEdit" ); } }
+                        public TaggedString OperT { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_OperationType" ); } }
+                        public TaggedString StartIdx { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_StartIndex" ); } }
+                        public TaggedString EndIdx { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_EndIndex" ); } }
+                        public TaggedString Value { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Value1_Value" ); } }
+                        public TaggedString Addend { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Value1_Addend" ); } }
+                        public TaggedString Subtrahend { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Value1_Subtrahend" ); } }
+                        public TaggedString Multiplier { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Value1_Multiplier" ); } }
+                        public TaggedString Divisor { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Value1_Divisor" ); } }
+                        public TaggedString Exponent { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Value1_Exponent" ); } }
+                        public TaggedString Basis { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Value1_Basis" ); } }
+                        public TaggedString NotApplicable { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Value1_NotApplicable" ); } }
+                        public TaggedString Reset { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Reset" ); } }
+                        public TaggedString Perform { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Perform" ); } }
+                        public TaggedString Refresh { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Refresh" ); } }
+                        public TaggedString Save { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Save" ); } }
+                        public TaggedString Ok { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_OK" ); } }
+                        public TaggedString InfoGprvLoaded { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Info_GridPreviewerLoaded" ); } }
+                        public TaggedString InfoOperationRevoked { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Info_OperationRevoked" ); } }
+                        public TaggedString InfoChangesSaved { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Info_ChangesSaved" ); } }
+                        public TaggedString InfoInvalidUserValue { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Info_InvalidUserValue" ); } }
+                        public TaggedString InfoOperationRejected { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Info_OperationRejected" ); } }
+                        public TaggedString InfoPerformedAndRefreshed { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Info_PerformedAndRefreshed" ); } }
+                        public TaggedString InfoValuesRestored { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Info_ValuesRestored" ); } }
+                    }
+
+                    public class GprvUiPreviewStrings
+                    {
+                        public TaggedString InfoChartNotRepainted { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Preview_Info_ChartNotRepainted" ); } }
+                        public TaggedString InfoChartRefreshError { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Preview_Info_ChartRefreshError" ); } }
+                        public TaggedString InfoChartRefreshed { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Preview_Info_ChartRefreshed" ); } }
+                        public TaggedString Prv { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Preview_Preview" ); } }
+                    }
+
+                    public class GprvUiDatasetStrings
+                    {
+                        public TaggedString DtSet { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Dataset_Dataset" ); } }
                     }
 
                 }
@@ -513,6 +701,17 @@ namespace PI
             }
 
             foreach ( var item in GetInstance().Strings.Enums.DataSetCurveTypes ) {
+                control.Items.Add( item.GetString() );
+            }
+        }
+
+        public static void AddLocalizedOperations<T>( T control, bool clearAtStart = true ) where T : ComboBox
+        {
+            if ( clearAtStart ) {
+                control.Items.Clear();
+            }
+
+            foreach ( var item in GetInstance().Strings.Enums.Operations ) {
                 control.Items.Add( item.GetString() );
             }
         }

@@ -176,9 +176,6 @@
   <data name="Enums_MeanTypes_RMS" xml:space="preserve">
     <value>kwadratowa</value>
   </data>
-  <data name="LangSelector_Languages_Default" xml:space="preserve">
-    <value>domyślny</value>
-  </data>
   <data name="LangSelector_Languages_English" xml:space="preserve">
     <value>angielski</value>
   </data>
@@ -424,5 +421,191 @@
   </data>
   <data name="MessageBoxShower_MainWindow_Ui_SpecifiedCurveDoesntExistProblem_Text" xml:space="preserve">
     <value>Dane określonej krzywej nie istnieją.</value>
+  </data>
+  <data name="Enums_Operations_Addition" xml:space="preserve">
+    <value>dodawanie</value>
+  </data>
+  <data name="Enums_Operations_Constant" xml:space="preserve">
+    <value>stała</value>
+  </data>
+  <data name="Enums_Operations_Division" xml:space="preserve">
+    <value>dzielenie</value>
+  </data>
+  <data name="Enums_Operations_Exponentiation" xml:space="preserve">
+    <value>potęgowanie</value>
+  </data>
+  <data name="Enums_Operations_Logarithmic" xml:space="preserve">
+    <value>logarytmowanie</value>
+  </data>
+  <data name="Enums_Operations_Multiplication" xml:space="preserve">
+    <value>mnożenie</value>
+  </data>
+  <data name="Enums_Operations_Negative" xml:space="preserve">
+    <value>ujemny znak</value>
+  </data>
+  <data name="Enums_Operations_Positive" xml:space="preserve">
+    <value>dodatni znak</value>
+  </data>
+  <data name="Enums_Operations_Rooting" xml:space="preserve">
+    <value>pierwiastkowanie</value>
+  </data>
+  <data name="Enums_Operations_Substraction" xml:space="preserve">
+    <value>odejmowanie</value>
+  </data>
+  <data name="GridPreviewer_Ui_Dataset_Dataset" xml:space="preserve">
+    <value>Zestaw danych</value>
+  </data>
+  <data name="GridPreviewer_Ui_Form_Text" xml:space="preserve">
+    <value>Siatka podglądu danych</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_AutoSizeColumnsMode" xml:space="preserve">
+    <value>AutoSizeColumnsMode:</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_DatasetGrid" xml:space="preserve">
+    <value>Siatka zestawu danych</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_EndIndex" xml:space="preserve">
+    <value>Indeks końca:</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_FastEdit" xml:space="preserve">
+    <value>Szybka edycja</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Info_ChangesSaved" xml:space="preserve">
+    <value>Zmiany zapisane</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Info_GridPreviewerLoaded" xml:space="preserve">
+    <value>Siatka załadowana</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Info_InvalidUserValue" xml:space="preserve">
+    <value>Nieważna wartość użytkownika</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Info_OperationRejected" xml:space="preserve">
+    <value>Operacja odrzucona</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Info_OperationRevoked" xml:space="preserve">
+    <value>Operacja wycofana</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Info_PerformedAndRefreshed" xml:space="preserve">
+    <value>Wykonano i odświeżono</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Info_ValuesRestored" xml:space="preserve">
+    <value>Wartości odzyskane</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_OperationType" xml:space="preserve">
+    <value>Typ operacji:</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Perform" xml:space="preserve">
+    <value>Wykonaj</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Refresh" xml:space="preserve">
+    <value>Odśwież</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Reset" xml:space="preserve">
+    <value>Przywróć</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Save" xml:space="preserve">
+    <value>Zapisz</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_StartIndex" xml:space="preserve">
+    <value>Indeks początku:</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Value1_Addend" xml:space="preserve">
+    <value>Dodajnik:</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Value1_Basis" xml:space="preserve">
+    <value>Podstawa:</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Value1_Divisor" xml:space="preserve">
+    <value>Podzielnik:</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Value1_Exponent" xml:space="preserve">
+    <value>Wykładnik:</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Value1_Multiplier" xml:space="preserve">
+    <value>Mnożnik:</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Value1_NotApplicable" xml:space="preserve">
+    <value>N/D:</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Value1_Subtrahend" xml:space="preserve">
+    <value>Odjemnik:</value>
+  </data>
+  <data name="GridPreviewer_Ui_Panel_Value1_Value" xml:space="preserve">
+    <value>Wartość:</value>
+  </data>
+  <data name="GridPreviewer_Ui_Preview_Info_ChartNotRepainted" xml:space="preserve">
+    <value>Wykres nieodświeżony</value>
+  </data>
+  <data name="GridPreviewer_Ui_Preview_Info_ChartRefreshed" xml:space="preserve">
+    <value>Wykres odświeżono</value>
+  </data>
+  <data name="GridPreviewer_Ui_Preview_Info_ChartRefreshError" xml:space="preserve">
+    <value>Błąd odświeżania wykresu</value>
+  </data>
+  <data name="GridPreviewer_Ui_Preview_Preview" xml:space="preserve">
+    <value>Podgląd</value>
+  </data>
+  <data name="MessageBoxShower_GridPreviewer_Chart_ChartRefreshingError_Caption" xml:space="preserve">
+    <value>Nieważna operacja</value>
+  </data>
+  <data name="MessageBoxShower_GridPreviewer_Chart_ChartRefreshingError_Text" xml:space="preserve">
+    <value>Błąd odświeżania wykresu, najprawdopodobniej związany z ponownym obliczaniem skal osi (zbyt wielkie do wyświetlenia).</value>
+  </data>
+  <data name="MessageBoxShower_GridPreviewer_Panel_ImproperUserValueProblem_Caption" xml:space="preserve">
+    <value>Złe rzutowanie, konwersja lub formatowanie</value>
+  </data>
+  <data name="MessageBoxShower_GridPreviewer_Panel_ImproperUserValueProblem_Text" xml:space="preserve">
+    <value>Podana wartość jest niewłaściwa. Weź pod uwagę, że liczby powinny być zlokalizowane zgodnie z obecnymi ustawieniami regionalnymi systemu operacyjnego.</value>
+  </data>
+  <data name="MessageBoxShower_GridPreviewer_Panel_IndexLowerThanAllowedProblem_Caption" xml:space="preserve">
+    <value>Niewłaściwa wartość indeksu</value>
+  </data>
+  <data name="MessageBoxShower_GridPreviewer_Panel_IndexLowerThanAllowedProblem_Text" xml:space="preserve">
+    <value>Wskazany indeks byłby niższy niż dozwolony. Zmiana wycofana.</value>
+  </data>
+  <data name="MessageBoxShower_GridPreviewer_Panel_InvalidCurvePointsError_Caption" xml:space="preserve">
+    <value>Nieważne punkty krzywej</value>
+  </data>
+  <data name="MessageBoxShower_GridPreviewer_Panel_InvalidCurvePointsError_Text" xml:space="preserve">
+    <value>Przynajmniej jedna z wartości punktów jest zbyt duża albo niewłaściwa, aby być wyświetloną na wykresie.</value>
+  </data>
+  <data name="MessageBoxShower_GridPreviewer_Panel_PerformOperationError_Caption" xml:space="preserve">
+    <value>Wyjątek podczas obliczeń</value>
+  </data>
+  <data name="MessageBoxShower_GridPreviewer_Panel_PerformOperationError_Text" xml:space="preserve">
+    <value>Nie można obliczyć wartości dla wszystkich wskazanych argumentów. Przeciążenie. Zmiany odrzucone.</value>
+  </data>
+  <data name="MessageBoxShower_MainWindow_Menu_Update_RunningLatestReleaseAppInfo_Caption" xml:space="preserve">
+    <value>Aplikacja aktualna</value>
+  </data>
+  <data name="MessageBoxShower_MainWindow_Ui_PointsNotValidToChartProblem_Caption" xml:space="preserve">
+    <value>Ostrzeżenie generowania punktów</value>
+  </data>
+  <data name="MessageBoxShower_PatternCurveDefiner_Hyperbolic_DivisionByZeroProblem_Caption" xml:space="preserve">
+    <value>Dzielenie przez zero</value>
+  </data>
+  <data name="MessageBoxShower_PatternCurveDefiner_Hyperbolic_DivisionByZeroProblem_Text" xml:space="preserve">
+    <value>Nie można podzielić przez 0.0000. Zamiast tego zostanie użyta wartość 0.0001.</value>
+  </data>
+  <data name="MessageBoxShower_StatisticalAnalysis_Preview_PointsNotValidToChartProblem_Caption" xml:space="preserve">
+    <value>Problem wyboru danych</value>
+  </data>
+  <data name="MessageBoxShower_StatisticalAnalysis_Preview_PointsNotValidToChartProblem_Text" xml:space="preserve">
+    <value>Niektóre punkty nie mogą zostać pokazane na wykresie. Wykres nie zostanie odświeżony.</value>
+  </data>
+  <data name="MessageBoxShower_StatisticalAnalysis_Preview_UnrecognizedError_Caption" xml:space="preserve">
+    <value>Nierozpoznany błąd</value>
+  </data>
+  <data name="MessageBoxShower_StatisticalAnalysis_Preview_UnrecognizedError_Text" xml:space="preserve">
+    <value>Wystąpił nieznany błąd podczas odświeżania wykresu.</value>
+  </data>
+  <data name="MessageBoxShower_StatisticalAnalysis_Preview_ValueOutOfRangeProblem_Caption" xml:space="preserve">
+    <value>Poza zakresem</value>
+  </data>
+  <data name="MessageBoxShower_StatisticalAnalysis_Preview_ValueOutOfRangeProblem_Text" xml:space="preserve">
+    <value>Zapewniona wartość nie znajduje się w określonym przedziale.</value>
   </data>
 </root>

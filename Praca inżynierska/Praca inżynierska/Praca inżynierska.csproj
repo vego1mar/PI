@@ -129,7 +129,6 @@
       <DependentUpon>PatternCurveDefiner.cs</DependentUpon>
     </Compile>
     <Compile Include="GenSettings.cs" />
-    <Compile Include="Consts.cs" />
     <Compile Include="Randomizer.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="StatAnalysis.cs">

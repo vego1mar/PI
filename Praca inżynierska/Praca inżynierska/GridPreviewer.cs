@@ -15,6 +15,7 @@ namespace PI
         public GridPreviewer( Series series )
         {
             InitializeComponent();
+            LocalizeWindow();
             SetWindowDefaults( series );
         }
 
@@ -33,7 +34,7 @@ namespace PI
             uiPnl_EndIdx_Num.Value = ChartDataSet.Points.Count - 1;
             UpdateUiByPopulatingGrid();
             UpdateUiByRefreshingChart();
-            UpdateUiByPanelStateInfo( Consts.Gprv.Panel.TxtGridPreviewerLoaded );
+            UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.InfoGprvLoaded.GetString() );
         }
 
         private List<double> GetPointsValues( Series series )
@@ -76,7 +77,7 @@ namespace PI
             }
 
             if ( !CurvesDataManager.IsCurvePointsSetValid( series ) ) {
-                UpdateUiByPanelStateInfo( Consts.Gprv.Panel.TxtOperationRevoked );
+                UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.InfoOperationRevoked.GetString() );
                 MsgBxShower.Gprv.Panel.InvalidCurvePointsError();
                 return;
             }
@@ -85,7 +86,7 @@ namespace PI
                 ChartDataSet.Points[i].YValues[0] = (double) uiGrid_db_grid.Rows[i].Cells["y"].Value;
             }
 
-            UpdateUiByPanelStateInfo( Consts.Gprv.Panel.TxtChangesSaved );
+            UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.InfoChangesSaved.GetString() );
         }
 
         private void UiPanel_AutoSizeColumnsMode_SelectedIndexChanged( object sender, EventArgs e )
@@ -110,37 +111,42 @@ namespace PI
 
         private void UiPanel_OperationType_SelectedIndexChanged( object sender, EventArgs e )
         {
+            UpdateUiBySwitchingOperationType();
+        }
+
+        private void UpdateUiBySwitchingOperationType()
+        {
             Enums.Operation operation = (Enums.Operation) uiPnl_OperT_ComBx.SelectedIndex;
             uiPnl_Val2_TxtBx.Enabled = true;
 
             switch ( operation ) {
             case Enums.Operation.Addition:
-                uiPnl_Val1_TxtBx.Text = Consts.Gprv.Panel.TxtAddend;
+                uiPnl_Val1_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Addend.GetString();
                 break;
             case Enums.Operation.Substraction:
-                uiPnl_Val1_TxtBx.Text = Consts.Gprv.Panel.TxtSubtrahend;
+                uiPnl_Val1_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Subtrahend.GetString();
                 break;
             case Enums.Operation.Multiplication:
-                uiPnl_Val1_TxtBx.Text = Consts.Gprv.Panel.TxtMultiplier;
+                uiPnl_Val1_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Multiplier.GetString();
                 break;
             case Enums.Operation.Division:
-                uiPnl_Val1_TxtBx.Text = Consts.Gprv.Panel.TxtDivisor;
+                uiPnl_Val1_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Divisor.GetString();
                 break;
             case Enums.Operation.Exponentiation:
-                uiPnl_Val1_TxtBx.Text = Consts.Gprv.Panel.TxtExponent;
+                uiPnl_Val1_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Exponent.GetString();
                 break;
             case Enums.Operation.Logarithmic:
-                uiPnl_Val1_TxtBx.Text = Consts.Gprv.Panel.TxtBasis;
+                uiPnl_Val1_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Basis.GetString();
                 break;
             case Enums.Operation.Rooting:
-                uiPnl_Val1_TxtBx.Text = Consts.Gprv.Panel.TxtBasis;
+                uiPnl_Val1_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Basis.GetString();
                 break;
             case Enums.Operation.Constant:
-                uiPnl_Val1_TxtBx.Text = Consts.Gprv.Panel.TxtValue;
+                uiPnl_Val1_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Value.GetString();
                 break;
             case Enums.Operation.Positive:
             case Enums.Operation.Negative:
-                uiPnl_Val1_TxtBx.Text = Consts.Gprv.Panel.TxtNotApplicableAbbr;
+                uiPnl_Val1_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.NotApplicable.GetString();
                 uiPnl_Val2_TxtBx.Enabled = false;
                 break;
             }
@@ -167,7 +173,7 @@ namespace PI
             double? userValue = GetUserValue();
 
             if ( userValue == null ) {
-                UpdateUiByPanelStateInfo( Consts.Gprv.Panel.TxtInvalidUserValue );
+                UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.InfoInvalidUserValue.GetString() );
                 MsgBxShower.Gprv.Panel.ImproperUserValueProblem();
                 return;
             }
@@ -179,13 +185,13 @@ namespace PI
             bool result = PerformOperation( operation, startIndex, endIndex, userValue.Value, ref seriesCopy );
 
             if ( !result ) {
-                UpdateUiByPanelStateInfo( Consts.Gprv.Panel.TxtOperationRejected );
+                UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.InfoOperationRejected.GetString() );
                 MsgBxShower.Gprv.Panel.PerformOperationError();
                 return;
             }
 
             if ( !CurvesDataManager.IsCurvePointsSetValid( seriesCopy ) ) {
-                UpdateUiByPanelStateInfo( Consts.Gprv.Panel.TxtOperationRevoked );
+                UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.InfoOperationRevoked.GetString() );
                 MsgBxShower.Gprv.Panel.InvalidCurvePointsError();
                 return;
             }
@@ -193,7 +199,7 @@ namespace PI
             ApplyPointsAlteration( seriesCopy );
             UpdateUiByAlteringGrid();
             UpdateUiByRefreshingChart();
-            UpdateUiByPanelStateInfo( Consts.Gprv.Panel.TxtPerformedAndRefreshed );
+            UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.InfoPerformedAndRefreshed.GetString() );
         }
 
         private double? GetUserValue()
@@ -378,7 +384,7 @@ namespace PI
 
             UpdateUiByAlteringGrid();
             UpdateUiByRefreshingChart();
-            UpdateUiByPanelStateInfo( Consts.Gprv.Panel.TxtValuesRestored );
+            UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.InfoValuesRestored.GetString() );
         }
 
         private void UiPanel_Refresh_Click( object sender, EventArgs e )
@@ -399,15 +405,15 @@ namespace PI
             }
             catch ( InvalidOperationException x ) {
                 Logger.WriteException( x );
-                UpdateUiByPanelStateInfo( Consts.Gprv.Chart.TxtChartNotRepainted );
+                UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Preview.InfoChartNotRepainted.GetString() );
                 MsgBxShower.Gprv.Chart.ChartRefreshingError();
             }
             catch ( Exception x ) {
                 Logger.WriteException( x );
-                UpdateUiByPanelStateInfo( Consts.Gprv.Chart.TxtChartRefreshError );
+                UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Preview.InfoChartRefreshError.GetString() );
             }
 
-            UpdateUiByPanelStateInfo( Consts.Gprv.Chart.TxtChartRefreshed );
+            UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Preview.InfoChartRefreshed.GetString() );
         }
 
         private void UiGridPreviewer_Load( object sender, EventArgs e )
@@ -420,6 +426,46 @@ namespace PI
         {
             OriginalValues = null;
             Dispose();
+        }
+
+        private void LocalizeWindow()
+        {
+            LocalizeForm();
+            LocalizePanel();
+            LocalizeGrid();
+            LocalizePreview();
+        }
+
+        private void LocalizeForm()
+        {
+            Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Form.Text.GetString();
+        }
+
+        private void LocalizePanel()
+        {
+            uiPnl_DtGrid_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.DtGrid.GetString();
+            uiPnl_AutoSize_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.AutoSize.GetString();
+            uiPnl_Edit_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Edit.GetString();
+            uiPnl_OperT_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.OperT.GetString();
+            Translator.AddLocalizedOperations( uiPnl_OperT_ComBx );
+            uiPnl_StartIdx_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.StartIdx.GetString();
+            uiPnl_EndIdx_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.EndIdx.GetString();
+            UpdateUiBySwitchingOperationType();
+            uiPnl_Reset_Btn.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Reset.GetString();
+            uiPnl_Perform_Btn.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Perform.GetString();
+            uiPnl_Refresh_Btn.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Refresh.GetString();
+            uiPnl_Save_Btn.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Save.GetString();
+            uiPnl_Ok_Btn.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Ok.GetString();
+        }
+
+        private void LocalizeGrid()
+        {
+            uiGrid_DtSet_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Dataset.DtSet.GetString();
+        }
+
+        private void LocalizePreview()
+        {
+            uiChart_Prv_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Preview.Prv.GetString();
         }
 
     }

@@ -232,11 +232,380 @@ namespace PI.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to domyślny.
+        ///   Looks up a localized string similar to dodawanie.
         /// </summary>
-        internal static string LangSelector_Languages_Default {
+        internal static string Enums_Operations_Addition {
             get {
-                return ResourceManager.GetString("LangSelector_Languages_Default", resourceCulture);
+                return ResourceManager.GetString("Enums_Operations_Addition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to stała.
+        /// </summary>
+        internal static string Enums_Operations_Constant {
+            get {
+                return ResourceManager.GetString("Enums_Operations_Constant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to dzielenie.
+        /// </summary>
+        internal static string Enums_Operations_Division {
+            get {
+                return ResourceManager.GetString("Enums_Operations_Division", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to potęgowanie.
+        /// </summary>
+        internal static string Enums_Operations_Exponentiation {
+            get {
+                return ResourceManager.GetString("Enums_Operations_Exponentiation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to logarytmowanie.
+        /// </summary>
+        internal static string Enums_Operations_Logarithmic {
+            get {
+                return ResourceManager.GetString("Enums_Operations_Logarithmic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mnożenie.
+        /// </summary>
+        internal static string Enums_Operations_Multiplication {
+            get {
+                return ResourceManager.GetString("Enums_Operations_Multiplication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ujemny znak.
+        /// </summary>
+        internal static string Enums_Operations_Negative {
+            get {
+                return ResourceManager.GetString("Enums_Operations_Negative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to dodatni znak.
+        /// </summary>
+        internal static string Enums_Operations_Positive {
+            get {
+                return ResourceManager.GetString("Enums_Operations_Positive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to pierwiastkowanie.
+        /// </summary>
+        internal static string Enums_Operations_Rooting {
+            get {
+                return ResourceManager.GetString("Enums_Operations_Rooting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to odejmowanie.
+        /// </summary>
+        internal static string Enums_Operations_Substraction {
+            get {
+                return ResourceManager.GetString("Enums_Operations_Substraction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zestaw danych.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Dataset_Dataset {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Dataset_Dataset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siatka podglądu danych.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Form_Text {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Form_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AutoSizeColumnsMode:.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Panel_AutoSizeColumnsMode {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Panel_AutoSizeColumnsMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siatka zestawu danych.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Panel_DatasetGrid {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Panel_DatasetGrid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indeks końca:.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Panel_EndIndex {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Panel_EndIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Szybka edycja.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Panel_FastEdit {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Panel_FastEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zmiany zapisane.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Panel_Info_ChangesSaved {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Panel_Info_ChangesSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siatka załadowana.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Panel_Info_GridPreviewerLoaded {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Panel_Info_GridPreviewerLoaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nieważna wartość użytkownika.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Panel_Info_InvalidUserValue {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Panel_Info_InvalidUserValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operacja odrzucona.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Panel_Info_OperationRejected {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Panel_Info_OperationRejected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operacja wycofana.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Panel_Info_OperationRevoked {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Panel_Info_OperationRevoked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wykonano i odświeżono.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Panel_Info_PerformedAndRefreshed {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Panel_Info_PerformedAndRefreshed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wartości odzyskane.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Panel_Info_ValuesRestored {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Panel_Info_ValuesRestored", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Panel_OK {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Panel_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Typ operacji:.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Panel_OperationType {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Panel_OperationType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wykonaj.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Panel_Perform {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Panel_Perform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Odśwież.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Panel_Refresh {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Panel_Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Przywróć.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Panel_Reset {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Panel_Reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zapisz.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Panel_Save {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Panel_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indeks początku:.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Panel_StartIndex {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Panel_StartIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dodajnik:.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Panel_Value1_Addend {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Panel_Value1_Addend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Podstawa:.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Panel_Value1_Basis {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Panel_Value1_Basis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Podzielnik:.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Panel_Value1_Divisor {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Panel_Value1_Divisor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wykładnik:.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Panel_Value1_Exponent {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Panel_Value1_Exponent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mnożnik:.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Panel_Value1_Multiplier {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Panel_Value1_Multiplier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to N/D:.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Panel_Value1_NotApplicable {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Panel_Value1_NotApplicable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Odjemnik:.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Panel_Value1_Subtrahend {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Panel_Value1_Subtrahend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wartość:.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Panel_Value1_Value {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Panel_Value1_Value", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wykres nieodświeżony.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Preview_Info_ChartNotRepainted {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Preview_Info_ChartNotRepainted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wykres odświeżono.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Preview_Info_ChartRefreshed {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Preview_Info_ChartRefreshed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Błąd odświeżania wykresu.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Preview_Info_ChartRefreshError {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Preview_Info_ChartRefreshError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Podgląd.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Preview_Preview {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Preview_Preview", resourceCulture);
             }
         }
         
@@ -763,6 +1132,42 @@ namespace PI.Locales {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nieważna operacja.
+        /// </summary>
+        internal static string MessageBoxShower_GridPreviewer_Chart_ChartRefreshingError_Caption {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_GridPreviewer_Chart_ChartRefreshingError_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Błąd odświeżania wykresu, najprawdopodobniej związany z ponownym obliczaniem skal osi (zbyt wielkie do wyświetlenia)..
+        /// </summary>
+        internal static string MessageBoxShower_GridPreviewer_Chart_ChartRefreshingError_Text {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_GridPreviewer_Chart_ChartRefreshingError_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Złe rzutowanie, konwersja lub formatowanie.
+        /// </summary>
+        internal static string MessageBoxShower_GridPreviewer_Panel_ImproperUserValueProblem_Caption {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_GridPreviewer_Panel_ImproperUserValueProblem_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Podana wartość jest niewłaściwa. Weź pod uwagę, że liczby powinny być zlokalizowane zgodnie z obecnymi ustawieniami regionalnymi systemu operacyjnego..
+        /// </summary>
+        internal static string MessageBoxShower_GridPreviewer_Panel_ImproperUserValueProblem_Text {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_GridPreviewer_Panel_ImproperUserValueProblem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Niewłaściwa wartość indeksu.
         /// </summary>
         internal static string MessageBoxShower_GridPreviewer_Panel_IndexGreaterThanAllowedProblem_Caption {
@@ -777,6 +1182,60 @@ namespace PI.Locales {
         internal static string MessageBoxShower_GridPreviewer_Panel_IndexGreaterThanAllowedProblem_Text {
             get {
                 return ResourceManager.GetString("MessageBoxShower_GridPreviewer_Panel_IndexGreaterThanAllowedProblem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Niewłaściwa wartość indeksu.
+        /// </summary>
+        internal static string MessageBoxShower_GridPreviewer_Panel_IndexLowerThanAllowedProblem_Caption {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_GridPreviewer_Panel_IndexLowerThanAllowedProblem_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wskazany indeks byłby niższy niż dozwolony. Zmiana wycofana..
+        /// </summary>
+        internal static string MessageBoxShower_GridPreviewer_Panel_IndexLowerThanAllowedProblem_Text {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_GridPreviewer_Panel_IndexLowerThanAllowedProblem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nieważne punkty krzywej.
+        /// </summary>
+        internal static string MessageBoxShower_GridPreviewer_Panel_InvalidCurvePointsError_Caption {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_GridPreviewer_Panel_InvalidCurvePointsError_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Przynajmniej jedna z wartości punktów jest zbyt duża albo niewłaściwa, aby być wyświetloną na wykresie..
+        /// </summary>
+        internal static string MessageBoxShower_GridPreviewer_Panel_InvalidCurvePointsError_Text {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_GridPreviewer_Panel_InvalidCurvePointsError_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wyjątek podczas obliczeń.
+        /// </summary>
+        internal static string MessageBoxShower_GridPreviewer_Panel_PerformOperationError_Caption {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_GridPreviewer_Panel_PerformOperationError_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nie można obliczyć wartości dla wszystkich wskazanych argumentów. Przeciążenie. Zmiany odrzucone..
+        /// </summary>
+        internal static string MessageBoxShower_GridPreviewer_Panel_PerformOperationError_Text {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_GridPreviewer_Panel_PerformOperationError_Text", resourceCulture);
             }
         }
         
@@ -813,6 +1272,15 @@ namespace PI.Locales {
         internal static string MessageBoxShower_MainWindow_Menu_Update_CannotMatchVersionsError_Text {
             get {
                 return ResourceManager.GetString("MessageBoxShower_MainWindow_Menu_Update_CannotMatchVersionsError_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aplikacja aktualna.
+        /// </summary>
+        internal static string MessageBoxShower_MainWindow_Menu_Update_RunningLatestReleaseAppInfo_Caption {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_MainWindow_Menu_Update_RunningLatestReleaseAppInfo_Caption", resourceCulture);
             }
         }
         
@@ -934,6 +1402,15 @@ namespace PI.Locales {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ostrzeżenie generowania punktów.
+        /// </summary>
+        internal static string MessageBoxShower_MainWindow_Ui_PointsNotValidToChartProblem_Caption {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_MainWindow_Ui_PointsNotValidToChartProblem_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Część z wygenerowanych punktów jest niewłaściwa, żeby wyświetlić je na wykresie. Punkty te zostaną usunięte z zestawu..
         /// </summary>
         internal static string MessageBoxShower_MainWindow_Ui_PointsNotValidToChartProblem_Text {
@@ -975,6 +1452,79 @@ namespace PI.Locales {
         internal static string MessageBoxShower_MainWindow_Ui_SpecifiedCurveDoesntExistProblem_Text {
             get {
                 return ResourceManager.GetString("MessageBoxShower_MainWindow_Ui_SpecifiedCurveDoesntExistProblem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dzielenie przez zero.
+        /// </summary>
+        internal static string MessageBoxShower_PatternCurveDefiner_Hyperbolic_DivisionByZeroProblem_Caption {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_PatternCurveDefiner_Hyperbolic_DivisionByZeroProblem_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nie można podzielić przez 0.0000. Zamiast tego zostanie użyta wartość 0.0001..
+        /// </summary>
+        internal static string MessageBoxShower_PatternCurveDefiner_Hyperbolic_DivisionByZeroProblem_Text {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_PatternCurveDefiner_Hyperbolic_DivisionByZeroProblem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Problem wyboru danych.
+        /// </summary>
+        internal static string MessageBoxShower_StatisticalAnalysis_Preview_PointsNotValidToChartProblem_Caption {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_StatisticalAnalysis_Preview_PointsNotValidToChartProblem_Caption" +
+                        "", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Niektóre punkty nie mogą zostać pokazane na wykresie. Wykres nie zostanie odświeżony..
+        /// </summary>
+        internal static string MessageBoxShower_StatisticalAnalysis_Preview_PointsNotValidToChartProblem_Text {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_StatisticalAnalysis_Preview_PointsNotValidToChartProblem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nierozpoznany błąd.
+        /// </summary>
+        internal static string MessageBoxShower_StatisticalAnalysis_Preview_UnrecognizedError_Caption {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_StatisticalAnalysis_Preview_UnrecognizedError_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wystąpił nieznany błąd podczas odświeżania wykresu..
+        /// </summary>
+        internal static string MessageBoxShower_StatisticalAnalysis_Preview_UnrecognizedError_Text {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_StatisticalAnalysis_Preview_UnrecognizedError_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Poza zakresem.
+        /// </summary>
+        internal static string MessageBoxShower_StatisticalAnalysis_Preview_ValueOutOfRangeProblem_Caption {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_StatisticalAnalysis_Preview_ValueOutOfRangeProblem_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zapewniona wartość nie znajduje się w określonym przedziale..
+        /// </summary>
+        internal static string MessageBoxShower_StatisticalAnalysis_Preview_ValueOutOfRangeProblem_Text {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_StatisticalAnalysis_Preview_ValueOutOfRangeProblem_Text", resourceCulture);
             }
         }
     }

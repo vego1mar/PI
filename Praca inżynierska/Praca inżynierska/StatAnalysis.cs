@@ -346,7 +346,7 @@ namespace PI
         private void UiRightChartDown_CurveIndex_Numeric_ValueChanged( object sender, EventArgs e )
         {
             if ( !IsCurveIndexProperValue() ) {
-                MsgBxShower.Stat.Preview.Chart.ValueOutOfRangeProblem();
+                MsgBxShower.Stat.Preview.ValueOutOfRangeProblem();
                 return;
             }
 
@@ -397,7 +397,7 @@ namespace PI
                 uiRChart_Chart.Series.Add( GetSeriesSpecifiedByControls() );
 
                 if ( !CurvesDataManager.IsCurvePointsSetValid( uiRChart_Chart.Series[0] ) ) {
-                    MsgBxShower.Stat.Preview.Chart.PointsNotValidToChartProblem();
+                    MsgBxShower.Stat.Preview.PointsNotValidToChartProblem();
                     return;
                 }
 
@@ -407,7 +407,7 @@ namespace PI
                 uiRChart_Chart.Invalidate();
             }
             catch ( Exception ex ) {
-                MsgBxShower.Stat.Preview.Chart.UnrecognizedError();
+                MsgBxShower.Stat.Preview.UnrecognizedError();
                 Logger.WriteException( ex );
             }
         }

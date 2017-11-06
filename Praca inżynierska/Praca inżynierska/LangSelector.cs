@@ -6,11 +6,10 @@ namespace PI
     public partial class LangSelector : Form
     {
 
-        public Languages SelectedLanguage { get; private set; } = Languages.Default;
+        public Languages SelectedLanguage { get; private set; } = Languages.English;
 
         public enum Languages
         {
-            Default,
             English,
             Polish
         }
@@ -24,12 +23,12 @@ namespace PI
         private void SetWindowDefaults()
         {
             LocalizeWindow();
-            WinFormsHelper.SetSelectedIndexSafe( uiUp_LstBx, (int) Languages.Default );
+            WinFormsHelper.SetSelectedIndexSafe( uiUp_LstBx, (int) Languages.English );
         }
 
         private void LocalizeWindow()
         {
-            Text = Translator.GetInstance().Strings.LngSel.Ui.Form.Text.GetString();
+            Text = Translator.GetInstance().Strings.LangSelector.Ui.Form.Text.GetString();
             Translator.AddLocalizedLanguages( uiUp_LstBx );
         }
 
