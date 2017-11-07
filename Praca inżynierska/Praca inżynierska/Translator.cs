@@ -90,6 +90,8 @@ namespace PI
             public EnumsStrings Enums { get; private set; } = new EnumsStrings();
             public MessageBoxShowerStrings MsgBxShower { get; private set; } = new MessageBoxShowerStrings();
             public GridPreviewerStrings GridPreviewer { get; private set; } = new GridPreviewerStrings();
+            public StatAnalysisStrings StatAnalysis { get; private set; } = new StatAnalysisStrings();
+            public AvgInfoStrings AvgInfo { get; private set; } = new AvgInfoStrings();
 
             public class LangSelectorStrings
             {
@@ -233,6 +235,8 @@ namespace PI
                 public LanguagesStrings Languages { get; private set; } = new LanguagesStrings();
                 public DataSetCurveTypeStrings DataSetCurveTypes { get; private set; } = new DataSetCurveTypeStrings();
                 public OperationsStrings Operations { get; private set; } = new OperationsStrings();
+                public StatAnalysisPhenomenonIndicesStrings Phenomenons { get; private set; } = new StatAnalysisPhenomenonIndicesStrings();
+                public AvgInfoTabs AiTabs { get; private set; } = new AvgInfoTabs();
 
                 public class MeanTypesStrings : IEnumerable<TaggedString>
                 {
@@ -375,6 +379,78 @@ namespace PI
                     public IEnumerator<TaggedString> GetEnumerator()
                     {
                         return Operations.GetEnumerator();
+                    }
+
+                    IEnumerator IEnumerable.GetEnumerator()
+                    {
+                        return GetEnumerator();
+                    }
+
+                }
+
+                public class StatAnalysisPhenomenonIndicesStrings : IEnumerable<TaggedString>
+                {
+                    private List<TaggedString> Phenomenons {
+                        get {
+                            return new List<TaggedString>() {
+                                Peek,
+                                Deformation
+                            };
+                        }
+                    }
+
+                    public TaggedString Peek { get { return new TaggedString( CurrentLanguage, "Enums_PhenomenonIndex_Peek" ); } }
+                    public TaggedString Deformation { get { return new TaggedString( CurrentLanguage, "Enums_PhenomenonIndex_Deformation" ); } }
+
+                    public IEnumerator<TaggedString> GetEnumerator()
+                    {
+                        return Phenomenons.GetEnumerator();
+                    }
+
+                    IEnumerator IEnumerable.GetEnumerator()
+                    {
+                        return GetEnumerator();
+                    }
+
+                }
+
+                public class AvgInfoTabs : IEnumerable<TaggedString>
+                {
+                    private List<TaggedString> Tabs {
+                        get {
+                            return new List<TaggedString>() {
+                                Geometric,
+                                Agm,
+                                Heronian,
+                                Harmonic,
+                                Power,
+                                Rms,
+                                Logarithmic,
+                                Ema,
+                                LnWages,
+                                CustomDifferential,
+                                CustomTolerance,
+                                CustomGeometric
+                            };
+                        }
+                    }
+
+                    public TaggedString Geometric { get { return new TaggedString( CurrentLanguage, "Enums_AvgInfo_Tabs_Geometric" ); } }
+                    public TaggedString Agm { get { return new TaggedString( CurrentLanguage, "Enums_AvgInfo_Tabs_AGM" ); } }
+                    public TaggedString Heronian { get { return new TaggedString( CurrentLanguage, "Enums_AvgInfo_Tabs_Heronian" ); } }
+                    public TaggedString Harmonic { get { return new TaggedString( CurrentLanguage, "Enums_AvgInfo_Tabs_Harmonic" ); } }
+                    public TaggedString Power { get { return new TaggedString( CurrentLanguage, "Enums_AvgInfo_Tabs_Power" ); } }
+                    public TaggedString Rms { get { return new TaggedString( CurrentLanguage, "Enums_AvgInfo_Tabs_RMS" ); } }
+                    public TaggedString Logarithmic { get { return new TaggedString( CurrentLanguage, "Enums_AvgInfo_Tabs_Logarithmic" ); } }
+                    public TaggedString Ema { get { return new TaggedString( CurrentLanguage, "Enums_AvgInfo_Tabs_EMA" ); } }
+                    public TaggedString LnWages { get { return new TaggedString( CurrentLanguage, "Enums_AvgInfo_Tabs_LnWages" ); } }
+                    public TaggedString CustomDifferential { get { return new TaggedString( CurrentLanguage, "Enums_AvgInfo_Tabs_CustomDifferential" ); } }
+                    public TaggedString CustomTolerance { get { return new TaggedString( CurrentLanguage, "Enums_AvgInfo_Tabs_CustomTolerance" ); } }
+                    public TaggedString CustomGeometric { get { return new TaggedString( CurrentLanguage, "Enums_AvgInfo_Tabs_CustomGeometric" ); } }
+
+                    public IEnumerator<TaggedString> GetEnumerator()
+                    {
+                        return Tabs.GetEnumerator();
                     }
 
                     IEnumerator IEnumerable.GetEnumerator()
@@ -670,6 +746,143 @@ namespace PI
 
             }
 
+            public class StatAnalysisStrings
+            {
+                public SaUiStrings Ui { get; private set; } = new SaUiStrings();
+
+                public class SaUiStrings
+                {
+                    public SaUiFormStrings Form { get; private set; } = new SaUiFormStrings();
+                    public SaUiStandardDeviationStrings StdDeviation { get; private set; } = new SaUiStandardDeviationStrings();
+                    public SaUiPreviewStrings Preview { get; private set; } = new SaUiPreviewStrings();
+
+                    public class SaUiFormStrings
+                    {
+                        public TaggedString Text { get { return new TaggedString( CurrentLanguage, "StatisticalAnalysis_Ui_Form_Text" ); } }
+                    }
+
+                    public class SaUiStandardDeviationStrings
+                    {
+                        public TaggedString StdDev { get { return new TaggedString( CurrentLanguage, "StatisticalAnalysis_Ui_StandardDeviation_StandardDeviation" ); } }
+                        public TaggedString Peek { get { return new TaggedString( CurrentLanguage, "StatisticalAnalysis_Ui_StandardDeviation_Peek" ); } }
+                        public TaggedString Deform { get { return new TaggedString( CurrentLanguage, "StatisticalAnalysis_Ui_StandardDeviation_Deform" ); } }
+                    }
+
+                    public class SaUiPreviewStrings
+                    {
+                        public TaggedString Prv { get { return new TaggedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_Preview" ); } }
+                        public TaggedString Chart { get { return new TaggedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_Chart" ); } }
+                        public TaggedString Formula { get { return new TaggedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_Formula" ); } }
+                        public TaggedString DtSet { get { return new TaggedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_Dataset" ); } }
+                        public TaggedString CrvsNo1 { get { return new TaggedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_NumberOfCurves1" ); } }
+                        public TaggedString Dens1 { get { return new TaggedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_Density1" ); } }
+                        public TaggedString NotApplicable { get { return new TaggedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_NotApplicable" ); } }
+                    }
+
+                }
+            }
+
+            public class AvgInfoStrings
+            {
+                public AiTabsStrings Tabs { get; private set; } = new AiTabsStrings();
+                public AiFormStrings Form { get; private set; } = new AiFormStrings();
+
+                public class AiTabsStrings
+                {
+                    public AiGeometricStrings Geometric { get; private set; } = new AiGeometricStrings();
+                    public AiAgmStrings Agm { get; private set; } = new AiAgmStrings();
+                    public AiHeronianStrings Heronian { get; private set; } = new AiHeronianStrings();
+                    public AiHarmonicStrings Harmonic { get; private set; } = new AiHarmonicStrings();
+                    public AiPowerStrings Power { get; private set; } = new AiPowerStrings();
+                    public AiRmsStrings Rms { get; private set; } = new AiRmsStrings();
+                    public AiLogarithmicStrings Logarithmic { get; private set; } = new AiLogarithmicStrings();
+                    public AiEmaStrings Ema { get; private set; } = new AiEmaStrings();
+                    public AiLnWagesStrings LnWages { get; private set; } = new AiLnWagesStrings();
+                    public AiCustomDifferentialStrings CustomDifferential { get; private set; } = new AiCustomDifferentialStrings();
+                    public AiCustomToleranceStrings CustomTolerance { get; private set; } = new AiCustomToleranceStrings();
+                    public AiCustomGeometricStrings CustomGeometric { get; private set; } = new AiCustomGeometricStrings();
+
+                    public class AiGeometricStrings
+                    {
+                        public TaggedString TextBox1Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_Geometric_TextBox1Text" ); } }
+                        public TaggedString TextBox2Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_Geometric_TextBox2Text" ); } }
+                    }
+
+                    public class AiAgmStrings
+                    {
+                        public TaggedString TextBox1Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_AGM_TextBox1Text" ); } }
+                        public TaggedString TextBox2Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_AGM_TextBox2Text" ); } }
+                    }
+
+                    public class AiHeronianStrings
+                    {
+                        public TaggedString TextBox1Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_Heronian_TextBox1Text" ); } }
+                        public TaggedString TextBox2Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_Heronian_TextBox2Text" ); } }
+                    }
+
+                    public class AiHarmonicStrings
+                    {
+                        public TaggedString TextBox1Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_Harmonic_TextBox1Text" ); } }
+                        public TaggedString TextBox2Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_Harmonic_TextBox2Text" ); } }
+                    }
+
+                    public class AiPowerStrings
+                    {
+                        public TaggedString TextBox1Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_Power_TextBox1Text" ); } }
+                        public TaggedString TextBox2Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_Power_TextBox2Text" ); } }
+                    }
+
+                    public class AiRmsStrings
+                    {
+                        public TaggedString TextBox1Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_RMS_TextBox1Text" ); } }
+                        public TaggedString TextBox2Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_RMS_TextBox2Text" ); } }
+                    }
+
+                    public class AiLogarithmicStrings
+                    {
+                        public TaggedString TextBox1Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_Logarithmic_TextBox1Text" ); } }
+                        public TaggedString TextBox2Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_Logarithmic_TextBox2Text" ); } }
+                    }
+
+                    public class AiEmaStrings
+                    {
+                        public TaggedString TextBox1Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_EMA_TextBox1Text" ); } }
+                        public TaggedString TextBox2Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_EMA_TextBox2Text" ); } }
+                    }
+
+                    public class AiLnWagesStrings
+                    {
+                        public TaggedString TextBox1Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_LnWages_TextBox1Text" ); } }
+                        public TaggedString TextBox2Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_LnWages_TextBox2Text" ); } }
+                    }
+
+                    public class AiCustomDifferentialStrings
+                    {
+                        public TaggedString TextBox1Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_CustomDifferential_TextBox1Text" ); } }
+                        public TaggedString TextBox2Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_CustomDifferential_TextBox2Text" ); } }
+                    }
+
+                    public class AiCustomToleranceStrings
+                    {
+                        public TaggedString TextBox1Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_CustomTolerance_TextBox1Text" ); } }
+                        public TaggedString TextBox2Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_CustomTolerance_TextBox2Text" ); } }
+                    }
+
+                    public class AiCustomGeometricStrings
+                    {
+                        public TaggedString TextBox1Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_CustomGeometric_TextBox1Text" ); } }
+                        public TaggedString TextBox2Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_CustomGeometric_TextBox2Text" ); } }
+                    }
+
+                }
+
+                public class AiFormStrings
+                {
+                    public TaggedString Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_Form_Text" ); } }
+                }
+
+            }
+
         }
 
         public static void AddLocalizedMeanTypes<T>( T control, bool clearAtStart = true ) where T : ComboBox
@@ -712,6 +925,17 @@ namespace PI
             }
 
             foreach ( var item in GetInstance().Strings.Enums.Operations ) {
+                control.Items.Add( item.GetString() );
+            }
+        }
+
+        public static void AddLocalizedPhenomenonsIndices<T>( T control, bool clearAtStart = true ) where T : ComboBox
+        {
+            if ( clearAtStart ) {
+                control.Items.Clear();
+            }
+
+            foreach ( var item in GetInstance().Strings.Enums.Phenomenons ) {
                 control.Items.Add( item.GetString() );
             }
         }

@@ -79,7 +79,6 @@
     <Compile Include="AvgInfo.Designer.cs">
       <DependentUpon>AvgInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="AvgInfoConsts.cs" />
     <Compile Include="ChartSettings.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -36,10 +36,148 @@ namespace PI
             public string PictureBox2 { get; set; }
         }
 
+        private class AvgInfoConsts
+        {
+            internal GeometricMeanConsts Geometric { get; } = new GeometricMeanConsts();
+            internal ArithmeticGeometricMeanConsts Agm { get; } = new ArithmeticGeometricMeanConsts();
+            internal HeronianMeanConsts Heronian { get; } = new HeronianMeanConsts();
+            internal HarmonicMeanConsts Harmonic { get; } = new HarmonicMeanConsts();
+            internal PowerMeanConsts Power { get; } = new PowerMeanConsts();
+            internal RootMeanSquareConsts Rms { get; } = new RootMeanSquareConsts();
+            internal LogarithmicMeanConsts Logarithmic { get; } = new LogarithmicMeanConsts();
+            internal ExponentialMovingAverageConsts Ema { get; } = new ExponentialMovingAverageConsts();
+            internal LogarithmicallyWagedMeanConsts LnWages { get; } = new LogarithmicallyWagedMeanConsts();
+            internal CustomDifferentialMeanConsts Differential { get; } = new CustomDifferentialMeanConsts();
+            internal CustomToleranceMeanConsts Tolerance { get; } = new CustomToleranceMeanConsts();
+            internal CustomGeometricMeanConsts CustomGeo { get; } = new CustomGeometricMeanConsts();
+
+            internal class GeometricMeanConsts
+            {
+                internal string TabPageName { get; } = "ui_Gm_TbPg";
+                internal string TableLayoutName { get; } = "uiGm_TbLay";
+                internal string TextBox1Name { get; } = "uiGm_Text1_TxtBx";
+                internal string TextBox2Name { get; } = "uiGm_Text2_TxtBx";
+                internal string PictureBox1Name { get; } = "uiGm_Pic1_PicBx";
+                internal string PictureBox2Name { get; } = "uiGm_Pic2_PicBx";
+            }
+
+            internal class ArithmeticGeometricMeanConsts
+            {
+                internal string TabPageName { get; } = "ui_Agm_TbPg";
+                internal string TableLayoutName { get; } = "uiAgm_TbLay";
+                internal string TextBox1Name { get; } = "uiAgm_Text1_TxtBx";
+                internal string TextBox2Name { get; } = "uiAgm_Text2_TxtBx";
+                internal string PictureBox1Name { get; } = "uiAgm_Pic1_PicBx";
+                internal string PictureBox2Name { get; } = "uiAgm_Pic2_PicBx";
+            }
+
+            internal class HeronianMeanConsts
+            {
+                internal string TabPageName { get; } = "ui_Her_TbPg";
+                internal string TableLayoutName { get; } = "uiHer_TbLay";
+                internal string TextBox1Name { get; } = "uiHer_Text1_TxtBx";
+                internal string TextBox2Name { get; } = "uiHer_Text2_TxtBx";
+                internal string PictureBox1Name { get; } = "uiHer_Pic1_PicBx";
+                internal string PictureBox2Name { get; } = "uiHer_Pic2_PicBx";
+            }
+
+            internal class HarmonicMeanConsts
+            {
+                internal string TabPageName { get; } = "ui_Harm_TbPg";
+                internal string TableLayoutName { get; } = "uiHarm_TbLay";
+                internal string TextBox1Name { get; } = "uiHarm_Text1_TxtBx";
+                internal string TextBox2Name { get; } = "uiHarm_Text2_TxtBx";
+                internal string PictureBox1Name { get; } = "uiHarm_Pic1_PicBx";
+                internal string PictureBox2Name { get; } = "uiHarm_Pic2_PicBx";
+            }
+
+            internal class PowerMeanConsts
+            {
+                internal string TabPageName { get; } = "ui_Pow_TbPg";
+                internal string TableLayoutName { get; } = "uiPow_TbLay";
+                internal string TextBox1Name { get; } = "uiPow_Text1_TxtBx";
+                internal string TextBox2Name { get; } = "uiPow_Text2_TxtBx";
+                internal string PictureBox1Name { get; } = "uiPow_Pic1_PicBx";
+                internal string PictureBox2Name { get; } = "uiPow_Pic2_PicBx";
+            }
+
+            internal class RootMeanSquareConsts
+            {
+                internal string TabPageName { get; } = "ui_Rms_TbPg";
+                internal string TableLayoutName { get; } = "uiRms_TbLay";
+                internal string TextBox1Name { get; } = "uiRms_Text1_TxtBx";
+                internal string TextBox2Name { get; } = "uiRms_Text2_TxtBx";
+                internal string PictureBox1Name { get; } = "uiRms_Pic1_PicBx";
+                internal string PictureBox2Name { get; } = "uiRms_Pic2_PicBx";
+            }
+
+            internal class LogarithmicMeanConsts
+            {
+                internal string TabPageName { get; } = "ui_Log_TbPg";
+                internal string TableLayoutName { get; } = "uiLog_TbLay";
+                internal string TextBox1Name { get; } = "uiLog_Text1_TxtBx";
+                internal string TextBox2Name { get; } = "uiLog_Text2_TxtBx";
+                internal string PictureBox1Name { get; } = "uiLog_Pic1_PicBx";
+                internal string PictureBox2Name { get; } = "uiLog_Pic2_PicBx";
+            }
+
+            internal class ExponentialMovingAverageConsts
+            {
+                internal string TabPageName { get; } = "ui_Ema_TbPg";
+                internal string TableLayoutName { get; } = "uiEma_TbLay";
+                internal string TextBox1Name { get; } = "uiEma_Text1_TxtBx";
+                internal string TextBox2Name { get; } = "uiEma_Text2_TxtBx";
+                internal string PictureBox1Name { get; } = "uiEma_Pic1_PicBx";
+                internal string PictureBox2Name { get; } = "uiEma_Pic2_PicBx";
+            }
+
+            internal class LogarithmicallyWagedMeanConsts
+            {
+                internal string TabPageName { get; } = "ui_LnWgs_TbPg";
+                internal string TableLayoutName { get; } = "uiLnWgs_TbLay";
+                internal string TextBox1Name { get; } = "uiLnWgs_Text1_TxtBx";
+                internal string TextBox2Name { get; } = "uiLnWgs_Text2_TxtBx";
+                internal string PictureBox1Name { get; } = "uiLnWgs_Pic1_PicBx";
+                internal string PictureBox2Name { get; } = "uiLnWgs_Pic2_PicBx";
+            }
+
+            internal class CustomDifferentialMeanConsts
+            {
+                internal string TabPageName { get; } = "ui_CstDiff_TbPg";
+                internal string TableLayoutName { get; } = "uiCstDiff_TbLay";
+                internal string TextBox1Name { get; } = "uiCstDiff_Text1_TxtBx";
+                internal string TextBox2Name { get; } = "uiCstDiff_Text2_TxtBx";
+                internal string PictureBox1Name { get; } = "uiCstDiff_Pic1_PicBx";
+                internal string PictureBox2Name { get; } = "uiCstDiff_Pic2_PicBx";
+            }
+
+            internal class CustomToleranceMeanConsts
+            {
+                internal string TabPageName { get; } = "ui_CstToler_TbPg";
+                internal string TableLayoutName { get; } = "uiCstToler_TbLay";
+                internal string TextBox1Name { get; } = "uiCstToler_Text1_TxtBx";
+                internal string TextBox2Name { get; } = "uiCstToler_Text2_TxtBx";
+                internal string PictureBox1Name { get; } = "uiCstToler_Pic1_PicBx";
+                internal string PictureBox2Name { get; } = "uiCstToler_Pic2_PicBx";
+            }
+
+            internal class CustomGeometricMeanConsts
+            {
+                internal string TabPageName { get; } = "ui_CstGeo_TbPg";
+                internal string TableLayoutName { get; } = "uiCstGeo_TbLay";
+                internal string TextBox1Name { get; } = "uiCstGeo_Text1_TxtBx";
+                internal string TextBox2Name { get; } = "uiCstGeo_Text2_TxtBx";
+                internal string PictureBox1Name { get; } = "uiCstGeo_Pic1_PicBx";
+                internal string PictureBox2Name { get; } = "uiCstGeo_Pic2_PicBx";
+            }
+
+        }
+
         public AvgInfo()
         {
             InitializeComponent();
             UpdateUiByComposingWindow();
+            LocalizeWindow();
         }
 
         private void UpdateUiByComposingWindow()
@@ -564,114 +702,105 @@ namespace PI
 
         private void ComposeGeometricTabPage()
         {
-            SetText1( Tabs.Geometric, Consts.Geometric.TextBox1Text );
+            SetText1( Tabs.Geometric, Translator.GetInstance().Strings.AvgInfo.Tabs.Geometric.TextBox1Text.GetString() );
             SetPicture1( Tabs.Geometric, Properties.Resources.GeometricMean_OriginEquation );
-            SetText2( Tabs.Geometric, Consts.Geometric.TextBox2Text );
+            SetText2( Tabs.Geometric, Translator.GetInstance().Strings.AvgInfo.Tabs.Geometric.TextBox2Text.GetString() );
             SetPicture2( Tabs.Geometric, Properties.Resources.GeometricMean_ModifiedEquation );
         }
 
         private void ComposeAgmTabPage()
         {
-            SetText1( Tabs.AGM, Consts.Agm.TextBox1Text );
+            SetText1( Tabs.AGM, Translator.GetInstance().Strings.AvgInfo.Tabs.Agm.TextBox1Text.GetString() );
             SetPicture1( Tabs.AGM, Properties.Resources.AGM_OriginalEquation );
-            SetText2( Tabs.AGM, Consts.Agm.TextBox2Text );
+            SetText2( Tabs.AGM, Translator.GetInstance().Strings.AvgInfo.Tabs.Agm.TextBox2Text.GetString() );
             SetPicture2( Tabs.AGM, Properties.Resources.AGM_ModifiedEquation );
         }
 
         private void ComposeHeronianTabPage()
         {
-            SetText1( Tabs.Heronian, Consts.Heronian.TextBox1Text );
+            SetText1( Tabs.Heronian, Translator.GetInstance().Strings.AvgInfo.Tabs.Heronian.TextBox1Text.GetString() );
             SetPicture1( Tabs.Heronian, Properties.Resources.Heronian_OriginalEquation );
-            SetText2( Tabs.Heronian, Consts.Heronian.TextBox2Text );
+            SetText2( Tabs.Heronian, Translator.GetInstance().Strings.AvgInfo.Tabs.Heronian.TextBox2Text.GetString() );
             SetPicture2( Tabs.Heronian, Properties.Resources.Heronian_ModifiedEquation );
         }
 
         private void ComposeHarmonicTabPage()
         {
-            SetText1( Tabs.Harmonic, Consts.Harmonic.TextBox1Text );
+            SetText1( Tabs.Harmonic, Translator.GetInstance().Strings.AvgInfo.Tabs.Harmonic.TextBox1Text.GetString() );
             SetPicture1( Tabs.Harmonic, Properties.Resources.Harmonic_OriginalEquation );
-            SetText2( Tabs.Harmonic, Consts.Harmonic.TextBox2Text );
+            SetText2( Tabs.Harmonic, Translator.GetInstance().Strings.AvgInfo.Tabs.Harmonic.TextBox2Text.GetString() );
             SetPicture2( Tabs.Harmonic, Properties.Resources.Harmonic_TransformedEquation );
         }
 
         private void ComposePowerTabPage()
         {
-            SetText1( Tabs.Power, Consts.Power.TextBox1Text );
+            SetText1( Tabs.Power, Translator.GetInstance().Strings.AvgInfo.Tabs.Power.TextBox1Text.GetString() );
             SetPicture1( Tabs.Power, Properties.Resources.Power_OriginalEquation );
-            SetText2( Tabs.Power, Consts.Power.TextBox2Text );
+            SetText2( Tabs.Power, Translator.GetInstance().Strings.AvgInfo.Tabs.Power.TextBox2Text.GetString() );
             SetPicture2( Tabs.Power, Properties.Resources.Power_DefaultRank );
         }
 
         private void ComposeRmsTabPage()
         {
-            SetText1( Tabs.RMS, Consts.Rms.TextBox1Text );
+            SetText1( Tabs.RMS, Translator.GetInstance().Strings.AvgInfo.Tabs.Rms.TextBox1Text.GetString() );
             SetPicture1( Tabs.RMS, Properties.Resources.RMS_OriginalEquation );
-            SetText2( Tabs.RMS, Consts.Rms.TextBox2Text );
+            SetText2( Tabs.RMS, Translator.GetInstance().Strings.AvgInfo.Tabs.Rms.TextBox2Text.GetString() );
             SetPicture2( Tabs.RMS, Properties.Resources.RMS_ComputedForm );
         }
 
         private void ComposeLogarithmicTabPage()
         {
-            SetText1( Tabs.Logarithmic, Consts.Logarithmic.TextBox1Text );
+            SetText1( Tabs.Logarithmic, Translator.GetInstance().Strings.AvgInfo.Tabs.Logarithmic.TextBox1Text.GetString() );
             SetPicture1( Tabs.Logarithmic, Properties.Resources.Logarithmic_OriginalEquation );
-            SetText2( Tabs.Logarithmic, Consts.Logarithmic.TextBox2Text );
+            SetText2( Tabs.Logarithmic, Translator.GetInstance().Strings.AvgInfo.Tabs.Logarithmic.TextBox2Text.GetString() );
             SetPicture2( Tabs.Logarithmic, Properties.Resources.Logarithmic_ModifiedEquation );
         }
 
         private void ComposeEmaTabPage()
         {
-            SetText1( Tabs.EMA, Consts.Ema.TextBox1Text );
+            SetText1( Tabs.EMA, Translator.GetInstance().Strings.AvgInfo.Tabs.Ema.TextBox1Text.GetString() );
             SetPicture1( Tabs.EMA, Properties.Resources.EMA_OriginalEquation );
-            SetText2( Tabs.EMA, Consts.Ema.TextBox2Text );
+            SetText2( Tabs.EMA, Translator.GetInstance().Strings.AvgInfo.Tabs.Ema.TextBox2Text.GetString() );
             SetPicture2( Tabs.EMA, Properties.Resources.EMA_ModifiedEquation );
         }
 
         private void ComposeLnWagesTabPage()
         {
-            SetText1( Tabs.LnWages, Consts.LnWages.TextBox1Text );
+            SetText1( Tabs.LnWages, Translator.GetInstance().Strings.AvgInfo.Tabs.LnWages.TextBox1Text.GetString() );
             SetPicture1( Tabs.LnWages, Properties.Resources.LnWages_OriginalEquation );
-            SetText2( Tabs.LnWages, Consts.LnWages.TextBox2Text );
+            SetText2( Tabs.LnWages, Translator.GetInstance().Strings.AvgInfo.Tabs.LnWages.TextBox2Text.GetString() );
             SetPicture2( Tabs.LnWages, Properties.Resources.LnWages_ModifiedEquation );
         }
 
         private void ComposeCustomDifferentialTabPage()
         {
-            SetText1( Tabs.CustomDifferential, Consts.Differential.TextBox1Text );
+            SetText1( Tabs.CustomDifferential, Translator.GetInstance().Strings.AvgInfo.Tabs.CustomDifferential.TextBox1Text.GetString() );
             SetPicture1( Tabs.CustomDifferential, Properties.Resources.CustomDifferential_Approach1 );
-            SetText2( Tabs.CustomDifferential, Consts.Differential.TextBox2Text );
+            SetText2( Tabs.CustomDifferential, Translator.GetInstance().Strings.AvgInfo.Tabs.CustomDifferential.TextBox2Text.GetString() );
             SetPicture2( Tabs.CustomDifferential, Properties.Resources.CustomDifferential_Approach2 );
         }
 
         private void ComposeCustomToleranceTabPage()
         {
-            SetText1( Tabs.CustomTolerance, Consts.Tolerance.TextBox1Text );
+            SetText1( Tabs.CustomTolerance, Translator.GetInstance().Strings.AvgInfo.Tabs.CustomTolerance.TextBox1Text.GetString() );
             SetPicture1( Tabs.CustomTolerance, Properties.Resources.CustomTolerance_Comparer );
-            SetText2( Tabs.CustomTolerance, Consts.Tolerance.TextBox2Text );
+            SetText2( Tabs.CustomTolerance, Translator.GetInstance().Strings.AvgInfo.Tabs.CustomTolerance.TextBox2Text.GetString() );
             SetPicture2( Tabs.CustomTolerance, Properties.Resources.CustomTolerance_Classifier );
         }
 
         private void ComposeCustomGeometricTabPage()
         {
-            SetText1( Tabs.CustomGeometric, Consts.CustomGeo.TextBox1Text );
+            SetText1( Tabs.CustomGeometric, Translator.GetInstance().Strings.AvgInfo.Tabs.CustomGeometric.TextBox1Text.GetString() );
             SetPicture1( Tabs.CustomGeometric, Properties.Resources.GeometricMean_OriginEquation );
-            SetText2( Tabs.CustomGeometric, Consts.CustomGeo.TextBox2Text );
+            SetText2( Tabs.CustomGeometric, Translator.GetInstance().Strings.AvgInfo.Tabs.CustomGeometric.TextBox2Text.GetString() );
             SetPicture2( Tabs.CustomGeometric, Properties.Resources.CustomGeometric_ModifiedEquation );
         }
 
         private void BuildTabPages()
         {
-            BuildTabPage( Consts.Geometric.TabPageTitle );
-            BuildTabPage( Consts.Agm.TabPageTitle );
-            BuildTabPage( Consts.Heronian.TabPageTitle );
-            BuildTabPage( Consts.Harmonic.TabPageTitle );
-            BuildTabPage( Consts.Power.TabPageTitle );
-            BuildTabPage( Consts.Rms.TabPageTitle );
-            BuildTabPage( Consts.Logarithmic.TabPageTitle );
-            BuildTabPage( Consts.Ema.TabPageTitle );
-            BuildTabPage( Consts.LnWages.TabPageTitle );
-            BuildTabPage( Consts.Differential.TabPageTitle );
-            BuildTabPage( Consts.Tolerance.TabPageTitle );
-            BuildTabPage( Consts.CustomGeo.TabPageTitle );
+            foreach ( var item in Translator.GetInstance().Strings.Enums.AiTabs ) {
+                BuildTabPage( item.GetString() );
+            }
         }
 
         private void ComposeTabPages()
@@ -693,6 +822,11 @@ namespace PI
         private void AvgInfo_FormClosing( object sender, FormClosingEventArgs e )
         {
             Dispose();
+        }
+
+        private void LocalizeWindow()
+        {
+            Text = Translator.GetInstance().Strings.AvgInfo.Form.Text.GetString();
         }
 
     }

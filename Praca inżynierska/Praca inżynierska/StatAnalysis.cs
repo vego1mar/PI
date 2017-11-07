@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -13,8 +14,10 @@ namespace PI
         private List<List<CurvesDataManager>> Data { get; set; }
         private List<double> Surroundings { get; set; }
         private List<List<List<Series>>> Averages { get; set; }
-        private bool IsFormShown = false;
         private List<List<List<double>>> StdDeviations { get; set; }
+        private bool IsFormShown = false;
+        private static uint WindowNo { get; set; } = 0;
+        private string WindowThreadsName { get; set; }
 
         public enum PhenomenonIndex
         {
@@ -40,6 +43,7 @@ namespace PI
             PerformStatisticalAnalysis();
             UpdateUiByPopulatingGridWithStandardDeviations();
             UpdateUiByColoringUiGrids();
+            LocalizeWindow();
         }
 
         private void InitializeProperties()
@@ -49,6 +53,8 @@ namespace PI
             InitializePropertyAverages();
             InitializeDataGridViewUiFields();
             InitializePropertyStdDeviations();
+            WindowNo++;
+            WindowThreadsName = nameof( StatAnalysis ) + "::" + nameof( GridPreviewer ) + "::" + WindowNo;
         }
 
         private void InitializePropertySettings( GenSettings.PcdGenSettings genSets )
@@ -126,7 +132,7 @@ namespace PI
         {
             List<string> peekColumns = GetDataGridColumnsNames( PhenomenonIndex.Peek );
             List<string> deformColumns = GetDataGridColumnsNames( PhenomenonIndex.Deformation );
-            List<string> meanNames = Enum.GetNames( typeof( Enums.MeanType ) ).ToList();
+            List<string> meanNames = GetLocalizedMeanTypes().ToList();
 
             for ( int i = 0; i < meanNames.Count; i++ ) {
                 uiLPeek_Grid.Rows.Add();
@@ -215,7 +221,7 @@ namespace PI
         private void AddSurroundings( ComboBox comboBox )
         {
             foreach ( double surrounding in Surroundings ) {
-                comboBox.Items.Add( surrounding.ToString( System.Globalization.CultureInfo.InvariantCulture ) );
+                comboBox.Items.Add( surrounding.ToString( System.Threading.Thread.CurrentThread.CurrentCulture ) );
             }
         }
 
@@ -253,8 +259,37 @@ namespace PI
                 return;
             }
 
-            using ( var dialog = new GridPreviewer( GetSeriesSpecifiedByControls() ) ) {
-                WinFormsHelper.ShowDialogSafe( dialog, this );
+            try {
+                Series controlsSpecifiedSeries = GetSeriesSpecifiedByControls();
+
+                Thread window = new Thread( () => DelegatorForGridPreviewer( controlsSpecifiedSeries ) ) {
+                    Name = WindowThreadsName,
+                    IsBackground = true
+                };
+
+                window.Start();
+            }
+            catch ( ThreadStateException ex ) {
+                Logger.WriteException( ex );
+            }
+            catch ( OutOfMemoryException ex ) {
+                Logger.WriteException( ex );
+            }
+            catch ( ArgumentNullException ex ) {
+                Logger.WriteException( ex );
+            }
+            catch ( InvalidOperationException ex ) {
+                Logger.WriteException( ex );
+            }
+            catch ( Exception ex ) {
+                Logger.WriteException( ex );
+            }
+        }
+
+        private void DelegatorForGridPreviewer( Series controlsSpecifiedSeries )
+        {
+            using ( var dialog = new GridPreviewer( controlsSpecifiedSeries ) ) {
+                dialog.ShowDialog();
             }
         }
 
@@ -427,13 +462,13 @@ namespace PI
             }
         }
 
-        private void StatAnalysis_Shown( object sender, EventArgs e )
+        private void UiStatAnalysis_Shown( object sender, EventArgs e )
         {
             IsFormShown = true;
             UpdateUiByRefreshingChart();
         }
 
-        private void StatAnalysis_FormClosed( object sender, FormClosedEventArgs e )
+        private void UiStatAnalysis_FormClosed( object sender, FormClosedEventArgs e )
         {
             IsFormShown = false;
         }
@@ -560,14 +595,65 @@ namespace PI
             return idx;
         }
 
-        private void StatAnalysis_FormClosing( object sender, FormClosingEventArgs e )
+        private void UiStatAnalysis_FormClosing( object sender, FormClosingEventArgs e )
         {
             Settings = null;
             Data = null;
             Surroundings = null;
             Averages = null;
             StdDeviations = null;
+            WindowThreadsName = null;
             Dispose();
+        }
+
+        private void LocalizeWindow()
+        {
+            LocalizeForm();
+            LocalizeStandardDeviation();
+            LocalizePreview();
+        }
+
+        private void LocalizeForm()
+        {
+            Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Form.Text.GetString();
+        }
+
+        private void LocalizeStandardDeviation()
+        {
+            uiL_StdDev_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.StdDeviation.StdDev.GetString();
+            uiL_Peek_TbPg.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.StdDeviation.Peek.GetString();
+            uiL_Deform_TbPg.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.StdDeviation.Deform.GetString();
+        }
+
+        private void LocalizePreview()
+        {
+            uiR_Prv_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.Prv.GetString();
+            uiR_Chart_TbPg.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.Chart.GetString();
+            uiR_Formula_TbPg.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.Formula.GetString();
+            Translator.AddLocalizedDataSetCurveTypes( uiRChartDown_CrvT_ComBx );
+            WinFormsHelper.SetSelectedIndexSafe( uiRChartDown_CrvT_ComBx, (int) Enums.DataSetCurveType.Pattern );
+            Translator.AddLocalizedPhenomenonsIndices( uiRChartDown_Phen_ComBx );
+            WinFormsHelper.SetSelectedIndexSafe( uiRChartDown_Phen_ComBx, (int) PhenomenonIndex.Peek );
+            Translator.AddLocalizedMeanTypes( uiRChartDown_MeanT_ComBx );
+            WinFormsHelper.SetSelectedIndexSafe( uiRChartDown_MeanT_ComBx, (int) Enums.MeanType.CustomTolerance );
+            uiRChartDown_DtSet_Btn.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.DtSet.GetString();
+            uiRFormulaDown_CrvsNo2_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.NotApplicable.GetString();
+            uiRFormulaDown_Dens2_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.NotApplicable.GetString();
+            uiRFormulaDown_CrvsNo2_TxtBx.Text = Settings.Ui.NumberOfCurves.ToString( System.Threading.Thread.CurrentThread.CurrentCulture );
+            uiRFormulaDown_Dens2_TxtBx.Text = (Settings.Ui.PointsDensity + 1).ToString( System.Threading.Thread.CurrentThread.CurrentCulture );
+            uiRFormulaDown_CrvsNo1_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.CrvsNo1.GetString();
+            uiRFormulaDown_Dens1_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.Dens1.GetString();
+        }
+
+        private IList<string> GetLocalizedMeanTypes()
+        {
+            List<string> meanTypes = new List<string>();
+
+            foreach ( var item in Translator.GetInstance().Strings.Enums.MeanTypes ) {
+                meanTypes.Add( item.GetString() );
+            }
+
+            return meanTypes;
         }
 
     }

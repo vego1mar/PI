@@ -609,4 +609,154 @@
   <data name="MessageBoxShower_StatisticalAnalysis_Preview_ValueOutOfRangeProblem_Text" xml:space="preserve">
     <value>The provided value is not within a specified range.</value>
   </data>
+  <data name="AveragingInfo_AGM_TextBox1Text" xml:space="preserve">
+    <value>Arithmetic-geometric mean is defined as follows:</value>
+  </data>
+  <data name="AveragingInfo_AGM_TextBox2Text" xml:space="preserve">
+    <value>This was modified into:</value>
+  </data>
+  <data name="AveragingInfo_CustomDifferential_TextBox1Text" xml:space="preserve">
+    <value>The Custom-Differential approach presents as follows:</value>
+  </data>
+  <data name="AveragingInfo_CustomDifferential_TextBox2Text" xml:space="preserve">
+    <value>This has its alternative version, that is:</value>
+  </data>
+  <data name="AveragingInfo_CustomGeometric_TextBox1Text" xml:space="preserve">
+    <value>Geometric mean is defined as follows:</value>
+  </data>
+  <data name="AveragingInfo_CustomGeometric_TextBox2Text" xml:space="preserve">
+    <value>This was modified into:</value>
+  </data>
+  <data name="AveragingInfo_CustomTolerance_TextBox1Text" xml:space="preserve">
+    <value>The Custom-Tolerance approach filters values using a comparer (M is mediana or arithmetic mean):</value>
+  </data>
+  <data name="AveragingInfo_CustomTolerance_TextBox2Text" xml:space="preserve">
+    <value>The comparer is used for classifying values that will be processed further (FUNC is finisher mean):</value>
+  </data>
+  <data name="AveragingInfo_EMA_TextBox1Text" xml:space="preserve">
+    <value>Exponential moving average is defined as follows:</value>
+  </data>
+  <data name="AveragingInfo_EMA_TextBox2Text" xml:space="preserve">
+    <value>This has been modified into:</value>
+  </data>
+  <data name="AveragingInfo_Form_Text" xml:space="preserve">
+    <value>Averaging info</value>
+  </data>
+  <data name="AveragingInfo_Geometric_TextBox1Text" xml:space="preserve">
+    <value>Geometric mean is defined as follows:</value>
+  </data>
+  <data name="AveragingInfo_Geometric_TextBox2Text" xml:space="preserve">
+    <value>This was modified into:</value>
+  </data>
+  <data name="AveragingInfo_Harmonic_TextBox1Text" xml:space="preserve">
+    <value>Harmonic mean is defined for positive real numbers as follows:</value>
+  </data>
+  <data name="AveragingInfo_Harmonic_TextBox2Text" xml:space="preserve">
+    <value>This has not been modified, hence it can be also expressed as:</value>
+  </data>
+  <data name="AveragingInfo_Heronian_TextBox1Text" xml:space="preserve">
+    <value>Heronian mean in geometry is defined as follows:</value>
+  </data>
+  <data name="AveragingInfo_Heronian_TextBox2Text" xml:space="preserve">
+    <value>This was modified into:</value>
+  </data>
+  <data name="AveragingInfo_LnWages_TextBox1Text" xml:space="preserve">
+    <value>The standard waged mean is defined as follows:</value>
+  </data>
+  <data name="AveragingInfo_LnWages_TextBox2Text" xml:space="preserve">
+    <value>This has been modified into logarithmically waged mean as below:</value>
+  </data>
+  <data name="AveragingInfo_Logarithmic_TextBox1Text" xml:space="preserve">
+    <value>Logarithmic mean is defined as follows:</value>
+  </data>
+  <data name="AveragingInfo_Logarithmic_TextBox2Text" xml:space="preserve">
+    <value>This has been modified into:</value>
+  </data>
+  <data name="AveragingInfo_Power_TextBox1Text" xml:space="preserve">
+    <value>Power mean is defined for a specified rank k as below:</value>
+  </data>
+  <data name="AveragingInfo_Power_TextBox2Text" xml:space="preserve">
+    <value>This has not been modified, yet the default rank k is:</value>
+  </data>
+  <data name="AveragingInfo_RMS_TextBox1Text" xml:space="preserve">
+    <value>Root mean square is defined as follows:</value>
+  </data>
+  <data name="AveragingInfo_RMS_TextBox2Text" xml:space="preserve">
+    <value>This is computed using a power mean in a form as below:</value>
+  </data>
+  <data name="Enums_AvgInfo_Tabs_AGM" xml:space="preserve">
+    <value>AGM</value>
+  </data>
+  <data name="Enums_AvgInfo_Tabs_CustomDifferential" xml:space="preserve">
+    <value>custom-differential</value>
+  </data>
+  <data name="Enums_AvgInfo_Tabs_CustomGeometric" xml:space="preserve">
+    <value>custom-geometric</value>
+  </data>
+  <data name="Enums_AvgInfo_Tabs_CustomTolerance" xml:space="preserve">
+    <value>custom-tolerance</value>
+  </data>
+  <data name="Enums_AvgInfo_Tabs_EMA" xml:space="preserve">
+    <value>EMA</value>
+  </data>
+  <data name="Enums_AvgInfo_Tabs_Geometric" xml:space="preserve">
+    <value>geometric</value>
+  </data>
+  <data name="Enums_AvgInfo_Tabs_Harmonic" xml:space="preserve">
+    <value>harmonic</value>
+  </data>
+  <data name="Enums_AvgInfo_Tabs_Heronian" xml:space="preserve">
+    <value>Heronian</value>
+  </data>
+  <data name="Enums_AvgInfo_Tabs_LnWages" xml:space="preserve">
+    <value>log. waged</value>
+  </data>
+  <data name="Enums_AvgInfo_Tabs_Logarithmic" xml:space="preserve">
+    <value>logarithmic</value>
+  </data>
+  <data name="Enums_AvgInfo_Tabs_Power" xml:space="preserve">
+    <value>power</value>
+  </data>
+  <data name="Enums_AvgInfo_Tabs_RMS" xml:space="preserve">
+    <value>RMS</value>
+  </data>
+  <data name="Enums_PhenomenonIndex_Deformation" xml:space="preserve">
+    <value>deformation</value>
+  </data>
+  <data name="Enums_PhenomenonIndex_Peek" xml:space="preserve">
+    <value>peek</value>
+  </data>
+  <data name="StatisticalAnalysis_Ui_Form_Text" xml:space="preserve">
+    <value>Statistical analysis</value>
+  </data>
+  <data name="StatisticalAnalysis_Ui_Preview_Chart" xml:space="preserve">
+    <value>Chart</value>
+  </data>
+  <data name="StatisticalAnalysis_Ui_Preview_Dataset" xml:space="preserve">
+    <value>Dataset</value>
+  </data>
+  <data name="StatisticalAnalysis_Ui_Preview_Density1" xml:space="preserve">
+    <value>Points density (on interval):</value>
+  </data>
+  <data name="StatisticalAnalysis_Ui_Preview_Formula" xml:space="preserve">
+    <value>Formula</value>
+  </data>
+  <data name="StatisticalAnalysis_Ui_Preview_NotApplicable" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="StatisticalAnalysis_Ui_Preview_NumberOfCurves1" xml:space="preserve">
+    <value>Number of curves:</value>
+  </data>
+  <data name="StatisticalAnalysis_Ui_Preview_Preview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="StatisticalAnalysis_Ui_StandardDeviation_Deform" xml:space="preserve">
+    <value>Deform</value>
+  </data>
+  <data name="StatisticalAnalysis_Ui_StandardDeviation_Peek" xml:space="preserve">
+    <value>Peek</value>
+  </data>
+  <data name="StatisticalAnalysis_Ui_StandardDeviation_StandardDeviation" xml:space="preserve">
+    <value>Standard deviation</value>
+  </data>
 </root>

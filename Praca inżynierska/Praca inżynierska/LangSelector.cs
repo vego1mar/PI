@@ -23,7 +23,7 @@ namespace PI
         private void SetWindowDefaults()
         {
             LocalizeWindow();
-            WinFormsHelper.SetSelectedIndexSafe( uiUp_LstBx, (int) Languages.English );
+            WinFormsHelper.SetSelectedIndexSafe( uiUp_LstBx, (int) GetCurrentUiLanguage() );
         }
 
         private void LocalizeWindow()
@@ -34,7 +34,7 @@ namespace PI
 
         private void LangSelector_Load( object sender, EventArgs e )
         {
-            uiDown_Ok_Btn.Select();
+            uiUp_LstBx.Select();
         }
 
         private void LangSelector_FormClosing( object sender, FormClosingEventArgs e )
@@ -45,6 +45,18 @@ namespace PI
         private void UiDown_Ok_Button_Click( object sender, EventArgs e )
         {
             SelectedLanguage = (Languages) WinFormsHelper.GetSelectedIndexSafe( uiUp_LstBx );
+        }
+
+        private Languages GetCurrentUiLanguage()
+        {
+            switch ( System.Threading.Thread.CurrentThread.CurrentCulture.Name ) {
+            case "en-US":
+                return Languages.English;
+            case "pl-PL":
+                return Languages.Polish;
+            }
+
+            return Languages.English;
         }
 
     }
