@@ -1880,6 +1880,150 @@ namespace PI.Locales {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pattern curve definer.
+        /// </summary>
+        internal static string PatternCurveDefiner_Form_Text {
+            get {
+                return ResourceManager.GetString("PatternCurveDefiner_Form_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bound.
+        /// </summary>
+        internal static string PatternCurveDefiner_Tabs_Hyperbolic_Bound_ac {
+            get {
+                return ResourceManager.GetString("PatternCurveDefiner_Tabs_Hyperbolic_Bound_ac", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bound.
+        /// </summary>
+        internal static string PatternCurveDefiner_Tabs_Hyperbolic_Bound_bd {
+            get {
+                return ResourceManager.GetString("PatternCurveDefiner_Tabs_Hyperbolic_Bound_bd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hyperbolic.
+        /// </summary>
+        internal static string PatternCurveDefiner_Tabs_Hyperbolic_Hyperbolic {
+            get {
+                return ResourceManager.GetString("PatternCurveDefiner_Tabs_Hyperbolic_Hyperbolic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parameters.
+        /// </summary>
+        internal static string PatternCurveDefiner_Tabs_Hyperbolic_Parameters {
+            get {
+                return ResourceManager.GetString("PatternCurveDefiner_Tabs_Hyperbolic_Parameters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parameters.
+        /// </summary>
+        internal static string PatternCurveDefiner_Tabs_Polynomial_Parameters {
+            get {
+                return ResourceManager.GetString("PatternCurveDefiner_Tabs_Polynomial_Parameters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Polynomial.
+        /// </summary>
+        internal static string PatternCurveDefiner_Tabs_Polynomial_Polynomial {
+            get {
+                return ResourceManager.GetString("PatternCurveDefiner_Tabs_Polynomial_Polynomial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parameters.
+        /// </summary>
+        internal static string PatternCurveDefiner_Tabs_Waveform_Parameters {
+            get {
+                return ResourceManager.GetString("PatternCurveDefiner_Tabs_Waveform_Parameters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sawtooth.
+        /// </summary>
+        internal static string PatternCurveDefiner_Tabs_Waveform_Sawtooth {
+            get {
+                return ResourceManager.GetString("PatternCurveDefiner_Tabs_Waveform_Sawtooth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sine.
+        /// </summary>
+        internal static string PatternCurveDefiner_Tabs_Waveform_Sine {
+            get {
+                return ResourceManager.GetString("PatternCurveDefiner_Tabs_Waveform_Sine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to square.
+        /// </summary>
+        internal static string PatternCurveDefiner_Tabs_Waveform_Square {
+            get {
+                return ResourceManager.GetString("PatternCurveDefiner_Tabs_Waveform_Square", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to triangle.
+        /// </summary>
+        internal static string PatternCurveDefiner_Tabs_Waveform_Triangle {
+            get {
+                return ResourceManager.GetString("PatternCurveDefiner_Tabs_Waveform_Triangle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Waveform.
+        /// </summary>
+        internal static string PatternCurveDefiner_Tabs_Waveform_Waveform {
+            get {
+                return ResourceManager.GetString("PatternCurveDefiner_Tabs_Waveform_Waveform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wavetype.
+        /// </summary>
+        internal static string PatternCurveDefiner_Tabs_Waveform_WaveType {
+            get {
+                return ResourceManager.GetString("PatternCurveDefiner_Tabs_Waveform_WaveType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string PatternCurveDefiner_Ui_Cancel {
+            get {
+                return ResourceManager.GetString("PatternCurveDefiner_Ui_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string PatternCurveDefiner_Ui_OK {
+            get {
+                return ResourceManager.GetString("PatternCurveDefiner_Ui_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Statistical analysis.
         /// </summary>
         internal static string StatisticalAnalysis_Ui_Form_Text {

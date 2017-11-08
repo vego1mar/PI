@@ -11,6 +11,7 @@ namespace PI
         internal PatternCurveDefiner( GenSettings.PcdGenSettings presets )
         {
             InitializeComponent();
+            LocalizeWindow();
             DefinePropertiesInitialValues( presets );
             SelectChosenCurveTab();
             UpdateUiByParametersValues();
@@ -283,6 +284,56 @@ namespace PI
         private void PatternCurveDefiner_FormClosing( object sender, FormClosingEventArgs e )
         {
             Dispose();
+        }
+
+        private void LocalizeWindow()
+        {
+            LocalizeForm();
+            LocalizeUi();
+            LocalizeTabs();
+        }
+
+        private void LocalizeForm()
+        {
+            Text = Translator.GetInstance().Strings.PatternCurveDefiner.Form.Text.GetString();
+        }
+
+        private void LocalizeUi()
+        {
+            uiCfrm_Cancel_Btn.Text = Translator.GetInstance().Strings.PatternCurveDefiner.Ui.Cancel.GetString();
+            uiCfrm_Ok_Btn.Text = Translator.GetInstance().Strings.PatternCurveDefiner.Ui.Ok.GetString();
+        }
+
+        private void LocalizeTabs()
+        {
+            LocalizeTabPolynomial();
+            LocalizeTabHyperbolic();
+            LocalizeTabWaveform();
+        }
+
+        private void LocalizeTabPolynomial()
+        {
+            uiTabs_Pol_Btn.Text = Translator.GetInstance().Strings.PatternCurveDefiner.Tabs.Polynomial.Pol.GetString();
+            uiCntPol_Params_GrBx.Text = Translator.GetInstance().Strings.PatternCurveDefiner.Tabs.Polynomial.Params.GetString();
+        }
+
+        private void LocalizeTabHyperbolic()
+        {
+            uiTabs_Hyp_Btn.Text = Translator.GetInstance().Strings.PatternCurveDefiner.Tabs.Hyperbolic.Hyp.GetString();
+            uiCntHyp_Params_GrBx.Text = Translator.GetInstance().Strings.PatternCurveDefiner.Tabs.Hyperbolic.Params.GetString();
+            uiCntHyp_ac_ChBx.Text = Translator.GetInstance().Strings.PatternCurveDefiner.Tabs.Hyperbolic.BoundAc.GetString();
+            uiCntHyp_bd_ChBx.Text = Translator.GetInstance().Strings.PatternCurveDefiner.Tabs.Hyperbolic.BoundBd.GetString();
+        }
+
+        private void LocalizeTabWaveform()
+        {
+            uiTabs_Wave_Btn.Text = Translator.GetInstance().Strings.PatternCurveDefiner.Tabs.Waveform.Wave.GetString();
+            uiCntWave_Params_GrBx.Text = Translator.GetInstance().Strings.PatternCurveDefiner.Tabs.Waveform.Params.GetString();
+            uiCntWave_T_GrBx.Text = Translator.GetInstance().Strings.PatternCurveDefiner.Tabs.Waveform.T.GetString();
+            uiCntWaveT_Sine_RdBtn.Text = Translator.GetInstance().Strings.PatternCurveDefiner.Tabs.Waveform.Sine.GetString();
+            uiCntWaveT_Sq_RdBtn.Text = Translator.GetInstance().Strings.PatternCurveDefiner.Tabs.Waveform.Sq.GetString();
+            uiCntWaveT_Trg_RdBtn.Text = Translator.GetInstance().Strings.PatternCurveDefiner.Tabs.Waveform.Trg.GetString();
+            uiCntWaveT_Saw_RdBtn.Text = Translator.GetInstance().Strings.PatternCurveDefiner.Tabs.Waveform.Saw.GetString();
         }
 
     }

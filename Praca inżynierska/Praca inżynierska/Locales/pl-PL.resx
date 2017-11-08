@@ -186,7 +186,7 @@
     <value>OK</value>
   </data>
   <data name="LangSelector_Ui_Form_Text" xml:space="preserve">
-    <value>Wybieracz języka</value>
+    <value>Wybór języka</value>
   </data>
   <data name="MainWindow_Menu_Chart" xml:space="preserve">
     <value>Wykres</value>
@@ -757,5 +757,53 @@
   </data>
   <data name="StatisticalAnalysis_Ui_StandardDeviation_StandardDeviation" xml:space="preserve">
     <value>Odchylenie standardowe</value>
+  </data>
+  <data name="PatternCurveDefiner_Form_Text" xml:space="preserve">
+    <value>Wybór krzywej wzorcowej</value>
+  </data>
+  <data name="PatternCurveDefiner_Tabs_Hyperbolic_Bound_ac" xml:space="preserve">
+    <value>Zwiąż</value>
+  </data>
+  <data name="PatternCurveDefiner_Tabs_Hyperbolic_Bound_bd" xml:space="preserve">
+    <value>Zwiąż</value>
+  </data>
+  <data name="PatternCurveDefiner_Tabs_Hyperbolic_Hyperbolic" xml:space="preserve">
+    <value>Hiperbola</value>
+  </data>
+  <data name="PatternCurveDefiner_Tabs_Hyperbolic_Parameters" xml:space="preserve">
+    <value>Parametry</value>
+  </data>
+  <data name="PatternCurveDefiner_Tabs_Polynomial_Parameters" xml:space="preserve">
+    <value>Parametry</value>
+  </data>
+  <data name="PatternCurveDefiner_Tabs_Polynomial_Polynomial" xml:space="preserve">
+    <value>Wielomian</value>
+  </data>
+  <data name="PatternCurveDefiner_Tabs_Waveform_Parameters" xml:space="preserve">
+    <value>Parametry</value>
+  </data>
+  <data name="PatternCurveDefiner_Tabs_Waveform_Sawtooth" xml:space="preserve">
+    <value>piłokształtna</value>
+  </data>
+  <data name="PatternCurveDefiner_Tabs_Waveform_Sine" xml:space="preserve">
+    <value>sinusoidalna</value>
+  </data>
+  <data name="PatternCurveDefiner_Tabs_Waveform_Square" xml:space="preserve">
+    <value>prostokątna</value>
+  </data>
+  <data name="PatternCurveDefiner_Tabs_Waveform_Triangle" xml:space="preserve">
+    <value>trójkątna</value>
+  </data>
+  <data name="PatternCurveDefiner_Tabs_Waveform_Waveform" xml:space="preserve">
+    <value>Krzywa falowa</value>
+  </data>
+  <data name="PatternCurveDefiner_Tabs_Waveform_WaveType" xml:space="preserve">
+    <value>Typ fali</value>
+  </data>
+  <data name="PatternCurveDefiner_Ui_Cancel" xml:space="preserve">
+    <value>Anuluj</value>
+  </data>
+  <data name="PatternCurveDefiner_Ui_OK" xml:space="preserve">
+    <value>OK</value>
   </data>
 </root>

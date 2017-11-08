@@ -92,6 +92,7 @@ namespace PI
             public GridPreviewerStrings GridPreviewer { get; private set; } = new GridPreviewerStrings();
             public StatAnalysisStrings StatAnalysis { get; private set; } = new StatAnalysisStrings();
             public AvgInfoStrings AvgInfo { get; private set; } = new AvgInfoStrings();
+            public PatternCurveDefinerStrings PatternCurveDefiner { get; private set; } = new PatternCurveDefinerStrings();
 
             public class LangSelectorStrings
             {
@@ -879,6 +880,58 @@ namespace PI
                 public class AiFormStrings
                 {
                     public TaggedString Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_Form_Text" ); } }
+                }
+
+            }
+
+            public class PatternCurveDefinerStrings
+            {
+                public PcdFormStrings Form { get; private set; } = new PcdFormStrings();
+                public PcdUiStrings Ui { get; private set; } = new PcdUiStrings();
+                public PcdTabsStrings Tabs { get; private set; } = new PcdTabsStrings();
+
+                public class PcdFormStrings
+                {
+                    public TaggedString Text { get { return new TaggedString( CurrentLanguage, "PatternCurveDefiner_Form_Text" ); } }
+                }
+
+                public class PcdUiStrings
+                {
+                    public TaggedString Cancel { get { return new TaggedString( CurrentLanguage, "PatternCurveDefiner_Ui_Cancel" ); } }
+                    public TaggedString Ok { get { return new TaggedString( CurrentLanguage, "PatternCurveDefiner_Ui_OK" ); } }
+                }
+
+                public class PcdTabsStrings
+                {
+                    public PcdTabPolynomialStrings Polynomial { get; private set; } = new PcdTabPolynomialStrings();
+                    public PcdTabHyperbolicStrings Hyperbolic { get; private set; } = new PcdTabHyperbolicStrings();
+                    public PcdTabWaveformStrings Waveform { get; private set; } = new PcdTabWaveformStrings();
+
+                    public class PcdTabPolynomialStrings
+                    {
+                        public TaggedString Pol { get { return new TaggedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Polynomial_Polynomial" ); } }
+                        public TaggedString Params { get { return new TaggedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Polynomial_Parameters" ); } }
+                    }
+
+                    public class PcdTabHyperbolicStrings
+                    {
+                        public TaggedString Hyp { get { return new TaggedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Hyperbolic_Hyperbolic" ); } }
+                        public TaggedString Params { get { return new TaggedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Hyperbolic_Parameters" ); } }
+                        public TaggedString BoundAc { get { return new TaggedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Hyperbolic_Bound_ac" ); } }
+                        public TaggedString BoundBd { get { return new TaggedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Hyperbolic_Bound_bd" ); } }
+                    }
+
+                    public class PcdTabWaveformStrings
+                    {
+                        public TaggedString Wave { get { return new TaggedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Waveform_Waveform" ); } }
+                        public TaggedString Params { get { return new TaggedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Waveform_Parameters" ); } }
+                        public TaggedString T { get { return new TaggedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Waveform_WaveType" ); } }
+                        public TaggedString Sine { get { return new TaggedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Waveform_Sine" ); } }
+                        public TaggedString Sq { get { return new TaggedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Waveform_Square" ); } }
+                        public TaggedString Trg { get { return new TaggedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Waveform_Triangle" ); } }
+                        public TaggedString Saw { get { return new TaggedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Waveform_Sawtooth" ); } }
+                    }
+
                 }
 
             }
