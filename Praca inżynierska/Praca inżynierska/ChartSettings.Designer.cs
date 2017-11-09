@@ -32,7 +32,7 @@
             this.uiTop_ApplyTo_TxtBx = new System.Windows.Forms.TextBox();
             this.uiTop_ApplyTo_ComBx = new System.Windows.Forms.ComboBox();
             this.uiCtr_TbCtrl = new System.Windows.Forms.TabControl();
-            this.uCtr_Chart_TbPg = new System.Windows.Forms.TabPage();
+            this.uiCtr_Chart_TbPg = new System.Windows.Forms.TabPage();
             this.uiCtrChart_TbLay = new System.Windows.Forms.TableLayoutPanel();
             this.uiCtrChart_BkCol_ComBx = new System.Windows.Forms.ComboBox();
             this.uiCtrChart_SupEx_ComBx = new System.Windows.Forms.ComboBox();
@@ -74,7 +74,7 @@
             this.ui_TbLay.SuspendLayout();
             this.uiTop_TbLay.SuspendLayout();
             this.uiCtr_TbCtrl.SuspendLayout();
-            this.uCtr_Chart_TbPg.SuspendLayout();
+            this.uiCtr_Chart_TbPg.SuspendLayout();
             this.uiCtrChart_TbLay.SuspendLayout();
             this.uiCtr_Area_TbPg.SuspendLayout();
             this.uiCtrArea_TbLay.SuspendLayout();
@@ -142,7 +142,7 @@
             // 
             // uiCtr_TbCtrl
             // 
-            this.uiCtr_TbCtrl.Controls.Add(this.uCtr_Chart_TbPg);
+            this.uiCtr_TbCtrl.Controls.Add(this.uiCtr_Chart_TbPg);
             this.uiCtr_TbCtrl.Controls.Add(this.uiCtr_Area_TbPg);
             this.uiCtr_TbCtrl.Controls.Add(this.uiCtr_Srs_TbPg);
             this.uiCtr_TbCtrl.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -152,16 +152,16 @@
             this.uiCtr_TbCtrl.Size = new System.Drawing.Size(278, 359);
             this.uiCtr_TbCtrl.TabIndex = 1;
             // 
-            // uCtr_Chart_TbPg
+            // uiCtr_Chart_TbPg
             // 
-            this.uCtr_Chart_TbPg.Controls.Add(this.uiCtrChart_TbLay);
-            this.uCtr_Chart_TbPg.Location = new System.Drawing.Point(4, 22);
-            this.uCtr_Chart_TbPg.Name = "uCtr_Chart_TbPg";
-            this.uCtr_Chart_TbPg.Padding = new System.Windows.Forms.Padding(3);
-            this.uCtr_Chart_TbPg.Size = new System.Drawing.Size(270, 333);
-            this.uCtr_Chart_TbPg.TabIndex = 0;
-            this.uCtr_Chart_TbPg.Text = "Chart";
-            this.uCtr_Chart_TbPg.UseVisualStyleBackColor = true;
+            this.uiCtr_Chart_TbPg.Controls.Add(this.uiCtrChart_TbLay);
+            this.uiCtr_Chart_TbPg.Location = new System.Drawing.Point(4, 22);
+            this.uiCtr_Chart_TbPg.Name = "uiCtr_Chart_TbPg";
+            this.uiCtr_Chart_TbPg.Padding = new System.Windows.Forms.Padding(3);
+            this.uiCtr_Chart_TbPg.Size = new System.Drawing.Size(270, 333);
+            this.uiCtr_Chart_TbPg.TabIndex = 0;
+            this.uiCtr_Chart_TbPg.Text = "Chart";
+            this.uiCtr_Chart_TbPg.UseVisualStyleBackColor = true;
             // 
             // uiCtrChart_TbLay
             // 
@@ -671,7 +671,7 @@
             this.uiTop_TbLay.ResumeLayout(false);
             this.uiTop_TbLay.PerformLayout();
             this.uiCtr_TbCtrl.ResumeLayout(false);
-            this.uCtr_Chart_TbPg.ResumeLayout(false);
+            this.uiCtr_Chart_TbPg.ResumeLayout(false);
             this.uiCtrChart_TbLay.ResumeLayout(false);
             this.uiCtrChart_TbLay.PerformLayout();
             this.uiCtr_Area_TbPg.ResumeLayout(false);
@@ -693,7 +693,7 @@
         private System.Windows.Forms.TextBox uiTop_ApplyTo_TxtBx;
         private System.Windows.Forms.ComboBox uiTop_ApplyTo_ComBx;
         private System.Windows.Forms.TabControl uiCtr_TbCtrl;
-        private System.Windows.Forms.TabPage uCtr_Chart_TbPg;
+        private System.Windows.Forms.TabPage uiCtr_Chart_TbPg;
         private System.Windows.Forms.TabPage uiCtr_Srs_TbPg;
         private System.Windows.Forms.TabPage uiCtr_Area_TbPg;
         private System.Windows.Forms.TableLayoutPanel uiCtrChart_TbLay;

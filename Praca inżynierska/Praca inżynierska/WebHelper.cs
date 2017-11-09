@@ -36,6 +36,7 @@ namespace PI
                 Logger.WriteException( x );
             }
             catch ( OutOfMemoryException x ) {
+                MsgBxShower.General.OutOfMemoryExceptionStop();
                 Logger.WriteException( x );
             }
             catch ( WebException x ) {

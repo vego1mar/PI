@@ -42,13 +42,14 @@ namespace PI
         {
             public ChartAreaAxis AxisSelected { get; set; }
             public ChartAreaGrid GridSelected { get; set; }
-            public ApplyToCurve ApplyMode { get; set; } 
+            public ApplyToCurve ApplyMode { get; set; }
         }
 
         internal ChartSettings( ChartSettingsPool settings )
         {
             InitializeComponent();
             InitializeProperties( settings );
+            LocalizeWindow();
             UpdateUiByComposingControls();
             UpdateUiByDefaultSettings();
             UpdateUiByFormInitializeSettings();
@@ -57,11 +58,13 @@ namespace PI
         private void InitializeProperties( ChartSettingsPool settings )
         {
             Settings = settings;
+
             Previous = new PreviousValue() {
                 AxisSelected = ChartAreaAxis.X,
                 GridSelected = ChartAreaGrid.MajorGrid,
                 ApplyMode = ApplyToCurve.Average
             };
+
             IsFormInitialized = false;
         }
 
@@ -118,15 +121,6 @@ namespace PI
             uiBtm_Ok_Btn.Select();
         }
 
-        private void DefineChartApplyToCurveComboBox()
-        {
-            uiTop_ApplyTo_ComBx.Items.Clear();
-            uiTop_ApplyTo_ComBx.Items.Add( ApplyToCurve.Generated.ToString() );
-            uiTop_ApplyTo_ComBx.Items.Add( ApplyToCurve.Pattern.ToString() );
-            uiTop_ApplyTo_ComBx.Items.Add( ApplyToCurve.Average.ToString() );
-            uiTop_ApplyTo_ComBx.Items.Add( ApplyToCurve.All.ToString() );
-        }
-
         private void DefineChartAntiAliasingComboBox()
         {
             uiCtrChart_Aa_ComBx.Items.Clear();
@@ -161,156 +155,21 @@ namespace PI
 
         private void DefineChartTabPageComboBoxes()
         {
-            DefineChartApplyToCurveComboBox();
+            AddApplyToCurve( uiTop_ApplyTo_ComBx );
             DefineChartAntiAliasingComboBox();
             DefineChartSuppressWarningsComboBox();
             DefineChartBackColorComboBox();
         }
 
-        private void AddSystemDrawingColors( ComboBox comboBox )
+        private void AddSystemDrawingColors<T>( T control ) where T : ComboBox
         {
-            comboBox.Items.Add( Color.AliceBlue.Name );
-            comboBox.Items.Add( Color.AntiqueWhite.Name );
-            comboBox.Items.Add( Color.Aqua.Name );
-            comboBox.Items.Add( Color.Aquamarine.Name );
-            comboBox.Items.Add( Color.Azure.Name );
-            comboBox.Items.Add( Color.Beige.Name );
-            comboBox.Items.Add( Color.Bisque.Name );
-            comboBox.Items.Add( Color.Black.Name );
-            comboBox.Items.Add( Color.BlanchedAlmond.Name );
-            comboBox.Items.Add( Color.Blue.Name );
-            comboBox.Items.Add( Color.BlueViolet.Name );
-            comboBox.Items.Add( Color.Brown.Name );
-            comboBox.Items.Add( Color.BurlyWood.Name );
-            comboBox.Items.Add( Color.CadetBlue.Name );
-            comboBox.Items.Add( Color.Chartreuse.Name );
-            comboBox.Items.Add( Color.Chocolate.Name );
-            comboBox.Items.Add( Color.Coral.Name );
-            comboBox.Items.Add( Color.CornflowerBlue.Name );
-            comboBox.Items.Add( Color.Cornsilk.Name );
-            comboBox.Items.Add( Color.Crimson.Name );
-            comboBox.Items.Add( Color.Cyan.Name );
-            comboBox.Items.Add( Color.DarkBlue.Name );
-            comboBox.Items.Add( Color.DarkCyan.Name );
-            comboBox.Items.Add( Color.DarkGoldenrod.Name );
-            comboBox.Items.Add( Color.DarkGray.Name );
-            comboBox.Items.Add( Color.DarkGreen.Name );
-            comboBox.Items.Add( Color.DarkKhaki.Name );
-            comboBox.Items.Add( Color.DarkMagenta.Name );
-            comboBox.Items.Add( Color.DarkOliveGreen.Name );
-            comboBox.Items.Add( Color.DarkOrange.Name );
-            comboBox.Items.Add( Color.DarkOrchid.Name );
-            comboBox.Items.Add( Color.DarkRed.Name );
-            comboBox.Items.Add( Color.DarkSalmon.Name );
-            comboBox.Items.Add( Color.DarkSeaGreen.Name );
-            comboBox.Items.Add( Color.DarkSlateBlue.Name );
-            comboBox.Items.Add( Color.DarkSlateGray.Name );
-            comboBox.Items.Add( Color.DarkTurquoise.Name );
-            comboBox.Items.Add( Color.DarkViolet.Name );
-            comboBox.Items.Add( Color.DeepPink.Name );
-            comboBox.Items.Add( Color.DeepSkyBlue.Name );
-            comboBox.Items.Add( Color.DimGray.Name );
-            comboBox.Items.Add( Color.DodgerBlue.Name );
-            comboBox.Items.Add( Color.Firebrick.Name );
-            comboBox.Items.Add( Color.FloralWhite.Name );
-            comboBox.Items.Add( Color.ForestGreen.Name );
-            comboBox.Items.Add( Color.Fuchsia.Name );
-            comboBox.Items.Add( Color.Gainsboro.Name );
-            comboBox.Items.Add( Color.GhostWhite.Name );
-            comboBox.Items.Add( Color.Gold.Name );
-            comboBox.Items.Add( Color.Goldenrod.Name );
-            comboBox.Items.Add( Color.Gray.Name );
-            comboBox.Items.Add( Color.Green.Name );
-            comboBox.Items.Add( Color.GreenYellow.Name );
-            comboBox.Items.Add( Color.Honeydew.Name );
-            comboBox.Items.Add( Color.HotPink.Name );
-            comboBox.Items.Add( Color.IndianRed.Name );
-            comboBox.Items.Add( Color.Indigo.Name );
-            comboBox.Items.Add( Color.Ivory.Name );
-            comboBox.Items.Add( Color.Khaki.Name );
-            comboBox.Items.Add( Color.Lavender.Name );
-            comboBox.Items.Add( Color.LavenderBlush.Name );
-            comboBox.Items.Add( Color.LawnGreen.Name );
-            comboBox.Items.Add( Color.LemonChiffon.Name );
-            comboBox.Items.Add( Color.LightBlue.Name );
-            comboBox.Items.Add( Color.LightCoral.Name );
-            comboBox.Items.Add( Color.LightCyan.Name );
-            comboBox.Items.Add( Color.LightGoldenrodYellow.Name );
-            comboBox.Items.Add( Color.LightGray.Name );
-            comboBox.Items.Add( Color.LightGreen.Name );
-            comboBox.Items.Add( Color.LightPink.Name );
-            comboBox.Items.Add( Color.LightSalmon.Name );
-            comboBox.Items.Add( Color.LightSeaGreen.Name );
-            comboBox.Items.Add( Color.LightSkyBlue.Name );
-            comboBox.Items.Add( Color.LightSlateGray.Name );
-            comboBox.Items.Add( Color.LightSteelBlue.Name );
-            comboBox.Items.Add( Color.LightYellow.Name );
-            comboBox.Items.Add( Color.Lime.Name );
-            comboBox.Items.Add( Color.LimeGreen.Name );
-            comboBox.Items.Add( Color.Linen.Name );
-            comboBox.Items.Add( Color.Magenta.Name );
-            comboBox.Items.Add( Color.Maroon.Name );
-            comboBox.Items.Add( Color.MediumAquamarine.Name );
-            comboBox.Items.Add( Color.MediumBlue.Name );
-            comboBox.Items.Add( Color.MediumOrchid.Name );
-            comboBox.Items.Add( Color.MediumPurple.Name );
-            comboBox.Items.Add( Color.MediumSeaGreen.Name );
-            comboBox.Items.Add( Color.MediumSlateBlue.Name );
-            comboBox.Items.Add( Color.MediumSpringGreen.Name );
-            comboBox.Items.Add( Color.MediumTurquoise.Name );
-            comboBox.Items.Add( Color.MediumVioletRed.Name );
-            comboBox.Items.Add( Color.MidnightBlue.Name );
-            comboBox.Items.Add( Color.MintCream.Name );
-            comboBox.Items.Add( Color.MistyRose.Name );
-            comboBox.Items.Add( Color.Moccasin.Name );
-            comboBox.Items.Add( Color.NavajoWhite.Name );
-            comboBox.Items.Add( Color.Navy.Name );
-            comboBox.Items.Add( Color.OldLace.Name );
-            comboBox.Items.Add( Color.Olive.Name );
-            comboBox.Items.Add( Color.OliveDrab.Name );
-            comboBox.Items.Add( Color.Orange.Name );
-            comboBox.Items.Add( Color.OrangeRed.Name );
-            comboBox.Items.Add( Color.Orchid.Name );
-            comboBox.Items.Add( Color.PaleGoldenrod.Name );
-            comboBox.Items.Add( Color.PaleGreen.Name );
-            comboBox.Items.Add( Color.PaleTurquoise.Name );
-            comboBox.Items.Add( Color.PaleVioletRed.Name );
-            comboBox.Items.Add( Color.PapayaWhip.Name );
-            comboBox.Items.Add( Color.PeachPuff.Name );
-            comboBox.Items.Add( Color.Peru.Name );
-            comboBox.Items.Add( Color.Pink.Name );
-            comboBox.Items.Add( Color.Plum.Name );
-            comboBox.Items.Add( Color.PowderBlue.Name );
-            comboBox.Items.Add( Color.Purple.Name );
-            comboBox.Items.Add( Color.Red.Name );
-            comboBox.Items.Add( Color.RosyBrown.Name );
-            comboBox.Items.Add( Color.RoyalBlue.Name );
-            comboBox.Items.Add( Color.SaddleBrown.Name );
-            comboBox.Items.Add( Color.Salmon.Name );
-            comboBox.Items.Add( Color.SandyBrown.Name );
-            comboBox.Items.Add( Color.SeaGreen.Name );
-            comboBox.Items.Add( Color.SeaShell.Name );
-            comboBox.Items.Add( Color.Sienna.Name );
-            comboBox.Items.Add( Color.Silver.Name );
-            comboBox.Items.Add( Color.SkyBlue.Name );
-            comboBox.Items.Add( Color.SlateBlue.Name );
-            comboBox.Items.Add( Color.SlateGray.Name );
-            comboBox.Items.Add( Color.Snow.Name );
-            comboBox.Items.Add( Color.SpringGreen.Name );
-            comboBox.Items.Add( Color.SteelBlue.Name );
-            comboBox.Items.Add( Color.Tan.Name );
-            comboBox.Items.Add( Color.Teal.Name );
-            comboBox.Items.Add( Color.Thistle.Name );
-            comboBox.Items.Add( Color.Tomato.Name );
-            comboBox.Items.Add( Color.Transparent.Name );
-            comboBox.Items.Add( Color.Turquoise.Name );
-            comboBox.Items.Add( Color.Violet.Name );
-            comboBox.Items.Add( Color.Wheat.Name );
-            comboBox.Items.Add( Color.White.Name );
-            comboBox.Items.Add( Color.WhiteSmoke.Name );
-            comboBox.Items.Add( Color.Yellow.Name );
-            comboBox.Items.Add( Color.YellowGreen.Name );
-            comboBox.Items.Add( Color.Empty.Name );
+            control.Items.Clear();
+
+            foreach ( var property in typeof( Color ).GetProperties( System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public ) ) {
+                if ( property.PropertyType == typeof( Color ) ) {
+                    control.Items.Add( property.Name );
+                }
+            }
         }
 
         private void UiTop_ApplyToCurve_SelectedIndexChanged( object sender, EventArgs e )
@@ -528,14 +387,13 @@ namespace PI
             AddChartDashStyles( uiCtrArea_LnStyle_ComBx );
         }
 
-        private void AddChartDashStyles( ComboBox comboBox )
+        private void AddChartDashStyles<T>( T control ) where T : ComboBox
         {
-            comboBox.Items.Add( ChartDashStyle.NotSet.ToString() );
-            comboBox.Items.Add( ChartDashStyle.Dash.ToString() );
-            comboBox.Items.Add( ChartDashStyle.DashDot.ToString() );
-            comboBox.Items.Add( ChartDashStyle.DashDotDot.ToString() );
-            comboBox.Items.Add( ChartDashStyle.Dot.ToString() );
-            comboBox.Items.Add( ChartDashStyle.Solid.ToString() );
+            control.Items.Clear();
+
+            foreach ( string name in Enum.GetNames( typeof( ChartDashStyle ) ) ) {
+                control.Items.Add( name );
+            }
         }
 
         private void DefineChartAreaAxisComboBox()
@@ -748,49 +606,70 @@ namespace PI
 
         }
 
-        private void AddChartTypes( ComboBox comboBox )
+        private void AddChartTypes<T>( T control ) where T : ComboBox
         {
-            comboBox.Items.Add( SeriesChartType.Point.ToString() );
-            comboBox.Items.Add( SeriesChartType.FastPoint.ToString() );
-            comboBox.Items.Add( SeriesChartType.Bubble.ToString() );
-            comboBox.Items.Add( SeriesChartType.Line.ToString() );
-            comboBox.Items.Add( SeriesChartType.Spline.ToString() );
-            comboBox.Items.Add( SeriesChartType.StepLine.ToString() );
-            comboBox.Items.Add( SeriesChartType.FastLine.ToString() );
-            comboBox.Items.Add( SeriesChartType.Bar.ToString() );
-            comboBox.Items.Add( SeriesChartType.StackedBar.ToString() );
-            comboBox.Items.Add( SeriesChartType.StackedBar100.ToString() );
-            comboBox.Items.Add( SeriesChartType.Column.ToString() );
-            comboBox.Items.Add( SeriesChartType.StackedColumn.ToString() );
-            comboBox.Items.Add( SeriesChartType.StackedColumn100.ToString() );
-            comboBox.Items.Add( SeriesChartType.Area.ToString() );
-            comboBox.Items.Add( SeriesChartType.SplineArea.ToString() );
-            comboBox.Items.Add( SeriesChartType.StackedArea.ToString() );
-            comboBox.Items.Add( SeriesChartType.StackedArea100.ToString() );
-            comboBox.Items.Add( SeriesChartType.Pie.ToString() );
-            comboBox.Items.Add( SeriesChartType.Doughnut.ToString() );
-            comboBox.Items.Add( SeriesChartType.Stock.ToString() );
-            comboBox.Items.Add( SeriesChartType.Candlestick.ToString() );
-            comboBox.Items.Add( SeriesChartType.Range.ToString() );
-            comboBox.Items.Add( SeriesChartType.SplineRange.ToString() );
-            comboBox.Items.Add( SeriesChartType.RangeBar.ToString() );
-            comboBox.Items.Add( SeriesChartType.RangeColumn.ToString() );
-            comboBox.Items.Add( SeriesChartType.Radar.ToString() );
-            comboBox.Items.Add( SeriesChartType.Polar.ToString() );
-            comboBox.Items.Add( SeriesChartType.ErrorBar.ToString() );
-            comboBox.Items.Add( SeriesChartType.BoxPlot.ToString() );
-            comboBox.Items.Add( SeriesChartType.Renko.ToString() );
-            comboBox.Items.Add( SeriesChartType.ThreeLineBreak.ToString() );
-            comboBox.Items.Add( SeriesChartType.Kagi.ToString() );
-            comboBox.Items.Add( SeriesChartType.PointAndFigure.ToString() );
-            comboBox.Items.Add( SeriesChartType.Funnel.ToString() );
-            comboBox.Items.Add( SeriesChartType.Pyramid.ToString() );
+            control.Items.Clear();
+
+            foreach ( string name in Enum.GetNames( typeof( SeriesChartType ) ) ) {
+                control.Items.Add( name );
+            }
         }
 
         private void ChartSettings_FormClosing( object sender, FormClosingEventArgs e )
         {
             Previous = null;
             Dispose();
+        }
+
+        private void LocalizeWindow()
+        {
+            LocalizeForm();
+            LocalizeUi();
+        }
+
+        private void LocalizeForm()
+        {
+            Text = Translator.GetInstance().Strings.ChartSettings.Form.Text.GetString();
+        }
+
+        private void LocalizeUi()
+        {
+            LocalizeGenerals();
+            LocalizeTabChart();
+            LocalizeTabChartArea();
+            LocalizeTabSeries();
+        }
+
+        private void LocalizeGenerals()
+        {
+            uiTop_ApplyTo_TxtBx.Text = Translator.GetInstance().Strings.ChartSettings.Ui.General.ApplyTo.GetString();
+            uiBtm_Ok_Btn.Text = Translator.GetInstance().Strings.ChartSettings.Ui.General.Ok.GetString();
+        }
+
+        private void LocalizeTabChart()
+        {
+            uiCtr_Chart_TbPg.Text = Translator.GetInstance().Strings.ChartSettings.Ui.Tabs.Chart.Chart.GetString();
+        }
+
+        private void LocalizeTabChartArea()
+        {
+            uiCtr_Area_TbPg.Text = Translator.GetInstance().Strings.ChartSettings.Ui.Tabs.ChartArea.Area.GetString();
+            uiCtrArea_ChA_TxtBx.Text = Translator.GetInstance().Strings.ChartSettings.Ui.Tabs.ChartArea.ChA.GetString();
+            uiCtrArea_Axes_TxtBx.Text = Translator.GetInstance().Strings.ChartSettings.Ui.Tabs.ChartArea.Axes.GetString();
+        }
+
+        private void LocalizeTabSeries()
+        {
+            uiCtr_Srs_TbPg.Text = Translator.GetInstance().Strings.ChartSettings.Ui.Tabs.Series.Srs.GetString();
+        }
+
+        public void AddApplyToCurve<T>( T control ) where T : ComboBox
+        {
+            control.Items.Clear();
+
+            foreach ( var item in Translator.GetInstance().Strings.Enums.ApplyToCurve ) {
+                control.Items.Add( item.GetString() );
+            }
         }
 
     }

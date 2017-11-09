@@ -447,7 +447,7 @@ namespace PI
             uiPnl_AutoSize_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.AutoSize.GetString();
             uiPnl_Edit_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Edit.GetString();
             uiPnl_OperT_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.OperT.GetString();
-            Translator.AddLocalizedOperations( uiPnl_OperT_ComBx );
+            AddLocalizedOperations( uiPnl_OperT_ComBx );
             uiPnl_StartIdx_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.StartIdx.GetString();
             uiPnl_EndIdx_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.EndIdx.GetString();
             UpdateUiBySwitchingOperationType();
@@ -466,6 +466,15 @@ namespace PI
         private void LocalizePreview()
         {
             uiChart_Prv_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Preview.Prv.GetString();
+        }
+
+        private void AddLocalizedOperations<T>( T control ) where T : ComboBox
+        {
+            control.Items.Clear();
+
+            foreach ( var item in Translator.GetInstance().Strings.Enums.Operations ) {
+                control.Items.Add( item.GetString() );
+            }
         }
 
     }

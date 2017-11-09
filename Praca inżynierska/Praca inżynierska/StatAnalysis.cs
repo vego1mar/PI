@@ -273,6 +273,7 @@ namespace PI
                 Logger.WriteException( ex );
             }
             catch ( OutOfMemoryException ex ) {
+                MsgBxShower.General.OutOfMemoryExceptionStop();
                 Logger.WriteException( ex );
             }
             catch ( ArgumentNullException ex ) {
@@ -632,15 +633,15 @@ namespace PI
             uiR_Formula_TbPg.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.Formula.GetString();
             Translator.AddLocalizedDataSetCurveTypes( uiRChartDown_CrvT_ComBx );
             WinFormsHelper.SetSelectedIndexSafe( uiRChartDown_CrvT_ComBx, (int) Enums.DataSetCurveType.Pattern );
-            Translator.AddLocalizedPhenomenonsIndices( uiRChartDown_Phen_ComBx );
+            AddLocalizedPhenomenonsIndices( uiRChartDown_Phen_ComBx );
             WinFormsHelper.SetSelectedIndexSafe( uiRChartDown_Phen_ComBx, (int) PhenomenonIndex.Peek );
             Translator.AddLocalizedMeanTypes( uiRChartDown_MeanT_ComBx );
             WinFormsHelper.SetSelectedIndexSafe( uiRChartDown_MeanT_ComBx, (int) Enums.MeanType.CustomTolerance );
             uiRChartDown_DtSet_Btn.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.DtSet.GetString();
             uiRFormulaDown_CrvsNo2_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.NotApplicable.GetString();
             uiRFormulaDown_Dens2_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.NotApplicable.GetString();
-            uiRFormulaDown_CrvsNo2_TxtBx.Text = Settings.Ui.NumberOfCurves.ToString( System.Threading.Thread.CurrentThread.CurrentCulture );
-            uiRFormulaDown_Dens2_TxtBx.Text = (Settings.Ui.PointsDensity + 1).ToString( System.Threading.Thread.CurrentThread.CurrentCulture );
+            uiRFormulaDown_CrvsNo2_TxtBx.Text = Settings.Ui.NumberOfCurves.ToString( Thread.CurrentThread.CurrentCulture );
+            uiRFormulaDown_Dens2_TxtBx.Text = (Settings.Ui.PointsDensity + 1).ToString( Thread.CurrentThread.CurrentCulture );
             uiRFormulaDown_CrvsNo1_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.CrvsNo1.GetString();
             uiRFormulaDown_Dens1_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.Dens1.GetString();
         }
@@ -654,6 +655,15 @@ namespace PI
             }
 
             return meanTypes;
+        }
+
+        private void AddLocalizedPhenomenonsIndices<T>( T control ) where T : ComboBox
+        {
+            control.Items.Clear();
+
+            foreach ( var item in Translator.GetInstance().Strings.Enums.Phenomenons ) {
+                control.Items.Add( item.GetString() );
+            }
         }
 
     }

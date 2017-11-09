@@ -29,7 +29,7 @@ namespace PI
         private void LocalizeWindow()
         {
             Text = Translator.GetInstance().Strings.LangSelector.Ui.Form.Text.GetString();
-            Translator.AddLocalizedLanguages( uiUp_LstBx );
+            AddLocalizedLanguages( uiUp_LstBx );
         }
 
         private void LangSelector_Load( object sender, EventArgs e )
@@ -57,6 +57,15 @@ namespace PI
             }
 
             return Languages.English;
+        }
+
+        private void AddLocalizedLanguages<T>( T control ) where T : ListBox
+        {
+            control.Items.Clear();
+
+            foreach ( var item in Translator.GetInstance().Strings.Enums.Languages ) {
+                control.Items.Add( item.GetString() );
+            }
         }
 
     }

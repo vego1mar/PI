@@ -33,12 +33,12 @@ namespace PI
             CurrentLanguage = language;
         }
 
-        public class TaggedString
+        public class LocalizedString
         {
             private string StringName { get; set; }
             private LangSelector.Languages Language { get; set; }
 
-            public TaggedString( LangSelector.Languages language, string name )
+            public LocalizedString( LangSelector.Languages language, string name )
             {
                 Language = language;
                 StringName = name;
@@ -93,6 +93,8 @@ namespace PI
             public StatAnalysisStrings StatAnalysis { get; private set; } = new StatAnalysisStrings();
             public AvgInfoStrings AvgInfo { get; private set; } = new AvgInfoStrings();
             public PatternCurveDefinerStrings PatternCurveDefiner { get; private set; } = new PatternCurveDefinerStrings();
+            public MeansSettingsStrings MeansSettings { get; private set; } = new MeansSettingsStrings();
+            public ChartSettingsStrings ChartSettings { get; private set; } = new ChartSettingsStrings();
 
             public class LangSelectorStrings
             {
@@ -105,12 +107,12 @@ namespace PI
 
                     public class LsUiDownStrings
                     {
-                        public TaggedString OkBtn { get { return new TaggedString( CurrentLanguage, "LangSelector_Ui_Down_OkBtn" ); } }
+                        public LocalizedString OkBtn { get { return new LocalizedString( CurrentLanguage, "LangSelector_Ui_Down_OkBtn" ); } }
                     }
 
                     public class LsUiFormStrings
                     {
-                        public TaggedString Text { get { return new TaggedString( CurrentLanguage, "LangSelector_Ui_Form_Text" ); } }
+                        public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "LangSelector_Ui_Form_Text" ); } }
                     }
                 }
             }
@@ -130,32 +132,32 @@ namespace PI
 
                     public class MwProgramMenuStrings
                     {
-                        public TaggedString Title { get { return new TaggedString( CurrentLanguage, "MainWindow_Menu_Program" ); } }
-                        public TaggedString StatAnal { get { return new TaggedString( CurrentLanguage, "MainWindow_Menu_Program_StatisticalAnalysis" ); } }
-                        public TaggedString Lang { get { return new TaggedString( CurrentLanguage, "MainWindow_Menu_Program_SelectLanguage" ); } }
-                        public TaggedString Update { get { return new TaggedString( CurrentLanguage, "MainWindow_Menu_Program_CheckUpdate" ); } }
-                        public TaggedString Exit { get { return new TaggedString( CurrentLanguage, "MainWindow_Menu_Program_Exit" ); } }
+                        public LocalizedString Title { get { return new LocalizedString( CurrentLanguage, "MainWindow_Menu_Program" ); } }
+                        public LocalizedString StatAnal { get { return new LocalizedString( CurrentLanguage, "MainWindow_Menu_Program_StatisticalAnalysis" ); } }
+                        public LocalizedString Lang { get { return new LocalizedString( CurrentLanguage, "MainWindow_Menu_Program_SelectLanguage" ); } }
+                        public LocalizedString Update { get { return new LocalizedString( CurrentLanguage, "MainWindow_Menu_Program_CheckUpdate" ); } }
+                        public LocalizedString Exit { get { return new LocalizedString( CurrentLanguage, "MainWindow_Menu_Program_Exit" ); } }
                     }
 
                     public class MwPanelMenuStrings
                     {
-                        public TaggedString Title { get { return new TaggedString( CurrentLanguage, "MainWindow_Menu_Panel" ); } }
-                        public TaggedString KeepProp { get { return new TaggedString( CurrentLanguage, "MainWindow_Menu_Panel_KeepProportions" ); } }
-                        public TaggedString Hide { get { return new TaggedString( CurrentLanguage, "MainWindow_Menu_Panel_Hide" ); } }
-                        public TaggedString Lock { get { return new TaggedString( CurrentLanguage, "MainWindow_Menu_Panel_Lock" ); } }
+                        public LocalizedString Title { get { return new LocalizedString( CurrentLanguage, "MainWindow_Menu_Panel" ); } }
+                        public LocalizedString KeepProp { get { return new LocalizedString( CurrentLanguage, "MainWindow_Menu_Panel_KeepProportions" ); } }
+                        public LocalizedString Hide { get { return new LocalizedString( CurrentLanguage, "MainWindow_Menu_Panel_Hide" ); } }
+                        public LocalizedString Lock { get { return new LocalizedString( CurrentLanguage, "MainWindow_Menu_Panel_Lock" ); } }
                     }
 
                     public class MwMeansMenuStrings
                     {
-                        public TaggedString Title { get { return new TaggedString( CurrentLanguage, "MainWindow_Menu_Means" ); } }
-                        public TaggedString AvgInfo { get { return new TaggedString( CurrentLanguage, "MainWindow_Menu_Means_AveragingInfo" ); } }
-                        public TaggedString Settings { get { return new TaggedString( CurrentLanguage, "MainWindow_Menu_Means_Settings" ); } }
+                        public LocalizedString Title { get { return new LocalizedString( CurrentLanguage, "MainWindow_Menu_Means" ); } }
+                        public LocalizedString AvgInfo { get { return new LocalizedString( CurrentLanguage, "MainWindow_Menu_Means_AveragingInfo" ); } }
+                        public LocalizedString Settings { get { return new LocalizedString( CurrentLanguage, "MainWindow_Menu_Means_Settings" ); } }
                     }
 
                     public class MwChartMenuStrings
                     {
-                        public TaggedString Title { get { return new TaggedString( CurrentLanguage, "MainWindow_Menu_Chart" ); } }
-                        public TaggedString Settings { get { return new TaggedString( CurrentLanguage, "MainWindow_Menu_Chart_Settings" ); } }
+                        public LocalizedString Title { get { return new LocalizedString( CurrentLanguage, "MainWindow_Menu_Chart" ); } }
+                        public LocalizedString Settings { get { return new LocalizedString( CurrentLanguage, "MainWindow_Menu_Chart_Settings" ); } }
                     }
                 }
 
@@ -165,7 +167,7 @@ namespace PI
 
                     public class MwFormStrings
                     {
-                        public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MainWindow_Ui_Form_Text" ); } }
+                        public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "MainWindow_Ui_Form_Text" ); } }
                     }
                 }
 
@@ -177,53 +179,53 @@ namespace PI
 
                     public class MwGenerateTabStrings
                     {
-                        public TaggedString Title { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Generate" ); } }
-                        public TaggedString PattCrvScaff { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Generate_PatternCurveScaffold" ); } }
-                        public TaggedString CrvScaff1 { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Generate_CurveScaffold1" ); } }
-                        public TaggedString ScaffPoly { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Generate_CurveScaffold2_Polynomial" ); } }
-                        public TaggedString ScaffHyp { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Generate_CurveScaffold2_Hyperbolic" ); } }
-                        public TaggedString ScaffWave { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Generate_CurveScaffold2_Waveform" ); } }
-                        public TaggedString ScaffNone { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Generate_CurveScaffold2_NotChosen" ); } }
-                        public TaggedString Def { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Generate_Define" ); } }
-                        public TaggedString CrvsSet { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Generate_CurvesSet" ); } }
-                        public TaggedString Crvs1No { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Generate_NumberOfCurves1" ); } }
-                        public TaggedString StartX { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Generate_StartingXPoint" ); } }
-                        public TaggedString EndX { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Generate_EndingXPoint" ); } }
-                        public TaggedString Dens { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Generate_Density" ); } }
-                        public TaggedString GenSet { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Generate_GenerateSet" ); } }
-                        public TaggedString Avg { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Generate_Averaging" ); } }
-                        public TaggedString MeanT { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Generate_MeanType" ); } }
-                        public TaggedString Crvs2No { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Generate_NumberOfCurves2" ); } }
-                        public TaggedString Apply { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Generate_Apply" ); } }
+                        public LocalizedString Title { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate" ); } }
+                        public LocalizedString PattCrvScaff { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_PatternCurveScaffold" ); } }
+                        public LocalizedString CrvScaff1 { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_CurveScaffold1" ); } }
+                        public LocalizedString ScaffPoly { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_CurveScaffold2_Polynomial" ); } }
+                        public LocalizedString ScaffHyp { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_CurveScaffold2_Hyperbolic" ); } }
+                        public LocalizedString ScaffWave { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_CurveScaffold2_Waveform" ); } }
+                        public LocalizedString ScaffNone { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_CurveScaffold2_NotChosen" ); } }
+                        public LocalizedString Def { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_Define" ); } }
+                        public LocalizedString CrvsSet { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_CurvesSet" ); } }
+                        public LocalizedString Crvs1No { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_NumberOfCurves1" ); } }
+                        public LocalizedString StartX { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_StartingXPoint" ); } }
+                        public LocalizedString EndX { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_EndingXPoint" ); } }
+                        public LocalizedString Dens { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_Density" ); } }
+                        public LocalizedString GenSet { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_GenerateSet" ); } }
+                        public LocalizedString Avg { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_Averaging" ); } }
+                        public LocalizedString MeanT { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_MeanType" ); } }
+                        public LocalizedString Crvs2No { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_NumberOfCurves2" ); } }
+                        public LocalizedString Apply { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_Apply" ); } }
                     }
 
                     public class MwDatasheetTabStrings
                     {
-                        public TaggedString Title { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Datasheet" ); } }
-                        public TaggedString DtSetCtrl { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Datasheet_DatasetControl" ); } }
-                        public TaggedString CrvT { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Datasheet_CurveType" ); } }
-                        public TaggedString CrvIdx { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Datasheet_CurveIndex" ); } }
-                        public TaggedString ShowDtSet { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Datasheet_ShowDataSet" ); } }
-                        public TaggedString GsNoise { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Datasheet_GaussianNoise" ); } }
-                        public TaggedString CrvNo { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Datasheet_CurvesNumber" ); } }
-                        public TaggedString Surr { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Datasheet_Surrounding" ); } }
-                        public TaggedString Malform { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Datasheet_Malform" ); } }
+                        public LocalizedString Title { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Datasheet" ); } }
+                        public LocalizedString DtSetCtrl { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Datasheet_DatasetControl" ); } }
+                        public LocalizedString CrvT { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Datasheet_CurveType" ); } }
+                        public LocalizedString CrvIdx { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Datasheet_CurveIndex" ); } }
+                        public LocalizedString ShowDtSet { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Datasheet_ShowDataSet" ); } }
+                        public LocalizedString GsNoise { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Datasheet_GaussianNoise" ); } }
+                        public LocalizedString CrvNo { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Datasheet_CurvesNumber" ); } }
+                        public LocalizedString Surr { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Datasheet_Surrounding" ); } }
+                        public LocalizedString Malform { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Datasheet_Malform" ); } }
                     }
 
                     public class MwProgramTabStrings
                     {
-                        public TaggedString Title { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Program" ); } }
-                        public TaggedString Timer { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Program_Timer" ); } }
-                        public TaggedString ActState1 { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Program_ActualState1" ); } }
-                        public TaggedString StateFail { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Program_ActualState2_Failure" ); } }
-                        public TaggedString StateSucc { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Program_ActualState2_Success" ); } }
-                        public TaggedString Cnts1 { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Program_ActualState2_Counts1" ); } }
-                        public TaggedString Info { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Program_ActualState2_Informations" ); } }
-                        public TaggedString DotNetFr1 { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Program_ActualState2_DotNetFramework" ); } }
-                        public TaggedString InfoObtErrTxt { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Program_ActualState2_InfoObtainingErrorText" ); } }
-                        public TaggedString OsVer1 { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Program_ActualState2_OsVersion1" ); } }
-                        public TaggedString Log { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Program_ActualState2_Logging" ); } }
-                        public TaggedString LogPath1 { get { return new TaggedString( CurrentLanguage, "MainWindow_Panel_Program_ActualState2_LogPath1" ); } }
+                        public LocalizedString Title { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Program" ); } }
+                        public LocalizedString Timer { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Program_Timer" ); } }
+                        public LocalizedString ActState1 { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Program_ActualState1" ); } }
+                        public LocalizedString StateFail { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Program_ActualState2_Failure" ); } }
+                        public LocalizedString StateSucc { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Program_ActualState2_Success" ); } }
+                        public LocalizedString Cnts1 { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Program_ActualState2_Counts1" ); } }
+                        public LocalizedString Info { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Program_ActualState2_Informations" ); } }
+                        public LocalizedString DotNetFr1 { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Program_ActualState2_DotNetFramework" ); } }
+                        public LocalizedString InfoObtErrTxt { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Program_ActualState2_InfoObtainingErrorText" ); } }
+                        public LocalizedString OsVer1 { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Program_ActualState2_OsVersion1" ); } }
+                        public LocalizedString Log { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Program_ActualState2_Logging" ); } }
+                        public LocalizedString LogPath1 { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Program_ActualState2_LogPath1" ); } }
                     }
 
                 }
@@ -238,12 +240,16 @@ namespace PI
                 public OperationsStrings Operations { get; private set; } = new OperationsStrings();
                 public StatAnalysisPhenomenonIndicesStrings Phenomenons { get; private set; } = new StatAnalysisPhenomenonIndicesStrings();
                 public AvgInfoTabs AiTabs { get; private set; } = new AvgInfoTabs();
+                public CustomDifferentialMeanModeStrings CustomDifferentialMeanModes { get; private set; } = new CustomDifferentialMeanModeStrings();
+                public CustomToleranceComparerTypeStrings CustomToleranceComparerTypes { get; private set; } = new CustomToleranceComparerTypeStrings();
+                public CustomToleranceFinisherFunctionsStrings CustomToleranceFinisherFunctions { get; private set; } = new CustomToleranceFinisherFunctionsStrings();
+                public ApplyToCurveStrings ApplyToCurve { get; private set; } = new ApplyToCurveStrings();
 
-                public class MeanTypesStrings : IEnumerable<TaggedString>
+                public class MeanTypesStrings : IEnumerable<LocalizedString>
                 {
-                    private List<TaggedString> MeanTypes {
+                    private List<LocalizedString> MeanTypes {
                         get {
-                            return new List<TaggedString>() {
+                            return new List<LocalizedString>() {
                                 Mediana,
                                 Maximum,
                                 Minimum,
@@ -264,24 +270,24 @@ namespace PI
                         }
                     }
 
-                    public TaggedString Mediana { get { return new TaggedString( CurrentLanguage, "Enums_MeanTypes_Mediana" ); } }
-                    public TaggedString Maximum { get { return new TaggedString( CurrentLanguage, "Enums_MeanTypes_Maximum" ); } }
-                    public TaggedString Minimum { get { return new TaggedString( CurrentLanguage, "Enums_MeanTypes_Minimum" ); } }
-                    public TaggedString Arithmetic { get { return new TaggedString( CurrentLanguage, "Enums_MeanTypes_Arithmetic" ); } }
-                    public TaggedString Geometric { get { return new TaggedString( CurrentLanguage, "Enums_MeanTypes_Geometric" ); } }
-                    public TaggedString Agm { get { return new TaggedString( CurrentLanguage, "Enums_MeanTypes_AGM" ); } }
-                    public TaggedString Heronian { get { return new TaggedString( CurrentLanguage, "Enums_MeanTypes_Heronian" ); } }
-                    public TaggedString Harmonic { get { return new TaggedString( CurrentLanguage, "Enums_MeanTypes_Harmonic" ); } }
-                    public TaggedString Rms { get { return new TaggedString( CurrentLanguage, "Enums_MeanTypes_RMS" ); } }
-                    public TaggedString Power { get { return new TaggedString( CurrentLanguage, "Enums_MeanTypes_Power" ); } }
-                    public TaggedString Logarithmic { get { return new TaggedString( CurrentLanguage, "Enums_MeanTypes_Logarithmic" ); } }
-                    public TaggedString Ema { get { return new TaggedString( CurrentLanguage, "Enums_MeanTypes_EMA" ); } }
-                    public TaggedString LnWages { get { return new TaggedString( CurrentLanguage, "Enums_MeanTypes_LnWages" ); } }
-                    public TaggedString CstDiff { get { return new TaggedString( CurrentLanguage, "Enums_MeanTypes_CustomDifferential" ); } }
-                    public TaggedString CstTol { get { return new TaggedString( CurrentLanguage, "Enums_MeanTypes_CustomTolerance" ); } }
-                    public TaggedString CstGeo { get { return new TaggedString( CurrentLanguage, "Enums_MeanTypes_CustomGeometric" ); } }
+                    public LocalizedString Mediana { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Mediana" ); } }
+                    public LocalizedString Maximum { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Maximum" ); } }
+                    public LocalizedString Minimum { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Minimum" ); } }
+                    public LocalizedString Arithmetic { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Arithmetic" ); } }
+                    public LocalizedString Geometric { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Geometric" ); } }
+                    public LocalizedString Agm { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_AGM" ); } }
+                    public LocalizedString Heronian { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Heronian" ); } }
+                    public LocalizedString Harmonic { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Harmonic" ); } }
+                    public LocalizedString Rms { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_RMS" ); } }
+                    public LocalizedString Power { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Power" ); } }
+                    public LocalizedString Logarithmic { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Logarithmic" ); } }
+                    public LocalizedString Ema { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_EMA" ); } }
+                    public LocalizedString LnWages { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_LnWages" ); } }
+                    public LocalizedString CstDiff { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_CustomDifferential" ); } }
+                    public LocalizedString CstTol { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_CustomTolerance" ); } }
+                    public LocalizedString CstGeo { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_CustomGeometric" ); } }
 
-                    public IEnumerator<TaggedString> GetEnumerator()
+                    public IEnumerator<LocalizedString> GetEnumerator()
                     {
                         return MeanTypes.GetEnumerator();
                     }
@@ -293,21 +299,21 @@ namespace PI
 
                 }
 
-                public class LanguagesStrings : IEnumerable<TaggedString>
+                public class LanguagesStrings : IEnumerable<LocalizedString>
                 {
-                    private List<TaggedString> Languages {
+                    private List<LocalizedString> Languages {
                         get {
-                            return new List<TaggedString>() {
+                            return new List<LocalizedString>() {
                                 English,
                                 Polish
                             };
                         }
                     }
 
-                    public TaggedString English { get { return new TaggedString( CurrentLanguage, "LangSelector_Languages_English" ); } }
-                    public TaggedString Polish { get { return new TaggedString( CurrentLanguage, "LangSelector_Languages_Polish" ); } }
+                    public LocalizedString English { get { return new LocalizedString( CurrentLanguage, "LangSelector_Languages_English" ); } }
+                    public LocalizedString Polish { get { return new LocalizedString( CurrentLanguage, "LangSelector_Languages_Polish" ); } }
 
-                    public IEnumerator<TaggedString> GetEnumerator()
+                    public IEnumerator<LocalizedString> GetEnumerator()
                     {
                         return Languages.GetEnumerator();
                     }
@@ -319,11 +325,11 @@ namespace PI
 
                 }
 
-                public class DataSetCurveTypeStrings : IEnumerable<TaggedString>
+                public class DataSetCurveTypeStrings : IEnumerable<LocalizedString>
                 {
-                    private List<TaggedString> CurveTypes {
+                    private List<LocalizedString> CurveTypes {
                         get {
-                            return new List<TaggedString>() {
+                            return new List<LocalizedString>() {
                                 Generated,
                                 Pattern,
                                 Average
@@ -331,11 +337,11 @@ namespace PI
                         }
                     }
 
-                    public TaggedString Generated { get { return new TaggedString( CurrentLanguage, "Enums_DataSetCurvesTypes_Generated" ); } }
-                    public TaggedString Pattern { get { return new TaggedString( CurrentLanguage, "Enums_DataSetCurvesTypes_Pattern" ); } }
-                    public TaggedString Average { get { return new TaggedString( CurrentLanguage, "Enums_DataSetCurvesTypes_Average" ); } }
+                    public LocalizedString Generated { get { return new LocalizedString( CurrentLanguage, "Enums_DataSetCurvesTypes_Generated" ); } }
+                    public LocalizedString Pattern { get { return new LocalizedString( CurrentLanguage, "Enums_DataSetCurvesTypes_Pattern" ); } }
+                    public LocalizedString Average { get { return new LocalizedString( CurrentLanguage, "Enums_DataSetCurvesTypes_Average" ); } }
 
-                    public IEnumerator<TaggedString> GetEnumerator()
+                    public IEnumerator<LocalizedString> GetEnumerator()
                     {
                         return CurveTypes.GetEnumerator();
                     }
@@ -347,11 +353,11 @@ namespace PI
 
                 }
 
-                public class OperationsStrings : IEnumerable<TaggedString>
+                public class OperationsStrings : IEnumerable<LocalizedString>
                 {
-                    private List<TaggedString> Operations {
+                    private List<LocalizedString> Operations {
                         get {
-                            return new List<TaggedString>() {
+                            return new List<LocalizedString>() {
                                 Addition,
                                 Substraction,
                                 Multiplication,
@@ -366,18 +372,18 @@ namespace PI
                         }
                     }
 
-                    public TaggedString Addition { get { return new TaggedString( CurrentLanguage, "Enums_Operations_Addition" ); } }
-                    public TaggedString Substraction { get { return new TaggedString( CurrentLanguage, "Enums_Operations_Substraction" ); } }
-                    public TaggedString Multiplication { get { return new TaggedString( CurrentLanguage, "Enums_Operations_Multiplication" ); } }
-                    public TaggedString Division { get { return new TaggedString( CurrentLanguage, "Enums_Operations_Division" ); } }
-                    public TaggedString Exponentiation { get { return new TaggedString( CurrentLanguage, "Enums_Operations_Exponentiation" ); } }
-                    public TaggedString Logarithmic { get { return new TaggedString( CurrentLanguage, "Enums_Operations_Logarithmic" ); } }
-                    public TaggedString Rooting { get { return new TaggedString( CurrentLanguage, "Enums_Operations_Rooting" ); } }
-                    public TaggedString Constant { get { return new TaggedString( CurrentLanguage, "Enums_Operations_Constant" ); } }
-                    public TaggedString Positive { get { return new TaggedString( CurrentLanguage, "Enums_Operations_Positive" ); } }
-                    public TaggedString Negative { get { return new TaggedString( CurrentLanguage, "Enums_Operations_Negative" ); } }
+                    public LocalizedString Addition { get { return new LocalizedString( CurrentLanguage, "Enums_Operations_Addition" ); } }
+                    public LocalizedString Substraction { get { return new LocalizedString( CurrentLanguage, "Enums_Operations_Substraction" ); } }
+                    public LocalizedString Multiplication { get { return new LocalizedString( CurrentLanguage, "Enums_Operations_Multiplication" ); } }
+                    public LocalizedString Division { get { return new LocalizedString( CurrentLanguage, "Enums_Operations_Division" ); } }
+                    public LocalizedString Exponentiation { get { return new LocalizedString( CurrentLanguage, "Enums_Operations_Exponentiation" ); } }
+                    public LocalizedString Logarithmic { get { return new LocalizedString( CurrentLanguage, "Enums_Operations_Logarithmic" ); } }
+                    public LocalizedString Rooting { get { return new LocalizedString( CurrentLanguage, "Enums_Operations_Rooting" ); } }
+                    public LocalizedString Constant { get { return new LocalizedString( CurrentLanguage, "Enums_Operations_Constant" ); } }
+                    public LocalizedString Positive { get { return new LocalizedString( CurrentLanguage, "Enums_Operations_Positive" ); } }
+                    public LocalizedString Negative { get { return new LocalizedString( CurrentLanguage, "Enums_Operations_Negative" ); } }
 
-                    public IEnumerator<TaggedString> GetEnumerator()
+                    public IEnumerator<LocalizedString> GetEnumerator()
                     {
                         return Operations.GetEnumerator();
                     }
@@ -389,21 +395,21 @@ namespace PI
 
                 }
 
-                public class StatAnalysisPhenomenonIndicesStrings : IEnumerable<TaggedString>
+                public class StatAnalysisPhenomenonIndicesStrings : IEnumerable<LocalizedString>
                 {
-                    private List<TaggedString> Phenomenons {
+                    private List<LocalizedString> Phenomenons {
                         get {
-                            return new List<TaggedString>() {
+                            return new List<LocalizedString>() {
                                 Peek,
                                 Deformation
                             };
                         }
                     }
 
-                    public TaggedString Peek { get { return new TaggedString( CurrentLanguage, "Enums_PhenomenonIndex_Peek" ); } }
-                    public TaggedString Deformation { get { return new TaggedString( CurrentLanguage, "Enums_PhenomenonIndex_Deformation" ); } }
+                    public LocalizedString Peek { get { return new LocalizedString( CurrentLanguage, "Enums_PhenomenonIndex_Peek" ); } }
+                    public LocalizedString Deformation { get { return new LocalizedString( CurrentLanguage, "Enums_PhenomenonIndex_Deformation" ); } }
 
-                    public IEnumerator<TaggedString> GetEnumerator()
+                    public IEnumerator<LocalizedString> GetEnumerator()
                     {
                         return Phenomenons.GetEnumerator();
                     }
@@ -415,11 +421,11 @@ namespace PI
 
                 }
 
-                public class AvgInfoTabs : IEnumerable<TaggedString>
+                public class AvgInfoTabs : IEnumerable<LocalizedString>
                 {
-                    private List<TaggedString> Tabs {
+                    private List<LocalizedString> Tabs {
                         get {
-                            return new List<TaggedString>() {
+                            return new List<LocalizedString>() {
                                 Geometric,
                                 Agm,
                                 Heronian,
@@ -436,22 +442,136 @@ namespace PI
                         }
                     }
 
-                    public TaggedString Geometric { get { return new TaggedString( CurrentLanguage, "Enums_AvgInfo_Tabs_Geometric" ); } }
-                    public TaggedString Agm { get { return new TaggedString( CurrentLanguage, "Enums_AvgInfo_Tabs_AGM" ); } }
-                    public TaggedString Heronian { get { return new TaggedString( CurrentLanguage, "Enums_AvgInfo_Tabs_Heronian" ); } }
-                    public TaggedString Harmonic { get { return new TaggedString( CurrentLanguage, "Enums_AvgInfo_Tabs_Harmonic" ); } }
-                    public TaggedString Power { get { return new TaggedString( CurrentLanguage, "Enums_AvgInfo_Tabs_Power" ); } }
-                    public TaggedString Rms { get { return new TaggedString( CurrentLanguage, "Enums_AvgInfo_Tabs_RMS" ); } }
-                    public TaggedString Logarithmic { get { return new TaggedString( CurrentLanguage, "Enums_AvgInfo_Tabs_Logarithmic" ); } }
-                    public TaggedString Ema { get { return new TaggedString( CurrentLanguage, "Enums_AvgInfo_Tabs_EMA" ); } }
-                    public TaggedString LnWages { get { return new TaggedString( CurrentLanguage, "Enums_AvgInfo_Tabs_LnWages" ); } }
-                    public TaggedString CustomDifferential { get { return new TaggedString( CurrentLanguage, "Enums_AvgInfo_Tabs_CustomDifferential" ); } }
-                    public TaggedString CustomTolerance { get { return new TaggedString( CurrentLanguage, "Enums_AvgInfo_Tabs_CustomTolerance" ); } }
-                    public TaggedString CustomGeometric { get { return new TaggedString( CurrentLanguage, "Enums_AvgInfo_Tabs_CustomGeometric" ); } }
+                    public LocalizedString Geometric { get { return new LocalizedString( CurrentLanguage, "Enums_AvgInfo_Tabs_Geometric" ); } }
+                    public LocalizedString Agm { get { return new LocalizedString( CurrentLanguage, "Enums_AvgInfo_Tabs_AGM" ); } }
+                    public LocalizedString Heronian { get { return new LocalizedString( CurrentLanguage, "Enums_AvgInfo_Tabs_Heronian" ); } }
+                    public LocalizedString Harmonic { get { return new LocalizedString( CurrentLanguage, "Enums_AvgInfo_Tabs_Harmonic" ); } }
+                    public LocalizedString Power { get { return new LocalizedString( CurrentLanguage, "Enums_AvgInfo_Tabs_Power" ); } }
+                    public LocalizedString Rms { get { return new LocalizedString( CurrentLanguage, "Enums_AvgInfo_Tabs_RMS" ); } }
+                    public LocalizedString Logarithmic { get { return new LocalizedString( CurrentLanguage, "Enums_AvgInfo_Tabs_Logarithmic" ); } }
+                    public LocalizedString Ema { get { return new LocalizedString( CurrentLanguage, "Enums_AvgInfo_Tabs_EMA" ); } }
+                    public LocalizedString LnWages { get { return new LocalizedString( CurrentLanguage, "Enums_AvgInfo_Tabs_LnWages" ); } }
+                    public LocalizedString CustomDifferential { get { return new LocalizedString( CurrentLanguage, "Enums_AvgInfo_Tabs_CustomDifferential" ); } }
+                    public LocalizedString CustomTolerance { get { return new LocalizedString( CurrentLanguage, "Enums_AvgInfo_Tabs_CustomTolerance" ); } }
+                    public LocalizedString CustomGeometric { get { return new LocalizedString( CurrentLanguage, "Enums_AvgInfo_Tabs_CustomGeometric" ); } }
 
-                    public IEnumerator<TaggedString> GetEnumerator()
+                    public IEnumerator<LocalizedString> GetEnumerator()
                     {
                         return Tabs.GetEnumerator();
+                    }
+
+                    IEnumerator IEnumerable.GetEnumerator()
+                    {
+                        return GetEnumerator();
+                    }
+
+                }
+
+                public class CustomDifferentialMeanModeStrings : IEnumerable<LocalizedString>
+                {
+                    private List<LocalizedString> MeanModes {
+                        get {
+                            return new List<LocalizedString>() {
+                                Mediana,
+                                Sum
+                            };
+                        }
+                    }
+
+                    public LocalizedString Mediana { get { return new LocalizedString( CurrentLanguage, "Enums_CustomDifferentialMeanMode_Mediana" ); } }
+                    public LocalizedString Sum { get { return new LocalizedString( CurrentLanguage, "Enums_CustomDifferentialMeanMode_Sum" ); } }
+
+                    public IEnumerator<LocalizedString> GetEnumerator()
+                    {
+                        return MeanModes.GetEnumerator();
+                    }
+
+                    IEnumerator IEnumerable.GetEnumerator()
+                    {
+                        return GetEnumerator();
+                    }
+
+                }
+
+                public class CustomToleranceComparerTypeStrings : IEnumerable<LocalizedString>
+                {
+                    private List<LocalizedString> ComparerTypes {
+                        get {
+                            return new List<LocalizedString>() {
+                                Mediana,
+                                ArithmeticMean
+                            };
+                        }
+                    }
+
+                    public LocalizedString Mediana { get { return new LocalizedString( CurrentLanguage, "Enums_CustomToleranceComparerType_Mediana" ); } }
+                    public LocalizedString ArithmeticMean { get { return new LocalizedString( CurrentLanguage, "Enums_CustomToleranceComparerType_ArithmeticMean" ); } }
+
+                    public IEnumerator<LocalizedString> GetEnumerator()
+                    {
+                        return ComparerTypes.GetEnumerator();
+                    }
+
+                    IEnumerator IEnumerable.GetEnumerator()
+                    {
+                        return GetEnumerator();
+                    }
+
+                }
+
+                public class CustomToleranceFinisherFunctionsStrings : IEnumerable<LocalizedString>
+                {
+                    private List<LocalizedString> FinisherFunctions {
+                        get {
+                            return new List<LocalizedString>() {
+                                Mediana,
+                                ArithmeticMean,
+                                GeometricMean,
+                                Maximum,
+                                Minimum
+                            };
+                        }
+                    }
+
+                    public LocalizedString Mediana { get { return new LocalizedString( CurrentLanguage, "Enums_CustomToleranceFinisherFunctions_Mediana" ); } }
+                    public LocalizedString ArithmeticMean { get { return new LocalizedString( CurrentLanguage, "Enums_CustomToleranceFinisherFunctions_ArithmeticMean" ); } }
+                    public LocalizedString GeometricMean { get { return new LocalizedString( CurrentLanguage, "Enums_CustomToleranceFinisherFunctions_GeometricMean" ); } }
+                    public LocalizedString Maximum { get { return new LocalizedString( CurrentLanguage, "Enums_CustomToleranceFinisherFunctions_Maximum" ); } }
+                    public LocalizedString Minimum { get { return new LocalizedString( CurrentLanguage, "Enums_CustomToleranceFinisherFunctions_Minimum" ); } }
+
+                    public IEnumerator<LocalizedString> GetEnumerator()
+                    {
+                        return FinisherFunctions.GetEnumerator();
+                    }
+
+                    IEnumerator IEnumerable.GetEnumerator()
+                    {
+                        return GetEnumerator();
+                    }
+
+                }
+
+                public class ApplyToCurveStrings : IEnumerable<LocalizedString>
+                {
+                    private List<LocalizedString> ApplyTo {
+                        get {
+                            return new List<LocalizedString>() {
+                                Generated,
+                                Pattern,
+                                Average,
+                                All
+                            };
+                        }
+                    }
+
+                    public LocalizedString Generated { get { return new LocalizedString( CurrentLanguage, "Enums_ApplyToCurve_Generated" ); } }
+                    public LocalizedString Pattern { get { return new LocalizedString( CurrentLanguage, "Enums_ApplyToCurve_Pattern" ); } }
+                    public LocalizedString Average { get { return new LocalizedString( CurrentLanguage, "Enums_ApplyToCurve_Average" ); } }
+                    public LocalizedString All { get { return new LocalizedString( CurrentLanguage, "Enums_ApplyToCurve_All" ); } }
+
+                    public IEnumerator<LocalizedString> GetEnumerator()
+                    {
+                        return ApplyTo.GetEnumerator();
                     }
 
                     IEnumerator IEnumerable.GetEnumerator()
@@ -468,6 +588,7 @@ namespace PI
                 public MbsMainWindowStrings MainWindow { get; private set; } = new MbsMainWindowStrings();
                 public MbsGridPreviewerStrings GridPreviewer { get; private set; } = new MbsGridPreviewerStrings();
                 public MbsStatisticalAnalysisStrings StatAnalysis { get; private set; } = new MbsStatisticalAnalysisStrings();
+                public MbsGeneralStrings General { get; private set; } = new MbsGeneralStrings();
 
                 public class MbsMainWindowStrings
                 {
@@ -487,50 +608,50 @@ namespace PI
 
                         public class MbsSeriesSelectionProblemStrings
                         {
-                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_SeriesSelectionProblem_Text" ); } }
-                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_SeriesSelectionProblem_Caption" ); } }
+                            public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_SeriesSelectionProblem_Text" ); } }
+                            public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_SeriesSelectionProblem_Caption" ); } }
                         }
 
                         public class MbsChartRefreshingErrorStrings
                         {
-                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_ChartRefreshingError_Text" ); } }
-                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_ChartRefreshingError_Caption" ); } }
+                            public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_ChartRefreshingError_Text" ); } }
+                            public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_ChartRefreshingError_Caption" ); } }
                         }
 
                         public class MbsCurveTypeNotSelectedInfoStrings
                         {
-                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_CurveTypeNotSelectedInfo_Text" ); } }
-                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_CurveTypeNotSelectedInfo_Caption" ); } }
+                            public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_CurveTypeNotSelectedInfo_Text" ); } }
+                            public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_CurveTypeNotSelectedInfo_Caption" ); } }
                         }
 
                         public class MbsPatternCurveNotChosenPrerequisiteStrings
                         {
-                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_PatternCurveNotChosenPrerequisite_Text" ); } }
-                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_PatternCurveNotChosenPrerequisite_Caption" ); } }
+                            public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_PatternCurveNotChosenPrerequisite_Text" ); } }
+                            public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_PatternCurveNotChosenPrerequisite_Caption" ); } }
                         }
 
                         public class MbsPointsNotValidToChartProblemStrings
                         {
-                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_PointsNotValidToChartProblem_Text" ); } }
-                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_PointsNotValidToChartProblem_Caption" ); } }
+                            public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_PointsNotValidToChartProblem_Text" ); } }
+                            public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_PointsNotValidToChartProblem_Caption" ); } }
                         }
 
                         public class MbsSpecifiedCurveDoesntExistProblemStrings
                         {
-                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_SpecifiedCurveDoesntExistProblem_Text" ); } }
-                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_SpecifiedCurveDoesntExistProblem_Caption" ); } }
+                            public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_SpecifiedCurveDoesntExistProblem_Text" ); } }
+                            public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_SpecifiedCurveDoesntExistProblem_Caption" ); } }
                         }
 
                         public class MbsOperationMalformRejectedStopStrings
                         {
-                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_OperationMalformRejectedStop_Text" ); } }
-                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_OperationMalformRejectedStop_Caption" ); } }
+                            public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_OperationMalformRejectedStop_Text" ); } }
+                            public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_OperationMalformRejectedStop_Caption" ); } }
                         }
 
                         public class MbsNotEnoughCurvesForMedianaStopStrings
                         {
-                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_NotEnoughCurvesForMedianaStop_Text" ); } }
-                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_NotEnoughCurvesForMedianaStop_Caption" ); } }
+                            public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_NotEnoughCurvesForMedianaStop_Text" ); } }
+                            public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_NotEnoughCurvesForMedianaStop_Caption" ); } }
                         }
 
                     }
@@ -548,26 +669,26 @@ namespace PI
 
                             public class MbsCannotDownloadUpdateInfoProblemStrings
                             {
-                                public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Menu_Update_CannotDownloadUpdateInfoProblem_Text" ); } }
-                                public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Menu_Update_CannotDownloadUpdateInfoProblem_Caption" ); } }
+                                public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Menu_Update_CannotDownloadUpdateInfoProblem_Text" ); } }
+                                public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Menu_Update_CannotDownloadUpdateInfoProblem_Caption" ); } }
                             }
 
                             public class MbsRunningLatestReleaseAppInfoStrings
                             {
-                                public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Menu_Update_RunningLatestReleaseAppInfo_Text" ); } }
-                                public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Menu_Update_RunningLatestReleaseAppInfo_Caption" ); } }
+                                public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Menu_Update_RunningLatestReleaseAppInfo_Text" ); } }
+                                public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Menu_Update_RunningLatestReleaseAppInfo_Caption" ); } }
                             }
 
                             public class MbsRunningObsoleteAppInfoStrings
                             {
-                                public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Menu_Update_RunningObsoleteAppInfo_Text" ); } }
-                                public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Menu_Update_RunningObsoleteAppInfo_Caption" ); } }
+                                public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Menu_Update_RunningObsoleteAppInfo_Text" ); } }
+                                public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Menu_Update_RunningObsoleteAppInfo_Caption" ); } }
                             }
 
                             public class MbsCannotMatchVersionsErrorStrings
                             {
-                                public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Menu_Update_CannotMatchVersionsError_Text" ); } }
-                                public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_MainWindow_Menu_Update_CannotMatchVersionsError_Caption" ); } }
+                                public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Menu_Update_CannotMatchVersionsError_Text" ); } }
+                                public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Menu_Update_CannotMatchVersionsError_Caption" ); } }
                             }
 
                         }
@@ -591,32 +712,32 @@ namespace PI
 
                         public class MbsIndexGreaterThanAllowedProblemStrings
                         {
-                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Panel_IndexGreaterThanAllowedProblem_Text" ); } }
-                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Panel_IndexGreaterThanAllowedProblem_Caption" ); } }
+                            public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Panel_IndexGreaterThanAllowedProblem_Text" ); } }
+                            public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Panel_IndexGreaterThanAllowedProblem_Caption" ); } }
                         }
 
                         public class MbsIndexLowerThanAllowedProblemStrings
                         {
-                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Panel_IndexLowerThanAllowedProblem_Text" ); } }
-                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Panel_IndexLowerThanAllowedProblem_Caption" ); } }
+                            public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Panel_IndexLowerThanAllowedProblem_Text" ); } }
+                            public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Panel_IndexLowerThanAllowedProblem_Caption" ); } }
                         }
 
                         public class MbsImproperUserValueProblemStrings
                         {
-                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Panel_ImproperUserValueProblem_Text" ); } }
-                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Panel_ImproperUserValueProblem_Caption" ); } }
+                            public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Panel_ImproperUserValueProblem_Text" ); } }
+                            public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Panel_ImproperUserValueProblem_Caption" ); } }
                         }
 
                         public class MbsPerformOperationErrorStrings
                         {
-                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Panel_PerformOperationError_Text" ); } }
-                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Panel_PerformOperationError_Caption" ); } }
+                            public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Panel_PerformOperationError_Text" ); } }
+                            public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Panel_PerformOperationError_Caption" ); } }
                         }
 
                         public class MbsInvalidCurvePointsErrorStrings
                         {
-                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Panel_InvalidCurvePointsError_Text" ); } }
-                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Panel_InvalidCurvePointsError_Caption" ); } }
+                            public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Panel_InvalidCurvePointsError_Text" ); } }
+                            public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Panel_InvalidCurvePointsError_Caption" ); } }
                         }
 
                     }
@@ -627,8 +748,8 @@ namespace PI
 
                         public class MbsChartRefreshingErrorStrings
                         {
-                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Chart_ChartRefreshingError_Text" ); } }
-                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Chart_ChartRefreshingError_Caption" ); } }
+                            public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Chart_ChartRefreshingError_Text" ); } }
+                            public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_GridPreviewer_Chart_ChartRefreshingError_Caption" ); } }
                         }
 
                     }
@@ -645,8 +766,8 @@ namespace PI
 
                         public class MbsPcdDivisionByZeroProblemStrings
                         {
-                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_PatternCurveDefiner_Hyperbolic_DivisionByZeroProblem_Text" ); } }
-                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_PatternCurveDefiner_Hyperbolic_DivisionByZeroProblem_Caption" ); } }
+                            public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_PatternCurveDefiner_Hyperbolic_DivisionByZeroProblem_Text" ); } }
+                            public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_PatternCurveDefiner_Hyperbolic_DivisionByZeroProblem_Caption" ); } }
                         }
                     }
                 }
@@ -663,23 +784,35 @@ namespace PI
 
                         public class MbsSaValueOutOfRangeProblemStrings
                         {
-                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_StatisticalAnalysis_Preview_ValueOutOfRangeProblem_Text" ); } }
-                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_StatisticalAnalysis_Preview_ValueOutOfRangeProblem_Caption" ); } }
+                            public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_StatisticalAnalysis_Preview_ValueOutOfRangeProblem_Text" ); } }
+                            public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_StatisticalAnalysis_Preview_ValueOutOfRangeProblem_Caption" ); } }
                         }
 
                         public class MbsSaUnrecognizedErrorStrings
                         {
-                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_StatisticalAnalysis_Preview_UnrecognizedError_Text" ); } }
-                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_StatisticalAnalysis_Preview_UnrecognizedError_Caption" ); } }
+                            public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_StatisticalAnalysis_Preview_UnrecognizedError_Text" ); } }
+                            public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_StatisticalAnalysis_Preview_UnrecognizedError_Caption" ); } }
                         }
 
                         public class MbsSaPointsNotValidToChartProblemStrings
                         {
-                            public TaggedString Text { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_StatisticalAnalysis_Preview_PointsNotValidToChartProblem_Text" ); } }
-                            public TaggedString Caption { get { return new TaggedString( CurrentLanguage, "MessageBoxShower_StatisticalAnalysis_Preview_PointsNotValidToChartProblem_Caption" ); } }
+                            public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_StatisticalAnalysis_Preview_PointsNotValidToChartProblem_Text" ); } }
+                            public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_StatisticalAnalysis_Preview_PointsNotValidToChartProblem_Caption" ); } }
                         }
 
                     }
+                }
+
+                public class MbsGeneralStrings
+                {
+                    public MbsGeneralOutOfMemoryExceptionStrings StopOutOfMemoryException { get; private set; } = new MbsGeneralOutOfMemoryExceptionStrings();
+
+                    public class MbsGeneralOutOfMemoryExceptionStrings
+                    {
+                        public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_General_OutOfMemoryExceptionStop_Text" ); } }
+                        public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_General_OutOfMemoryExceptionStop_Caption" ); } }
+                    }
+
                 }
 
             }
@@ -697,50 +830,50 @@ namespace PI
 
                     public class GprvUiFormStrings
                     {
-                        public TaggedString Text { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Form_Text" ); } }
+                        public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Form_Text" ); } }
                     }
 
                     public class GprvUiPanelStrings
                     {
-                        public TaggedString DtGrid { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_DatasetGrid" ); } }
-                        public TaggedString AutoSize { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_AutoSizeColumnsMode" ); } }
-                        public TaggedString Edit { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_FastEdit" ); } }
-                        public TaggedString OperT { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_OperationType" ); } }
-                        public TaggedString StartIdx { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_StartIndex" ); } }
-                        public TaggedString EndIdx { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_EndIndex" ); } }
-                        public TaggedString Value { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Value1_Value" ); } }
-                        public TaggedString Addend { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Value1_Addend" ); } }
-                        public TaggedString Subtrahend { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Value1_Subtrahend" ); } }
-                        public TaggedString Multiplier { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Value1_Multiplier" ); } }
-                        public TaggedString Divisor { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Value1_Divisor" ); } }
-                        public TaggedString Exponent { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Value1_Exponent" ); } }
-                        public TaggedString Basis { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Value1_Basis" ); } }
-                        public TaggedString NotApplicable { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Value1_NotApplicable" ); } }
-                        public TaggedString Reset { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Reset" ); } }
-                        public TaggedString Perform { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Perform" ); } }
-                        public TaggedString Refresh { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Refresh" ); } }
-                        public TaggedString Save { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Save" ); } }
-                        public TaggedString Ok { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_OK" ); } }
-                        public TaggedString InfoGprvLoaded { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Info_GridPreviewerLoaded" ); } }
-                        public TaggedString InfoOperationRevoked { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Info_OperationRevoked" ); } }
-                        public TaggedString InfoChangesSaved { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Info_ChangesSaved" ); } }
-                        public TaggedString InfoInvalidUserValue { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Info_InvalidUserValue" ); } }
-                        public TaggedString InfoOperationRejected { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Info_OperationRejected" ); } }
-                        public TaggedString InfoPerformedAndRefreshed { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Info_PerformedAndRefreshed" ); } }
-                        public TaggedString InfoValuesRestored { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Info_ValuesRestored" ); } }
+                        public LocalizedString DtGrid { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Panel_DatasetGrid" ); } }
+                        public LocalizedString AutoSize { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Panel_AutoSizeColumnsMode" ); } }
+                        public LocalizedString Edit { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Panel_FastEdit" ); } }
+                        public LocalizedString OperT { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Panel_OperationType" ); } }
+                        public LocalizedString StartIdx { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Panel_StartIndex" ); } }
+                        public LocalizedString EndIdx { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Panel_EndIndex" ); } }
+                        public LocalizedString Value { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Value1_Value" ); } }
+                        public LocalizedString Addend { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Value1_Addend" ); } }
+                        public LocalizedString Subtrahend { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Value1_Subtrahend" ); } }
+                        public LocalizedString Multiplier { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Value1_Multiplier" ); } }
+                        public LocalizedString Divisor { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Value1_Divisor" ); } }
+                        public LocalizedString Exponent { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Value1_Exponent" ); } }
+                        public LocalizedString Basis { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Value1_Basis" ); } }
+                        public LocalizedString NotApplicable { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Value1_NotApplicable" ); } }
+                        public LocalizedString Reset { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Reset" ); } }
+                        public LocalizedString Perform { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Perform" ); } }
+                        public LocalizedString Refresh { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Refresh" ); } }
+                        public LocalizedString Save { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Save" ); } }
+                        public LocalizedString Ok { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Panel_OK" ); } }
+                        public LocalizedString InfoGprvLoaded { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Info_GridPreviewerLoaded" ); } }
+                        public LocalizedString InfoOperationRevoked { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Info_OperationRevoked" ); } }
+                        public LocalizedString InfoChangesSaved { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Info_ChangesSaved" ); } }
+                        public LocalizedString InfoInvalidUserValue { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Info_InvalidUserValue" ); } }
+                        public LocalizedString InfoOperationRejected { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Info_OperationRejected" ); } }
+                        public LocalizedString InfoPerformedAndRefreshed { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Info_PerformedAndRefreshed" ); } }
+                        public LocalizedString InfoValuesRestored { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Panel_Info_ValuesRestored" ); } }
                     }
 
                     public class GprvUiPreviewStrings
                     {
-                        public TaggedString InfoChartNotRepainted { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Preview_Info_ChartNotRepainted" ); } }
-                        public TaggedString InfoChartRefreshError { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Preview_Info_ChartRefreshError" ); } }
-                        public TaggedString InfoChartRefreshed { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Preview_Info_ChartRefreshed" ); } }
-                        public TaggedString Prv { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Preview_Preview" ); } }
+                        public LocalizedString InfoChartNotRepainted { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Preview_Info_ChartNotRepainted" ); } }
+                        public LocalizedString InfoChartRefreshError { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Preview_Info_ChartRefreshError" ); } }
+                        public LocalizedString InfoChartRefreshed { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Preview_Info_ChartRefreshed" ); } }
+                        public LocalizedString Prv { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Preview_Preview" ); } }
                     }
 
                     public class GprvUiDatasetStrings
                     {
-                        public TaggedString DtSet { get { return new TaggedString( CurrentLanguage, "GridPreviewer_Ui_Dataset_Dataset" ); } }
+                        public LocalizedString DtSet { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Dataset_Dataset" ); } }
                     }
 
                 }
@@ -759,25 +892,25 @@ namespace PI
 
                     public class SaUiFormStrings
                     {
-                        public TaggedString Text { get { return new TaggedString( CurrentLanguage, "StatisticalAnalysis_Ui_Form_Text" ); } }
+                        public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_Form_Text" ); } }
                     }
 
                     public class SaUiStandardDeviationStrings
                     {
-                        public TaggedString StdDev { get { return new TaggedString( CurrentLanguage, "StatisticalAnalysis_Ui_StandardDeviation_StandardDeviation" ); } }
-                        public TaggedString Peek { get { return new TaggedString( CurrentLanguage, "StatisticalAnalysis_Ui_StandardDeviation_Peek" ); } }
-                        public TaggedString Deform { get { return new TaggedString( CurrentLanguage, "StatisticalAnalysis_Ui_StandardDeviation_Deform" ); } }
+                        public LocalizedString StdDev { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_StandardDeviation_StandardDeviation" ); } }
+                        public LocalizedString Peek { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_StandardDeviation_Peek" ); } }
+                        public LocalizedString Deform { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_StandardDeviation_Deform" ); } }
                     }
 
                     public class SaUiPreviewStrings
                     {
-                        public TaggedString Prv { get { return new TaggedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_Preview" ); } }
-                        public TaggedString Chart { get { return new TaggedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_Chart" ); } }
-                        public TaggedString Formula { get { return new TaggedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_Formula" ); } }
-                        public TaggedString DtSet { get { return new TaggedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_Dataset" ); } }
-                        public TaggedString CrvsNo1 { get { return new TaggedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_NumberOfCurves1" ); } }
-                        public TaggedString Dens1 { get { return new TaggedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_Density1" ); } }
-                        public TaggedString NotApplicable { get { return new TaggedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_NotApplicable" ); } }
+                        public LocalizedString Prv { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_Preview" ); } }
+                        public LocalizedString Chart { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_Chart" ); } }
+                        public LocalizedString Formula { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_Formula" ); } }
+                        public LocalizedString DtSet { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_Dataset" ); } }
+                        public LocalizedString CrvsNo1 { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_NumberOfCurves1" ); } }
+                        public LocalizedString Dens1 { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_Density1" ); } }
+                        public LocalizedString NotApplicable { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_NotApplicable" ); } }
                     }
 
                 }
@@ -805,81 +938,81 @@ namespace PI
 
                     public class AiGeometricStrings
                     {
-                        public TaggedString TextBox1Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_Geometric_TextBox1Text" ); } }
-                        public TaggedString TextBox2Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_Geometric_TextBox2Text" ); } }
+                        public LocalizedString TextBox1Text { get { return new LocalizedString( CurrentLanguage, "AveragingInfo_Geometric_TextBox1Text" ); } }
+                        public LocalizedString TextBox2Text { get { return new LocalizedString( CurrentLanguage, "AveragingInfo_Geometric_TextBox2Text" ); } }
                     }
 
                     public class AiAgmStrings
                     {
-                        public TaggedString TextBox1Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_AGM_TextBox1Text" ); } }
-                        public TaggedString TextBox2Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_AGM_TextBox2Text" ); } }
+                        public LocalizedString TextBox1Text { get { return new LocalizedString( CurrentLanguage, "AveragingInfo_AGM_TextBox1Text" ); } }
+                        public LocalizedString TextBox2Text { get { return new LocalizedString( CurrentLanguage, "AveragingInfo_AGM_TextBox2Text" ); } }
                     }
 
                     public class AiHeronianStrings
                     {
-                        public TaggedString TextBox1Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_Heronian_TextBox1Text" ); } }
-                        public TaggedString TextBox2Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_Heronian_TextBox2Text" ); } }
+                        public LocalizedString TextBox1Text { get { return new LocalizedString( CurrentLanguage, "AveragingInfo_Heronian_TextBox1Text" ); } }
+                        public LocalizedString TextBox2Text { get { return new LocalizedString( CurrentLanguage, "AveragingInfo_Heronian_TextBox2Text" ); } }
                     }
 
                     public class AiHarmonicStrings
                     {
-                        public TaggedString TextBox1Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_Harmonic_TextBox1Text" ); } }
-                        public TaggedString TextBox2Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_Harmonic_TextBox2Text" ); } }
+                        public LocalizedString TextBox1Text { get { return new LocalizedString( CurrentLanguage, "AveragingInfo_Harmonic_TextBox1Text" ); } }
+                        public LocalizedString TextBox2Text { get { return new LocalizedString( CurrentLanguage, "AveragingInfo_Harmonic_TextBox2Text" ); } }
                     }
 
                     public class AiPowerStrings
                     {
-                        public TaggedString TextBox1Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_Power_TextBox1Text" ); } }
-                        public TaggedString TextBox2Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_Power_TextBox2Text" ); } }
+                        public LocalizedString TextBox1Text { get { return new LocalizedString( CurrentLanguage, "AveragingInfo_Power_TextBox1Text" ); } }
+                        public LocalizedString TextBox2Text { get { return new LocalizedString( CurrentLanguage, "AveragingInfo_Power_TextBox2Text" ); } }
                     }
 
                     public class AiRmsStrings
                     {
-                        public TaggedString TextBox1Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_RMS_TextBox1Text" ); } }
-                        public TaggedString TextBox2Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_RMS_TextBox2Text" ); } }
+                        public LocalizedString TextBox1Text { get { return new LocalizedString( CurrentLanguage, "AveragingInfo_RMS_TextBox1Text" ); } }
+                        public LocalizedString TextBox2Text { get { return new LocalizedString( CurrentLanguage, "AveragingInfo_RMS_TextBox2Text" ); } }
                     }
 
                     public class AiLogarithmicStrings
                     {
-                        public TaggedString TextBox1Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_Logarithmic_TextBox1Text" ); } }
-                        public TaggedString TextBox2Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_Logarithmic_TextBox2Text" ); } }
+                        public LocalizedString TextBox1Text { get { return new LocalizedString( CurrentLanguage, "AveragingInfo_Logarithmic_TextBox1Text" ); } }
+                        public LocalizedString TextBox2Text { get { return new LocalizedString( CurrentLanguage, "AveragingInfo_Logarithmic_TextBox2Text" ); } }
                     }
 
                     public class AiEmaStrings
                     {
-                        public TaggedString TextBox1Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_EMA_TextBox1Text" ); } }
-                        public TaggedString TextBox2Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_EMA_TextBox2Text" ); } }
+                        public LocalizedString TextBox1Text { get { return new LocalizedString( CurrentLanguage, "AveragingInfo_EMA_TextBox1Text" ); } }
+                        public LocalizedString TextBox2Text { get { return new LocalizedString( CurrentLanguage, "AveragingInfo_EMA_TextBox2Text" ); } }
                     }
 
                     public class AiLnWagesStrings
                     {
-                        public TaggedString TextBox1Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_LnWages_TextBox1Text" ); } }
-                        public TaggedString TextBox2Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_LnWages_TextBox2Text" ); } }
+                        public LocalizedString TextBox1Text { get { return new LocalizedString( CurrentLanguage, "AveragingInfo_LnWages_TextBox1Text" ); } }
+                        public LocalizedString TextBox2Text { get { return new LocalizedString( CurrentLanguage, "AveragingInfo_LnWages_TextBox2Text" ); } }
                     }
 
                     public class AiCustomDifferentialStrings
                     {
-                        public TaggedString TextBox1Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_CustomDifferential_TextBox1Text" ); } }
-                        public TaggedString TextBox2Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_CustomDifferential_TextBox2Text" ); } }
+                        public LocalizedString TextBox1Text { get { return new LocalizedString( CurrentLanguage, "AveragingInfo_CustomDifferential_TextBox1Text" ); } }
+                        public LocalizedString TextBox2Text { get { return new LocalizedString( CurrentLanguage, "AveragingInfo_CustomDifferential_TextBox2Text" ); } }
                     }
 
                     public class AiCustomToleranceStrings
                     {
-                        public TaggedString TextBox1Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_CustomTolerance_TextBox1Text" ); } }
-                        public TaggedString TextBox2Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_CustomTolerance_TextBox2Text" ); } }
+                        public LocalizedString TextBox1Text { get { return new LocalizedString( CurrentLanguage, "AveragingInfo_CustomTolerance_TextBox1Text" ); } }
+                        public LocalizedString TextBox2Text { get { return new LocalizedString( CurrentLanguage, "AveragingInfo_CustomTolerance_TextBox2Text" ); } }
                     }
 
                     public class AiCustomGeometricStrings
                     {
-                        public TaggedString TextBox1Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_CustomGeometric_TextBox1Text" ); } }
-                        public TaggedString TextBox2Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_CustomGeometric_TextBox2Text" ); } }
+                        public LocalizedString TextBox1Text { get { return new LocalizedString( CurrentLanguage, "AveragingInfo_CustomGeometric_TextBox1Text" ); } }
+                        public LocalizedString TextBox2Text { get { return new LocalizedString( CurrentLanguage, "AveragingInfo_CustomGeometric_TextBox2Text" ); } }
                     }
 
                 }
 
                 public class AiFormStrings
                 {
-                    public TaggedString Text { get { return new TaggedString( CurrentLanguage, "AveragingInfo_Form_Text" ); } }
+                    public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "AveragingInfo_Form_Text" ); } }
                 }
 
             }
@@ -892,13 +1025,13 @@ namespace PI
 
                 public class PcdFormStrings
                 {
-                    public TaggedString Text { get { return new TaggedString( CurrentLanguage, "PatternCurveDefiner_Form_Text" ); } }
+                    public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "PatternCurveDefiner_Form_Text" ); } }
                 }
 
                 public class PcdUiStrings
                 {
-                    public TaggedString Cancel { get { return new TaggedString( CurrentLanguage, "PatternCurveDefiner_Ui_Cancel" ); } }
-                    public TaggedString Ok { get { return new TaggedString( CurrentLanguage, "PatternCurveDefiner_Ui_OK" ); } }
+                    public LocalizedString Cancel { get { return new LocalizedString( CurrentLanguage, "PatternCurveDefiner_Ui_Cancel" ); } }
+                    public LocalizedString Ok { get { return new LocalizedString( CurrentLanguage, "PatternCurveDefiner_Ui_OK" ); } }
                 }
 
                 public class PcdTabsStrings
@@ -909,27 +1042,118 @@ namespace PI
 
                     public class PcdTabPolynomialStrings
                     {
-                        public TaggedString Pol { get { return new TaggedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Polynomial_Polynomial" ); } }
-                        public TaggedString Params { get { return new TaggedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Polynomial_Parameters" ); } }
+                        public LocalizedString Pol { get { return new LocalizedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Polynomial_Polynomial" ); } }
+                        public LocalizedString Params { get { return new LocalizedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Polynomial_Parameters" ); } }
                     }
 
                     public class PcdTabHyperbolicStrings
                     {
-                        public TaggedString Hyp { get { return new TaggedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Hyperbolic_Hyperbolic" ); } }
-                        public TaggedString Params { get { return new TaggedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Hyperbolic_Parameters" ); } }
-                        public TaggedString BoundAc { get { return new TaggedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Hyperbolic_Bound_ac" ); } }
-                        public TaggedString BoundBd { get { return new TaggedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Hyperbolic_Bound_bd" ); } }
+                        public LocalizedString Hyp { get { return new LocalizedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Hyperbolic_Hyperbolic" ); } }
+                        public LocalizedString Params { get { return new LocalizedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Hyperbolic_Parameters" ); } }
+                        public LocalizedString BoundAc { get { return new LocalizedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Hyperbolic_Bound_ac" ); } }
+                        public LocalizedString BoundBd { get { return new LocalizedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Hyperbolic_Bound_bd" ); } }
                     }
 
                     public class PcdTabWaveformStrings
                     {
-                        public TaggedString Wave { get { return new TaggedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Waveform_Waveform" ); } }
-                        public TaggedString Params { get { return new TaggedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Waveform_Parameters" ); } }
-                        public TaggedString T { get { return new TaggedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Waveform_WaveType" ); } }
-                        public TaggedString Sine { get { return new TaggedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Waveform_Sine" ); } }
-                        public TaggedString Sq { get { return new TaggedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Waveform_Square" ); } }
-                        public TaggedString Trg { get { return new TaggedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Waveform_Triangle" ); } }
-                        public TaggedString Saw { get { return new TaggedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Waveform_Sawtooth" ); } }
+                        public LocalizedString Wave { get { return new LocalizedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Waveform_Waveform" ); } }
+                        public LocalizedString Params { get { return new LocalizedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Waveform_Parameters" ); } }
+                        public LocalizedString T { get { return new LocalizedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Waveform_WaveType" ); } }
+                        public LocalizedString Sine { get { return new LocalizedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Waveform_Sine" ); } }
+                        public LocalizedString Sq { get { return new LocalizedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Waveform_Square" ); } }
+                        public LocalizedString Trg { get { return new LocalizedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Waveform_Triangle" ); } }
+                        public LocalizedString Saw { get { return new LocalizedString( CurrentLanguage, "PatternCurveDefiner_Tabs_Waveform_Sawtooth" ); } }
+                    }
+
+                }
+
+            }
+
+            public class MeansSettingsStrings
+            {
+                public MsFormStrings Form { get; private set; } = new MsFormStrings();
+                public MsUiStrings Ui { get; private set; } = new MsUiStrings();
+
+                public class MsFormStrings
+                {
+                    public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Form_Text" ); } }
+                }
+
+                public class MsUiStrings
+                {
+                    public MsUiPowerStrings Power { get; private set; } = new MsUiPowerStrings();
+                    public MsUiCustomDifferentialStrings CustomDifferential { get; private set; } = new MsUiCustomDifferentialStrings();
+                    public MsUiCustomToleranceStrings CustomTolerance { get; private set; } = new MsUiCustomToleranceStrings();
+
+                    public class MsUiPowerStrings
+                    {
+                        public LocalizedString Power { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_Power_Power" ); } }
+                        public LocalizedString PowRank { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_Power_PowRank" ); } }
+                    }
+
+                    public class MsUiCustomDifferentialStrings
+                    {
+                        public LocalizedString CstDiff { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_CustomDifferential_CustomDifferential" ); } }
+                        public LocalizedString DiffMode { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_CustomDifferential_DifferentialWorkMode" ); } }
+                    }
+
+                    public class MsUiCustomToleranceStrings
+                    {
+                        public LocalizedString CstTol { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_CustomTolerance_CustomTolerance" ); } }
+                        public LocalizedString Comp { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_CustomTolerance_Comparer" ); } }
+                        public LocalizedString Toler { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_CustomTolerance_Tolerance" ); } }
+                        public LocalizedString Finish { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_CustomTolerance_FinisherFunction" ); } }
+                        public LocalizedString Ok { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_CustomTolerance_OK" ); } }
+                    }
+
+                }
+
+            }
+
+            public class ChartSettingsStrings
+            {
+                public CsFormStrings Form { get; private set; } = new CsFormStrings();
+                public CsUiStrings Ui { get; private set; } = new CsUiStrings();
+
+                public class CsFormStrings
+                {
+                    public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "ChartSettings_Form_Text" ); } }
+                }
+
+                public class CsUiStrings
+                {
+                    public CsUiGeneralStrings General { get; private set; } = new CsUiGeneralStrings();
+                    public CsUiTabsStrings Tabs { get; private set; } = new CsUiTabsStrings();
+
+                    public class CsUiTabsStrings
+                    {
+                        public CsUiTabsChartStrings Chart { get; private set; } = new CsUiTabsChartStrings();
+                        public CsUiTabsChartAreaStrings ChartArea { get; private set; } = new CsUiTabsChartAreaStrings();
+                        public CsUiTabsSeriesStrings Series { get; private set; } = new CsUiTabsSeriesStrings();
+
+                        public class CsUiTabsChartStrings
+                        {
+                            public LocalizedString Chart { get { return new LocalizedString( CurrentLanguage, "ChartSettings_Ui_Tabs_Chart_Title" ); } }
+                        }
+
+                        public class CsUiTabsChartAreaStrings
+                        {
+                            public LocalizedString Area { get { return new LocalizedString( CurrentLanguage, "ChartSettings_Ui_Tabs_ChartArea_Title" ); } }
+                            public LocalizedString ChA { get { return new LocalizedString( CurrentLanguage, "ChartSettings_Ui_Tabs_ChartArea_ChartArea" ); } }
+                            public LocalizedString Axes { get { return new LocalizedString( CurrentLanguage, "ChartSettings_Ui_Tabs_ChartArea_Axes" ); } }
+                        }
+
+                        public class CsUiTabsSeriesStrings
+                        {
+                            public LocalizedString Srs { get { return new LocalizedString( CurrentLanguage, "ChartSettings_Ui_Tabs_Series_Title" ); } }
+                        }
+
+                    }
+
+                    public class CsUiGeneralStrings
+                    {
+                        public LocalizedString ApplyTo { get { return new LocalizedString( CurrentLanguage, "ChartSettings_Ui_General_ApplyToCurve" ); } }
+                        public LocalizedString Ok { get { return new LocalizedString( CurrentLanguage, "ChartSettings_Ui_General_OK" ); } }
                     }
 
                 }
@@ -949,17 +1173,6 @@ namespace PI
             }
         }
 
-        public static void AddLocalizedLanguages<T>( T control, bool clearAtStart = true ) where T : ListBox
-        {
-            if ( clearAtStart ) {
-                control.Items.Clear();
-            }
-
-            foreach ( var item in GetInstance().Strings.Enums.Languages ) {
-                control.Items.Add( item.GetString() );
-            }
-        }
-
         public static void AddLocalizedDataSetCurveTypes<T>( T control, bool clearAtStart = true ) where T : ComboBox
         {
             if ( clearAtStart ) {
@@ -967,28 +1180,6 @@ namespace PI
             }
 
             foreach ( var item in GetInstance().Strings.Enums.DataSetCurveTypes ) {
-                control.Items.Add( item.GetString() );
-            }
-        }
-
-        public static void AddLocalizedOperations<T>( T control, bool clearAtStart = true ) where T : ComboBox
-        {
-            if ( clearAtStart ) {
-                control.Items.Clear();
-            }
-
-            foreach ( var item in GetInstance().Strings.Enums.Operations ) {
-                control.Items.Add( item.GetString() );
-            }
-        }
-
-        public static void AddLocalizedPhenomenonsIndices<T>( T control, bool clearAtStart = true ) where T : ComboBox
-        {
-            if ( clearAtStart ) {
-                control.Items.Clear();
-            }
-
-            foreach ( var item in GetInstance().Strings.Enums.Phenomenons ) {
                 control.Items.Add( item.GetString() );
             }
         }

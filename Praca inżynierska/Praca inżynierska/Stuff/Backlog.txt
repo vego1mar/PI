@@ -1,11 +1,7 @@
 ﻿BACKLOG
 
 TODO: General - Configuration file
-TODO: General - Localization
 TODO: Menu - New update notification system
 
 TODO: ChartSettings - Tool tips for TextBoxes
-TODO: ChartSettings - Replace calling for enum's ToString() by foreach loop
-TODO: General - Using MsgBxShower for handling OutOfMemoryException
-TODO: CurvesDataManager - Inline CurvesDataManagerConsts
 TODO: StatAnalysis - Cascading closing of windows running on threads (PROBLEM)

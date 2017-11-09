@@ -286,6 +286,114 @@ namespace PI.Locales {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ustawienia wykresu.
+        /// </summary>
+        internal static string ChartSettings_Form_Text {
+            get {
+                return ResourceManager.GetString("ChartSettings_Form_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zastosuj do krzywej:.
+        /// </summary>
+        internal static string ChartSettings_Ui_General_ApplyToCurve {
+            get {
+                return ResourceManager.GetString("ChartSettings_Ui_General_ApplyToCurve", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string ChartSettings_Ui_General_OK {
+            get {
+                return ResourceManager.GetString("ChartSettings_Ui_General_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wykres.
+        /// </summary>
+        internal static string ChartSettings_Ui_Tabs_Chart_Title {
+            get {
+                return ResourceManager.GetString("ChartSettings_Ui_Tabs_Chart_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Osie.
+        /// </summary>
+        internal static string ChartSettings_Ui_Tabs_ChartArea_Axes {
+            get {
+                return ResourceManager.GetString("ChartSettings_Ui_Tabs_ChartArea_Axes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obszar wykresu.
+        /// </summary>
+        internal static string ChartSettings_Ui_Tabs_ChartArea_ChartArea {
+            get {
+                return ResourceManager.GetString("ChartSettings_Ui_Tabs_ChartArea_ChartArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obszar wykresu.
+        /// </summary>
+        internal static string ChartSettings_Ui_Tabs_ChartArea_Title {
+            get {
+                return ResourceManager.GetString("ChartSettings_Ui_Tabs_ChartArea_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Serie danych.
+        /// </summary>
+        internal static string ChartSettings_Ui_Tabs_Series_Title {
+            get {
+                return ResourceManager.GetString("ChartSettings_Ui_Tabs_Series_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to wszystkie.
+        /// </summary>
+        internal static string Enums_ApplyToCurve_All {
+            get {
+                return ResourceManager.GetString("Enums_ApplyToCurve_All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to uśredniona.
+        /// </summary>
+        internal static string Enums_ApplyToCurve_Average {
+            get {
+                return ResourceManager.GetString("Enums_ApplyToCurve_Average", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to wygenerowana.
+        /// </summary>
+        internal static string Enums_ApplyToCurve_Generated {
+            get {
+                return ResourceManager.GetString("Enums_ApplyToCurve_Generated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to wzorcowa.
+        /// </summary>
+        internal static string Enums_ApplyToCurve_Pattern {
+            get {
+                return ResourceManager.GetString("Enums_ApplyToCurve_Pattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to arytm.-geom..
         /// </summary>
         internal static string Enums_AvgInfo_Tabs_AGM {
@@ -390,6 +498,87 @@ namespace PI.Locales {
         internal static string Enums_AvgInfo_Tabs_RMS {
             get {
                 return ResourceManager.GetString("Enums_AvgInfo_Tabs_RMS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mediana.
+        /// </summary>
+        internal static string Enums_CustomDifferentialMeanMode_Mediana {
+            get {
+                return ResourceManager.GetString("Enums_CustomDifferentialMeanMode_Mediana", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to suma.
+        /// </summary>
+        internal static string Enums_CustomDifferentialMeanMode_Sum {
+            get {
+                return ResourceManager.GetString("Enums_CustomDifferentialMeanMode_Sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to średnia arytmetyczna.
+        /// </summary>
+        internal static string Enums_CustomToleranceComparerType_ArithmeticMean {
+            get {
+                return ResourceManager.GetString("Enums_CustomToleranceComparerType_ArithmeticMean", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mediana.
+        /// </summary>
+        internal static string Enums_CustomToleranceComparerType_Mediana {
+            get {
+                return ResourceManager.GetString("Enums_CustomToleranceComparerType_Mediana", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to średnia arytmetyczna.
+        /// </summary>
+        internal static string Enums_CustomToleranceFinisherFunctions_ArithmeticMean {
+            get {
+                return ResourceManager.GetString("Enums_CustomToleranceFinisherFunctions_ArithmeticMean", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to średnia geometryczna.
+        /// </summary>
+        internal static string Enums_CustomToleranceFinisherFunctions_GeometricMean {
+            get {
+                return ResourceManager.GetString("Enums_CustomToleranceFinisherFunctions_GeometricMean", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to maksimum.
+        /// </summary>
+        internal static string Enums_CustomToleranceFinisherFunctions_Maximum {
+            get {
+                return ResourceManager.GetString("Enums_CustomToleranceFinisherFunctions_Maximum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mediana.
+        /// </summary>
+        internal static string Enums_CustomToleranceFinisherFunctions_Mediana {
+            get {
+                return ResourceManager.GetString("Enums_CustomToleranceFinisherFunctions_Mediana", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to minimum.
+        /// </summary>
+        internal static string Enums_CustomToleranceFinisherFunctions_Minimum {
+            get {
+                return ResourceManager.GetString("Enums_CustomToleranceFinisherFunctions_Minimum", resourceCulture);
             }
         }
         
@@ -1479,6 +1668,114 @@ namespace PI.Locales {
         internal static string MainWindow_Ui_Form_Text {
             get {
                 return ResourceManager.GetString("MainWindow_Ui_Form_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ustawienia średnich.
+        /// </summary>
+        internal static string MeansSettings_Form_Text {
+            get {
+                return ResourceManager.GetString("MeansSettings_Form_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Własna-różnicowa.
+        /// </summary>
+        internal static string MeansSettings_Ui_CustomDifferential_CustomDifferential {
+            get {
+                return ResourceManager.GetString("MeansSettings_Ui_CustomDifferential_CustomDifferential", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tryb pracy:.
+        /// </summary>
+        internal static string MeansSettings_Ui_CustomDifferential_DifferentialWorkMode {
+            get {
+                return ResourceManager.GetString("MeansSettings_Ui_CustomDifferential_DifferentialWorkMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Komparator bloków MIN/MAX:.
+        /// </summary>
+        internal static string MeansSettings_Ui_CustomTolerance_Comparer {
+            get {
+                return ResourceManager.GetString("MeansSettings_Ui_CustomTolerance_Comparer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Własna-tolerująca.
+        /// </summary>
+        internal static string MeansSettings_Ui_CustomTolerance_CustomTolerance {
+            get {
+                return ResourceManager.GetString("MeansSettings_Ui_CustomTolerance_CustomTolerance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Funkcja kończąca:.
+        /// </summary>
+        internal static string MeansSettings_Ui_CustomTolerance_FinisherFunction {
+            get {
+                return ResourceManager.GetString("MeansSettings_Ui_CustomTolerance_FinisherFunction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string MeansSettings_Ui_CustomTolerance_OK {
+            get {
+                return ResourceManager.GetString("MeansSettings_Ui_CustomTolerance_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tolerancja komparatora:.
+        /// </summary>
+        internal static string MeansSettings_Ui_CustomTolerance_Tolerance {
+            get {
+                return ResourceManager.GetString("MeansSettings_Ui_CustomTolerance_Tolerance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Średnia potęgowa.
+        /// </summary>
+        internal static string MeansSettings_Ui_Power_Power {
+            get {
+                return ResourceManager.GetString("MeansSettings_Ui_Power_Power", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rząd k:.
+        /// </summary>
+        internal static string MeansSettings_Ui_Power_PowRank {
+            get {
+                return ResourceManager.GetString("MeansSettings_Ui_Power_PowRank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Błąd alokacji pamięci.
+        /// </summary>
+        internal static string MessageBoxShower_General_OutOfMemoryExceptionStop_Caption {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_General_OutOfMemoryExceptionStop_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wyjątek typu OutOfMemoryException został rzucony. Dzieje się tak, kiedy nie wystarczającej ilości pamięci, aby kontynuować wykonywanie programu..
+        /// </summary>
+        internal static string MessageBoxShower_General_OutOfMemoryExceptionStop_Text {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_General_OutOfMemoryExceptionStop_Text", resourceCulture);
             }
         }
         

@@ -86,7 +86,6 @@
       <DependentUpon>ChartSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="ChartSettingsPool.cs" />
-    <Compile Include="CurvesDataManagerConsts.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="CurvesDataManager.cs" />
     <Compile Include="ArgsGenerator.cs" />

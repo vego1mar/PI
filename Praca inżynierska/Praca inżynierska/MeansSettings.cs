@@ -56,15 +56,19 @@ namespace PI
         {
             InitializeComponent();
             InitializeProperties();
+            LocalizeWindow();
             UpdateUiByDefaultSettings();
         }
 
         private void InitializeProperties()
         {
             MeansParams = new Params();
-            AddCustomDifferentialMeanModes( uiGrid_DiffMode_ComBx );
-            AddCustomToleranceMeanComparerTypes( uiGrid_Comp_ComBx );
-            AddCustomToleranceMeanFinisherFunctions( uiGrid_Finish_ComBx );
+        }
+
+        private void LocalizeWindow()
+        {
+            LocalizeForm();
+            LocalizeUi();
         }
 
         private void UpdateUiByDefaultSettings()
@@ -92,7 +96,7 @@ namespace PI
 
         public void SetPowerMeanRank( double value )
         {
-            CurvesDataManagerConsts.ChartValuesConsts consts = new CurvesDataManagerConsts.ChartValuesConsts();
+            CurvesDataManager.CurvesDataManagerConsts.ChartValuesConsts consts = new CurvesDataManager.CurvesDataManagerConsts.ChartValuesConsts();
 
             if ( value > consts.AcceptableMin && value < consts.AcceptableMax ) {
                 MeansParams.PowerMean.Rank = value;
@@ -101,22 +105,10 @@ namespace PI
             WinFormsHelper.SetValue( uiGrid_PowRank_Num, MeansParams.PowerMean.Rank );
         }
 
-        private void AddCustomDifferentialMeanModes( ComboBox comboBox )
-        {
-            comboBox.Items.Add( CustomDifferentialMeanMode.Mediana.ToString() );
-            comboBox.Items.Add( CustomDifferentialMeanMode.Sum.ToString() );
-        }
-
         public void SetCustomDifferentialMeanMode( CustomDifferentialMeanMode mode )
         {
             MeansParams.CustomDifferentialMean.Mode = mode;
             WinFormsHelper.SetSelectedIndexSafe( uiGrid_DiffMode_ComBx, (int) MeansParams.CustomDifferentialMean.Mode );
-        }
-
-        private void AddCustomToleranceMeanComparerTypes( ComboBox comboBox )
-        {
-            comboBox.Items.Add( CustomToleranceComparerType.Mediana.ToString() );
-            comboBox.Items.Add( CustomToleranceComparerType.ArithmeticMean.ToString() );
         }
 
         public void SetCustomToleranceMeanComparer( CustomToleranceComparerType type )
@@ -137,18 +129,72 @@ namespace PI
             WinFormsHelper.SetSelectedIndexSafe( uiGrid_Finish_ComBx, (int) MeansParams.CustomToleranceMean.Finisher );
         }
 
-        private void AddCustomToleranceMeanFinisherFunctions( ComboBox comboBox )
-        {
-            comboBox.Items.Add( CustomToleranceFinisherFunction.Mediana.ToString() );
-            comboBox.Items.Add( CustomToleranceFinisherFunction.ArithmeticMean.ToString() );
-            comboBox.Items.Add( CustomToleranceFinisherFunction.GeometricMean.ToString() );
-            comboBox.Items.Add( CustomToleranceFinisherFunction.Maximum.ToString() );
-            comboBox.Items.Add( CustomToleranceFinisherFunction.Minimum.ToString() );
-        }
-
         private void MeansSettings_FormClosing( object sender, FormClosingEventArgs e )
         {
             Dispose();
+        }
+
+        private void LocalizeForm()
+        {
+            Text = Translator.GetInstance().Strings.MeansSettings.Form.Text.GetString();
+        }
+
+        private void LocalizeUi()
+        {
+            LocalizePowerMean();
+            LocalizeCustomDifferential();
+            LocalizeCustomTolerance();
+        }
+
+        private void LocalizePowerMean()
+        {
+            uiGrid_Power_TxtBx.Text = Translator.GetInstance().Strings.MeansSettings.Ui.Power.Power.GetString();
+            uiGrid_PowRank_TxtBx.Text = Translator.GetInstance().Strings.MeansSettings.Ui.Power.PowRank.GetString();
+        }
+
+        private void LocalizeCustomDifferential()
+        {
+            uiGrid_CstDiff_TxtBx.Text = Translator.GetInstance().Strings.MeansSettings.Ui.CustomDifferential.CstDiff.GetString();
+            uiGrid_DiffMode_TxtBx.Text = Translator.GetInstance().Strings.MeansSettings.Ui.CustomDifferential.DiffMode.GetString();
+            AddLocalizedCustomDifferentialMeanModes( uiGrid_DiffMode_ComBx );
+        }
+
+        private void LocalizeCustomTolerance()
+        {
+            uiGrid_CstTol_TxtBx.Text = Translator.GetInstance().Strings.MeansSettings.Ui.CustomTolerance.CstTol.GetString();
+            uiGrid_Comp_TxtBx.Text = Translator.GetInstance().Strings.MeansSettings.Ui.CustomTolerance.Comp.GetString();
+            AddLocalizedCustomToleranceComparerTypes( uiGrid_Comp_ComBx );
+            uiGrid_Toler_TxtBx.Text = Translator.GetInstance().Strings.MeansSettings.Ui.CustomTolerance.Toler.GetString();
+            uiGrid_Finish_TxtBx.Text = Translator.GetInstance().Strings.MeansSettings.Ui.CustomTolerance.Finish.GetString();
+            AddLocalizedCustomToleranceFinisherFunctions( uiGrid_Finish_ComBx );
+            ui_Ok_Btn.Text = Translator.GetInstance().Strings.MeansSettings.Ui.CustomTolerance.Ok.GetString();
+        }
+
+        private void AddLocalizedCustomDifferentialMeanModes<T>( T control ) where T : ComboBox
+        {
+            control.Items.Clear();
+
+            foreach ( var item in Translator.GetInstance().Strings.Enums.CustomDifferentialMeanModes ) {
+                control.Items.Add( item.GetString() );
+            }
+        }
+
+        private void AddLocalizedCustomToleranceComparerTypes<T>( T control ) where T : ComboBox
+        {
+            control.Items.Clear();
+
+            foreach ( var item in Translator.GetInstance().Strings.Enums.CustomToleranceComparerTypes ) {
+                control.Items.Add( item.GetString() );
+            }
+        }
+
+        private void AddLocalizedCustomToleranceFinisherFunctions<T>( T control ) where T : ComboBox
+        {
+            control.Items.Clear();
+
+            foreach ( var item in Translator.GetInstance().Strings.Enums.CustomToleranceFinisherFunctions ) {
+                control.Items.Add( item.GetString() );
+            }
         }
 
     }

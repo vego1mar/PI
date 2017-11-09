@@ -20,6 +20,7 @@ namespace PI
                 return Enums.Exceptions.ThreadStateException;
             }
             catch ( OutOfMemoryException x ) {
+                MsgBxShower.General.OutOfMemoryExceptionStop();
                 Logger.WriteException( x );
                 return Enums.Exceptions.OutOfMemoryException;
             }

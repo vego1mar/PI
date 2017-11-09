@@ -13,9 +13,30 @@ namespace PI
         public Series PatternCurveSet { get; private set; }
         public List<Series> GeneratedCurvesSet { get; private set; }
         public Series AverageCurveSet { get; private set; }
-        public MeansSettings.Params MeansParams { get; private set; } 
-        internal CurvesDataManagerConsts Consts { get; }
+        public MeansSettings.Params MeansParams { get; private set; }
+        public CurvesDataManagerConsts Consts { get; private set; }
         private Params Parameters { get; set; }
+
+        public class CurvesDataManagerConsts
+        {
+            public SeriesNamesConsts SeriesNames { get; private set; } = new SeriesNamesConsts();
+            public ChartValuesConsts ChartValues { get; private set; } = new ChartValuesConsts();
+
+            public class SeriesNamesConsts
+            {
+                public string PatternCurve { get; } = "PatternCurveSeries";
+                public string GeneratedCurve { get; } = "GeneratedCurveSeries";
+                public string AverageCurve { get; } = "AverageCurveSeries";
+                public string ValidatedCurve { get; } = "ValidatedCurveSeries";
+            }
+
+            public class ChartValuesConsts
+            {
+                public double AcceptableMax { get; } = 9228162514264337593543950335.0;
+                public double AcceptableMin { get; } = -9228162514264337593543950335.0;
+            }
+
+        }
 
         public CurvesDataManager( Params parameters )
         {

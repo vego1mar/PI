@@ -806,4 +806,103 @@
   <data name="PatternCurveDefiner_Ui_OK" xml:space="preserve">
     <value>OK</value>
   </data>
+  <data name="ChartSettings_Form_Text" xml:space="preserve">
+    <value>Ustawienia wykresu</value>
+  </data>
+  <data name="ChartSettings_Ui_General_ApplyToCurve" xml:space="preserve">
+    <value>Zastosuj do krzywej:</value>
+  </data>
+  <data name="ChartSettings_Ui_General_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ChartSettings_Ui_Tabs_ChartArea_Axes" xml:space="preserve">
+    <value>Osie</value>
+  </data>
+  <data name="ChartSettings_Ui_Tabs_ChartArea_ChartArea" xml:space="preserve">
+    <value>Obszar wykresu</value>
+  </data>
+  <data name="ChartSettings_Ui_Tabs_ChartArea_Title" xml:space="preserve">
+    <value>Obszar wykresu</value>
+  </data>
+  <data name="ChartSettings_Ui_Tabs_Chart_Title" xml:space="preserve">
+    <value>Wykres</value>
+  </data>
+  <data name="ChartSettings_Ui_Tabs_Series_Title" xml:space="preserve">
+    <value>Serie danych</value>
+  </data>
+  <data name="Enums_ApplyToCurve_All" xml:space="preserve">
+    <value>wszystkie</value>
+  </data>
+  <data name="Enums_ApplyToCurve_Average" xml:space="preserve">
+    <value>uśredniona</value>
+  </data>
+  <data name="Enums_ApplyToCurve_Generated" xml:space="preserve">
+    <value>wygenerowana</value>
+  </data>
+  <data name="Enums_ApplyToCurve_Pattern" xml:space="preserve">
+    <value>wzorcowa</value>
+  </data>
+  <data name="Enums_CustomDifferentialMeanMode_Mediana" xml:space="preserve">
+    <value>mediana</value>
+  </data>
+  <data name="Enums_CustomDifferentialMeanMode_Sum" xml:space="preserve">
+    <value>suma</value>
+  </data>
+  <data name="Enums_CustomToleranceComparerType_ArithmeticMean" xml:space="preserve">
+    <value>średnia arytmetyczna</value>
+  </data>
+  <data name="Enums_CustomToleranceComparerType_Mediana" xml:space="preserve">
+    <value>mediana</value>
+  </data>
+  <data name="Enums_CustomToleranceFinisherFunctions_ArithmeticMean" xml:space="preserve">
+    <value>średnia arytmetyczna</value>
+  </data>
+  <data name="Enums_CustomToleranceFinisherFunctions_GeometricMean" xml:space="preserve">
+    <value>średnia geometryczna</value>
+  </data>
+  <data name="Enums_CustomToleranceFinisherFunctions_Maximum" xml:space="preserve">
+    <value>maksimum</value>
+  </data>
+  <data name="Enums_CustomToleranceFinisherFunctions_Mediana" xml:space="preserve">
+    <value>mediana</value>
+  </data>
+  <data name="Enums_CustomToleranceFinisherFunctions_Minimum" xml:space="preserve">
+    <value>minimum</value>
+  </data>
+  <data name="MeansSettings_Form_Text" xml:space="preserve">
+    <value>Ustawienia średnich</value>
+  </data>
+  <data name="MeansSettings_Ui_CustomDifferential_CustomDifferential" xml:space="preserve">
+    <value>Własna-różnicowa</value>
+  </data>
+  <data name="MeansSettings_Ui_CustomDifferential_DifferentialWorkMode" xml:space="preserve">
+    <value>Tryb pracy:</value>
+  </data>
+  <data name="MeansSettings_Ui_CustomTolerance_Comparer" xml:space="preserve">
+    <value>Komparator bloków MIN/MAX:</value>
+  </data>
+  <data name="MeansSettings_Ui_CustomTolerance_CustomTolerance" xml:space="preserve">
+    <value>Własna-tolerująca</value>
+  </data>
+  <data name="MeansSettings_Ui_CustomTolerance_FinisherFunction" xml:space="preserve">
+    <value>Funkcja kończąca:</value>
+  </data>
+  <data name="MeansSettings_Ui_CustomTolerance_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="MeansSettings_Ui_CustomTolerance_Tolerance" xml:space="preserve">
+    <value>Tolerancja komparatora:</value>
+  </data>
+  <data name="MeansSettings_Ui_Power_Power" xml:space="preserve">
+    <value>Średnia potęgowa</value>
+  </data>
+  <data name="MeansSettings_Ui_Power_PowRank" xml:space="preserve">
+    <value>Rząd k:</value>
+  </data>
+  <data name="MessageBoxShower_General_OutOfMemoryExceptionStop_Caption" xml:space="preserve">
+    <value>Błąd alokacji pamięci</value>
+  </data>
+  <data name="MessageBoxShower_General_OutOfMemoryExceptionStop_Text" xml:space="preserve">
+    <value>Wyjątek typu OutOfMemoryException został rzucony. Dzieje się tak, kiedy nie wystarczającej ilości pamięci, aby kontynuować wykonywanie programu.</value>
+  </data>
 </root>

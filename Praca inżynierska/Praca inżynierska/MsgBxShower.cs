@@ -10,6 +10,7 @@ namespace PI
         internal static GridPreviewerMsgBoxes Gprv { get; } = new GridPreviewerMsgBoxes();
         internal static PcdMsgBoxes Pcd { get; } = new PcdMsgBoxes();
         internal static StatMsgBoxes Stat { get; } = new StatMsgBoxes();
+        internal static GeneralMsgBoxes General { get; } = new GeneralMsgBoxes();
 
         internal class UiMsgBoxes
         {
@@ -196,6 +197,16 @@ namespace PI
                     WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
                 }
 
+            }
+        }
+
+        internal class GeneralMsgBoxes
+        {
+            internal void OutOfMemoryExceptionStop()
+            {
+                string text = Translator.GetInstance().Strings.MsgBxShower.General.StopOutOfMemoryException.Text.GetString();
+                string caption = Translator.GetInstance().Strings.MsgBxShower.General.StopOutOfMemoryException.Caption.GetString();
+                WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Stop );
             }
         }
 

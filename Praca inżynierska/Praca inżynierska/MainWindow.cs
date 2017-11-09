@@ -835,6 +835,7 @@ namespace PI
                 Logger.WriteException( ex );
             }
             catch ( OutOfMemoryException ex ) {
+                MsgBxShower.General.OutOfMemoryExceptionStop();
                 Logger.WriteException( ex );
             }
             catch ( ArgumentNullException ex ) {
