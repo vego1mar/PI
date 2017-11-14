@@ -477,5 +477,15 @@ namespace PI
             }
         }
 
+        public void SetFastEditControls( bool isAvailable )
+        {
+            uiPnl_OperT_ComBx.Enabled = isAvailable;
+            uiPnl_StartIdx_Num.Enabled = isAvailable;
+            uiPnl_EndIdx_Num.Enabled = isAvailable;
+            uiPnl_Val2_TxtBx.Enabled = isAvailable;
+            uiPnl_Perform_Btn.Enabled = isAvailable;
+            uiPnl_Save_Btn.Enabled = isAvailable;
+        }
+
     }
 }

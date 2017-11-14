@@ -240,13 +240,12 @@ namespace PI
                     Data[i][j].SpreadPatternCurveSetToGeneratedCurveSet( Settings.Ui.NumberOfCurves );
                     Data[i][j].MakeGaussianNoiseForGeneratedCurves( Settings.Ui.NumberOfCurves, Surroundings[j] );
                     MakePeekOrDeformation( (PhenomenonIndex) i, Data[i][j], Settings.Ui.NumberOfCurves / 2 );
-                    double patternCurveMean = GetArithmeticMeanFromSeriesValues( Data[i][j].PatternCurveSet );
 
                     foreach ( string type in Enum.GetNames( typeof( Enums.MeanType ) ) ) {
                         Enum.TryParse( type, out Enums.MeanType meanType );
                         Data[i][j].MakeAverageCurveFromGeneratedCurves( meanType, Settings.Ui.NumberOfCurves );
                         AddSeriesPoints( Averages[i][j][Convert.ToInt32( meanType )], Data[i][j].AverageCurveSet );
-                        double stdDeviation = GetRelativeStandardDeviationFromSeriesValues( Averages[i][j][(int) meanType], patternCurveMean );
+                        double stdDeviation = GetRelativeStandardDeviationFromSeriesValues( Averages[i][j][(int) meanType], Data[i][j].PatternCurveSet );
                         StdDeviations[i][j][Convert.ToInt32( meanType )] = stdDeviation;
                     }
                 }
@@ -290,6 +289,7 @@ namespace PI
         private void DelegatorForGridPreviewer( Series controlsSpecifiedSeries )
         {
             using ( var dialog = new GridPreviewer( controlsSpecifiedSeries ) ) {
+                dialog.SetFastEditControls( false );
                 dialog.ShowDialog();
             }
         }
@@ -496,28 +496,17 @@ namespace PI
             return new List<string>();
         }
 
-        private double GetArithmeticMeanFromSeriesValues( Series series, int yValuesIdx = 0 )
-        {
-            double sum = 0.0;
-
-            foreach ( DataPoint point in series.Points ) {
-                sum += point.YValues[yValuesIdx];
-            }
-
-            return sum / Convert.ToDouble( series.Points.Count );
-        }
-
-        private double GetRelativeStandardDeviationFromSeriesValues( Series series, double patternMean, int yValuesIdx = 0 )
+        private double GetRelativeStandardDeviationFromSeriesValues( Series average, Series pattern, int yValuesIdx = 0 )
         {
             double sum = 0.0;
             double difference;
 
-            foreach ( DataPoint point in series.Points ) {
-                difference = point.YValues[yValuesIdx] - patternMean;
+            for ( int i = 0; i < average.Points.Count; i++ ) {
+                difference = average.Points[i].YValues[yValuesIdx] - pattern.Points[i].YValues[yValuesIdx];
                 sum += difference * difference;
             }
 
-            return Math.Sqrt( sum / Convert.ToDouble( series.Points.Count ) );
+            return Math.Sqrt( sum / Convert.ToDouble( average.Points.Count ) );
         }
 
         private void UpdateUiByPopulatingGridWithStandardDeviations()
@@ -624,6 +613,14 @@ namespace PI
             uiL_StdDev_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.StdDeviation.StdDev.GetString();
             uiL_Peek_TbPg.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.StdDeviation.Peek.GetString();
             uiL_Deform_TbPg.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.StdDeviation.Deform.GetString();
+            uiLPeekGrid_Noise01_Col.HeaderText = Translator.GetInstance().Strings.StatAnalysis.Ui.StdDeviation.Noise01.GetString();
+            uiLPeekGrid_Noise05_Col.HeaderText = Translator.GetInstance().Strings.StatAnalysis.Ui.StdDeviation.Noise05.GetString();
+            uiLPeekGrid_Noise1_Col.HeaderText = Translator.GetInstance().Strings.StatAnalysis.Ui.StdDeviation.Noise1.GetString();
+            uiLPeekGrid_Noise2_Col.HeaderText = Translator.GetInstance().Strings.StatAnalysis.Ui.StdDeviation.Noise2.GetString();
+            uiLDeformGrid_Noise01_Col.HeaderText = Translator.GetInstance().Strings.StatAnalysis.Ui.StdDeviation.Noise01.GetString();
+            uiLDeformGrid_Noise05_Col.HeaderText = Translator.GetInstance().Strings.StatAnalysis.Ui.StdDeviation.Noise05.GetString();
+            uiLDeformGrid_Noise1_Col.HeaderText = Translator.GetInstance().Strings.StatAnalysis.Ui.StdDeviation.Noise1.GetString();
+            uiLDeformGrid_Noise2_Col.HeaderText = Translator.GetInstance().Strings.StatAnalysis.Ui.StdDeviation.Noise2.GetString();
         }
 
         private void LocalizePreview()

@@ -900,6 +900,10 @@ namespace PI
                         public LocalizedString StdDev { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_StandardDeviation_StandardDeviation" ); } }
                         public LocalizedString Peek { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_StandardDeviation_Peek" ); } }
                         public LocalizedString Deform { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_StandardDeviation_Deform" ); } }
+                        public LocalizedString Noise01 { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_StandardDeviation_Noise01" ); } }
+                        public LocalizedString Noise05 { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_StandardDeviation_Noise05" ); } }
+                        public LocalizedString Noise1 { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_StandardDeviation_Noise1" ); } }
+                        public LocalizedString Noise2 { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_StandardDeviation_Noise2" ); } }
                     }
 
                     public class SaUiPreviewStrings

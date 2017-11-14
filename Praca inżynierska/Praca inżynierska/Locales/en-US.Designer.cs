@@ -2402,6 +2402,42 @@ namespace PI.Locales {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Noise 0.1.
+        /// </summary>
+        internal static string StatisticalAnalysis_Ui_StandardDeviation_Noise01 {
+            get {
+                return ResourceManager.GetString("StatisticalAnalysis_Ui_StandardDeviation_Noise01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Noise 0.5.
+        /// </summary>
+        internal static string StatisticalAnalysis_Ui_StandardDeviation_Noise05 {
+            get {
+                return ResourceManager.GetString("StatisticalAnalysis_Ui_StandardDeviation_Noise05", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Noise 1.0.
+        /// </summary>
+        internal static string StatisticalAnalysis_Ui_StandardDeviation_Noise1 {
+            get {
+                return ResourceManager.GetString("StatisticalAnalysis_Ui_StandardDeviation_Noise1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Noise 2.0.
+        /// </summary>
+        internal static string StatisticalAnalysis_Ui_StandardDeviation_Noise2 {
+            get {
+                return ResourceManager.GetString("StatisticalAnalysis_Ui_StandardDeviation_Noise2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Peek.
         /// </summary>
         internal static string StatisticalAnalysis_Ui_StandardDeviation_Peek {
