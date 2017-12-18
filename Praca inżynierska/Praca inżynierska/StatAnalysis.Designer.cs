@@ -27,15 +27,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.ui_TbLay = new System.Windows.Forms.TableLayoutPanel();
             this.uiL_StdDev_TxtBx = new System.Windows.Forms.TextBox();
             this.uiR_Prv_TxtBx = new System.Windows.Forms.TextBox();
@@ -63,6 +63,13 @@
             this.uiRChartDown_DtSet_Btn = new System.Windows.Forms.Button();
             this.uiRChartDown_CrvIdx_Num = new System.Windows.Forms.NumericUpDown();
             this.uiRChartDown_CrvT_ComBx = new System.Windows.Forms.ComboBox();
+            this.uiRChart_Up_TbLay = new System.Windows.Forms.TableLayoutPanel();
+            this.uiRChartUp_DtSet_TxtBx = new System.Windows.Forms.TextBox();
+            this.uiRChartUp_MeanT_TxtBx = new System.Windows.Forms.TextBox();
+            this.uiRChartUp_Surr_TxtBx = new System.Windows.Forms.TextBox();
+            this.uiRChartUp_Phen_TxtBx = new System.Windows.Forms.TextBox();
+            this.uiRChartUp_CrvIdx_TxtBx = new System.Windows.Forms.TextBox();
+            this.uiRChartUp_CrvT_TxtBx = new System.Windows.Forms.TextBox();
             this.uiR_Formula_TbPg = new System.Windows.Forms.TabPage();
             this.uiRFormula_TbLay = new System.Windows.Forms.TableLayoutPanel();
             this.uiRFormula_PicBx = new System.Windows.Forms.PictureBox();
@@ -83,6 +90,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.uiRChart_Chart)).BeginInit();
             this.uiRChart_Down_TbLay.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiRChartDown_CrvIdx_Num)).BeginInit();
+            this.uiRChart_Up_TbLay.SuspendLayout();
             this.uiR_Formula_TbPg.SuspendLayout();
             this.uiRFormula_TbLay.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiRFormula_PicBx)).BeginInit();
@@ -158,9 +166,9 @@
             // 
             this.uiLPeek_Grid.AllowUserToAddRows = false;
             this.uiLPeek_Grid.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.uiLPeek_Grid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            this.uiLPeek_Grid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.uiLPeek_Grid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.uiLPeek_Grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.uiLPeek_Grid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -171,18 +179,18 @@
             this.uiLPeek_Grid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiLPeek_Grid.Location = new System.Drawing.Point(3, 3);
             this.uiLPeek_Grid.Name = "uiLPeek_Grid";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.uiLPeek_Grid.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.uiLPeek_Grid.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.uiLPeek_Grid.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.uiLPeek_Grid.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.uiLPeek_Grid.Size = new System.Drawing.Size(514, 522);
             this.uiLPeek_Grid.TabIndex = 0;
             // 
@@ -225,9 +233,9 @@
             // 
             this.uiLDeform_Grid.AllowUserToAddRows = false;
             this.uiLDeform_Grid.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.uiLDeform_Grid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
+            this.uiLDeform_Grid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             this.uiLDeform_Grid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.uiLDeform_Grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.uiLDeform_Grid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -238,18 +246,18 @@
             this.uiLDeform_Grid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiLDeform_Grid.Location = new System.Drawing.Point(3, 3);
             this.uiLDeform_Grid.Name = "uiLDeform_Grid";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.uiLDeform_Grid.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.uiLDeform_Grid.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.uiLDeform_Grid.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.uiLDeform_Grid.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.uiLDeform_Grid.Size = new System.Drawing.Size(514, 522);
             this.uiLDeform_Grid.TabIndex = 1;
             // 
@@ -304,30 +312,32 @@
             this.uiRChart_TbLay.ColumnCount = 1;
             this.uiRChart_TbLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.uiRChart_TbLay.Controls.Add(this.uiRChart_Chart, 0, 0);
-            this.uiRChart_TbLay.Controls.Add(this.uiRChart_Down_TbLay, 0, 1);
+            this.uiRChart_TbLay.Controls.Add(this.uiRChart_Down_TbLay, 0, 2);
+            this.uiRChart_TbLay.Controls.Add(this.uiRChart_Up_TbLay, 0, 1);
             this.uiRChart_TbLay.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiRChart_TbLay.Location = new System.Drawing.Point(3, 3);
             this.uiRChart_TbLay.Name = "uiRChart_TbLay";
-            this.uiRChart_TbLay.RowCount = 2;
+            this.uiRChart_TbLay.RowCount = 3;
             this.uiRChart_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.uiRChart_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.uiRChart_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.uiRChart_TbLay.Size = new System.Drawing.Size(515, 522);
             this.uiRChart_TbLay.TabIndex = 0;
             // 
             // uiRChart_Chart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.uiRChart_Chart.ChartAreas.Add(chartArea1);
+            chartArea2.Name = "ChartArea1";
+            this.uiRChart_Chart.ChartAreas.Add(chartArea2);
             this.uiRChart_Chart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.uiRChart_Chart.Legends.Add(legend1);
+            legend2.Name = "Legend1";
+            this.uiRChart_Chart.Legends.Add(legend2);
             this.uiRChart_Chart.Location = new System.Drawing.Point(3, 3);
             this.uiRChart_Chart.Name = "uiRChart_Chart";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.uiRChart_Chart.Series.Add(series1);
-            this.uiRChart_Chart.Size = new System.Drawing.Size(509, 481);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.uiRChart_Chart.Series.Add(series2);
+            this.uiRChart_Chart.Size = new System.Drawing.Size(509, 446);
             this.uiRChart_Chart.TabIndex = 0;
             this.uiRChart_Chart.Text = "uiRightChart_Chart";
             // 
@@ -435,6 +445,108 @@
             this.uiRChartDown_CrvT_ComBx.Size = new System.Drawing.Size(78, 21);
             this.uiRChartDown_CrvT_ComBx.TabIndex = 7;
             this.uiRChartDown_CrvT_ComBx.SelectedIndexChanged += new System.EventHandler(this.UiRightChartDown_CurveType_ComboBox_SelectedIndexChanged);
+            // 
+            // uiRChart_Up_TbLay
+            // 
+            this.uiRChart_Up_TbLay.ColumnCount = 6;
+            this.uiRChart_Up_TbLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.uiRChart_Up_TbLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.uiRChart_Up_TbLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.uiRChart_Up_TbLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.uiRChart_Up_TbLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.uiRChart_Up_TbLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.uiRChart_Up_TbLay.Controls.Add(this.uiRChartUp_DtSet_TxtBx, 5, 0);
+            this.uiRChart_Up_TbLay.Controls.Add(this.uiRChartUp_MeanT_TxtBx, 4, 0);
+            this.uiRChart_Up_TbLay.Controls.Add(this.uiRChartUp_Surr_TxtBx, 3, 0);
+            this.uiRChart_Up_TbLay.Controls.Add(this.uiRChartUp_Phen_TxtBx, 2, 0);
+            this.uiRChart_Up_TbLay.Controls.Add(this.uiRChartUp_CrvIdx_TxtBx, 1, 0);
+            this.uiRChart_Up_TbLay.Controls.Add(this.uiRChartUp_CrvT_TxtBx, 0, 0);
+            this.uiRChart_Up_TbLay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiRChart_Up_TbLay.Location = new System.Drawing.Point(3, 455);
+            this.uiRChart_Up_TbLay.Name = "uiRChart_Up_TbLay";
+            this.uiRChart_Up_TbLay.RowCount = 1;
+            this.uiRChart_Up_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.uiRChart_Up_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.uiRChart_Up_TbLay.Size = new System.Drawing.Size(509, 29);
+            this.uiRChart_Up_TbLay.TabIndex = 2;
+            // 
+            // uiRChartUp_DtSet_TxtBx
+            // 
+            this.uiRChartUp_DtSet_TxtBx.BackColor = System.Drawing.SystemColors.Control;
+            this.uiRChartUp_DtSet_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
+            this.uiRChartUp_DtSet_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiRChartUp_DtSet_TxtBx.Location = new System.Drawing.Point(423, 3);
+            this.uiRChartUp_DtSet_TxtBx.Name = "uiRChartUp_DtSet_TxtBx";
+            this.uiRChartUp_DtSet_TxtBx.ReadOnly = true;
+            this.uiRChartUp_DtSet_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.uiRChartUp_DtSet_TxtBx.Size = new System.Drawing.Size(83, 20);
+            this.uiRChartUp_DtSet_TxtBx.TabIndex = 18;
+            this.uiRChartUp_DtSet_TxtBx.Text = "Selection:";
+            // 
+            // uiRChartUp_MeanT_TxtBx
+            // 
+            this.uiRChartUp_MeanT_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.uiRChartUp_MeanT_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
+            this.uiRChartUp_MeanT_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiRChartUp_MeanT_TxtBx.Location = new System.Drawing.Point(339, 3);
+            this.uiRChartUp_MeanT_TxtBx.Name = "uiRChartUp_MeanT_TxtBx";
+            this.uiRChartUp_MeanT_TxtBx.ReadOnly = true;
+            this.uiRChartUp_MeanT_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.uiRChartUp_MeanT_TxtBx.Size = new System.Drawing.Size(78, 20);
+            this.uiRChartUp_MeanT_TxtBx.TabIndex = 17;
+            this.uiRChartUp_MeanT_TxtBx.Text = "Mean type:";
+            // 
+            // uiRChartUp_Surr_TxtBx
+            // 
+            this.uiRChartUp_Surr_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.uiRChartUp_Surr_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
+            this.uiRChartUp_Surr_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiRChartUp_Surr_TxtBx.Location = new System.Drawing.Point(255, 3);
+            this.uiRChartUp_Surr_TxtBx.Name = "uiRChartUp_Surr_TxtBx";
+            this.uiRChartUp_Surr_TxtBx.ReadOnly = true;
+            this.uiRChartUp_Surr_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.uiRChartUp_Surr_TxtBx.Size = new System.Drawing.Size(78, 20);
+            this.uiRChartUp_Surr_TxtBx.TabIndex = 16;
+            this.uiRChartUp_Surr_TxtBx.Text = "Noise:";
+            // 
+            // uiRChartUp_Phen_TxtBx
+            // 
+            this.uiRChartUp_Phen_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.uiRChartUp_Phen_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
+            this.uiRChartUp_Phen_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiRChartUp_Phen_TxtBx.Location = new System.Drawing.Point(171, 3);
+            this.uiRChartUp_Phen_TxtBx.Name = "uiRChartUp_Phen_TxtBx";
+            this.uiRChartUp_Phen_TxtBx.ReadOnly = true;
+            this.uiRChartUp_Phen_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.uiRChartUp_Phen_TxtBx.Size = new System.Drawing.Size(78, 20);
+            this.uiRChartUp_Phen_TxtBx.TabIndex = 15;
+            this.uiRChartUp_Phen_TxtBx.Text = "Phenomenon:";
+            // 
+            // uiRChartUp_CrvIdx_TxtBx
+            // 
+            this.uiRChartUp_CrvIdx_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.uiRChartUp_CrvIdx_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
+            this.uiRChartUp_CrvIdx_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiRChartUp_CrvIdx_TxtBx.Location = new System.Drawing.Point(87, 3);
+            this.uiRChartUp_CrvIdx_TxtBx.Name = "uiRChartUp_CrvIdx_TxtBx";
+            this.uiRChartUp_CrvIdx_TxtBx.ReadOnly = true;
+            this.uiRChartUp_CrvIdx_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.uiRChartUp_CrvIdx_TxtBx.Size = new System.Drawing.Size(78, 20);
+            this.uiRChartUp_CrvIdx_TxtBx.TabIndex = 14;
+            this.uiRChartUp_CrvIdx_TxtBx.Text = "Curve index:";
+            // 
+            // uiRChartUp_CrvT_TxtBx
+            // 
+            this.uiRChartUp_CrvT_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.uiRChartUp_CrvT_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
+            this.uiRChartUp_CrvT_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiRChartUp_CrvT_TxtBx.Location = new System.Drawing.Point(3, 3);
+            this.uiRChartUp_CrvT_TxtBx.Name = "uiRChartUp_CrvT_TxtBx";
+            this.uiRChartUp_CrvT_TxtBx.ReadOnly = true;
+            this.uiRChartUp_CrvT_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.uiRChartUp_CrvT_TxtBx.Size = new System.Drawing.Size(78, 20);
+            this.uiRChartUp_CrvT_TxtBx.TabIndex = 13;
+            this.uiRChartUp_CrvT_TxtBx.Text = "Curve type:";
             // 
             // uiR_Formula_TbPg
             // 
@@ -574,6 +686,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.uiRChart_Chart)).EndInit();
             this.uiRChart_Down_TbLay.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.uiRChartDown_CrvIdx_Num)).EndInit();
+            this.uiRChart_Up_TbLay.ResumeLayout(false);
+            this.uiRChart_Up_TbLay.PerformLayout();
             this.uiR_Formula_TbPg.ResumeLayout(false);
             this.uiRFormula_TbLay.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.uiRFormula_PicBx)).EndInit();
@@ -620,5 +734,12 @@
         private System.Windows.Forms.TextBox uiRFormulaDown_CrvsNo2_TxtBx;
         private System.Windows.Forms.TextBox uiRFormulaDown_Dens1_TxtBx;
         private System.Windows.Forms.TextBox uiRFormulaDown_CrvsNo1_TxtBx;
+        private System.Windows.Forms.TableLayoutPanel uiRChart_Up_TbLay;
+        private System.Windows.Forms.TextBox uiRChartUp_CrvT_TxtBx;
+        private System.Windows.Forms.TextBox uiRChartUp_DtSet_TxtBx;
+        private System.Windows.Forms.TextBox uiRChartUp_MeanT_TxtBx;
+        private System.Windows.Forms.TextBox uiRChartUp_Surr_TxtBx;
+        private System.Windows.Forms.TextBox uiRChartUp_Phen_TxtBx;
+        private System.Windows.Forms.TextBox uiRChartUp_CrvIdx_TxtBx;
     }
 }

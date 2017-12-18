@@ -348,7 +348,7 @@
     <value>Czasomierz</value>
   </data>
   <data name="MainWindow_Ui_Form_Text" xml:space="preserve">
-    <value>Praca inżynierska 1.3</value>
+    <value>Praca inżynierska</value>
   </data>
   <data name="MessageBoxShower_GridPreviewer_Panel_IndexGreaterThanAllowedProblem_Caption" xml:space="preserve">
     <value>Niewłaściwa wartość indeksu</value>
@@ -916,5 +916,29 @@
   </data>
   <data name="StatisticalAnalysis_Ui_StandardDeviation_Noise2" xml:space="preserve">
     <value>Szum 2,0</value>
+  </data>
+  <data name="MessageBoxShower_StatisticalAnalysis_Preview_NoSavedPresetsError_Caption" xml:space="preserve">
+    <value>Błąd wymagań</value>
+  </data>
+  <data name="MessageBoxShower_StatisticalAnalysis_Preview_NoSavedPresetsError_Text" xml:space="preserve">
+    <value>Nie wygenerowano danych żadnej krzywej, więc nie zapisano żadnych ustawień wstępnych.</value>
+  </data>
+  <data name="StatisticalAnalysis_Ui_Preview_CurveIndex" xml:space="preserve">
+    <value>Indeks krzywej:</value>
+  </data>
+  <data name="StatisticalAnalysis_Ui_Preview_CurveType" xml:space="preserve">
+    <value>Typ krzywej:</value>
+  </data>
+  <data name="StatisticalAnalysis_Ui_Preview_DatasetSelection" xml:space="preserve">
+    <value>Wybór:</value>
+  </data>
+  <data name="StatisticalAnalysis_Ui_Preview_MeanType" xml:space="preserve">
+    <value>Typ średniej:</value>
+  </data>
+  <data name="StatisticalAnalysis_Ui_Preview_Noise" xml:space="preserve">
+    <value>Szum:</value>
+  </data>
+  <data name="StatisticalAnalysis_Ui_Preview_Phenomenon" xml:space="preserve">
+    <value>Zjawisko:</value>
   </data>
 </root>

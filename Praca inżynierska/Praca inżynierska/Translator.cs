@@ -781,6 +781,7 @@ namespace PI
                         public MbsSaValueOutOfRangeProblemStrings ProblemValueOutOfRange { get; private set; } = new MbsSaValueOutOfRangeProblemStrings();
                         public MbsSaUnrecognizedErrorStrings ErrorUnrecognized { get; private set; } = new MbsSaUnrecognizedErrorStrings();
                         public MbsSaPointsNotValidToChartProblemStrings ProblemPointsNotValidToChart { get; private set; } = new MbsSaPointsNotValidToChartProblemStrings();
+                        public MbsSaNoSavedPresetsErrorStrings ErrorNoSavedPresets { get; private set; } = new MbsSaNoSavedPresetsErrorStrings();
 
                         public class MbsSaValueOutOfRangeProblemStrings
                         {
@@ -800,6 +801,11 @@ namespace PI
                             public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_StatisticalAnalysis_Preview_PointsNotValidToChartProblem_Caption" ); } }
                         }
 
+                        public class MbsSaNoSavedPresetsErrorStrings
+                        {
+                            public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_StatisticalAnalysis_Preview_NoSavedPresetsError_Text" ); } }
+                            public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_StatisticalAnalysis_Preview_NoSavedPresetsError_Caption" ); } }
+                        }
                     }
                 }
 
@@ -915,6 +921,12 @@ namespace PI
                         public LocalizedString CrvsNo1 { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_NumberOfCurves1" ); } }
                         public LocalizedString Dens1 { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_Density1" ); } }
                         public LocalizedString NotApplicable { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_NotApplicable" ); } }
+                        public LocalizedString CrvIdx { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_CurveIndex" ); } }
+                        public LocalizedString CrvT { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_CurveType" ); } }
+                        public LocalizedString Phen { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_Phenomenon" ); } }
+                        public LocalizedString Noise { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_Noise" ); } }
+                        public LocalizedString MeanT { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_MeanType" ); } }
+                        public LocalizedString DtSetSel { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_DatasetSelection" ); } }
                     }
 
                 }

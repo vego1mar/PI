@@ -851,17 +851,23 @@ namespace PI
 
         private void DelegatorForStatAnalysis()
         {
-            using ( var dialog1 = new PatternCurveDefiner( Settings.Presets.Pcd ) ) {
-                dialog1.ShowDialog();
-
-                if ( dialog1.DialogResult != DialogResult.OK ) {
-                    return;
-                }
-
-                using ( var dialog2 = new StatAnalysis( dialog1.Settings ) ) {
-                    dialog2.ShowDialog();
-                }
+            if ( IsGeneratedCurvesSeriesEmpty() ) {
+                MsgBxShower.Stat.Preview.NoSavedPresetsError();
+                return;
             }
+
+            using ( var dialog = new StatAnalysis( Settings.Presets, DataChart ) ) {
+                dialog.ShowDialog();
+            }
+        }
+
+        private bool IsGeneratedCurvesSeriesEmpty()
+        {
+            if ( DataChart.GeneratedCurvesSet.Count <= 0 ) {
+                return true;
+            }
+
+            return false;
         }
 
         private void MainWindow_FormClosing( object sender, FormClosingEventArgs e )

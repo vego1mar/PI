@@ -34,7 +34,7 @@ namespace PI
             public int CrvT { get; set; }
         }
 
-        internal StatAnalysis( GenSettings.PcdGenSettings genSets )
+        internal StatAnalysis( GenSettings genSets, CurvesDataManager curvesData )
         {
             InitializeComponent();
             InitializePropertySettings( genSets );
@@ -57,19 +57,9 @@ namespace PI
             WindowThreadsName = nameof( StatAnalysis ) + "::" + nameof( GridPreviewer ) + "::" + WindowNo;
         }
 
-        private void InitializePropertySettings( GenSettings.PcdGenSettings genSets )
+        private void InitializePropertySettings( GenSettings genSets )
         {
-            Settings = new GenSettings();
-
-            if ( genSets != null ) {
-                Settings.Pcd.Scaffold = genSets.Scaffold;
-                Settings.Pcd.Parameters = genSets.Parameters;
-            }
-
-            Settings.Ui.NumberOfCurves = 100;
-            Settings.Ui.StartingXPoint = -2;
-            Settings.Ui.EndingXPoint = 2;
-            Settings.Ui.PointsDensity = 400;
+            Settings = genSets;
         }
 
         private void InitializePropertySurroundings()
@@ -641,6 +631,12 @@ namespace PI
             uiRFormulaDown_Dens2_TxtBx.Text = (Settings.Ui.PointsDensity + 1).ToString( Thread.CurrentThread.CurrentCulture );
             uiRFormulaDown_CrvsNo1_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.CrvsNo1.GetString();
             uiRFormulaDown_Dens1_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.Dens1.GetString();
+            uiRChartUp_CrvIdx_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.CrvIdx.GetString();
+            uiRChartUp_CrvT_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.CrvT.GetString();
+            uiRChartUp_Phen_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.Phen.GetString();
+            uiRChartUp_Surr_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.Noise.GetString();
+            uiRChartUp_MeanT_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.MeanT.GetString();
+            uiRChartUp_DtSet_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.DtSetSel.GetString();
         }
 
         private IList<string> GetLocalizedMeanTypes()

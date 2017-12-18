@@ -197,6 +197,13 @@ namespace PI
                     WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
                 }
 
+                internal void NoSavedPresetsError()
+                {
+                    string text = Translator.GetInstance().Strings.MsgBxShower.StatAnalysis.Preview.ErrorNoSavedPresets.Text.GetString();
+                    string caption = Translator.GetInstance().Strings.MsgBxShower.StatAnalysis.Preview.ErrorNoSavedPresets.Caption.GetString();
+                    WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
+                }
+
             }
         }
 

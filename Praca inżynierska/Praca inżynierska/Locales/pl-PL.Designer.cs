@@ -1663,7 +1663,7 @@ namespace PI.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Praca inżynierska 1.3.
+        ///   Looks up a localized string similar to Praca inżynierska.
         /// </summary>
         internal static string MainWindow_Ui_Form_Text {
             get {
@@ -2122,6 +2122,24 @@ namespace PI.Locales {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Błąd wymagań.
+        /// </summary>
+        internal static string MessageBoxShower_StatisticalAnalysis_Preview_NoSavedPresetsError_Caption {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_StatisticalAnalysis_Preview_NoSavedPresetsError_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nie wygenerowano danych żadnej krzywej, więc nie zapisano żadnych ustawień wstępnych..
+        /// </summary>
+        internal static string MessageBoxShower_StatisticalAnalysis_Preview_NoSavedPresetsError_Text {
+            get {
+                return ResourceManager.GetString("MessageBoxShower_StatisticalAnalysis_Preview_NoSavedPresetsError_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Problem wyboru danych.
         /// </summary>
         internal static string MessageBoxShower_StatisticalAnalysis_Preview_PointsNotValidToChartProblem_Caption {
@@ -2339,11 +2357,38 @@ namespace PI.Locales {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Indeks krzywej:.
+        /// </summary>
+        internal static string StatisticalAnalysis_Ui_Preview_CurveIndex {
+            get {
+                return ResourceManager.GetString("StatisticalAnalysis_Ui_Preview_CurveIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Typ krzywej:.
+        /// </summary>
+        internal static string StatisticalAnalysis_Ui_Preview_CurveType {
+            get {
+                return ResourceManager.GetString("StatisticalAnalysis_Ui_Preview_CurveType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dane.
         /// </summary>
         internal static string StatisticalAnalysis_Ui_Preview_Dataset {
             get {
                 return ResourceManager.GetString("StatisticalAnalysis_Ui_Preview_Dataset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wybór:.
+        /// </summary>
+        internal static string StatisticalAnalysis_Ui_Preview_DatasetSelection {
+            get {
+                return ResourceManager.GetString("StatisticalAnalysis_Ui_Preview_DatasetSelection", resourceCulture);
             }
         }
         
@@ -2366,6 +2411,24 @@ namespace PI.Locales {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Typ średniej:.
+        /// </summary>
+        internal static string StatisticalAnalysis_Ui_Preview_MeanType {
+            get {
+                return ResourceManager.GetString("StatisticalAnalysis_Ui_Preview_MeanType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Szum:.
+        /// </summary>
+        internal static string StatisticalAnalysis_Ui_Preview_Noise {
+            get {
+                return ResourceManager.GetString("StatisticalAnalysis_Ui_Preview_Noise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to N/D.
         /// </summary>
         internal static string StatisticalAnalysis_Ui_Preview_NotApplicable {
@@ -2380,6 +2443,15 @@ namespace PI.Locales {
         internal static string StatisticalAnalysis_Ui_Preview_NumberOfCurves1 {
             get {
                 return ResourceManager.GetString("StatisticalAnalysis_Ui_Preview_NumberOfCurves1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zjawisko:.
+        /// </summary>
+        internal static string StatisticalAnalysis_Ui_Preview_Phenomenon {
+            get {
+                return ResourceManager.GetString("StatisticalAnalysis_Ui_Preview_Phenomenon", resourceCulture);
             }
         }
         

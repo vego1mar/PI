@@ -349,7 +349,7 @@
     <value>Timer</value>
   </data>
   <data name="MainWindow_Ui_Form_Text" xml:space="preserve">
-    <value>Engineer's thesis 1.3</value>
+    <value>Engineer's thesis</value>
   </data>
   <data name="MessageBoxShower_GridPreviewer_Panel_IndexGreaterThanAllowedProblem_Caption" xml:space="preserve">
     <value>Improper index value</value>
@@ -917,5 +917,29 @@
   </data>
   <data name="StatisticalAnalysis_Ui_StandardDeviation_Noise2" xml:space="preserve">
     <value>Noise 2.0</value>
+  </data>
+  <data name="MessageBoxShower_StatisticalAnalysis_Preview_NoSavedPresetsError_Caption" xml:space="preserve">
+    <value>Requirements error</value>
+  </data>
+  <data name="MessageBoxShower_StatisticalAnalysis_Preview_NoSavedPresetsError_Text" xml:space="preserve">
+    <value>No curves data has been produced, so no presets has been saved.</value>
+  </data>
+  <data name="StatisticalAnalysis_Ui_Preview_CurveIndex" xml:space="preserve">
+    <value>Curve index:</value>
+  </data>
+  <data name="StatisticalAnalysis_Ui_Preview_CurveType" xml:space="preserve">
+    <value>Curve type:</value>
+  </data>
+  <data name="StatisticalAnalysis_Ui_Preview_DatasetSelection" xml:space="preserve">
+    <value>Selection:</value>
+  </data>
+  <data name="StatisticalAnalysis_Ui_Preview_MeanType" xml:space="preserve">
+    <value>Mean type:</value>
+  </data>
+  <data name="StatisticalAnalysis_Ui_Preview_Noise" xml:space="preserve">
+    <value>Noise:</value>
+  </data>
+  <data name="StatisticalAnalysis_Ui_Preview_Phenomenon" xml:space="preserve">
+    <value>Phenomenon:</value>
   </data>
 </root>
