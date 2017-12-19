@@ -281,9 +281,6 @@
   <data name="MainWindow_Panel_Generate_CurvesSet" xml:space="preserve">
     <value>Cały zestaw krzywych</value>
   </data>
-  <data name="MainWindow_Panel_Generate_Define" xml:space="preserve">
-    <value>Zdefiniuj</value>
-  </data>
   <data name="MainWindow_Panel_Generate_Density" xml:space="preserve">
     <value>Punkty przedziału:</value>
   </data>

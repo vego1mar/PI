@@ -196,19 +196,19 @@ namespace PI
         {
             switch ( Settings.Presets.Pcd.Scaffold ) {
             case Enums.PatternCurveScaffold.Polynomial:
-                uiPnlGen_CrvScaff2_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.ScaffPoly.GetString();
+                uiPnlGen_Def_Btn.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.ScaffPoly.GetString();
                 break;
             case Enums.PatternCurveScaffold.Hyperbolic:
-                uiPnlGen_CrvScaff2_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.ScaffHyp.GetString();
+                uiPnlGen_Def_Btn.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.ScaffHyp.GetString();
                 break;
             case Enums.PatternCurveScaffold.WaveformSine:
             case Enums.PatternCurveScaffold.WaveformSquare:
             case Enums.PatternCurveScaffold.WaveformTriangle:
             case Enums.PatternCurveScaffold.WaveformSawtooth:
-                uiPnlGen_CrvScaff2_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.ScaffWave.GetString();
+                uiPnlGen_Def_Btn.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.ScaffWave.GetString();
                 break;
             default:
-                uiPnlGen_CrvScaff2_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.ScaffNone.GetString();
+                uiPnlGen_Def_Btn.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.ScaffNone.GetString();
                 break;
             }
         }
@@ -250,7 +250,7 @@ namespace PI
 
         private void UiPanelGenerate_GenerateSet_Click( object sender, EventArgs e )
         {
-            if ( uiPnlGen_CrvScaff2_TxtBx.Text == Translator.GetInstance().Strings.MainWindow.Panel.Generate.ScaffNone.GetString() ) {
+            if ( uiPnlGen_Def_Btn.Text == Translator.GetInstance().Strings.MainWindow.Panel.Generate.ScaffNone.GetString() ) {
                 MsgBxShower.Ui.PatternCurveNotChosenPrerequisite();
                 return;
             }
@@ -890,8 +890,8 @@ namespace PI
             uiPnlGen_TbPg.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.Title.GetString();
             uiPnlGen_PattCrvScaff_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.PattCrvScaff.GetString();
             uiPnlGen_CrvScaff1_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.CrvScaff1.GetString();
+            uiPnlGen_Def_Btn.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.ScaffNone.GetString();
             UpdateUiByChosenScaffoldStatus();
-            uiPnlGen_Def_Btn.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.Def.GetString();
             uiPnlGen_CrvsSet_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.CrvsSet.GetString();
             uiPnlGen_Crvs1No_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.Crvs1No.GetString();
             uiPnlGen_StartX_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.StartX.GetString();

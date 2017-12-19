@@ -185,7 +185,6 @@ namespace PI
                         public LocalizedString ScaffHyp { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_CurveScaffold2_Hyperbolic" ); } }
                         public LocalizedString ScaffWave { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_CurveScaffold2_Waveform" ); } }
                         public LocalizedString ScaffNone { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_CurveScaffold2_NotChosen" ); } }
-                        public LocalizedString Def { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_Define" ); } }
                         public LocalizedString CrvsSet { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_CurvesSet" ); } }
                         public LocalizedString Crvs1No { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_NumberOfCurves1" ); } }
                         public LocalizedString StartX { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_StartingXPoint" ); } }

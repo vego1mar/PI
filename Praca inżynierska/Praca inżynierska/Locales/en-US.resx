@@ -268,22 +268,19 @@
     <value>Curve scaffold:</value>
   </data>
   <data name="MainWindow_Panel_Generate_CurveScaffold2_Hyperbolic" xml:space="preserve">
-    <value>Hyperbolic</value>
+    <value>hyperbolic</value>
   </data>
   <data name="MainWindow_Panel_Generate_CurveScaffold2_NotChosen" xml:space="preserve">
-    <value>Not chosen</value>
+    <value>not chosen</value>
   </data>
   <data name="MainWindow_Panel_Generate_CurveScaffold2_Polynomial" xml:space="preserve">
-    <value>Polynomial</value>
+    <value>polynomial</value>
   </data>
   <data name="MainWindow_Panel_Generate_CurveScaffold2_Waveform" xml:space="preserve">
-    <value>Waveform</value>
+    <value>waveform</value>
   </data>
   <data name="MainWindow_Panel_Generate_CurvesSet" xml:space="preserve">
     <value>Whole set of curves</value>
-  </data>
-  <data name="MainWindow_Panel_Generate_Define" xml:space="preserve">
-    <value>Define</value>
   </data>
   <data name="MainWindow_Panel_Generate_Density" xml:space="preserve">
     <value>Interval points:</value>

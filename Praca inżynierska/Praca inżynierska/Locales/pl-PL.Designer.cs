@@ -1465,15 +1465,6 @@ namespace PI.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zdefiniuj.
-        /// </summary>
-        internal static string MainWindow_Panel_Generate_Define {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Generate_Define", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Punkty przedziału:.
         /// </summary>
         internal static string MainWindow_Panel_Generate_Density {

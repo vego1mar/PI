@@ -1420,7 +1420,7 @@ namespace PI.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hyperbolic.
+        ///   Looks up a localized string similar to hyperbolic.
         /// </summary>
         internal static string MainWindow_Panel_Generate_CurveScaffold2_Hyperbolic {
             get {
@@ -1429,7 +1429,7 @@ namespace PI.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Not chosen.
+        ///   Looks up a localized string similar to not chosen.
         /// </summary>
         internal static string MainWindow_Panel_Generate_CurveScaffold2_NotChosen {
             get {
@@ -1438,7 +1438,7 @@ namespace PI.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Polynomial.
+        ///   Looks up a localized string similar to polynomial.
         /// </summary>
         internal static string MainWindow_Panel_Generate_CurveScaffold2_Polynomial {
             get {
@@ -1447,7 +1447,7 @@ namespace PI.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Waveform.
+        ///   Looks up a localized string similar to waveform.
         /// </summary>
         internal static string MainWindow_Panel_Generate_CurveScaffold2_Waveform {
             get {
@@ -1461,15 +1461,6 @@ namespace PI.Locales {
         internal static string MainWindow_Panel_Generate_CurvesSet {
             get {
                 return ResourceManager.GetString("MainWindow_Panel_Generate_CurvesSet", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Define.
-        /// </summary>
-        internal static string MainWindow_Panel_Generate_Define {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Generate_Define", resourceCulture);
             }
         }
         
