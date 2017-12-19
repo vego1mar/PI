@@ -135,7 +135,6 @@ namespace PI
                         public LocalizedString Title { get { return new LocalizedString( CurrentLanguage, "MainWindow_Menu_Program" ); } }
                         public LocalizedString StatAnal { get { return new LocalizedString( CurrentLanguage, "MainWindow_Menu_Program_StatisticalAnalysis" ); } }
                         public LocalizedString Lang { get { return new LocalizedString( CurrentLanguage, "MainWindow_Menu_Program_SelectLanguage" ); } }
-                        public LocalizedString Update { get { return new LocalizedString( CurrentLanguage, "MainWindow_Menu_Program_CheckUpdate" ); } }
                         public LocalizedString Exit { get { return new LocalizedString( CurrentLanguage, "MainWindow_Menu_Program_Exit" ); } }
                     }
 
@@ -593,7 +592,6 @@ namespace PI
                 public class MbsMainWindowStrings
                 {
                     public MbsUiStrings Ui { get; private set; } = new MbsUiStrings();
-                    public MbsMenuStrings Menu { get; private set; } = new MbsMenuStrings();
 
                     public class MbsUiStrings
                     {
@@ -652,45 +650,6 @@ namespace PI
                         {
                             public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_NotEnoughCurvesForMedianaStop_Text" ); } }
                             public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Ui_NotEnoughCurvesForMedianaStop_Caption" ); } }
-                        }
-
-                    }
-
-                    public class MbsMenuStrings
-                    {
-                        public MbsMenuUpdateStrings Update { get; private set; } = new MbsMenuUpdateStrings();
-
-                        public class MbsMenuUpdateStrings
-                        {
-                            public MbsCannotDownloadUpdateInfoProblemStrings ProblemCannotDownloadUpdateInfo { get; private set; } = new MbsCannotDownloadUpdateInfoProblemStrings();
-                            public MbsRunningLatestReleaseAppInfoStrings InfoRunningLatestReleaseApp { get; private set; } = new MbsRunningLatestReleaseAppInfoStrings();
-                            public MbsRunningObsoleteAppInfoStrings InfoRunningObsoleteApp { get; private set; } = new MbsRunningObsoleteAppInfoStrings();
-                            public MbsCannotMatchVersionsErrorStrings ErrorCannotMatchVersions { get; private set; } = new MbsCannotMatchVersionsErrorStrings();
-
-                            public class MbsCannotDownloadUpdateInfoProblemStrings
-                            {
-                                public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Menu_Update_CannotDownloadUpdateInfoProblem_Text" ); } }
-                                public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Menu_Update_CannotDownloadUpdateInfoProblem_Caption" ); } }
-                            }
-
-                            public class MbsRunningLatestReleaseAppInfoStrings
-                            {
-                                public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Menu_Update_RunningLatestReleaseAppInfo_Text" ); } }
-                                public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Menu_Update_RunningLatestReleaseAppInfo_Caption" ); } }
-                            }
-
-                            public class MbsRunningObsoleteAppInfoStrings
-                            {
-                                public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Menu_Update_RunningObsoleteAppInfo_Text" ); } }
-                                public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Menu_Update_RunningObsoleteAppInfo_Caption" ); } }
-                            }
-
-                            public class MbsCannotMatchVersionsErrorStrings
-                            {
-                                public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Menu_Update_CannotMatchVersionsError_Text" ); } }
-                                public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "MessageBoxShower_MainWindow_Menu_Update_CannotMatchVersionsError_Caption" ); } }
-                            }
-
                         }
 
                     }

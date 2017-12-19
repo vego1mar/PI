@@ -463,66 +463,6 @@ namespace PI
             uiPnlPrg_LogPath2_TxtBx.Text = Logger.GetFullPathOfLogFileLocation();
         }
 
-        private void UiMenuProgram_CheckUpdate_Click( object sender, EventArgs e )
-        {
-            string httpContent = WebHelper.GetContentThroughHttp( Properties.Settings.Default["UpdateUrl"].ToString() );
-
-            if ( httpContent == null ) {
-                MsgBxShower.Menu.CannotDownloadUpdateInfoProblem();
-                return;
-            }
-
-            ushort currentVersion = 0;
-            ushort latestVersion = 0;
-
-            try {
-                currentVersion = Convert.ToUInt16( Properties.Settings.Default["Commits"] );
-                latestVersion = GetCommitsNumber( httpContent );
-            }
-            catch ( ArgumentNullException x ) {
-                Logger.WriteException( x );
-            }
-            catch ( ArgumentOutOfRangeException x ) {
-                Logger.WriteException( x );
-            }
-            catch ( FormatException x ) {
-                Logger.WriteException( x );
-            }
-            catch ( InvalidCastException x ) {
-                Logger.WriteException( x );
-            }
-            catch ( OverflowException x ) {
-                Logger.WriteException( x );
-            }
-            catch ( Exception x ) {
-                Logger.WriteException( x );
-            }
-            finally {
-                if ( currentVersion == 0 || latestVersion == 0 ) {
-                    MsgBxShower.Menu.CannotMatchVersionsError();
-                }
-            }
-
-            if ( currentVersion >= latestVersion ) {
-                MsgBxShower.Menu.RunningLatestReleaseAppInfo();
-                return;
-            }
-
-            MsgBxShower.Menu.RunningObsoleteAppInfo();
-        }
-
-        private ushort GetCommitsNumber( string urlContent )
-        {
-            const int NUMBER_LINE_LENGTH = 32;
-            const string SEARCH_MARKER = "<span class=\"num text-emphasized\">";
-            int markerIndex = urlContent.IndexOf( SEARCH_MARKER );
-            string commitsLine = urlContent.Substring( markerIndex + 1, SEARCH_MARKER.Length + NUMBER_LINE_LENGTH );
-            int startIndex = commitsLine.IndexOf( '\n' ) + 1;
-            int numberLength = commitsLine.LastIndexOf( '\n' ) - startIndex;
-            string commits = commitsLine.Substring( startIndex, numberLength );
-            return Convert.ToUInt16( commits );
-        }
-
         private void UiPanelDataSheet_Malform_Click( object sender, EventArgs e )
         {
             if ( DataChart.PatternCurveSet.Points.Count == 0 ) {
@@ -911,7 +851,6 @@ namespace PI
             uiMenu_Prg.Text = Translator.GetInstance().Strings.MainWindow.Menu.Program.Title.GetString();
             uiMenuPrg_StatAnal.Text = Translator.GetInstance().Strings.MainWindow.Menu.Program.StatAnal.GetString();
             uiMenuPrg_Lang.Text = Translator.GetInstance().Strings.MainWindow.Menu.Program.Lang.GetString();
-            uiMenuPrg_Update.Text = Translator.GetInstance().Strings.MainWindow.Menu.Program.Update.GetString();
             uiMenuPrg_Exit.Text = Translator.GetInstance().Strings.MainWindow.Menu.Program.Exit.GetString();
         }
 

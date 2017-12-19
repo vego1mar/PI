@@ -218,9 +218,6 @@
   <data name="MainWindow_Menu_Program" xml:space="preserve">
     <value>Program</value>
   </data>
-  <data name="MainWindow_Menu_Program_CheckUpdate" xml:space="preserve">
-    <value>Sprawdź aktualizacje</value>
-  </data>
   <data name="MainWindow_Menu_Program_Exit" xml:space="preserve">
     <value>Zakończ</value>
   </data>
@@ -355,27 +352,6 @@
   </data>
   <data name="MessageBoxShower_GridPreviewer_Panel_IndexGreaterThanAllowedProblem_Text" xml:space="preserve">
     <value>Wskazany indeks byłby wyższy niż dozwolony. Zmiana odrzucona.</value>
-  </data>
-  <data name="MessageBoxShower_MainWindow_Menu_Update_CannotDownloadUpdateInfoProblem_Caption" xml:space="preserve">
-    <value>Problem połączenia z siecią</value>
-  </data>
-  <data name="MessageBoxShower_MainWindow_Menu_Update_CannotDownloadUpdateInfoProblem_Text" xml:space="preserve">
-    <value>Nie można pobrać informacji o aktualizacji ze względu na jakiś błąd.</value>
-  </data>
-  <data name="MessageBoxShower_MainWindow_Menu_Update_CannotMatchVersionsError_Caption" xml:space="preserve">
-    <value>Błąd parsowania informacji o aktualizacji</value>
-  </data>
-  <data name="MessageBoxShower_MainWindow_Menu_Update_CannotMatchVersionsError_Text" xml:space="preserve">
-    <value>Wystąpił wyjątek podczas porównywania obecnej wersji z bieżącą.</value>
-  </data>
-  <data name="MessageBoxShower_MainWindow_Menu_Update_RunningLatestReleaseAppInfo_Text" xml:space="preserve">
-    <value>Masz uruchomioną najnowszą wersję.</value>
-  </data>
-  <data name="MessageBoxShower_MainWindow_Menu_Update_RunningObsoleteAppInfo_Caption" xml:space="preserve">
-    <value>Aktualizacja dostępna</value>
-  </data>
-  <data name="MessageBoxShower_MainWindow_Menu_Update_RunningObsoleteAppInfo_Text" xml:space="preserve">
-    <value>Jest dostępna nowa wersja tej aplikacji. Odwiedź https://github.com/vego1mar/PI.</value>
   </data>
   <data name="MessageBoxShower_MainWindow_Ui_ChartRefreshingError_Caption" xml:space="preserve">
     <value>Unieważnione dane</value>
@@ -577,9 +553,6 @@
   </data>
   <data name="MessageBoxShower_GridPreviewer_Panel_PerformOperationError_Text" xml:space="preserve">
     <value>Nie można obliczyć wartości dla wszystkich wskazanych argumentów. Przeciążenie. Zmiany odrzucone.</value>
-  </data>
-  <data name="MessageBoxShower_MainWindow_Menu_Update_RunningLatestReleaseAppInfo_Caption" xml:space="preserve">
-    <value>Aplikacja aktualna</value>
   </data>
   <data name="MessageBoxShower_MainWindow_Ui_PointsNotValidToChartProblem_Caption" xml:space="preserve">
     <value>Ostrzeżenie generowania punktów</value>

@@ -1,7 +1,0 @@
-﻿BACKLOG
-
-TODO: General - Configuration file
-TODO: Menu - New update notification system
-
-TODO: ChartSettings - Tool tips for TextBoxes
-TODO: StatAnalysis - Cascading closing of windows running on threads (PROBLEM)

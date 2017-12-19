@@ -90,7 +90,6 @@
             this.uiMenu_Prg = new System.Windows.Forms.ToolStripMenuItem();
             this.uiMenuPrg_StatAnal = new System.Windows.Forms.ToolStripMenuItem();
             this.uiMenuPrg_Lang = new System.Windows.Forms.ToolStripMenuItem();
-            this.uiMenuPrg_Update = new System.Windows.Forms.ToolStripMenuItem();
             this.uiMenuPrg_Exit = new System.Windows.Forms.ToolStripMenuItem();
             this.uiMenu_Pnl = new System.Windows.Forms.ToolStripMenuItem();
             this.uiMenuPnl_KeepProp = new System.Windows.Forms.ToolStripMenuItem();
@@ -1090,7 +1089,6 @@
             this.uiMenu_Prg.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.uiMenuPrg_StatAnal,
             this.uiMenuPrg_Lang,
-            this.uiMenuPrg_Update,
             this.uiMenuPrg_Exit});
             this.uiMenu_Prg.Font = new System.Drawing.Font("Consolas", 8.25F);
             this.uiMenu_Prg.Name = "uiMenu_Prg";
@@ -1110,13 +1108,6 @@
             this.uiMenuPrg_Lang.Size = new System.Drawing.Size(194, 22);
             this.uiMenuPrg_Lang.Text = "Select language";
             this.uiMenuPrg_Lang.Click += new System.EventHandler(this.UiMenuProgram_SelectLanguage_Click);
-            // 
-            // uiMenuPrg_Update
-            // 
-            this.uiMenuPrg_Update.Name = "uiMenuPrg_Update";
-            this.uiMenuPrg_Update.Size = new System.Drawing.Size(194, 22);
-            this.uiMenuPrg_Update.Text = "Check update";
-            this.uiMenuPrg_Update.Click += new System.EventHandler(this.UiMenuProgram_CheckUpdate_Click);
             // 
             // uiMenuPrg_Exit
             // 
@@ -1319,7 +1310,6 @@
         private System.Windows.Forms.TextBox uiPnlPrg_LogPath2_TxtBx;
         private System.Windows.Forms.TextBox uiPnlPrg_LogPath1_TxtBx;
         private System.Windows.Forms.TextBox uiPnlDtSh_GsNoise_TxtBx;
-        private System.Windows.Forms.ToolStripMenuItem uiMenuPrg_Update;
         private System.Windows.Forms.NumericUpDown uiPnlGen_Dens_Num;
         private System.Windows.Forms.NumericUpDown uiPnlGen_EndX_Num;
         private System.Windows.Forms.TextBox uiPnlGen_Dens_TxtBx;

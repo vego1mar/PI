@@ -148,7 +148,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Translator.cs" />
     <Compile Include="UiSettings.cs" />
-    <Compile Include="WebHelper.cs" />
     <Compile Include="WinFormsHelper.cs" />
     <EmbeddedResource Include="AvgInfo.resx">
       <DependentUpon>AvgInfo.cs</DependentUpon>

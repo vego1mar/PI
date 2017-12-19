@@ -6,7 +6,6 @@ namespace PI
     internal static class MsgBxShower
     {
         internal static UiMsgBoxes Ui { get; } = new UiMsgBoxes();
-        internal static MenuMsgBoxes Menu { get; } = new MenuMsgBoxes();
         internal static GridPreviewerMsgBoxes Gprv { get; } = new GridPreviewerMsgBoxes();
         internal static PcdMsgBoxes Pcd { get; } = new PcdMsgBoxes();
         internal static StatMsgBoxes Stat { get; } = new StatMsgBoxes();
@@ -68,39 +67,6 @@ namespace PI
             {
                 string text = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Ui.StopNotEnoughCurvesForMediana.Text.GetString();
                 string caption = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Ui.StopNotEnoughCurvesForMediana.Caption.GetString();
-                WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
-            }
-
-        }
-
-        internal class MenuMsgBoxes
-        {
-
-            internal void CannotDownloadUpdateInfoProblem()
-            {
-                string text = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Menu.Update.ProblemCannotDownloadUpdateInfo.Text.GetString();
-                string caption = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Menu.Update.ProblemCannotDownloadUpdateInfo.Caption.GetString();
-                WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
-            }
-
-            internal void RunningLatestReleaseAppInfo()
-            {
-                string text = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Menu.Update.InfoRunningLatestReleaseApp.Text.GetString();
-                string caption = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Menu.Update.InfoRunningLatestReleaseApp.Caption.GetString();
-                WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Information );
-            }
-
-            internal void RunningObsoleteAppInfo()
-            {
-                string text = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Menu.Update.InfoRunningObsoleteApp.Text.GetString();
-                string caption = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Menu.Update.InfoRunningObsoleteApp.Caption.GetString();
-                WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Information );
-            }
-
-            internal void CannotMatchVersionsError()
-            {
-                string text = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Menu.Update.ErrorCannotMatchVersions.Text.GetString();
-                string caption = Translator.GetInstance().Strings.MsgBxShower.MainWindow.Menu.Update.ErrorCannotMatchVersions.Caption.GetString();
                 WinFormsHelper.ShowMessageBoxSafe( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
             }
 

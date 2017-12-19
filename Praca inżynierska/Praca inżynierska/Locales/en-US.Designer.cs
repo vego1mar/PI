@@ -1276,15 +1276,6 @@ namespace PI.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Check update.
-        /// </summary>
-        internal static string MainWindow_Menu_Program_CheckUpdate {
-            get {
-                return ResourceManager.GetString("MainWindow_Menu_Program_CheckUpdate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
         internal static string MainWindow_Menu_Program_Exit {
@@ -1884,78 +1875,6 @@ namespace PI.Locales {
         internal static string MessageBoxShower_GridPreviewer_Panel_PerformOperationError_Text {
             get {
                 return ResourceManager.GetString("MessageBoxShower_GridPreviewer_Panel_PerformOperationError_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Web connection problem.
-        /// </summary>
-        internal static string MessageBoxShower_MainWindow_Menu_Update_CannotDownloadUpdateInfoProblem_Caption {
-            get {
-                return ResourceManager.GetString("MessageBoxShower_MainWindow_Menu_Update_CannotDownloadUpdateInfoProblem_Caption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cannot download update info due to some error..
-        /// </summary>
-        internal static string MessageBoxShower_MainWindow_Menu_Update_CannotDownloadUpdateInfoProblem_Text {
-            get {
-                return ResourceManager.GetString("MessageBoxShower_MainWindow_Menu_Update_CannotDownloadUpdateInfoProblem_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update info parsing error.
-        /// </summary>
-        internal static string MessageBoxShower_MainWindow_Menu_Update_CannotMatchVersionsError_Caption {
-            get {
-                return ResourceManager.GetString("MessageBoxShower_MainWindow_Menu_Update_CannotMatchVersionsError_Caption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An exception occured during matching current and latest versions..
-        /// </summary>
-        internal static string MessageBoxShower_MainWindow_Menu_Update_CannotMatchVersionsError_Text {
-            get {
-                return ResourceManager.GetString("MessageBoxShower_MainWindow_Menu_Update_CannotMatchVersionsError_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Up-to-date.
-        /// </summary>
-        internal static string MessageBoxShower_MainWindow_Menu_Update_RunningLatestReleaseAppInfo_Caption {
-            get {
-                return ResourceManager.GetString("MessageBoxShower_MainWindow_Menu_Update_RunningLatestReleaseAppInfo_Caption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You&apos;re running the latest version..
-        /// </summary>
-        internal static string MessageBoxShower_MainWindow_Menu_Update_RunningLatestReleaseAppInfo_Text {
-            get {
-                return ResourceManager.GetString("MessageBoxShower_MainWindow_Menu_Update_RunningLatestReleaseAppInfo_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update available.
-        /// </summary>
-        internal static string MessageBoxShower_MainWindow_Menu_Update_RunningObsoleteAppInfo_Caption {
-            get {
-                return ResourceManager.GetString("MessageBoxShower_MainWindow_Menu_Update_RunningObsoleteAppInfo_Caption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to There is a newer version of this app. Visit https://github.com/vego1mar/PI..
-        /// </summary>
-        internal static string MessageBoxShower_MainWindow_Menu_Update_RunningObsoleteAppInfo_Text {
-            get {
-                return ResourceManager.GetString("MessageBoxShower_MainWindow_Menu_Update_RunningObsoleteAppInfo_Text", resourceCulture);
             }
         }
         

@@ -219,9 +219,6 @@
   <data name="MainWindow_Menu_Program" xml:space="preserve">
     <value>Program</value>
   </data>
-  <data name="MainWindow_Menu_Program_CheckUpdate" xml:space="preserve">
-    <value>Check update</value>
-  </data>
   <data name="MainWindow_Menu_Program_Exit" xml:space="preserve">
     <value>Exit</value>
   </data>
@@ -356,27 +353,6 @@
   </data>
   <data name="MessageBoxShower_GridPreviewer_Panel_IndexGreaterThanAllowedProblem_Text" xml:space="preserve">
     <value>Specified index would be greater than allowed. Change rejected.</value>
-  </data>
-  <data name="MessageBoxShower_MainWindow_Menu_Update_CannotDownloadUpdateInfoProblem_Caption" xml:space="preserve">
-    <value>Web connection problem</value>
-  </data>
-  <data name="MessageBoxShower_MainWindow_Menu_Update_CannotDownloadUpdateInfoProblem_Text" xml:space="preserve">
-    <value>Cannot download update info due to some error.</value>
-  </data>
-  <data name="MessageBoxShower_MainWindow_Menu_Update_CannotMatchVersionsError_Caption" xml:space="preserve">
-    <value>Update info parsing error</value>
-  </data>
-  <data name="MessageBoxShower_MainWindow_Menu_Update_CannotMatchVersionsError_Text" xml:space="preserve">
-    <value>An exception occured during matching current and latest versions.</value>
-  </data>
-  <data name="MessageBoxShower_MainWindow_Menu_Update_RunningLatestReleaseAppInfo_Text" xml:space="preserve">
-    <value>You're running the latest version.</value>
-  </data>
-  <data name="MessageBoxShower_MainWindow_Menu_Update_RunningObsoleteAppInfo_Caption" xml:space="preserve">
-    <value>Update available</value>
-  </data>
-  <data name="MessageBoxShower_MainWindow_Menu_Update_RunningObsoleteAppInfo_Text" xml:space="preserve">
-    <value>There is a newer version of this app. Visit https://github.com/vego1mar/PI.</value>
   </data>
   <data name="MessageBoxShower_MainWindow_Ui_ChartRefreshingError_Caption" xml:space="preserve">
     <value>Invalidated data</value>
@@ -578,9 +554,6 @@
   </data>
   <data name="MessageBoxShower_GridPreviewer_Panel_PerformOperationError_Text" xml:space="preserve">
     <value>Cannot calculate values for all specified arguments. Overflow. Changes rejected.</value>
-  </data>
-  <data name="MessageBoxShower_MainWindow_Menu_Update_RunningLatestReleaseAppInfo_Caption" xml:space="preserve">
-    <value>Up-to-date</value>
   </data>
   <data name="MessageBoxShower_MainWindow_Ui_PointsNotValidToChartProblem_Caption" xml:space="preserve">
     <value>Generating points warning</value>

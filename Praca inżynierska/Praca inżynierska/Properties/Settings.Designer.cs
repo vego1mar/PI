@@ -22,23 +22,5 @@ namespace PI.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://github.com/vego1mar/PI")]
-        public string UpdateUrl {
-            get {
-                return ((string)(this["UpdateUrl"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("53")]
-        public ushort Commits {
-            get {
-                return ((ushort)(this["Commits"]));
-            }
-        }
     }
 }
