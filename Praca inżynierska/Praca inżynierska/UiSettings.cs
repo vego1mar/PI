@@ -3,6 +3,7 @@
     internal class UiSettings
     {
         internal MenuSettings Menu { get; set; } = new MenuSettings();
+        internal MainWindowSettings MainWindow { get; set; } = new MainWindowSettings();
         internal ChartSettingsPool.CurveTypeSettings Series { get; set; } = new ChartSettingsPool.CurveTypeSettings();
         internal GenSettings Presets { get; set; } = new GenSettings();
 
@@ -14,8 +15,19 @@
             {
                 internal bool KeepProportions { get; set; } = true;
                 internal bool Hide { get; set; } = false;
-                internal int SplitterDistance { get; set; } = 248;
+                internal int SplitterDistance { get; set; } = 290;
                 internal bool Lock { get; set; } = false;
+            }
+        }
+
+        internal class MainWindowSettings
+        {
+            internal MainWindowDimensionsSettings Dimensions { get; set; } = new MainWindowDimensionsSettings();
+
+            internal class MainWindowDimensionsSettings
+            {
+                internal int Height { get; set; } = 720;
+                internal int Width { get; set; } = 1300;
             }
         }
 

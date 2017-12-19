@@ -196,6 +196,7 @@ namespace PI
                         public LocalizedString MeanT { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_MeanType" ); } }
                         public LocalizedString Crvs2No { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_NumberOfCurves2" ); } }
                         public LocalizedString Apply { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_Apply" ); } }
+                        public LocalizedString StdDev1 { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_StandardDeviation1" ); } }
                     }
 
                     public class MwDatasheetTabStrings

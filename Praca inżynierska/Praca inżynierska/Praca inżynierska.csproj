@@ -283,7 +283,9 @@
     <None Include="Pictures\CustomTolerance_Classifier.png" />
     <None Include="Pictures\CustomTolerance_Comparer.png" />
     <None Include="Pictures\StandardDeviation_Formula.png" />
-    <Content Include="Stuff\Backlog.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Stuff\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

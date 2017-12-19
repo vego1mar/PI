@@ -1537,6 +1537,15 @@ namespace PI.Locales {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Standard deviation:.
+        /// </summary>
+        internal static string MainWindow_Panel_Generate_StandardDeviation1 {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Generate_StandardDeviation1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Starting X point:.
         /// </summary>
         internal static string MainWindow_Panel_Generate_StartingXPoint {

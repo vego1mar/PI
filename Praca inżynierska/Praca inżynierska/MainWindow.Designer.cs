@@ -101,6 +101,8 @@
             this.uiMenu_Chart = new System.Windows.Forms.ToolStripMenuItem();
             this.uiMenuChart_Settings = new System.Windows.Forms.ToolStripMenuItem();
             this.uiMw_SpCtn = new System.Windows.Forms.SplitContainer();
+            this.uiPnlGen_StdDev1_TxtBx = new System.Windows.Forms.TextBox();
+            this.uiPnlGen_StdDev2_TxtBx = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.uiCharts_Crv)).BeginInit();
             this.ui_Pnl.SuspendLayout();
             this.uiPnl_TabCtrl.SuspendLayout();
@@ -168,7 +170,7 @@
             series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             this.uiCharts_Crv.Series.Add(series1);
-            this.uiCharts_Crv.Size = new System.Drawing.Size(681, 614);
+            this.uiCharts_Crv.Size = new System.Drawing.Size(666, 614);
             this.uiCharts_Crv.TabIndex = 0;
             this.uiCharts_Crv.Text = "uiCurveChart";
             // 
@@ -179,7 +181,7 @@
             this.ui_Pnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ui_Pnl.Location = new System.Drawing.Point(0, 0);
             this.ui_Pnl.Name = "ui_Pnl";
-            this.ui_Pnl.Size = new System.Drawing.Size(275, 614);
+            this.ui_Pnl.Size = new System.Drawing.Size(290, 614);
             this.ui_Pnl.TabIndex = 2;
             // 
             // uiPnl_TabCtrl
@@ -191,7 +193,7 @@
             this.uiPnl_TabCtrl.Location = new System.Drawing.Point(0, 0);
             this.uiPnl_TabCtrl.Name = "uiPnl_TabCtrl";
             this.uiPnl_TabCtrl.SelectedIndex = 0;
-            this.uiPnl_TabCtrl.Size = new System.Drawing.Size(275, 614);
+            this.uiPnl_TabCtrl.Size = new System.Drawing.Size(290, 614);
             this.uiPnl_TabCtrl.TabIndex = 0;
             // 
             // uiPnlGen_TbPg
@@ -200,7 +202,7 @@
             this.uiPnlGen_TbPg.Location = new System.Drawing.Point(4, 22);
             this.uiPnlGen_TbPg.Name = "uiPnlGen_TbPg";
             this.uiPnlGen_TbPg.Padding = new System.Windows.Forms.Padding(3);
-            this.uiPnlGen_TbPg.Size = new System.Drawing.Size(267, 588);
+            this.uiPnlGen_TbPg.Size = new System.Drawing.Size(282, 588);
             this.uiPnlGen_TbPg.TabIndex = 0;
             this.uiPnlGen_TbPg.Text = "Generate";
             this.uiPnlGen_TbPg.UseVisualStyleBackColor = true;
@@ -211,6 +213,8 @@
             this.uiPnlGen_TblLay.ColumnCount = 2;
             this.uiPnlGen_TblLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.uiPnlGen_TblLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.uiPnlGen_TblLay.Controls.Add(this.uiPnlGen_StdDev2_TxtBx, 1, 18);
+            this.uiPnlGen_TblLay.Controls.Add(this.uiPnlGen_StdDev1_TxtBx, 0, 18);
             this.uiPnlGen_TblLay.Controls.Add(this.uiPnlGen_Dens_Num, 1, 10);
             this.uiPnlGen_TblLay.Controls.Add(this.uiPnlGen_EndX_Num, 1, 9);
             this.uiPnlGen_TblLay.Controls.Add(this.uiPnlGen_Dens_TxtBx, 0, 10);
@@ -230,12 +234,12 @@
             this.uiPnlGen_TblLay.Controls.Add(this.uiPnlGen_Crvs1No_Num, 1, 7);
             this.uiPnlGen_TblLay.Controls.Add(this.uiPnlGen_GenSet_Btn, 1, 12);
             this.uiPnlGen_TblLay.Controls.Add(this.uiPnlGen_MeanT_ComBx, 1, 16);
-            this.uiPnlGen_TblLay.Controls.Add(this.uiPnlGen_Apply_Btn, 1, 19);
+            this.uiPnlGen_TblLay.Controls.Add(this.uiPnlGen_Apply_Btn, 1, 20);
             this.uiPnlGen_TblLay.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiPnlGen_TblLay.Location = new System.Drawing.Point(3, 3);
             this.uiPnlGen_TblLay.Name = "uiPnlGen_TblLay";
             this.uiPnlGen_TblLay.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
-            this.uiPnlGen_TblLay.RowCount = 23;
+            this.uiPnlGen_TblLay.RowCount = 24;
             this.uiPnlGen_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.uiPnlGen_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.uiPnlGen_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
@@ -259,14 +263,14 @@
             this.uiPnlGen_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.uiPnlGen_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.uiPnlGen_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.uiPnlGen_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.uiPnlGen_TblLay.Size = new System.Drawing.Size(261, 582);
+            this.uiPnlGen_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.uiPnlGen_TblLay.Size = new System.Drawing.Size(276, 582);
             this.uiPnlGen_TblLay.TabIndex = 0;
             // 
             // uiPnlGen_Dens_Num
             // 
             this.uiPnlGen_Dens_Num.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlGen_Dens_Num.Location = new System.Drawing.Point(131, 253);
+            this.uiPnlGen_Dens_Num.Location = new System.Drawing.Point(130, 253);
             this.uiPnlGen_Dens_Num.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -278,7 +282,7 @@
             0,
             0});
             this.uiPnlGen_Dens_Num.Name = "uiPnlGen_Dens_Num";
-            this.uiPnlGen_Dens_Num.Size = new System.Drawing.Size(122, 20);
+            this.uiPnlGen_Dens_Num.Size = new System.Drawing.Size(121, 20);
             this.uiPnlGen_Dens_Num.TabIndex = 27;
             this.uiPnlGen_Dens_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.uiPnlGen_Dens_Num.ThousandsSeparator = true;
@@ -292,7 +296,7 @@
             // 
             this.uiPnlGen_EndX_Num.DecimalPlaces = 4;
             this.uiPnlGen_EndX_Num.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlGen_EndX_Num.Location = new System.Drawing.Point(131, 228);
+            this.uiPnlGen_EndX_Num.Location = new System.Drawing.Point(130, 228);
             this.uiPnlGen_EndX_Num.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -304,7 +308,7 @@
             0,
             -2147483648});
             this.uiPnlGen_EndX_Num.Name = "uiPnlGen_EndX_Num";
-            this.uiPnlGen_EndX_Num.Size = new System.Drawing.Size(122, 20);
+            this.uiPnlGen_EndX_Num.Size = new System.Drawing.Size(121, 20);
             this.uiPnlGen_EndX_Num.TabIndex = 26;
             this.uiPnlGen_EndX_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.uiPnlGen_EndX_Num.ThousandsSeparator = true;
@@ -323,7 +327,7 @@
             this.uiPnlGen_Dens_TxtBx.Name = "uiPnlGen_Dens_TxtBx";
             this.uiPnlGen_Dens_TxtBx.ReadOnly = true;
             this.uiPnlGen_Dens_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiPnlGen_Dens_TxtBx.Size = new System.Drawing.Size(122, 20);
+            this.uiPnlGen_Dens_TxtBx.Size = new System.Drawing.Size(121, 20);
             this.uiPnlGen_Dens_TxtBx.TabIndex = 25;
             this.uiPnlGen_Dens_TxtBx.Text = "Interval points:";
             // 
@@ -336,7 +340,7 @@
             this.uiPnlGen_EndX_TxtBx.Name = "uiPnlGen_EndX_TxtBx";
             this.uiPnlGen_EndX_TxtBx.ReadOnly = true;
             this.uiPnlGen_EndX_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiPnlGen_EndX_TxtBx.Size = new System.Drawing.Size(122, 20);
+            this.uiPnlGen_EndX_TxtBx.Size = new System.Drawing.Size(121, 20);
             this.uiPnlGen_EndX_TxtBx.TabIndex = 24;
             this.uiPnlGen_EndX_TxtBx.Text = "Ending X point:";
             // 
@@ -345,20 +349,20 @@
             this.uiPnlGen_CrvScaff2_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
             this.uiPnlGen_CrvScaff2_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
             this.uiPnlGen_CrvScaff2_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlGen_CrvScaff2_TxtBx.Location = new System.Drawing.Point(131, 28);
+            this.uiPnlGen_CrvScaff2_TxtBx.Location = new System.Drawing.Point(130, 28);
             this.uiPnlGen_CrvScaff2_TxtBx.Name = "uiPnlGen_CrvScaff2_TxtBx";
             this.uiPnlGen_CrvScaff2_TxtBx.ReadOnly = true;
             this.uiPnlGen_CrvScaff2_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiPnlGen_CrvScaff2_TxtBx.Size = new System.Drawing.Size(122, 20);
+            this.uiPnlGen_CrvScaff2_TxtBx.Size = new System.Drawing.Size(121, 20);
             this.uiPnlGen_CrvScaff2_TxtBx.TabIndex = 23;
             this.uiPnlGen_CrvScaff2_TxtBx.Text = "Not chosen";
             // 
             // uiPnlGen_Def_Btn
             // 
             this.uiPnlGen_Def_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlGen_Def_Btn.Location = new System.Drawing.Point(131, 78);
+            this.uiPnlGen_Def_Btn.Location = new System.Drawing.Point(130, 78);
             this.uiPnlGen_Def_Btn.Name = "uiPnlGen_Def_Btn";
-            this.uiPnlGen_Def_Btn.Size = new System.Drawing.Size(122, 19);
+            this.uiPnlGen_Def_Btn.Size = new System.Drawing.Size(121, 19);
             this.uiPnlGen_Def_Btn.TabIndex = 22;
             this.uiPnlGen_Def_Btn.Text = "Define";
             this.uiPnlGen_Def_Btn.UseVisualStyleBackColor = true;
@@ -373,7 +377,7 @@
             this.uiPnlGen_CrvScaff1_TxtBx.Name = "uiPnlGen_CrvScaff1_TxtBx";
             this.uiPnlGen_CrvScaff1_TxtBx.ReadOnly = true;
             this.uiPnlGen_CrvScaff1_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiPnlGen_CrvScaff1_TxtBx.Size = new System.Drawing.Size(122, 20);
+            this.uiPnlGen_CrvScaff1_TxtBx.Size = new System.Drawing.Size(121, 20);
             this.uiPnlGen_CrvScaff1_TxtBx.TabIndex = 20;
             this.uiPnlGen_CrvScaff1_TxtBx.Text = "Curve scaffold:";
             // 
@@ -387,14 +391,14 @@
             this.uiPnlGen_PattCrvScaff_TxtBx.Location = new System.Drawing.Point(3, 3);
             this.uiPnlGen_PattCrvScaff_TxtBx.Name = "uiPnlGen_PattCrvScaff_TxtBx";
             this.uiPnlGen_PattCrvScaff_TxtBx.ReadOnly = true;
-            this.uiPnlGen_PattCrvScaff_TxtBx.Size = new System.Drawing.Size(250, 20);
+            this.uiPnlGen_PattCrvScaff_TxtBx.Size = new System.Drawing.Size(248, 20);
             this.uiPnlGen_PattCrvScaff_TxtBx.TabIndex = 19;
             this.uiPnlGen_PattCrvScaff_TxtBx.Text = "Pattern curve scaffold";
             // 
             // uiPnlGen_Crvs2No_Nm
             // 
             this.uiPnlGen_Crvs2No_Nm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlGen_Crvs2No_Nm.Location = new System.Drawing.Point(131, 428);
+            this.uiPnlGen_Crvs2No_Nm.Location = new System.Drawing.Point(130, 428);
             this.uiPnlGen_Crvs2No_Nm.Maximum = new decimal(new int[] {
             1,
             0,
@@ -406,7 +410,7 @@
             0,
             0});
             this.uiPnlGen_Crvs2No_Nm.Name = "uiPnlGen_Crvs2No_Nm";
-            this.uiPnlGen_Crvs2No_Nm.Size = new System.Drawing.Size(122, 20);
+            this.uiPnlGen_Crvs2No_Nm.Size = new System.Drawing.Size(121, 20);
             this.uiPnlGen_Crvs2No_Nm.TabIndex = 18;
             this.uiPnlGen_Crvs2No_Nm.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.uiPnlGen_Crvs2No_Nm.ThousandsSeparator = true;
@@ -425,7 +429,7 @@
             this.uiPnlGen_Crvs2No_TxtBx.Name = "uiPnlGen_Crvs2No_TxtBx";
             this.uiPnlGen_Crvs2No_TxtBx.ReadOnly = true;
             this.uiPnlGen_Crvs2No_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiPnlGen_Crvs2No_TxtBx.Size = new System.Drawing.Size(122, 20);
+            this.uiPnlGen_Crvs2No_TxtBx.Size = new System.Drawing.Size(121, 20);
             this.uiPnlGen_Crvs2No_TxtBx.TabIndex = 17;
             this.uiPnlGen_Crvs2No_TxtBx.Text = "Number of curves:";
             // 
@@ -438,7 +442,7 @@
             this.uiPnlGen_MeanT_TxtBx.Name = "uiPnlGen_MeanT_TxtBx";
             this.uiPnlGen_MeanT_TxtBx.ReadOnly = true;
             this.uiPnlGen_MeanT_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiPnlGen_MeanT_TxtBx.Size = new System.Drawing.Size(122, 20);
+            this.uiPnlGen_MeanT_TxtBx.Size = new System.Drawing.Size(121, 20);
             this.uiPnlGen_MeanT_TxtBx.TabIndex = 12;
             this.uiPnlGen_MeanT_TxtBx.Text = "Mean type:";
             // 
@@ -452,7 +456,7 @@
             this.uiPnlGen_Avg_TxtBx.Location = new System.Drawing.Point(3, 378);
             this.uiPnlGen_Avg_TxtBx.Name = "uiPnlGen_Avg_TxtBx";
             this.uiPnlGen_Avg_TxtBx.ReadOnly = true;
-            this.uiPnlGen_Avg_TxtBx.Size = new System.Drawing.Size(250, 20);
+            this.uiPnlGen_Avg_TxtBx.Size = new System.Drawing.Size(248, 20);
             this.uiPnlGen_Avg_TxtBx.TabIndex = 11;
             this.uiPnlGen_Avg_TxtBx.Text = "Averaging";
             // 
@@ -460,7 +464,7 @@
             // 
             this.uiPnlGen_StartX_Num.DecimalPlaces = 4;
             this.uiPnlGen_StartX_Num.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlGen_StartX_Num.Location = new System.Drawing.Point(131, 203);
+            this.uiPnlGen_StartX_Num.Location = new System.Drawing.Point(130, 203);
             this.uiPnlGen_StartX_Num.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -472,7 +476,7 @@
             0,
             -2147483648});
             this.uiPnlGen_StartX_Num.Name = "uiPnlGen_StartX_Num";
-            this.uiPnlGen_StartX_Num.Size = new System.Drawing.Size(122, 20);
+            this.uiPnlGen_StartX_Num.Size = new System.Drawing.Size(121, 20);
             this.uiPnlGen_StartX_Num.TabIndex = 6;
             this.uiPnlGen_StartX_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.uiPnlGen_StartX_Num.ThousandsSeparator = true;
@@ -491,7 +495,7 @@
             this.uiPnlGen_StartX_TxtBx.Name = "uiPnlGen_StartX_TxtBx";
             this.uiPnlGen_StartX_TxtBx.ReadOnly = true;
             this.uiPnlGen_StartX_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiPnlGen_StartX_TxtBx.Size = new System.Drawing.Size(122, 20);
+            this.uiPnlGen_StartX_TxtBx.Size = new System.Drawing.Size(121, 20);
             this.uiPnlGen_StartX_TxtBx.TabIndex = 5;
             this.uiPnlGen_StartX_TxtBx.Text = "Starting X point:";
             // 
@@ -505,7 +509,7 @@
             this.uiPnlGen_CrvsSet_TxtBx.Location = new System.Drawing.Point(3, 153);
             this.uiPnlGen_CrvsSet_TxtBx.Name = "uiPnlGen_CrvsSet_TxtBx";
             this.uiPnlGen_CrvsSet_TxtBx.ReadOnly = true;
-            this.uiPnlGen_CrvsSet_TxtBx.Size = new System.Drawing.Size(250, 20);
+            this.uiPnlGen_CrvsSet_TxtBx.Size = new System.Drawing.Size(248, 20);
             this.uiPnlGen_CrvsSet_TxtBx.TabIndex = 0;
             this.uiPnlGen_CrvsSet_TxtBx.Text = "Whole set of curves";
             // 
@@ -518,14 +522,14 @@
             this.uiPnlGen_Crvs1No_TxtBx.Name = "uiPnlGen_Crvs1No_TxtBx";
             this.uiPnlGen_Crvs1No_TxtBx.ReadOnly = true;
             this.uiPnlGen_Crvs1No_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiPnlGen_Crvs1No_TxtBx.Size = new System.Drawing.Size(122, 20);
+            this.uiPnlGen_Crvs1No_TxtBx.Size = new System.Drawing.Size(121, 20);
             this.uiPnlGen_Crvs1No_TxtBx.TabIndex = 1;
             this.uiPnlGen_Crvs1No_TxtBx.Text = "Number of curves:";
             // 
             // uiPnlGen_Crvs1No_Num
             // 
             this.uiPnlGen_Crvs1No_Num.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlGen_Crvs1No_Num.Location = new System.Drawing.Point(131, 178);
+            this.uiPnlGen_Crvs1No_Num.Location = new System.Drawing.Point(130, 178);
             this.uiPnlGen_Crvs1No_Num.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -537,7 +541,7 @@
             0,
             0});
             this.uiPnlGen_Crvs1No_Num.Name = "uiPnlGen_Crvs1No_Num";
-            this.uiPnlGen_Crvs1No_Num.Size = new System.Drawing.Size(122, 20);
+            this.uiPnlGen_Crvs1No_Num.Size = new System.Drawing.Size(121, 20);
             this.uiPnlGen_Crvs1No_Num.TabIndex = 2;
             this.uiPnlGen_Crvs1No_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.uiPnlGen_Crvs1No_Num.ThousandsSeparator = true;
@@ -550,9 +554,9 @@
             // uiPnlGen_GenSet_Btn
             // 
             this.uiPnlGen_GenSet_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlGen_GenSet_Btn.Location = new System.Drawing.Point(131, 303);
+            this.uiPnlGen_GenSet_Btn.Location = new System.Drawing.Point(130, 303);
             this.uiPnlGen_GenSet_Btn.Name = "uiPnlGen_GenSet_Btn";
-            this.uiPnlGen_GenSet_Btn.Size = new System.Drawing.Size(122, 19);
+            this.uiPnlGen_GenSet_Btn.Size = new System.Drawing.Size(121, 19);
             this.uiPnlGen_GenSet_Btn.TabIndex = 10;
             this.uiPnlGen_GenSet_Btn.Text = "Generate set";
             this.uiPnlGen_GenSet_Btn.UseVisualStyleBackColor = true;
@@ -580,17 +584,17 @@
             "Custom-Differential",
             "Custom-Tolerance",
             "Custom-Geometric"});
-            this.uiPnlGen_MeanT_ComBx.Location = new System.Drawing.Point(131, 403);
+            this.uiPnlGen_MeanT_ComBx.Location = new System.Drawing.Point(130, 403);
             this.uiPnlGen_MeanT_ComBx.Name = "uiPnlGen_MeanT_ComBx";
-            this.uiPnlGen_MeanT_ComBx.Size = new System.Drawing.Size(122, 21);
+            this.uiPnlGen_MeanT_ComBx.Size = new System.Drawing.Size(121, 21);
             this.uiPnlGen_MeanT_ComBx.TabIndex = 13;
             // 
             // uiPnlGen_Apply_Btn
             // 
             this.uiPnlGen_Apply_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlGen_Apply_Btn.Location = new System.Drawing.Point(131, 478);
+            this.uiPnlGen_Apply_Btn.Location = new System.Drawing.Point(130, 503);
             this.uiPnlGen_Apply_Btn.Name = "uiPnlGen_Apply_Btn";
-            this.uiPnlGen_Apply_Btn.Size = new System.Drawing.Size(122, 19);
+            this.uiPnlGen_Apply_Btn.Size = new System.Drawing.Size(121, 19);
             this.uiPnlGen_Apply_Btn.TabIndex = 16;
             this.uiPnlGen_Apply_Btn.Text = "Apply";
             this.uiPnlGen_Apply_Btn.UseVisualStyleBackColor = true;
@@ -1207,8 +1211,34 @@
             // 
             this.uiMw_SpCtn.Panel2.Controls.Add(this.uiCharts_Crv);
             this.uiMw_SpCtn.Size = new System.Drawing.Size(960, 614);
-            this.uiMw_SpCtn.SplitterDistance = 275;
+            this.uiMw_SpCtn.SplitterDistance = 290;
             this.uiMw_SpCtn.TabIndex = 5;
+            // 
+            // uiPnlGen_StdDev1_TxtBx
+            // 
+            this.uiPnlGen_StdDev1_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.uiPnlGen_StdDev1_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
+            this.uiPnlGen_StdDev1_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiPnlGen_StdDev1_TxtBx.Location = new System.Drawing.Point(3, 453);
+            this.uiPnlGen_StdDev1_TxtBx.Name = "uiPnlGen_StdDev1_TxtBx";
+            this.uiPnlGen_StdDev1_TxtBx.ReadOnly = true;
+            this.uiPnlGen_StdDev1_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.uiPnlGen_StdDev1_TxtBx.Size = new System.Drawing.Size(121, 20);
+            this.uiPnlGen_StdDev1_TxtBx.TabIndex = 28;
+            this.uiPnlGen_StdDev1_TxtBx.Text = "Standard deviation:";
+            // 
+            // uiPnlGen_StdDev2_TxtBx
+            // 
+            this.uiPnlGen_StdDev2_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.uiPnlGen_StdDev2_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
+            this.uiPnlGen_StdDev2_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiPnlGen_StdDev2_TxtBx.Location = new System.Drawing.Point(130, 453);
+            this.uiPnlGen_StdDev2_TxtBx.Name = "uiPnlGen_StdDev2_TxtBx";
+            this.uiPnlGen_StdDev2_TxtBx.ReadOnly = true;
+            this.uiPnlGen_StdDev2_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.uiPnlGen_StdDev2_TxtBx.Size = new System.Drawing.Size(121, 20);
+            this.uiPnlGen_StdDev2_TxtBx.TabIndex = 29;
+            this.uiPnlGen_StdDev2_TxtBx.Text = "N/A";
             // 
             // MainWindow
             // 
@@ -1329,6 +1359,8 @@
         private System.Windows.Forms.ToolStripMenuItem uiMenuChart_Settings;
         private System.Windows.Forms.ToolStripMenuItem uiMenuPrg_StatAnal;
         private System.Windows.Forms.ToolStripMenuItem uiMenuPrg_Lang;
+        private System.Windows.Forms.TextBox uiPnlGen_StdDev2_TxtBx;
+        private System.Windows.Forms.TextBox uiPnlGen_StdDev1_TxtBx;
     }
     }
 

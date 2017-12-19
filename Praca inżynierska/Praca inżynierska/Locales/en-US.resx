@@ -915,4 +915,7 @@
   <data name="StatisticalAnalysis_Ui_Preview_Phenomenon" xml:space="preserve">
     <value>Phenomenon:</value>
   </data>
+  <data name="MainWindow_Panel_Generate_StandardDeviation1" xml:space="preserve">
+    <value>Standard deviation:</value>
+  </data>
 </root>

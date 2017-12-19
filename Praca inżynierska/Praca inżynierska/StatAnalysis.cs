@@ -486,7 +486,7 @@ namespace PI
             return new List<string>();
         }
 
-        private double GetRelativeStandardDeviationFromSeriesValues( Series average, Series pattern, int yValuesIdx = 0 )
+        public static double GetRelativeStandardDeviationFromSeriesValues( Series average, Series pattern, int yValuesIdx = 0 )
         {
             double sum = 0.0;
             double difference;

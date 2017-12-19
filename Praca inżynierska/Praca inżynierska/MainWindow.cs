@@ -16,6 +16,7 @@ namespace PI
         {
             InitializeComponent();
             InitalizeFields();
+            SetWindowDefaultDimensions();
         }
 
         private void InitalizeFields()
@@ -516,6 +517,8 @@ namespace PI
             }
 
             WinFormsHelper.SetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx, (int) Enums.DataSetCurveType.Average );
+            double standardDeviation = StatAnalysis.GetRelativeStandardDeviationFromSeriesValues( DataChart.AverageCurveSet, DataChart.PatternCurveSet );
+            uiPnlGen_StdDev2_TxtBx.Text = StringFormatter.FormatAsNumeric( 8, standardDeviation );
         }
 
         private void UpdateUiByDefaultSettings()
@@ -537,7 +540,7 @@ namespace PI
 
             try {
                 if ( Settings.Menu.Panel.KeepProportions ) {
-                    uiMw_SpCtn.SplitterDistance = 275;
+                    uiMw_SpCtn.SplitterDistance = Settings.Menu.Panel.SplitterDistance;
                 }
             }
             catch ( ArgumentOutOfRangeException ex ) {
@@ -904,6 +907,7 @@ namespace PI
             uiPnlGen_Crvs2No_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.Crvs2No.GetString();
             Translator.AddLocalizedMeanTypes( uiPnlGen_MeanT_ComBx );
             RefreshControlToLocalize( uiPnlGen_Crvs2No_Nm );
+            uiPnlGen_StdDev1_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.StdDev1.GetString();
             uiPnlGen_Apply_Btn.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.Apply.GetString();
         }
 
@@ -1003,6 +1007,12 @@ namespace PI
             uiPnlPrg_OsVer1_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Program.OsVer1.GetString();
             uiPnlPrg_Log_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Program.Log.GetString();
             uiPnlPrg_LogPath1_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Program.LogPath1.GetString();
+        }
+
+        private void SetWindowDefaultDimensions()
+        {
+            Width = Settings.MainWindow.Dimensions.Width;
+            Height = Settings.MainWindow.Dimensions.Height;
         }
 
     }

@@ -1537,6 +1537,15 @@ namespace PI.Locales {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Odch. standardowe:.
+        /// </summary>
+        internal static string MainWindow_Panel_Generate_StandardDeviation1 {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Generate_StandardDeviation1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Początkowy punkt x:.
         /// </summary>
         internal static string MainWindow_Panel_Generate_StartingXPoint {
