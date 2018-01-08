@@ -3,6 +3,8 @@ using System.Collections;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using PI.src.windows;
+using PI.src.localization;
 
 namespace PI
 {
@@ -10,7 +12,7 @@ namespace PI
     {
 
         private static volatile Translator instance = null;
-        public static LangSelector.Languages CurrentLanguage { get; private set; } = LangSelector.Languages.English;
+        public static Languages CurrentLanguage { get; private set; } = Languages.English;
         public StringsHierarchy Strings { get; private set; } = new StringsHierarchy();
 
         private Translator()
@@ -28,7 +30,7 @@ namespace PI
             return instance;
         }
 
-        public static void SetLanguage( LangSelector.Languages language )
+        public static void SetLanguage( Languages language )
         {
             CurrentLanguage = language;
         }
@@ -36,9 +38,9 @@ namespace PI
         public class LocalizedString
         {
             private string StringName { get; set; }
-            private LangSelector.Languages Language { get; set; }
+            private Languages Language { get; set; }
 
-            public LocalizedString( LangSelector.Languages language, string name )
+            public LocalizedString( Languages language, string name )
             {
                 Language = language;
                 StringName = name;
@@ -49,16 +51,16 @@ namespace PI
                 return GetLocalizedStringSafe( StringName, Language );
             }
 
-            private string GetLocalizedStringSafe( string name, LangSelector.Languages lang )
+            private string GetLocalizedStringSafe( string name, Languages lang )
             {
                 string resourceString = string.Empty;
 
                 try {
                     switch ( lang ) {
-                    case LangSelector.Languages.English:
+                    case Languages.English:
                         resourceString = Locales.en_US.ResourceManager.GetString( name );
                         break;
-                    case LangSelector.Languages.Polish:
+                    case Languages.Polish:
                         resourceString = Locales.pl_PL.ResourceManager.GetString( name );
                         break;
                     }

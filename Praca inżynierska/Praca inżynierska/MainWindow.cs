@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PI.src.windows;
+using PI.src.localization;
+using System;
 using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -44,8 +46,8 @@ namespace PI
             ThreadTasker.StartThreadSafe( Timer );
             UpdateUiByStatusOfTimerThread();
             Translator.GetInstance();
-            Translator.SetLanguage( LangSelector.Languages.English );
-            LocalizeCulture( LangSelector.Languages.English );
+            Translator.SetLanguage( Languages.English );
+            LocalizeCulture( Languages.English );
         }
 
         private void UiMenuProgram_Exit_Click( object sender, EventArgs e )
@@ -827,8 +829,8 @@ namespace PI
                 WinFormsHelper.ShowDialogSafe( dialog, this );
 
                 if ( dialog.DialogResult == DialogResult.OK ) {
-                    Translator.SetLanguage( dialog.SelectedLanguage );
-                    LocalizeCulture( dialog.SelectedLanguage );
+                    Translator.SetLanguage( dialog.GetSelectedLanguage() );
+                    LocalizeCulture( dialog.GetSelectedLanguage() );
                     LocalizeWindow();
                 }
             }
@@ -911,14 +913,14 @@ namespace PI
             uiPnlGen_Apply_Btn.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.Apply.GetString();
         }
 
-        private void LocalizeCulture( LangSelector.Languages language )
+        private void LocalizeCulture( Languages language )
         {
             try {
                 switch ( language ) {
-                case LangSelector.Languages.English:
+                case Languages.English:
                     Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo( "en-US" );
                     break;
-                case LangSelector.Languages.Polish:
+                case Languages.Polish:
                     Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo( "pl-PL" );
                     break;
                 }
