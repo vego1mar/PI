@@ -152,7 +152,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Translator.cs" />
     <Compile Include="UiSettings.cs" />
-    <Compile Include="WinFormsHelper.cs" />
+    <Compile Include="src\helpers\UiControls.cs" />
     <EmbeddedResource Include="AvgInfo.resx">
       <DependentUpon>AvgInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -290,6 +290,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Stuff\" />
+    <Folder Include="test\helpers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

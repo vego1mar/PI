@@ -4,6 +4,7 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Windows.Forms.DataVisualization.Charting;
+using PI.src.helpers;
 
 namespace PI
 {
@@ -171,20 +172,20 @@ namespace PI
 
         private void SetWindowDefaults()
         {
-            WinFormsHelper.SelectTabSafe( uiL_TbCtrl, (int) PhenomenonIndex.Peek );
-            WinFormsHelper.SelectTabSafe( uiR_TbCtrl, 0 );
+            UiControls.TrySelectTab( uiL_TbCtrl, (int) PhenomenonIndex.Peek );
+            UiControls.TrySelectTab( uiR_TbCtrl, 0 );
             CurvesDataManager.SetDefaultProperties( uiRChart_Chart );
             AddDataSetCurveTypes( uiRChartDown_CrvT_ComBx );
-            WinFormsHelper.SetSelectedIndexSafe( uiRChartDown_CrvT_ComBx, (int) Enums.DataSetCurveType.Pattern );
+            UiControls.SetSelectedIndexSafe( uiRChartDown_CrvT_ComBx, (int) Enums.DataSetCurveType.Pattern );
             uiRChartDown_CrvIdx_Num.Minimum = 0;
             uiRChartDown_CrvIdx_Num.Maximum = Settings.Ui.NumberOfCurves - 1;
-            WinFormsHelper.SetValue( uiRChartDown_CrvIdx_Num, Settings.Ui.NumberOfCurves / 2 );
+            UiControls.SetValue( uiRChartDown_CrvIdx_Num, Settings.Ui.NumberOfCurves / 2 );
             AddPhenomenonsIndexNames( uiRChartDown_Phen_ComBx );
-            WinFormsHelper.SetSelectedIndexSafe( uiRChartDown_Phen_ComBx, (int) PhenomenonIndex.Peek );
+            UiControls.SetSelectedIndexSafe( uiRChartDown_Phen_ComBx, (int) PhenomenonIndex.Peek );
             AddSurroundings( uiRChartDown_Surr_ComBx );
-            WinFormsHelper.SetSelectedIndexSafe( uiRChartDown_Surr_ComBx, 0 );
+            UiControls.SetSelectedIndexSafe( uiRChartDown_Surr_ComBx, 0 );
             AddMeanTypes( uiRChartDown_MeanT_ComBx );
-            WinFormsHelper.SetSelectedIndexSafe( uiRChartDown_MeanT_ComBx, (int) Enums.MeanType.CustomTolerance );
+            UiControls.SetSelectedIndexSafe( uiRChartDown_MeanT_ComBx, (int) Enums.MeanType.CustomTolerance );
             uiRFormulaDown_CrvsNo2_TxtBx.Text = Settings.Ui.NumberOfCurves.ToString();
             uiRFormulaDown_Dens2_TxtBx.Text = (Settings.Ui.PointsDensity + 1).ToString();
         }
@@ -286,7 +287,7 @@ namespace PI
 
         private void UiRightChartDown_CurveType_ComboBox_SelectedIndexChanged( object sender, EventArgs e )
         {
-            switch ( (Enums.DataSetCurveType) WinFormsHelper.GetSelectedIndexSafe( uiRChartDown_CrvT_ComBx ) ) {
+            switch ( (Enums.DataSetCurveType) UiControls.TryGetSelectedIndex( uiRChartDown_CrvT_ComBx ) ) {
             case Enums.DataSetCurveType.Generated:
                 uiRChartDown_CrvIdx_Num.Enabled = true;
                 uiRChartDown_MeanT_ComBx.Enabled = false;
@@ -325,11 +326,11 @@ namespace PI
         private DatasetControlsValues GetDatasetControlsValues()
         {
             return new DatasetControlsValues() {
-                PhenomNo = WinFormsHelper.GetSelectedIndexSafe( uiRChartDown_Phen_ComBx ),
-                CrvIdx = WinFormsHelper.GetValue<int>( uiRChartDown_CrvIdx_Num ),
-                NoiseNo = WinFormsHelper.GetSelectedIndexSafe( uiRChartDown_Surr_ComBx ),
-                MeanT = WinFormsHelper.GetSelectedIndexSafe( uiRChartDown_MeanT_ComBx ),
-                CrvT = WinFormsHelper.GetSelectedIndexSafe( uiRChartDown_CrvT_ComBx )
+                PhenomNo = UiControls.TryGetSelectedIndex( uiRChartDown_Phen_ComBx ),
+                CrvIdx = UiControls.GetValue<int>( uiRChartDown_CrvIdx_Num ),
+                NoiseNo = UiControls.TryGetSelectedIndex( uiRChartDown_Surr_ComBx ),
+                MeanT = UiControls.TryGetSelectedIndex( uiRChartDown_MeanT_ComBx ),
+                CrvT = UiControls.TryGetSelectedIndex( uiRChartDown_CrvT_ComBx )
             };
         }
 
@@ -383,7 +384,7 @@ namespace PI
 
         private bool IsCurveIndexProperValue()
         {
-            int value = WinFormsHelper.GetValue<int>( uiRChartDown_CrvIdx_Num );
+            int value = UiControls.GetValue<int>( uiRChartDown_CrvIdx_Num );
 
             if ( value < 0 || value >= Settings.Ui.NumberOfCurves ) {
                 return false;
@@ -398,7 +399,7 @@ namespace PI
                 UpdateUiByRefreshingChart();
             }
 
-            WinFormsHelper.SelectTabSafe( uiL_TbCtrl, WinFormsHelper.GetSelectedIndexSafe( uiRChartDown_Phen_ComBx ) );
+            UiControls.TrySelectTab( uiL_TbCtrl, UiControls.TryGetSelectedIndex( uiRChartDown_Phen_ComBx ) );
         }
 
         private void UiRightChartDown_Surroundings_ComboBox_SelectedIndexChanged( object sender, EventArgs e )
@@ -440,7 +441,7 @@ namespace PI
 
         private void ChooseChartSeriesColor( Chart chart, int seriesIdx = 0 )
         {
-            switch ( (Enums.DataSetCurveType) WinFormsHelper.GetSelectedIndexSafe( uiRChartDown_CrvT_ComBx ) ) {
+            switch ( (Enums.DataSetCurveType) UiControls.TryGetSelectedIndex( uiRChartDown_CrvT_ComBx ) ) {
             case Enums.DataSetCurveType.Generated:
                 chart.Series[seriesIdx].Color = System.Drawing.Color.Crimson;
                 break;
@@ -524,7 +525,7 @@ namespace PI
 
         private void UiLeft_TabControl_SelectedIndexChanged( object sender, EventArgs e )
         {
-            WinFormsHelper.SetSelectedIndexSafe( uiRChartDown_Phen_ComBx, WinFormsHelper.GetSelectedTab( uiL_TbCtrl ) );
+            UiControls.SetSelectedIndexSafe( uiRChartDown_Phen_ComBx, UiControls.GetSelectedTab( uiL_TbCtrl ) );
         }
 
         private void UpdateUiByColoringUiGrids()
@@ -619,11 +620,11 @@ namespace PI
             uiR_Chart_TbPg.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.Chart.GetString();
             uiR_Formula_TbPg.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.Formula.GetString();
             Translator.AddLocalizedDataSetCurveTypes( uiRChartDown_CrvT_ComBx );
-            WinFormsHelper.SetSelectedIndexSafe( uiRChartDown_CrvT_ComBx, (int) Enums.DataSetCurveType.Pattern );
+            UiControls.SetSelectedIndexSafe( uiRChartDown_CrvT_ComBx, (int) Enums.DataSetCurveType.Pattern );
             AddLocalizedPhenomenonsIndices( uiRChartDown_Phen_ComBx );
-            WinFormsHelper.SetSelectedIndexSafe( uiRChartDown_Phen_ComBx, (int) PhenomenonIndex.Peek );
+            UiControls.SetSelectedIndexSafe( uiRChartDown_Phen_ComBx, (int) PhenomenonIndex.Peek );
             Translator.AddLocalizedMeanTypes( uiRChartDown_MeanT_ComBx );
-            WinFormsHelper.SetSelectedIndexSafe( uiRChartDown_MeanT_ComBx, (int) Enums.MeanType.CustomTolerance );
+            UiControls.SetSelectedIndexSafe( uiRChartDown_MeanT_ComBx, (int) Enums.MeanType.CustomTolerance );
             uiRChartDown_DtSet_Btn.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.DtSet.GetString();
             uiRFormulaDown_CrvsNo2_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.NotApplicable.GetString();
             uiRFormulaDown_Dens2_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.NotApplicable.GetString();

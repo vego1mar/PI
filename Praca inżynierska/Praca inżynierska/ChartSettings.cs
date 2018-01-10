@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PI.src.helpers;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -77,7 +78,7 @@ namespace PI
 
         private void UpdateUiByDefaultSettings()
         {
-            WinFormsHelper.SetSelectedIndexSafe( uiTop_ApplyTo_ComBx, (int) ApplyToCurve.Pattern );
+            UiControls.SetSelectedIndexSafe( uiTop_ApplyTo_ComBx, (int) ApplyToCurve.Pattern );
             SetChartTabPageDefaults();
             SetChartAreaTabPageDefaults();
             SetSeriesTabPageDefaults();
@@ -85,35 +86,35 @@ namespace PI
 
         private void SetChartTabPageDefaults()
         {
-            WinFormsHelper.SetSelectedIndexSafe( uiCtrChart_Aa_ComBx, (int) Settings.Common.AntiAliasing );
-            WinFormsHelper.SetSelectedIndexSafe( uiCtrChart_SupEx_ComBx, Convert.ToInt32( Settings.Common.SuppressExceptions ) );
-            WinFormsHelper.SetSelectedIndexSafe( uiCtrChart_BkCol_ComBx, uiCtrChart_BkCol_ComBx.Items.IndexOf( Settings.Common.BackColor.Name ) );
+            UiControls.SetSelectedIndexSafe( uiCtrChart_Aa_ComBx, (int) Settings.Common.AntiAliasing );
+            UiControls.SetSelectedIndexSafe( uiCtrChart_SupEx_ComBx, Convert.ToInt32( Settings.Common.SuppressExceptions ) );
+            UiControls.SetSelectedIndexSafe( uiCtrChart_BkCol_ComBx, uiCtrChart_BkCol_ComBx.Items.IndexOf( Settings.Common.BackColor.Name ) );
         }
 
         private void SetChartAreaTabPageDefaults()
         {
-            WinFormsHelper.SetSelectedIndexSafe( uiCtrArea_3d_ComBx, Convert.ToInt32( Settings.Areas.Common.Area3dStyle ) );
-            WinFormsHelper.SetSelectedIndexSafe( uiCtrArea_BkCol_ComBx, uiCtrArea_BkCol_ComBx.Items.IndexOf( Settings.Areas.Common.BackColor.Name ) );
-            WinFormsHelper.SetSelectedIndexSafe( uiCtrArea_Axis_ComBx, (int) ChartAreaAxis.X );
-            WinFormsHelper.SetSelectedIndexSafe( uiCtrArea_Grid_ComBx, (int) ChartAreaGrid.MajorGrid );
-            WinFormsHelper.SetSelectedIndexSafe( uiCtrArea_En_ComBx, Convert.ToInt32( Settings.Areas.X.MajorGrid.Enabled ) );
-            WinFormsHelper.SetSelectedIndexSafe( uiCtrArea_LnCol_ComBx, uiCtrArea_LnCol_ComBx.Items.IndexOf( Settings.Areas.X.MajorGrid.LineColor.Name ) );
-            WinFormsHelper.SetSelectedIndexSafe( uiCtrArea_LnStyle_ComBx, (int) Settings.Areas.X.MajorGrid.LineDashStyle );
-            WinFormsHelper.SetValue( uiCtrArea_LnWth_Num, Settings.Areas.X.MajorGrid.LineWidth );
+            UiControls.SetSelectedIndexSafe( uiCtrArea_3d_ComBx, Convert.ToInt32( Settings.Areas.Common.Area3dStyle ) );
+            UiControls.SetSelectedIndexSafe( uiCtrArea_BkCol_ComBx, uiCtrArea_BkCol_ComBx.Items.IndexOf( Settings.Areas.Common.BackColor.Name ) );
+            UiControls.SetSelectedIndexSafe( uiCtrArea_Axis_ComBx, (int) ChartAreaAxis.X );
+            UiControls.SetSelectedIndexSafe( uiCtrArea_Grid_ComBx, (int) ChartAreaGrid.MajorGrid );
+            UiControls.SetSelectedIndexSafe( uiCtrArea_En_ComBx, Convert.ToInt32( Settings.Areas.X.MajorGrid.Enabled ) );
+            UiControls.SetSelectedIndexSafe( uiCtrArea_LnCol_ComBx, uiCtrArea_LnCol_ComBx.Items.IndexOf( Settings.Areas.X.MajorGrid.LineColor.Name ) );
+            UiControls.SetSelectedIndexSafe( uiCtrArea_LnStyle_ComBx, (int) Settings.Areas.X.MajorGrid.LineDashStyle );
+            UiControls.SetValue( uiCtrArea_LnWth_Num, Settings.Areas.X.MajorGrid.LineWidth );
         }
 
         private void SetSeriesTabPageDefaults()
         {
-            WinFormsHelper.SetSelectedIndexSafe( uiCtrSrs_Color_ComBx, uiCtrSrs_Color_ComBx.Items.IndexOf( Settings.Series.Average.Color.Name ) );
-            WinFormsHelper.SetValue( uiCtrSrs_BorWth_Num, Settings.Series.Average.BorderWidth );
-            WinFormsHelper.SetSelectedIndexSafe( uiCtrSrs_BorStyle_ComBx, (int) Settings.Series.Average.BorderDashStyle );
-            WinFormsHelper.SetSelectedIndexSafe( uiCtrSrs_ChT_ComBx, (int) Settings.Series.Average.ChartType );
+            UiControls.SetSelectedIndexSafe( uiCtrSrs_Color_ComBx, uiCtrSrs_Color_ComBx.Items.IndexOf( Settings.Series.Average.Color.Name ) );
+            UiControls.SetValue( uiCtrSrs_BorWth_Num, Settings.Series.Average.BorderWidth );
+            UiControls.SetSelectedIndexSafe( uiCtrSrs_BorStyle_ComBx, (int) Settings.Series.Average.BorderDashStyle );
+            UiControls.SetSelectedIndexSafe( uiCtrSrs_ChT_ComBx, (int) Settings.Series.Average.ChartType );
         }
 
         private void UpdateUiByFormInitializeSettings()
         {
             IsFormInitialized = true;
-            WinFormsHelper.SetSelectedIndexSafe( uiTop_ApplyTo_ComBx, (int) ApplyToCurve.Average );
+            UiControls.SetSelectedIndexSafe( uiTop_ApplyTo_ComBx, (int) ApplyToCurve.Average );
         }
 
         private void ChartSettings_Load( object sender, EventArgs e )
@@ -204,7 +205,7 @@ namespace PI
 
         private void PerformApplyToCurveAllSwitch()
         {
-            WinFormsHelper.SelectTabSafe( uiCtr_TbCtrl, (int) ChartSettingsTabs.Chart );
+            UiControls.TrySelectTab( uiCtr_TbCtrl, (int) ChartSettingsTabs.Chart );
             EnableChartTabPageControls( true );
             EnableChartAreaTabPageControls( true );
             EnableSeriesTabPageControls( false );
@@ -212,7 +213,7 @@ namespace PI
 
         private void PerformApplyToCurveNotAllSwitch()
         {
-            WinFormsHelper.SelectTabSafe( uiCtr_TbCtrl, (int) ChartSettingsTabs.Series );
+            UiControls.TrySelectTab( uiCtr_TbCtrl, (int) ChartSettingsTabs.Series );
             EnableChartTabPageControls( false );
             EnableChartAreaTabPageControls( false );
             EnableSeriesTabPageControls( true );
@@ -220,18 +221,18 @@ namespace PI
 
         private void UpdateUiByGeneratedCurveSettings()
         {
-            WinFormsHelper.SetSelectedIndexSafe( uiCtrSrs_Color_ComBx, uiCtrSrs_Color_ComBx.Items.IndexOf( Settings.Series.Generated.Color.Name ) );
-            WinFormsHelper.SetValue( uiCtrSrs_BorWth_Num, Settings.Series.Generated.BorderWidth );
-            WinFormsHelper.SetSelectedIndexSafe( uiCtrSrs_BorStyle_ComBx, (int) Settings.Series.Generated.BorderDashStyle );
-            WinFormsHelper.SetSelectedIndexSafe( uiCtrSrs_ChT_ComBx, (int) Settings.Series.Generated.ChartType );
+            UiControls.SetSelectedIndexSafe( uiCtrSrs_Color_ComBx, uiCtrSrs_Color_ComBx.Items.IndexOf( Settings.Series.Generated.Color.Name ) );
+            UiControls.SetValue( uiCtrSrs_BorWth_Num, Settings.Series.Generated.BorderWidth );
+            UiControls.SetSelectedIndexSafe( uiCtrSrs_BorStyle_ComBx, (int) Settings.Series.Generated.BorderDashStyle );
+            UiControls.SetSelectedIndexSafe( uiCtrSrs_ChT_ComBx, (int) Settings.Series.Generated.ChartType );
         }
 
         private void UpdateUiByPatternCurveSettings()
         {
-            WinFormsHelper.SetSelectedIndexSafe( uiCtrSrs_Color_ComBx, uiCtrSrs_Color_ComBx.Items.IndexOf( Settings.Series.Pattern.Color.Name ) );
-            WinFormsHelper.SetValue( uiCtrSrs_BorWth_Num, Settings.Series.Pattern.BorderWidth );
-            WinFormsHelper.SetSelectedIndexSafe( uiCtrSrs_BorStyle_ComBx, (int) Settings.Series.Pattern.BorderDashStyle );
-            WinFormsHelper.SetSelectedIndexSafe( uiCtrSrs_ChT_ComBx, (int) Settings.Series.Pattern.ChartType );
+            UiControls.SetSelectedIndexSafe( uiCtrSrs_Color_ComBx, uiCtrSrs_Color_ComBx.Items.IndexOf( Settings.Series.Pattern.Color.Name ) );
+            UiControls.SetValue( uiCtrSrs_BorWth_Num, Settings.Series.Pattern.BorderWidth );
+            UiControls.SetSelectedIndexSafe( uiCtrSrs_BorStyle_ComBx, (int) Settings.Series.Pattern.BorderDashStyle );
+            UiControls.SetSelectedIndexSafe( uiCtrSrs_ChT_ComBx, (int) Settings.Series.Pattern.ChartType );
         }
 
         private void EnableChartTabPageControls( bool value )
@@ -285,7 +286,7 @@ namespace PI
 
         private void SaveAllSettings()
         {
-            Settings.ApplyMode = (ApplyToCurve) WinFormsHelper.GetSelectedIndexSafe( uiTop_ApplyTo_ComBx );
+            Settings.ApplyMode = (ApplyToCurve) UiControls.TryGetSelectedIndex( uiTop_ApplyTo_ComBx );
             SaveChartSettings();
             SaveChartAreaSettings();
             SaveSeriesSettings( Settings.ApplyMode );
@@ -293,17 +294,17 @@ namespace PI
 
         private void SaveChartSettings()
         {
-            Settings.Common.AntiAliasing = (AntiAliasingStyles) WinFormsHelper.GetSelectedIndexSafe( uiCtrChart_Aa_ComBx );
-            Settings.Common.SuppressExceptions = Convert.ToBoolean( WinFormsHelper.GetSelectedIndexSafe( uiCtrChart_SupEx_ComBx ) );
+            Settings.Common.AntiAliasing = (AntiAliasingStyles) UiControls.TryGetSelectedIndex( uiCtrChart_Aa_ComBx );
+            Settings.Common.SuppressExceptions = Convert.ToBoolean( UiControls.TryGetSelectedIndex( uiCtrChart_SupEx_ComBx ) );
             Settings.Common.BackColor = Color.FromName( uiCtrChart_BkCol_ComBx.Items[uiCtrChart_BkCol_ComBx.SelectedIndex].ToString() );
         }
 
         private void SaveChartAreaSettings()
         {
-            Settings.Areas.Common.Area3dStyle = Convert.ToBoolean( WinFormsHelper.GetSelectedIndexSafe( uiCtrArea_3d_ComBx ) );
+            Settings.Areas.Common.Area3dStyle = Convert.ToBoolean( UiControls.TryGetSelectedIndex( uiCtrArea_3d_ComBx ) );
             Settings.Areas.Common.BackColor = Color.FromName( uiCtrArea_BkCol_ComBx.Items[uiCtrArea_BkCol_ComBx.SelectedIndex].ToString() );
-            ChartAreaAxis axis = (ChartAreaAxis) WinFormsHelper.GetSelectedIndexSafe( uiCtrArea_Axis_ComBx );
-            ChartAreaGrid grid = (ChartAreaGrid) WinFormsHelper.GetSelectedIndexSafe( uiCtrArea_Grid_ComBx );
+            ChartAreaAxis axis = (ChartAreaAxis) UiControls.TryGetSelectedIndex( uiCtrArea_Axis_ComBx );
+            ChartAreaGrid grid = (ChartAreaGrid) UiControls.TryGetSelectedIndex( uiCtrArea_Grid_ComBx );
             SaveAxesSettings( axis, grid );
         }
 
@@ -325,25 +326,25 @@ namespace PI
         private void SaveSeriesPatternSettings()
         {
             Settings.Series.Pattern.Color = Color.FromName( uiCtrSrs_Color_ComBx.Items[uiCtrSrs_Color_ComBx.SelectedIndex].ToString() );
-            Settings.Series.Pattern.BorderWidth = WinFormsHelper.GetValue<int>( uiCtrSrs_BorWth_Num );
-            Settings.Series.Pattern.BorderDashStyle = (ChartDashStyle) WinFormsHelper.GetSelectedIndexSafe( uiCtrSrs_BorStyle_ComBx );
-            Settings.Series.Pattern.ChartType = (SeriesChartType) WinFormsHelper.GetSelectedIndexSafe( uiCtrSrs_ChT_ComBx );
+            Settings.Series.Pattern.BorderWidth = UiControls.GetValue<int>( uiCtrSrs_BorWth_Num );
+            Settings.Series.Pattern.BorderDashStyle = (ChartDashStyle) UiControls.TryGetSelectedIndex( uiCtrSrs_BorStyle_ComBx );
+            Settings.Series.Pattern.ChartType = (SeriesChartType) UiControls.TryGetSelectedIndex( uiCtrSrs_ChT_ComBx );
         }
 
         private void SaveSeriesGeneratedSettings()
         {
             Settings.Series.Generated.Color = Color.FromName( uiCtrSrs_Color_ComBx.Items[uiCtrSrs_Color_ComBx.SelectedIndex].ToString() );
-            Settings.Series.Generated.BorderWidth = WinFormsHelper.GetValue<int>( uiCtrSrs_BorWth_Num );
-            Settings.Series.Generated.BorderDashStyle = (ChartDashStyle) WinFormsHelper.GetSelectedIndexSafe( uiCtrSrs_BorStyle_ComBx );
-            Settings.Series.Generated.ChartType = (SeriesChartType) WinFormsHelper.GetSelectedIndexSafe( uiCtrSrs_ChT_ComBx );
+            Settings.Series.Generated.BorderWidth = UiControls.GetValue<int>( uiCtrSrs_BorWth_Num );
+            Settings.Series.Generated.BorderDashStyle = (ChartDashStyle) UiControls.TryGetSelectedIndex( uiCtrSrs_BorStyle_ComBx );
+            Settings.Series.Generated.ChartType = (SeriesChartType) UiControls.TryGetSelectedIndex( uiCtrSrs_ChT_ComBx );
         }
 
         private void SaveSeriesAverageSettings()
         {
             Settings.Series.Average.Color = Color.FromName( uiCtrSrs_Color_ComBx.Items[uiCtrSrs_Color_ComBx.SelectedIndex].ToString() );
-            Settings.Series.Average.BorderWidth = WinFormsHelper.GetValue<int>( uiCtrSrs_BorWth_Num );
-            Settings.Series.Average.BorderDashStyle = (ChartDashStyle) WinFormsHelper.GetSelectedIndexSafe( uiCtrSrs_BorStyle_ComBx );
-            Settings.Series.Average.ChartType = (SeriesChartType) WinFormsHelper.GetSelectedIndexSafe( uiCtrSrs_ChT_ComBx );
+            Settings.Series.Average.BorderWidth = UiControls.GetValue<int>( uiCtrSrs_BorWth_Num );
+            Settings.Series.Average.BorderDashStyle = (ChartDashStyle) UiControls.TryGetSelectedIndex( uiCtrSrs_BorStyle_ComBx );
+            Settings.Series.Average.ChartType = (SeriesChartType) UiControls.TryGetSelectedIndex( uiCtrSrs_ChT_ComBx );
         }
 
         private void DefineChartAreaTabPageComboBoxes()
@@ -413,8 +414,8 @@ namespace PI
         private void PerformAxisGridSwitch()
         {
             SaveAxesSettings( Previous.AxisSelected, Previous.GridSelected );
-            Previous.AxisSelected = (ChartAreaAxis) WinFormsHelper.GetSelectedIndexSafe( uiCtrArea_Axis_ComBx );
-            Previous.GridSelected = (ChartAreaGrid) WinFormsHelper.GetSelectedIndexSafe( uiCtrArea_Grid_ComBx );
+            Previous.AxisSelected = (ChartAreaAxis) UiControls.TryGetSelectedIndex( uiCtrArea_Axis_ComBx );
+            Previous.GridSelected = (ChartAreaGrid) UiControls.TryGetSelectedIndex( uiCtrArea_Grid_ComBx );
             UpdateUiByAxesSettings();
         }
 
@@ -470,40 +471,40 @@ namespace PI
 
         private void SaveAxisYMajorGridSettings()
         {
-            Settings.Areas.Y.MajorGrid.Enabled = Convert.ToBoolean( WinFormsHelper.GetSelectedIndexSafe( uiCtrArea_En_ComBx ) );
+            Settings.Areas.Y.MajorGrid.Enabled = Convert.ToBoolean( UiControls.TryGetSelectedIndex( uiCtrArea_En_ComBx ) );
             Settings.Areas.Y.MajorGrid.LineColor = Color.FromName( uiCtrArea_LnCol_ComBx.Items[uiCtrArea_LnCol_ComBx.SelectedIndex].ToString() );
-            Settings.Areas.Y.MajorGrid.LineDashStyle = (ChartDashStyle) WinFormsHelper.GetSelectedIndexSafe( uiCtrArea_LnStyle_ComBx );
-            Settings.Areas.Y.MajorGrid.LineWidth = WinFormsHelper.GetValue<int>( uiCtrArea_LnWth_Num );
+            Settings.Areas.Y.MajorGrid.LineDashStyle = (ChartDashStyle) UiControls.TryGetSelectedIndex( uiCtrArea_LnStyle_ComBx );
+            Settings.Areas.Y.MajorGrid.LineWidth = UiControls.GetValue<int>( uiCtrArea_LnWth_Num );
         }
 
         private void SaveAxisYMinorGridSettings()
         {
-            Settings.Areas.Y.MinorGrid.Enabled = Convert.ToBoolean( WinFormsHelper.GetSelectedIndexSafe( uiCtrArea_En_ComBx ) );
+            Settings.Areas.Y.MinorGrid.Enabled = Convert.ToBoolean( UiControls.TryGetSelectedIndex( uiCtrArea_En_ComBx ) );
             Settings.Areas.Y.MinorGrid.LineColor = Color.FromName( uiCtrArea_LnCol_ComBx.Items[uiCtrArea_LnCol_ComBx.SelectedIndex].ToString() );
-            Settings.Areas.Y.MinorGrid.LineDashStyle = (ChartDashStyle) WinFormsHelper.GetSelectedIndexSafe( uiCtrArea_LnStyle_ComBx );
-            Settings.Areas.Y.MinorGrid.LineWidth = WinFormsHelper.GetValue<int>( uiCtrArea_LnWth_Num );
+            Settings.Areas.Y.MinorGrid.LineDashStyle = (ChartDashStyle) UiControls.TryGetSelectedIndex( uiCtrArea_LnStyle_ComBx );
+            Settings.Areas.Y.MinorGrid.LineWidth = UiControls.GetValue<int>( uiCtrArea_LnWth_Num );
         }
 
         private void SaveAxisXMajorGridSettings()
         {
-            Settings.Areas.X.MajorGrid.Enabled = Convert.ToBoolean( WinFormsHelper.GetSelectedIndexSafe( uiCtrArea_En_ComBx ) );
+            Settings.Areas.X.MajorGrid.Enabled = Convert.ToBoolean( UiControls.TryGetSelectedIndex( uiCtrArea_En_ComBx ) );
             Settings.Areas.X.MajorGrid.LineColor = Color.FromName( uiCtrArea_LnCol_ComBx.Items[uiCtrArea_LnCol_ComBx.SelectedIndex].ToString() );
-            Settings.Areas.X.MajorGrid.LineDashStyle = (ChartDashStyle) WinFormsHelper.GetSelectedIndexSafe( uiCtrArea_LnStyle_ComBx );
-            Settings.Areas.X.MajorGrid.LineWidth = WinFormsHelper.GetValue<int>( uiCtrArea_LnWth_Num );
+            Settings.Areas.X.MajorGrid.LineDashStyle = (ChartDashStyle) UiControls.TryGetSelectedIndex( uiCtrArea_LnStyle_ComBx );
+            Settings.Areas.X.MajorGrid.LineWidth = UiControls.GetValue<int>( uiCtrArea_LnWth_Num );
         }
 
         private void SaveAxisXMinorGridSettings()
         {
-            Settings.Areas.X.MinorGrid.Enabled = Convert.ToBoolean( WinFormsHelper.GetSelectedIndexSafe( uiCtrArea_En_ComBx ) );
+            Settings.Areas.X.MinorGrid.Enabled = Convert.ToBoolean( UiControls.TryGetSelectedIndex( uiCtrArea_En_ComBx ) );
             Settings.Areas.X.MinorGrid.LineColor = Color.FromName( uiCtrArea_LnCol_ComBx.Items[uiCtrArea_LnCol_ComBx.SelectedIndex].ToString() );
-            Settings.Areas.X.MinorGrid.LineDashStyle = (ChartDashStyle) WinFormsHelper.GetSelectedIndexSafe( uiCtrArea_LnStyle_ComBx );
-            Settings.Areas.X.MinorGrid.LineWidth = WinFormsHelper.GetValue<int>( uiCtrArea_LnWth_Num );
+            Settings.Areas.X.MinorGrid.LineDashStyle = (ChartDashStyle) UiControls.TryGetSelectedIndex( uiCtrArea_LnStyle_ComBx );
+            Settings.Areas.X.MinorGrid.LineWidth = UiControls.GetValue<int>( uiCtrArea_LnWth_Num );
         }
 
         private void UpdateUiByAxesSettings()
         {
-            ChartAreaAxis axis = (ChartAreaAxis) WinFormsHelper.GetSelectedIndexSafe( uiCtrArea_Axis_ComBx );
-            ChartAreaGrid grid = (ChartAreaGrid) WinFormsHelper.GetSelectedIndexSafe( uiCtrArea_Grid_ComBx );
+            ChartAreaAxis axis = (ChartAreaAxis) UiControls.TryGetSelectedIndex( uiCtrArea_Axis_ComBx );
+            ChartAreaGrid grid = (ChartAreaGrid) UiControls.TryGetSelectedIndex( uiCtrArea_Grid_ComBx );
             SetAxesSettings( axis, grid );
         }
 
@@ -545,34 +546,34 @@ namespace PI
 
         private void SetAxisXMajorGridSettings()
         {
-            WinFormsHelper.SetSelectedIndexSafe( uiCtrArea_En_ComBx, Convert.ToInt32( Settings.Areas.X.MajorGrid.Enabled ) );
-            WinFormsHelper.SetSelectedIndexSafe( uiCtrArea_LnCol_ComBx, uiCtrArea_LnCol_ComBx.Items.IndexOf( Settings.Areas.X.MajorGrid.LineColor.Name ) );
-            WinFormsHelper.SetSelectedIndexSafe( uiCtrArea_LnStyle_ComBx, uiCtrArea_LnStyle_ComBx.Items.IndexOf( Settings.Areas.X.MajorGrid.LineDashStyle.ToString() ) );
-            WinFormsHelper.SetValue( uiCtrArea_LnWth_Num, Settings.Areas.X.MajorGrid.LineWidth );
+            UiControls.SetSelectedIndexSafe( uiCtrArea_En_ComBx, Convert.ToInt32( Settings.Areas.X.MajorGrid.Enabled ) );
+            UiControls.SetSelectedIndexSafe( uiCtrArea_LnCol_ComBx, uiCtrArea_LnCol_ComBx.Items.IndexOf( Settings.Areas.X.MajorGrid.LineColor.Name ) );
+            UiControls.SetSelectedIndexSafe( uiCtrArea_LnStyle_ComBx, uiCtrArea_LnStyle_ComBx.Items.IndexOf( Settings.Areas.X.MajorGrid.LineDashStyle.ToString() ) );
+            UiControls.SetValue( uiCtrArea_LnWth_Num, Settings.Areas.X.MajorGrid.LineWidth );
         }
 
         private void SetAxisXMinorGridSettings()
         {
-            WinFormsHelper.SetSelectedIndexSafe( uiCtrArea_En_ComBx, Convert.ToInt32( Settings.Areas.X.MinorGrid.Enabled ) );
-            WinFormsHelper.SetSelectedIndexSafe( uiCtrArea_LnCol_ComBx, uiCtrArea_LnCol_ComBx.Items.IndexOf( Settings.Areas.X.MinorGrid.LineColor.Name ) );
-            WinFormsHelper.SetSelectedIndexSafe( uiCtrArea_LnStyle_ComBx, uiCtrArea_LnStyle_ComBx.Items.IndexOf( Settings.Areas.X.MinorGrid.LineDashStyle.ToString() ) );
-            WinFormsHelper.SetValue( uiCtrArea_LnWth_Num, Settings.Areas.X.MinorGrid.LineWidth );
+            UiControls.SetSelectedIndexSafe( uiCtrArea_En_ComBx, Convert.ToInt32( Settings.Areas.X.MinorGrid.Enabled ) );
+            UiControls.SetSelectedIndexSafe( uiCtrArea_LnCol_ComBx, uiCtrArea_LnCol_ComBx.Items.IndexOf( Settings.Areas.X.MinorGrid.LineColor.Name ) );
+            UiControls.SetSelectedIndexSafe( uiCtrArea_LnStyle_ComBx, uiCtrArea_LnStyle_ComBx.Items.IndexOf( Settings.Areas.X.MinorGrid.LineDashStyle.ToString() ) );
+            UiControls.SetValue( uiCtrArea_LnWth_Num, Settings.Areas.X.MinorGrid.LineWidth );
         }
 
         private void SetAxisYMajorGridSettings()
         {
-            WinFormsHelper.SetSelectedIndexSafe( uiCtrArea_En_ComBx, Convert.ToInt32( Settings.Areas.Y.MajorGrid.Enabled ) );
-            WinFormsHelper.SetSelectedIndexSafe( uiCtrArea_LnCol_ComBx, uiCtrArea_LnCol_ComBx.Items.IndexOf( Settings.Areas.Y.MajorGrid.LineColor.Name ) );
-            WinFormsHelper.SetSelectedIndexSafe( uiCtrArea_LnStyle_ComBx, uiCtrArea_LnStyle_ComBx.Items.IndexOf( Settings.Areas.Y.MajorGrid.LineDashStyle.ToString() ) );
-            WinFormsHelper.SetValue( uiCtrArea_LnWth_Num, Settings.Areas.Y.MajorGrid.LineWidth );
+            UiControls.SetSelectedIndexSafe( uiCtrArea_En_ComBx, Convert.ToInt32( Settings.Areas.Y.MajorGrid.Enabled ) );
+            UiControls.SetSelectedIndexSafe( uiCtrArea_LnCol_ComBx, uiCtrArea_LnCol_ComBx.Items.IndexOf( Settings.Areas.Y.MajorGrid.LineColor.Name ) );
+            UiControls.SetSelectedIndexSafe( uiCtrArea_LnStyle_ComBx, uiCtrArea_LnStyle_ComBx.Items.IndexOf( Settings.Areas.Y.MajorGrid.LineDashStyle.ToString() ) );
+            UiControls.SetValue( uiCtrArea_LnWth_Num, Settings.Areas.Y.MajorGrid.LineWidth );
         }
 
         private void SetAxisYMinorGridSettings()
         {
-            WinFormsHelper.SetSelectedIndexSafe( uiCtrArea_En_ComBx, Convert.ToInt32( Settings.Areas.Y.MinorGrid.Enabled ) );
-            WinFormsHelper.SetSelectedIndexSafe( uiCtrArea_LnCol_ComBx, uiCtrArea_LnCol_ComBx.Items.IndexOf( Settings.Areas.Y.MinorGrid.LineColor.Name ) );
-            WinFormsHelper.SetSelectedIndexSafe( uiCtrArea_LnStyle_ComBx, uiCtrArea_LnStyle_ComBx.Items.IndexOf( Settings.Areas.Y.MinorGrid.LineDashStyle.ToString() ) );
-            WinFormsHelper.SetValue( uiCtrArea_LnWth_Num, Settings.Areas.Y.MinorGrid.LineWidth );
+            UiControls.SetSelectedIndexSafe( uiCtrArea_En_ComBx, Convert.ToInt32( Settings.Areas.Y.MinorGrid.Enabled ) );
+            UiControls.SetSelectedIndexSafe( uiCtrArea_LnCol_ComBx, uiCtrArea_LnCol_ComBx.Items.IndexOf( Settings.Areas.Y.MinorGrid.LineColor.Name ) );
+            UiControls.SetSelectedIndexSafe( uiCtrArea_LnStyle_ComBx, uiCtrArea_LnStyle_ComBx.Items.IndexOf( Settings.Areas.Y.MinorGrid.LineDashStyle.ToString() ) );
+            UiControls.SetValue( uiCtrArea_LnWth_Num, Settings.Areas.Y.MinorGrid.LineWidth );
         }
 
         private void UiCenterArea_Grid_SelectedIndexChanged( object sender, EventArgs e )

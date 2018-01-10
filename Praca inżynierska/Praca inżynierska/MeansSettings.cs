@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PI.src.helpers;
+using System;
 using System.Windows.Forms;
 
 namespace PI
@@ -73,11 +74,11 @@ namespace PI
 
         private void UpdateUiByDefaultSettings()
         {
-            WinFormsHelper.SetValue( uiGrid_PowRank_Num, MeansParams.PowerMean.Rank );
-            WinFormsHelper.SetSelectedIndexSafe( uiGrid_DiffMode_ComBx, (int) MeansParams.CustomDifferentialMean.Mode );
-            WinFormsHelper.SetSelectedIndexSafe( uiGrid_Comp_ComBx, (int) MeansParams.CustomToleranceMean.Comparer );
-            WinFormsHelper.SetValue( uiGrid_Toler_Num, MeansParams.CustomToleranceMean.Tolerance );
-            WinFormsHelper.SetSelectedIndexSafe( uiGrid_Finish_ComBx, (int) MeansParams.CustomToleranceMean.Finisher );
+            UiControls.SetValue( uiGrid_PowRank_Num, MeansParams.PowerMean.Rank );
+            UiControls.SetSelectedIndexSafe( uiGrid_DiffMode_ComBx, (int) MeansParams.CustomDifferentialMean.Mode );
+            UiControls.SetSelectedIndexSafe( uiGrid_Comp_ComBx, (int) MeansParams.CustomToleranceMean.Comparer );
+            UiControls.SetValue( uiGrid_Toler_Num, MeansParams.CustomToleranceMean.Tolerance );
+            UiControls.SetSelectedIndexSafe( uiGrid_Finish_ComBx, (int) MeansParams.CustomToleranceMean.Finisher );
         }
 
         private void Ui_Ok_Click( object sender, EventArgs e )
@@ -87,11 +88,11 @@ namespace PI
 
         private void SaveAllSettings()
         {
-            MeansParams.PowerMean.Rank = WinFormsHelper.GetValue<double>( uiGrid_PowRank_Num );
-            MeansParams.CustomDifferentialMean.Mode = (CustomDifferentialMeanMode) WinFormsHelper.GetSelectedIndexSafe( uiGrid_DiffMode_ComBx );
-            MeansParams.CustomToleranceMean.Comparer = (CustomToleranceComparerType) WinFormsHelper.GetSelectedIndexSafe( uiGrid_Comp_ComBx );
-            MeansParams.CustomToleranceMean.Tolerance = WinFormsHelper.GetValue<double>( uiGrid_Toler_Num );
-            MeansParams.CustomToleranceMean.Finisher = (CustomToleranceFinisherFunction) WinFormsHelper.GetSelectedIndexSafe( uiGrid_Finish_ComBx );
+            MeansParams.PowerMean.Rank = UiControls.GetValue<double>( uiGrid_PowRank_Num );
+            MeansParams.CustomDifferentialMean.Mode = (CustomDifferentialMeanMode) UiControls.TryGetSelectedIndex( uiGrid_DiffMode_ComBx );
+            MeansParams.CustomToleranceMean.Comparer = (CustomToleranceComparerType) UiControls.TryGetSelectedIndex( uiGrid_Comp_ComBx );
+            MeansParams.CustomToleranceMean.Tolerance = UiControls.GetValue<double>( uiGrid_Toler_Num );
+            MeansParams.CustomToleranceMean.Finisher = (CustomToleranceFinisherFunction) UiControls.TryGetSelectedIndex( uiGrid_Finish_ComBx );
         }
 
         public void SetPowerMeanRank( double value )
@@ -102,31 +103,31 @@ namespace PI
                 MeansParams.PowerMean.Rank = value;
             }
 
-            WinFormsHelper.SetValue( uiGrid_PowRank_Num, MeansParams.PowerMean.Rank );
+            UiControls.SetValue( uiGrid_PowRank_Num, MeansParams.PowerMean.Rank );
         }
 
         public void SetCustomDifferentialMeanMode( CustomDifferentialMeanMode mode )
         {
             MeansParams.CustomDifferentialMean.Mode = mode;
-            WinFormsHelper.SetSelectedIndexSafe( uiGrid_DiffMode_ComBx, (int) MeansParams.CustomDifferentialMean.Mode );
+            UiControls.SetSelectedIndexSafe( uiGrid_DiffMode_ComBx, (int) MeansParams.CustomDifferentialMean.Mode );
         }
 
         public void SetCustomToleranceMeanComparer( CustomToleranceComparerType type )
         {
             MeansParams.CustomToleranceMean.Comparer = type;
-            WinFormsHelper.SetSelectedIndexSafe( uiGrid_Comp_ComBx, (int) MeansParams.CustomToleranceMean.Comparer );
+            UiControls.SetSelectedIndexSafe( uiGrid_Comp_ComBx, (int) MeansParams.CustomToleranceMean.Comparer );
         }
 
         public void SetCustomToleranceMeanTolerance( double value )
         {
             MeansParams.CustomToleranceMean.Tolerance = value;
-            WinFormsHelper.SetValue( uiGrid_Toler_Num, value );
+            UiControls.SetValue( uiGrid_Toler_Num, value );
         }
 
         public void SetCustomToleranceMeanFinisher( CustomToleranceFinisherFunction type )
         {
             MeansParams.CustomToleranceMean.Finisher = type;
-            WinFormsHelper.SetSelectedIndexSafe( uiGrid_Finish_ComBx, (int) MeansParams.CustomToleranceMean.Finisher );
+            UiControls.SetSelectedIndexSafe( uiGrid_Finish_ComBx, (int) MeansParams.CustomToleranceMean.Finisher );
         }
 
         private void MeansSettings_FormClosing( object sender, FormClosingEventArgs e )

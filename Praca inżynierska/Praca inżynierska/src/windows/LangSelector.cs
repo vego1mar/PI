@@ -1,4 +1,5 @@
-﻿using PI.src.localization;
+﻿using PI.src.helpers;
+using PI.src.localization;
 using System;
 using System.Windows.Forms;
 
@@ -14,13 +15,13 @@ namespace PI.src.windows
 
         public Languages GetSelectedLanguage()
         {
-            return (Languages) WinFormsHelper.GetSelectedIndexSafe( uiUp_LstBx );
+            return (Languages) UiControls.TryGetSelectedIndex( uiUp_LstBx );
         }
 
         private void SetWindowDefaults()
         {
             LocalizeWindow();
-            WinFormsHelper.SetSelectedIndexSafe( uiUp_LstBx, (int) LanguageHelper.GetCurrentUiLanguage() );
+            UiControls.SetSelectedIndexSafe( uiUp_LstBx, (int) LanguageHelper.GetCurrentUiLanguage() );
         }
 
         private void LocalizeWindow()

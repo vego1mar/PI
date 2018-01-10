@@ -4,6 +4,7 @@ using System;
 using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using PI.src.helpers;
 
 namespace PI
 {
@@ -171,7 +172,7 @@ namespace PI
         private void UiPanelGenerate_Define_Click( object sender, EventArgs e )
         {
             using ( var pcdDialog = new PatternCurveDefiner( Settings.Presets.Pcd ) ) {
-                WinFormsHelper.ShowDialogSafe( pcdDialog, this );
+                UiControls.TryShowDialog( pcdDialog, this );
 
                 try {
                     if ( pcdDialog.DialogResult == DialogResult.OK ) {
@@ -217,11 +218,11 @@ namespace PI
 
         private void UiPanelDataSheet_CurveType_SelectedIndexChanged( object sender, EventArgs e )
         {
-            switch ( (Enums.DataSetCurveType) WinFormsHelper.GetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx ) ) {
+            switch ( (Enums.DataSetCurveType) UiControls.TryGetSelectedIndex( uiPnlDtSh_CrvT_ComBx ) ) {
             case Enums.DataSetCurveType.Generated:
                 uiPnlDtSh_CrvIdx_Num.Enabled = true;
                 uiPnlDtSh_CrvIdx_TrBr.Enabled = true;
-                UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Generated, WinFormsHelper.GetValue( uiPnlDtSh_CrvIdx_TrBr ) );
+                UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Generated, UiControls.GetValue( uiPnlDtSh_CrvIdx_TrBr ) );
                 break;
             case Enums.DataSetCurveType.Pattern:
                 uiPnlDtSh_CrvIdx_Num.Enabled = false;
@@ -238,15 +239,15 @@ namespace PI
 
         private void UiPanelDataSheet_CurveIndex_NumericUpDown_ValueChanged( object sender, EventArgs e )
         {
-            int curveIndex = WinFormsHelper.GetValue<int>( uiPnlDtSh_CrvIdx_Num );
-            WinFormsHelper.SetValue( uiPnlDtSh_CrvIdx_TrBr, curveIndex );
+            int curveIndex = UiControls.GetValue<int>( uiPnlDtSh_CrvIdx_Num );
+            UiControls.SetValue( uiPnlDtSh_CrvIdx_TrBr, curveIndex );
             UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Generated, curveIndex );
         }
 
         private void UiPanelDataSheet_CurveIndex_TrackBar_Scroll( object sender, EventArgs e )
         {
-            int curveIndex = WinFormsHelper.GetValue( uiPnlDtSh_CrvIdx_TrBr );
-            WinFormsHelper.SetValue( uiPnlDtSh_CrvIdx_Num, curveIndex );
+            int curveIndex = UiControls.GetValue( uiPnlDtSh_CrvIdx_TrBr );
+            UiControls.SetValue( uiPnlDtSh_CrvIdx_Num, curveIndex );
             UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Generated, curveIndex );
         }
 
@@ -262,15 +263,15 @@ namespace PI
             DataChart.SpreadPatternCurveSetToGeneratedCurveSet( Settings.Presets.Ui.NumberOfCurves );
             DataChart.ClearAverageCurveSetPoints();
             UpdateUiBySettingRangesForCurvesNumber();
-            WinFormsHelper.SetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx, (int) Enums.DataSetCurveType.Generated );
+            UiControls.SetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx, (int) Enums.DataSetCurveType.Generated );
         }
 
         private void GrabPreSetsForCurvesGeneration()
         {
-            Settings.Presets.Ui.NumberOfCurves = WinFormsHelper.GetValue<int>( uiPnlGen_Crvs1No_Num );
-            Settings.Presets.Ui.StartingXPoint = WinFormsHelper.GetValue<double>( uiPnlGen_StartX_Num );
-            Settings.Presets.Ui.EndingXPoint = WinFormsHelper.GetValue<double>( uiPnlGen_EndX_Num );
-            Settings.Presets.Ui.PointsDensity = WinFormsHelper.GetValue<int>( uiPnlGen_Dens_Num );
+            Settings.Presets.Ui.NumberOfCurves = UiControls.GetValue<int>( uiPnlGen_Crvs1No_Num );
+            Settings.Presets.Ui.StartingXPoint = UiControls.GetValue<double>( uiPnlGen_StartX_Num );
+            Settings.Presets.Ui.EndingXPoint = UiControls.GetValue<double>( uiPnlGen_EndX_Num );
+            Settings.Presets.Ui.PointsDensity = UiControls.GetValue<int>( uiPnlGen_Dens_Num );
         }
 
         private void GenerateAndShowPatternCurve()
@@ -391,8 +392,8 @@ namespace PI
 
         private void UiPanelDataSheet_ShowDataSet_Click( object sender, EventArgs e )
         {
-            int selectedCurveType = WinFormsHelper.GetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx );
-            int selectedCurveIndex = WinFormsHelper.GetValue<int>( uiPnlDtSh_CrvIdx_Num );
+            int selectedCurveType = UiControls.TryGetSelectedIndex( uiPnlDtSh_CrvT_ComBx );
+            int selectedCurveIndex = UiControls.GetValue<int>( uiPnlDtSh_CrvIdx_Num );
 
             switch ( (Enums.DataSetCurveType) selectedCurveType ) {
             case Enums.DataSetCurveType.Pattern:
@@ -412,7 +413,7 @@ namespace PI
             }
 
             using ( var gprvDialog = new GridPreviewer( selectedCurveSeries ) ) {
-                WinFormsHelper.ShowDialogSafe( gprvDialog, this );
+                UiControls.TryShowDialog( gprvDialog, this );
 
                 try {
                     if ( gprvDialog.DialogResult == DialogResult.OK ) {
@@ -473,8 +474,8 @@ namespace PI
                 return;
             }
 
-            int numberOfCurves = WinFormsHelper.GetValue<int>( uiPnlDtSh_CrvNo_Num );
-            double surrounding = WinFormsHelper.GetValue<double>( uiPnlDtSh_Surr_Num );
+            int numberOfCurves = UiControls.GetValue<int>( uiPnlDtSh_CrvNo_Num );
+            double surrounding = UiControls.GetValue<double>( uiPnlDtSh_Surr_Num );
             bool? result = DataChart.MakeGaussianNoiseForGeneratedCurves( numberOfCurves, surrounding );
 
             if ( result == null ) {
@@ -488,7 +489,7 @@ namespace PI
             }
 
             DataChart.ClearAverageCurveSetPoints();
-            WinFormsHelper.SetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx, (int) Enums.DataSetCurveType.Generated );
+            UiControls.SetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx, (int) Enums.DataSetCurveType.Generated );
             UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Generated );
         }
 
@@ -499,8 +500,8 @@ namespace PI
                 return;
             }
 
-            Enums.MeanType meanType = (Enums.MeanType) WinFormsHelper.GetSelectedIndexSafe( uiPnlGen_MeanT_ComBx );
-            int numberOfCurves = WinFormsHelper.GetValue<int>( uiPnlGen_Crvs2No_Nm );
+            Enums.MeanType meanType = (Enums.MeanType) UiControls.TryGetSelectedIndex( uiPnlGen_MeanT_ComBx );
+            int numberOfCurves = UiControls.GetValue<int>( uiPnlGen_Crvs2No_Nm );
             bool isNumberOfCurvesInsufficient = (meanType == Enums.MeanType.Mediana
                 || meanType == Enums.MeanType.CustomDifferential
                 || meanType == Enums.MeanType.CustomTolerance)
@@ -518,7 +519,7 @@ namespace PI
                 MsgBxShower.Ui.PointsNotValidToChartProblem();
             }
 
-            WinFormsHelper.SetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx, (int) Enums.DataSetCurveType.Average );
+            UiControls.SetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx, (int) Enums.DataSetCurveType.Average );
             double standardDeviation = StatAnalysis.GetRelativeStandardDeviationFromSeriesValues( DataChart.AverageCurveSet, DataChart.PatternCurveSet );
             uiPnlGen_StdDev2_TxtBx.Text = StringFormatter.FormatAsNumeric( 8, standardDeviation );
         }
@@ -526,7 +527,7 @@ namespace PI
         private void UpdateUiByDefaultSettings()
         {
             CurvesDataManager.SetDefaultProperties( uiCharts_Crv );
-            WinFormsHelper.SetSelectedIndexSafe( uiPnlGen_MeanT_ComBx, (int) Enums.MeanType.Geometric );
+            UiControls.SetSelectedIndexSafe( uiPnlGen_MeanT_ComBx, (int) Enums.MeanType.Geometric );
             UpdateUiByChosenScaffoldStatus();
         }
 
@@ -590,7 +591,7 @@ namespace PI
         private void UiMenuMeans_AveragingInfo_Click( object sender, EventArgs e )
         {
             using ( var msgBox = new AvgInfo() ) {
-                WinFormsHelper.ShowDialogSafe( msgBox, this );
+                UiControls.TryShowDialog( msgBox, this );
             }
         }
 
@@ -598,7 +599,7 @@ namespace PI
         {
             using ( var dialog = new MeansSettings() ) {
                 ProvideMeansSettings( dialog );
-                WinFormsHelper.ShowDialogSafe( dialog, this );
+                UiControls.TryShowDialog( dialog, this );
 
                 if ( dialog.DialogResult == DialogResult.OK ) {
                     GrabMeansSettings( dialog );
@@ -625,7 +626,7 @@ namespace PI
         private void UiMenuChart_Settings_Click( object sender, EventArgs e )
         {
             using ( var dialog = new ChartSettings( GetChartSettings( uiCharts_Crv ) ) ) {
-                WinFormsHelper.ShowDialogSafe( dialog, this );
+                UiControls.TryShowDialog( dialog, this );
 
                 if ( dialog.DialogResult == DialogResult.OK ) {
                     SetChartSettings( dialog.Settings, uiCharts_Crv );
@@ -753,7 +754,7 @@ namespace PI
 
         private void UpdateUiByInvalidatingChartSettings()
         {
-            switch ( (Enums.DataSetCurveType) WinFormsHelper.GetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx ) ) {
+            switch ( (Enums.DataSetCurveType) UiControls.TryGetSelectedIndex( uiPnlDtSh_CrvT_ComBx ) ) {
             case Enums.DataSetCurveType.Pattern:
                 UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Pattern );
                 break;
@@ -826,7 +827,7 @@ namespace PI
         private void UiMenuProgram_SelectLanguage_Click( object sender, EventArgs e )
         {
             using ( var dialog = new LangSelector() ) {
-                WinFormsHelper.ShowDialogSafe( dialog, this );
+                UiControls.TryShowDialog( dialog, this );
 
                 if ( dialog.DialogResult == DialogResult.OK ) {
                     Translator.SetLanguage( dialog.GetSelectedLanguage() );
@@ -944,22 +945,22 @@ namespace PI
 
                     if ( (control as NumericUpDown).Minimum == (control as NumericUpDown).Maximum ) {
                         (control as NumericUpDown).Maximum++;
-                        WinFormsHelper.SetValue( control as NumericUpDown, (control as NumericUpDown).Maximum );
-                        WinFormsHelper.SetValue( control as NumericUpDown, (control as NumericUpDown).Minimum );
+                        UiControls.SetValue( control as NumericUpDown, (control as NumericUpDown).Maximum );
+                        UiControls.SetValue( control as NumericUpDown, (control as NumericUpDown).Minimum );
                         (control as NumericUpDown).Maximum--;
                         return;
                     }
 
                     if ( originalValue == (control as NumericUpDown).Minimum ) {
-                        WinFormsHelper.SetValue( control as NumericUpDown, originalValue + ((control as NumericUpDown).Increment) );
-                        WinFormsHelper.SetValue( control as NumericUpDown, originalValue );
+                        UiControls.SetValue( control as NumericUpDown, originalValue + ((control as NumericUpDown).Increment) );
+                        UiControls.SetValue( control as NumericUpDown, originalValue );
                         return;
                     }
 
                     decimal originalIncrement = (control as NumericUpDown).Increment;
                     (control as NumericUpDown).Increment = 0.0001M;
-                    WinFormsHelper.SetValue( control as NumericUpDown, originalValue - ((control as NumericUpDown).Increment) );
-                    WinFormsHelper.SetValue( control as NumericUpDown, originalValue );
+                    UiControls.SetValue( control as NumericUpDown, originalValue - ((control as NumericUpDown).Increment) );
+                    UiControls.SetValue( control as NumericUpDown, originalValue );
                     (control as NumericUpDown).Increment = originalIncrement;
                 }
             }

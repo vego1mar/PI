@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Windows.Forms.DataVisualization.Charting;
+using PI.src.helpers;
 
 namespace PI
 {
@@ -24,8 +25,8 @@ namespace PI
             CurvesDataManager.SetDefaultProperties( uiChart_Prv );
             ChartDataSet = series;
             OriginalValues = GetPointsValues( series );
-            WinFormsHelper.SetSelectedIndexSafe( uiPnl_AutoSize_ComBx, (int) Enums.AutoSizeColumnsMode.Fill );
-            WinFormsHelper.SetSelectedIndexSafe( uiPnl_OperT_ComBx, (int) Enums.Operation.Positive );
+            UiControls.SetSelectedIndexSafe( uiPnl_AutoSize_ComBx, (int) Enums.AutoSizeColumnsMode.Fill );
+            UiControls.SetSelectedIndexSafe( uiPnl_OperT_ComBx, (int) Enums.Operation.Positive );
             uiPnl_StartIdx_Num.Minimum = 0;
             uiPnl_StartIdx_Num.Maximum = ChartDataSet.Points.Count - 1;
             uiPnl_StartIdx_Num.Value = 0;
@@ -178,8 +179,8 @@ namespace PI
                 return;
             }
 
-            int startIndex = WinFormsHelper.GetValue<int>( uiPnl_StartIdx_Num );
-            int endIndex = WinFormsHelper.GetValue<int>( uiPnl_EndIdx_Num );
+            int startIndex = UiControls.GetValue<int>( uiPnl_StartIdx_Num );
+            int endIndex = UiControls.GetValue<int>( uiPnl_EndIdx_Num );
             Series seriesCopy = GetCopyOfSeriesPoints();
             Enums.Operation operation = (Enums.Operation) uiPnl_OperT_ComBx.SelectedIndex;
             bool result = PerformOperation( operation, startIndex, endIndex, userValue.Value, ref seriesCopy );

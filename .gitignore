@@ -1,6 +1,9 @@
-﻿.sonarqube/
+.sonarqube/
 Praca inżynierska/Praca inżynierska/bw-output/
 Praca inżynierska/Praca inżynierska/bin/
 Praca inżynierska/Praca inżynierska/obj/
 Praca inżynierska/Praca inżynierska/Logs/
 sq_cmd.txt
+Praca inżynierska/packages/
+Praca inżynierska/Praca inżynierskaTests/bin/
+Praca inżynierska/Praca inżynierskaTests/obj/

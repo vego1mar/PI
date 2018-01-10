@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PI.src.helpers;
+using System;
 using System.Windows.Forms;
 
 namespace PI
@@ -29,35 +30,35 @@ namespace PI
         {
             switch ( Settings.Scaffold ) {
             case Enums.PatternCurveScaffold.Polynomial:
-                WinFormsHelper.SelectTabSafe( uiCnt_TbCtrl, (int) Enums.PatternCurveScaffold.Polynomial );
+                UiControls.TrySelectTab( uiCnt_TbCtrl, (int) Enums.PatternCurveScaffold.Polynomial );
                 uiTabs_Pol_Btn.BackColor = System.Drawing.Color.GhostWhite;
                 break;
             case Enums.PatternCurveScaffold.Hyperbolic:
-                WinFormsHelper.SelectTabSafe( uiCnt_TbCtrl, (int) Enums.PatternCurveScaffold.Hyperbolic );
+                UiControls.TrySelectTab( uiCnt_TbCtrl, (int) Enums.PatternCurveScaffold.Hyperbolic );
                 uiTabs_Hyp_Btn.BackColor = System.Drawing.Color.GhostWhite;
                 break;
             case Enums.PatternCurveScaffold.WaveformSine:
-                WinFormsHelper.SelectTabSafe( uiCnt_TbCtrl, (int) Enums.PatternCurveScaffold.Waveform );
+                UiControls.TrySelectTab( uiCnt_TbCtrl, (int) Enums.PatternCurveScaffold.Waveform );
                 uiTabs_Wave_Btn.BackColor = System.Drawing.Color.GhostWhite;
                 uiCntWaveT_Sine_RdBtn.Checked = true;
                 break;
             case Enums.PatternCurveScaffold.WaveformSquare:
-                WinFormsHelper.SelectTabSafe( uiCnt_TbCtrl, (int) Enums.PatternCurveScaffold.Waveform );
+                UiControls.TrySelectTab( uiCnt_TbCtrl, (int) Enums.PatternCurveScaffold.Waveform );
                 uiTabs_Wave_Btn.BackColor = System.Drawing.Color.GhostWhite;
                 uiCntWaveT_Sq_RdBtn.Checked = true;
                 break;
             case Enums.PatternCurveScaffold.WaveformTriangle:
-                WinFormsHelper.SelectTabSafe( uiCnt_TbCtrl, (int) Enums.PatternCurveScaffold.Waveform );
+                UiControls.TrySelectTab( uiCnt_TbCtrl, (int) Enums.PatternCurveScaffold.Waveform );
                 uiTabs_Wave_Btn.BackColor = System.Drawing.Color.GhostWhite;
                 uiCntWaveT_Trg_RdBtn.Checked = true;
                 break;
             case Enums.PatternCurveScaffold.WaveformSawtooth:
-                WinFormsHelper.SelectTabSafe( uiCnt_TbCtrl, (int) Enums.PatternCurveScaffold.Waveform );
+                UiControls.TrySelectTab( uiCnt_TbCtrl, (int) Enums.PatternCurveScaffold.Waveform );
                 uiTabs_Wave_Btn.BackColor = System.Drawing.Color.GhostWhite;
                 uiCntWaveT_Saw_RdBtn.Checked = true;
                 break;
             case Enums.PatternCurveScaffold.Waveform:
-                WinFormsHelper.SelectTabSafe( uiCnt_TbCtrl, (int) Enums.PatternCurveScaffold.Waveform );
+                UiControls.TrySelectTab( uiCnt_TbCtrl, (int) Enums.PatternCurveScaffold.Waveform );
                 uiTabs_Wave_Btn.BackColor = System.Drawing.Color.GhostWhite;
                 break;
             default:
@@ -67,29 +68,29 @@ namespace PI
 
         private void UpdateUiByParametersValues()
         {
-            WinFormsHelper.SetValue( uiCntPol_a_Num, Settings.Parameters.Polynomial.A );
-            WinFormsHelper.SetValue( uiCntPol_b_Num, Settings.Parameters.Polynomial.B );
-            WinFormsHelper.SetValue( uiCntPol_c_Num, Settings.Parameters.Polynomial.C );
-            WinFormsHelper.SetValue( uiCntPol_d_Num, Settings.Parameters.Polynomial.D );
-            WinFormsHelper.SetValue( uiCntPol_e_Num, Settings.Parameters.Polynomial.E );
-            WinFormsHelper.SetValue( uiCntPol_f_Num, Settings.Parameters.Polynomial.F );
-            WinFormsHelper.SetValue( uiCntPol_i_Num, Settings.Parameters.Polynomial.I );
-            WinFormsHelper.SetValue( uiCntHyp_a_Num, Settings.Parameters.Hyperbolic.A );
-            WinFormsHelper.SetValue( uiCntHyp_b_Num, Settings.Parameters.Hyperbolic.B );
-            WinFormsHelper.SetValue( uiCntHyp_c_Num, Settings.Parameters.Hyperbolic.C );
-            WinFormsHelper.SetValue( uiCntHyp_d_Num, Settings.Parameters.Hyperbolic.D );
-            WinFormsHelper.SetValue( uiCntHyp_f_Num, Settings.Parameters.Hyperbolic.F );
-            WinFormsHelper.SetValue( uiCntHyp_i_Num, Settings.Parameters.Hyperbolic.I );
-            WinFormsHelper.SetValue( uiCntWave_m_Num, Settings.Parameters.Waveform.M );
-            WinFormsHelper.SetValue( uiCntWave_n_Num, Settings.Parameters.Waveform.N );
-            WinFormsHelper.SetValue( uiCntWave_o_Num, Settings.Parameters.Waveform.O );
-            WinFormsHelper.SetValue( uiCntWave_k_Num, Settings.Parameters.Waveform.K );
+            UiControls.SetValue( uiCntPol_a_Num, Settings.Parameters.Polynomial.A );
+            UiControls.SetValue( uiCntPol_b_Num, Settings.Parameters.Polynomial.B );
+            UiControls.SetValue( uiCntPol_c_Num, Settings.Parameters.Polynomial.C );
+            UiControls.SetValue( uiCntPol_d_Num, Settings.Parameters.Polynomial.D );
+            UiControls.SetValue( uiCntPol_e_Num, Settings.Parameters.Polynomial.E );
+            UiControls.SetValue( uiCntPol_f_Num, Settings.Parameters.Polynomial.F );
+            UiControls.SetValue( uiCntPol_i_Num, Settings.Parameters.Polynomial.I );
+            UiControls.SetValue( uiCntHyp_a_Num, Settings.Parameters.Hyperbolic.A );
+            UiControls.SetValue( uiCntHyp_b_Num, Settings.Parameters.Hyperbolic.B );
+            UiControls.SetValue( uiCntHyp_c_Num, Settings.Parameters.Hyperbolic.C );
+            UiControls.SetValue( uiCntHyp_d_Num, Settings.Parameters.Hyperbolic.D );
+            UiControls.SetValue( uiCntHyp_f_Num, Settings.Parameters.Hyperbolic.F );
+            UiControls.SetValue( uiCntHyp_i_Num, Settings.Parameters.Hyperbolic.I );
+            UiControls.SetValue( uiCntWave_m_Num, Settings.Parameters.Waveform.M );
+            UiControls.SetValue( uiCntWave_n_Num, Settings.Parameters.Waveform.N );
+            UiControls.SetValue( uiCntWave_o_Num, Settings.Parameters.Waveform.O );
+            UiControls.SetValue( uiCntWave_k_Num, Settings.Parameters.Waveform.K );
         }
 
         private void UiTabs_Polynomial_Click( object sender, EventArgs e )
         {
             Settings.Scaffold = Enums.PatternCurveScaffold.Polynomial;
-            WinFormsHelper.SelectTabSafe( uiCnt_TbCtrl, (int) Enums.PatternCurveScaffold.Polynomial );
+            UiControls.TrySelectTab( uiCnt_TbCtrl, (int) Enums.PatternCurveScaffold.Polynomial );
             uiTabs_Pol_Btn.BackColor = System.Drawing.Color.GhostWhite;
             uiTabs_Hyp_Btn.BackColor = System.Drawing.Color.White;
             uiTabs_Wave_Btn.BackColor = System.Drawing.Color.White;
@@ -98,7 +99,7 @@ namespace PI
         private void UiTabs_Hyperbolic_Click( object sender, EventArgs e )
         {
             Settings.Scaffold = Enums.PatternCurveScaffold.Hyperbolic;
-            WinFormsHelper.SelectTabSafe( uiCnt_TbCtrl, (int) Enums.PatternCurveScaffold.Hyperbolic );
+            UiControls.TrySelectTab( uiCnt_TbCtrl, (int) Enums.PatternCurveScaffold.Hyperbolic );
             uiTabs_Hyp_Btn.BackColor = System.Drawing.Color.GhostWhite;
             uiTabs_Pol_Btn.BackColor = System.Drawing.Color.White;
             uiTabs_Wave_Btn.BackColor = System.Drawing.Color.White;
@@ -107,7 +108,7 @@ namespace PI
         private void UiTabs_Waveform_Click( object sender, EventArgs e )
         {
             Settings.Scaffold = Enums.PatternCurveScaffold.WaveformSine;
-            WinFormsHelper.SelectTabSafe( uiCnt_TbCtrl, (int) Enums.PatternCurveScaffold.Waveform );
+            UiControls.TrySelectTab( uiCnt_TbCtrl, (int) Enums.PatternCurveScaffold.Waveform );
             uiTabs_Wave_Btn.BackColor = System.Drawing.Color.GhostWhite;
             uiTabs_Pol_Btn.BackColor = System.Drawing.Color.White;
             uiTabs_Hyp_Btn.BackColor = System.Drawing.Color.White;
@@ -160,18 +161,18 @@ namespace PI
 
         private void SaveParametersForPolynomialPatternCurve()
         {
-            Settings.Parameters.Polynomial.A = WinFormsHelper.GetValue<double>( uiCntPol_a_Num );
-            Settings.Parameters.Polynomial.B = WinFormsHelper.GetValue<double>( uiCntPol_b_Num );
-            Settings.Parameters.Polynomial.C = WinFormsHelper.GetValue<double>( uiCntPol_c_Num );
-            Settings.Parameters.Polynomial.D = WinFormsHelper.GetValue<double>( uiCntPol_d_Num );
-            Settings.Parameters.Polynomial.E = WinFormsHelper.GetValue<double>( uiCntPol_e_Num );
-            Settings.Parameters.Polynomial.F = WinFormsHelper.GetValue<double>( uiCntPol_f_Num );
-            Settings.Parameters.Polynomial.I = WinFormsHelper.GetValue<double>( uiCntPol_i_Num );
+            Settings.Parameters.Polynomial.A = UiControls.GetValue<double>( uiCntPol_a_Num );
+            Settings.Parameters.Polynomial.B = UiControls.GetValue<double>( uiCntPol_b_Num );
+            Settings.Parameters.Polynomial.C = UiControls.GetValue<double>( uiCntPol_c_Num );
+            Settings.Parameters.Polynomial.D = UiControls.GetValue<double>( uiCntPol_d_Num );
+            Settings.Parameters.Polynomial.E = UiControls.GetValue<double>( uiCntPol_e_Num );
+            Settings.Parameters.Polynomial.F = UiControls.GetValue<double>( uiCntPol_f_Num );
+            Settings.Parameters.Polynomial.I = UiControls.GetValue<double>( uiCntPol_i_Num );
         }
 
         private void SaveParametersForHyperbolicPatternCurve()
         {
-            double userValue = WinFormsHelper.GetValue<double>( uiCntHyp_f_Num );
+            double userValue = UiControls.GetValue<double>( uiCntHyp_f_Num );
 
             // Checking 'decimal' value, not 'double'.
             // Four zeros after decimal separator are revelant here, not floating-point precision.
@@ -181,11 +182,11 @@ namespace PI
             }
 
             Settings.Parameters.Hyperbolic.F = userValue;
-            Settings.Parameters.Hyperbolic.A = WinFormsHelper.GetValue<double>( uiCntHyp_a_Num );
-            Settings.Parameters.Hyperbolic.B = WinFormsHelper.GetValue<double>( uiCntHyp_b_Num );
-            Settings.Parameters.Hyperbolic.C = WinFormsHelper.GetValue<double>( uiCntHyp_c_Num );
-            Settings.Parameters.Hyperbolic.D = WinFormsHelper.GetValue<double>( uiCntHyp_d_Num );
-            Settings.Parameters.Hyperbolic.I = WinFormsHelper.GetValue<double>( uiCntHyp_i_Num );
+            Settings.Parameters.Hyperbolic.A = UiControls.GetValue<double>( uiCntHyp_a_Num );
+            Settings.Parameters.Hyperbolic.B = UiControls.GetValue<double>( uiCntHyp_b_Num );
+            Settings.Parameters.Hyperbolic.C = UiControls.GetValue<double>( uiCntHyp_c_Num );
+            Settings.Parameters.Hyperbolic.D = UiControls.GetValue<double>( uiCntHyp_d_Num );
+            Settings.Parameters.Hyperbolic.I = UiControls.GetValue<double>( uiCntHyp_i_Num );
         }
 
         private void SaveParametersForWaveformPatternCurve( Enums.PatternCurveScaffold type )
@@ -204,17 +205,17 @@ namespace PI
 
         private void SaveParametersOfSineWaveform()
         {
-            Settings.Parameters.Waveform.M = WinFormsHelper.GetValue<double>( uiCntWave_m_Num );
-            Settings.Parameters.Waveform.N = WinFormsHelper.GetValue<double>( uiCntWave_n_Num );
-            Settings.Parameters.Waveform.O = WinFormsHelper.GetValue<double>( uiCntWave_o_Num );
-            Settings.Parameters.Waveform.K = WinFormsHelper.GetValue<double>( uiCntWave_k_Num );
+            Settings.Parameters.Waveform.M = UiControls.GetValue<double>( uiCntWave_m_Num );
+            Settings.Parameters.Waveform.N = UiControls.GetValue<double>( uiCntWave_n_Num );
+            Settings.Parameters.Waveform.O = UiControls.GetValue<double>( uiCntWave_o_Num );
+            Settings.Parameters.Waveform.K = UiControls.GetValue<double>( uiCntWave_k_Num );
         }
 
         private void SaveParametersOfOtherWaveform()
         {
-            Settings.Parameters.Waveform.M = WinFormsHelper.GetValue<double>( uiCntWave_m_Num );
-            Settings.Parameters.Waveform.N = WinFormsHelper.GetValue<double>( uiCntWave_n_Num );
-            Settings.Parameters.Waveform.K = WinFormsHelper.GetValue<double>( uiCntWave_k_Num );
+            Settings.Parameters.Waveform.M = UiControls.GetValue<double>( uiCntWave_m_Num );
+            Settings.Parameters.Waveform.N = UiControls.GetValue<double>( uiCntWave_n_Num );
+            Settings.Parameters.Waveform.K = UiControls.GetValue<double>( uiCntWave_k_Num );
         }
 
         private void UiContentWaveformType_Sine_CheckedChanged( object sender, EventArgs e )
@@ -256,28 +257,28 @@ namespace PI
         private void UiContentHyperbolic_ParameterA_ValueChanged( object sender, EventArgs e )
         {
             if ( uiCntHyp_ac_ChBx.Checked ) {
-                WinFormsHelper.SetValue( uiCntHyp_c_Num, WinFormsHelper.GetValue<decimal>( uiCntHyp_a_Num ) );
+                UiControls.SetValue( uiCntHyp_c_Num, UiControls.GetValue<decimal>( uiCntHyp_a_Num ) );
             }
         }
 
         private void UiContentHyperbolic_ParameterC_ValueChanged( object sender, EventArgs e )
         {
             if ( uiCntHyp_ac_ChBx.Checked ) {
-                WinFormsHelper.SetValue( uiCntHyp_a_Num, WinFormsHelper.GetValue<decimal>( uiCntHyp_c_Num ) );
+                UiControls.SetValue( uiCntHyp_a_Num, UiControls.GetValue<decimal>( uiCntHyp_c_Num ) );
             }
         }
 
         private void UiContentHyperbolic_ParameterB_ValueChanged( object sender, EventArgs e )
         {
             if ( uiCntHyp_bd_ChBx.Checked ) {
-                WinFormsHelper.SetValue( uiCntHyp_d_Num, WinFormsHelper.GetValue<decimal>( uiCntHyp_b_Num ) );
+                UiControls.SetValue( uiCntHyp_d_Num, UiControls.GetValue<decimal>( uiCntHyp_b_Num ) );
             }
         }
 
         private void UiContentHyperbolic_ParameterD_ValueChanged( object sender, EventArgs e )
         {
             if ( uiCntHyp_bd_ChBx.Checked ) {
-                WinFormsHelper.SetValue( uiCntHyp_b_Num, WinFormsHelper.GetValue<decimal>( uiCntHyp_d_Num ) );
+                UiControls.SetValue( uiCntHyp_b_Num, UiControls.GetValue<decimal>( uiCntHyp_d_Num ) );
             }
         }
 
