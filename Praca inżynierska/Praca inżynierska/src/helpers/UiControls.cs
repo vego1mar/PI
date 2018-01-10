@@ -1,24 +1,30 @@
 ﻿using System;
+using System.Reflection;
 using System.Collections.Generic;
 using System.Windows.Forms;
-
-[assembly: System.Runtime.CompilerServices.InternalsVisibleTo( "PI_Tests" )]
+using log4net;
 
 namespace PI.src.helpers
 {
     internal static class UiControls
     {
+        private static readonly ILog log = LogManager.GetLogger( MethodBase.GetCurrentMethod().DeclaringType );
 
         public static void TrySelectTab( TabControl tabControl, int index )
         {
             try {
                 tabControl.SelectTab( index );
             }
-            catch ( ArgumentOutOfRangeException x ) {
-                Logger.WriteException( x );
+            catch ( ArgumentOutOfRangeException ex ) {
+                log.Error( ex.Message, ex );
+                Logger.WriteException( ex );
             }
-            catch ( Exception x ) {
-                Logger.WriteException( x );
+            catch ( NullReferenceException ex ) {
+                log.Error( ex.Message, ex );
+                Logger.WriteException( ex );
+            }
+            catch ( Exception ex ) {
+                log.Fatal( ex.Message, ex );
             }
         }
 
@@ -27,16 +33,28 @@ namespace PI.src.helpers
             try {
                 window.ShowDialog( owner );
             }
-            catch ( ArgumentException x ) {
-                Logger.WriteException( x );
+            catch ( NullReferenceException ex ) {
+                log.Error( ex.Message, ex );
+                Logger.WriteException( ex );
                 return false;
             }
-            catch ( InvalidOperationException x ) {
-                Logger.WriteException( x );
+            catch ( ArgumentException ex ) {
+                log.Error( ex.Message, ex );
+                Logger.WriteException( ex );
                 return false;
             }
-            catch ( Exception x ) {
-                Logger.WriteException( x );
+            catch ( InvalidOperationException ex ) {
+                log.Error( ex.Message, ex );
+                Logger.WriteException( ex );
+                return false;
+            }
+            catch ( OutOfMemoryException ex ) {
+                log.Error( ex.Message, ex );
+                Logger.WriteException( ex );
+                return false;
+            }
+            catch ( Exception ex ) {
+                log.Fatal( ex.Message, ex );
                 return false;
             }
 
@@ -48,50 +66,113 @@ namespace PI.src.helpers
             int selectedIndex = -1;
             var typeSwitch = new Dictionary<Type, Action> {
                 { typeof(ComboBox), () => selectedIndex = (control as ComboBox).SelectedIndex },
-                { typeof(ListBox), () => selectedIndex = (control as ListBox).SelectedIndex }
+                { typeof(ListBox), () => selectedIndex = (control as ListBox).SelectedIndex },
+                { typeof(TabControl), () => selectedIndex = (control as TabControl).SelectedIndex }
             };
 
             try {
                 typeSwitch[control.GetType()]();
             }
-            catch ( ArgumentOutOfRangeException x ) {
-                Logger.WriteException( x );
+            catch ( NullReferenceException ex ) {
+                log.Error( ex.Message, ex );
+                Logger.WriteException( ex );
             }
-            catch ( ArgumentException x ) {
-                Logger.WriteException( x );
+            catch ( KeyNotFoundException ex ) {
+                log.Error( ex.Message, ex );
+                Logger.WriteException( ex );
+            }
+            catch ( ArgumentOutOfRangeException ex ) {
+                log.Error( ex.Message, ex );
+                Logger.WriteException( ex );
+            }
+            catch ( ArgumentException ex ) {
+                log.Error( ex.Message, ex );
+                Logger.WriteException( ex );
+            }
+            catch ( Exception ex ) {
+                log.Fatal( ex.Message, ex );
             }
 
             return selectedIndex;
         }
 
-        internal static void SetSelectedIndexSafe( ComboBox comboBox, int index )
+        public static void TrySetSelectedIndex( Control control, int index )
         {
+            var typeSwitch = new Dictionary<Type, Action> {
+                { typeof(ComboBox), () => (control as ComboBox).SelectedIndex = index },
+                { typeof(ListBox), () => (control as ListBox).SelectedIndex = index }
+            };
+
             try {
-                comboBox.SelectedIndex = index;
+                typeSwitch[control.GetType()]();
             }
-            catch ( ArgumentOutOfRangeException x ) {
-                Logger.WriteException( x );
+            catch ( NullReferenceException ex ) {
+                log.Error( ex.Message, ex );
+                Logger.WriteException( ex );
             }
-            catch ( Exception x ) {
-                Logger.WriteException( x );
+            catch ( KeyNotFoundException ex ) {
+                log.Error( ex.Message, ex );
+                Logger.WriteException( ex );
+            }
+            catch ( ArgumentOutOfRangeException ex ) {
+                log.Error( ex.Message, ex );
+                Logger.WriteException( ex );
+            }
+            catch ( ArgumentException ex ) {
+                log.Error( ex.Message, ex );
+                Logger.WriteException( ex );
+            }
+            catch ( Exception ex ) {
+                log.Fatal( ex.Message, ex );
             }
         }
 
-        internal static void SetSelectedIndexSafe( ListBox listBox, int index )
+        public static bool TryShowMessageBox( string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon )
         {
             try {
-                listBox.SelectedIndex = index;
+                MessageBox.Show( text, caption, buttons, icon );
             }
-            catch ( ArgumentOutOfRangeException x ) {
-                Logger.WriteException( x );
+            catch ( System.ComponentModel.InvalidEnumArgumentException ex ) {
+                log.Error( ex.Message, ex );
+                Logger.WriteException( ex );
+                return false;
             }
-            catch ( ArgumentException x ) {
-                Logger.WriteException( x );
+            catch ( InvalidOperationException ex ) {
+                log.Error( ex.Message, ex );
+                Logger.WriteException( ex );
+                return false;
             }
-            catch ( Exception x ) {
-                Logger.WriteException( x );
+            catch ( NullReferenceException ex ) {
+                log.Error( ex.Message, ex );
+                Logger.WriteException( ex );
+                return false;
             }
+            catch ( Exception ex ) {
+                log.Fatal( ex.Message, ex );
+            }
+
+            return true;
         }
+
+        public static RowStyle TryGetRowStyle( SizeType sizeType, float height )
+        {
+            RowStyle rowStyle = null;
+
+            try {
+                rowStyle = new RowStyle( sizeType, height );
+            }
+            catch ( ArgumentOutOfRangeException ex ) {
+                log.Error( ex.Message, ex );
+                Logger.WriteException( ex );
+            }
+            catch ( Exception ex ) {
+                log.Fatal( ex.Message, ex );
+            }
+
+            return rowStyle;
+        }
+
+        // Pending to refactor :
 
         internal static T GetValue<T>( NumericUpDown numeric )
         {
@@ -168,27 +249,6 @@ namespace PI.src.helpers
             return value;
         }
 
-        internal static Enums.Exceptions ShowMessageBoxSafe( string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon )
-        {
-            try {
-                MessageBox.Show( text, caption, buttons, icon );
-            }
-            catch ( System.ComponentModel.InvalidEnumArgumentException x ) {
-                Logger.WriteException( x );
-                return Enums.Exceptions.InvalidEnumArgumentException;
-            }
-            catch ( InvalidOperationException x ) {
-                Logger.WriteException( x );
-                return Enums.Exceptions.InvalidOperationException;
-            }
-            catch ( Exception x ) {
-                Logger.WriteException( x );
-                return Enums.Exceptions.Exception;
-            }
-
-            return Enums.Exceptions.Exception;
-        }
-
         internal static bool GetValue<T>( TextBox textBox, out T value )
         {
             value = default( T );
@@ -219,40 +279,5 @@ namespace PI.src.helpers
 
             return true;
         }
-
-        internal static RowStyle GetRowStyleSafe( SizeType sizeType, float height )
-        {
-            RowStyle rowStyle = null;
-
-            try {
-                rowStyle = new RowStyle( sizeType, height );
-            }
-            catch ( ArgumentOutOfRangeException x ) {
-                Logger.WriteException( x );
-            }
-            catch ( Exception x ) {
-                Logger.WriteException( x );
-            }
-
-            return rowStyle;
-        }
-
-        internal static int GetSelectedTab( TabControl tabControl )
-        {
-            int selectedIdx = -1;
-
-            try {
-                selectedIdx = tabControl.SelectedIndex;
-            }
-            catch ( ArgumentOutOfRangeException ex ) {
-                Logger.WriteException( ex );
-            }
-            catch ( Exception ex ) {
-                Logger.WriteException( ex );
-            }
-
-            return selectedIdx;
-        }
-
     }
 }

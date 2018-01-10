@@ -75,10 +75,10 @@ namespace PI
         private void UpdateUiByDefaultSettings()
         {
             UiControls.SetValue( uiGrid_PowRank_Num, MeansParams.PowerMean.Rank );
-            UiControls.SetSelectedIndexSafe( uiGrid_DiffMode_ComBx, (int) MeansParams.CustomDifferentialMean.Mode );
-            UiControls.SetSelectedIndexSafe( uiGrid_Comp_ComBx, (int) MeansParams.CustomToleranceMean.Comparer );
+            UiControls.TrySetSelectedIndex( uiGrid_DiffMode_ComBx, (int) MeansParams.CustomDifferentialMean.Mode );
+            UiControls.TrySetSelectedIndex( uiGrid_Comp_ComBx, (int) MeansParams.CustomToleranceMean.Comparer );
             UiControls.SetValue( uiGrid_Toler_Num, MeansParams.CustomToleranceMean.Tolerance );
-            UiControls.SetSelectedIndexSafe( uiGrid_Finish_ComBx, (int) MeansParams.CustomToleranceMean.Finisher );
+            UiControls.TrySetSelectedIndex( uiGrid_Finish_ComBx, (int) MeansParams.CustomToleranceMean.Finisher );
         }
 
         private void Ui_Ok_Click( object sender, EventArgs e )
@@ -109,13 +109,13 @@ namespace PI
         public void SetCustomDifferentialMeanMode( CustomDifferentialMeanMode mode )
         {
             MeansParams.CustomDifferentialMean.Mode = mode;
-            UiControls.SetSelectedIndexSafe( uiGrid_DiffMode_ComBx, (int) MeansParams.CustomDifferentialMean.Mode );
+            UiControls.TrySetSelectedIndex( uiGrid_DiffMode_ComBx, (int) MeansParams.CustomDifferentialMean.Mode );
         }
 
         public void SetCustomToleranceMeanComparer( CustomToleranceComparerType type )
         {
             MeansParams.CustomToleranceMean.Comparer = type;
-            UiControls.SetSelectedIndexSafe( uiGrid_Comp_ComBx, (int) MeansParams.CustomToleranceMean.Comparer );
+            UiControls.TrySetSelectedIndex( uiGrid_Comp_ComBx, (int) MeansParams.CustomToleranceMean.Comparer );
         }
 
         public void SetCustomToleranceMeanTolerance( double value )
@@ -127,7 +127,7 @@ namespace PI
         public void SetCustomToleranceMeanFinisher( CustomToleranceFinisherFunction type )
         {
             MeansParams.CustomToleranceMean.Finisher = type;
-            UiControls.SetSelectedIndexSafe( uiGrid_Finish_ComBx, (int) MeansParams.CustomToleranceMean.Finisher );
+            UiControls.TrySetSelectedIndex( uiGrid_Finish_ComBx, (int) MeansParams.CustomToleranceMean.Finisher );
         }
 
         private void MeansSettings_FormClosing( object sender, FormClosingEventArgs e )

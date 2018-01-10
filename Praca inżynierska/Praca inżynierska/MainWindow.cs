@@ -263,7 +263,7 @@ namespace PI
             DataChart.SpreadPatternCurveSetToGeneratedCurveSet( Settings.Presets.Ui.NumberOfCurves );
             DataChart.ClearAverageCurveSetPoints();
             UpdateUiBySettingRangesForCurvesNumber();
-            UiControls.SetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx, (int) Enums.DataSetCurveType.Generated );
+            UiControls.TrySetSelectedIndex( uiPnlDtSh_CrvT_ComBx, (int) Enums.DataSetCurveType.Generated );
         }
 
         private void GrabPreSetsForCurvesGeneration()
@@ -489,7 +489,7 @@ namespace PI
             }
 
             DataChart.ClearAverageCurveSetPoints();
-            UiControls.SetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx, (int) Enums.DataSetCurveType.Generated );
+            UiControls.TrySetSelectedIndex( uiPnlDtSh_CrvT_ComBx, (int) Enums.DataSetCurveType.Generated );
             UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Generated );
         }
 
@@ -519,7 +519,7 @@ namespace PI
                 MsgBxShower.Ui.PointsNotValidToChartProblem();
             }
 
-            UiControls.SetSelectedIndexSafe( uiPnlDtSh_CrvT_ComBx, (int) Enums.DataSetCurveType.Average );
+            UiControls.TrySetSelectedIndex( uiPnlDtSh_CrvT_ComBx, (int) Enums.DataSetCurveType.Average );
             double standardDeviation = StatAnalysis.GetRelativeStandardDeviationFromSeriesValues( DataChart.AverageCurveSet, DataChart.PatternCurveSet );
             uiPnlGen_StdDev2_TxtBx.Text = StringFormatter.FormatAsNumeric( 8, standardDeviation );
         }
@@ -527,7 +527,7 @@ namespace PI
         private void UpdateUiByDefaultSettings()
         {
             CurvesDataManager.SetDefaultProperties( uiCharts_Crv );
-            UiControls.SetSelectedIndexSafe( uiPnlGen_MeanT_ComBx, (int) Enums.MeanType.Geometric );
+            UiControls.TrySetSelectedIndex( uiPnlGen_MeanT_ComBx, (int) Enums.MeanType.Geometric );
             UpdateUiByChosenScaffoldStatus();
         }
 

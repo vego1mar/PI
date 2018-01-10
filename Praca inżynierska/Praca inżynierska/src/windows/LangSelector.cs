@@ -21,7 +21,7 @@ namespace PI.src.windows
         private void SetWindowDefaults()
         {
             LocalizeWindow();
-            UiControls.SetSelectedIndexSafe( uiUp_LstBx, (int) LanguageHelper.GetCurrentUiLanguage() );
+            UiControls.TrySetSelectedIndex( uiUp_LstBx, (int) LanguageHelper.GetCurrentUiLanguage() );
         }
 
         private void LocalizeWindow()

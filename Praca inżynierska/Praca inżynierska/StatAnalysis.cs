@@ -176,16 +176,16 @@ namespace PI
             UiControls.TrySelectTab( uiR_TbCtrl, 0 );
             CurvesDataManager.SetDefaultProperties( uiRChart_Chart );
             AddDataSetCurveTypes( uiRChartDown_CrvT_ComBx );
-            UiControls.SetSelectedIndexSafe( uiRChartDown_CrvT_ComBx, (int) Enums.DataSetCurveType.Pattern );
+            UiControls.TrySetSelectedIndex( uiRChartDown_CrvT_ComBx, (int) Enums.DataSetCurveType.Pattern );
             uiRChartDown_CrvIdx_Num.Minimum = 0;
             uiRChartDown_CrvIdx_Num.Maximum = Settings.Ui.NumberOfCurves - 1;
             UiControls.SetValue( uiRChartDown_CrvIdx_Num, Settings.Ui.NumberOfCurves / 2 );
             AddPhenomenonsIndexNames( uiRChartDown_Phen_ComBx );
-            UiControls.SetSelectedIndexSafe( uiRChartDown_Phen_ComBx, (int) PhenomenonIndex.Peek );
+            UiControls.TrySetSelectedIndex( uiRChartDown_Phen_ComBx, (int) PhenomenonIndex.Peek );
             AddSurroundings( uiRChartDown_Surr_ComBx );
-            UiControls.SetSelectedIndexSafe( uiRChartDown_Surr_ComBx, 0 );
+            UiControls.TrySetSelectedIndex( uiRChartDown_Surr_ComBx, 0 );
             AddMeanTypes( uiRChartDown_MeanT_ComBx );
-            UiControls.SetSelectedIndexSafe( uiRChartDown_MeanT_ComBx, (int) Enums.MeanType.CustomTolerance );
+            UiControls.TrySetSelectedIndex( uiRChartDown_MeanT_ComBx, (int) Enums.MeanType.CustomTolerance );
             uiRFormulaDown_CrvsNo2_TxtBx.Text = Settings.Ui.NumberOfCurves.ToString();
             uiRFormulaDown_Dens2_TxtBx.Text = (Settings.Ui.PointsDensity + 1).ToString();
         }
@@ -525,7 +525,7 @@ namespace PI
 
         private void UiLeft_TabControl_SelectedIndexChanged( object sender, EventArgs e )
         {
-            UiControls.SetSelectedIndexSafe( uiRChartDown_Phen_ComBx, UiControls.GetSelectedTab( uiL_TbCtrl ) );
+            UiControls.TrySetSelectedIndex( uiRChartDown_Phen_ComBx, UiControls.TryGetSelectedIndex( uiL_TbCtrl ) );
         }
 
         private void UpdateUiByColoringUiGrids()
@@ -620,11 +620,11 @@ namespace PI
             uiR_Chart_TbPg.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.Chart.GetString();
             uiR_Formula_TbPg.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.Formula.GetString();
             Translator.AddLocalizedDataSetCurveTypes( uiRChartDown_CrvT_ComBx );
-            UiControls.SetSelectedIndexSafe( uiRChartDown_CrvT_ComBx, (int) Enums.DataSetCurveType.Pattern );
+            UiControls.TrySetSelectedIndex( uiRChartDown_CrvT_ComBx, (int) Enums.DataSetCurveType.Pattern );
             AddLocalizedPhenomenonsIndices( uiRChartDown_Phen_ComBx );
-            UiControls.SetSelectedIndexSafe( uiRChartDown_Phen_ComBx, (int) PhenomenonIndex.Peek );
+            UiControls.TrySetSelectedIndex( uiRChartDown_Phen_ComBx, (int) PhenomenonIndex.Peek );
             Translator.AddLocalizedMeanTypes( uiRChartDown_MeanT_ComBx );
-            UiControls.SetSelectedIndexSafe( uiRChartDown_MeanT_ComBx, (int) Enums.MeanType.CustomTolerance );
+            UiControls.TrySetSelectedIndex( uiRChartDown_MeanT_ComBx, (int) Enums.MeanType.CustomTolerance );
             uiRChartDown_DtSet_Btn.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.DtSet.GetString();
             uiRFormulaDown_CrvsNo2_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.NotApplicable.GetString();
             uiRFormulaDown_Dens2_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.NotApplicable.GetString();

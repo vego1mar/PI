@@ -25,8 +25,8 @@ namespace PI
             CurvesDataManager.SetDefaultProperties( uiChart_Prv );
             ChartDataSet = series;
             OriginalValues = GetPointsValues( series );
-            UiControls.SetSelectedIndexSafe( uiPnl_AutoSize_ComBx, (int) Enums.AutoSizeColumnsMode.Fill );
-            UiControls.SetSelectedIndexSafe( uiPnl_OperT_ComBx, (int) Enums.Operation.Positive );
+            UiControls.TrySetSelectedIndex( uiPnl_AutoSize_ComBx, (int) Enums.AutoSizeColumnsMode.Fill );
+            UiControls.TrySetSelectedIndex( uiPnl_OperT_ComBx, (int) Enums.Operation.Positive );
             uiPnl_StartIdx_Num.Minimum = 0;
             uiPnl_StartIdx_Num.Maximum = ChartDataSet.Points.Count - 1;
             uiPnl_StartIdx_Num.Value = 0;
