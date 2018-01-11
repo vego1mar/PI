@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Windows.Forms.DataVisualization.Charting;
 using PI.src.helpers;
+using PI.src.application;
 
 namespace PI
 {
@@ -179,7 +180,7 @@ namespace PI
             UiControls.TrySetSelectedIndex( uiRChartDown_CrvT_ComBx, (int) Enums.DataSetCurveType.Pattern );
             uiRChartDown_CrvIdx_Num.Minimum = 0;
             uiRChartDown_CrvIdx_Num.Maximum = Settings.Ui.NumberOfCurves - 1;
-            UiControls.SetValue( uiRChartDown_CrvIdx_Num, Settings.Ui.NumberOfCurves / 2 );
+            UiControls.TrySetValue( uiRChartDown_CrvIdx_Num, Settings.Ui.NumberOfCurves / 2 );
             AddPhenomenonsIndexNames( uiRChartDown_Phen_ComBx );
             UiControls.TrySetSelectedIndex( uiRChartDown_Phen_ComBx, (int) PhenomenonIndex.Peek );
             AddSurroundings( uiRChartDown_Surr_ComBx );
@@ -263,7 +264,7 @@ namespace PI
                 Logger.WriteException( ex );
             }
             catch ( OutOfMemoryException ex ) {
-                MsgBxShower.General.OutOfMemoryExceptionStop();
+                Messages.General.OutOfMemoryExceptionStop();
                 Logger.WriteException( ex );
             }
             catch ( ArgumentNullException ex ) {
@@ -327,7 +328,7 @@ namespace PI
         {
             return new DatasetControlsValues() {
                 PhenomNo = UiControls.TryGetSelectedIndex( uiRChartDown_Phen_ComBx ),
-                CrvIdx = UiControls.GetValue<int>( uiRChartDown_CrvIdx_Num ),
+                CrvIdx = UiControls.TryGetValue<int>( uiRChartDown_CrvIdx_Num ),
                 NoiseNo = UiControls.TryGetSelectedIndex( uiRChartDown_Surr_ComBx ),
                 MeanT = UiControls.TryGetSelectedIndex( uiRChartDown_MeanT_ComBx ),
                 CrvT = UiControls.TryGetSelectedIndex( uiRChartDown_CrvT_ComBx )
@@ -373,7 +374,7 @@ namespace PI
         private void UiRightChartDown_CurveIndex_Numeric_ValueChanged( object sender, EventArgs e )
         {
             if ( !IsCurveIndexProperValue() ) {
-                MsgBxShower.Stat.Preview.ValueOutOfRangeProblem();
+                Messages.Stat.Preview.ValueOutOfRangeProblem();
                 return;
             }
 
@@ -384,7 +385,7 @@ namespace PI
 
         private bool IsCurveIndexProperValue()
         {
-            int value = UiControls.GetValue<int>( uiRChartDown_CrvIdx_Num );
+            int value = UiControls.TryGetValue<int>( uiRChartDown_CrvIdx_Num );
 
             if ( value < 0 || value >= Settings.Ui.NumberOfCurves ) {
                 return false;
@@ -424,7 +425,7 @@ namespace PI
                 uiRChart_Chart.Series.Add( GetSeriesSpecifiedByControls() );
 
                 if ( !CurvesDataManager.IsCurvePointsSetValid( uiRChart_Chart.Series[0] ) ) {
-                    MsgBxShower.Stat.Preview.PointsNotValidToChartProblem();
+                    Messages.Stat.Preview.PointsNotValidToChartProblem();
                     return;
                 }
 
@@ -434,7 +435,7 @@ namespace PI
                 uiRChart_Chart.Invalidate();
             }
             catch ( Exception ex ) {
-                MsgBxShower.Stat.Preview.UnrecognizedError();
+                Messages.Stat.Preview.UnrecognizedError();
                 Logger.WriteException( ex );
             }
         }
@@ -516,7 +517,7 @@ namespace PI
                     Enum.TryParse( mean, out Enums.MeanType type );
 
                     for ( int k = 0; k < Surroundings.Count; k++ ) {
-                        string stdDeviation = StringFormatter.FormatAsNumeric( 4, StdDeviations[(int) phenomenon][k][(int) type] );
+                        string stdDeviation = StringFormatter.TryAsNumeric( 4, StdDeviations[(int) phenomenon][k][(int) type] );
                         grids[(int) phenomenon].Rows[(int) type].Cells[columns[k]].Value = stdDeviation;
                     }
                 }

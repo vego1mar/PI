@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Globalization;
+using System.Windows.Forms;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PI.src.helpers;
 using PITests.src.tests;
@@ -153,6 +155,56 @@ namespace PITests.src.helpers
             Assert.IsNull( result6 );
             Assert.IsNotNull( result7 );
             Assert.IsNotNull( result8 );
+        }
+
+        [TestMethod]
+        public void TrySetValue()
+        {
+            // given
+            const int CONTROL1_SELECTED_VALUE = 11;
+            NumericUpDown control1 = TestControls.GetTestNumericUpDown( -23, 23 );
+
+            const int CONTROL2_SELECTED_VALUE = -24;
+            TrackBar control2 = TestControls.GetTestTrackBar( -100, 100, 25 );
+
+            // when
+            UiControls.TrySetValue( null, 0 );
+            UiControls.TrySetValue( new Button(), 0 );
+            UiControls.TrySetValue( control1, CONTROL1_SELECTED_VALUE );
+            decimal selectedValue1 = control1.Value;
+            UiControls.TrySetValue( control2, CONTROL2_SELECTED_VALUE );
+            decimal selectedValue2 = control2.Value;
+
+            // then
+            Assert.IsTrue( selectedValue1.Equals( CONTROL1_SELECTED_VALUE ) );
+            Assert.IsTrue( selectedValue2.Equals( CONTROL2_SELECTED_VALUE ) );
+        }
+
+        [TestMethod]
+        public void TryGetValue()
+        {
+            // given
+            const int CONTROL3_SELECTED_VALUE = 12;
+            const int CONTROL4_SELECTED_VALUE = 213;
+            const string CONTROL5_STRING = "abcdefghijklmnopqrstuvwxyząćęńóśżźABC0123";
+            double control6Double = Math.Sqrt( 3.0 / 7.0 );
+            string control6String = control6Double.ToString( CultureInfo.InvariantCulture );
+
+            // when
+            short result1 = UiControls.TryGetValue<short>( null );
+            float result2 = UiControls.TryGetValue<float>( new Button() );
+            decimal result3 = UiControls.TryGetValue<decimal>( TestControls.GetTestNumericUpDown( -100, 111, CONTROL3_SELECTED_VALUE ) );
+            int result4 = UiControls.TryGetValue<int>( TestControls.GetTestTrackBar( -222, 444, CONTROL4_SELECTED_VALUE ) );
+            string result5 = UiControls.TryGetValue<string>( TestControls.GetTestTextBox( CONTROL5_STRING, true ) );
+            double result6 = UiControls.TryGetValue<double>( TestControls.GetTestTextBox( control6String, true ) );
+
+            // then
+            Assert.IsTrue( result1.Equals( default( short ) ) );
+            Assert.AreEqual( default( float ), result2, Assertions.IBM_FLOAT_SURROUNDING );
+            Assert.IsTrue( result3.Equals( CONTROL3_SELECTED_VALUE ) );
+            Assert.IsTrue( result4.Equals( CONTROL4_SELECTED_VALUE ) );
+            Assert.IsTrue( result5.Equals( CONTROL5_STRING ) );
+            Assert.AreEqual( control6Double, result6, Assertions.IBM_FLOAT_SURROUNDING );
         }
     }
 }

@@ -74,10 +74,10 @@ namespace PI
 
         private void UpdateUiByDefaultSettings()
         {
-            UiControls.SetValue( uiGrid_PowRank_Num, MeansParams.PowerMean.Rank );
+            UiControls.TrySetValue( uiGrid_PowRank_Num, MeansParams.PowerMean.Rank );
             UiControls.TrySetSelectedIndex( uiGrid_DiffMode_ComBx, (int) MeansParams.CustomDifferentialMean.Mode );
             UiControls.TrySetSelectedIndex( uiGrid_Comp_ComBx, (int) MeansParams.CustomToleranceMean.Comparer );
-            UiControls.SetValue( uiGrid_Toler_Num, MeansParams.CustomToleranceMean.Tolerance );
+            UiControls.TrySetValue( uiGrid_Toler_Num, MeansParams.CustomToleranceMean.Tolerance );
             UiControls.TrySetSelectedIndex( uiGrid_Finish_ComBx, (int) MeansParams.CustomToleranceMean.Finisher );
         }
 
@@ -88,10 +88,10 @@ namespace PI
 
         private void SaveAllSettings()
         {
-            MeansParams.PowerMean.Rank = UiControls.GetValue<double>( uiGrid_PowRank_Num );
+            MeansParams.PowerMean.Rank = UiControls.TryGetValue<double>( uiGrid_PowRank_Num );
             MeansParams.CustomDifferentialMean.Mode = (CustomDifferentialMeanMode) UiControls.TryGetSelectedIndex( uiGrid_DiffMode_ComBx );
             MeansParams.CustomToleranceMean.Comparer = (CustomToleranceComparerType) UiControls.TryGetSelectedIndex( uiGrid_Comp_ComBx );
-            MeansParams.CustomToleranceMean.Tolerance = UiControls.GetValue<double>( uiGrid_Toler_Num );
+            MeansParams.CustomToleranceMean.Tolerance = UiControls.TryGetValue<double>( uiGrid_Toler_Num );
             MeansParams.CustomToleranceMean.Finisher = (CustomToleranceFinisherFunction) UiControls.TryGetSelectedIndex( uiGrid_Finish_ComBx );
         }
 
@@ -103,7 +103,7 @@ namespace PI
                 MeansParams.PowerMean.Rank = value;
             }
 
-            UiControls.SetValue( uiGrid_PowRank_Num, MeansParams.PowerMean.Rank );
+            UiControls.TrySetValue( uiGrid_PowRank_Num, MeansParams.PowerMean.Rank );
         }
 
         public void SetCustomDifferentialMeanMode( CustomDifferentialMeanMode mode )
@@ -121,7 +121,7 @@ namespace PI
         public void SetCustomToleranceMeanTolerance( double value )
         {
             MeansParams.CustomToleranceMean.Tolerance = value;
-            UiControls.SetValue( uiGrid_Toler_Num, value );
+            UiControls.TrySetValue( uiGrid_Toler_Num, value );
         }
 
         public void SetCustomToleranceMeanFinisher( CustomToleranceFinisherFunction type )

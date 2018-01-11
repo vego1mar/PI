@@ -5,6 +5,7 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using PI.src.helpers;
+using PI.src.application;
 
 namespace PI
 {
@@ -44,7 +45,7 @@ namespace PI
             UpdateUiByLogFileFullPathLocation();
             UpdateUiByDefaultSettings();
             DefineTimerThread();
-            ThreadTasker.StartThreadSafe( Timer );
+            Threads.TryStart( Timer );
             UpdateUiByStatusOfTimerThread();
             Translator.GetInstance();
             Translator.SetLanguage( Languages.English );
@@ -222,7 +223,7 @@ namespace PI
             case Enums.DataSetCurveType.Generated:
                 uiPnlDtSh_CrvIdx_Num.Enabled = true;
                 uiPnlDtSh_CrvIdx_TrBr.Enabled = true;
-                UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Generated, UiControls.GetValue( uiPnlDtSh_CrvIdx_TrBr ) );
+                UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Generated, UiControls.TryGetValue<int>( uiPnlDtSh_CrvIdx_TrBr ) );
                 break;
             case Enums.DataSetCurveType.Pattern:
                 uiPnlDtSh_CrvIdx_Num.Enabled = false;
@@ -239,22 +240,22 @@ namespace PI
 
         private void UiPanelDataSheet_CurveIndex_NumericUpDown_ValueChanged( object sender, EventArgs e )
         {
-            int curveIndex = UiControls.GetValue<int>( uiPnlDtSh_CrvIdx_Num );
-            UiControls.SetValue( uiPnlDtSh_CrvIdx_TrBr, curveIndex );
+            int curveIndex = UiControls.TryGetValue<int>( uiPnlDtSh_CrvIdx_Num );
+            UiControls.TrySetValue( uiPnlDtSh_CrvIdx_TrBr, curveIndex );
             UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Generated, curveIndex );
         }
 
         private void UiPanelDataSheet_CurveIndex_TrackBar_Scroll( object sender, EventArgs e )
         {
-            int curveIndex = UiControls.GetValue( uiPnlDtSh_CrvIdx_TrBr );
-            UiControls.SetValue( uiPnlDtSh_CrvIdx_Num, curveIndex );
+            int curveIndex = UiControls.TryGetValue<int>( uiPnlDtSh_CrvIdx_TrBr );
+            UiControls.TrySetValue( uiPnlDtSh_CrvIdx_Num, curveIndex );
             UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Generated, curveIndex );
         }
 
         private void UiPanelGenerate_GenerateSet_Click( object sender, EventArgs e )
         {
             if ( uiPnlGen_Def_Btn.Text == Translator.GetInstance().Strings.MainWindow.Panel.Generate.ScaffNone.GetString() ) {
-                MsgBxShower.Ui.PatternCurveNotChosenPrerequisite();
+                Messages.Ui.PatternCurveNotChosenPrerequisite();
                 return;
             }
 
@@ -268,10 +269,10 @@ namespace PI
 
         private void GrabPreSetsForCurvesGeneration()
         {
-            Settings.Presets.Ui.NumberOfCurves = UiControls.GetValue<int>( uiPnlGen_Crvs1No_Num );
-            Settings.Presets.Ui.StartingXPoint = UiControls.GetValue<double>( uiPnlGen_StartX_Num );
-            Settings.Presets.Ui.EndingXPoint = UiControls.GetValue<double>( uiPnlGen_EndX_Num );
-            Settings.Presets.Ui.PointsDensity = UiControls.GetValue<int>( uiPnlGen_Dens_Num );
+            Settings.Presets.Ui.NumberOfCurves = UiControls.TryGetValue<int>( uiPnlGen_Crvs1No_Num );
+            Settings.Presets.Ui.StartingXPoint = UiControls.TryGetValue<double>( uiPnlGen_StartX_Num );
+            Settings.Presets.Ui.EndingXPoint = UiControls.TryGetValue<double>( uiPnlGen_EndX_Num );
+            Settings.Presets.Ui.PointsDensity = UiControls.TryGetValue<int>( uiPnlGen_Dens_Num );
         }
 
         private void GenerateAndShowPatternCurve()
@@ -283,7 +284,7 @@ namespace PI
 
             if ( !DataChart.GeneratePatternCurve( scaffoldType, xStart, xEnd, density ) ) {
                 DataChart.RemoveInvalidPoints( Enums.DataSetCurveType.Pattern );
-                MsgBxShower.Ui.PointsNotValidToChartProblem();
+                Messages.Ui.PointsNotValidToChartProblem();
             }
 
             if ( DataChart.PatternCurveSet.Points.Count > 0 ) {
@@ -316,11 +317,11 @@ namespace PI
                 uiCharts_Crv.Invalidate();
             }
             catch ( InvalidOperationException x ) {
-                MsgBxShower.Ui.ChartRefreshingError();
+                Messages.Ui.ChartRefreshingError();
                 Logger.WriteException( x );
             }
             catch ( ArgumentOutOfRangeException x ) {
-                MsgBxShower.Ui.SeriesSelectionProblem();
+                Messages.Ui.SeriesSelectionProblem();
                 Logger.WriteException( x );
             }
         }
@@ -367,7 +368,7 @@ namespace PI
 
         private void UpdateUiByDotNetFrameworkVersion()
         {
-            string dotNetVersion = SysInfoHelper.ObtainUsedDotNetFrameworkVersion();
+            string dotNetVersion = SystemInfo.TryGetDotNetFrameworkVersion();
 
             if ( dotNetVersion == null ) {
                 uiPnlPrg_DotNetFr2_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Program.InfoObtErrTxt.GetString();
@@ -380,7 +381,7 @@ namespace PI
 
         private void UpdateUiByOsVersionName()
         {
-            string osVersion = SysInfoHelper.ObtaingApplicationRunningOSVersion();
+            string osVersion = SystemInfo.TryGetOSVersion();
 
             if ( osVersion == null ) {
                 uiPnlPrg_OsVer2_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Program.InfoObtErrTxt.GetString();
@@ -393,7 +394,7 @@ namespace PI
         private void UiPanelDataSheet_ShowDataSet_Click( object sender, EventArgs e )
         {
             int selectedCurveType = UiControls.TryGetSelectedIndex( uiPnlDtSh_CrvT_ComBx );
-            int selectedCurveIndex = UiControls.GetValue<int>( uiPnlDtSh_CrvIdx_Num );
+            int selectedCurveIndex = UiControls.TryGetValue<int>( uiPnlDtSh_CrvIdx_Num );
 
             switch ( (Enums.DataSetCurveType) selectedCurveType ) {
             case Enums.DataSetCurveType.Pattern:
@@ -401,14 +402,14 @@ namespace PI
             case Enums.DataSetCurveType.Average:
                 break;
             default:
-                MsgBxShower.Ui.CurveTypeNotSelectedInfo();
+                Messages.Ui.CurveTypeNotSelectedInfo();
                 return;
             }
 
             Series selectedCurveSeries = SpecifyCurveSeries( selectedCurveType, selectedCurveIndex );
 
             if ( selectedCurveSeries == null || DataChart.PatternCurveSet.Points.Count == 0 ) {
-                MsgBxShower.Ui.SeriesSelectionProblem();
+                Messages.Ui.SeriesSelectionProblem();
                 return;
             }
 
@@ -428,7 +429,7 @@ namespace PI
                     }
                 }
                 catch ( InvalidOperationException x ) {
-                    MsgBxShower.Ui.ChartRefreshingError();
+                    Messages.Ui.ChartRefreshingError();
                     Logger.WriteException( x );
                 }
                 catch ( System.ComponentModel.InvalidEnumArgumentException x ) {
@@ -470,21 +471,21 @@ namespace PI
         private void UiPanelDataSheet_Malform_Click( object sender, EventArgs e )
         {
             if ( DataChart.PatternCurveSet.Points.Count == 0 ) {
-                MsgBxShower.Ui.SeriesSelectionProblem();
+                Messages.Ui.SeriesSelectionProblem();
                 return;
             }
 
-            int numberOfCurves = UiControls.GetValue<int>( uiPnlDtSh_CrvNo_Num );
-            double surrounding = UiControls.GetValue<double>( uiPnlDtSh_Surr_Num );
+            int numberOfCurves = UiControls.TryGetValue<int>( uiPnlDtSh_CrvNo_Num );
+            double surrounding = UiControls.TryGetValue<double>( uiPnlDtSh_Surr_Num );
             bool? result = DataChart.MakeGaussianNoiseForGeneratedCurves( numberOfCurves, surrounding );
 
             if ( result == null ) {
-                MsgBxShower.Ui.SpecifiedCurveDoesntExistProblem();
+                Messages.Ui.SpecifiedCurveDoesntExistProblem();
                 return;
             }
 
             if ( !result.Value ) {
-                MsgBxShower.Ui.OperationMalformRejectedStop();
+                Messages.Ui.OperationMalformRejectedStop();
                 return;
             }
 
@@ -496,19 +497,19 @@ namespace PI
         private void UiPanelGenerate_Apply_Click( object sender, EventArgs e )
         {
             if ( DataChart.PatternCurveSet.Points.Count == 0 ) {
-                MsgBxShower.Ui.SeriesSelectionProblem();
+                Messages.Ui.SeriesSelectionProblem();
                 return;
             }
 
             Enums.MeanType meanType = (Enums.MeanType) UiControls.TryGetSelectedIndex( uiPnlGen_MeanT_ComBx );
-            int numberOfCurves = UiControls.GetValue<int>( uiPnlGen_Crvs2No_Nm );
+            int numberOfCurves = UiControls.TryGetValue<int>( uiPnlGen_Crvs2No_Nm );
             bool isNumberOfCurvesInsufficient = (meanType == Enums.MeanType.Mediana
                 || meanType == Enums.MeanType.CustomDifferential
                 || meanType == Enums.MeanType.CustomTolerance)
                 && numberOfCurves < 3;
 
             if ( isNumberOfCurvesInsufficient ) {
-                MsgBxShower.Ui.NotEnoughCurvesForMedianaStop();
+                Messages.Ui.NotEnoughCurvesForMedianaStop();
                 return;
             }
 
@@ -516,12 +517,12 @@ namespace PI
 
             if ( !averageResult.Value ) {
                 DataChart.RemoveInvalidPoints( Enums.DataSetCurveType.Average );
-                MsgBxShower.Ui.PointsNotValidToChartProblem();
+                Messages.Ui.PointsNotValidToChartProblem();
             }
 
             UiControls.TrySetSelectedIndex( uiPnlDtSh_CrvT_ComBx, (int) Enums.DataSetCurveType.Average );
             double standardDeviation = StatAnalysis.GetRelativeStandardDeviationFromSeriesValues( DataChart.AverageCurveSet, DataChart.PatternCurveSet );
-            uiPnlGen_StdDev2_TxtBx.Text = StringFormatter.FormatAsNumeric( 8, standardDeviation );
+            uiPnlGen_StdDev2_TxtBx.Text = StringFormatter.TryAsNumeric( 8, standardDeviation );
         }
 
         private void UpdateUiByDefaultSettings()
@@ -781,7 +782,7 @@ namespace PI
                 Logger.WriteException( ex );
             }
             catch ( OutOfMemoryException ex ) {
-                MsgBxShower.General.OutOfMemoryExceptionStop();
+                Messages.General.OutOfMemoryExceptionStop();
                 Logger.WriteException( ex );
             }
             catch ( ArgumentNullException ex ) {
@@ -798,7 +799,7 @@ namespace PI
         private void DelegatorForStatAnalysis()
         {
             if ( IsGeneratedCurvesSeriesEmpty() ) {
-                MsgBxShower.Stat.Preview.NoSavedPresetsError();
+                Messages.Stat.Preview.NoSavedPresetsError();
                 return;
             }
 
@@ -945,22 +946,22 @@ namespace PI
 
                     if ( (control as NumericUpDown).Minimum == (control as NumericUpDown).Maximum ) {
                         (control as NumericUpDown).Maximum++;
-                        UiControls.SetValue( control as NumericUpDown, (control as NumericUpDown).Maximum );
-                        UiControls.SetValue( control as NumericUpDown, (control as NumericUpDown).Minimum );
+                        UiControls.TrySetValue( control as NumericUpDown, (control as NumericUpDown).Maximum );
+                        UiControls.TrySetValue( control as NumericUpDown, (control as NumericUpDown).Minimum );
                         (control as NumericUpDown).Maximum--;
                         return;
                     }
 
                     if ( originalValue == (control as NumericUpDown).Minimum ) {
-                        UiControls.SetValue( control as NumericUpDown, originalValue + ((control as NumericUpDown).Increment) );
-                        UiControls.SetValue( control as NumericUpDown, originalValue );
+                        UiControls.TrySetValue( control as NumericUpDown, originalValue + ((control as NumericUpDown).Increment) );
+                        UiControls.TrySetValue( control as NumericUpDown, originalValue );
                         return;
                     }
 
                     decimal originalIncrement = (control as NumericUpDown).Increment;
                     (control as NumericUpDown).Increment = 0.0001M;
-                    UiControls.SetValue( control as NumericUpDown, originalValue - ((control as NumericUpDown).Increment) );
-                    UiControls.SetValue( control as NumericUpDown, originalValue );
+                    UiControls.TrySetValue( control as NumericUpDown, originalValue - ((control as NumericUpDown).Increment) );
+                    UiControls.TrySetValue( control as NumericUpDown, originalValue );
                     (control as NumericUpDown).Increment = originalIncrement;
                 }
             }

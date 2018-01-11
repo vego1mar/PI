@@ -18,11 +18,11 @@ namespace PI
         [STAThread]
         static void Main()
         {
-            log.Info( "Application starting..." );
+            log.Info( "Application started." );
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault( false );
             Application.Run( new MainWindow() );
-            log.Info( "Application exiting..." );
+            log.Info( "Application exited." );
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Windows.Forms.DataVisualization.Charting;
 using PI.src.helpers;
+using PI.src.application;
 
 namespace PI
 {
@@ -79,7 +80,7 @@ namespace PI
 
             if ( !CurvesDataManager.IsCurvePointsSetValid( series ) ) {
                 UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.InfoOperationRevoked.GetString() );
-                MsgBxShower.Gprv.Panel.InvalidCurvePointsError();
+                Messages.Gprv.Panel.InvalidCurvePointsError();
                 return;
             }
 
@@ -157,7 +158,7 @@ namespace PI
         {
             if ( uiPnl_StartIdx_Num.Value > uiPnl_EndIdx_Num.Value ) {
                 uiPnl_StartIdx_Num.Value -= 1;
-                MsgBxShower.Gprv.Panel.IndexGreaterThanAllowedProblem();
+                Messages.Gprv.Panel.IndexGreaterThanAllowedProblem();
             }
         }
 
@@ -165,7 +166,7 @@ namespace PI
         {
             if ( uiPnl_EndIdx_Num.Value < uiPnl_StartIdx_Num.Value ) {
                 uiPnl_EndIdx_Num.Value += 1;
-                MsgBxShower.Gprv.Panel.IndexLowerThanAllowedProblem();
+                Messages.Gprv.Panel.IndexLowerThanAllowedProblem();
             }
         }
 
@@ -175,25 +176,25 @@ namespace PI
 
             if ( userValue == null ) {
                 UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.InfoInvalidUserValue.GetString() );
-                MsgBxShower.Gprv.Panel.ImproperUserValueProblem();
+                Messages.Gprv.Panel.ImproperUserValueProblem();
                 return;
             }
 
-            int startIndex = UiControls.GetValue<int>( uiPnl_StartIdx_Num );
-            int endIndex = UiControls.GetValue<int>( uiPnl_EndIdx_Num );
+            int startIndex = UiControls.TryGetValue<int>( uiPnl_StartIdx_Num );
+            int endIndex = UiControls.TryGetValue<int>( uiPnl_EndIdx_Num );
             Series seriesCopy = GetCopyOfSeriesPoints();
             Enums.Operation operation = (Enums.Operation) uiPnl_OperT_ComBx.SelectedIndex;
             bool result = PerformOperation( operation, startIndex, endIndex, userValue.Value, ref seriesCopy );
 
             if ( !result ) {
                 UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.InfoOperationRejected.GetString() );
-                MsgBxShower.Gprv.Panel.PerformOperationError();
+                Messages.Gprv.Panel.PerformOperationError();
                 return;
             }
 
             if ( !CurvesDataManager.IsCurvePointsSetValid( seriesCopy ) ) {
                 UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.InfoOperationRevoked.GetString() );
-                MsgBxShower.Gprv.Panel.InvalidCurvePointsError();
+                Messages.Gprv.Panel.InvalidCurvePointsError();
                 return;
             }
 
@@ -407,7 +408,7 @@ namespace PI
             catch ( InvalidOperationException x ) {
                 Logger.WriteException( x );
                 UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Preview.InfoChartNotRepainted.GetString() );
-                MsgBxShower.Gprv.Chart.ChartRefreshingError();
+                Messages.Gprv.Chart.ChartRefreshingError();
             }
             catch ( Exception x ) {
                 Logger.WriteException( x );

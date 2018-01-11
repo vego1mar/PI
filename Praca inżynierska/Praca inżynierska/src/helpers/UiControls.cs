@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Globalization;
 using log4net;
 
 namespace PI.src.helpers
@@ -17,11 +18,9 @@ namespace PI.src.helpers
             }
             catch ( ArgumentOutOfRangeException ex ) {
                 log.Error( ex.Message, ex );
-                Logger.WriteException( ex );
             }
             catch ( NullReferenceException ex ) {
                 log.Error( ex.Message, ex );
-                Logger.WriteException( ex );
             }
             catch ( Exception ex ) {
                 log.Fatal( ex.Message, ex );
@@ -35,22 +34,18 @@ namespace PI.src.helpers
             }
             catch ( NullReferenceException ex ) {
                 log.Error( ex.Message, ex );
-                Logger.WriteException( ex );
                 return false;
             }
             catch ( ArgumentException ex ) {
                 log.Error( ex.Message, ex );
-                Logger.WriteException( ex );
                 return false;
             }
             catch ( InvalidOperationException ex ) {
                 log.Error( ex.Message, ex );
-                Logger.WriteException( ex );
                 return false;
             }
             catch ( OutOfMemoryException ex ) {
                 log.Error( ex.Message, ex );
-                Logger.WriteException( ex );
                 return false;
             }
             catch ( Exception ex ) {
@@ -75,19 +70,15 @@ namespace PI.src.helpers
             }
             catch ( NullReferenceException ex ) {
                 log.Error( ex.Message, ex );
-                Logger.WriteException( ex );
             }
             catch ( KeyNotFoundException ex ) {
                 log.Error( ex.Message, ex );
-                Logger.WriteException( ex );
             }
             catch ( ArgumentOutOfRangeException ex ) {
                 log.Error( ex.Message, ex );
-                Logger.WriteException( ex );
             }
             catch ( ArgumentException ex ) {
                 log.Error( ex.Message, ex );
-                Logger.WriteException( ex );
             }
             catch ( Exception ex ) {
                 log.Fatal( ex.Message, ex );
@@ -108,19 +99,15 @@ namespace PI.src.helpers
             }
             catch ( NullReferenceException ex ) {
                 log.Error( ex.Message, ex );
-                Logger.WriteException( ex );
             }
             catch ( KeyNotFoundException ex ) {
                 log.Error( ex.Message, ex );
-                Logger.WriteException( ex );
             }
             catch ( ArgumentOutOfRangeException ex ) {
                 log.Error( ex.Message, ex );
-                Logger.WriteException( ex );
             }
             catch ( ArgumentException ex ) {
                 log.Error( ex.Message, ex );
-                Logger.WriteException( ex );
             }
             catch ( Exception ex ) {
                 log.Fatal( ex.Message, ex );
@@ -134,17 +121,14 @@ namespace PI.src.helpers
             }
             catch ( System.ComponentModel.InvalidEnumArgumentException ex ) {
                 log.Error( ex.Message, ex );
-                Logger.WriteException( ex );
                 return false;
             }
             catch ( InvalidOperationException ex ) {
                 log.Error( ex.Message, ex );
-                Logger.WriteException( ex );
                 return false;
             }
             catch ( NullReferenceException ex ) {
                 log.Error( ex.Message, ex );
-                Logger.WriteException( ex );
                 return false;
             }
             catch ( Exception ex ) {
@@ -163,7 +147,6 @@ namespace PI.src.helpers
             }
             catch ( ArgumentOutOfRangeException ex ) {
                 log.Error( ex.Message, ex );
-                Logger.WriteException( ex );
             }
             catch ( Exception ex ) {
                 log.Fatal( ex.Message, ex );
@@ -172,112 +155,77 @@ namespace PI.src.helpers
             return rowStyle;
         }
 
-        // Pending to refactor :
+        public static void TrySetValue<T>( Control control, T value )
+        {
+            var typeSwitch = new Dictionary<Type, Action>() {
+                { typeof(NumericUpDown), () => (control as NumericUpDown).Value = Convert.ToDecimal(value) },
+                { typeof(TrackBar), () => (control as TrackBar).Value = Convert.ToInt32(value) }
+            };
 
-        internal static T GetValue<T>( NumericUpDown numeric )
+            try {
+                typeSwitch[control.GetType()]();
+            }
+            catch ( NullReferenceException ex ) {
+                log.Error( ex.Message, ex );
+            }
+            catch ( KeyNotFoundException ex ) {
+                log.Error( ex.Message, ex );
+            }
+            catch ( FormatException ex ) {
+                log.Error( ex.Message, ex );
+            }
+            catch ( InvalidCastException ex ) {
+                log.Error( ex.Message, ex );
+            }
+            catch ( OverflowException ex ) {
+                log.Error( ex.Message, ex );
+            }
+            catch ( ArgumentOutOfRangeException ex ) {
+                log.Error( ex.Message, ex );
+            }
+            catch ( Exception ex ) {
+                log.Fatal( ex.Message, ex );
+            }
+        }
+
+        public static T TryGetValue<T>( Control control )
         {
             T value = default( T );
+            var typeSwitch = new Dictionary<Type, Action>() {
+                { typeof(NumericUpDown), () => value = (T)(Convert.ChangeType((control as NumericUpDown).Value, typeof(T), CultureInfo.InvariantCulture)) },
+                { typeof(TrackBar), () => value = (T)(Convert.ChangeType((control as TrackBar).Value, typeof(T), CultureInfo.InvariantCulture)) },
+                { typeof(TextBox), () => value = (T)(Convert.ChangeType((control as TextBox).Text, typeof(T), CultureInfo.InvariantCulture)) }
+            };
 
             try {
-                value = (T) (Convert.ChangeType( numeric.Value, typeof( T ) ));
+                typeSwitch[control.GetType()]();
             }
-            catch ( InvalidCastException x ) {
-                Logger.WriteException( x );
+            catch ( NullReferenceException ex ) {
+                log.Error( ex.Message, ex );
             }
-            catch ( FormatException x ) {
-                Logger.WriteException( x );
+            catch ( KeyNotFoundException ex ) {
+                log.Error( ex.Message, ex );
             }
-            catch ( OverflowException x ) {
-                Logger.WriteException( x );
+            catch ( InvalidCastException ex ) {
+                log.Error( ex.Message, ex );
             }
-            catch ( ArgumentOutOfRangeException x ) {
-                Logger.WriteException( x );
+            catch ( FormatException ex ) {
+                log.Error( ex.Message, ex );
             }
-            catch ( ArgumentNullException x ) {
-                Logger.WriteException( x );
+            catch ( OverflowException ex ) {
+                log.Error( ex.Message, ex );
             }
-            catch ( Exception x ) {
-                Logger.WriteException( x );
+            catch ( ArgumentOutOfRangeException ex ) {
+                log.Error( ex.Message, ex );
+            }
+            catch ( ArgumentNullException ex ) {
+                log.Error( ex.Message, ex );
+            }
+            catch ( Exception ex ) {
+                log.Fatal( ex.Message, ex );
             }
 
             return value;
-        }
-
-        internal static void SetValue<T>( NumericUpDown numeric, T value )
-        {
-            try {
-                numeric.Value = Convert.ToDecimal( value );
-            }
-            catch ( OverflowException x ) {
-                Logger.WriteException( x );
-            }
-            catch ( ArgumentOutOfRangeException x ) {
-                Logger.WriteException( x );
-            }
-            catch ( Exception x ) {
-                Logger.WriteException( x );
-            }
-        }
-
-        internal static void SetValue( TrackBar trackBar, int value )
-        {
-            try {
-                trackBar.Value = value;
-            }
-            catch ( ArgumentException x ) {
-                Logger.WriteException( x );
-            }
-            catch ( Exception x ) {
-                Logger.WriteException( x );
-            }
-        }
-
-        internal static int GetValue( TrackBar trackBar )
-        {
-            int value = 0;
-
-            try {
-                value = trackBar.Value;
-            }
-            catch ( ArgumentException x ) {
-                Logger.WriteException( x );
-            }
-            catch ( Exception x ) {
-                Logger.WriteException( x );
-            }
-
-            return value;
-        }
-
-        internal static bool GetValue<T>( TextBox textBox, out T value )
-        {
-            value = default( T );
-
-            try {
-                value = (T) (Convert.ChangeType( textBox.Text, typeof( T ) ));
-            }
-            catch ( InvalidCastException x ) {
-                Logger.WriteException( x );
-                return false;
-            }
-            catch ( FormatException x ) {
-                Logger.WriteException( x );
-                return false;
-            }
-            catch ( OverflowException x ) {
-                Logger.WriteException( x );
-                return false;
-            }
-            catch ( ArgumentNullException x ) {
-                Logger.WriteException( x );
-                return false;
-            }
-            catch ( Exception x ) {
-                Logger.WriteException( x );
-                return false;
-            }
-
-            return true;
         }
     }
 }

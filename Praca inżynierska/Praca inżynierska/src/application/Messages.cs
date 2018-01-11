@@ -1,18 +1,18 @@
 ﻿using PI.src.helpers;
 using System.Windows.Forms;
 
-namespace PI
+namespace PI.src.application
 {
 
-    internal static class MsgBxShower
+    internal static class Messages
     {
-        internal static UiMsgBoxes Ui { get; } = new UiMsgBoxes();
-        internal static GridPreviewerMsgBoxes Gprv { get; } = new GridPreviewerMsgBoxes();
-        internal static PcdMsgBoxes Pcd { get; } = new PcdMsgBoxes();
-        internal static StatMsgBoxes Stat { get; } = new StatMsgBoxes();
-        internal static GeneralMsgBoxes General { get; } = new GeneralMsgBoxes();
+        public static UiMsgBoxes Ui { get; } = new UiMsgBoxes();
+        public static GridPreviewerMsgBoxes Gprv { get; } = new GridPreviewerMsgBoxes();
+        public static PcdMsgBoxes Pcd { get; } = new PcdMsgBoxes();
+        public static StatMsgBoxes Stat { get; } = new StatMsgBoxes();
+        public static GeneralMsgBoxes General { get; } = new GeneralMsgBoxes();
 
-        internal class UiMsgBoxes
+        public class UiMsgBoxes
         {
 
             internal void SeriesSelectionProblem()
@@ -73,7 +73,7 @@ namespace PI
 
         }
 
-        internal class GridPreviewerMsgBoxes
+        public class GridPreviewerMsgBoxes
         {
             internal PanelMsgBoxes Panel { get; } = new PanelMsgBoxes();
             internal ChartMsgBoxes Chart { get; } = new ChartMsgBoxes();
@@ -127,7 +127,7 @@ namespace PI
             }
         }
 
-        internal class PcdMsgBoxes
+        public class PcdMsgBoxes
         {
             internal void DivisionByZeroProblem()
             {
@@ -137,7 +137,7 @@ namespace PI
             }
         }
 
-        internal class StatMsgBoxes
+        public class StatMsgBoxes
         {
             internal PreviewMsgBoxes Preview { get; } = new PreviewMsgBoxes();
 
@@ -174,7 +174,7 @@ namespace PI
             }
         }
 
-        internal class GeneralMsgBoxes
+        public class GeneralMsgBoxes
         {
             internal void OutOfMemoryExceptionStop()
             {

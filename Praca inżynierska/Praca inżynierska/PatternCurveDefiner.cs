@@ -1,4 +1,5 @@
-﻿using PI.src.helpers;
+﻿using PI.src.application;
+using PI.src.helpers;
 using System;
 using System.Windows.Forms;
 
@@ -68,23 +69,23 @@ namespace PI
 
         private void UpdateUiByParametersValues()
         {
-            UiControls.SetValue( uiCntPol_a_Num, Settings.Parameters.Polynomial.A );
-            UiControls.SetValue( uiCntPol_b_Num, Settings.Parameters.Polynomial.B );
-            UiControls.SetValue( uiCntPol_c_Num, Settings.Parameters.Polynomial.C );
-            UiControls.SetValue( uiCntPol_d_Num, Settings.Parameters.Polynomial.D );
-            UiControls.SetValue( uiCntPol_e_Num, Settings.Parameters.Polynomial.E );
-            UiControls.SetValue( uiCntPol_f_Num, Settings.Parameters.Polynomial.F );
-            UiControls.SetValue( uiCntPol_i_Num, Settings.Parameters.Polynomial.I );
-            UiControls.SetValue( uiCntHyp_a_Num, Settings.Parameters.Hyperbolic.A );
-            UiControls.SetValue( uiCntHyp_b_Num, Settings.Parameters.Hyperbolic.B );
-            UiControls.SetValue( uiCntHyp_c_Num, Settings.Parameters.Hyperbolic.C );
-            UiControls.SetValue( uiCntHyp_d_Num, Settings.Parameters.Hyperbolic.D );
-            UiControls.SetValue( uiCntHyp_f_Num, Settings.Parameters.Hyperbolic.F );
-            UiControls.SetValue( uiCntHyp_i_Num, Settings.Parameters.Hyperbolic.I );
-            UiControls.SetValue( uiCntWave_m_Num, Settings.Parameters.Waveform.M );
-            UiControls.SetValue( uiCntWave_n_Num, Settings.Parameters.Waveform.N );
-            UiControls.SetValue( uiCntWave_o_Num, Settings.Parameters.Waveform.O );
-            UiControls.SetValue( uiCntWave_k_Num, Settings.Parameters.Waveform.K );
+            UiControls.TrySetValue( uiCntPol_a_Num, Settings.Parameters.Polynomial.A );
+            UiControls.TrySetValue( uiCntPol_b_Num, Settings.Parameters.Polynomial.B );
+            UiControls.TrySetValue( uiCntPol_c_Num, Settings.Parameters.Polynomial.C );
+            UiControls.TrySetValue( uiCntPol_d_Num, Settings.Parameters.Polynomial.D );
+            UiControls.TrySetValue( uiCntPol_e_Num, Settings.Parameters.Polynomial.E );
+            UiControls.TrySetValue( uiCntPol_f_Num, Settings.Parameters.Polynomial.F );
+            UiControls.TrySetValue( uiCntPol_i_Num, Settings.Parameters.Polynomial.I );
+            UiControls.TrySetValue( uiCntHyp_a_Num, Settings.Parameters.Hyperbolic.A );
+            UiControls.TrySetValue( uiCntHyp_b_Num, Settings.Parameters.Hyperbolic.B );
+            UiControls.TrySetValue( uiCntHyp_c_Num, Settings.Parameters.Hyperbolic.C );
+            UiControls.TrySetValue( uiCntHyp_d_Num, Settings.Parameters.Hyperbolic.D );
+            UiControls.TrySetValue( uiCntHyp_f_Num, Settings.Parameters.Hyperbolic.F );
+            UiControls.TrySetValue( uiCntHyp_i_Num, Settings.Parameters.Hyperbolic.I );
+            UiControls.TrySetValue( uiCntWave_m_Num, Settings.Parameters.Waveform.M );
+            UiControls.TrySetValue( uiCntWave_n_Num, Settings.Parameters.Waveform.N );
+            UiControls.TrySetValue( uiCntWave_o_Num, Settings.Parameters.Waveform.O );
+            UiControls.TrySetValue( uiCntWave_k_Num, Settings.Parameters.Waveform.K );
         }
 
         private void UiTabs_Polynomial_Click( object sender, EventArgs e )
@@ -161,32 +162,32 @@ namespace PI
 
         private void SaveParametersForPolynomialPatternCurve()
         {
-            Settings.Parameters.Polynomial.A = UiControls.GetValue<double>( uiCntPol_a_Num );
-            Settings.Parameters.Polynomial.B = UiControls.GetValue<double>( uiCntPol_b_Num );
-            Settings.Parameters.Polynomial.C = UiControls.GetValue<double>( uiCntPol_c_Num );
-            Settings.Parameters.Polynomial.D = UiControls.GetValue<double>( uiCntPol_d_Num );
-            Settings.Parameters.Polynomial.E = UiControls.GetValue<double>( uiCntPol_e_Num );
-            Settings.Parameters.Polynomial.F = UiControls.GetValue<double>( uiCntPol_f_Num );
-            Settings.Parameters.Polynomial.I = UiControls.GetValue<double>( uiCntPol_i_Num );
+            Settings.Parameters.Polynomial.A = UiControls.TryGetValue<double>( uiCntPol_a_Num );
+            Settings.Parameters.Polynomial.B = UiControls.TryGetValue<double>( uiCntPol_b_Num );
+            Settings.Parameters.Polynomial.C = UiControls.TryGetValue<double>( uiCntPol_c_Num );
+            Settings.Parameters.Polynomial.D = UiControls.TryGetValue<double>( uiCntPol_d_Num );
+            Settings.Parameters.Polynomial.E = UiControls.TryGetValue<double>( uiCntPol_e_Num );
+            Settings.Parameters.Polynomial.F = UiControls.TryGetValue<double>( uiCntPol_f_Num );
+            Settings.Parameters.Polynomial.I = UiControls.TryGetValue<double>( uiCntPol_i_Num );
         }
 
         private void SaveParametersForHyperbolicPatternCurve()
         {
-            double userValue = UiControls.GetValue<double>( uiCntHyp_f_Num );
+            double userValue = UiControls.TryGetValue<double>( uiCntHyp_f_Num );
 
             // Checking 'decimal' value, not 'double'.
             // Four zeros after decimal separator are revelant here, not floating-point precision.
             if ( userValue == 0.0000 ) {
-                MsgBxShower.Pcd.DivisionByZeroProblem();
+                Messages.Pcd.DivisionByZeroProblem();
                 userValue = 0.0001;
             }
 
             Settings.Parameters.Hyperbolic.F = userValue;
-            Settings.Parameters.Hyperbolic.A = UiControls.GetValue<double>( uiCntHyp_a_Num );
-            Settings.Parameters.Hyperbolic.B = UiControls.GetValue<double>( uiCntHyp_b_Num );
-            Settings.Parameters.Hyperbolic.C = UiControls.GetValue<double>( uiCntHyp_c_Num );
-            Settings.Parameters.Hyperbolic.D = UiControls.GetValue<double>( uiCntHyp_d_Num );
-            Settings.Parameters.Hyperbolic.I = UiControls.GetValue<double>( uiCntHyp_i_Num );
+            Settings.Parameters.Hyperbolic.A = UiControls.TryGetValue<double>( uiCntHyp_a_Num );
+            Settings.Parameters.Hyperbolic.B = UiControls.TryGetValue<double>( uiCntHyp_b_Num );
+            Settings.Parameters.Hyperbolic.C = UiControls.TryGetValue<double>( uiCntHyp_c_Num );
+            Settings.Parameters.Hyperbolic.D = UiControls.TryGetValue<double>( uiCntHyp_d_Num );
+            Settings.Parameters.Hyperbolic.I = UiControls.TryGetValue<double>( uiCntHyp_i_Num );
         }
 
         private void SaveParametersForWaveformPatternCurve( Enums.PatternCurveScaffold type )
@@ -205,17 +206,17 @@ namespace PI
 
         private void SaveParametersOfSineWaveform()
         {
-            Settings.Parameters.Waveform.M = UiControls.GetValue<double>( uiCntWave_m_Num );
-            Settings.Parameters.Waveform.N = UiControls.GetValue<double>( uiCntWave_n_Num );
-            Settings.Parameters.Waveform.O = UiControls.GetValue<double>( uiCntWave_o_Num );
-            Settings.Parameters.Waveform.K = UiControls.GetValue<double>( uiCntWave_k_Num );
+            Settings.Parameters.Waveform.M = UiControls.TryGetValue<double>( uiCntWave_m_Num );
+            Settings.Parameters.Waveform.N = UiControls.TryGetValue<double>( uiCntWave_n_Num );
+            Settings.Parameters.Waveform.O = UiControls.TryGetValue<double>( uiCntWave_o_Num );
+            Settings.Parameters.Waveform.K = UiControls.TryGetValue<double>( uiCntWave_k_Num );
         }
 
         private void SaveParametersOfOtherWaveform()
         {
-            Settings.Parameters.Waveform.M = UiControls.GetValue<double>( uiCntWave_m_Num );
-            Settings.Parameters.Waveform.N = UiControls.GetValue<double>( uiCntWave_n_Num );
-            Settings.Parameters.Waveform.K = UiControls.GetValue<double>( uiCntWave_k_Num );
+            Settings.Parameters.Waveform.M = UiControls.TryGetValue<double>( uiCntWave_m_Num );
+            Settings.Parameters.Waveform.N = UiControls.TryGetValue<double>( uiCntWave_n_Num );
+            Settings.Parameters.Waveform.K = UiControls.TryGetValue<double>( uiCntWave_k_Num );
         }
 
         private void UiContentWaveformType_Sine_CheckedChanged( object sender, EventArgs e )
@@ -257,28 +258,28 @@ namespace PI
         private void UiContentHyperbolic_ParameterA_ValueChanged( object sender, EventArgs e )
         {
             if ( uiCntHyp_ac_ChBx.Checked ) {
-                UiControls.SetValue( uiCntHyp_c_Num, UiControls.GetValue<decimal>( uiCntHyp_a_Num ) );
+                UiControls.TrySetValue( uiCntHyp_c_Num, UiControls.TryGetValue<decimal>( uiCntHyp_a_Num ) );
             }
         }
 
         private void UiContentHyperbolic_ParameterC_ValueChanged( object sender, EventArgs e )
         {
             if ( uiCntHyp_ac_ChBx.Checked ) {
-                UiControls.SetValue( uiCntHyp_a_Num, UiControls.GetValue<decimal>( uiCntHyp_c_Num ) );
+                UiControls.TrySetValue( uiCntHyp_a_Num, UiControls.TryGetValue<decimal>( uiCntHyp_c_Num ) );
             }
         }
 
         private void UiContentHyperbolic_ParameterB_ValueChanged( object sender, EventArgs e )
         {
             if ( uiCntHyp_bd_ChBx.Checked ) {
-                UiControls.SetValue( uiCntHyp_d_Num, UiControls.GetValue<decimal>( uiCntHyp_b_Num ) );
+                UiControls.TrySetValue( uiCntHyp_d_Num, UiControls.TryGetValue<decimal>( uiCntHyp_b_Num ) );
             }
         }
 
         private void UiContentHyperbolic_ParameterD_ValueChanged( object sender, EventArgs e )
         {
             if ( uiCntHyp_bd_ChBx.Checked ) {
-                UiControls.SetValue( uiCntHyp_b_Num, UiControls.GetValue<decimal>( uiCntHyp_d_Num ) );
+                UiControls.TrySetValue( uiCntHyp_b_Num, UiControls.TryGetValue<decimal>( uiCntHyp_d_Num ) );
             }
         }
 

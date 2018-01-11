@@ -125,7 +125,7 @@
     <Compile Include="MeansSettings.Designer.cs">
       <DependentUpon>MeansSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="MsgBxShower.cs" />
+    <Compile Include="src\application\Messages.cs" />
     <Compile Include="Params.cs" />
     <Compile Include="PatternCurveDefiner.cs">
       <SubType>Form</SubType>
@@ -134,7 +134,7 @@
       <DependentUpon>PatternCurveDefiner.cs</DependentUpon>
     </Compile>
     <Compile Include="GenSettings.cs" />
-    <Compile Include="Randomizer.cs" />
+    <Compile Include="src\general\Randoms.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="StatAnalysis.cs">
       <SubType>Form</SubType>
@@ -142,9 +142,9 @@
     <Compile Include="StatAnalysis.Designer.cs">
       <DependentUpon>StatAnalysis.cs</DependentUpon>
     </Compile>
-    <Compile Include="StringFormatter.cs" />
-    <Compile Include="SysInfoHelper.cs" />
-    <Compile Include="ThreadTasker.cs" />
+    <Compile Include="src\helpers\StringFormatter.cs" />
+    <Compile Include="src\helpers\SystemInfo.cs" />
+    <Compile Include="src\helpers\Threads.cs" />
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>

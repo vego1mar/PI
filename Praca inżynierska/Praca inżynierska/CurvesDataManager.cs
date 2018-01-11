@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Collections.Generic;
 using System.Windows.Forms.DataVisualization.Charting;
+using PI.src.general;
 
 namespace PI
 {
@@ -382,7 +383,7 @@ namespace PI
         {
             for ( int i = 0; i < series.Points.Count; i++ ) {
                 double y = series.Points[i].YValues[0];
-                double newValue = Randomizer.NextDouble( y - surrounding, y + surrounding );
+                double newValue = Randoms.NextDouble( y - surrounding, y + surrounding );
                 series.Points[i].YValues[0] = newValue;
             }
         }
