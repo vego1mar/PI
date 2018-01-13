@@ -1,4 +1,5 @@
-﻿using PI.src.helpers;
+﻿using PI.src.general;
+using PI.src.helpers;
 using System;
 using System.Windows.Forms;
 
@@ -97,9 +98,7 @@ namespace PI
 
         public void SetPowerMeanRank( double value )
         {
-            CurvesDataManager.CurvesDataManagerConsts.ChartValuesConsts consts = new CurvesDataManager.CurvesDataManagerConsts.ChartValuesConsts();
-
-            if ( value > consts.AcceptableMin && value < consts.AcceptableMax ) {
+            if ( SeriesAssist.IsChartAcceptable( value ) ) {
                 MeansParams.PowerMean.Rank = value;
             }
 

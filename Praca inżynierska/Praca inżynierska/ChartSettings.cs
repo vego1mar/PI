@@ -1,4 +1,5 @@
 ﻿using PI.src.helpers;
+using PI.src.settings;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -8,7 +9,7 @@ namespace PI
 {
     public partial class ChartSettings : Form
     {
-        internal ChartSettingsPool Settings { get; private set; }
+        internal MainChartSettings Settings { get; private set; }
         private PreviousValue Previous { get; set; }
         private bool IsFormInitialized { get; set; }
 
@@ -46,7 +47,7 @@ namespace PI
             public ApplyToCurve ApplyMode { get; set; }
         }
 
-        internal ChartSettings( ChartSettingsPool settings )
+        internal ChartSettings( MainChartSettings settings )
         {
             InitializeComponent();
             InitializeProperties( settings );
@@ -56,7 +57,7 @@ namespace PI
             UpdateUiByFormInitializeSettings();
         }
 
-        private void InitializeProperties( ChartSettingsPool settings )
+        private void InitializeProperties( MainChartSettings settings )
         {
             Settings = settings;
 
@@ -221,18 +222,18 @@ namespace PI
 
         private void UpdateUiByGeneratedCurveSettings()
         {
-            UiControls.TrySetSelectedIndex( uiCtrSrs_Color_ComBx, uiCtrSrs_Color_ComBx.Items.IndexOf( Settings.Series.Generated.Color.Name ) );
-            UiControls.TrySetValue( uiCtrSrs_BorWth_Num, Settings.Series.Generated.BorderWidth );
-            UiControls.TrySetSelectedIndex( uiCtrSrs_BorStyle_ComBx, (int) Settings.Series.Generated.BorderDashStyle );
-            UiControls.TrySetSelectedIndex( uiCtrSrs_ChT_ComBx, (int) Settings.Series.Generated.ChartType );
+            UiControls.TrySetSelectedIndex( uiCtrSrs_Color_ComBx, uiCtrSrs_Color_ComBx.Items.IndexOf( Settings.Series.Modified.Color.Name ) );
+            UiControls.TrySetValue( uiCtrSrs_BorWth_Num, Settings.Series.Modified.BorderWidth );
+            UiControls.TrySetSelectedIndex( uiCtrSrs_BorStyle_ComBx, (int) Settings.Series.Modified.BorderDashStyle );
+            UiControls.TrySetSelectedIndex( uiCtrSrs_ChT_ComBx, (int) Settings.Series.Modified.ChartType );
         }
 
         private void UpdateUiByPatternCurveSettings()
         {
-            UiControls.TrySetSelectedIndex( uiCtrSrs_Color_ComBx, uiCtrSrs_Color_ComBx.Items.IndexOf( Settings.Series.Pattern.Color.Name ) );
-            UiControls.TrySetValue( uiCtrSrs_BorWth_Num, Settings.Series.Pattern.BorderWidth );
-            UiControls.TrySetSelectedIndex( uiCtrSrs_BorStyle_ComBx, (int) Settings.Series.Pattern.BorderDashStyle );
-            UiControls.TrySetSelectedIndex( uiCtrSrs_ChT_ComBx, (int) Settings.Series.Pattern.ChartType );
+            UiControls.TrySetSelectedIndex( uiCtrSrs_Color_ComBx, uiCtrSrs_Color_ComBx.Items.IndexOf( Settings.Series.Ideal.Color.Name ) );
+            UiControls.TrySetValue( uiCtrSrs_BorWth_Num, Settings.Series.Ideal.BorderWidth );
+            UiControls.TrySetSelectedIndex( uiCtrSrs_BorStyle_ComBx, (int) Settings.Series.Ideal.BorderDashStyle );
+            UiControls.TrySetSelectedIndex( uiCtrSrs_ChT_ComBx, (int) Settings.Series.Ideal.ChartType );
         }
 
         private void EnableChartTabPageControls( bool value )
@@ -325,18 +326,18 @@ namespace PI
 
         private void SaveSeriesPatternSettings()
         {
-            Settings.Series.Pattern.Color = Color.FromName( uiCtrSrs_Color_ComBx.Items[uiCtrSrs_Color_ComBx.SelectedIndex].ToString() );
-            Settings.Series.Pattern.BorderWidth = UiControls.TryGetValue<int>( uiCtrSrs_BorWth_Num );
-            Settings.Series.Pattern.BorderDashStyle = (ChartDashStyle) UiControls.TryGetSelectedIndex( uiCtrSrs_BorStyle_ComBx );
-            Settings.Series.Pattern.ChartType = (SeriesChartType) UiControls.TryGetSelectedIndex( uiCtrSrs_ChT_ComBx );
+            Settings.Series.Ideal.Color = Color.FromName( uiCtrSrs_Color_ComBx.Items[uiCtrSrs_Color_ComBx.SelectedIndex].ToString() );
+            Settings.Series.Ideal.BorderWidth = UiControls.TryGetValue<int>( uiCtrSrs_BorWth_Num );
+            Settings.Series.Ideal.BorderDashStyle = (ChartDashStyle) UiControls.TryGetSelectedIndex( uiCtrSrs_BorStyle_ComBx );
+            Settings.Series.Ideal.ChartType = (SeriesChartType) UiControls.TryGetSelectedIndex( uiCtrSrs_ChT_ComBx );
         }
 
         private void SaveSeriesGeneratedSettings()
         {
-            Settings.Series.Generated.Color = Color.FromName( uiCtrSrs_Color_ComBx.Items[uiCtrSrs_Color_ComBx.SelectedIndex].ToString() );
-            Settings.Series.Generated.BorderWidth = UiControls.TryGetValue<int>( uiCtrSrs_BorWth_Num );
-            Settings.Series.Generated.BorderDashStyle = (ChartDashStyle) UiControls.TryGetSelectedIndex( uiCtrSrs_BorStyle_ComBx );
-            Settings.Series.Generated.ChartType = (SeriesChartType) UiControls.TryGetSelectedIndex( uiCtrSrs_ChT_ComBx );
+            Settings.Series.Modified.Color = Color.FromName( uiCtrSrs_Color_ComBx.Items[uiCtrSrs_Color_ComBx.SelectedIndex].ToString() );
+            Settings.Series.Modified.BorderWidth = UiControls.TryGetValue<int>( uiCtrSrs_BorWth_Num );
+            Settings.Series.Modified.BorderDashStyle = (ChartDashStyle) UiControls.TryGetSelectedIndex( uiCtrSrs_BorStyle_ComBx );
+            Settings.Series.Modified.ChartType = (SeriesChartType) UiControls.TryGetSelectedIndex( uiCtrSrs_ChT_ComBx );
         }
 
         private void SaveSeriesAverageSettings()

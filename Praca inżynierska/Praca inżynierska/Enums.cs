@@ -47,8 +47,8 @@
 
         internal enum DataSetCurveType
         {
-            Generated = 0,
-            Pattern = 1,
+            Modified = 0,
+            Ideal = 1,
             Average = 2
         }
 

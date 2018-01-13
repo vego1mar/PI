@@ -1,6 +1,6 @@
 ﻿namespace PI.src.windows
 {
-    partial class LangSelector
+    partial class LanguageSelector
     {
         /// <summary>
         /// Required designer variable.

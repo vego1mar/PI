@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\general\RandomsTest.cs" />
+    <Compile Include="src\general\ArgumentsMakerTest.cs" />
     <Compile Include="src\helpers\UiControlsTest.cs" />
     <Compile Include="src\helpers\ThreadsTest.cs" />
     <Compile Include="src\helpers\StringFormatterTest.cs" />

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Windows.Forms.DataVisualization.Charting;
 using PI.src.helpers;
 using PI.src.application;
+using PI.src.general;
 
 namespace PI
 {
@@ -78,9 +79,9 @@ namespace PI
                 series.Points.AddY( (double) uiGrid_db_grid.Rows[i].Cells["y"].Value );
             }
 
-            if ( !CurvesDataManager.IsCurvePointsSetValid( series ) ) {
+            if ( !SeriesAssist.IsChartAcceptable( series ) ) {
                 UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.InfoOperationRevoked.GetString() );
-                Messages.Gprv.Panel.InvalidCurvePointsError();
+                Messages.GridPreviewer.ErrorOfInvalidCurvePoints();
                 return;
             }
 
@@ -158,7 +159,7 @@ namespace PI
         {
             if ( uiPnl_StartIdx_Num.Value > uiPnl_EndIdx_Num.Value ) {
                 uiPnl_StartIdx_Num.Value -= 1;
-                Messages.Gprv.Panel.IndexGreaterThanAllowedProblem();
+                Messages.GridPreviewer.ExclamationOfIndexGreaterThanAllowed();
             }
         }
 
@@ -166,7 +167,7 @@ namespace PI
         {
             if ( uiPnl_EndIdx_Num.Value < uiPnl_StartIdx_Num.Value ) {
                 uiPnl_EndIdx_Num.Value += 1;
-                Messages.Gprv.Panel.IndexLowerThanAllowedProblem();
+                Messages.GridPreviewer.ExclamationOfIndexLowerThanAllowed();
             }
         }
 
@@ -176,7 +177,7 @@ namespace PI
 
             if ( userValue == null ) {
                 UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.InfoInvalidUserValue.GetString() );
-                Messages.Gprv.Panel.ImproperUserValueProblem();
+                Messages.GridPreviewer.ExclamationOfImproperUserValue();
                 return;
             }
 
@@ -188,13 +189,13 @@ namespace PI
 
             if ( !result ) {
                 UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.InfoOperationRejected.GetString() );
-                Messages.Gprv.Panel.PerformOperationError();
+                Messages.GridPreviewer.ErrorOfPerformOperation();
                 return;
             }
 
-            if ( !CurvesDataManager.IsCurvePointsSetValid( seriesCopy ) ) {
+            if ( !SeriesAssist.IsChartAcceptable( seriesCopy ) ) {
                 UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.InfoOperationRevoked.GetString() );
-                Messages.Gprv.Panel.InvalidCurvePointsError();
+                Messages.GridPreviewer.ErrorOfInvalidCurvePoints();
                 return;
             }
 
@@ -399,7 +400,7 @@ namespace PI
             try {
                 uiChart_Prv.Series.Clear();
                 Series series = GetCopyOfSeriesPoints();
-                CurvesDataManager.SetDefaultProperties( series, "RefreshSeries" );
+                SeriesAssist.SetDefaultSettings( series );
                 uiChart_Prv.Series.Add( series );
                 uiChart_Prv.ChartAreas[0].RecalculateAxesScale();
                 uiChart_Prv.Visible = true;
@@ -408,7 +409,7 @@ namespace PI
             catch ( InvalidOperationException x ) {
                 Logger.WriteException( x );
                 UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Preview.InfoChartNotRepainted.GetString() );
-                Messages.Gprv.Chart.ChartRefreshingError();
+                Messages.GridPreviewer.ErrorOfChartRefreshing();
             }
             catch ( Exception x ) {
                 Logger.WriteException( x );

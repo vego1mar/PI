@@ -1,5 +1,6 @@
 ﻿using PI.src.application;
 using PI.src.helpers;
+using PI.src.settings;
 using System;
 using System.Windows.Forms;
 
@@ -8,9 +9,9 @@ namespace PI
     public partial class PatternCurveDefiner : Form
     {
 
-        internal GenSettings.PcdGenSettings Settings { get; private set; }
+        internal PatternCurveDefinerGeneratorSettings Settings { get; private set; }
 
-        internal PatternCurveDefiner( GenSettings.PcdGenSettings presets )
+        internal PatternCurveDefiner( PatternCurveDefinerGeneratorSettings presets )
         {
             InitializeComponent();
             LocalizeWindow();
@@ -19,7 +20,7 @@ namespace PI
             UpdateUiByParametersValues();
         }
 
-        private void DefinePropertiesInitialValues( GenSettings.PcdGenSettings presets )
+        private void DefinePropertiesInitialValues( PatternCurveDefinerGeneratorSettings presets )
         {
             Settings = presets;
             uiTabs_Wave_Btn.BackColor = System.Drawing.Color.White;
@@ -178,7 +179,7 @@ namespace PI
             // Checking 'decimal' value, not 'double'.
             // Four zeros after decimal separator are revelant here, not floating-point precision.
             if ( userValue == 0.0000 ) {
-                Messages.Pcd.DivisionByZeroProblem();
+                Messages.PatternCurveDefiner.ExclamationOfDivisionByZero();
                 userValue = 0.0001;
             }
 

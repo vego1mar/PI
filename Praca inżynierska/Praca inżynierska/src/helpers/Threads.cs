@@ -29,7 +29,7 @@ namespace PI.src.helpers
             }
             catch ( OutOfMemoryException ex ) {
                 log.Error( ex.Message, ex );
-                Messages.General.OutOfMemoryExceptionStop();
+                Messages.Application.StopOfOutOfMemoryException();
                 return false;
             }
             catch ( Exception ex ) {

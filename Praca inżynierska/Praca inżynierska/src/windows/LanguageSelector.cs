@@ -5,9 +5,9 @@ using System.Windows.Forms;
 
 namespace PI.src.windows
 {
-    public partial class LangSelector : Form
+    public partial class LanguageSelector : Form
     {
-        public LangSelector()
+        public LanguageSelector()
         {
             InitializeComponent();
             SetWindowDefaults();

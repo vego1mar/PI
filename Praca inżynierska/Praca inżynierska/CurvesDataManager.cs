@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Collections.Generic;
 using System.Windows.Forms.DataVisualization.Charting;
 using PI.src.general;
+using PI.src.settings;
 
 namespace PI
 {
@@ -11,75 +12,39 @@ namespace PI
     class CurvesDataManager
     {
 
-        public Series PatternCurveSet { get; private set; }
-        public List<Series> GeneratedCurvesSet { get; private set; }
-        public Series AverageCurveSet { get; private set; }
+        public Series IdealCurve { get; private set; }
+        public List<Series> ModifiedCurves { get; private set; }
+        public Series AverageCurve { get; private set; }
+
         public MeansSettings.Params MeansParams { get; private set; }
-        public CurvesDataManagerConsts Consts { get; private set; }
-        private Params Parameters { get; set; }
+        private CurvesParameters Parameters { get; set; }
 
-        public class CurvesDataManagerConsts
+        public CurvesDataManager( CurvesParameters parameters )
         {
-            public SeriesNamesConsts SeriesNames { get; private set; } = new SeriesNamesConsts();
-            public ChartValuesConsts ChartValues { get; private set; } = new ChartValuesConsts();
-
-            public class SeriesNamesConsts
-            {
-                public string PatternCurve { get; } = "PatternCurveSeries";
-                public string GeneratedCurve { get; } = "GeneratedCurveSeries";
-                public string AverageCurve { get; } = "AverageCurveSeries";
-                public string ValidatedCurve { get; } = "ValidatedCurveSeries";
-            }
-
-            public class ChartValuesConsts
-            {
-                public double AcceptableMax { get; } = 9228162514264337593543950335.0;
-                public double AcceptableMin { get; } = -9228162514264337593543950335.0;
-            }
-
-        }
-
-        public CurvesDataManager( Params parameters )
-        {
-            PatternCurveSet = new Series();
-            GeneratedCurvesSet = new List<Series>();
-            AverageCurveSet = new Series();
+            IdealCurve = new Series();
+            ModifiedCurves = new List<Series>();
+            AverageCurve = new Series();
             MeansParams = new MeansSettings.Params();
-            Consts = new CurvesDataManagerConsts();
             Parameters = parameters;
-            SetDefaultProperties( PatternCurveSet, Consts.SeriesNames.PatternCurve );
-            SetDefaultProperties( AverageCurveSet, Consts.SeriesNames.AverageCurve );
+            SeriesAssist.SetDefaultSettings( IdealCurve );
+            SeriesAssist.SetDefaultSettings( AverageCurve );
         }
 
-        public static void SetDefaultProperties( Series series, string name )
-        {
-            series.Name = name;
-            series.BorderWidth = 3;
-            series.ChartType = SeriesChartType.Line;
-            series.Color = Color.Black;
-            series.Font = new Font( "Consolas", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 238 );
-            series.IsVisibleInLegend = false;
-            series.IsXValueIndexed = true;
-            series.YValueType = ChartValueType.Double;
-            series.YValueType = ChartValueType.Double;
-            series.YValuesPerPoint = 1;
-        }
-
-        public bool GeneratePatternCurve( Enums.PatternCurveScaffold type, double startX, double endX, int pointsDensity )
+        public bool GenerateIdealCurve( Enums.PatternCurveScaffold type, double startX, double endX, int pointsDensity )
         {
             switch ( type ) {
             case Enums.PatternCurveScaffold.Polynomial:
                 GeneratePolynomialPatternCurve( startX, endX, pointsDensity );
-                return IsCurvePointsSetValid( PatternCurveSet );
+                return SeriesAssist.IsChartAcceptable( IdealCurve );
             case Enums.PatternCurveScaffold.Hyperbolic:
                 GenerateHyperbolicPatternCurve( startX, endX, pointsDensity );
-                return IsCurvePointsSetValid( PatternCurveSet );
+                return SeriesAssist.IsChartAcceptable( IdealCurve );
             case Enums.PatternCurveScaffold.WaveformSine:
             case Enums.PatternCurveScaffold.WaveformSquare:
             case Enums.PatternCurveScaffold.WaveformTriangle:
             case Enums.PatternCurveScaffold.WaveformSawtooth:
                 GenerateWaveformPatternCurve( startX, endX, pointsDensity, type );
-                return IsCurvePointsSetValid( PatternCurveSet );
+                return SeriesAssist.IsChartAcceptable( IdealCurve );
             }
 
             return false;
@@ -87,29 +52,29 @@ namespace PI
 
         private void GeneratePolynomialPatternCurve( double startX, double endX, int pointsDensity )
         {
-            ClearPointsAndSetDefaults( PatternCurveSet );
-            ArgsGenerator args = new ArgsGenerator( startX, endX, pointsDensity );
+            ClearPointsAndSetDefaults( IdealCurve );
+            ArgumentsMaker args = new ArgumentsMaker( startX, endX, pointsDensity );
 
             while ( args.HasNextArgument() ) {
                 double x = args.GetNextArgument();
                 double leftFraction = (Parameters.Polynomial.A * Math.Pow( x, Parameters.Polynomial.B )) / Parameters.Polynomial.C;
                 double rightFraction = (Parameters.Polynomial.D * Math.Pow( x, Parameters.Polynomial.E )) / Parameters.Polynomial.F;
                 double polynomial = leftFraction + rightFraction + Parameters.Polynomial.I;
-                PatternCurveSet.Points.AddXY( x, polynomial );
+                IdealCurve.Points.AddXY( x, polynomial );
             }
         }
 
         private void GenerateHyperbolicPatternCurve( double startX, double endX, int pointsDensity )
         {
-            ClearPointsAndSetDefaults( PatternCurveSet );
-            ArgsGenerator args = new ArgsGenerator( startX, endX, pointsDensity );
+            ClearPointsAndSetDefaults( IdealCurve );
+            ArgumentsMaker args = new ArgumentsMaker( startX, endX, pointsDensity );
 
             while ( args.HasNextArgument() ) {
                 double x = args.GetNextArgument();
                 double leftFactor = Parameters.Hyperbolic.A * Math.Pow( Math.E, Parameters.Hyperbolic.B * x );
                 double rightFactor = Parameters.Hyperbolic.C * Math.Pow( Math.E, Parameters.Hyperbolic.D * (-x) );
                 double fraction = (leftFactor - rightFactor) / Parameters.Hyperbolic.F;
-                PatternCurveSet.Points.AddXY( x, fraction + Parameters.Hyperbolic.I );
+                IdealCurve.Points.AddXY( x, fraction + Parameters.Hyperbolic.I );
             }
         }
 
@@ -133,51 +98,51 @@ namespace PI
 
         private void GenerateSineWavePatternCurve( double startX, double endX, int pointsDensity )
         {
-            ClearPointsAndSetDefaults( PatternCurveSet );
-            ArgsGenerator args = new ArgsGenerator( startX, endX, pointsDensity );
+            ClearPointsAndSetDefaults( IdealCurve );
+            ArgumentsMaker args = new ArgumentsMaker( startX, endX, pointsDensity );
 
             while ( args.HasNextArgument() ) {
                 double x = args.GetNextArgument();
                 double argument = (Parameters.Waveform.N * x) + Parameters.Waveform.O;
                 double amplitude = Parameters.Waveform.M * Math.Sin( argument );
-                PatternCurveSet.Points.AddXY( x, amplitude + Parameters.Waveform.K );
+                IdealCurve.Points.AddXY( x, amplitude + Parameters.Waveform.K );
             }
         }
 
         private void GenerateSquareWavePatternCurve( double startX, double endX, int pointsDensity )
         {
-            ClearPointsAndSetDefaults( PatternCurveSet );
-            ArgsGenerator args = new ArgsGenerator( startX, endX, pointsDensity );
+            ClearPointsAndSetDefaults( IdealCurve );
+            ArgumentsMaker args = new ArgumentsMaker( startX, endX, pointsDensity );
 
             while ( args.HasNextArgument() ) {
                 double x = args.GetNextArgument();
-                double argument = (ArgsGenerator.PI_2 * x) / Parameters.Waveform.N;
+                double argument = (2.0 * Math.PI * x) / Parameters.Waveform.N;
                 double absolute = Math.Abs( Math.Sin( argument ) );
                 double cosecans = 1.0 / Math.Sin( argument );
                 double modifier = Parameters.Waveform.M * cosecans;
                 double expression = absolute * modifier;
-                PatternCurveSet.Points.AddXY( x, expression + Parameters.Waveform.K );
+                IdealCurve.Points.AddXY( x, expression + Parameters.Waveform.K );
             }
         }
 
         private void GenerateTriangleWavePatternCurve( double startX, double endX, int pointsDensity )
         {
-            ClearPointsAndSetDefaults( PatternCurveSet );
-            ArgsGenerator args = new ArgsGenerator( startX, endX, pointsDensity );
+            ClearPointsAndSetDefaults( IdealCurve );
+            ArgumentsMaker args = new ArgumentsMaker( startX, endX, pointsDensity );
 
             while ( args.HasNextArgument() ) {
                 double x = args.GetNextArgument();
                 double factor = (2.0 * Parameters.Waveform.M) / Math.PI;
-                double argument = (ArgsGenerator.PI_2 * x) / Parameters.Waveform.N;
+                double argument = (2.0 * Math.PI * x) / Parameters.Waveform.N;
                 double expression = factor * Math.Asin( Math.Sin( argument ) );
-                PatternCurveSet.Points.AddXY( x, expression + Parameters.Waveform.K );
+                IdealCurve.Points.AddXY( x, expression + Parameters.Waveform.K );
             }
         }
 
         private void GenerateSawtoothWavePatternCurve( double startX, double endX, int pointsDensity )
         {
-            ClearPointsAndSetDefaults( PatternCurveSet );
-            ArgsGenerator args = new ArgsGenerator( startX, endX, pointsDensity );
+            ClearPointsAndSetDefaults( IdealCurve );
+            ArgumentsMaker args = new ArgumentsMaker( startX, endX, pointsDensity );
 
             while ( args.HasNextArgument() ) {
                 double x = args.GetNextArgument();
@@ -185,88 +150,52 @@ namespace PI
                 double argument = (Math.PI * x) / Parameters.Waveform.N;
                 double cotangens = 1.0 / Math.Tan( argument );
                 double expression = factor * Math.Atan( cotangens );
-                PatternCurveSet.Points.AddXY( x, expression + Parameters.Waveform.K );
+                IdealCurve.Points.AddXY( x, expression + Parameters.Waveform.K );
             }
         }
 
-        public void AbsorbSeriesPoints( Series series, int curveType, int curveIndex )
+        public void AlterCurve( Series series, Enums.DataSetCurveType curveType, int curveIndex )
         {
-            if ( series == null ) {
+            if ( series == null || curveIndex < 0 ) {
                 return;
             }
 
-            switch ( (Enums.DataSetCurveType) curveType ) {
-            case Enums.DataSetCurveType.Pattern:
-                AbsorbSeriesForPatternCurve( series );
+            switch ( curveType ) {
+            case Enums.DataSetCurveType.Ideal:
+                IdealCurve.Points.Clear();
+                SeriesAssist.CopyPoints( series, IdealCurve );
                 break;
-            case Enums.DataSetCurveType.Generated:
-                AbsorbSeriesForSpecifiedGeneratedCurve( series, curveIndex - 1 );
+            case Enums.DataSetCurveType.Modified:
+                curveIndex--;
+                ModifiedCurves[curveIndex].Points.Clear();
+                SeriesAssist.CopyPoints( ModifiedCurves, curveIndex, series );
                 break;
-            }
-        }
-
-        private void AbsorbSeriesForPatternCurve( Series series )
-        {
-            for ( int i = 0; i < series.Points.Count; i++ ) {
-                PatternCurveSet.Points[i].XValue = series.Points[i].XValue;
-                PatternCurveSet.Points[i].YValues[0] = series.Points[i].YValues[0];
-            }
-        }
-
-        private void AbsorbSeriesForSpecifiedGeneratedCurve( Series series, int collectionItemNumber )
-        {
-            for ( int i = 0; i < series.Points.Count; i++ ) {
-                GeneratedCurvesSet[collectionItemNumber].Points[i].XValue = series.Points[i].XValue;
-                GeneratedCurvesSet[collectionItemNumber].Points[i].YValues[0] = series.Points[i].YValues[0];
             }
         }
 
         public void SpreadPatternCurveSetToGeneratedCurveSet( int numberOfCurves )
         {
-            GeneratedCurvesSet = new List<Series>();
+            ModifiedCurves = new List<Series>();
 
             for ( int i = 0; i < numberOfCurves; i++ ) {
                 Series series = new Series();
-                SetDefaultProperties( series, Consts.SeriesNames.GeneratedCurve + i );
-                RecopySeriesPoints( PatternCurveSet, series );
-                GeneratedCurvesSet.Add( series );
+                SeriesAssist.SetDefaultSettings( series );
+                SeriesAssist.CopyPoints( IdealCurve, series );
+                ModifiedCurves.Add( series );
             }
-        }
-
-        private void RecopySeriesPoints( Series source, Series target )
-        {
-            for ( int i = 0; i < source.Points.Count; i++ ) {
-                target.Points.AddXY( source.Points[i].XValue, source.Points[i].YValues[0] );
-            }
-        }
-
-        public static bool IsCurvePointsSetValid( Series series )
-        {
-            CurvesDataManagerConsts.ChartValuesConsts consts = new CurvesDataManagerConsts.ChartValuesConsts();
-
-            for ( int i = 0; i < series.Points.Count; i++ ) {
-                double x = series.Points[i].XValue;
-                double y = series.Points[i].YValues[0];
-
-                if ( x > consts.AcceptableMax || x < consts.AcceptableMin || y > consts.AcceptableMax || y < consts.AcceptableMin ) {
-                    return false;
-                }
-            }
-
-            return true;
         }
 
         public void RemoveInvalidPoints( Enums.DataSetCurveType curveType, int generatedCurveIndex = 0 )
         {
             switch ( curveType ) {
-            case Enums.DataSetCurveType.Generated:
-                RemoveInvalidPoints( GeneratedCurvesSet[generatedCurveIndex] );
+            case Enums.DataSetCurveType.Modified:
+                RemoveInvalidPoints( ModifiedCurves[generatedCurveIndex] );
                 break;
-            case Enums.DataSetCurveType.Pattern:
-                RemoveInvalidPoints( PatternCurveSet );
+            case Enums.DataSetCurveType.Ideal:
+                RemoveInvalidPoints( IdealCurve );
                 break;
             case Enums.DataSetCurveType.Average:
-                RemoveInvalidPoints( AverageCurveSet );
+                RemoveInvalidPoints( AverageCurve );
                 break;
             }
         }
@@ -274,21 +203,19 @@ namespace PI
         private void RemoveInvalidPoints( Series series )
         {
             Series newSeries = new Series();
-            SetDefaultProperties( newSeries, Consts.SeriesNames.ValidatedCurve );
-            double maxValue = Consts.ChartValues.AcceptableMax;
-            double minValue = Consts.ChartValues.AcceptableMin;
+            SeriesAssist.SetDefaultSettings( newSeries );
 
             for ( int i = 0; i < series.Points.Count; i++ ) {
                 double x = series.Points[i].XValue;
                 double y = series.Points[i].YValues[0];
 
-                if ( (x < maxValue && x > minValue) && (y < maxValue && y > minValue) ) {
+                if ( SeriesAssist.IsChartAcceptable( series.Points[i] ) ) {
                     newSeries.Points.AddXY( x, y );
                 }
             }
 
             series.Points.Clear();
-            RecopySeriesPoints( newSeries, series );
+            SeriesAssist.CopyPoints( newSeries, series );
         }
 
         public static void SetDefaultProperties( Chart chart, int chartAreaIndex = 0, int legendIndex = 0, int seriesIndex = 0 )
@@ -313,25 +240,18 @@ namespace PI
             chart.ChartAreas[chartAreaIndex].BackColor = Color.White;
             chart.ChartAreas[chartAreaIndex].IsSameFontSizeForAllAxes = true;
             chart.Legends[legendIndex].Enabled = false;
-            chart.Series[seriesIndex].BorderWidth = 5;
-            chart.Series[seriesIndex].ChartType = SeriesChartType.Line;
-            chart.Series[seriesIndex].Color = Color.Black;
-            chart.Series[seriesIndex].Font = new Font( "Consolas", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 238 );
-            chart.Series[seriesIndex].IsVisibleInLegend = false;
-            chart.Series[seriesIndex].IsXValueIndexed = true;
-            chart.Series[seriesIndex].XValueType = ChartValueType.Double;
-            chart.Series[seriesIndex].YValueType = ChartValueType.Double;
+            SeriesAssist.SetDefaultSettings( chart.Series[seriesIndex] );
         }
 
         private void ClearPointsAndSetDefaults( Series series )
         {
             series.Points.Clear();
-            SetDefaultProperties( series, Consts.SeriesNames.PatternCurve );
+            SeriesAssist.SetDefaultSettings( series );
         }
 
         public bool? MakeGaussianNoiseForGeneratedCurves( int numberOfCurves, double surrounding )
         {
-            if ( numberOfCurves < 0 || numberOfCurves > GeneratedCurvesSet.Count ) {
+            if ( numberOfCurves < 0 || numberOfCurves > ModifiedCurves.Count ) {
                 return null;
             }
 
@@ -340,13 +260,14 @@ namespace PI
             for ( int i = 0; i < curves.Count; i++ ) {
                 MakeGaussianNoise( curves[i], surrounding );
 
-                if ( !IsCurvePointsSetValid( curves[i] ) ) {
+                if ( !SeriesAssist.IsChartAcceptable( curves[i] ) ) {
                     return false;
                 }
             }
 
             for ( int i = 0; i < curves.Count; i++ ) {
-                AbsorbSeriesForSpecifiedGeneratedCurve( curves[i], i );
+                ModifiedCurves[i].Points.Clear();
+                SeriesAssist.CopyPoints( ModifiedCurves, i, curves[i] );
             }
 
             return true;
@@ -358,25 +279,10 @@ namespace PI
 
             for ( int i = 0; i < numberOfCurves; i++ ) {
                 curves.Add( new Series() );
-                RecopySeriesPoints( GeneratedCurvesSet[i], curves[i] );
+                SeriesAssist.CopyPoints( ModifiedCurves[i], curves[i] );
             }
 
             return curves;
-        }
-
-        private List<double> GetCopyOfGeneratedCurvePointsValues( int numberOfCurve = 0 )
-        {
-            if ( numberOfCurve < 0 || numberOfCurve >= GeneratedCurvesSet.Count ) {
-                return new List<double>();
-            }
-
-            List<double> yValues = new List<double>();
-
-            for ( int i = 0; i < GeneratedCurvesSet[numberOfCurve].Points.Count; i++ ) {
-                yValues.Add( GeneratedCurvesSet[numberOfCurve].Points[i].YValues[0] );
-            }
-
-            return yValues;
         }
 
         private void MakeGaussianNoise( Series series, double surrounding )
@@ -390,7 +296,7 @@ namespace PI
 
         public bool? MakeAverageCurveFromGeneratedCurves( Enums.MeanType averageMethod, int numberOfCurves )
         {
-            if ( numberOfCurves < 0 || numberOfCurves > GeneratedCurvesSet.Count ) {
+            if ( numberOfCurves < 0 || numberOfCurves > ModifiedCurves.Count ) {
                 return null;
             }
 
@@ -398,50 +304,50 @@ namespace PI
                 switch ( averageMethod ) {
                 case Enums.MeanType.Mediana:
                     MakeAverageCurveOfMediana( numberOfCurves );
-                    return IsCurvePointsSetValid( AverageCurveSet );
+                    return SeriesAssist.IsChartAcceptable( AverageCurve );
                 case Enums.MeanType.Maximum:
                 case Enums.MeanType.Minimum:
                     MakeAverageCurveOfMaximumOrMinimum( averageMethod, numberOfCurves );
-                    return IsCurvePointsSetValid( AverageCurveSet );
+                    return SeriesAssist.IsChartAcceptable( AverageCurve );
                 case Enums.MeanType.Arithmetic:
                     MakeAverageCurveOfArithmeticMean( numberOfCurves );
-                    return IsCurvePointsSetValid( AverageCurveSet );
+                    return SeriesAssist.IsChartAcceptable( AverageCurve );
                 case Enums.MeanType.Geometric:
                     MakeAverageCurveOfGeometricMean( numberOfCurves );
-                    return IsCurvePointsSetValid( AverageCurveSet );
+                    return SeriesAssist.IsChartAcceptable( AverageCurve );
                 case Enums.MeanType.AGM:
                     MakeAverageCurveOfArithmeticGeometricMean( numberOfCurves );
-                    return IsCurvePointsSetValid( AverageCurveSet );
+                    return SeriesAssist.IsChartAcceptable( AverageCurve );
                 case Enums.MeanType.Heronian:
                     MakeAverageCurveOfHeronianMean( numberOfCurves );
-                    return IsCurvePointsSetValid( AverageCurveSet );
+                    return SeriesAssist.IsChartAcceptable( AverageCurve );
                 case Enums.MeanType.Harmonic:
                     MakeAverageCurveOfHarmonicMean( numberOfCurves );
-                    return IsCurvePointsSetValid( AverageCurveSet );
+                    return SeriesAssist.IsChartAcceptable( AverageCurve );
                 case Enums.MeanType.RMS:
                     MakeAverageCurveOfRootMeanSquare( numberOfCurves );
-                    return IsCurvePointsSetValid( AverageCurveSet );
+                    return SeriesAssist.IsChartAcceptable( AverageCurve );
                 case Enums.MeanType.Power:
                     MakeAverageCurveOfPowerMean( numberOfCurves );
-                    return IsCurvePointsSetValid( AverageCurveSet );
+                    return SeriesAssist.IsChartAcceptable( AverageCurve );
                 case Enums.MeanType.Logarithmic:
                     MakeAverageCurveOfLogarithmicMean( numberOfCurves );
-                    return IsCurvePointsSetValid( AverageCurveSet );
+                    return SeriesAssist.IsChartAcceptable( AverageCurve );
                 case Enums.MeanType.EMA:
                     MakeAverageCurveOfExponentialMean( numberOfCurves );
-                    return IsCurvePointsSetValid( AverageCurveSet );
+                    return SeriesAssist.IsChartAcceptable( AverageCurve );
                 case Enums.MeanType.LnWages:
                     MakeAverageCurveOfLogarithmicallyWagedMean( numberOfCurves );
-                    return IsCurvePointsSetValid( AverageCurveSet );
+                    return SeriesAssist.IsChartAcceptable( AverageCurve );
                 case Enums.MeanType.CustomDifferential:
                     MakeAverageCurveOfCustomDifferentialMean( numberOfCurves );
-                    return IsCurvePointsSetValid( AverageCurveSet );
+                    return SeriesAssist.IsChartAcceptable( AverageCurve );
                 case Enums.MeanType.CustomTolerance:
                     MakeAverageCurveOfCustomToleranceMean( numberOfCurves );
-                    return IsCurvePointsSetValid( AverageCurveSet );
+                    return SeriesAssist.IsChartAcceptable( AverageCurve );
                 case Enums.MeanType.CustomGeometric:
                     MakeAverageCurveOfCustomGeomericMean( numberOfCurves );
-                    return IsCurvePointsSetValid( AverageCurveSet );
+                    return SeriesAssist.IsChartAcceptable( AverageCurve );
                 }
             }
             catch ( ArgumentOutOfRangeException x ) {
@@ -462,16 +368,16 @@ namespace PI
 
         private void MakeAverageCurveOfMaximumOrMinimum( Enums.MeanType type, int numberOfCurves )
         {
-            List<double> maxYValues = GetCopyOfGeneratedCurvePointsValues();
+            IList<double> maxYValues = SeriesAssist.GetValues( ModifiedCurves, 0 );
 
             for ( int i = 1; i < numberOfCurves; i++ ) {
-                for ( int j = 0; j < GeneratedCurvesSet[i].Points.Count; j++ ) {
-                    double y = GeneratedCurvesSet[i].Points[j].YValues[0];
+                for ( int j = 0; j < ModifiedCurves[i].Points.Count; j++ ) {
+                    double y = ModifiedCurves[i].Points[j].YValues[0];
                     maxYValues[j] = GetMaximumOrMinimum( type, y, maxYValues[j] ).Value;
                 }
             }
 
-            DefineAverageCurveSetValues( maxYValues );
+            SetAverageCurveProperty( maxYValues );
         }
 
         private double? GetMaximumOrMinimum( Enums.MeanType type, double leftValue, double rightValue )
@@ -488,7 +394,7 @@ namespace PI
 
         public void ClearAverageCurveSetPoints()
         {
-            AverageCurveSet.Points.Clear();
+            AverageCurve.Points.Clear();
         }
 
         private void MakeAverageCurveOfMediana( int numberOfCurves = 3 )
@@ -512,14 +418,14 @@ namespace PI
                 }
             }
 
-            DefineAverageCurveSetValues( medianas );
+            SetAverageCurveProperty( medianas );
         }
 
         private List<List<double>> GetGeneratedCurvesValuesReorderedIntoXByY( int numberOfCurves )
         {
             List<List<double>> argValues = new List<List<double>>();
 
-            for ( int i = 0; i < PatternCurveSet.Points.Count; i++ ) {
+            for ( int i = 0; i < IdealCurve.Points.Count; i++ ) {
                 argValues.Add( new List<double>() );
 
                 for ( int j = 0; j < numberOfCurves; j++ ) {
@@ -528,8 +434,8 @@ namespace PI
             }
 
             for ( int i = 0; i < numberOfCurves; i++ ) {
-                for ( int j = 0; j < GeneratedCurvesSet[i].Points.Count; j++ ) {
-                    double y = GeneratedCurvesSet[i].Points[j].YValues[0];
+                for ( int j = 0; j < ModifiedCurves[i].Points.Count; j++ ) {
+                    double y = ModifiedCurves[i].Points[j].YValues[0];
                     argValues[j][i] = y;
                 }
             }
@@ -537,13 +443,10 @@ namespace PI
             return argValues;
         }
 
-        private void DefineAverageCurveSetValues( List<double> newValues )
+        private void SetAverageCurveProperty( IList<double> newValues )
         {
-            AverageCurveSet.Points.Clear();
-
-            for ( int i = 0; i < PatternCurveSet.Points.Count; i++ ) {
-                AverageCurveSet.Points.AddXY( PatternCurveSet.Points[i].XValue, newValues[i] );
-            }
+            AverageCurve.Points.Clear();
+            SeriesAssist.CopyPoints( AverageCurve, IdealCurve, newValues );
         }
 
         private void MakeAverageCurveOfArithmeticMean( int numberOfCurves )
@@ -555,7 +458,7 @@ namespace PI
                 arithmetics.Add( GetArithmeticMeanFromSet( values[x] ) );
             }
 
-            DefineAverageCurveSetValues( arithmetics );
+            SetAverageCurveProperty( arithmetics );
         }
 
         private void MakeAverageCurveOfGeometricMean( int numberOfCurves )
@@ -567,7 +470,7 @@ namespace PI
                 geometrics.Add( GetGeometricMeanFromSet( values[x] ) );
             }
 
-            DefineAverageCurveSetValues( geometrics );
+            SetAverageCurveProperty( geometrics );
         }
 
         private double GetNthRoot( double value, double basis )
@@ -590,7 +493,7 @@ namespace PI
                 agm.Add( GetFinalAgmValue( args[0], args[1] ) );
             }
 
-            DefineAverageCurveSetValues( agm );
+            SetAverageCurveProperty( agm );
         }
 
         private List<double> CalculateFirstAgmValues( List<double> values )
@@ -665,7 +568,7 @@ namespace PI
                 heronians.Add( (sum - GetNthRoot( Math.Abs( product ), argValues[i].Count )) / (argValues[i].Count + 1) );
             }
 
-            DefineAverageCurveSetValues( heronians );
+            SetAverageCurveProperty( heronians );
         }
 
         private void MakeAverageCurveOfHarmonicMean( int numberOfCurves )
@@ -684,7 +587,7 @@ namespace PI
                 harmonics.Add( Convert.ToDouble( argValues[i].Count ) / sumOfReciprocals );
             }
 
-            DefineAverageCurveSetValues( harmonics );
+            SetAverageCurveProperty( harmonics );
         }
 
         private void MakeAverageCurveOfRootMeanSquare( int numberOfCurves )
@@ -696,7 +599,7 @@ namespace PI
                 rms.Add( CalculatePowerMean( argValues[i], 2 ) );
             }
 
-            DefineAverageCurveSetValues( rms );
+            SetAverageCurveProperty( rms );
         }
 
         private void MakeAverageCurveOfPowerMean( int numberOfCurves )
@@ -708,7 +611,7 @@ namespace PI
                 powers.Add( CalculatePowerMean( argValues[i], MeansParams.PowerMean.Rank ) );
             }
 
-            DefineAverageCurveSetValues( powers );
+            SetAverageCurveProperty( powers );
         }
 
         private double CalculatePowerMean( List<double> args, double rank )
@@ -741,7 +644,7 @@ namespace PI
                 logMeans.Add( distinction / distinctionOfLogs );
             }
 
-            DefineAverageCurveSetValues( logMeans );
+            SetAverageCurveProperty( logMeans );
         }
 
         private void MakeAverageCurveOfExponentialMean( int numberOfCurves )
@@ -768,7 +671,7 @@ namespace PI
                 emas.Add( (alfa * sum) + ((1.0 - alfa) * emas[i - 1]) );
             }
 
-            DefineAverageCurveSetValues( emas );
+            SetAverageCurveProperty( emas );
         }
 
         private void MakeAverageCurveOfLogarithmicallyWagedMean( int numberOfCurves )
@@ -792,7 +695,7 @@ namespace PI
                 wagedMeans.Add( nominator / denominator );
             }
 
-            DefineAverageCurveSetValues( wagedMeans );
+            SetAverageCurveProperty( wagedMeans );
         }
 
         private void MakeAverageCurveOfCustomDifferentialMean( int numberOfCurves )
@@ -814,7 +717,7 @@ namespace PI
                 }
             }
 
-            DefineAverageCurveSetValues( diffMeans );
+            SetAverageCurveProperty( diffMeans );
         }
 
         private List<double> GetListCopy( List<double> source )
@@ -932,7 +835,7 @@ namespace PI
                 }
             }
 
-            DefineAverageCurveSetValues( tolerants );
+            SetAverageCurveProperty( tolerants );
         }
 
         private void SubtractFromSet( List<double> set, double subtrahend )
@@ -977,7 +880,7 @@ namespace PI
                 geometrics.Add( GetCustomGeometricMeanFromSet( values[x] ) );
             }
 
-            DefineAverageCurveSetValues( geometrics );
+            SetAverageCurveProperty( geometrics );
         }
 
         private double GetCustomGeometricMeanFromSet( List<double> set )

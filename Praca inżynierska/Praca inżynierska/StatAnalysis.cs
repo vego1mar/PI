@@ -6,13 +6,15 @@ using System.Collections.Generic;
 using System.Windows.Forms.DataVisualization.Charting;
 using PI.src.helpers;
 using PI.src.application;
+using PI.src.settings;
+using PI.src.general;
 
 namespace PI
 {
     public partial class StatAnalysis : Form
     {
 
-        internal GenSettings Settings { get; private set; }
+        internal GeneratorSettings Settings { get; private set; }
         private List<List<CurvesDataManager>> Data { get; set; }
         private List<double> Surroundings { get; set; }
         private List<List<List<Series>>> Averages { get; set; }
@@ -36,7 +38,7 @@ namespace PI
             public int CrvT { get; set; }
         }
 
-        internal StatAnalysis( GenSettings genSets, CurvesDataManager curvesData )
+        internal StatAnalysis( GeneratorSettings genSets, CurvesDataManager curvesData )
         {
             InitializeComponent();
             InitializePropertySettings( genSets );
@@ -59,7 +61,7 @@ namespace PI
             WindowThreadsName = nameof( StatAnalysis ) + "::" + nameof( GridPreviewer ) + "::" + WindowNo;
         }
 
-        private void InitializePropertySettings( GenSettings genSets )
+        private void InitializePropertySettings( GeneratorSettings genSets )
         {
             Settings = genSets;
         }
@@ -113,8 +115,7 @@ namespace PI
 
                     for ( int j = 0; j < Enum.GetNames( typeof( Enums.MeanType ) ).Length; j++ ) {
                         Averages[(int) idx][i].Add( new Series() );                                 // [-][-][c]
-                        string seriesName = nameof( Averages ) + "[" + (int) idx + "][" + i + "][" + j + "]";
-                        CurvesDataManager.SetDefaultProperties( Averages[(int) idx][i][j], seriesName );
+                        SeriesAssist.SetDefaultSettings( Averages[(int) idx][i][j] );
                     }
                 }
             }
@@ -177,18 +178,18 @@ namespace PI
             UiControls.TrySelectTab( uiR_TbCtrl, 0 );
             CurvesDataManager.SetDefaultProperties( uiRChart_Chart );
             AddDataSetCurveTypes( uiRChartDown_CrvT_ComBx );
-            UiControls.TrySetSelectedIndex( uiRChartDown_CrvT_ComBx, (int) Enums.DataSetCurveType.Pattern );
+            UiControls.TrySetSelectedIndex( uiRChartDown_CrvT_ComBx, (int) Enums.DataSetCurveType.Ideal );
             uiRChartDown_CrvIdx_Num.Minimum = 0;
-            uiRChartDown_CrvIdx_Num.Maximum = Settings.Ui.NumberOfCurves - 1;
-            UiControls.TrySetValue( uiRChartDown_CrvIdx_Num, Settings.Ui.NumberOfCurves / 2 );
+            uiRChartDown_CrvIdx_Num.Maximum = Settings.Ui.CurvesNo - 1;
+            UiControls.TrySetValue( uiRChartDown_CrvIdx_Num, Settings.Ui.CurvesNo / 2 );
             AddPhenomenonsIndexNames( uiRChartDown_Phen_ComBx );
             UiControls.TrySetSelectedIndex( uiRChartDown_Phen_ComBx, (int) PhenomenonIndex.Peek );
             AddSurroundings( uiRChartDown_Surr_ComBx );
             UiControls.TrySetSelectedIndex( uiRChartDown_Surr_ComBx, 0 );
             AddMeanTypes( uiRChartDown_MeanT_ComBx );
             UiControls.TrySetSelectedIndex( uiRChartDown_MeanT_ComBx, (int) Enums.MeanType.CustomTolerance );
-            uiRFormulaDown_CrvsNo2_TxtBx.Text = Settings.Ui.NumberOfCurves.ToString();
-            uiRFormulaDown_Dens2_TxtBx.Text = (Settings.Ui.PointsDensity + 1).ToString();
+            uiRFormulaDown_CrvsNo2_TxtBx.Text = Settings.Ui.CurvesNo.ToString();
+            uiRFormulaDown_Dens2_TxtBx.Text = (Settings.Ui.PointsNo + 1).ToString();
         }
 
         private void UiStatAnalysis_Load( object sender, EventArgs e )
@@ -228,16 +229,16 @@ namespace PI
         {
             for ( int i = 0; i < Data.Count; i++ ) {
                 for ( int j = 0; j < Surroundings.Count; j++ ) {
-                    Data[i][j].GeneratePatternCurve( Settings.Pcd.Scaffold, Settings.Ui.StartingXPoint, Settings.Ui.EndingXPoint, Settings.Ui.PointsDensity );
-                    Data[i][j].SpreadPatternCurveSetToGeneratedCurveSet( Settings.Ui.NumberOfCurves );
-                    Data[i][j].MakeGaussianNoiseForGeneratedCurves( Settings.Ui.NumberOfCurves, Surroundings[j] );
-                    MakePeekOrDeformation( (PhenomenonIndex) i, Data[i][j], Settings.Ui.NumberOfCurves / 2 );
+                    Data[i][j].GenerateIdealCurve( Settings.Pcd.Scaffold, Settings.Ui.StartX, Settings.Ui.EndX, Settings.Ui.PointsNo );
+                    Data[i][j].SpreadPatternCurveSetToGeneratedCurveSet( Settings.Ui.CurvesNo );
+                    Data[i][j].MakeGaussianNoiseForGeneratedCurves( Settings.Ui.CurvesNo, Surroundings[j] );
+                    MakePeekOrDeformation( (PhenomenonIndex) i, Data[i][j], Settings.Ui.CurvesNo / 2 );
 
                     foreach ( string type in Enum.GetNames( typeof( Enums.MeanType ) ) ) {
                         Enum.TryParse( type, out Enums.MeanType meanType );
-                        Data[i][j].MakeAverageCurveFromGeneratedCurves( meanType, Settings.Ui.NumberOfCurves );
-                        AddSeriesPoints( Averages[i][j][Convert.ToInt32( meanType )], Data[i][j].AverageCurveSet );
-                        double stdDeviation = GetRelativeStandardDeviationFromSeriesValues( Averages[i][j][(int) meanType], Data[i][j].PatternCurveSet );
+                        Data[i][j].MakeAverageCurveFromGeneratedCurves( meanType, Settings.Ui.CurvesNo );
+                        AddSeriesPoints( Averages[i][j][Convert.ToInt32( meanType )], Data[i][j].AverageCurve );
+                        double stdDeviation = GetRelativeStandardDeviationFromSeriesValues( Averages[i][j][(int) meanType], Data[i][j].IdealCurve );
                         StdDeviations[i][j][Convert.ToInt32( meanType )] = stdDeviation;
                     }
                 }
@@ -264,7 +265,7 @@ namespace PI
                 Logger.WriteException( ex );
             }
             catch ( OutOfMemoryException ex ) {
-                Messages.General.OutOfMemoryExceptionStop();
+                Messages.Application.StopOfOutOfMemoryException();
                 Logger.WriteException( ex );
             }
             catch ( ArgumentNullException ex ) {
@@ -289,7 +290,7 @@ namespace PI
         private void UiRightChartDown_CurveType_ComboBox_SelectedIndexChanged( object sender, EventArgs e )
         {
             switch ( (Enums.DataSetCurveType) UiControls.TryGetSelectedIndex( uiRChartDown_CrvT_ComBx ) ) {
-            case Enums.DataSetCurveType.Generated:
+            case Enums.DataSetCurveType.Modified:
                 uiRChartDown_CrvIdx_Num.Enabled = true;
                 uiRChartDown_MeanT_ComBx.Enabled = false;
                 break;
@@ -297,7 +298,7 @@ namespace PI
                 uiRChartDown_CrvIdx_Num.Enabled = false;
                 uiRChartDown_MeanT_ComBx.Enabled = true;
                 break;
-            case Enums.DataSetCurveType.Pattern:
+            case Enums.DataSetCurveType.Ideal:
                 uiRChartDown_CrvIdx_Num.Enabled = false;
                 uiRChartDown_MeanT_ComBx.Enabled = false;
                 break;
@@ -313,12 +314,12 @@ namespace PI
             DatasetControlsValues indices = GetDatasetControlsValues();
 
             switch ( (Enums.DataSetCurveType) indices.CrvT ) {
-            case Enums.DataSetCurveType.Generated:
-                return Data[indices.PhenomNo][indices.NoiseNo].GeneratedCurvesSet[indices.CrvIdx];
+            case Enums.DataSetCurveType.Modified:
+                return Data[indices.PhenomNo][indices.NoiseNo].ModifiedCurves[indices.CrvIdx];
             case Enums.DataSetCurveType.Average:
                 return Averages[indices.PhenomNo][indices.NoiseNo][indices.MeanT];
-            case Enums.DataSetCurveType.Pattern:
-                return Data[indices.PhenomNo][indices.NoiseNo].PatternCurveSet;
+            case Enums.DataSetCurveType.Ideal:
+                return Data[indices.PhenomNo][indices.NoiseNo].IdealCurve;
             }
 
             return new Series();
@@ -337,7 +338,7 @@ namespace PI
 
         private void MakePeekOrDeformation( PhenomenonIndex idx, CurvesDataManager data, int curveIdx, int yValuesIdx = 0 )
         {
-            Series newSeries = data.GeneratedCurvesSet[curveIdx];
+            Series newSeries = data.ModifiedCurves[curveIdx];
             int leftIntervalPoint = Convert.ToInt32( (3.0 / 7.0) * newSeries.Points.Count );
             int middlePoint = newSeries.Points.Count / 2;
             int rightIntervalPoint = Convert.ToInt32( (5.0 / 7.0) * newSeries.Points.Count );
@@ -354,7 +355,7 @@ namespace PI
                 break;
             }
 
-            data.AbsorbSeriesPoints( newSeries, (int) Enums.DataSetCurveType.Generated, curveIdx );
+            data.AlterCurve( newSeries, Enums.DataSetCurveType.Modified, curveIdx );
         }
 
         private void OverrideSeriesValuesWithinInterval( Series series, int leftPoint, int rightPoint, double value, int yValuesIdx = 0 )
@@ -374,7 +375,7 @@ namespace PI
         private void UiRightChartDown_CurveIndex_Numeric_ValueChanged( object sender, EventArgs e )
         {
             if ( !IsCurveIndexProperValue() ) {
-                Messages.Stat.Preview.ValueOutOfRangeProblem();
+                Messages.StatisticalAnalysis.ExclamationOfValueOutOfRange();
                 return;
             }
 
@@ -387,7 +388,7 @@ namespace PI
         {
             int value = UiControls.TryGetValue<int>( uiRChartDown_CrvIdx_Num );
 
-            if ( value < 0 || value >= Settings.Ui.NumberOfCurves ) {
+            if ( value < 0 || value >= Settings.Ui.CurvesNo ) {
                 return false;
             }
 
@@ -424,8 +425,8 @@ namespace PI
                 uiRChart_Chart.Series.Clear();
                 uiRChart_Chart.Series.Add( GetSeriesSpecifiedByControls() );
 
-                if ( !CurvesDataManager.IsCurvePointsSetValid( uiRChart_Chart.Series[0] ) ) {
-                    Messages.Stat.Preview.PointsNotValidToChartProblem();
+                if ( !SeriesAssist.IsChartAcceptable( uiRChart_Chart.Series[0] ) ) {
+                    Messages.StatisticalAnalysis.ExclamationOfPointsNotValidToChart();
                     return;
                 }
 
@@ -435,7 +436,7 @@ namespace PI
                 uiRChart_Chart.Invalidate();
             }
             catch ( Exception ex ) {
-                Messages.Stat.Preview.UnrecognizedError();
+                Messages.StatisticalAnalysis.ErrorOfUnrecognized();
                 Logger.WriteException( ex );
             }
         }
@@ -443,10 +444,10 @@ namespace PI
         private void ChooseChartSeriesColor( Chart chart, int seriesIdx = 0 )
         {
             switch ( (Enums.DataSetCurveType) UiControls.TryGetSelectedIndex( uiRChartDown_CrvT_ComBx ) ) {
-            case Enums.DataSetCurveType.Generated:
+            case Enums.DataSetCurveType.Modified:
                 chart.Series[seriesIdx].Color = System.Drawing.Color.Crimson;
                 break;
-            case Enums.DataSetCurveType.Pattern:
+            case Enums.DataSetCurveType.Ideal:
                 chart.Series[seriesIdx].Color = System.Drawing.Color.Black;
                 break;
             case Enums.DataSetCurveType.Average:
@@ -621,7 +622,7 @@ namespace PI
             uiR_Chart_TbPg.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.Chart.GetString();
             uiR_Formula_TbPg.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.Formula.GetString();
             Translator.AddLocalizedDataSetCurveTypes( uiRChartDown_CrvT_ComBx );
-            UiControls.TrySetSelectedIndex( uiRChartDown_CrvT_ComBx, (int) Enums.DataSetCurveType.Pattern );
+            UiControls.TrySetSelectedIndex( uiRChartDown_CrvT_ComBx, (int) Enums.DataSetCurveType.Ideal );
             AddLocalizedPhenomenonsIndices( uiRChartDown_Phen_ComBx );
             UiControls.TrySetSelectedIndex( uiRChartDown_Phen_ComBx, (int) PhenomenonIndex.Peek );
             Translator.AddLocalizedMeanTypes( uiRChartDown_MeanT_ComBx );
@@ -629,8 +630,8 @@ namespace PI
             uiRChartDown_DtSet_Btn.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.DtSet.GetString();
             uiRFormulaDown_CrvsNo2_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.NotApplicable.GetString();
             uiRFormulaDown_Dens2_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.NotApplicable.GetString();
-            uiRFormulaDown_CrvsNo2_TxtBx.Text = Settings.Ui.NumberOfCurves.ToString( Thread.CurrentThread.CurrentCulture );
-            uiRFormulaDown_Dens2_TxtBx.Text = (Settings.Ui.PointsDensity + 1).ToString( Thread.CurrentThread.CurrentCulture );
+            uiRFormulaDown_CrvsNo2_TxtBx.Text = Settings.Ui.CurvesNo.ToString( Thread.CurrentThread.CurrentCulture );
+            uiRFormulaDown_Dens2_TxtBx.Text = (Settings.Ui.PointsNo + 1).ToString( Thread.CurrentThread.CurrentCulture );
             uiRFormulaDown_CrvsNo1_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.CrvsNo1.GetString();
             uiRFormulaDown_Dens1_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.Dens1.GetString();
             uiRChartUp_CrvIdx_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.CrvIdx.GetString();
