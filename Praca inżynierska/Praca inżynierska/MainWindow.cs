@@ -7,11 +7,15 @@ using System.Windows.Forms.DataVisualization.Charting;
 using PI.src.helpers;
 using PI.src.application;
 using PI.src.settings;
+using PI.src.general;
+using log4net;
+using System.Reflection;
 
 namespace PI
 {
     public partial class MainWindow : Form
     {
+        private static readonly ILog log = LogManager.GetLogger( MethodBase.GetCurrentMethod().DeclaringType );
 
         private Thread Timer { get; set; }
         private UiSettings Settings { get; set; }
@@ -200,16 +204,16 @@ namespace PI
         private void UpdateUiByChosenScaffoldStatus()
         {
             switch ( Settings.Presets.Pcd.Scaffold ) {
-            case Enums.PatternCurveScaffold.Polynomial:
+            case Enums.IdealCurveScaffold.Polynomial:
                 uiPnlGen_Def_Btn.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.ScaffPoly.GetString();
                 break;
-            case Enums.PatternCurveScaffold.Hyperbolic:
+            case Enums.IdealCurveScaffold.Hyperbolic:
                 uiPnlGen_Def_Btn.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.ScaffHyp.GetString();
                 break;
-            case Enums.PatternCurveScaffold.WaveformSine:
-            case Enums.PatternCurveScaffold.WaveformSquare:
-            case Enums.PatternCurveScaffold.WaveformTriangle:
-            case Enums.PatternCurveScaffold.WaveformSawtooth:
+            case Enums.IdealCurveScaffold.WaveformSine:
+            case Enums.IdealCurveScaffold.WaveformSquare:
+            case Enums.IdealCurveScaffold.WaveformTriangle:
+            case Enums.IdealCurveScaffold.WaveformSawtooth:
                 uiPnlGen_Def_Btn.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.ScaffWave.GetString();
                 break;
             default:
@@ -261,9 +265,14 @@ namespace PI
             }
 
             GrabPreSetsForCurvesGeneration();
-            GenerateAndShowPatternCurve();
-            DataChart.SpreadPatternCurveSetToGeneratedCurveSet( Settings.Presets.Ui.CurvesNo );
-            DataChart.ClearAverageCurveSetPoints();
+
+            if ( !GenerateAndShowPatternCurve() ) {
+                // TODO: show message - GREAT ISSUE (hyperbolic high)
+                return;
+            }
+
+            DataChart.PropagateIdealCurve( Settings.Presets.Ui.CurvesNo );
+            DataChart.ClearAverageCurvePoints();
             UpdateUiBySettingRangesForCurvesNumber();
             UiControls.TrySetSelectedIndex( uiPnlDtSh_CrvT_ComBx, (int) Enums.DataSetCurveType.Modified );
         }
@@ -276,9 +285,9 @@ namespace PI
             Settings.Presets.Ui.PointsNo = UiControls.TryGetValue<int>( uiPnlGen_Dens_Num );
         }
 
-        private void GenerateAndShowPatternCurve()
+        private bool GenerateAndShowPatternCurve()
         {
-            Enums.PatternCurveScaffold scaffoldType = Settings.Presets.Pcd.Scaffold;
+            Enums.IdealCurveScaffold scaffoldType = Settings.Presets.Pcd.Scaffold;
             double xStart = Settings.Presets.Ui.StartX;
             double xEnd = Settings.Presets.Ui.EndX;
             int density = Settings.Presets.Ui.PointsNo;
@@ -289,11 +298,13 @@ namespace PI
             }
 
             if ( DataChart.IdealCurve.Points.Count > 0 ) {
-                UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Ideal );
+                return UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Ideal );
             }
+
+            return false;
         }
 
-        private void UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType curveType, int indexOfGeneratedCurve = 1 )
+        private bool UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType curveType, int indexOfGeneratedCurve = 1 )
         {
             try {
                 uiCharts_Crv.Series.Clear();
@@ -317,14 +328,22 @@ namespace PI
                 uiCharts_Crv.Visible = true;
                 uiCharts_Crv.Invalidate();
             }
-            catch ( InvalidOperationException x ) {
+            catch ( InvalidOperationException ex ) {
+                log.Error( ex.Message, ex );
                 Messages.MainWindow.ErrorOfChartRefreshing();
-                Logger.WriteException( x );
+                return false;
             }
-            catch ( ArgumentOutOfRangeException x ) {
+            catch ( ArgumentOutOfRangeException ex ) {
+                log.Error( ex.Message, ex );
                 Messages.MainWindow.ExclamationOfSeriesSelection();
-                Logger.WriteException( x );
+                return false;
             }
+            catch ( Exception ex ) {
+                log.Fatal( ex.Message, ex );
+                return false;
+            }
+
+            return true;
         }
 
         private void SetPatternCurveSeriesSettings( Chart chart, int seriesNo = 0 )
@@ -478,7 +497,7 @@ namespace PI
 
             int numberOfCurves = UiControls.TryGetValue<int>( uiPnlDtSh_CrvNo_Num );
             double surrounding = UiControls.TryGetValue<double>( uiPnlDtSh_Surr_Num );
-            bool? result = DataChart.MakeGaussianNoiseForGeneratedCurves( numberOfCurves, surrounding );
+            bool? result = DataChart.MakeNoiseOfGaussian( numberOfCurves, surrounding );
 
             if ( result == null ) {
                 Messages.MainWindow.ExclamationOfSpecifiedCurveDoesNotExist();
@@ -490,7 +509,7 @@ namespace PI
                 return;
             }
 
-            DataChart.ClearAverageCurveSetPoints();
+            DataChart.ClearAverageCurvePoints();
             UiControls.TrySetSelectedIndex( uiPnlDtSh_CrvT_ComBx, (int) Enums.DataSetCurveType.Modified );
             UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Modified );
         }
@@ -514,7 +533,7 @@ namespace PI
                 return;
             }
 
-            bool? averageResult = DataChart.MakeAverageCurveFromGeneratedCurves( meanType, numberOfCurves );
+            bool? averageResult = DataChart.MakeAverageCurve( meanType, numberOfCurves );
 
             if ( !averageResult.Value ) {
                 DataChart.RemoveInvalidPoints( Enums.DataSetCurveType.Average );
@@ -528,7 +547,7 @@ namespace PI
 
         private void UpdateUiByDefaultSettings()
         {
-            CurvesDataManager.SetDefaultProperties( uiCharts_Crv );
+            ChartAssist.SetDefaultSettings( uiCharts_Crv );
             UiControls.TrySetSelectedIndex( uiPnlGen_MeanT_ComBx, (int) Enums.MeanType.Geometric );
             UpdateUiByChosenScaffoldStatus();
         }

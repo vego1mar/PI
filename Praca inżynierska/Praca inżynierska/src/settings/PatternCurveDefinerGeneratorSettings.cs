@@ -2,7 +2,7 @@
 {
     internal class PatternCurveDefinerGeneratorSettings
     {
-        public Enums.PatternCurveScaffold Scaffold { get; set; } = Enums.PatternCurveScaffold.Hyperbolic;
+        public Enums.IdealCurveScaffold Scaffold { get; set; } = Enums.IdealCurveScaffold.Hyperbolic;
         public CurvesParameters Parameters { get; set; } = new CurvesParameters();
     }
 }

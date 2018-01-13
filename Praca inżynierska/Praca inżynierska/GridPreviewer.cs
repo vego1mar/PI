@@ -24,7 +24,7 @@ namespace PI
 
         private void SetWindowDefaults( Series series )
         {
-            CurvesDataManager.SetDefaultProperties( uiChart_Prv );
+            ChartAssist.SetDefaultSettings( uiChart_Prv );
             ChartDataSet = series;
             OriginalValues = GetPointsValues( series );
             UiControls.TrySetSelectedIndex( uiPnl_AutoSize_ComBx, (int) Enums.AutoSizeColumnsMode.Fill );

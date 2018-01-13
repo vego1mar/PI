@@ -9,8 +9,8 @@ namespace PI.src.general
         public const int DEFAULT_BORDER_WIDTH = 3;
         public const ChartDashStyle DEFAULT_BORDER_DASH_STYLE = ChartDashStyle.Solid;
         public const SeriesChartType DEFAULT_CHART_TYPE = SeriesChartType.Line;
-        private const double CHART_ACCEPTABLE_MAXIMUM_VALUE = 9_228_162_514_264_337_593_543_950_335.0;
-        private const double CHART_ACCEPTABLE_MINIMUM_VALUE = -9_228_162_514_264_337_593_543_950_335.0;
+        private const double CHART_ACCEPTABLE_MAXIMUM_VALUE = 7.92E27;
+        private const double CHART_ACCEPTABLE_MINIMUM_VALUE = -7.92E27;
 
         public static void SetDefaultSettings( Series series )
         {
@@ -106,6 +106,39 @@ namespace PI.src.general
             }
 
             CopyPoints( source, target[targetSet], yValuesIndex );
+        }
+
+        public static void CopyPoints( IList<DataPoint> source, Series target, int yValuesIndex = 0 )
+        {
+            if ( source == null || target == null ) {
+                return;
+            }
+
+            for ( int i = 0; i < source.Count; i++ ) {
+                double x = source[i].XValue;
+                double y = source[i].YValues[yValuesIndex];
+                target.Points.AddXY( x, y );
+            }
+        }
+
+        public static IList<DataPoint> GetChartAcceptablePoints( Series source, int yValuesIndex = 0 )
+        {
+            if ( source == null ) {
+                return new List<DataPoint>().AsReadOnly();
+            }
+
+            IList<DataPoint> points = new List<DataPoint>();
+
+            for ( int i = 0; i < source.Points.Count; i++ ) {
+                double x = source.Points[i].XValue;
+                double y = source.Points[i].YValues[yValuesIndex];
+
+                if ( IsChartAcceptable( source.Points[i], yValuesIndex ) ) {
+                    points.Add( new DataPoint( x, y ) );
+                }
+            }
+
+            return points;
         }
     }
 }

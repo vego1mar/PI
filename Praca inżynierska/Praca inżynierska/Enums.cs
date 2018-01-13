@@ -52,7 +52,7 @@
             Average = 2
         }
 
-        internal enum PatternCurveScaffold
+        internal enum IdealCurveScaffold
         {
             Polynomial = 0,
             Hyperbolic = 1,

@@ -176,7 +176,7 @@ namespace PI
         {
             UiControls.TrySelectTab( uiL_TbCtrl, (int) PhenomenonIndex.Peek );
             UiControls.TrySelectTab( uiR_TbCtrl, 0 );
-            CurvesDataManager.SetDefaultProperties( uiRChart_Chart );
+            ChartAssist.SetDefaultSettings( uiRChart_Chart );
             AddDataSetCurveTypes( uiRChartDown_CrvT_ComBx );
             UiControls.TrySetSelectedIndex( uiRChartDown_CrvT_ComBx, (int) Enums.DataSetCurveType.Ideal );
             uiRChartDown_CrvIdx_Num.Minimum = 0;
@@ -230,13 +230,13 @@ namespace PI
             for ( int i = 0; i < Data.Count; i++ ) {
                 for ( int j = 0; j < Surroundings.Count; j++ ) {
                     Data[i][j].GenerateIdealCurve( Settings.Pcd.Scaffold, Settings.Ui.StartX, Settings.Ui.EndX, Settings.Ui.PointsNo );
-                    Data[i][j].SpreadPatternCurveSetToGeneratedCurveSet( Settings.Ui.CurvesNo );
-                    Data[i][j].MakeGaussianNoiseForGeneratedCurves( Settings.Ui.CurvesNo, Surroundings[j] );
+                    Data[i][j].PropagateIdealCurve( Settings.Ui.CurvesNo );
+                    Data[i][j].MakeNoiseOfGaussian( Settings.Ui.CurvesNo, Surroundings[j] );
                     MakePeekOrDeformation( (PhenomenonIndex) i, Data[i][j], Settings.Ui.CurvesNo / 2 );
 
                     foreach ( string type in Enum.GetNames( typeof( Enums.MeanType ) ) ) {
                         Enum.TryParse( type, out Enums.MeanType meanType );
-                        Data[i][j].MakeAverageCurveFromGeneratedCurves( meanType, Settings.Ui.CurvesNo );
+                        Data[i][j].MakeAverageCurve( meanType, Settings.Ui.CurvesNo );
                         AddSeriesPoints( Averages[i][j][Convert.ToInt32( meanType )], Data[i][j].AverageCurve );
                         double stdDeviation = GetRelativeStandardDeviationFromSeriesValues( Averages[i][j][(int) meanType], Data[i][j].IdealCurve );
                         StdDeviations[i][j][Convert.ToInt32( meanType )] = stdDeviation;
