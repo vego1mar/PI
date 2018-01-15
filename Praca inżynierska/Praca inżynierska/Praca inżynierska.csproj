@@ -88,8 +88,11 @@
     <Compile Include="ChartSettings.Designer.cs">
       <DependentUpon>ChartSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\general\Averages.cs" />
     <Compile Include="src\general\ChartAssist.cs" />
     <Compile Include="src\general\CurveMaker.cs" />
+    <Compile Include="src\general\Lists.cs" />
+    <Compile Include="src\general\NoiseMaker.cs" />
     <Compile Include="src\general\SeriesAssist.cs" />
     <Compile Include="src\settings\ChartAreaSettings.cs" />
     <Compile Include="src\settings\ChartCommonSettings.cs" />

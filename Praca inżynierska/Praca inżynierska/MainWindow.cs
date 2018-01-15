@@ -272,7 +272,6 @@ namespace PI
             }
 
             DataChart.PropagateIdealCurve( Settings.Presets.Ui.CurvesNo );
-            DataChart.ClearAverageCurvePoints();
             UpdateUiBySettingRangesForCurvesNumber();
             UiControls.TrySetSelectedIndex( uiPnlDtSh_CrvT_ComBx, (int) Enums.DataSetCurveType.Modified );
         }
@@ -509,7 +508,6 @@ namespace PI
                 return;
             }
 
-            DataChart.ClearAverageCurvePoints();
             UiControls.TrySetSelectedIndex( uiPnlDtSh_CrvT_ComBx, (int) Enums.DataSetCurveType.Modified );
             UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Modified );
         }
@@ -533,7 +531,7 @@ namespace PI
                 return;
             }
 
-            bool? averageResult = DataChart.MakeAverageCurve( meanType, numberOfCurves );
+            bool? averageResult = DataChart.TryMakeAverageCurve( meanType, numberOfCurves );
 
             if ( !averageResult.Value ) {
                 DataChart.RemoveInvalidPoints( Enums.DataSetCurveType.Average );

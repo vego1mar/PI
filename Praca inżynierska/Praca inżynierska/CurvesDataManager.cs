@@ -4,9 +4,13 @@ using System.Collections.Generic;
 using System.Windows.Forms.DataVisualization.Charting;
 using PI.src.general;
 using PI.src.settings;
+using log4net;
+using System.Reflection;
+using System.Linq;
 
 namespace PI
 {
+    // Change internal into public -> Enums
     class CurvesDataManager
     {
         public Series IdealCurve { get; private set; }
@@ -14,6 +18,7 @@ namespace PI
         public Series AverageCurve { get; private set; }
         public MeansSettings.Params MeansParams { get; private set; }
         private readonly CurvesParameters curvesParams;
+        private static readonly ILog log = LogManager.GetLogger( MethodBase.GetCurrentMethod().DeclaringType );
 
         public CurvesDataManager( CurvesParameters parameters )
         {
@@ -56,21 +61,25 @@ namespace PI
             return SeriesAssist.IsChartAcceptable( IdealCurve );
         }
 
+        // TODO: Replace Series with IList<DataPoint>
         public void AlterCurve( Series series, Enums.DataSetCurveType curveType, int curveIndex )
         {
             if ( series == null || curveIndex < 0 ) {
                 return;
             }
 
+            Series seriesCopy = new Series();
+            SeriesAssist.CopyPoints( series, seriesCopy );
+
             switch ( curveType ) {
             case Enums.DataSetCurveType.Ideal:
                 IdealCurve.Points.Clear();
-                SeriesAssist.CopyPoints( series, IdealCurve );
+                SeriesAssist.CopyPoints( seriesCopy, IdealCurve );
                 break;
             case Enums.DataSetCurveType.Modified:
                 curveIndex--;
                 ModifiedCurves[curveIndex].Points.Clear();
-                SeriesAssist.CopyPoints( ModifiedCurves, curveIndex, series );
+                SeriesAssist.CopyPoints( ModifiedCurves, curveIndex, seriesCopy );
                 break;
             }
         }
@@ -109,16 +118,17 @@ namespace PI
             }
         }
 
-        public bool? MakeNoiseOfGaussian( int numberOfCurves, double surrounding )
+        // TODO: Handle inconsistency between Gaussian and uniform noise
+        public bool? MakeNoiseOfGaussian( int curvesNo, double surrounding )
         {
-            if ( numberOfCurves < 0 || numberOfCurves >= ModifiedCurves.Count ) {
+            if ( curvesNo < 0 ) {
                 return null;
             }
 
-            List<Series> curves = GetCopyOfModifiedCurves( numberOfCurves );
+            IList<IList<DataPoint>> curves = SeriesAssist.GetCopy( ModifiedCurves, curvesNo );
 
             for ( int i = 0; i < curves.Count; i++ ) {
-                MakeGaussianNoise( curves[i], surrounding );
+                curves[i] = NoiseMaker.OfUniform( curves[i], surrounding );
 
                 if ( !SeriesAssist.IsChartAcceptable( curves[i] ) ) {
                     return false;
@@ -127,110 +137,99 @@ namespace PI
 
             for ( int i = 0; i < curves.Count; i++ ) {
                 ModifiedCurves[i].Points.Clear();
-                SeriesAssist.CopyPoints( ModifiedCurves, i, curves[i] );
+                SeriesAssist.CopyPoints( curves[i], ModifiedCurves[i] );
             }
 
             return true;
         }
 
-        public bool? MakeAverageCurve( Enums.MeanType averageMethod, int numberOfCurves )
+        public bool? TryMakeAverageCurve( Enums.MeanType method, int curvesNo )
         {
-            if ( numberOfCurves < 0 || numberOfCurves > ModifiedCurves.Count ) {
+            if ( curvesNo < 0 ) {
                 return null;
             }
 
+            string signature = string.Empty;
+            IList<double> result = new List<double>();
+
             try {
-                switch ( averageMethod ) {
+                MethodBase @base = MethodBase.GetCurrentMethod();
+                signature = @base.DeclaringType.Name + "." + @base.Name + "(" + method + ", " + curvesNo + ")";
+                IList<IList<double>> orderedSetOfCurves = SeriesAssist.GetOrderedCopy( ModifiedCurves, curvesNo );
+
+                switch ( method ) {
                 case Enums.MeanType.Mediana:
-                    MakeAverageCurveOfMediana( numberOfCurves );
-                    return SeriesAssist.IsChartAcceptable( AverageCurve );
+                    result = Averages.Median( orderedSetOfCurves );
+                    break;
                 case Enums.MeanType.Maximum:
+                    result = Averages.Maximum( orderedSetOfCurves );
+                    break;
                 case Enums.MeanType.Minimum:
-                    MakeAverageCurveOfMaximumOrMinimum( averageMethod, numberOfCurves );
-                    return SeriesAssist.IsChartAcceptable( AverageCurve );
+                    //MakeAverageCurveOfMaximumOrMinimum( method, curvesNo );
+                    break;
                 case Enums.MeanType.Arithmetic:
-                    MakeAverageCurveOfArithmeticMean( numberOfCurves );
-                    return SeriesAssist.IsChartAcceptable( AverageCurve );
+                    //MakeAverageCurveOfArithmeticMean( curvesNo );
+                    break;
                 case Enums.MeanType.Geometric:
-                    MakeAverageCurveOfGeometricMean( numberOfCurves );
-                    return SeriesAssist.IsChartAcceptable( AverageCurve );
+                    //MakeAverageCurveOfGeometricMean( curvesNo );
+                    break;
                 case Enums.MeanType.AGM:
-                    MakeAverageCurveOfArithmeticGeometricMean( numberOfCurves );
-                    return SeriesAssist.IsChartAcceptable( AverageCurve );
+                    //MakeAverageCurveOfArithmeticGeometricMean( curvesNo );
+                    break;
                 case Enums.MeanType.Heronian:
-                    MakeAverageCurveOfHeronianMean( numberOfCurves );
-                    return SeriesAssist.IsChartAcceptable( AverageCurve );
+                    //MakeAverageCurveOfHeronianMean( curvesNo );
+                    break;
                 case Enums.MeanType.Harmonic:
-                    MakeAverageCurveOfHarmonicMean( numberOfCurves );
-                    return SeriesAssist.IsChartAcceptable( AverageCurve );
+                    //MakeAverageCurveOfHarmonicMean( curvesNo );
+                    break;
                 case Enums.MeanType.RMS:
-                    MakeAverageCurveOfRootMeanSquare( numberOfCurves );
-                    return SeriesAssist.IsChartAcceptable( AverageCurve );
+                    //MakeAverageCurveOfRootMeanSquare( curvesNo );
+                    break;
                 case Enums.MeanType.Power:
-                    MakeAverageCurveOfPowerMean( numberOfCurves );
-                    return SeriesAssist.IsChartAcceptable( AverageCurve );
+                    //MakeAverageCurveOfPowerMean( curvesNo );
+                    break;
                 case Enums.MeanType.Logarithmic:
-                    MakeAverageCurveOfLogarithmicMean( numberOfCurves );
-                    return SeriesAssist.IsChartAcceptable( AverageCurve );
+                    //MakeAverageCurveOfLogarithmicMean( curvesNo );
+                    break;
                 case Enums.MeanType.EMA:
-                    MakeAverageCurveOfExponentialMean( numberOfCurves );
-                    return SeriesAssist.IsChartAcceptable( AverageCurve );
+                    //MakeAverageCurveOfExponentialMean( curvesNo );
+                    break;
                 case Enums.MeanType.LnWages:
-                    MakeAverageCurveOfLogarithmicallyWagedMean( numberOfCurves );
-                    return SeriesAssist.IsChartAcceptable( AverageCurve );
+                    //MakeAverageCurveOfLogarithmicallyWagedMean( curvesNo );
+                    break;
                 case Enums.MeanType.CustomDifferential:
-                    MakeAverageCurveOfCustomDifferentialMean( numberOfCurves );
-                    return SeriesAssist.IsChartAcceptable( AverageCurve );
+                    //MakeAverageCurveOfCustomDifferentialMean( curvesNo );
+                    break;
                 case Enums.MeanType.CustomTolerance:
-                    MakeAverageCurveOfCustomToleranceMean( numberOfCurves );
-                    return SeriesAssist.IsChartAcceptable( AverageCurve );
+                    //MakeAverageCurveOfCustomToleranceMean( curvesNo );
+                    break;
                 case Enums.MeanType.CustomGeometric:
-                    MakeAverageCurveOfCustomGeomericMean( numberOfCurves );
-                    return SeriesAssist.IsChartAcceptable( AverageCurve );
+                    //MakeAverageCurveOfCustomGeomericMean( curvesNo );
+                    break;
                 }
             }
-            catch ( ArgumentOutOfRangeException x ) {
-                Logger.WriteException( x );
+            catch ( ArgumentOutOfRangeException ex ) {
+                log.Error( signature, ex );
                 return false;
             }
-            catch ( OverflowException x ) {
-                Logger.WriteException( x );
+            catch ( OverflowException ex ) {
+                log.Error( signature, ex );
                 return false;
             }
-            catch ( Exception x ) {
-                Logger.WriteException( x );
+            catch ( Exception ex ) {
+                log.Fatal( signature, ex );
                 return false;
             }
 
-            return false;
-        }
-
-        public void ClearAverageCurvePoints()
-        {
             AverageCurve.Points.Clear();
+            SeriesAssist.CopyPoints( AverageCurve, IdealCurve, result );
+            return SeriesAssist.IsChartAcceptable( AverageCurve );
         }
 
-        private List<Series> GetCopyOfModifiedCurves( int numberOfCurves )
-        {
-            List<Series> curves = new List<Series>();
 
-            for ( int i = 0; i < numberOfCurves; i++ ) {
-                curves.Add( new Series() );
-                SeriesAssist.CopyPoints( ModifiedCurves[i], curves[i] );
-            }
 
-            return curves;
-        }
-
-        private void MakeGaussianNoise( Series series, double surrounding )
-        {
-            for ( int i = 0; i < series.Points.Count; i++ ) {
-                double y = series.Points[i].YValues[0];
-                double newValue = Randoms.NextDouble( y - surrounding, y + surrounding );
-                series.Points[i].YValues[0] = newValue;
-            }
-        }
-
+        // AVERAGING + some operations to extract
+        [Obsolete]
         private void MakeAverageCurveOfMaximumOrMinimum( Enums.MeanType type, int numberOfCurves )
         {
             IList<double> maxYValues = SeriesAssist.GetValues( ModifiedCurves, 0 );
@@ -245,6 +244,7 @@ namespace PI
             SetAverageCurveProperty( maxYValues );
         }
 
+        [Obsolete]
         private double? GetMaximumOrMinimum( Enums.MeanType type, double leftValue, double rightValue )
         {
             switch ( type ) {
@@ -257,43 +257,13 @@ namespace PI
             return null;
         }
 
-        private void MakeAverageCurveOfMediana( int numberOfCurves = 3 )
+        [Obsolete]
+        private List<List<double>> GetGeneratedCurvesValuesReorderedIntoXByY( int curvesNo )
         {
-            List<List<double>> argValues = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
-            List<double> medianas = new List<double>();
+            //List<List<double>> argValues = new List<List<double>>();
+            List<List<double>> argValues = Lists.Get<double>( IdealCurve.Points.Count, curvesNo ).Cast<List<double>>().ToList();
 
-            for ( int i = 0; i < argValues.Count; i++ ) {
-                argValues[i].Sort();
-            }
-
-            for ( int i = 0; i < argValues.Count; i++ ) {
-                int oddIndex = argValues[i].Count / 2;
-
-                if ( argValues[i].Count % 2 == 0 ) {
-                    double value = (argValues[i][oddIndex] + argValues[i][oddIndex + 1]) / 2.0;
-                    medianas.Add( value );
-                }
-                else {
-                    medianas.Add( argValues[i][oddIndex] );
-                }
-            }
-
-            SetAverageCurveProperty( medianas );
-        }
-
-        private List<List<double>> GetGeneratedCurvesValuesReorderedIntoXByY( int numberOfCurves )
-        {
-            List<List<double>> argValues = new List<List<double>>();
-
-            for ( int i = 0; i < IdealCurve.Points.Count; i++ ) {
-                argValues.Add( new List<double>() );
-
-                for ( int j = 0; j < numberOfCurves; j++ ) {
-                    argValues[i].Add( 0.0 );
-                }
-            }
-
-            for ( int i = 0; i < numberOfCurves; i++ ) {
+            for ( int i = 0; i < curvesNo; i++ ) {
                 for ( int j = 0; j < ModifiedCurves[i].Points.Count; j++ ) {
                     double y = ModifiedCurves[i].Points[j].YValues[0];
                     argValues[j][i] = y;
@@ -303,6 +273,7 @@ namespace PI
             return argValues;
         }
 
+        [Obsolete]
         private void SetAverageCurveProperty( IList<double> newValues )
         {
             AverageCurve.Points.Clear();
@@ -580,6 +551,7 @@ namespace PI
             SetAverageCurveProperty( diffMeans );
         }
 
+        [Obsolete]
         private List<double> GetListCopy( List<double> source )
         {
             List<double> copy = new List<double>();
@@ -591,6 +563,7 @@ namespace PI
             return copy;
         }
 
+        [Obsolete]
         private double GetMedianaFromSet( List<double> set )
         {
             List<double> values = GetListCopy( set );

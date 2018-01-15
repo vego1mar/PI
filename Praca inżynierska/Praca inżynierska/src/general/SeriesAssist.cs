@@ -44,6 +44,21 @@ namespace PI.src.general
             return IsChartAcceptable( x ) && IsChartAcceptable( y );
         }
 
+        public static bool IsChartAcceptable( IList<DataPoint> set, int yValueIndex = 0 )
+        {
+            bool result = true;
+
+            for ( int i = 0; i < set.Count; i++ ) {
+                result &= IsChartAcceptable( set[i], yValueIndex );
+
+                if ( !result ) {
+                    return false;
+                }
+            }
+
+            return result;
+        }
+
         public static bool IsChartAcceptable( double value )
         {
             return value < CHART_ACCEPTABLE_MAXIMUM_VALUE && value > CHART_ACCEPTABLE_MINIMUM_VALUE;
@@ -79,9 +94,12 @@ namespace PI.src.general
                 return;
             }
 
+            double x;
+            double y;
+
             for ( int i = 0; i < source.Points.Count; i++ ) {
-                double x = source.Points[i].XValue;
-                double y = source.Points[i].YValues[yValuesIndex];
+                x = source.Points[i].XValue;
+                y = source.Points[i].YValues[yValuesIndex];
                 target.Points.AddXY( x, y );
             }
         }
@@ -92,9 +110,12 @@ namespace PI.src.general
                 return;
             }
 
+            double x;
+            double y;
+
             for ( int i = 0; i < xSource.Points.Count; i++ ) {
-                double x = xSource.Points[i].XValue;
-                double y = ySource[i];
+                x = xSource.Points[i].XValue;
+                y = ySource[i];
                 target.Points.AddXY( x, y );
             }
         }
@@ -114,9 +135,12 @@ namespace PI.src.general
                 return;
             }
 
+            double x;
+            double y;
+
             for ( int i = 0; i < source.Count; i++ ) {
-                double x = source[i].XValue;
-                double y = source[i].YValues[yValuesIndex];
+                x = source[i].XValue;
+                y = source[i].YValues[yValuesIndex];
                 target.Points.AddXY( x, y );
             }
         }
@@ -128,10 +152,12 @@ namespace PI.src.general
             }
 
             IList<DataPoint> points = new List<DataPoint>();
+            double x;
+            double y;
 
             for ( int i = 0; i < source.Points.Count; i++ ) {
-                double x = source.Points[i].XValue;
-                double y = source.Points[i].YValues[yValuesIndex];
+                x = source.Points[i].XValue;
+                y = source.Points[i].YValues[yValuesIndex];
 
                 if ( IsChartAcceptable( source.Points[i], yValuesIndex ) ) {
                     points.Add( new DataPoint( x, y ) );
@@ -139,6 +165,47 @@ namespace PI.src.general
             }
 
             return points;
+        }
+
+        public static IList<IList<DataPoint>> GetCopy( IList<Series> source, int seriesNo, int yValuesIndex = 0 )
+        {
+            if ( source == null || seriesNo < 0 || yValuesIndex < 0 ) {
+                return new List<IList<DataPoint>>().AsReadOnly();
+            }
+
+            IList<IList<DataPoint>> copy = new List<IList<DataPoint>>();
+            double x;
+            double y;
+
+            for ( int i = 0; i < seriesNo; i++ ) {
+                copy.Add( new List<DataPoint>() );
+
+                for ( int j = 0; j < source[i].Points.Count; j++ ) {
+                    x = source[i].Points[j].XValue;
+                    y = source[i].Points[j].YValues[yValuesIndex];
+                    copy[i].Add( new DataPoint( x, y ) );
+                }
+            }
+
+            return copy;
+        }
+
+        /// <summary>Get copy of Series.Points.YValues[yValuesIndex] organized to use like List[x][y].</summary>
+        public static IList<IList<double>> GetOrderedCopy( IList<Series> source, int seriesNo, int yValuesIndex = 0 )
+        {
+            if ( seriesNo < 0 || source == null || source.Count == 0 || yValuesIndex < 0 ) {
+                return new List<IList<double>>().AsReadOnly();
+            }
+
+            IList<IList<double>> copy = Lists.Get<double>( source[0].Points.Count, seriesNo );
+
+            for ( int i = 0; i < seriesNo; i++ ) {
+                for ( int j = 0; j < source[i].Points.Count; j++ ) {
+                    copy[j][i] = source[i].Points[j].YValues[yValuesIndex];
+                }
+            }
+
+            return copy;
         }
     }
 }

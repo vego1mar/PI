@@ -236,7 +236,7 @@ namespace PI
 
                     foreach ( string type in Enum.GetNames( typeof( Enums.MeanType ) ) ) {
                         Enum.TryParse( type, out Enums.MeanType meanType );
-                        Data[i][j].MakeAverageCurve( meanType, Settings.Ui.CurvesNo );
+                        Data[i][j].TryMakeAverageCurve( meanType, Settings.Ui.CurvesNo );
                         AddSeriesPoints( Averages[i][j][Convert.ToInt32( meanType )], Data[i][j].AverageCurve );
                         double stdDeviation = GetRelativeStandardDeviationFromSeriesValues( Averages[i][j][(int) meanType], Data[i][j].IdealCurve );
                         StdDeviations[i][j][Convert.ToInt32( meanType )] = stdDeviation;
