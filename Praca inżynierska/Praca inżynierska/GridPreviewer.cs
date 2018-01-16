@@ -5,6 +5,8 @@ using System.Windows.Forms.DataVisualization.Charting;
 using PI.src.helpers;
 using PI.src.messages;
 using PI.src.general;
+using log4net;
+using System.Reflection;
 
 namespace PI
 {
@@ -14,6 +16,8 @@ namespace PI
 
         public Series ChartDataSet { get; private set; }
         private List<double> OriginalValues { get; set; }
+
+        private static readonly ILog log = LogManager.GetLogger( MethodBase.GetCurrentMethod().DeclaringType );
 
         public GridPreviewer( Series series )
         {
@@ -214,20 +218,23 @@ namespace PI
             }
 
             double? userValue = null;
+            string signature = string.Empty;
 
             try {
+                MethodBase @base = MethodBase.GetCurrentMethod();
+                signature = @base.DeclaringType.Name + "." + @base.Name + "()";
                 userValue = Convert.ToDouble( uiPnl_Val2_TxtBx.Text );
             }
-            catch ( OverflowException x ) {
-                Logger.WriteException( x );
+            catch ( OverflowException ex ) {
+                log.Error( signature, ex );
                 return null;
             }
-            catch ( FormatException x ) {
-                Logger.WriteException( x );
+            catch ( FormatException ex ) {
+                log.Error( signature, ex );
                 return null;
             }
-            catch ( Exception x ) {
-                Logger.WriteException( x );
+            catch ( Exception ex ) {
+                log.Fatal( signature, ex );
                 return null;
             }
 
@@ -255,7 +262,12 @@ namespace PI
 
         private bool PerformOperation( Enums.Operation operation, int startIndex, int endIndex, double value, ref Series series )
         {
+            string signature = string.Empty;
+
             try {
+                MethodBase @base = MethodBase.GetCurrentMethod();
+                signature = @base.DeclaringType.Name + "." + @base.Name + "()";
+
                 switch ( operation ) {
                 case Enums.Operation.Addition:
                     PerformAddition( startIndex, endIndex, value, ref series );
@@ -289,8 +301,8 @@ namespace PI
                     break;
                 }
             }
-            catch ( Exception x ) {
-                Logger.WriteException( x );
+            catch ( Exception ex ) {
+                log.Fatal( signature, ex );
                 return false;
             }
 
@@ -397,7 +409,11 @@ namespace PI
 
         private void UpdateUiByRefreshingChart()
         {
+            string signature = string.Empty;
+
             try {
+                MethodBase @base = MethodBase.GetCurrentMethod();
+                signature = @base.DeclaringType.Name + "." + @base.Name + "()";
                 uiChart_Prv.Series.Clear();
                 Series series = GetCopyOfSeriesPoints();
                 SeriesAssist.SetDefaultSettings( series );
@@ -406,13 +422,13 @@ namespace PI
                 uiChart_Prv.Visible = true;
                 uiChart_Prv.Invalidate();
             }
-            catch ( InvalidOperationException x ) {
-                Logger.WriteException( x );
+            catch ( InvalidOperationException ex ) {
+                log.Error( signature, ex );
                 UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Preview.InfoChartNotRepainted.GetString() );
                 Messages.GridPreviewer.ErrorOfChartRefreshing();
             }
-            catch ( Exception x ) {
-                Logger.WriteException( x );
+            catch ( Exception ex ) {
+                log.Fatal( signature, ex );
                 UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Preview.InfoChartRefreshError.GetString() );
             }
 

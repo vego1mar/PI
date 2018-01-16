@@ -118,29 +118,13 @@ namespace PI
 
         private void UiConfirmationPanel_Cancel_Click( object sender, EventArgs e )
         {
-            try {
-                DialogResult = DialogResult.Cancel;
-            }
-            catch ( System.ComponentModel.InvalidEnumArgumentException x ) {
-                Logger.WriteException( x );
-            }
-            catch ( Exception x ) {
-                Logger.WriteException( x );
-            }
+            DialogResult = DialogResult.Cancel;
         }
 
         private void UiConfirmationPanel_Ok_Click( object sender, EventArgs e )
         {
-            try {
-                DialogResult = DialogResult.OK;
-                SaveParametersWhileClosingDialog();
-            }
-            catch ( System.ComponentModel.InvalidEnumArgumentException x ) {
-                Logger.WriteException( x );
-            }
-            catch ( Exception x ) {
-                Logger.WriteException( x );
-            }
+            DialogResult = DialogResult.OK;
+            SaveParametersWhileClosingDialog();
         }
 
         private void SaveParametersWhileClosingDialog()

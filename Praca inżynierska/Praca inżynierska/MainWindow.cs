@@ -16,7 +16,8 @@ namespace PI
 {
     public partial class MainWindow : Form
     {
-        private static readonly ILog log = LogManager.GetLogger( MethodBase.GetCurrentMethod().DeclaringType );
+        private static readonly MethodBase @base = MethodBase.GetCurrentMethod();
+        private static readonly ILog log = LogManager.GetLogger( @base.DeclaringType );
 
         private Thread Timer { get; set; }
         private UiSettings Settings { get; set; }
@@ -36,19 +37,11 @@ namespace PI
             DataChart = new CurvesDataManager( Settings.Presets.Pcd.Parameters );
         }
 
-        private void UiMainWindow_FormClosed( object sender, FormClosedEventArgs e )
-        {
-            Logger.WriteLine( Environment.NewLine + nameof( Logger.NumberOfLoggedExceptions ) + ": " + Logger.NumberOfLoggedExceptions );
-            Logger.Close();
-        }
-
         private void UiMainWindow_Load( object sender, EventArgs e )
         {
-            Logger.Initialize();
             UpdateUiByDotNetFrameworkVersion();
             UpdateUiByOsVersionName();
             uiPnlPrg_LogPath2_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Program.InfoObtErrTxt.GetString();
-            UpdateUiByLogFileFullPathLocation();
             UpdateUiByDefaultSettings();
             DefineTimerThread();
             Threads.TryStart( Timer );
@@ -60,25 +53,31 @@ namespace PI
 
         private void UiMenuProgram_Exit_Click( object sender, EventArgs e )
         {
+            string signature = string.Empty;
+
             try {
+                signature = @base.DeclaringType.Name + "." + @base.Name + "(" + sender + ", " + e + ")";
                 Close();
                 Application.Exit();
             }
             catch ( ObjectDisposedException ex ) {
-                Logger.WriteException( ex );
+                log.Error( signature, ex );
             }
             catch ( InvalidOperationException ex ) {
-                Logger.WriteException( ex );
+                log.Error( signature, ex );
             }
             catch ( Exception ex ) {
-                Logger.WriteException( ex );
+                log.Fatal( signature, ex );
             }
         }
 
         private void DefineTimerThread()
         {
+            string signature = string.Empty;
+
             Timer = new Thread( () => {
                 try {
+                    signature = @base.DeclaringType.Name + "." + @base.Name + "()";
                     Thread.CurrentThread.IsBackground = true;
                     System.Timers.Timer timer = new System.Timers.Timer();
                     InstallEventForTimer( ref timer );
@@ -86,20 +85,20 @@ namespace PI
                     timer.Start();
                     timer.Enabled = true;
                 }
-                catch ( ThreadStateException x ) {
-                    Logger.WriteException( x );
+                catch ( ThreadStateException ex ) {
+                    log.Error( signature, ex );
                 }
-                catch ( ObjectDisposedException x ) {
-                    Logger.WriteException( x );
+                catch ( ObjectDisposedException ex ) {
+                    log.Error( signature, ex );
                 }
-                catch ( ArgumentOutOfRangeException x ) {
-                    Logger.WriteException( x );
+                catch ( ArgumentOutOfRangeException ex ) {
+                    log.Error( signature, ex );
                 }
-                catch ( ArgumentException x ) {
-                    Logger.WriteException( x );
+                catch ( ArgumentException ex ) {
+                    log.Error( signature, ex );
                 }
-                catch ( Exception x ) {
-                    Logger.WriteException( x );
+                catch ( Exception ex ) {
+                    log.Fatal( signature, ex );
                 }
             } );
 
@@ -107,10 +106,10 @@ namespace PI
                 Timer.Name = nameof( Timer );
             }
             catch ( InvalidOperationException ex ) {
-                Logger.WriteException( ex );
+                log.Error( signature, ex );
             }
             catch ( Exception ex ) {
-                Logger.WriteException( ex );
+                log.Fatal( signature, ex );
             }
         }
 
@@ -149,20 +148,24 @@ namespace PI
 
         private void UpdateUiByTimerCounts( string text )
         {
+            string signature = string.Empty;
+
             try {
+                signature = @base.DeclaringType.Name + "." + @base.Name + "()";
+
                 BeginInvoke( (MethodInvoker) delegate {
                     uiPnlPrg_Cnts2_TxtBx.Text = text;
                     uiPnlPrg_Cnts2_TxtBx.Refresh();
                 } );
             }
-            catch ( ObjectDisposedException x ) {
-                Logger.WriteException( x );
+            catch ( ObjectDisposedException ex ) {
+                log.Error( signature, ex );
             }
-            catch ( InvalidOperationException x ) {
-                Logger.WriteException( x );
+            catch ( InvalidOperationException ex ) {
+                log.Error( signature, ex );
             }
-            catch ( Exception x ) {
-                Logger.WriteException( x );
+            catch ( Exception ex ) {
+                log.Fatal( signature, ex );
             }
         }
 
@@ -180,18 +183,21 @@ namespace PI
         {
             using ( var pcdDialog = new PatternCurveDefiner( Settings.Presets.Pcd ) ) {
                 UiControls.TryShowDialog( pcdDialog, this );
+                string signature = string.Empty;
 
                 try {
+                    signature = @base.DeclaringType.Name + "." + @base.Name + "(" + sender + ", " + e + ")";
+
                     if ( pcdDialog.DialogResult == DialogResult.OK ) {
                         CopyDialogPropertiesIntoPreSetsArea( pcdDialog );
                         UpdateUiByChosenScaffoldStatus();
                     }
                 }
-                catch ( System.ComponentModel.InvalidEnumArgumentException x ) {
-                    Logger.WriteException( x );
+                catch ( System.ComponentModel.InvalidEnumArgumentException ex ) {
+                    log.Error( signature, ex );
                 }
-                catch ( Exception x ) {
-                    Logger.WriteException( x );
+                catch ( Exception ex ) {
+                    log.Fatal( signature, ex );
                 }
             }
         }
@@ -225,21 +231,21 @@ namespace PI
 
         private void UiPanelDataSheet_CurveType_SelectedIndexChanged( object sender, EventArgs e )
         {
-            switch ( (Enums.DataSetCurveType) UiControls.TryGetSelectedIndex( uiPnlDtSh_CrvT_ComBx ) ) {
-            case Enums.DataSetCurveType.Modified:
+            switch ( (DataSetCurveType) UiControls.TryGetSelectedIndex( uiPnlDtSh_CrvT_ComBx ) ) {
+            case DataSetCurveType.Modified:
                 uiPnlDtSh_CrvIdx_Num.Enabled = true;
                 uiPnlDtSh_CrvIdx_TrBr.Enabled = true;
-                UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Modified, UiControls.TryGetValue<int>( uiPnlDtSh_CrvIdx_TrBr ) );
+                UpdateUiByShowingCurveOnChart( DataSetCurveType.Modified, UiControls.TryGetValue<int>( uiPnlDtSh_CrvIdx_TrBr ) );
                 break;
-            case Enums.DataSetCurveType.Ideal:
+            case DataSetCurveType.Ideal:
                 uiPnlDtSh_CrvIdx_Num.Enabled = false;
                 uiPnlDtSh_CrvIdx_TrBr.Enabled = false;
-                UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Ideal );
+                UpdateUiByShowingCurveOnChart( DataSetCurveType.Ideal );
                 break;
-            case Enums.DataSetCurveType.Average:
+            case DataSetCurveType.Average:
                 uiPnlDtSh_CrvIdx_Num.Enabled = false;
                 uiPnlDtSh_CrvIdx_TrBr.Enabled = false;
-                UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Average );
+                UpdateUiByShowingCurveOnChart( DataSetCurveType.Average );
                 break;
             }
         }
@@ -248,14 +254,14 @@ namespace PI
         {
             int curveIndex = UiControls.TryGetValue<int>( uiPnlDtSh_CrvIdx_Num );
             UiControls.TrySetValue( uiPnlDtSh_CrvIdx_TrBr, curveIndex );
-            UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Modified, curveIndex );
+            UpdateUiByShowingCurveOnChart( DataSetCurveType.Modified, curveIndex );
         }
 
         private void UiPanelDataSheet_CurveIndex_TrackBar_Scroll( object sender, EventArgs e )
         {
             int curveIndex = UiControls.TryGetValue<int>( uiPnlDtSh_CrvIdx_TrBr );
             UiControls.TrySetValue( uiPnlDtSh_CrvIdx_Num, curveIndex );
-            UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Modified, curveIndex );
+            UpdateUiByShowingCurveOnChart( DataSetCurveType.Modified, curveIndex );
         }
 
         private void UiPanelGenerate_GenerateSet_Click( object sender, EventArgs e )
@@ -274,7 +280,7 @@ namespace PI
 
             DataChart.PropagateIdealCurve( Settings.Presets.Ui.CurvesNo );
             UpdateUiBySettingRangesForCurvesNumber();
-            UiControls.TrySetSelectedIndex( uiPnlDtSh_CrvT_ComBx, (int) Enums.DataSetCurveType.Modified );
+            UiControls.TrySetSelectedIndex( uiPnlDtSh_CrvT_ComBx, (int) DataSetCurveType.Modified );
         }
 
         private void GrabPreSetsForCurvesGeneration()
@@ -293,32 +299,32 @@ namespace PI
             int density = Settings.Presets.Ui.PointsNo;
 
             if ( !DataChart.GenerateIdealCurve( scaffoldType, xStart, xEnd, density ) ) {
-                DataChart.RemoveInvalidPoints( Enums.DataSetCurveType.Ideal );
+                DataChart.RemoveInvalidPoints( DataSetCurveType.Ideal );
                 Messages.MainWindow.ExclamationOfPointsNotValidToChart();
             }
 
             if ( DataChart.IdealCurve.Points.Count > 0 ) {
-                return UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Ideal );
+                return UpdateUiByShowingCurveOnChart( DataSetCurveType.Ideal );
             }
 
             return false;
         }
 
-        private bool UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType curveType, int indexOfGeneratedCurve = 1 )
+        private bool UpdateUiByShowingCurveOnChart( DataSetCurveType curveType, int indexOfGeneratedCurve = 1 )
         {
             try {
                 uiCharts_Crv.Series.Clear();
 
                 switch ( curveType ) {
-                case Enums.DataSetCurveType.Ideal:
+                case DataSetCurveType.Ideal:
                     uiCharts_Crv.Series.Add( DataChart.IdealCurve );
                     SetPatternCurveSeriesSettings( uiCharts_Crv );
                     break;
-                case Enums.DataSetCurveType.Modified:
+                case DataSetCurveType.Modified:
                     uiCharts_Crv.Series.Add( DataChart.ModifiedCurves[indexOfGeneratedCurve - 1] );
                     SetGeneratedCurveSeriesSettings( uiCharts_Crv );
                     break;
-                case Enums.DataSetCurveType.Average:
+                case DataSetCurveType.Average:
                     uiCharts_Crv.Series.Add( DataChart.AverageCurve );
                     SetAverageCurveSeriesSettings( uiCharts_Crv );
                     break;
@@ -416,10 +422,10 @@ namespace PI
             int selectedCurveType = UiControls.TryGetSelectedIndex( uiPnlDtSh_CrvT_ComBx );
             int selectedCurveIndex = UiControls.TryGetValue<int>( uiPnlDtSh_CrvIdx_Num );
 
-            switch ( (Enums.DataSetCurveType) selectedCurveType ) {
-            case Enums.DataSetCurveType.Ideal:
-            case Enums.DataSetCurveType.Modified:
-            case Enums.DataSetCurveType.Average:
+            switch ( (DataSetCurveType) selectedCurveType ) {
+            case DataSetCurveType.Ideal:
+            case DataSetCurveType.Modified:
+            case DataSetCurveType.Average:
                 break;
             default:
                 Messages.MainWindow.AsteriskOfCurveTypeNotSelected();
@@ -435,10 +441,13 @@ namespace PI
 
             using ( var gprvDialog = new GridPreviewer( selectedCurveSeries ) ) {
                 UiControls.TryShowDialog( gprvDialog, this );
+                string signature = string.Empty;
 
                 try {
+                    signature = @base.DeclaringType.Name + "." + @base.Name + "(" + sender + ", " + e + ")";
+
                     if ( gprvDialog.DialogResult == DialogResult.OK ) {
-                        DataChart.AlterCurve( gprvDialog.ChartDataSet, (Enums.DataSetCurveType) selectedCurveType, selectedCurveIndex );
+                        DataChart.AlterCurve( gprvDialog.ChartDataSet, (DataSetCurveType) selectedCurveType, selectedCurveIndex );
                         uiCharts_Crv.Series.Clear();
                         uiCharts_Crv.Series.Add( gprvDialog.ChartDataSet );
                         uiCharts_Crv.Series[0].BorderWidth = 3;
@@ -448,44 +457,43 @@ namespace PI
                         uiCharts_Crv.Invalidate();
                     }
                 }
-                catch ( InvalidOperationException x ) {
+                catch ( InvalidOperationException ex ) {
+                    log.Error( signature, ex );
                     Messages.MainWindow.ErrorOfChartRefreshing();
-                    Logger.WriteException( x );
                 }
-                catch ( System.ComponentModel.InvalidEnumArgumentException x ) {
-                    Logger.WriteException( x );
+                catch ( System.ComponentModel.InvalidEnumArgumentException ex ) {
+                    log.Error( signature, ex );
                 }
-                catch ( Exception x ) {
-                    Logger.WriteException( x );
+                catch ( Exception ex ) {
+                    log.Fatal( signature, ex );
                 }
             }
         }
 
         private Series SpecifyCurveSeries( int curveType, int curveIndex )
         {
+            string signature = string.Empty;
+
             try {
-                switch ( (Enums.DataSetCurveType) curveType ) {
-                case Enums.DataSetCurveType.Ideal:
+                signature = @base.DeclaringType.Name + "." + @base.Name + "(" + curveType + ", " + curveIndex + ")";
+
+                switch ( (DataSetCurveType) curveType ) {
+                case DataSetCurveType.Ideal:
                     return DataChart.IdealCurve;
-                case Enums.DataSetCurveType.Modified:
+                case DataSetCurveType.Modified:
                     return DataChart.ModifiedCurves[curveIndex - 1];
-                case Enums.DataSetCurveType.Average:
+                case DataSetCurveType.Average:
                     return DataChart.AverageCurve;
                 }
             }
-            catch ( ArgumentOutOfRangeException x ) {
-                Logger.WriteException( x );
+            catch ( ArgumentOutOfRangeException ex ) {
+                log.Error( signature, ex );
             }
-            catch ( Exception x ) {
-                Logger.WriteException( x );
+            catch ( Exception ex ) {
+                log.Fatal( signature, ex );
             }
 
             return null;
-        }
-
-        private void UpdateUiByLogFileFullPathLocation()
-        {
-            uiPnlPrg_LogPath2_TxtBx.Text = Logger.GetFullPathOfLogFileLocation();
         }
 
         private void UiPanelDataSheet_Malform_Click( object sender, EventArgs e )
@@ -509,8 +517,8 @@ namespace PI
                 return;
             }
 
-            UiControls.TrySetSelectedIndex( uiPnlDtSh_CrvT_ComBx, (int) Enums.DataSetCurveType.Modified );
-            UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Modified );
+            UiControls.TrySetSelectedIndex( uiPnlDtSh_CrvT_ComBx, (int) DataSetCurveType.Modified );
+            UpdateUiByShowingCurveOnChart( DataSetCurveType.Modified );
         }
 
         private void UiPanelGenerate_Apply_Click( object sender, EventArgs e )
@@ -535,11 +543,11 @@ namespace PI
             bool? averageResult = DataChart.TryMakeAverageCurve( meanType, numberOfCurves );
 
             if ( !averageResult.Value ) {
-                DataChart.RemoveInvalidPoints( Enums.DataSetCurveType.Average );
+                DataChart.RemoveInvalidPoints( DataSetCurveType.Average );
                 Messages.MainWindow.ExclamationOfPointsNotValidToChart();
             }
 
-            UiControls.TrySetSelectedIndex( uiPnlDtSh_CrvT_ComBx, (int) Enums.DataSetCurveType.Average );
+            UiControls.TrySetSelectedIndex( uiPnlDtSh_CrvT_ComBx, (int) DataSetCurveType.Average );
             double standardDeviation = StatAnalysis.GetRelativeStandardDeviationFromSeriesValues( DataChart.AverageCurve, DataChart.IdealCurve );
             uiPnlGen_StdDev2_TxtBx.Text = StringFormatter.TryAsNumeric( 8, standardDeviation );
         }
@@ -561,19 +569,23 @@ namespace PI
                 return;
             }
 
+            string signature = string.Empty;
+
             try {
+                signature = @base.DeclaringType.Name + "." + @base.Name + "(" + sender + ", " + e + ")";
+
                 if ( Settings.MainWindow.Menu.Panel.KeepProportions ) {
                     uiMw_SpCtn.SplitterDistance = Settings.MainWindow.Menu.Panel.SplitterDistance;
                 }
             }
             catch ( ArgumentOutOfRangeException ex ) {
-                Logger.WriteException( ex );
+                log.Error( signature, ex );
             }
             catch ( InvalidOperationException ex ) {
-                Logger.WriteException( ex );
+                log.Error( signature, ex );
             }
             catch ( Exception ex ) {
-                Logger.WriteException( ex );
+                log.Fatal( signature, ex );
             }
         }
 
@@ -774,22 +786,26 @@ namespace PI
 
         private void UpdateUiByInvalidatingChartSettings()
         {
-            switch ( (Enums.DataSetCurveType) UiControls.TryGetSelectedIndex( uiPnlDtSh_CrvT_ComBx ) ) {
-            case Enums.DataSetCurveType.Ideal:
-                UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Ideal );
+            switch ( (DataSetCurveType) UiControls.TryGetSelectedIndex( uiPnlDtSh_CrvT_ComBx ) ) {
+            case DataSetCurveType.Ideal:
+                UpdateUiByShowingCurveOnChart( DataSetCurveType.Ideal );
                 break;
-            case Enums.DataSetCurveType.Modified:
-                UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Modified );
+            case DataSetCurveType.Modified:
+                UpdateUiByShowingCurveOnChart( DataSetCurveType.Modified );
                 break;
-            case Enums.DataSetCurveType.Average:
-                UpdateUiByShowingCurveOnChart( Enums.DataSetCurveType.Average );
+            case DataSetCurveType.Average:
+                UpdateUiByShowingCurveOnChart( DataSetCurveType.Average );
                 break;
             }
         }
 
         private void UiMenuProgram_StatisticalAnalysis_Click( object sender, EventArgs e )
         {
+            string signature = string.Empty;
+
             try {
+                signature = @base.DeclaringType.Name + "." + @base.Name + "(" + sender + ", " + e + ")";
+
                 Thread window = new Thread( DelegatorForStatAnalysis ) {
                     Name = nameof( StatAnalysis ),
                     IsBackground = true
@@ -798,20 +814,20 @@ namespace PI
                 window.Start();
             }
             catch ( ThreadStateException ex ) {
-                Logger.WriteException( ex );
+                log.Error( signature, ex );
             }
             catch ( OutOfMemoryException ex ) {
+                log.Fatal( signature, ex );
                 Messages.Application.StopOfOutOfMemoryException();
-                Logger.WriteException( ex );
             }
             catch ( ArgumentNullException ex ) {
-                Logger.WriteException( ex );
+                log.Error( signature, ex );
             }
             catch ( InvalidOperationException ex ) {
-                Logger.WriteException( ex );
+                log.Error( signature, ex );
             }
             catch ( Exception ex ) {
-                Logger.WriteException( ex );
+                log.Fatal( signature, ex );
             }
         }
 
@@ -936,7 +952,11 @@ namespace PI
 
         private void LocalizeCulture( Languages language )
         {
+            string signature = string.Empty;
+
             try {
+                signature = @base.DeclaringType.Name + "." + @base.Name + "(" + language + ")";
+
                 switch ( language ) {
                 case Languages.English:
                     Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo( "en-US" );
@@ -947,19 +967,23 @@ namespace PI
                 }
             }
             catch ( System.Globalization.CultureNotFoundException ex ) {
-                Logger.WriteException( ex );
+                log.Error( signature, ex );
             }
             catch ( ArgumentNullException ex ) {
-                Logger.WriteException( ex );
+                log.Error( signature, ex );
             }
             catch ( Exception ex ) {
-                Logger.WriteException( ex );
+                log.Fatal( signature, ex );
             }
         }
 
         private void RefreshControlToLocalize( Control control )
         {
+            string signature = string.Empty;
+
             try {
+                signature = @base.DeclaringType.Name + "." + @base.Name + "(" + control + ")";
+
                 if ( control is NumericUpDown ) {
                     decimal originalValue = (control as NumericUpDown).Value;
 
@@ -985,10 +1009,10 @@ namespace PI
                 }
             }
             catch ( ArgumentOutOfRangeException ex ) {
-                Logger.WriteException( ex );
+                log.Error( signature, ex );
             }
             catch ( Exception ex ) {
-                Logger.WriteException( ex );
+                log.Fatal( signature, ex );
             }
         }
 

@@ -88,6 +88,7 @@
     <Compile Include="ChartSettings.Designer.cs">
       <DependentUpon>ChartSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\enumerators\DataSetCurveType.cs" />
     <Compile Include="src\enumerators\GeometricMeanVariant.cs" />
     <Compile Include="src\enumerators\MeanType.cs" />
     <Compile Include="src\general\Averages.cs" />
@@ -133,7 +134,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>pl-PL.resx</DependentUpon>
     </Compile>
-    <Compile Include="Logger.cs" />
     <Compile Include="MeansSettings.cs">
       <SubType>Form</SubType>
     </Compile>

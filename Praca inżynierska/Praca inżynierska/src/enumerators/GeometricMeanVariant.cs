@@ -3,6 +3,8 @@
     public enum GeometricMeanVariant
     {
         Sign,
-        Parity
+        Parity,
+        Absolute,
+        Offset
     }
 }

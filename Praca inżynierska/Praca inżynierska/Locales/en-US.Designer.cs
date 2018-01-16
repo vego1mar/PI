@@ -655,6 +655,24 @@ namespace PI.Locales {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to geometric-absolute.
+        /// </summary>
+        internal static string Enums_MeanTypes_GeometricOfAbsolute {
+            get {
+                return ResourceManager.GetString("Enums_MeanTypes_GeometricOfAbsolute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to geometric-offset.
+        /// </summary>
+        internal static string Enums_MeanTypes_GeometricOfOffset {
+            get {
+                return ResourceManager.GetString("Enums_MeanTypes_GeometricOfOffset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to geometric-parity.
         /// </summary>
         internal static string Enums_MeanTypes_GeometricOfParity {

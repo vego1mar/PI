@@ -914,4 +914,10 @@
   <data name="MainWindow_Panel_Generate_StandardDeviation1" xml:space="preserve">
     <value>Odch. standardowe:</value>
   </data>
+  <data name="Enums_MeanTypes_GeometricOfAbsolute" xml:space="preserve">
+    <value>geometryczna-bezwzględna</value>
+  </data>
+  <data name="Enums_MeanTypes_GeometricOfOffset" xml:space="preserve">
+    <value>geometryczna-przesunięcie</value>
+  </data>
 </root>

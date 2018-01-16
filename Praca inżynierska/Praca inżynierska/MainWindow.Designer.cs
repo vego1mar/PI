@@ -1238,7 +1238,6 @@
             this.Name = "MainWindow";
             this.Text = "Praca inżynierska";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.UiMainWindow_FormClosed);
             this.Load += new System.EventHandler(this.UiMainWindow_Load);
             this.Shown += new System.EventHandler(this.UiMainWindow_Shown);
             this.Resize += new System.EventHandler(this.UiMainWindow_Resize);

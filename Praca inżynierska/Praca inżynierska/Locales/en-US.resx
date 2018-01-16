@@ -915,4 +915,10 @@
   <data name="MainWindow_Panel_Generate_StandardDeviation1" xml:space="preserve">
     <value>Standard deviation:</value>
   </data>
+  <data name="Enums_MeanTypes_GeometricOfAbsolute" xml:space="preserve">
+    <value>geometric-absolute</value>
+  </data>
+  <data name="Enums_MeanTypes_GeometricOfOffset" xml:space="preserve">
+    <value>geometric-offset</value>
+  </data>
 </root>

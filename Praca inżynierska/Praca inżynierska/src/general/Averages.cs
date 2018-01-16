@@ -61,6 +61,10 @@ namespace PI.src.general
                 return GeometricMeanOfSign( set );
             case GeometricMeanVariant.Parity:
                 return GeometricMeanOfParity( set );
+            case GeometricMeanVariant.Absolute:
+                return GeometricMeanOfAbsolute( set );
+            case GeometricMeanVariant.Offset:
+                return GeometricMeanOfOffset( set );
             }
 
             return null;

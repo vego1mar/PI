@@ -4,6 +4,8 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using PI.src.enumerators;
+using log4net;
+using System.Reflection;
 
 namespace PI
 {
@@ -39,6 +41,9 @@ namespace PI
             private string StringName { get; set; }
             private Languages Language { get; set; }
 
+            private static readonly MethodBase @base = MethodBase.GetCurrentMethod();
+            private static readonly ILog log = LogManager.GetLogger( @base.DeclaringType );
+
             public LocalizedString( Languages language, string name )
             {
                 Language = language;
@@ -53,8 +58,11 @@ namespace PI
             private string GetLocalizedStringSafe( string name, Languages lang )
             {
                 string resourceString = string.Empty;
+                string signature = string.Empty;
 
                 try {
+                    signature = @base.DeclaringType.Name + "." + @base.Name + "(" + name + ", " + lang + ")";
+
                     switch ( lang ) {
                     case Languages.English:
                         resourceString = Locales.en_US.ResourceManager.GetString( name );
@@ -65,19 +73,19 @@ namespace PI
                     }
                 }
                 catch ( ArgumentNullException ex ) {
-                    Logger.WriteException( ex );
+                    log.Error( signature, ex );
                 }
                 catch ( InvalidOperationException ex ) {
-                    Logger.WriteException( ex );
+                    log.Error( signature, ex );
                 }
                 catch ( System.Resources.MissingManifestResourceException ex ) {
-                    Logger.WriteException( ex );
+                    log.Error( signature, ex );
                 }
                 catch ( System.Resources.MissingSatelliteAssemblyException ex ) {
-                    Logger.WriteException( ex );
+                    log.Error( signature, ex );
                 }
                 catch ( Exception ex ) {
-                    Logger.WriteException( ex );
+                    log.Fatal( signature, ex );
                 }
 
                 return resourceString;
@@ -256,6 +264,8 @@ namespace PI
                                 Arithmetic,
                                 GeometricOfSign,
                                 GeometricOfParity,
+                                GeometricOfAbsolute,
+                                GeometricOfOffset,
                                 Agm,
                                 Heronian,
                                 Harmonic,
@@ -276,6 +286,8 @@ namespace PI
                     public LocalizedString Arithmetic { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Arithmetic" ); } }
                     public LocalizedString GeometricOfSign { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_GeometricOfSign" ); } }
                     public LocalizedString GeometricOfParity { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_GeometricOfParity" ); } }
+                    public LocalizedString GeometricOfAbsolute { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_GeometricOfAbsolute" ); } }
+                    public LocalizedString GeometricOfOffset { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_GeometricOfOffset" ); } }
                     public LocalizedString Agm { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_AGM" ); } }
                     public LocalizedString Heronian { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Heronian" ); } }
                     public LocalizedString Harmonic { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Harmonic" ); } }

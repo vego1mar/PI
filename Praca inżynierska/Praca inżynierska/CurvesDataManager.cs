@@ -63,7 +63,7 @@ namespace PI
         }
 
         // TODO: Replace Series with IList<DataPoint>
-        public void AlterCurve( Series series, Enums.DataSetCurveType curveType, int curveIndex )
+        public void AlterCurve( Series series, DataSetCurveType curveType, int curveIndex )
         {
             if ( series == null || curveIndex < 0 ) {
                 return;
@@ -73,11 +73,11 @@ namespace PI
             SeriesAssist.CopyPoints( series, seriesCopy );
 
             switch ( curveType ) {
-            case Enums.DataSetCurveType.Ideal:
+            case DataSetCurveType.Ideal:
                 IdealCurve.Points.Clear();
                 SeriesAssist.CopyPoints( seriesCopy, IdealCurve );
                 break;
-            case Enums.DataSetCurveType.Modified:
+            case DataSetCurveType.Modified:
                 curveIndex--;
                 ModifiedCurves[curveIndex].Points.Clear();
                 SeriesAssist.CopyPoints( ModifiedCurves, curveIndex, seriesCopy );
@@ -97,22 +97,22 @@ namespace PI
             }
         }
 
-        public void RemoveInvalidPoints( Enums.DataSetCurveType curveType, int modifiedCurveIndex = 0 )
+        public void RemoveInvalidPoints( DataSetCurveType curveType, int modifiedCurveIndex = 0 )
         {
             if ( modifiedCurveIndex < 0 || (modifiedCurveIndex >= ModifiedCurves.Count && ModifiedCurves.Count != 0) ) {
                 return;
             }
 
             switch ( curveType ) {
-            case Enums.DataSetCurveType.Ideal:
+            case DataSetCurveType.Ideal:
                 IdealCurve.Points.Clear();
                 SeriesAssist.CopyPoints( SeriesAssist.GetChartAcceptablePoints( IdealCurve ), IdealCurve );
                 break;
-            case Enums.DataSetCurveType.Modified:
+            case DataSetCurveType.Modified:
                 ModifiedCurves[modifiedCurveIndex].Points.Clear();
                 SeriesAssist.CopyPoints( SeriesAssist.GetChartAcceptablePoints( ModifiedCurves[modifiedCurveIndex] ), ModifiedCurves[modifiedCurveIndex] );
                 break;
-            case Enums.DataSetCurveType.Average:
+            case DataSetCurveType.Average:
                 AverageCurve.Points.Clear();
                 SeriesAssist.CopyPoints( SeriesAssist.GetChartAcceptablePoints( AverageCurve ), AverageCurve );
                 break;
@@ -154,8 +154,7 @@ namespace PI
             IList<double> result = new List<double>();
 
             try {
-                MethodBase @base = MethodBase.GetCurrentMethod();
-                signature = @base.DeclaringType.Name + "." + @base.Name + "(" + method + ", " + curvesNo + ")";
+                signature = MethodBase.GetCurrentMethod().Name + "(" + method + ", " + curvesNo + ")";
                 IList<IList<double>> orderedSetOfCurves = SeriesAssist.GetOrderedCopy( ModifiedCurves, curvesNo );
 
                 switch ( method ) {
@@ -176,6 +175,12 @@ namespace PI
                     break;
                 case MeanType.GeometricOfParity:
                     result = Averages.Geometric( orderedSetOfCurves, GeometricMeanVariant.Parity );
+                    break;
+                case MeanType.GeometricOfAbsolute:
+                    result = Averages.Geometric( orderedSetOfCurves, GeometricMeanVariant.Absolute );
+                    break;
+                case MeanType.GeometricOfOffset:
+                    result = Averages.Geometric( orderedSetOfCurves, GeometricMeanVariant.Offset );
                     break;
                 case MeanType.AGM:
                     //MakeAverageCurveOfArithmeticGeometricMean( curvesNo );

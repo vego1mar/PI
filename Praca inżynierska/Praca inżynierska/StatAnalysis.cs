@@ -9,6 +9,8 @@ using PI.src.messages;
 using PI.src.settings;
 using PI.src.general;
 using PI.src.enumerators;
+using log4net;
+using System.Reflection;
 
 namespace PI
 {
@@ -23,6 +25,8 @@ namespace PI
         private bool IsFormShown = false;
         private static uint WindowNo { get; set; } = 0;
         private string WindowThreadsName { get; set; }
+
+        private static readonly ILog log = LogManager.GetLogger( MethodBase.GetCurrentMethod().DeclaringType );
 
         public enum PhenomenonIndex
         {
@@ -179,7 +183,7 @@ namespace PI
             UiControls.TrySelectTab( uiR_TbCtrl, 0 );
             ChartAssist.SetDefaultSettings( uiRChart_Chart );
             AddDataSetCurveTypes( uiRChartDown_CrvT_ComBx );
-            UiControls.TrySetSelectedIndex( uiRChartDown_CrvT_ComBx, (int) Enums.DataSetCurveType.Ideal );
+            UiControls.TrySetSelectedIndex( uiRChartDown_CrvT_ComBx, (int) DataSetCurveType.Ideal );
             uiRChartDown_CrvIdx_Num.Minimum = 0;
             uiRChartDown_CrvIdx_Num.Maximum = Settings.Ui.CurvesNo - 1;
             UiControls.TrySetValue( uiRChartDown_CrvIdx_Num, Settings.Ui.CurvesNo / 2 );
@@ -200,7 +204,7 @@ namespace PI
 
         private void AddDataSetCurveTypes( ComboBox comboBox )
         {
-            foreach ( string type in Enum.GetNames( typeof( Enums.DataSetCurveType ) ) ) {
+            foreach ( string type in Enum.GetNames( typeof( DataSetCurveType ) ) ) {
                 comboBox.Items.Add( type );
             }
         }
@@ -252,7 +256,11 @@ namespace PI
                 return;
             }
 
+            string signature = string.Empty;
+
             try {
+                MethodBase @base = MethodBase.GetCurrentMethod();
+                signature = @base.DeclaringType.Name + "." + @base.Name + "()";
                 Series controlsSpecifiedSeries = GetSeriesSpecifiedByControls();
 
                 Thread window = new Thread( () => DelegatorForGridPreviewer( controlsSpecifiedSeries ) ) {
@@ -263,20 +271,20 @@ namespace PI
                 window.Start();
             }
             catch ( ThreadStateException ex ) {
-                Logger.WriteException( ex );
+                log.Error( signature, ex );
             }
             catch ( OutOfMemoryException ex ) {
                 Messages.Application.StopOfOutOfMemoryException();
-                Logger.WriteException( ex );
+                log.Fatal( signature, ex );
             }
             catch ( ArgumentNullException ex ) {
-                Logger.WriteException( ex );
+                log.Error( signature, ex );
             }
             catch ( InvalidOperationException ex ) {
-                Logger.WriteException( ex );
+                log.Error( signature, ex );
             }
             catch ( Exception ex ) {
-                Logger.WriteException( ex );
+                log.Fatal( signature, ex );
             }
         }
 
@@ -290,16 +298,16 @@ namespace PI
 
         private void UiRightChartDown_CurveType_ComboBox_SelectedIndexChanged( object sender, EventArgs e )
         {
-            switch ( (Enums.DataSetCurveType) UiControls.TryGetSelectedIndex( uiRChartDown_CrvT_ComBx ) ) {
-            case Enums.DataSetCurveType.Modified:
+            switch ( (DataSetCurveType) UiControls.TryGetSelectedIndex( uiRChartDown_CrvT_ComBx ) ) {
+            case DataSetCurveType.Modified:
                 uiRChartDown_CrvIdx_Num.Enabled = true;
                 uiRChartDown_MeanT_ComBx.Enabled = false;
                 break;
-            case Enums.DataSetCurveType.Average:
+            case DataSetCurveType.Average:
                 uiRChartDown_CrvIdx_Num.Enabled = false;
                 uiRChartDown_MeanT_ComBx.Enabled = true;
                 break;
-            case Enums.DataSetCurveType.Ideal:
+            case DataSetCurveType.Ideal:
                 uiRChartDown_CrvIdx_Num.Enabled = false;
                 uiRChartDown_MeanT_ComBx.Enabled = false;
                 break;
@@ -314,12 +322,12 @@ namespace PI
         {
             DatasetControlsValues indices = GetDatasetControlsValues();
 
-            switch ( (Enums.DataSetCurveType) indices.CrvT ) {
-            case Enums.DataSetCurveType.Modified:
+            switch ( (DataSetCurveType) indices.CrvT ) {
+            case DataSetCurveType.Modified:
                 return Data[indices.PhenomNo][indices.NoiseNo].ModifiedCurves[indices.CrvIdx];
-            case Enums.DataSetCurveType.Average:
+            case DataSetCurveType.Average:
                 return Averages[indices.PhenomNo][indices.NoiseNo][indices.MeanT];
-            case Enums.DataSetCurveType.Ideal:
+            case DataSetCurveType.Ideal:
                 return Data[indices.PhenomNo][indices.NoiseNo].IdealCurve;
             }
 
@@ -356,7 +364,7 @@ namespace PI
                 break;
             }
 
-            data.AlterCurve( newSeries, Enums.DataSetCurveType.Modified, curveIdx );
+            data.AlterCurve( newSeries, DataSetCurveType.Modified, curveIdx );
         }
 
         private void OverrideSeriesValuesWithinInterval( Series series, int leftPoint, int rightPoint, double value, int yValuesIdx = 0 )
@@ -421,7 +429,11 @@ namespace PI
 
         private void UpdateUiByRefreshingChart()
         {
+            string signature = string.Empty;
+
             try {
+                MethodBase @base = MethodBase.GetCurrentMethod();
+                signature = @base.DeclaringType.Name + "." + @base.Name + "()";
                 uiRChart_Chart.Visible = false;
                 uiRChart_Chart.Series.Clear();
                 uiRChart_Chart.Series.Add( GetSeriesSpecifiedByControls() );
@@ -437,21 +449,21 @@ namespace PI
                 uiRChart_Chart.Invalidate();
             }
             catch ( Exception ex ) {
+                log.Fatal( signature, ex );
                 Messages.StatisticalAnalysis.ErrorOfUnrecognized();
-                Logger.WriteException( ex );
             }
         }
 
         private void ChooseChartSeriesColor( Chart chart, int seriesIdx = 0 )
         {
-            switch ( (Enums.DataSetCurveType) UiControls.TryGetSelectedIndex( uiRChartDown_CrvT_ComBx ) ) {
-            case Enums.DataSetCurveType.Modified:
+            switch ( (DataSetCurveType) UiControls.TryGetSelectedIndex( uiRChartDown_CrvT_ComBx ) ) {
+            case DataSetCurveType.Modified:
                 chart.Series[seriesIdx].Color = System.Drawing.Color.Crimson;
                 break;
-            case Enums.DataSetCurveType.Ideal:
+            case DataSetCurveType.Ideal:
                 chart.Series[seriesIdx].Color = System.Drawing.Color.Black;
                 break;
-            case Enums.DataSetCurveType.Average:
+            case DataSetCurveType.Average:
                 chart.Series[seriesIdx].Color = System.Drawing.Color.ForestGreen;
                 break;
             }
@@ -623,7 +635,7 @@ namespace PI
             uiR_Chart_TbPg.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.Chart.GetString();
             uiR_Formula_TbPg.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.Formula.GetString();
             Translator.AddLocalizedDataSetCurveTypes( uiRChartDown_CrvT_ComBx );
-            UiControls.TrySetSelectedIndex( uiRChartDown_CrvT_ComBx, (int) Enums.DataSetCurveType.Ideal );
+            UiControls.TrySetSelectedIndex( uiRChartDown_CrvT_ComBx, (int) DataSetCurveType.Ideal );
             AddLocalizedPhenomenonsIndices( uiRChartDown_Phen_ComBx );
             UiControls.TrySetSelectedIndex( uiRChartDown_Phen_ComBx, (int) PhenomenonIndex.Peek );
             Translator.AddLocalizedMeanTypes( uiRChartDown_MeanT_ComBx );

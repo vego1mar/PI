@@ -25,33 +25,6 @@
             Negative = 9
         }
 
-        internal enum Exceptions
-        {
-            ArgumentException,
-            ArgumentNullException,
-            ArgumentOutOfRangeException,
-            DirectoryNotFoundException,
-            Exception,
-            IOException,
-            InvalidEnumArgumentException,
-            InvalidOperationException,
-            None,
-            NotSupportedException,
-            ObjectDisposedException,
-            OutOfMemoryException,
-            PathTooLongException,
-            SecurityException,
-            ThreadStateException,
-            UnauthorizedAccessException,
-        }
-
-        internal enum DataSetCurveType
-        {
-            Modified = 0,
-            Ideal = 1,
-            Average = 2
-        }
-
         internal enum IdealCurveScaffold
         {
             Polynomial = 0,

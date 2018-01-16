@@ -8,15 +8,17 @@
         Arithmetic = 3,
         GeometricOfSign = 4,
         GeometricOfParity = 5,
-        AGM = 6,
-        Heronian = 7,
-        Harmonic = 8,
-        RMS = 9,
-        Power = 10,
-        Logarithmic = 11,
-        EMA = 12,
-        LnWages = 13,
-        CustomDifferential = 14,
-        CustomTolerance = 15
+        GeometricOfAbsolute = 6,
+        GeometricOfOffset = 7,
+        AGM = 8,
+        Heronian = 9,
+        Harmonic = 10,
+        RMS = 11,
+        Power = 12,
+        Logarithmic = 13,
+        EMA = 14,
+        LnWages = 15,
+        CustomDifferential = 16,
+        CustomTolerance = 17
     }
 }
