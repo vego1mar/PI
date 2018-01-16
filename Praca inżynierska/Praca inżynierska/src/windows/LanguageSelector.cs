@@ -1,4 +1,5 @@
-﻿using PI.src.helpers;
+﻿using PI.src.enumerators;
+using PI.src.helpers;
 using PI.src.localization;
 using System;
 using System.Windows.Forms;

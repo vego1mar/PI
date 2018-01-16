@@ -88,10 +88,13 @@
     <Compile Include="ChartSettings.Designer.cs">
       <DependentUpon>ChartSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\enumerators\GeometricMeanVariant.cs" />
+    <Compile Include="src\enumerators\MeanType.cs" />
     <Compile Include="src\general\Averages.cs" />
     <Compile Include="src\general\ChartAssist.cs" />
     <Compile Include="src\general\CurveMaker.cs" />
     <Compile Include="src\general\Lists.cs" />
+    <Compile Include="src\general\Mathematics.cs" />
     <Compile Include="src\general\NoiseMaker.cs" />
     <Compile Include="src\general\SeriesAssist.cs" />
     <Compile Include="src\settings\ChartAreaSettings.cs" />
@@ -111,14 +114,14 @@
     <Compile Include="GridPreviewer.Designer.cs">
       <DependentUpon>GridPreviewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\application\GeneralMessages.cs" />
-    <Compile Include="src\application\GridPreviewerMessages.cs" />
-    <Compile Include="src\application\MainWindowMessages.cs" />
-    <Compile Include="src\application\PatternCurveDefinerMessages.cs" />
-    <Compile Include="src\application\StatisticalAnalysisMessages.cs" />
+    <Compile Include="src\messages\GeneralMessages.cs" />
+    <Compile Include="src\messages\GridPreviewerMessages.cs" />
+    <Compile Include="src\messages\MainWindowMessages.cs" />
+    <Compile Include="src\messages\PatternCurveDefinerMessages.cs" />
+    <Compile Include="src\messages\StatisticalAnalysisMessages.cs" />
     <Compile Include="src\localization\EnumsLocalizer.cs" />
     <Compile Include="src\localization\LanguageHelper.cs" />
-    <Compile Include="src\localization\Languages.cs" />
+    <Compile Include="src\enumerators\Languages.cs" />
     <Compile Include="src\localization\LocalizableEnumerator.cs" />
     <Compile Include="Locales\en-US.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -137,7 +140,7 @@
     <Compile Include="MeansSettings.Designer.cs">
       <DependentUpon>MeansSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\application\Messages.cs" />
+    <Compile Include="src\messages\Messages.cs" />
     <Compile Include="src\settings\CurvesParameters.cs" />
     <Compile Include="PatternCurveDefiner.cs">
       <SubType>Form</SubType>
@@ -224,6 +227,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="src\general\Averages.Auxiliary.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -1,7 +1,7 @@
 ﻿using PI.src.helpers;
 using System.Windows.Forms;
 
-namespace PI.src.application
+namespace PI.src.messages
 {
     internal class GridPreviewerMessages
     {

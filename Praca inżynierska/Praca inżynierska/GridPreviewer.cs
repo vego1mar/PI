@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Windows.Forms.DataVisualization.Charting;
 using PI.src.helpers;
-using PI.src.application;
+using PI.src.messages;
 using PI.src.general;
 
 namespace PI

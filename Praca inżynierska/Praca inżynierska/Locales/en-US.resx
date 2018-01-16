@@ -136,8 +136,8 @@
   <data name="Enums_MeanTypes_CustomDifferential" xml:space="preserve">
     <value>custom-differential</value>
   </data>
-  <data name="Enums_MeanTypes_CustomGeometric" xml:space="preserve">
-    <value>custom-geometric</value>
+  <data name="Enums_MeanTypes_GeometricOfParity" xml:space="preserve">
+    <value>geometric-parity</value>
   </data>
   <data name="Enums_MeanTypes_CustomTolerance" xml:space="preserve">
     <value>custom-tolerance</value>
@@ -146,8 +146,8 @@
     <value>EMA</value>
     <comment>Exponential moving average</comment>
   </data>
-  <data name="Enums_MeanTypes_Geometric" xml:space="preserve">
-    <value>geometric</value>
+  <data name="Enums_MeanTypes_GeometricOfSign" xml:space="preserve">
+    <value>geometric-sign</value>
   </data>
   <data name="Enums_MeanTypes_Harmonic" xml:space="preserve">
     <value>harmonic</value>

@@ -136,8 +136,8 @@
   <data name="Enums_MeanTypes_CustomDifferential" xml:space="preserve">
     <value>własna-różnicowa</value>
   </data>
-  <data name="Enums_MeanTypes_CustomGeometric" xml:space="preserve">
-    <value>własna-geometryczna</value>
+  <data name="Enums_MeanTypes_GeometricOfParity" xml:space="preserve">
+    <value>geometryczna-parzystość</value>
   </data>
   <data name="Enums_MeanTypes_CustomTolerance" xml:space="preserve">
     <value>własna-tolerująca</value>
@@ -146,8 +146,8 @@
     <value>krocząca</value>
     <comment>Wykładnicza średnia krocząca</comment>
   </data>
-  <data name="Enums_MeanTypes_Geometric" xml:space="preserve">
-    <value>geometryczna</value>
+  <data name="Enums_MeanTypes_GeometricOfSign" xml:space="preserve">
+    <value>geometryczna-znak</value>
   </data>
   <data name="Enums_MeanTypes_Harmonic" xml:space="preserve">
     <value>harmoniczna</value>

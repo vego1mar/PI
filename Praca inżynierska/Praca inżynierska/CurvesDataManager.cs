@@ -7,6 +7,7 @@ using PI.src.settings;
 using log4net;
 using System.Reflection;
 using System.Linq;
+using PI.src.enumerators;
 
 namespace PI
 {
@@ -143,7 +144,7 @@ namespace PI
             return true;
         }
 
-        public bool? TryMakeAverageCurve( Enums.MeanType method, int curvesNo )
+        public bool? TryMakeAverageCurve( MeanType method, int curvesNo )
         {
             if ( curvesNo < 0 ) {
                 return null;
@@ -158,53 +159,53 @@ namespace PI
                 IList<IList<double>> orderedSetOfCurves = SeriesAssist.GetOrderedCopy( ModifiedCurves, curvesNo );
 
                 switch ( method ) {
-                case Enums.MeanType.Mediana:
+                case MeanType.Mediana:
                     result = Averages.Median( orderedSetOfCurves );
                     break;
-                case Enums.MeanType.Maximum:
+                case MeanType.Maximum:
                     result = Averages.Maximum( orderedSetOfCurves );
                     break;
-                case Enums.MeanType.Minimum:
-                    //MakeAverageCurveOfMaximumOrMinimum( method, curvesNo );
+                case MeanType.Minimum:
+                    result = Averages.Minimum( orderedSetOfCurves );
                     break;
-                case Enums.MeanType.Arithmetic:
-                    //MakeAverageCurveOfArithmeticMean( curvesNo );
+                case MeanType.Arithmetic:
+                    result = Averages.Arithmetic( orderedSetOfCurves );
                     break;
-                case Enums.MeanType.Geometric:
-                    //MakeAverageCurveOfGeometricMean( curvesNo );
+                case MeanType.GeometricOfSign:
+                    result = Averages.Geometric( orderedSetOfCurves, GeometricMeanVariant.Sign );
                     break;
-                case Enums.MeanType.AGM:
+                case MeanType.GeometricOfParity:
+                    result = Averages.Geometric( orderedSetOfCurves, GeometricMeanVariant.Parity );
+                    break;
+                case MeanType.AGM:
                     //MakeAverageCurveOfArithmeticGeometricMean( curvesNo );
                     break;
-                case Enums.MeanType.Heronian:
+                case MeanType.Heronian:
                     //MakeAverageCurveOfHeronianMean( curvesNo );
                     break;
-                case Enums.MeanType.Harmonic:
+                case MeanType.Harmonic:
                     //MakeAverageCurveOfHarmonicMean( curvesNo );
                     break;
-                case Enums.MeanType.RMS:
+                case MeanType.RMS:
                     //MakeAverageCurveOfRootMeanSquare( curvesNo );
                     break;
-                case Enums.MeanType.Power:
+                case MeanType.Power:
                     //MakeAverageCurveOfPowerMean( curvesNo );
                     break;
-                case Enums.MeanType.Logarithmic:
+                case MeanType.Logarithmic:
                     //MakeAverageCurveOfLogarithmicMean( curvesNo );
                     break;
-                case Enums.MeanType.EMA:
+                case MeanType.EMA:
                     //MakeAverageCurveOfExponentialMean( curvesNo );
                     break;
-                case Enums.MeanType.LnWages:
+                case MeanType.LnWages:
                     //MakeAverageCurveOfLogarithmicallyWagedMean( curvesNo );
                     break;
-                case Enums.MeanType.CustomDifferential:
+                case MeanType.CustomDifferential:
                     //MakeAverageCurveOfCustomDifferentialMean( curvesNo );
                     break;
-                case Enums.MeanType.CustomTolerance:
+                case MeanType.CustomTolerance:
                     //MakeAverageCurveOfCustomToleranceMean( curvesNo );
-                    break;
-                case Enums.MeanType.CustomGeometric:
-                    //MakeAverageCurveOfCustomGeomericMean( curvesNo );
                     break;
                 }
             }
@@ -213,6 +214,10 @@ namespace PI
                 return false;
             }
             catch ( OverflowException ex ) {
+                log.Error( signature, ex );
+                return false;
+            }
+            catch ( InvalidOperationException ex ) {
                 log.Error( signature, ex );
                 return false;
             }
@@ -227,35 +232,6 @@ namespace PI
         }
 
 
-
-        // AVERAGING + some operations to extract
-        [Obsolete]
-        private void MakeAverageCurveOfMaximumOrMinimum( Enums.MeanType type, int numberOfCurves )
-        {
-            IList<double> maxYValues = SeriesAssist.GetValues( ModifiedCurves, 0 );
-
-            for ( int i = 1; i < numberOfCurves; i++ ) {
-                for ( int j = 0; j < ModifiedCurves[i].Points.Count; j++ ) {
-                    double y = ModifiedCurves[i].Points[j].YValues[0];
-                    maxYValues[j] = GetMaximumOrMinimum( type, y, maxYValues[j] ).Value;
-                }
-            }
-
-            SetAverageCurveProperty( maxYValues );
-        }
-
-        [Obsolete]
-        private double? GetMaximumOrMinimum( Enums.MeanType type, double leftValue, double rightValue )
-        {
-            switch ( type ) {
-            case Enums.MeanType.Maximum:
-                return ((leftValue > rightValue) ? leftValue : rightValue);
-            case Enums.MeanType.Minimum:
-                return ((leftValue < rightValue) ? leftValue : rightValue);
-            }
-
-            return null;
-        }
 
         [Obsolete]
         private List<List<double>> GetGeneratedCurvesValuesReorderedIntoXByY( int curvesNo )
@@ -280,34 +256,7 @@ namespace PI
             SeriesAssist.CopyPoints( AverageCurve, IdealCurve, newValues );
         }
 
-        private void MakeAverageCurveOfArithmeticMean( int numberOfCurves )
-        {
-            List<List<double>> values = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
-            List<double> arithmetics = new List<double>();
 
-            for ( int x = 0; x < values.Count; x++ ) {
-                arithmetics.Add( GetArithmeticMeanFromSet( values[x] ) );
-            }
-
-            SetAverageCurveProperty( arithmetics );
-        }
-
-        private void MakeAverageCurveOfGeometricMean( int numberOfCurves )
-        {
-            List<List<double>> values = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
-            List<double> geometrics = new List<double>();
-
-            for ( int x = 0; x < values.Count; x++ ) {
-                geometrics.Add( GetGeometricMeanFromSet( values[x] ) );
-            }
-
-            SetAverageCurveProperty( geometrics );
-        }
-
-        private double GetNthRoot( double value, double basis )
-        {
-            return Math.Pow( value, 1.0 / basis );
-        }
 
         private void MakeAverageCurveOfArithmeticGeometricMean( int numberOfCurves )
         {
@@ -339,7 +288,7 @@ namespace PI
 
             return new List<double>() {
                 Math.Abs( sum / Convert.ToDouble( values.Count ) ),
-                GetNthRoot( Math.Abs( product ), values.Count )
+                Mathematics.Root( Math.Abs( product ), values.Count )
             };
         }
 
@@ -347,7 +296,7 @@ namespace PI
         {
             return new List<double>() {
                 Math.Abs( (previousArgs[0] + previousArgs[1]) / 2.0 ),
-                GetNthRoot( Math.Abs( previousArgs[0] * previousArgs[1] ), 2.0 )
+                Mathematics.Root( Math.Abs( previousArgs[0] * previousArgs[1] ), 2.0 )
             };
         }
 
@@ -375,6 +324,8 @@ namespace PI
             return Convert.ToDouble( builder.ToString(), CultureInfo.InvariantCulture );
         }
 
+
+
         private void MakeAverageCurveOfHeronianMean( int numberOfCurves )
         {
             List<List<double>> argValues = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
@@ -392,11 +343,11 @@ namespace PI
                 }
 
                 if ( product > 0.0 ) {
-                    heronians.Add( (sum + GetNthRoot( product, argValues[i].Count )) / (argValues[i].Count + 1) );
+                    heronians.Add( (sum + Mathematics.Root( product, argValues[i].Count )) / (argValues[i].Count + 1) );
                     continue;
                 }
 
-                heronians.Add( (sum - GetNthRoot( Math.Abs( product ), argValues[i].Count )) / (argValues[i].Count + 1) );
+                heronians.Add( (sum - Mathematics.Root( Math.Abs( product ), argValues[i].Count )) / (argValues[i].Count + 1) );
             }
 
             SetAverageCurveProperty( heronians );
@@ -453,7 +404,7 @@ namespace PI
                 powerSum += Math.Pow( args[i], rank );
             }
 
-            return GetNthRoot( powerSum / args.Count, rank );
+            return Mathematics.Root( powerSum / args.Count, rank );
         }
 
         private void MakeAverageCurveOfLogarithmicMean( int numberOfCurves )
@@ -535,80 +486,20 @@ namespace PI
             List<double> diffMeans = new List<double>();
 
             for ( int i = 0; i < argValues.Count; i++ ) {
-                double minimum = GetMinimumFromSet( argValues[i] );
-                double maximum = GetMaximumFromSet( argValues[i] );
+                double minimum = Averages.Minimum( argValues[i] ).Value;
+                double maximum = Averages.Maximum( argValues[i] ).Value;
 
                 switch ( MeansParams.CustomDifferentialMean.Mode ) {
                 case MeansSettings.CustomDifferentialMeanMode.Mediana:
-                    diffMeans.Add( GetMedianaFromSet( argValues[i] ) / (maximum - minimum) );
+                    diffMeans.Add( Averages.Median( argValues[i] ).Value / (maximum - minimum) );
                     break;
                 case MeansSettings.CustomDifferentialMeanMode.Sum:
-                    diffMeans.Add( GetSumFromSet( argValues[i] ) / (maximum - minimum) );
+                    diffMeans.Add( Lists.Sum( argValues[i] ) / (maximum - minimum) );
                     break;
                 }
             }
 
             SetAverageCurveProperty( diffMeans );
-        }
-
-        [Obsolete]
-        private List<double> GetListCopy( List<double> source )
-        {
-            List<double> copy = new List<double>();
-
-            for ( int i = 0; i < source.Count; i++ ) {
-                copy.Add( source[i] );
-            }
-
-            return copy;
-        }
-
-        [Obsolete]
-        private double GetMedianaFromSet( List<double> set )
-        {
-            List<double> values = GetListCopy( set );
-            values.Sort();
-            int oddIndex = values.Count / 2;
-
-            if ( values.Count % 2 == 0 ) {
-                return (values[oddIndex] + values[oddIndex + 1]) / 2.0;
-            }
-            else {
-                return values[oddIndex];
-            }
-        }
-
-        private double GetSumFromSet( List<double> values )
-        {
-            double sum = 0.0;
-
-            for ( int i = 0; i < values.Count; i++ ) {
-                sum += values[i];
-            }
-
-            return sum;
-        }
-
-        private double GetMaximumFromSet( List<double> values )
-        {
-            double maximum = values[0];
-
-            for ( int i = 1; i < values.Count; i++ ) {
-                maximum = Math.Max( maximum, values[i] );
-            }
-
-            return maximum;
-        }
-
-        private double GetMinimumFromSet( List<double> values )
-        {
-            double minimum = values[0];
-
-            for ( int i = 1; i < values.Count; i++ ) {
-                minimum = Math.Min( minimum, values[i] );
-            }
-
-            return minimum;
         }
 
         private void MakeAverageCurveOfCustomToleranceMean( int numberOfCurves )
@@ -623,21 +514,21 @@ namespace PI
 
             for ( int x = 0; x < values.Count; x++ ) {
                 acceptables.Add( new List<double>() );
-                maximums.Add( GetMaximumFromSet( values[x] ) );
-                minimums.Add( GetMinimumFromSet( values[x] ) );
+                maximums.Add( Averages.Maximum( values[x] ).Value );
+                minimums.Add( Averages.Minimum( values[x] ).Value );
             }
 
             switch ( MeansParams.CustomToleranceMean.Comparer ) {
             case MeansSettings.CustomToleranceComparerType.Mediana:
-                comparer = GetMedianaFromSet( maximums ) - GetMedianaFromSet( minimums );
+                comparer = Averages.Median( maximums ).Value - Averages.Median( minimums ).Value;
                 break;
             case MeansSettings.CustomToleranceComparerType.ArithmeticMean:
-                comparer = GetArithmeticMeanFromSet( maximums ) - GetArithmeticMeanFromSet( minimums );
+                comparer = Averages.Arithmetic( maximums ).Value - Averages.Arithmetic( minimums ).Value;
                 break;
             }
 
             for ( int x = 0; x < values.Count; x++ ) {
-                SubtractFromSet( values[x], GetMedianaFromSet( values[x] ) );
+                Lists.Subtract( values[x], Averages.Median( values[x] ).Value );
             }
 
             for ( int x = 0; x < values.Count; x++ ) {
@@ -651,84 +542,24 @@ namespace PI
             for ( int x = 0; x < acceptables.Count; x++ ) {
                 switch ( MeansParams.CustomToleranceMean.Finisher ) {
                 case MeansSettings.CustomToleranceFinisherFunction.Mediana:
-                    tolerants.Add( GetMedianaFromSet( acceptables[x] ) );
+                    tolerants.Add( Averages.Median( acceptables[x] ).Value );
                     break;
                 case MeansSettings.CustomToleranceFinisherFunction.ArithmeticMean:
-                    tolerants.Add( GetArithmeticMeanFromSet( acceptables[x] ) );
+                    tolerants.Add( Averages.Arithmetic( acceptables[x] ).Value );
                     break;
                 case MeansSettings.CustomToleranceFinisherFunction.GeometricMean:
-                    tolerants.Add( GetGeometricMeanFromSet( acceptables[x] ) );
+                    tolerants.Add( Averages.Geometric(acceptables[x], GeometricMeanVariant.Sign).Value );
                     break;
                 case MeansSettings.CustomToleranceFinisherFunction.Maximum:
-                    tolerants.Add( GetMaximumFromSet( acceptables[x] ) );
+                    tolerants.Add( Averages.Maximum( acceptables[x] ).Value );
                     break;
                 case MeansSettings.CustomToleranceFinisherFunction.Minimum:
-                    tolerants.Add( GetMinimumFromSet( acceptables[x] ) );
+                    tolerants.Add( Averages.Minimum( acceptables[x] ).Value );
                     break;
                 }
             }
 
             SetAverageCurveProperty( tolerants );
-        }
-
-        private void SubtractFromSet( List<double> set, double subtrahend )
-        {
-            for ( int i = 0; i < set.Count; i++ ) {
-                set[i] -= subtrahend;
-            }
-        }
-
-        private double GetArithmeticMeanFromSet( List<double> set )
-        {
-            double sum = 0.0;
-
-            for ( int i = 0; i < set.Count; i++ ) {
-                sum += set[i];
-            }
-
-            return sum / Convert.ToDouble( set.Count );
-        }
-
-        private double GetGeometricMeanFromSet( List<double> set )
-        {
-            double product = 1.0;
-
-            for ( int i = 0; i < set.Count; i++ ) {
-                product *= set[i];
-            }
-
-            if ( product < 0.0 ) {
-                return -GetNthRoot( Math.Abs( product ), set.Count );
-            }
-
-            return GetNthRoot( product, set.Count );
-        }
-
-        private void MakeAverageCurveOfCustomGeomericMean( int numberOfCurves )
-        {
-            List<List<double>> values = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
-            List<double> geometrics = new List<double>();
-
-            for ( int x = 0; x < values.Count; x++ ) {
-                geometrics.Add( GetCustomGeometricMeanFromSet( values[x] ) );
-            }
-
-            SetAverageCurveProperty( geometrics );
-        }
-
-        private double GetCustomGeometricMeanFromSet( List<double> set )
-        {
-            double product = 1.0;
-
-            for ( int i = 0; i < set.Count; i++ ) {
-                product *= set[i];
-            }
-
-            if ( set.Count % 2 == 0 ) {
-                return GetNthRoot( Math.Abs( product ), set.Count );
-            }
-
-            return GetNthRoot( product, set.Count );
         }
     }
 }

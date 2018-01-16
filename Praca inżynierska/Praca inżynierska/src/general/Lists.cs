@@ -24,6 +24,21 @@ namespace PI.src.general
             return list;
         }
 
+        public static IList<T> GetCopy<T>( IList<T> source )
+        {
+            if ( source == null ) {
+                return null;
+            }
+
+            IList<T> copy = new List<T>();
+
+            foreach ( T item in source ) {
+                copy.Add( item );
+            }
+
+            return copy;
+        }
+
         public static IList<T> GetSorted<T>( IList<T> source )
         {
             if ( source == null ) {
@@ -31,6 +46,46 @@ namespace PI.src.general
             }
 
             return source.OrderBy( v => v ).ToList();
+        }
+
+        public static double Sum( IList<double> source )
+        {
+            if ( source == null || source.Count == 0 ) {
+                return 0.0;
+            }
+
+            return source.Sum();
+        }
+
+        public static double Product( IList<double> source )
+        {
+            if ( source == null || source.Count == 0 ) {
+                return 0.0;
+            }
+
+            return source.Aggregate( 1.0, ( accumulator, value ) => accumulator * value );
+        }
+
+        public static void Add( IList<double> target, double addend )
+        {
+            if ( target == null || target.Count == 0 ) {
+                return;
+            }
+
+            for ( int i = 0; i < target.Count; i++ ) {
+                target[i] += addend;
+            }
+        }
+
+        public static void Subtract( IList<double> target, double subtrahend )
+        {
+            if ( target == null || target.Count == 0 ) {
+                return;
+            }
+
+            for ( int i = 0; i < target.Count; i++ ) {
+                target[i] -= subtrahend;
+            }
         }
     }
 }

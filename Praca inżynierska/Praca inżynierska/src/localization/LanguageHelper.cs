@@ -1,4 +1,6 @@
-﻿namespace PI.src.localization
+﻿using PI.src.enumerators;
+
+namespace PI.src.localization
 {
     public static class LanguageHelper
     {

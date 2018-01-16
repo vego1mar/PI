@@ -5,9 +5,10 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Windows.Forms.DataVisualization.Charting;
 using PI.src.helpers;
-using PI.src.application;
+using PI.src.messages;
 using PI.src.settings;
 using PI.src.general;
+using PI.src.enumerators;
 
 namespace PI
 {
@@ -113,7 +114,7 @@ namespace PI
                 for ( int i = 0; i < Surroundings.Count; i++ ) {
                     Averages[(int) idx].Add( new List<Series>() );                                  // [-][b][-] 
 
-                    for ( int j = 0; j < Enum.GetNames( typeof( Enums.MeanType ) ).Length; j++ ) {
+                    for ( int j = 0; j < Enum.GetNames( typeof( MeanType ) ).Length; j++ ) {
                         Averages[(int) idx][i].Add( new Series() );                                 // [-][-][c]
                         SeriesAssist.SetDefaultSettings( Averages[(int) idx][i][j] );
                     }
@@ -165,7 +166,7 @@ namespace PI
                 for ( int i = 0; i < Surroundings.Count; i++ ) {
                     StdDeviations[(int) idx].Add( new List<double>() );                                  // [-][b][-] 
 
-                    for ( int j = 0; j < Enum.GetNames( typeof( Enums.MeanType ) ).Length; j++ ) {
+                    for ( int j = 0; j < Enum.GetNames( typeof( MeanType ) ).Length; j++ ) {
                         StdDeviations[(int) idx][i].Add( new double() );                                 // [-][-][c]
                     }
                 }
@@ -187,7 +188,7 @@ namespace PI
             AddSurroundings( uiRChartDown_Surr_ComBx );
             UiControls.TrySetSelectedIndex( uiRChartDown_Surr_ComBx, 0 );
             AddMeanTypes( uiRChartDown_MeanT_ComBx );
-            UiControls.TrySetSelectedIndex( uiRChartDown_MeanT_ComBx, (int) Enums.MeanType.CustomTolerance );
+            UiControls.TrySetSelectedIndex( uiRChartDown_MeanT_ComBx, (int) MeanType.CustomTolerance );
             uiRFormulaDown_CrvsNo2_TxtBx.Text = Settings.Ui.CurvesNo.ToString();
             uiRFormulaDown_Dens2_TxtBx.Text = (Settings.Ui.PointsNo + 1).ToString();
         }
@@ -220,7 +221,7 @@ namespace PI
 
         private void AddMeanTypes( ComboBox comboBox )
         {
-            foreach ( string type in Enum.GetNames( typeof( Enums.MeanType ) ) ) {
+            foreach ( string type in Enum.GetNames( typeof( MeanType ) ) ) {
                 comboBox.Items.Add( type );
             }
         }
@@ -234,8 +235,8 @@ namespace PI
                     Data[i][j].MakeNoiseOfGaussian( Settings.Ui.CurvesNo, Surroundings[j] );
                     MakePeekOrDeformation( (PhenomenonIndex) i, Data[i][j], Settings.Ui.CurvesNo / 2 );
 
-                    foreach ( string type in Enum.GetNames( typeof( Enums.MeanType ) ) ) {
-                        Enum.TryParse( type, out Enums.MeanType meanType );
+                    foreach ( string type in Enum.GetNames( typeof( MeanType ) ) ) {
+                        Enum.TryParse( type, out MeanType meanType );
                         Data[i][j].TryMakeAverageCurve( meanType, Settings.Ui.CurvesNo );
                         AddSeriesPoints( Averages[i][j][Convert.ToInt32( meanType )], Data[i][j].AverageCurve );
                         double stdDeviation = GetRelativeStandardDeviationFromSeriesValues( Averages[i][j][(int) meanType], Data[i][j].IdealCurve );
@@ -514,8 +515,8 @@ namespace PI
                 Enum.TryParse( name, out PhenomenonIndex phenomenon );
                 List<string> columns = GetDataGridColumnsNames( phenomenon );
 
-                foreach ( string mean in Enum.GetNames( typeof( Enums.MeanType ) ) ) {
-                    Enum.TryParse( mean, out Enums.MeanType type );
+                foreach ( string mean in Enum.GetNames( typeof( MeanType ) ) ) {
+                    Enum.TryParse( mean, out MeanType type );
 
                     for ( int k = 0; k < Surroundings.Count; k++ ) {
                         string stdDeviation = StringFormatter.TryAsNumeric( 4, StdDeviations[(int) phenomenon][k][(int) type] );
@@ -626,7 +627,7 @@ namespace PI
             AddLocalizedPhenomenonsIndices( uiRChartDown_Phen_ComBx );
             UiControls.TrySetSelectedIndex( uiRChartDown_Phen_ComBx, (int) PhenomenonIndex.Peek );
             Translator.AddLocalizedMeanTypes( uiRChartDown_MeanT_ComBx );
-            UiControls.TrySetSelectedIndex( uiRChartDown_MeanT_ComBx, (int) Enums.MeanType.CustomTolerance );
+            UiControls.TrySetSelectedIndex( uiRChartDown_MeanT_ComBx, (int) MeanType.CustomTolerance );
             uiRChartDown_DtSet_Btn.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.DtSet.GetString();
             uiRFormulaDown_CrvsNo2_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.NotApplicable.GetString();
             uiRFormulaDown_Dens2_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.NotApplicable.GetString();

@@ -637,15 +637,6 @@ namespace PI.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to custom-geometric.
-        /// </summary>
-        internal static string Enums_MeanTypes_CustomGeometric {
-            get {
-                return ResourceManager.GetString("Enums_MeanTypes_CustomGeometric", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to custom-tolerance.
         /// </summary>
         internal static string Enums_MeanTypes_CustomTolerance {
@@ -664,11 +655,20 @@ namespace PI.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to geometric.
+        ///   Looks up a localized string similar to geometric-parity.
         /// </summary>
-        internal static string Enums_MeanTypes_Geometric {
+        internal static string Enums_MeanTypes_GeometricOfParity {
             get {
-                return ResourceManager.GetString("Enums_MeanTypes_Geometric", resourceCulture);
+                return ResourceManager.GetString("Enums_MeanTypes_GeometricOfParity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to geometric-sign.
+        /// </summary>
+        internal static string Enums_MeanTypes_GeometricOfSign {
+            get {
+                return ResourceManager.GetString("Enums_MeanTypes_GeometricOfSign", resourceCulture);
             }
         }
         

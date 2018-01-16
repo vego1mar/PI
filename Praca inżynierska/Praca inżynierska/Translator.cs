@@ -3,8 +3,7 @@ using System.Collections;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using PI.src.windows;
-using PI.src.localization;
+using PI.src.enumerators;
 
 namespace PI
 {
@@ -255,7 +254,8 @@ namespace PI
                                 Maximum,
                                 Minimum,
                                 Arithmetic,
-                                Geometric,
+                                GeometricOfSign,
+                                GeometricOfParity,
                                 Agm,
                                 Heronian,
                                 Harmonic,
@@ -265,8 +265,7 @@ namespace PI
                                 Ema,
                                 LnWages,
                                 CstDiff,
-                                CstTol,
-                                CstGeo
+                                CstTol
                             };
                         }
                     }
@@ -275,7 +274,8 @@ namespace PI
                     public LocalizedString Maximum { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Maximum" ); } }
                     public LocalizedString Minimum { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Minimum" ); } }
                     public LocalizedString Arithmetic { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Arithmetic" ); } }
-                    public LocalizedString Geometric { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Geometric" ); } }
+                    public LocalizedString GeometricOfSign { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_GeometricOfSign" ); } }
+                    public LocalizedString GeometricOfParity { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_GeometricOfParity" ); } }
                     public LocalizedString Agm { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_AGM" ); } }
                     public LocalizedString Heronian { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Heronian" ); } }
                     public LocalizedString Harmonic { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Harmonic" ); } }
@@ -286,7 +286,6 @@ namespace PI
                     public LocalizedString LnWages { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_LnWages" ); } }
                     public LocalizedString CstDiff { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_CustomDifferential" ); } }
                     public LocalizedString CstTol { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_CustomTolerance" ); } }
-                    public LocalizedString CstGeo { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_CustomGeometric" ); } }
 
                     public IEnumerator<LocalizedString> GetEnumerator()
                     {

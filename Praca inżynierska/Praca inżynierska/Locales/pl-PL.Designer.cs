@@ -637,15 +637,6 @@ namespace PI.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to własna-geometryczna.
-        /// </summary>
-        internal static string Enums_MeanTypes_CustomGeometric {
-            get {
-                return ResourceManager.GetString("Enums_MeanTypes_CustomGeometric", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to własna-tolerująca.
         /// </summary>
         internal static string Enums_MeanTypes_CustomTolerance {
@@ -664,11 +655,20 @@ namespace PI.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to geometryczna.
+        ///   Looks up a localized string similar to geometryczna-parzystość.
         /// </summary>
-        internal static string Enums_MeanTypes_Geometric {
+        internal static string Enums_MeanTypes_GeometricOfParity {
             get {
-                return ResourceManager.GetString("Enums_MeanTypes_Geometric", resourceCulture);
+                return ResourceManager.GetString("Enums_MeanTypes_GeometricOfParity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to geometryczna-znak.
+        /// </summary>
+        internal static string Enums_MeanTypes_GeometricOfSign {
+            get {
+                return ResourceManager.GetString("Enums_MeanTypes_GeometricOfSign", resourceCulture);
             }
         }
         

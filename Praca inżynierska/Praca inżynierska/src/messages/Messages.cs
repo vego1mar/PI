@@ -1,4 +1,4 @@
-﻿namespace PI.src.application
+﻿namespace PI.src.messages
 {
     internal static class Messages
     {

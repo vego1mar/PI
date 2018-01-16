@@ -1,6 +1,6 @@
 ﻿namespace PI
 {
-    internal static class Enums
+    public static class Enums
     {
 
         internal enum AutoSizeColumnsMode
@@ -61,26 +61,6 @@
             WaveformSquare = -22,
             WaveformTriangle = -23,
             WaveformSawtooth = -24
-        }
-
-        internal enum MeanType
-        {
-            Mediana = 0,
-            Maximum = 1,
-            Minimum = 2,
-            Arithmetic = 3,
-            Geometric = 4,
-            AGM = 5,
-            Heronian = 6,
-            Harmonic = 7,
-            RMS = 8,
-            Power = 9,
-            Logarithmic = 10,
-            EMA = 11,
-            LnWages = 12,
-            CustomDifferential = 13,
-            CustomTolerance = 14,
-            CustomGeometric = 15
         }
 
     }

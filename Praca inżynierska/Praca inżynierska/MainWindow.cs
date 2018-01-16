@@ -5,11 +5,12 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using PI.src.helpers;
-using PI.src.application;
+using PI.src.messages;
 using PI.src.settings;
 using PI.src.general;
 using log4net;
 using System.Reflection;
+using PI.src.enumerators;
 
 namespace PI
 {
@@ -519,11 +520,11 @@ namespace PI
                 return;
             }
 
-            Enums.MeanType meanType = (Enums.MeanType) UiControls.TryGetSelectedIndex( uiPnlGen_MeanT_ComBx );
+            MeanType meanType = (MeanType) UiControls.TryGetSelectedIndex( uiPnlGen_MeanT_ComBx );
             int numberOfCurves = UiControls.TryGetValue<int>( uiPnlGen_Crvs2No_Nm );
-            bool isNumberOfCurvesInsufficient = (meanType == Enums.MeanType.Mediana
-                || meanType == Enums.MeanType.CustomDifferential
-                || meanType == Enums.MeanType.CustomTolerance)
+            bool isNumberOfCurvesInsufficient = (meanType == MeanType.Mediana
+                || meanType == MeanType.CustomDifferential
+                || meanType == MeanType.CustomTolerance)
                 && numberOfCurves < 3;
 
             if ( isNumberOfCurvesInsufficient ) {
@@ -546,7 +547,7 @@ namespace PI
         private void UpdateUiByDefaultSettings()
         {
             ChartAssist.SetDefaultSettings( uiCharts_Crv );
-            UiControls.TrySetSelectedIndex( uiPnlGen_MeanT_ComBx, (int) Enums.MeanType.Geometric );
+            UiControls.TrySetSelectedIndex( uiPnlGen_MeanT_ComBx, (int) MeanType.GeometricOfSign );
             UpdateUiByChosenScaffoldStatus();
         }
 

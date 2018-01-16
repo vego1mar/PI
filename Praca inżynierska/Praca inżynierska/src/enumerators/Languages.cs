@@ -1,4 +1,4 @@
-﻿namespace PI.src.localization
+﻿namespace PI.src.enumerators
 {
     public enum Languages
     {
