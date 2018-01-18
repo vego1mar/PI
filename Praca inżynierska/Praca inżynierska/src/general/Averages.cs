@@ -70,6 +70,58 @@ namespace PI.src.general
             return null;
         }
 
+        public static double? AGM( IList<double> set, GeometricMeanVariant variant )
+        {
+            if ( set == null || set.Count == 0 ) {
+                return null;
+            }
+
+            return AGM( set, variant, set.Count );
+        }
+
+        public static double? Heronian( IList<double> set, GeometricMeanVariant variant )
+        {
+            if ( set == null || set.Count == 0 ) {
+                return null;
+            }
+
+            double weightedAM = (Convert.ToDouble( set.Count ) / (set.Count + 1)) * Arithmetic( set ).Value;
+            double weightedGM = Geometric( set, variant ).Value / (set.Count + 1);
+            return weightedAM + weightedGM;
+        }
+
+        public static double? Harmonic( IList<double> set, StandardMeanVariants variant )
+        {
+            if ( set == null || set.Count == 0 ) {
+                return null;
+            }
+
+            switch ( variant ) {
+            case StandardMeanVariants.Straight:
+                return HarmonicOfStraight( set );
+            case StandardMeanVariants.Offset:
+                return HarmonicOfOffset( set );
+            }
+
+            return null;
+        }
+
+        public static double? Generalized( IList<double> set, StandardMeanVariants variant, int rank )
+        {
+            if ( set == null || set.Count == 0 ) {
+                return null;
+            }
+
+            switch ( variant ) {
+            case StandardMeanVariants.Straight:
+                return GeneralizedOfStraight( set, rank );
+            case StandardMeanVariants.Offset:
+                return GeneralizedOfOffset( set, rank );
+            }
+
+            return null;
+        }
+
         public static IList<double> Median( IList<IList<double>> orderedSet )
         {
             if ( orderedSet == null || orderedSet.Count == 0 ) {
@@ -143,6 +195,66 @@ namespace PI.src.general
             }
 
             return geometrics;
+        }
+
+        public static IList<double> AGM( IList<IList<double>> orderedSet, GeometricMeanVariant variant )
+        {
+            if ( orderedSet == null || orderedSet.Count == 0 ) {
+                return new List<double>().AsReadOnly();
+            }
+
+            IList<double> agms = new List<double>();
+
+            for ( int x = 0; x < orderedSet.Count; x++ ) {
+                agms.Add( AGM( orderedSet[x], variant ).Value );
+            }
+
+            return agms;
+        }
+
+        public static IList<double> Heronian( IList<IList<double>> orderedSet, GeometricMeanVariant variant )
+        {
+            if ( orderedSet == null || orderedSet.Count == 0 ) {
+                return new List<double>().AsReadOnly();
+            }
+
+            IList<double> heronians = new List<double>();
+
+            for ( int x = 0; x < orderedSet.Count; x++ ) {
+                heronians.Add( Heronian( orderedSet[x], variant ).Value );
+            }
+
+            return heronians;
+        }
+
+        public static IList<double> Harmonic( IList<IList<double>> orderedSet, StandardMeanVariants variant )
+        {
+            if ( orderedSet == null || orderedSet.Count == 0 ) {
+                return new List<double>().AsReadOnly();
+            }
+
+            IList<double> harmonics = new List<double>();
+
+            for ( int x = 0; x < orderedSet.Count; x++ ) {
+                harmonics.Add( Harmonic( orderedSet[x], variant ).Value );
+            }
+
+            return harmonics;
+        }
+
+        public static IList<double> Generalized( IList<IList<double>> orderedSet, StandardMeanVariants variant, int rank )
+        {
+            if ( orderedSet == null || orderedSet.Count == 0 ) {
+                return new List<double>().AsReadOnly();
+            }
+
+            IList<double> means = new List<double>();
+
+            for ( int x = 0; x < orderedSet.Count; x++ ) {
+                means.Add( Generalized( orderedSet[x], variant, rank ).Value );
+            }
+
+            return means;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace PITests.src.tests
 {
-    public static class Strings
+    public static class TestStrings
     {
         public static bool IsEmpty( string str )
         {

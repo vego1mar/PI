@@ -17,7 +17,7 @@ namespace PI
 
             internal class Power
             {
-                public double Rank { get; set; } = 0.5;
+                public int Rank { get; set; } = 2;
             }
 
             internal class CustomDifferential
@@ -89,14 +89,14 @@ namespace PI
 
         private void SaveAllSettings()
         {
-            MeansParams.PowerMean.Rank = UiControls.TryGetValue<double>( uiGrid_PowRank_Num );
+            MeansParams.PowerMean.Rank = UiControls.TryGetValue<int>( uiGrid_PowRank_Num );
             MeansParams.CustomDifferentialMean.Mode = (CustomDifferentialMeanMode) UiControls.TryGetSelectedIndex( uiGrid_DiffMode_ComBx );
             MeansParams.CustomToleranceMean.Comparer = (CustomToleranceComparerType) UiControls.TryGetSelectedIndex( uiGrid_Comp_ComBx );
             MeansParams.CustomToleranceMean.Tolerance = UiControls.TryGetValue<double>( uiGrid_Toler_Num );
             MeansParams.CustomToleranceMean.Finisher = (CustomToleranceFinisherFunction) UiControls.TryGetSelectedIndex( uiGrid_Finish_ComBx );
         }
 
-        public void SetPowerMeanRank( double value )
+        public void SetPowerMeanRank( int value )
         {
             if ( SeriesAssist.IsChartAcceptable( value ) ) {
                 MeansParams.PowerMean.Rank = value;

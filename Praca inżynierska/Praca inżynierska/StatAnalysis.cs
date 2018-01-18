@@ -531,7 +531,7 @@ namespace PI
                     Enum.TryParse( mean, out MeanType type );
 
                     for ( int k = 0; k < Surroundings.Count; k++ ) {
-                        string stdDeviation = StringFormatter.TryAsNumeric( 4, StdDeviations[(int) phenomenon][k][(int) type] );
+                        string stdDeviation = Strings.TryFormatAsNumeric( 4, StdDeviations[(int) phenomenon][k][(int) type] );
                         grids[(int) phenomenon].Rows[(int) type].Cells[columns[k]].Value = stdDeviation;
                     }
                 }

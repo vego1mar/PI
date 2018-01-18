@@ -33,5 +33,16 @@ namespace PITests.src.tests
                 }
             }
         }
+
+        public static void SameValues( IList<double> list1, IList<double> list2, double error = IBM_FLOAT_SURROUNDING )
+        {
+            if ( (list1 == null && list2 != null) || (list1 != null && list2 == null) || list1.Count != list2.Count ) {
+                Assert.Fail();
+            }
+
+            for ( int i = 0; i < list1.Count; i++ ) {
+                Assert.AreEqual( list1[i], list2[i], error );
+            }
+        }
     }
 }

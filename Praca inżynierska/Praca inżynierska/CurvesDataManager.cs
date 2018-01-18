@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.Collections.Generic;
 using System.Windows.Forms.DataVisualization.Charting;
 using PI.src.general;
@@ -144,6 +143,7 @@ namespace PI
             return true;
         }
 
+        // TODO: make GM variant UI available
         public bool? TryMakeAverageCurve( MeanType method, int curvesNo )
         {
             if ( curvesNo < 0 ) {
@@ -183,31 +183,31 @@ namespace PI
                     result = Averages.Geometric( orderedSetOfCurves, GeometricMeanVariant.Offset );
                     break;
                 case MeanType.AGM:
-                    //MakeAverageCurveOfArithmeticGeometricMean( curvesNo );
+                    result = Averages.AGM( orderedSetOfCurves, GeometricMeanVariant.Offset );
                     break;
                 case MeanType.Heronian:
-                    //MakeAverageCurveOfHeronianMean( curvesNo );
+                    result = Averages.Heronian( orderedSetOfCurves, GeometricMeanVariant.Offset );
                     break;
                 case MeanType.Harmonic:
-                    //MakeAverageCurveOfHarmonicMean( curvesNo );
+                    result = Averages.Harmonic( orderedSetOfCurves, StandardMeanVariants.Offset );
                     break;
                 case MeanType.RMS:
-                    //MakeAverageCurveOfRootMeanSquare( curvesNo );
+                    // TODO: remove this enum value
                     break;
                 case MeanType.Power:
-                    //MakeAverageCurveOfPowerMean( curvesNo );
+                    result = Averages.Generalized( orderedSetOfCurves, StandardMeanVariants.Offset, MeansParams.PowerMean.Rank );
                     break;
                 case MeanType.Logarithmic:
-                    //MakeAverageCurveOfLogarithmicMean( curvesNo );
+                    // TODO: remove this enum value
                     break;
                 case MeanType.EMA:
                     //MakeAverageCurveOfExponentialMean( curvesNo );
                     break;
                 case MeanType.LnWages:
-                    //MakeAverageCurveOfLogarithmicallyWagedMean( curvesNo );
+                    // TODO: remove this enum value
                     break;
                 case MeanType.CustomDifferential:
-                    //MakeAverageCurveOfCustomDifferentialMean( curvesNo );
+                    // TODO: remove this enum value
                     break;
                 case MeanType.CustomTolerance:
                     //MakeAverageCurveOfCustomToleranceMean( curvesNo );
@@ -238,7 +238,7 @@ namespace PI
 
 
 
-        [Obsolete]
+        [Obsolete( "Waiting to remove after refactorization of methods below.", false )]
         private List<List<double>> GetGeneratedCurvesValuesReorderedIntoXByY( int curvesNo )
         {
             //List<List<double>> argValues = new List<List<double>>();
@@ -252,186 +252,6 @@ namespace PI
             }
 
             return argValues;
-        }
-
-        [Obsolete]
-        private void SetAverageCurveProperty( IList<double> newValues )
-        {
-            AverageCurve.Points.Clear();
-            SeriesAssist.CopyPoints( AverageCurve, IdealCurve, newValues );
-        }
-
-
-
-        private void MakeAverageCurveOfArithmeticGeometricMean( int numberOfCurves )
-        {
-            List<List<double>> argValues = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
-            List<double> agm = new List<double>();
-
-            for ( int i = 0; i < argValues.Count; i++ ) {
-                List<double> args = CalculateFirstAgmValues( argValues[i] );
-
-                for ( int j = 0; j < argValues[i].Count; j++ ) {
-                    args = CalculateNextAgmValues( args );
-                }
-
-                agm.Add( GetFinalAgmValue( args[0], args[1] ) );
-            }
-
-            SetAverageCurveProperty( agm );
-        }
-
-        private List<double> CalculateFirstAgmValues( List<double> values )
-        {
-            double sum = 0.0;
-            double product = 1.0;
-
-            for ( int i = 0; i < values.Count; i++ ) {
-                sum += values[i];
-                product *= values[i];
-            }
-
-            return new List<double>() {
-                Math.Abs( sum / Convert.ToDouble( values.Count ) ),
-                Mathematics.Root( Math.Abs( product ), values.Count )
-            };
-        }
-
-        private List<double> CalculateNextAgmValues( List<double> previousArgs )
-        {
-            return new List<double>() {
-                Math.Abs( (previousArgs[0] + previousArgs[1]) / 2.0 ),
-                Mathematics.Root( Math.Abs( previousArgs[0] * previousArgs[1] ), 2.0 )
-            };
-        }
-
-        private double GetFinalAgmValue( double arithmeticMean, double geometricMean )
-        {
-            string a = arithmeticMean.ToString( CultureInfo.InvariantCulture );
-            string g = geometricMean.ToString( CultureInfo.InvariantCulture );
-
-            if ( a == g ) {
-                return Convert.ToDouble( a, CultureInfo.InvariantCulture );
-            }
-
-            System.Text.StringBuilder builder = new System.Text.StringBuilder();
-            int commonLength = Math.Min( a.Length, g.Length );
-
-            for ( int i = 0; i < commonLength; i++ ) {
-                if ( a[i] == g[i] ) {
-                    builder.Append( g[i] );
-                }
-                else {
-                    break;
-                }
-            }
-
-            return Convert.ToDouble( builder.ToString(), CultureInfo.InvariantCulture );
-        }
-
-
-
-        private void MakeAverageCurveOfHeronianMean( int numberOfCurves )
-        {
-            List<List<double>> argValues = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
-            List<double> heronians = new List<double>();
-            double sum;
-            double product;
-
-            for ( int i = 0; i < argValues.Count; i++ ) {
-                sum = 0.0;
-                product = 1.0;
-
-                for ( int j = 0; j < argValues[i].Count; j++ ) {
-                    sum += argValues[i][j];
-                    product *= argValues[i][j];
-                }
-
-                if ( product > 0.0 ) {
-                    heronians.Add( (sum + Mathematics.Root( product, argValues[i].Count )) / (argValues[i].Count + 1) );
-                    continue;
-                }
-
-                heronians.Add( (sum - Mathematics.Root( Math.Abs( product ), argValues[i].Count )) / (argValues[i].Count + 1) );
-            }
-
-            SetAverageCurveProperty( heronians );
-        }
-
-        private void MakeAverageCurveOfHarmonicMean( int numberOfCurves )
-        {
-            List<List<double>> argValues = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
-            List<double> harmonics = new List<double>();
-            double sumOfReciprocals;
-
-            for ( int i = 0; i < argValues.Count; i++ ) {
-                sumOfReciprocals = 0.0;
-
-                for ( int j = 0; j < argValues[i].Count; j++ ) {
-                    sumOfReciprocals += 1.0 / argValues[i][j];
-                }
-
-                harmonics.Add( Convert.ToDouble( argValues[i].Count ) / sumOfReciprocals );
-            }
-
-            SetAverageCurveProperty( harmonics );
-        }
-
-        private void MakeAverageCurveOfRootMeanSquare( int numberOfCurves )
-        {
-            List<List<double>> argValues = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
-            List<double> rms = new List<double>();
-
-            for ( int i = 0; i < argValues.Count; i++ ) {
-                rms.Add( CalculatePowerMean( argValues[i], 2 ) );
-            }
-
-            SetAverageCurveProperty( rms );
-        }
-
-        private void MakeAverageCurveOfPowerMean( int numberOfCurves )
-        {
-            List<List<double>> argValues = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
-            List<double> powers = new List<double>();
-
-            for ( int i = 0; i < argValues.Count; i++ ) {
-                powers.Add( CalculatePowerMean( argValues[i], MeansParams.PowerMean.Rank ) );
-            }
-
-            SetAverageCurveProperty( powers );
-        }
-
-        private double CalculatePowerMean( List<double> args, double rank )
-        {
-            double powerSum = 0.0;
-
-            for ( int i = 0; i < args.Count; i++ ) {
-                powerSum += Math.Pow( args[i], rank );
-            }
-
-            return Mathematics.Root( powerSum / args.Count, rank );
-        }
-
-        private void MakeAverageCurveOfLogarithmicMean( int numberOfCurves )
-        {
-            List<List<double>> argValues = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
-            List<double> logMeans = new List<double>();
-            double distinction;
-            double distinctionOfLogs;
-
-            for ( int i = 0; i < argValues.Count; i++ ) {
-                distinction = Math.Abs( argValues[i][0] );
-                distinctionOfLogs = Math.Log( Math.Abs( argValues[i][0] ), Math.E );
-
-                for ( int j = 1; j < argValues[i].Count; j++ ) {
-                    distinction -= Math.Abs( argValues[i][j] );
-                    distinctionOfLogs -= Math.Log( Math.Abs( argValues[i][j] ), Math.E );
-                }
-
-                logMeans.Add( distinction / distinctionOfLogs );
-            }
-
-            SetAverageCurveProperty( logMeans );
         }
 
         private void MakeAverageCurveOfExponentialMean( int numberOfCurves )
@@ -457,54 +277,6 @@ namespace PI
 
                 emas.Add( (alfa * sum) + ((1.0 - alfa) * emas[i - 1]) );
             }
-
-            SetAverageCurveProperty( emas );
-        }
-
-        private void MakeAverageCurveOfLogarithmicallyWagedMean( int numberOfCurves )
-        {
-            List<List<double>> argValues = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
-            List<double> wagedMeans = new List<double>();
-            double nominator;
-            double denominator;
-            double logWage;
-
-            for ( int i = 0; i < argValues.Count; i++ ) {
-                nominator = 0.0;
-                denominator = 0.0;
-
-                for ( int j = 0; j < argValues[i].Count; j++ ) {
-                    logWage = Math.Log( Math.Abs( argValues[i][j] ), Math.E );
-                    nominator += logWage * argValues[i][j];
-                    denominator += logWage;
-                }
-
-                wagedMeans.Add( nominator / denominator );
-            }
-
-            SetAverageCurveProperty( wagedMeans );
-        }
-
-        private void MakeAverageCurveOfCustomDifferentialMean( int numberOfCurves )
-        {
-            List<List<double>> argValues = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
-            List<double> diffMeans = new List<double>();
-
-            for ( int i = 0; i < argValues.Count; i++ ) {
-                double minimum = Averages.Minimum( argValues[i] ).Value;
-                double maximum = Averages.Maximum( argValues[i] ).Value;
-
-                switch ( MeansParams.CustomDifferentialMean.Mode ) {
-                case MeansSettings.CustomDifferentialMeanMode.Mediana:
-                    diffMeans.Add( Averages.Median( argValues[i] ).Value / (maximum - minimum) );
-                    break;
-                case MeansSettings.CustomDifferentialMeanMode.Sum:
-                    diffMeans.Add( Lists.Sum( argValues[i] ) / (maximum - minimum) );
-                    break;
-                }
-            }
-
-            SetAverageCurveProperty( diffMeans );
         }
 
         private void MakeAverageCurveOfCustomToleranceMean( int numberOfCurves )
@@ -553,7 +325,7 @@ namespace PI
                     tolerants.Add( Averages.Arithmetic( acceptables[x] ).Value );
                     break;
                 case MeansSettings.CustomToleranceFinisherFunction.GeometricMean:
-                    tolerants.Add( Averages.Geometric(acceptables[x], GeometricMeanVariant.Sign).Value );
+                    tolerants.Add( Averages.Geometric( acceptables[x], GeometricMeanVariant.Sign ).Value );
                     break;
                 case MeansSettings.CustomToleranceFinisherFunction.Maximum:
                     tolerants.Add( Averages.Maximum( acceptables[x] ).Value );
@@ -563,8 +335,6 @@ namespace PI
                     break;
                 }
             }
-
-            SetAverageCurveProperty( tolerants );
         }
     }
 }

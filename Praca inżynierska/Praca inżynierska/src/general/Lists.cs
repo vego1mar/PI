@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace PI.src.general
@@ -27,7 +28,7 @@ namespace PI.src.general
         public static IList<T> GetCopy<T>( IList<T> source )
         {
             if ( source == null ) {
-                return null;
+                return new List<T>().AsReadOnly();
             }
 
             IList<T> copy = new List<T>();
@@ -85,6 +86,28 @@ namespace PI.src.general
 
             for ( int i = 0; i < target.Count; i++ ) {
                 target[i] -= subtrahend;
+            }
+        }
+
+        public static void Reciprocal( IList<double> target )
+        {
+            if ( target == null || target.Count == 0 ) {
+                return;
+            }
+
+            for ( int i = 0; i < target.Count; i++ ) {
+                target[i] = Mathematics.Reciprocal( target[i] );
+            }
+        }
+
+        public static void Exponentiate( IList<double> target, double exponent )
+        {
+            if ( target == null || target.Count == 0 ) {
+                return;
+            }
+
+            for ( int i = 0; i < target.Count; i++ ) {
+                target[i] = Math.Pow( target[i], exponent );
             }
         }
     }

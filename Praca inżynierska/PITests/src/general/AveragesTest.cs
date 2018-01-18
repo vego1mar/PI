@@ -1,7 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PI.src.enumerators;
 using PI.src.general;
 using PITests.src.tests;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PITests.src.general
 {
@@ -80,6 +83,108 @@ namespace PITests.src.general
             Assert.AreEqual( expected1, result1, Assertions.IBM_FLOAT_SURROUNDING );
             Assert.AreEqual( expected2, result2, Assertions.IBM_FLOAT_SURROUNDING );
             Assertions.SameValues( result5, expected5 );
+        }
+
+        [TestMethod]
+        public void AGM()
+        {
+            // given
+            IList<double> list1 = new List<double>() { 2, 3, 5, 7, 9, 10, 11, 23 };
+            IList<double> list3 = new List<double>() { -1, 0, 2, -3, 4, -5, 8, 7 };
+            IList<IList<double>> list4 = new List<IList<double>>() { list1, list3 };
+            const double EXPECTED1 = 7.76470249483093;
+            const double EXPECTED2 = 8.0652853391755;
+            const double EXPECTED3 = 0.555265813041983;
+            IList<double> expected4 = new List<double>() { EXPECTED2, EXPECTED3 };
+
+            // when
+            double result1 = Averages.AGM( list1, GeometricMeanVariant.Absolute ).Value;
+            double result2 = Averages.AGM( list1, GeometricMeanVariant.Offset ).Value;
+            double result3 = Averages.AGM( list3, GeometricMeanVariant.Offset ).Value;
+            IList<double> result4 = Averages.AGM( list4, GeometricMeanVariant.Offset );
+
+            // then
+            Assert.AreEqual( EXPECTED1, result1, Assertions.IBM_FLOAT_SURROUNDING );
+            Assert.AreEqual( EXPECTED2, result2, Assertions.IBM_FLOAT_SURROUNDING );
+            Assert.AreEqual( EXPECTED3, result3, Assertions.IBM_FLOAT_SURROUNDING );
+            Assertions.SameValues( expected4, result4 );
+        }
+
+        [TestMethod]
+        public void Heronian()
+        {
+            // given
+            IList<double> list1 = new List<double>() { -1, 0, 1, 2, 3 };
+            IList<double> list2 = new List<double>() { 0, 0 };
+            IList<IList<double>> list3 = new List<IList<double>>() { list1, list2 };
+            const double EXPECTED1 = 0.934195180782892;
+            const double EXPECTED2 = 0.0;
+            IList<double> expected3 = new List<double>() { EXPECTED1, EXPECTED2 };
+
+            // when
+            double result1 = Averages.Heronian( list1, GeometricMeanVariant.Offset ).Value;
+            double result2 = Averages.Heronian( list2, GeometricMeanVariant.Offset ).Value;
+            IList<double> result3 = Averages.Heronian( list3, GeometricMeanVariant.Offset );
+
+            // then
+            Assert.AreEqual( EXPECTED1, result1, Assertions.IBM_FLOAT_SURROUNDING );
+            Assert.AreEqual( EXPECTED2, result2, Assertions.IBM_FLOAT_SURROUNDING );
+            Assertions.SameValues( expected3, result3, 1.0E-14 );
+        }
+
+        [TestMethod]
+        public void Harmonic()
+        {
+            // given
+            IList<double> list1 = new List<double>() { 5, 20, 40, 80, 100 };
+            IList<double> list2 = new List<double>() { 2, 3 };
+            IList<double> list3 = new List<double>() { 2, -3 };
+            IList<IList<double>> list4 = new List<IList<double>>() { list1, list2 };
+            const double EXPECTED1 = 16.8067226890756;
+            const double EXPECTED2 = 2.4;
+            const double EXPECTED3 = -16.0 / 7.0;
+            IList<double> expected4 = new List<double>() { EXPECTED1, EXPECTED2 };
+
+            // when
+            double result1 = Averages.Harmonic( list1, StandardMeanVariants.Straight ).Value;
+            double result2 = Averages.Harmonic( list2, StandardMeanVariants.Straight ).Value;
+            double result3 = Averages.Harmonic( list3, StandardMeanVariants.Offset ).Value;
+            IList<double> result4 = Averages.Harmonic( list4, StandardMeanVariants.Straight );
+
+            // then
+            Assert.AreEqual( EXPECTED1, result1, Assertions.IBM_FLOAT_SURROUNDING );
+            Assert.AreEqual( EXPECTED2, result2, Assertions.IBM_FLOAT_SURROUNDING );
+            Assert.AreEqual( EXPECTED3, result3, Assertions.IBM_FLOAT_SURROUNDING );
+            Assertions.SameValues( expected4, result4, 1.0E-13 );
+        }
+
+        [TestMethod]
+        public void Generalized()
+        {
+            // given
+            IList<double> list1 = new List<double>() { 1, 2, 3, 4, 5 };
+            IList<double> list2 = new List<double>() { 3, 7, 11, 23, 111 };
+            IList<double> list3 = new List<double>() { -2, 0, 1, 5 };
+            IList<IList<double>> list4 = new List<IList<double>>() { list1, new List<double>() { 2, 1 } };
+            int rank1 = 2;
+            int rank2 = 3;
+            int rank3 = 4;
+            double expected1 = Math.Sqrt( 11.0 );
+            double expected2 = Mathematics.Root( 1381499.0 / 5.0, rank2 );
+            double expected3 = Mathematics.Root( 2217.0 / 2.0, rank3 ) - (Math.Abs( list3.Min() ) + 1.0);
+            IList<double> expected4 = new List<double>() { expected1, Math.Sqrt( 5.0 / 2.0 ) };
+
+            // when
+            double result1 = Averages.Generalized( list1, StandardMeanVariants.Straight, rank1 ).Value;
+            double result2 = Averages.Generalized( list2, StandardMeanVariants.Straight, rank2 ).Value;
+            double result3 = Averages.Generalized( list3, StandardMeanVariants.Offset, rank3 ).Value;
+            IList<double> result4 = Averages.Generalized( list4, StandardMeanVariants.Straight, rank1 );
+
+            // then
+            Assert.AreEqual( expected1, result1, Assertions.IBM_FLOAT_SURROUNDING );
+            Assert.AreEqual( expected2, result2, Assertions.IBM_FLOAT_SURROUNDING );
+            Assert.AreEqual( expected3, result3, Assertions.IBM_FLOAT_SURROUNDING );
+            Assertions.SameValues( expected4, result4 );
         }
     }
 }

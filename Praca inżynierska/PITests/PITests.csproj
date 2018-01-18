@@ -65,10 +65,10 @@
     <Compile Include="src\general\AveragesTest.cs" />
     <Compile Include="src\helpers\UiControlsTest.cs" />
     <Compile Include="src\helpers\ThreadsTest.cs" />
-    <Compile Include="src\helpers\StringFormatterTest.cs" />
+    <Compile Include="src\helpers\StringsTest.cs" />
     <Compile Include="src\helpers\SystemInfoTest.cs" />
     <Compile Include="src\tests\Assertions.cs" />
-    <Compile Include="src\tests\Strings.cs" />
+    <Compile Include="src\tests\TestStrings.cs" />
     <Compile Include="src\tests\TestControls.cs" />
   </ItemGroup>
   <ItemGroup>

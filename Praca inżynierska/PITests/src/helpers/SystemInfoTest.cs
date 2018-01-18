@@ -27,7 +27,7 @@ namespace PITests.src.helpers
             string result1 = SystemInfo.TryGetOSVersion();
 
             // then
-            Assert.IsTrue( Strings.IsVersionNumber( result1 ) );
+            Assert.IsTrue( TestStrings.IsVersionNumber( result1 ) );
         }
     }
 }

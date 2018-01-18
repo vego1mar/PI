@@ -59,5 +59,34 @@ namespace PITests.src.general
             // then
             Assert.AreEqual( product1, result1, Assertions.IBM_FLOAT_SURROUNDING );
         }
+
+        [TestMethod]
+        public void Reciprocal()
+        {
+            // given
+            IList<double> list1 = new List<double>() { 1.0, 2.0, 3.0, 4.0, Math.Sqrt( 5.0 / 6.0 ) };
+            IList<double> expected1 = new List<double>() { 1.0 / list1[0], 1.0 / list1[1], 1.0 / list1[2], 1.0 / list1[3], 1.0 / list1[4] };
+
+            // when
+            Lists.Reciprocal( list1 );
+
+            // then
+            Assertions.SameValues( list1, expected1 );
+        }
+
+        [TestMethod]
+        public void Exponentiate()
+        {
+            // given
+            IList<double> list1 = new List<double>() { 1, 2, 3, 4, 5 };
+            IList<double> expected1 = new List<double>() { 1, 4, 9, 16, 25 };
+            const double EXPONENT1 = 2.0;
+
+            // when
+            Lists.Exponentiate( list1, EXPONENT1 );
+
+            // then
+            Assertions.SameValues( list1, expected1 );
+        }
     }
 }

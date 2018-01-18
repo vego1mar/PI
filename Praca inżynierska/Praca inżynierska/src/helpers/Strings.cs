@@ -1,15 +1,17 @@
 ﻿using log4net;
 using System;
+using System.Globalization;
 using System.Reflection;
+using System.Text;
 using System.Threading;
 
 namespace PI.src.helpers
 {
-    public static class StringFormatter
+    public static class Strings
     {
         private static readonly ILog log = LogManager.GetLogger( MethodBase.GetCurrentMethod().DeclaringType );
 
-        public static string TryAsNumeric( int decimalPlacesNo, object argument, IFormatProvider provider = null )
+        public static string TryFormatAsNumeric( int decimalPlacesNo, object argument, IFormatProvider provider = null )
         {
             string result = null;
 
@@ -35,6 +37,30 @@ namespace PI.src.helpers
             }
 
             return result;
+        }
+
+        public static string GetCommon( double value1, double value2 )
+        {
+            string str1 = value1.ToString( CultureInfo.InvariantCulture );
+            string str2 = value2.ToString( CultureInfo.InvariantCulture );
+
+            if ( str1 == str2 ) {
+                return str1;
+            }
+
+            StringBuilder builder = new StringBuilder();
+            int commonLength = Math.Min( str1.Length, str2.Length );
+
+            for ( int i = 0; i < commonLength; i++ ) {
+                if ( str1[i] == str2[i] ) {
+                    builder.Append( str2[i] );
+                    continue;
+                }
+
+                break;
+            }
+
+            return builder.ToString();
         }
     }
 }

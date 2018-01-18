@@ -8,5 +8,10 @@ namespace PI.src.general
         {
             return Math.Pow( value, 1.0 / level );
         }
+
+        public static double Reciprocal( double value )
+        {
+            return 1.0 / value;
+        }
     }
 }
