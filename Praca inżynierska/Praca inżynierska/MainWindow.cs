@@ -1,5 +1,4 @@
 ﻿using PI.src.windows;
-using PI.src.localization;
 using System;
 using System.Threading;
 using System.Windows.Forms;
@@ -34,7 +33,7 @@ namespace PI
         {
             Timer = null;
             Settings = new UiSettings();
-            DataChart = new CurvesDataManager( Settings.Presets.Pcd.Parameters );
+            DataChart = new CurvesDataManager();
         }
 
         private void UiMainWindow_Load( object sender, EventArgs e )
@@ -211,16 +210,16 @@ namespace PI
         private void UpdateUiByChosenScaffoldStatus()
         {
             switch ( Settings.Presets.Pcd.Scaffold ) {
-            case Enums.IdealCurveScaffold.Polynomial:
+            case IdealCurveScaffold.Polynomial:
                 uiPnlGen_Def_Btn.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.ScaffPoly.GetString();
                 break;
-            case Enums.IdealCurveScaffold.Hyperbolic:
+            case IdealCurveScaffold.Hyperbolic:
                 uiPnlGen_Def_Btn.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.ScaffHyp.GetString();
                 break;
-            case Enums.IdealCurveScaffold.WaveformSine:
-            case Enums.IdealCurveScaffold.WaveformSquare:
-            case Enums.IdealCurveScaffold.WaveformTriangle:
-            case Enums.IdealCurveScaffold.WaveformSawtooth:
+            case IdealCurveScaffold.WaveformSine:
+            case IdealCurveScaffold.WaveformSquare:
+            case IdealCurveScaffold.WaveformTriangle:
+            case IdealCurveScaffold.WaveformSawtooth:
                 uiPnlGen_Def_Btn.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.ScaffWave.GetString();
                 break;
             default:
@@ -293,12 +292,11 @@ namespace PI
 
         private bool GenerateAndShowPatternCurve()
         {
-            Enums.IdealCurveScaffold scaffoldType = Settings.Presets.Pcd.Scaffold;
             double xStart = Settings.Presets.Ui.StartX;
             double xEnd = Settings.Presets.Ui.EndX;
             int density = Settings.Presets.Ui.PointsNo;
 
-            if ( !DataChart.GenerateIdealCurve( scaffoldType, xStart, xEnd, density ) ) {
+            if ( !DataChart.GenerateIdealCurve( Settings.Presets.Pcd.Scaffold, Settings.Presets.Pcd.Parameters, xStart, xEnd, density ) ) {
                 DataChart.RemoveInvalidPoints( DataSetCurveType.Ideal );
                 Messages.MainWindow.ExclamationOfPointsNotValidToChart();
             }
@@ -530,9 +528,8 @@ namespace PI
 
             MeanType meanType = (MeanType) UiControls.TryGetSelectedIndex( uiPnlGen_MeanT_ComBx );
             int numberOfCurves = UiControls.TryGetValue<int>( uiPnlGen_Crvs2No_Nm );
-            bool isNumberOfCurvesInsufficient = (meanType == MeanType.Mediana
-                || meanType == MeanType.CustomDifferential
-                || meanType == MeanType.CustomTolerance)
+            bool isNumberOfCurvesInsufficient = (meanType == MeanType.Median
+                || meanType == MeanType.Tolerance)
                 && numberOfCurves < 3;
 
             if ( isNumberOfCurvesInsufficient ) {
@@ -555,7 +552,7 @@ namespace PI
         private void UpdateUiByDefaultSettings()
         {
             ChartAssist.SetDefaultSettings( uiCharts_Crv );
-            UiControls.TrySetSelectedIndex( uiPnlGen_MeanT_ComBx, (int) MeanType.GeometricOfSign );
+            UiControls.TrySetSelectedIndex( uiPnlGen_MeanT_ComBx, (int) MeanType.Geometric );
             UpdateUiByChosenScaffoldStatus();
         }
 
@@ -641,18 +638,14 @@ namespace PI
 
         private void ProvideMeansSettings( MeansSettings dialog )
         {
-            dialog.SetPowerMeanRank( DataChart.MeansParams.PowerMean.Rank );
-            dialog.SetCustomDifferentialMeanMode( DataChart.MeansParams.CustomDifferentialMean.Mode );
-            dialog.SetCustomToleranceMeanComparer( DataChart.MeansParams.CustomToleranceMean.Comparer );
-            dialog.SetCustomToleranceMeanTolerance( DataChart.MeansParams.CustomToleranceMean.Tolerance );
-            dialog.SetCustomToleranceMeanFinisher( DataChart.MeansParams.CustomToleranceMean.Finisher );
+            dialog.SetPowerMeanRank( DataChart.MeansParams.Generalized.Rank );
+            dialog.SetCustomToleranceMeanTolerance( DataChart.MeansParams.Tolerance.Tolerance );
         }
 
         private void GrabMeansSettings( MeansSettings dialog )
         {
-            DataChart.MeansParams.PowerMean = dialog.MeansParams.PowerMean;
-            DataChart.MeansParams.CustomDifferentialMean = dialog.MeansParams.CustomDifferentialMean;
-            DataChart.MeansParams.CustomToleranceMean = dialog.MeansParams.CustomToleranceMean;
+            DataChart.MeansParams.Generalized = dialog.MeansParams.Generalized;
+            DataChart.MeansParams.Tolerance = dialog.MeansParams.Tolerance;
         }
 
         private void UiMenuChart_Settings_Click( object sender, EventArgs e )

@@ -25,16 +25,5 @@
             Negative = 9
         }
 
-        internal enum IdealCurveScaffold
-        {
-            Polynomial = 0,
-            Hyperbolic = 1,
-            Waveform = 2,
-            WaveformSine = -21,
-            WaveformSquare = -22,
-            WaveformTriangle = -23,
-            WaveformSawtooth = -24
-        }
-
     }
 }

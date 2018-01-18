@@ -258,46 +258,32 @@ namespace PI
                     private List<LocalizedString> MeanTypes {
                         get {
                             return new List<LocalizedString>() {
-                                Mediana,
+                                Median,
                                 Maximum,
                                 Minimum,
                                 Arithmetic,
-                                GeometricOfSign,
-                                GeometricOfParity,
-                                GeometricOfAbsolute,
-                                GeometricOfOffset,
-                                Agm,
+                                Geometric,
+                                AGM,
                                 Heronian,
                                 Harmonic,
-                                Rms,
-                                Power,
-                                Logarithmic,
-                                Ema,
-                                LnWages,
-                                CstDiff,
-                                CstTol
+                                Generalized,
+                                Moving,
+                                Tolerance
                             };
                         }
                     }
 
-                    public LocalizedString Mediana { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Mediana" ); } }
+                    public LocalizedString Median { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Median" ); } }
                     public LocalizedString Maximum { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Maximum" ); } }
                     public LocalizedString Minimum { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Minimum" ); } }
                     public LocalizedString Arithmetic { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Arithmetic" ); } }
-                    public LocalizedString GeometricOfSign { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_GeometricOfSign" ); } }
-                    public LocalizedString GeometricOfParity { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_GeometricOfParity" ); } }
-                    public LocalizedString GeometricOfAbsolute { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_GeometricOfAbsolute" ); } }
-                    public LocalizedString GeometricOfOffset { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_GeometricOfOffset" ); } }
-                    public LocalizedString Agm { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_AGM" ); } }
+                    public LocalizedString Geometric { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Geometric" ); } }
+                    public LocalizedString AGM { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_AGM" ); } }
                     public LocalizedString Heronian { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Heronian" ); } }
                     public LocalizedString Harmonic { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Harmonic" ); } }
-                    public LocalizedString Rms { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_RMS" ); } }
-                    public LocalizedString Power { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Power" ); } }
-                    public LocalizedString Logarithmic { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Logarithmic" ); } }
-                    public LocalizedString Ema { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_EMA" ); } }
-                    public LocalizedString LnWages { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_LnWages" ); } }
-                    public LocalizedString CstDiff { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_CustomDifferential" ); } }
-                    public LocalizedString CstTol { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_CustomTolerance" ); } }
+                    public LocalizedString Generalized { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Generalized" ); } }
+                    public LocalizedString Moving { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Moving" ); } }
+                    public LocalizedString Tolerance { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Tolerance" ); } }
 
                     public IEnumerator<LocalizedString> GetEnumerator()
                     {
@@ -342,15 +328,15 @@ namespace PI
                     private List<LocalizedString> CurveTypes {
                         get {
                             return new List<LocalizedString>() {
-                                Generated,
-                                Pattern,
+                                Ideal,
+                                Modified,
                                 Average
                             };
                         }
                     }
 
-                    public LocalizedString Generated { get { return new LocalizedString( CurrentLanguage, "Enums_DataSetCurvesTypes_Generated" ); } }
-                    public LocalizedString Pattern { get { return new LocalizedString( CurrentLanguage, "Enums_DataSetCurvesTypes_Pattern" ); } }
+                    public LocalizedString Ideal { get { return new LocalizedString( CurrentLanguage, "Enums_DataSetCurvesTypes_Ideal" ); } }
+                    public LocalizedString Modified { get { return new LocalizedString( CurrentLanguage, "Enums_DataSetCurvesTypes_Modified" ); } }
                     public LocalizedString Average { get { return new LocalizedString( CurrentLanguage, "Enums_DataSetCurvesTypes_Average" ); } }
 
                     public IEnumerator<LocalizedString> GetEnumerator()

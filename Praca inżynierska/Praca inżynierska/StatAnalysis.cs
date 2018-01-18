@@ -95,7 +95,7 @@ namespace PI
                 Data.Add( new List<CurvesDataManager>() );                                      // [a][-] 
 
                 for ( int i = 0; i < Surroundings.Count; i++ ) {
-                    Data[(int) idx].Add( new CurvesDataManager( Settings.Pcd.Parameters ) );    // [-][b] 
+                    Data[(int) idx].Add( new CurvesDataManager() );    // [-][b] 
                 }
             }
 
@@ -192,7 +192,7 @@ namespace PI
             AddSurroundings( uiRChartDown_Surr_ComBx );
             UiControls.TrySetSelectedIndex( uiRChartDown_Surr_ComBx, 0 );
             AddMeanTypes( uiRChartDown_MeanT_ComBx );
-            UiControls.TrySetSelectedIndex( uiRChartDown_MeanT_ComBx, (int) MeanType.CustomTolerance );
+            UiControls.TrySetSelectedIndex( uiRChartDown_MeanT_ComBx, (int) MeanType.Tolerance );
             uiRFormulaDown_CrvsNo2_TxtBx.Text = Settings.Ui.CurvesNo.ToString();
             uiRFormulaDown_Dens2_TxtBx.Text = (Settings.Ui.PointsNo + 1).ToString();
         }
@@ -234,7 +234,7 @@ namespace PI
         {
             for ( int i = 0; i < Data.Count; i++ ) {
                 for ( int j = 0; j < Surroundings.Count; j++ ) {
-                    Data[i][j].GenerateIdealCurve( Settings.Pcd.Scaffold, Settings.Ui.StartX, Settings.Ui.EndX, Settings.Ui.PointsNo );
+                    Data[i][j].GenerateIdealCurve( Settings.Pcd.Scaffold, Settings.Pcd.Parameters, Settings.Ui.StartX, Settings.Ui.EndX, Settings.Ui.PointsNo );
                     Data[i][j].PropagateIdealCurve( Settings.Ui.CurvesNo );
                     Data[i][j].MakeNoiseOfGaussian( Settings.Ui.CurvesNo, Surroundings[j] );
                     MakePeekOrDeformation( (PhenomenonIndex) i, Data[i][j], Settings.Ui.CurvesNo / 2 );
@@ -639,7 +639,7 @@ namespace PI
             AddLocalizedPhenomenonsIndices( uiRChartDown_Phen_ComBx );
             UiControls.TrySetSelectedIndex( uiRChartDown_Phen_ComBx, (int) PhenomenonIndex.Peek );
             Translator.AddLocalizedMeanTypes( uiRChartDown_MeanT_ComBx );
-            UiControls.TrySetSelectedIndex( uiRChartDown_MeanT_ComBx, (int) MeanType.CustomTolerance );
+            UiControls.TrySetSelectedIndex( uiRChartDown_MeanT_ComBx, (int) MeanType.Tolerance );
             uiRChartDown_DtSet_Btn.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.DtSet.GetString();
             uiRFormulaDown_CrvsNo2_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.NotApplicable.GetString();
             uiRFormulaDown_Dens2_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.NotApplicable.GetString();

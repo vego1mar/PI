@@ -90,6 +90,8 @@
     </Compile>
     <Compile Include="src\enumerators\DataSetCurveType.cs" />
     <Compile Include="src\enumerators\GeometricMeanVariant.cs" />
+    <Compile Include="src\enumerators\IdealCurveScaffold.cs" />
+    <Compile Include="src\enumerators\MovingAverageType.cs" />
     <Compile Include="src\enumerators\StandardMeanVariants.cs" />
     <Compile Include="src\enumerators\MeanType.cs" />
     <Compile Include="src\general\Averages.cs" />
@@ -104,7 +106,7 @@
     <Compile Include="src\settings\CurvesSettings.cs" />
     <Compile Include="src\settings\MainWindowGeneratorSettings.cs" />
     <Compile Include="src\settings\MainWindowUiSettings.cs" />
-    <Compile Include="src\settings\PatternCurveDefinerGeneratorSettings.cs" />
+    <Compile Include="src\settings\IdealCurveDefinerGeneratorSettings.cs" />
     <Compile Include="src\settings\HyperbolicParameters.cs" />
     <Compile Include="src\settings\MainChartSettings.cs" />
     <Compile Include="Enums.cs" />
@@ -152,6 +154,7 @@
     <Compile Include="src\settings\GeneratorSettings.cs" />
     <Compile Include="src\general\Randoms.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="src\settings\MeansParameters.cs" />
     <Compile Include="src\settings\PolynomialParameters.cs" />
     <Compile Include="src\settings\WaveformParameters.cs" />
     <Compile Include="src\windows\LanguageSelector.cs">

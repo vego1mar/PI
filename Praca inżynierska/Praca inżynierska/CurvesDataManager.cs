@@ -10,51 +10,48 @@ using PI.src.enumerators;
 
 namespace PI
 {
-    // Change internal into public -> Enums
-    class CurvesDataManager
+    public class CurvesDataManager
     {
         public Series IdealCurve { get; private set; }
         public List<Series> ModifiedCurves { get; private set; }
         public Series AverageCurve { get; private set; }
-        public MeansSettings.Params MeansParams { get; private set; }
-        private readonly CurvesParameters curvesParams;
+        public MeansParameters MeansParams { get; private set; }
         private static readonly ILog log = LogManager.GetLogger( MethodBase.GetCurrentMethod().DeclaringType );
 
-        public CurvesDataManager( CurvesParameters parameters )
+        public CurvesDataManager()
         {
             IdealCurve = new Series();
             ModifiedCurves = new List<Series>();
             AverageCurve = new Series();
-            MeansParams = new MeansSettings.Params();
-            curvesParams = parameters;
+            MeansParams = new MeansParameters();
             SeriesAssist.SetDefaultSettings( IdealCurve );
             SeriesAssist.SetDefaultSettings( AverageCurve );
         }
 
-        public bool GenerateIdealCurve( Enums.IdealCurveScaffold type, double startX, double endX, int pointsDensity )
+        public bool GenerateIdealCurve( IdealCurveScaffold type, CurvesParameters @params, double startX, double endX, int pointsDensity )
         {
             IdealCurve.Points.Clear();
             SeriesAssist.SetDefaultSettings( IdealCurve );
             ArgumentsMaker args = new ArgumentsMaker( startX, endX, pointsDensity );
 
             switch ( type ) {
-            case Enums.IdealCurveScaffold.Polynomial:
-                SeriesAssist.CopyPoints( CurveMaker.OfPolynomial( args, curvesParams.Polynomial ), IdealCurve );
+            case IdealCurveScaffold.Polynomial:
+                SeriesAssist.CopyPoints( CurveMaker.OfPolynomial( args, @params.Polynomial ), IdealCurve );
                 break;
-            case Enums.IdealCurveScaffold.Hyperbolic:
-                SeriesAssist.CopyPoints( CurveMaker.OfHyperbolic( args, curvesParams.Hyperbolic ), IdealCurve );
+            case IdealCurveScaffold.Hyperbolic:
+                SeriesAssist.CopyPoints( CurveMaker.OfHyperbolic( args, @params.Hyperbolic ), IdealCurve );
                 break;
-            case Enums.IdealCurveScaffold.WaveformSine:
-                SeriesAssist.CopyPoints( CurveMaker.OfSineWave( args, curvesParams.Waveform ), IdealCurve );
+            case IdealCurveScaffold.WaveformSine:
+                SeriesAssist.CopyPoints( CurveMaker.OfSineWave( args, @params.Waveform ), IdealCurve );
                 break;
-            case Enums.IdealCurveScaffold.WaveformSquare:
-                SeriesAssist.CopyPoints( CurveMaker.OfSquareWave( args, curvesParams.Waveform ), IdealCurve );
+            case IdealCurveScaffold.WaveformSquare:
+                SeriesAssist.CopyPoints( CurveMaker.OfSquareWave( args, @params.Waveform ), IdealCurve );
                 break;
-            case Enums.IdealCurveScaffold.WaveformTriangle:
-                SeriesAssist.CopyPoints( CurveMaker.OfTriangleWave( args, curvesParams.Waveform ), IdealCurve );
+            case IdealCurveScaffold.WaveformTriangle:
+                SeriesAssist.CopyPoints( CurveMaker.OfTriangleWave( args, @params.Waveform ), IdealCurve );
                 break;
-            case Enums.IdealCurveScaffold.WaveformSawtooth:
-                SeriesAssist.CopyPoints( CurveMaker.OfSawtoothWave( args, curvesParams.Waveform ), IdealCurve );
+            case IdealCurveScaffold.WaveformSawtooth:
+                SeriesAssist.CopyPoints( CurveMaker.OfSawtoothWave( args, @params.Waveform ), IdealCurve );
                 break;
             }
 
@@ -143,7 +140,7 @@ namespace PI
             return true;
         }
 
-        // TODO: make GM variant UI available
+        // TODO: make GM variant UI available through MeansParams usage
         public bool? TryMakeAverageCurve( MeanType method, int curvesNo )
         {
             if ( curvesNo < 0 ) {
@@ -158,7 +155,7 @@ namespace PI
                 IList<IList<double>> orderedSetOfCurves = SeriesAssist.GetOrderedCopy( ModifiedCurves, curvesNo );
 
                 switch ( method ) {
-                case MeanType.Mediana:
+                case MeanType.Median:
                     result = Averages.Median( orderedSetOfCurves );
                     break;
                 case MeanType.Maximum:
@@ -170,47 +167,26 @@ namespace PI
                 case MeanType.Arithmetic:
                     result = Averages.Arithmetic( orderedSetOfCurves );
                     break;
-                case MeanType.GeometricOfSign:
-                    result = Averages.Geometric( orderedSetOfCurves, GeometricMeanVariant.Sign );
-                    break;
-                case MeanType.GeometricOfParity:
-                    result = Averages.Geometric( orderedSetOfCurves, GeometricMeanVariant.Parity );
-                    break;
-                case MeanType.GeometricOfAbsolute:
-                    result = Averages.Geometric( orderedSetOfCurves, GeometricMeanVariant.Absolute );
-                    break;
-                case MeanType.GeometricOfOffset:
-                    result = Averages.Geometric( orderedSetOfCurves, GeometricMeanVariant.Offset );
+                case MeanType.Geometric:
+                    result = Averages.Geometric( orderedSetOfCurves, MeansParams.Geometric.Variant );
                     break;
                 case MeanType.AGM:
-                    result = Averages.AGM( orderedSetOfCurves, GeometricMeanVariant.Offset );
+                    result = Averages.AGM( orderedSetOfCurves, MeansParams.AGM.Variant );
                     break;
                 case MeanType.Heronian:
-                    result = Averages.Heronian( orderedSetOfCurves, GeometricMeanVariant.Offset );
+                    result = Averages.Heronian( orderedSetOfCurves, MeansParams.Heronian.Variant );
                     break;
                 case MeanType.Harmonic:
-                    result = Averages.Harmonic( orderedSetOfCurves, StandardMeanVariants.Offset );
+                    result = Averages.Harmonic( orderedSetOfCurves, MeansParams.Harmonic.Variant );
                     break;
-                case MeanType.RMS:
-                    // TODO: remove this enum value
+                case MeanType.Generalized:
+                    result = Averages.Generalized( orderedSetOfCurves, MeansParams.Generalized.Variant, MeansParams.Generalized.Rank );
                     break;
-                case MeanType.Power:
-                    result = Averages.Generalized( orderedSetOfCurves, StandardMeanVariants.Offset, MeansParams.PowerMean.Rank );
+                case MeanType.Moving:
+                    // TODO: refactor this averaging method
                     break;
-                case MeanType.Logarithmic:
-                    // TODO: remove this enum value
-                    break;
-                case MeanType.EMA:
-                    //MakeAverageCurveOfExponentialMean( curvesNo );
-                    break;
-                case MeanType.LnWages:
-                    // TODO: remove this enum value
-                    break;
-                case MeanType.CustomDifferential:
-                    // TODO: remove this enum value
-                    break;
-                case MeanType.CustomTolerance:
-                    //MakeAverageCurveOfCustomToleranceMean( curvesNo );
+                case MeanType.Tolerance:
+                    // TODO: refactor this averaging method
                     break;
                 }
             }
@@ -238,10 +214,9 @@ namespace PI
 
 
 
-        [Obsolete( "Waiting to remove after refactorization of methods below.", false )]
+        [Obsolete( "Pending to remove.", false )]
         private List<List<double>> GetGeneratedCurvesValuesReorderedIntoXByY( int curvesNo )
         {
-            //List<List<double>> argValues = new List<List<double>>();
             List<List<double>> argValues = Lists.Get<double>( IdealCurve.Points.Count, curvesNo ).Cast<List<double>>().ToList();
 
             for ( int i = 0; i < curvesNo; i++ ) {
@@ -254,6 +229,7 @@ namespace PI
             return argValues;
         }
 
+        [Obsolete( "Pending to refactor.", true )]
         private void MakeAverageCurveOfExponentialMean( int numberOfCurves )
         {
             List<List<double>> argValues = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
@@ -279,6 +255,7 @@ namespace PI
             }
         }
 
+        [Obsolete( "Pending to refactor.", true )]
         private void MakeAverageCurveOfCustomToleranceMean( int numberOfCurves )
         {
             List<List<double>> values = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
@@ -295,14 +272,7 @@ namespace PI
                 minimums.Add( Averages.Minimum( values[x] ).Value );
             }
 
-            switch ( MeansParams.CustomToleranceMean.Comparer ) {
-            case MeansSettings.CustomToleranceComparerType.Mediana:
-                comparer = Averages.Median( maximums ).Value - Averages.Median( minimums ).Value;
-                break;
-            case MeansSettings.CustomToleranceComparerType.ArithmeticMean:
-                comparer = Averages.Arithmetic( maximums ).Value - Averages.Arithmetic( minimums ).Value;
-                break;
-            }
+            comparer = Averages.Median( maximums ).Value - Averages.Median( minimums ).Value;
 
             for ( int x = 0; x < values.Count; x++ ) {
                 Lists.Subtract( values[x], Averages.Median( values[x] ).Value );
@@ -310,30 +280,16 @@ namespace PI
 
             for ( int x = 0; x < values.Count; x++ ) {
                 for ( int y = 0; y < values[x].Count; y++ ) {
-                    if ( Math.Abs( values[x][y] ) < Math.Abs( MeansParams.CustomToleranceMean.Tolerance * comparer ) ) {
+                    if ( Math.Abs( values[x][y] ) < Math.Abs( MeansParams.Tolerance.Tolerance * comparer ) ) {
                         acceptables[x].Add( origins[x][y] );
                     }
                 }
             }
 
             for ( int x = 0; x < acceptables.Count; x++ ) {
-                switch ( MeansParams.CustomToleranceMean.Finisher ) {
-                case MeansSettings.CustomToleranceFinisherFunction.Mediana:
-                    tolerants.Add( Averages.Median( acceptables[x] ).Value );
-                    break;
-                case MeansSettings.CustomToleranceFinisherFunction.ArithmeticMean:
-                    tolerants.Add( Averages.Arithmetic( acceptables[x] ).Value );
-                    break;
-                case MeansSettings.CustomToleranceFinisherFunction.GeometricMean:
-                    tolerants.Add( Averages.Geometric( acceptables[x], GeometricMeanVariant.Sign ).Value );
-                    break;
-                case MeansSettings.CustomToleranceFinisherFunction.Maximum:
-                    tolerants.Add( Averages.Maximum( acceptables[x] ).Value );
-                    break;
-                case MeansSettings.CustomToleranceFinisherFunction.Minimum:
-                    tolerants.Add( Averages.Minimum( acceptables[x] ).Value );
-                    break;
-                }
+                tolerants.Add( Averages.Median( acceptables[x] ).Value );
+                tolerants.Add( Averages.Arithmetic( acceptables[x] ).Value );
+                tolerants.Add( Averages.Geometric( acceptables[x], GeometricMeanVariant.Sign ).Value );
             }
         }
     }

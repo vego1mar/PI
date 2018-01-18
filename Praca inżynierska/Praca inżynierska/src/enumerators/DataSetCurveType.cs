@@ -2,8 +2,8 @@
 {
     public enum DataSetCurveType
     {
-        Modified = 0,
-        Ideal = 1,
+        Ideal = 0,
+        Modified = 1,
         Average = 2
     }
 }

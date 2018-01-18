@@ -592,25 +592,25 @@ namespace PI.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to wygenerowana.
+        ///   Looks up a localized string similar to idealna.
         /// </summary>
-        internal static string Enums_DataSetCurvesTypes_Generated {
+        internal static string Enums_DataSetCurvesTypes_Ideal {
             get {
-                return ResourceManager.GetString("Enums_DataSetCurvesTypes_Generated", resourceCulture);
+                return ResourceManager.GetString("Enums_DataSetCurvesTypes_Ideal", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to wzorcowa.
+        ///   Looks up a localized string similar to zmodyfikowana.
         /// </summary>
-        internal static string Enums_DataSetCurvesTypes_Pattern {
+        internal static string Enums_DataSetCurvesTypes_Modified {
             get {
-                return ResourceManager.GetString("Enums_DataSetCurvesTypes_Pattern", resourceCulture);
+                return ResourceManager.GetString("Enums_DataSetCurvesTypes_Modified", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to arytm.-geom..
+        ///   Looks up a localized string similar to AGM.
         /// </summary>
         internal static string Enums_MeanTypes_AGM {
             get {
@@ -628,65 +628,20 @@ namespace PI.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to własna-różnicowa.
+        ///   Looks up a localized string similar to uogólniona.
         /// </summary>
-        internal static string Enums_MeanTypes_CustomDifferential {
+        internal static string Enums_MeanTypes_Generalized {
             get {
-                return ResourceManager.GetString("Enums_MeanTypes_CustomDifferential", resourceCulture);
+                return ResourceManager.GetString("Enums_MeanTypes_Generalized", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to własna-tolerująca.
+        ///   Looks up a localized string similar to geometryczna.
         /// </summary>
-        internal static string Enums_MeanTypes_CustomTolerance {
+        internal static string Enums_MeanTypes_Geometric {
             get {
-                return ResourceManager.GetString("Enums_MeanTypes_CustomTolerance", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to krocząca.
-        /// </summary>
-        internal static string Enums_MeanTypes_EMA {
-            get {
-                return ResourceManager.GetString("Enums_MeanTypes_EMA", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to geometryczna-bezwzględna.
-        /// </summary>
-        internal static string Enums_MeanTypes_GeometricOfAbsolute {
-            get {
-                return ResourceManager.GetString("Enums_MeanTypes_GeometricOfAbsolute", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to geometryczna-przesunięcie.
-        /// </summary>
-        internal static string Enums_MeanTypes_GeometricOfOffset {
-            get {
-                return ResourceManager.GetString("Enums_MeanTypes_GeometricOfOffset", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to geometryczna-parzystość.
-        /// </summary>
-        internal static string Enums_MeanTypes_GeometricOfParity {
-            get {
-                return ResourceManager.GetString("Enums_MeanTypes_GeometricOfParity", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to geometryczna-znak.
-        /// </summary>
-        internal static string Enums_MeanTypes_GeometricOfSign {
-            get {
-                return ResourceManager.GetString("Enums_MeanTypes_GeometricOfSign", resourceCulture);
+                return ResourceManager.GetString("Enums_MeanTypes_Geometric", resourceCulture);
             }
         }
         
@@ -709,24 +664,6 @@ namespace PI.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to log. ważona.
-        /// </summary>
-        internal static string Enums_MeanTypes_LnWages {
-            get {
-                return ResourceManager.GetString("Enums_MeanTypes_LnWages", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to logarytmiczna.
-        /// </summary>
-        internal static string Enums_MeanTypes_Logarithmic {
-            get {
-                return ResourceManager.GetString("Enums_MeanTypes_Logarithmic", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to maksimum.
         /// </summary>
         internal static string Enums_MeanTypes_Maximum {
@@ -738,9 +675,9 @@ namespace PI.Locales {
         /// <summary>
         ///   Looks up a localized string similar to mediana.
         /// </summary>
-        internal static string Enums_MeanTypes_Mediana {
+        internal static string Enums_MeanTypes_Median {
             get {
-                return ResourceManager.GetString("Enums_MeanTypes_Mediana", resourceCulture);
+                return ResourceManager.GetString("Enums_MeanTypes_Median", resourceCulture);
             }
         }
         
@@ -754,20 +691,20 @@ namespace PI.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to potęgowa.
+        ///   Looks up a localized string similar to krocząca.
         /// </summary>
-        internal static string Enums_MeanTypes_Power {
+        internal static string Enums_MeanTypes_Moving {
             get {
-                return ResourceManager.GetString("Enums_MeanTypes_Power", resourceCulture);
+                return ResourceManager.GetString("Enums_MeanTypes_Moving", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to kwadratowa.
+        ///   Looks up a localized string similar to tolerancyjna.
         /// </summary>
-        internal static string Enums_MeanTypes_RMS {
+        internal static string Enums_MeanTypes_Tolerance {
             get {
-                return ResourceManager.GetString("Enums_MeanTypes_RMS", resourceCulture);
+                return ResourceManager.GetString("Enums_MeanTypes_Tolerance", resourceCulture);
             }
         }
         

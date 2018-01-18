@@ -120,11 +120,11 @@
   <data name="Enums_DataSetCurvesTypes_Average" xml:space="preserve">
     <value>average</value>
   </data>
-  <data name="Enums_DataSetCurvesTypes_Generated" xml:space="preserve">
-    <value>generated</value>
+  <data name="Enums_DataSetCurvesTypes_Modified" xml:space="preserve">
+    <value>modified</value>
   </data>
-  <data name="Enums_DataSetCurvesTypes_Pattern" xml:space="preserve">
-    <value>pattern</value>
+  <data name="Enums_DataSetCurvesTypes_Ideal" xml:space="preserve">
+    <value>ideal</value>
   </data>
   <data name="Enums_MeanTypes_AGM" xml:space="preserve">
     <value>AGM</value>
@@ -133,21 +133,14 @@
   <data name="Enums_MeanTypes_Arithmetic" xml:space="preserve">
     <value>arithmetic</value>
   </data>
-  <data name="Enums_MeanTypes_CustomDifferential" xml:space="preserve">
-    <value>custom-differential</value>
+  <data name="Enums_MeanTypes_Tolerance" xml:space="preserve">
+    <value>tolerance</value>
   </data>
-  <data name="Enums_MeanTypes_GeometricOfParity" xml:space="preserve">
-    <value>geometric-parity</value>
+  <data name="Enums_MeanTypes_Moving" xml:space="preserve">
+    <value>moving</value>
   </data>
-  <data name="Enums_MeanTypes_CustomTolerance" xml:space="preserve">
-    <value>custom-tolerance</value>
-  </data>
-  <data name="Enums_MeanTypes_EMA" xml:space="preserve">
-    <value>EMA</value>
-    <comment>Exponential moving average</comment>
-  </data>
-  <data name="Enums_MeanTypes_GeometricOfSign" xml:space="preserve">
-    <value>geometric-sign</value>
+  <data name="Enums_MeanTypes_Geometric" xml:space="preserve">
+    <value>geometric</value>
   </data>
   <data name="Enums_MeanTypes_Harmonic" xml:space="preserve">
     <value>harmonic</value>
@@ -155,27 +148,17 @@
   <data name="Enums_MeanTypes_Heronian" xml:space="preserve">
     <value>Heronian</value>
   </data>
-  <data name="Enums_MeanTypes_LnWages" xml:space="preserve">
-    <value>log waged</value>
-  </data>
-  <data name="Enums_MeanTypes_Logarithmic" xml:space="preserve">
-    <value>logarithmic</value>
-  </data>
   <data name="Enums_MeanTypes_Maximum" xml:space="preserve">
     <value>maximum</value>
   </data>
-  <data name="Enums_MeanTypes_Mediana" xml:space="preserve">
-    <value>mediana</value>
+  <data name="Enums_MeanTypes_Median" xml:space="preserve">
+    <value>median</value>
   </data>
   <data name="Enums_MeanTypes_Minimum" xml:space="preserve">
     <value>minimum</value>
   </data>
-  <data name="Enums_MeanTypes_Power" xml:space="preserve">
-    <value>power</value>
-  </data>
-  <data name="Enums_MeanTypes_RMS" xml:space="preserve">
-    <value>RMS</value>
-    <comment>Root mean square</comment>
+  <data name="Enums_MeanTypes_Generalized" xml:space="preserve">
+    <value>generalized</value>
   </data>
   <data name="LangSelector_Languages_English" xml:space="preserve">
     <value>English</value>
@@ -914,11 +897,5 @@
   </data>
   <data name="MainWindow_Panel_Generate_StandardDeviation1" xml:space="preserve">
     <value>Standard deviation:</value>
-  </data>
-  <data name="Enums_MeanTypes_GeometricOfAbsolute" xml:space="preserve">
-    <value>geometric-absolute</value>
-  </data>
-  <data name="Enums_MeanTypes_GeometricOfOffset" xml:space="preserve">
-    <value>geometric-offset</value>
   </data>
 </root>

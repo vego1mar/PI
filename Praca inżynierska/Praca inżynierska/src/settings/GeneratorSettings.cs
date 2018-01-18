@@ -2,7 +2,7 @@
 {
     internal class GeneratorSettings
     {
-        public PatternCurveDefinerGeneratorSettings Pcd { get; } = new PatternCurveDefinerGeneratorSettings();
+        public IdealCurveDefinerGeneratorSettings Pcd { get; } = new IdealCurveDefinerGeneratorSettings();
         public MainWindowGeneratorSettings Ui { get; } = new MainWindowGeneratorSettings();
     }
 }

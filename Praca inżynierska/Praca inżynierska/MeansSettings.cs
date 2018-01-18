@@ -1,5 +1,6 @@
 ﻿using PI.src.general;
 using PI.src.helpers;
+using PI.src.settings;
 using System;
 using System.Windows.Forms;
 
@@ -7,44 +8,23 @@ namespace PI
 {
     public partial class MeansSettings : Form
     {
-        internal Params MeansParams { get; private set; }
+        public MeansParameters MeansParams { get; private set; }
 
-        internal class Params
-        {
-            public Power PowerMean { get; set; } = new Power();
-            public CustomDifferential CustomDifferentialMean { get; set; } = new CustomDifferential();
-            public CustomTolerance CustomToleranceMean { get; set; } = new CustomTolerance();
-
-            internal class Power
-            {
-                public int Rank { get; set; } = 2;
-            }
-
-            internal class CustomDifferential
-            {
-                public CustomDifferentialMeanMode Mode { get; set; } = CustomDifferentialMeanMode.Sum;
-            }
-
-            internal class CustomTolerance
-            {
-                public CustomToleranceComparerType Comparer { get; set; } = CustomToleranceComparerType.Mediana;
-                public double Tolerance { get; set; } = 1.05;
-                public CustomToleranceFinisherFunction Finisher { get; set; } = CustomToleranceFinisherFunction.ArithmeticMean;
-            }
-        }
-
+        // TODO: remove this
         public enum CustomDifferentialMeanMode
         {
             Mediana,
             Sum
         }
 
+        // TODO: remove this
         public enum CustomToleranceComparerType
         {
             Mediana,
             ArithmeticMean
         }
 
+        // TODO: replace this by MeanType
         public enum CustomToleranceFinisherFunction
         {
             Mediana,
@@ -64,7 +44,7 @@ namespace PI
 
         private void InitializeProperties()
         {
-            MeansParams = new Params();
+            MeansParams = new MeansParameters();
         }
 
         private void LocalizeWindow()
@@ -75,11 +55,8 @@ namespace PI
 
         private void UpdateUiByDefaultSettings()
         {
-            UiControls.TrySetValue( uiGrid_PowRank_Num, MeansParams.PowerMean.Rank );
-            UiControls.TrySetSelectedIndex( uiGrid_DiffMode_ComBx, (int) MeansParams.CustomDifferentialMean.Mode );
-            UiControls.TrySetSelectedIndex( uiGrid_Comp_ComBx, (int) MeansParams.CustomToleranceMean.Comparer );
-            UiControls.TrySetValue( uiGrid_Toler_Num, MeansParams.CustomToleranceMean.Tolerance );
-            UiControls.TrySetSelectedIndex( uiGrid_Finish_ComBx, (int) MeansParams.CustomToleranceMean.Finisher );
+            UiControls.TrySetValue( uiGrid_PowRank_Num, MeansParams.Generalized.Rank );
+            UiControls.TrySetValue( uiGrid_Toler_Num, MeansParams.Tolerance.Tolerance );
         }
 
         private void Ui_Ok_Click( object sender, EventArgs e )
@@ -89,44 +66,23 @@ namespace PI
 
         private void SaveAllSettings()
         {
-            MeansParams.PowerMean.Rank = UiControls.TryGetValue<int>( uiGrid_PowRank_Num );
-            MeansParams.CustomDifferentialMean.Mode = (CustomDifferentialMeanMode) UiControls.TryGetSelectedIndex( uiGrid_DiffMode_ComBx );
-            MeansParams.CustomToleranceMean.Comparer = (CustomToleranceComparerType) UiControls.TryGetSelectedIndex( uiGrid_Comp_ComBx );
-            MeansParams.CustomToleranceMean.Tolerance = UiControls.TryGetValue<double>( uiGrid_Toler_Num );
-            MeansParams.CustomToleranceMean.Finisher = (CustomToleranceFinisherFunction) UiControls.TryGetSelectedIndex( uiGrid_Finish_ComBx );
+            MeansParams.Generalized.Rank = UiControls.TryGetValue<int>( uiGrid_PowRank_Num );
+            MeansParams.Tolerance.Tolerance = UiControls.TryGetValue<double>( uiGrid_Toler_Num );
         }
 
         public void SetPowerMeanRank( int value )
         {
             if ( SeriesAssist.IsChartAcceptable( value ) ) {
-                MeansParams.PowerMean.Rank = value;
+                MeansParams.Generalized.Rank = value;
             }
 
-            UiControls.TrySetValue( uiGrid_PowRank_Num, MeansParams.PowerMean.Rank );
-        }
-
-        public void SetCustomDifferentialMeanMode( CustomDifferentialMeanMode mode )
-        {
-            MeansParams.CustomDifferentialMean.Mode = mode;
-            UiControls.TrySetSelectedIndex( uiGrid_DiffMode_ComBx, (int) MeansParams.CustomDifferentialMean.Mode );
-        }
-
-        public void SetCustomToleranceMeanComparer( CustomToleranceComparerType type )
-        {
-            MeansParams.CustomToleranceMean.Comparer = type;
-            UiControls.TrySetSelectedIndex( uiGrid_Comp_ComBx, (int) MeansParams.CustomToleranceMean.Comparer );
+            UiControls.TrySetValue( uiGrid_PowRank_Num, MeansParams.Generalized.Rank );
         }
 
         public void SetCustomToleranceMeanTolerance( double value )
         {
-            MeansParams.CustomToleranceMean.Tolerance = value;
+            MeansParams.Tolerance.Tolerance = value;
             UiControls.TrySetValue( uiGrid_Toler_Num, value );
-        }
-
-        public void SetCustomToleranceMeanFinisher( CustomToleranceFinisherFunction type )
-        {
-            MeansParams.CustomToleranceMean.Finisher = type;
-            UiControls.TrySetSelectedIndex( uiGrid_Finish_ComBx, (int) MeansParams.CustomToleranceMean.Finisher );
         }
 
         private void MeansSettings_FormClosing( object sender, FormClosingEventArgs e )
@@ -170,6 +126,7 @@ namespace PI
             ui_Ok_Btn.Text = Translator.GetInstance().Strings.MeansSettings.Ui.CustomTolerance.Ok.GetString();
         }
 
+        // TODO: remove this
         private void AddLocalizedCustomDifferentialMeanModes<T>( T control ) where T : ComboBox
         {
             control.Items.Clear();
@@ -179,6 +136,7 @@ namespace PI
             }
         }
 
+        // TODO: remove this
         private void AddLocalizedCustomToleranceComparerTypes<T>( T control ) where T : ComboBox
         {
             control.Items.Clear();
@@ -188,6 +146,7 @@ namespace PI
             }
         }
 
+        // TODO: remove this
         private void AddLocalizedCustomToleranceFinisherFunctions<T>( T control ) where T : ComboBox
         {
             control.Items.Clear();

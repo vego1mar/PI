@@ -3,15 +3,16 @@ using PI.src.helpers;
 using PI.src.settings;
 using System;
 using System.Windows.Forms;
+using PI.src.enumerators;
 
 namespace PI
 {
     public partial class PatternCurveDefiner : Form
     {
 
-        internal PatternCurveDefinerGeneratorSettings Settings { get; private set; }
+        internal IdealCurveDefinerGeneratorSettings Settings { get; private set; }
 
-        internal PatternCurveDefiner( PatternCurveDefinerGeneratorSettings presets )
+        internal PatternCurveDefiner( IdealCurveDefinerGeneratorSettings presets )
         {
             InitializeComponent();
             LocalizeWindow();
@@ -20,7 +21,7 @@ namespace PI
             UpdateUiByParametersValues();
         }
 
-        private void DefinePropertiesInitialValues( PatternCurveDefinerGeneratorSettings presets )
+        private void DefinePropertiesInitialValues( IdealCurveDefinerGeneratorSettings presets )
         {
             Settings = presets;
             uiTabs_Wave_Btn.BackColor = System.Drawing.Color.White;
@@ -31,37 +32,33 @@ namespace PI
         private void SelectChosenCurveTab()
         {
             switch ( Settings.Scaffold ) {
-            case Enums.IdealCurveScaffold.Polynomial:
-                UiControls.TrySelectTab( uiCnt_TbCtrl, (int) Enums.IdealCurveScaffold.Polynomial );
+            case IdealCurveScaffold.Polynomial:
+                UiControls.TrySelectTab( uiCnt_TbCtrl, (int) IdealCurveScaffold.Polynomial );
                 uiTabs_Pol_Btn.BackColor = System.Drawing.Color.GhostWhite;
                 break;
-            case Enums.IdealCurveScaffold.Hyperbolic:
-                UiControls.TrySelectTab( uiCnt_TbCtrl, (int) Enums.IdealCurveScaffold.Hyperbolic );
+            case IdealCurveScaffold.Hyperbolic:
+                UiControls.TrySelectTab( uiCnt_TbCtrl, (int) IdealCurveScaffold.Hyperbolic );
                 uiTabs_Hyp_Btn.BackColor = System.Drawing.Color.GhostWhite;
                 break;
-            case Enums.IdealCurveScaffold.WaveformSine:
-                UiControls.TrySelectTab( uiCnt_TbCtrl, (int) Enums.IdealCurveScaffold.Waveform );
+            case IdealCurveScaffold.WaveformSine:
+                UiControls.TrySelectTab( uiCnt_TbCtrl, (int) IdealCurveScaffold.WaveformSine );
                 uiTabs_Wave_Btn.BackColor = System.Drawing.Color.GhostWhite;
                 uiCntWaveT_Sine_RdBtn.Checked = true;
                 break;
-            case Enums.IdealCurveScaffold.WaveformSquare:
-                UiControls.TrySelectTab( uiCnt_TbCtrl, (int) Enums.IdealCurveScaffold.Waveform );
+            case IdealCurveScaffold.WaveformSquare:
+                UiControls.TrySelectTab( uiCnt_TbCtrl, (int) IdealCurveScaffold.WaveformSquare );
                 uiTabs_Wave_Btn.BackColor = System.Drawing.Color.GhostWhite;
                 uiCntWaveT_Sq_RdBtn.Checked = true;
                 break;
-            case Enums.IdealCurveScaffold.WaveformTriangle:
-                UiControls.TrySelectTab( uiCnt_TbCtrl, (int) Enums.IdealCurveScaffold.Waveform );
+            case IdealCurveScaffold.WaveformTriangle:
+                UiControls.TrySelectTab( uiCnt_TbCtrl, (int) IdealCurveScaffold.WaveformTriangle );
                 uiTabs_Wave_Btn.BackColor = System.Drawing.Color.GhostWhite;
                 uiCntWaveT_Trg_RdBtn.Checked = true;
                 break;
-            case Enums.IdealCurveScaffold.WaveformSawtooth:
-                UiControls.TrySelectTab( uiCnt_TbCtrl, (int) Enums.IdealCurveScaffold.Waveform );
+            case IdealCurveScaffold.WaveformSawtooth:
+                UiControls.TrySelectTab( uiCnt_TbCtrl, (int) IdealCurveScaffold.WaveformSawtooth );
                 uiTabs_Wave_Btn.BackColor = System.Drawing.Color.GhostWhite;
                 uiCntWaveT_Saw_RdBtn.Checked = true;
-                break;
-            case Enums.IdealCurveScaffold.Waveform:
-                UiControls.TrySelectTab( uiCnt_TbCtrl, (int) Enums.IdealCurveScaffold.Waveform );
-                uiTabs_Wave_Btn.BackColor = System.Drawing.Color.GhostWhite;
                 break;
             default:
                 break;
@@ -91,8 +88,8 @@ namespace PI
 
         private void UiTabs_Polynomial_Click( object sender, EventArgs e )
         {
-            Settings.Scaffold = Enums.IdealCurveScaffold.Polynomial;
-            UiControls.TrySelectTab( uiCnt_TbCtrl, (int) Enums.IdealCurveScaffold.Polynomial );
+            Settings.Scaffold = IdealCurveScaffold.Polynomial;
+            UiControls.TrySelectTab( uiCnt_TbCtrl, (int) IdealCurveScaffold.Polynomial );
             uiTabs_Pol_Btn.BackColor = System.Drawing.Color.GhostWhite;
             uiTabs_Hyp_Btn.BackColor = System.Drawing.Color.White;
             uiTabs_Wave_Btn.BackColor = System.Drawing.Color.White;
@@ -100,17 +97,18 @@ namespace PI
 
         private void UiTabs_Hyperbolic_Click( object sender, EventArgs e )
         {
-            Settings.Scaffold = Enums.IdealCurveScaffold.Hyperbolic;
-            UiControls.TrySelectTab( uiCnt_TbCtrl, (int) Enums.IdealCurveScaffold.Hyperbolic );
+            Settings.Scaffold = IdealCurveScaffold.Hyperbolic;
+            UiControls.TrySelectTab( uiCnt_TbCtrl, (int) IdealCurveScaffold.Hyperbolic );
             uiTabs_Hyp_Btn.BackColor = System.Drawing.Color.GhostWhite;
             uiTabs_Pol_Btn.BackColor = System.Drawing.Color.White;
             uiTabs_Wave_Btn.BackColor = System.Drawing.Color.White;
         }
 
+        // TODO: correct tab selection
         private void UiTabs_Waveform_Click( object sender, EventArgs e )
         {
-            Settings.Scaffold = Enums.IdealCurveScaffold.WaveformSine;
-            UiControls.TrySelectTab( uiCnt_TbCtrl, (int) Enums.IdealCurveScaffold.Waveform );
+            Settings.Scaffold = IdealCurveScaffold.WaveformSine;
+            UiControls.TrySelectTab( uiCnt_TbCtrl, (int) IdealCurveScaffold.WaveformSine );
             uiTabs_Wave_Btn.BackColor = System.Drawing.Color.GhostWhite;
             uiTabs_Pol_Btn.BackColor = System.Drawing.Color.White;
             uiTabs_Hyp_Btn.BackColor = System.Drawing.Color.White;
@@ -130,16 +128,16 @@ namespace PI
         private void SaveParametersWhileClosingDialog()
         {
             switch ( Settings.Scaffold ) {
-            case Enums.IdealCurveScaffold.Polynomial:
+            case IdealCurveScaffold.Polynomial:
                 SaveParametersForPolynomialPatternCurve();
                 break;
-            case Enums.IdealCurveScaffold.Hyperbolic:
+            case IdealCurveScaffold.Hyperbolic:
                 SaveParametersForHyperbolicPatternCurve();
                 break;
-            case Enums.IdealCurveScaffold.WaveformSine:
-            case Enums.IdealCurveScaffold.WaveformSquare:
-            case Enums.IdealCurveScaffold.WaveformTriangle:
-            case Enums.IdealCurveScaffold.WaveformSawtooth:
+            case IdealCurveScaffold.WaveformSine:
+            case IdealCurveScaffold.WaveformSquare:
+            case IdealCurveScaffold.WaveformTriangle:
+            case IdealCurveScaffold.WaveformSawtooth:
                 SaveParametersForWaveformPatternCurve( Settings.Scaffold );
                 break;
             }
@@ -175,15 +173,15 @@ namespace PI
             Settings.Parameters.Hyperbolic.I = UiControls.TryGetValue<double>( uiCntHyp_i_Num );
         }
 
-        private void SaveParametersForWaveformPatternCurve( Enums.IdealCurveScaffold type )
+        private void SaveParametersForWaveformPatternCurve( IdealCurveScaffold type )
         {
             switch ( type ) {
-            case Enums.IdealCurveScaffold.WaveformSine:
+            case IdealCurveScaffold.WaveformSine:
                 SaveParametersOfSineWaveform();
                 break;
-            case Enums.IdealCurveScaffold.WaveformSquare:
-            case Enums.IdealCurveScaffold.WaveformTriangle:
-            case Enums.IdealCurveScaffold.WaveformSawtooth:
+            case IdealCurveScaffold.WaveformSquare:
+            case IdealCurveScaffold.WaveformTriangle:
+            case IdealCurveScaffold.WaveformSawtooth:
                 SaveParametersOfOtherWaveform();
                 break;
             }
@@ -207,7 +205,7 @@ namespace PI
         private void UiContentWaveformType_Sine_CheckedChanged( object sender, EventArgs e )
         {
             if ( uiCntWaveT_Sine_RdBtn.Checked ) {
-                Settings.Scaffold = Enums.IdealCurveScaffold.WaveformSine;
+                Settings.Scaffold = IdealCurveScaffold.WaveformSine;
                 uiCntWave_o_Num.Enabled = true;
                 uiCntWave_PicBx.Image = Properties.Resources.PatternScaffold_WaveformSine;
             }
@@ -216,7 +214,7 @@ namespace PI
         private void UiContentWaveformType_Square_CheckedChanged( object sender, EventArgs e )
         {
             if ( uiCntWaveT_Sq_RdBtn.Checked ) {
-                Settings.Scaffold = Enums.IdealCurveScaffold.WaveformSquare;
+                Settings.Scaffold = IdealCurveScaffold.WaveformSquare;
                 uiCntWave_o_Num.Enabled = false;
                 uiCntWave_PicBx.Image = Properties.Resources.PatternScaffold_WaveformSquare;
             }
@@ -225,7 +223,7 @@ namespace PI
         private void UiContentWaveformType_Triangle_CheckedChanged( object sender, EventArgs e )
         {
             if ( uiCntWaveT_Trg_RdBtn.Checked ) {
-                Settings.Scaffold = Enums.IdealCurveScaffold.WaveformTriangle;
+                Settings.Scaffold = IdealCurveScaffold.WaveformTriangle;
                 uiCntWave_o_Num.Enabled = false;
                 uiCntWave_PicBx.Image = Properties.Resources.PatternScaffold_WaveformTriangle;
             }
@@ -234,7 +232,7 @@ namespace PI
         private void UiContentWaveformType_Sawtooth_CheckedChanged( object sender, EventArgs e )
         {
             if ( uiCntWaveT_Saw_RdBtn.Checked ) {
-                Settings.Scaffold = Enums.IdealCurveScaffold.WaveformSawtooth;
+                Settings.Scaffold = IdealCurveScaffold.WaveformSawtooth;
                 uiCntWave_o_Num.Enabled = false;
                 uiCntWave_PicBx.Image = Properties.Resources.PatternScaffold_WaveformSawtooth;
             }
