@@ -97,5 +97,26 @@ namespace PI.src.general
             Lists.Exponentiate( powers, rank );
             return Mathematics.Root( Lists.Sum( powers ) / set.Count, rank ) - absMin;
         }
+
+        private static double? MovingOfSimple( IList<double> set )
+        {
+            if ( set.Count == 1 ) {
+                return set[0];
+            }
+
+            IList<double> currentSet = new List<double>() { set[0], set[1] };
+            IList<double> movingMeans = new List<double>() {
+                Arithmetic(currentSet).Value
+            };
+
+            for ( int i = 1; i < set.Count - 1; i++ ) {
+                currentSet = new List<double>() { set[i - 1], set[i], set[i + 1] };
+                movingMeans.Add( Arithmetic( currentSet ).Value );
+            }
+
+            currentSet = new List<double>() { set[set.Count - 2], set[set.Count - 1] };
+            movingMeans.Add( Arithmetic( currentSet ).Value );
+            return Arithmetic( movingMeans );
+        }
     }
 }

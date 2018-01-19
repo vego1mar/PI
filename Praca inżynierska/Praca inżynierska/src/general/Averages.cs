@@ -1,4 +1,5 @@
 ﻿using PI.src.enumerators;
+using PI.src.parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -117,6 +118,67 @@ namespace PI.src.general
                 return GeneralizedOfStraight( set, rank );
             case StandardMeanVariants.Offset:
                 return GeneralizedOfOffset( set, rank );
+            }
+
+            return null;
+        }
+
+        // TODO: implement Exponential Moving Average type
+        public static double? Moving( IList<double> set, MovingAverageType type )
+        {
+            if ( set == null || set.Count == 0 ) {
+                return null;
+            }
+
+            switch ( type ) {
+            case MovingAverageType.Simple:
+                return MovingOfSimple( set );
+            }
+
+            return null;
+        }
+
+        public static double? Tolerance( IList<double> set, double classifier, MeanType finisher = MeanType.Harmonic, MeansParameters @params = null )
+        {
+            if ( set == null || set.Count == 0 ) {
+                return null;
+            }
+
+            if ( @params == null ) {
+                @params = new MeansParameters();
+            }
+
+            IList<double> acceptables = new List<double>();
+            IList<double> oscillators = Lists.GetCopy( set );
+            Lists.Subtract( oscillators, Median( set ).Value );
+
+            for ( int i = 0; i < set.Count; i++ ) {
+                if ( Math.Abs( oscillators[i] ) < Math.Abs( classifier ) ) {
+                    acceptables.Add( set[i] );
+                }
+            }
+
+            switch ( finisher ) {
+            case MeanType.Median:
+                return Median( acceptables );
+            case MeanType.Maximum:
+                return Maximum( acceptables );
+            case MeanType.Minimum:
+                return Minimum( acceptables );
+            case MeanType.Arithmetic:
+                return Arithmetic( acceptables );
+            case MeanType.Geometric:
+                return Geometric( acceptables, @params.Geometric.Variant );
+            case MeanType.AGM:
+                return AGM( acceptables, @params.AGM.Variant );
+            case MeanType.Heronian:
+                return Heronian( acceptables, @params.Heronian.Variant );
+            case MeanType.Harmonic:
+                return Harmonic( acceptables, @params.Harmonic.Variant );
+            case MeanType.Generalized:
+                return Generalized( acceptables, @params.Generalized.Variant, @params.Generalized.Rank );
+            case MeanType.Moving:
+                return Moving( acceptables, @params.Moving.Type );
             }
 
             return null;
@@ -255,6 +317,38 @@ namespace PI.src.general
             }
 
             return means;
+        }
+
+        public static IList<double> Moving( IList<IList<double>> orderedSet, MovingAverageType type )
+        {
+            if ( orderedSet == null || orderedSet.Count == 0 ) {
+                return new List<double>().AsReadOnly();
+            }
+
+            IList<double> movingAverages = new List<double>();
+
+            for ( int x = 0; x < orderedSet.Count; x++ ) {
+                movingAverages.Add( Moving( orderedSet[x], type ).Value );
+            }
+
+            return movingAverages;
+        }
+
+        public static IList<double> Tolerance( IList<IList<double>> orderedSet, double tolerance, MeanType finisher = MeanType.Harmonic, MeansParameters @params = null )
+        {
+            if ( orderedSet == null || orderedSet.Count == 0 ) {
+                return new List<double>().AsReadOnly();
+            }
+
+            double comparer = Median( Maximum( orderedSet ) ).Value - Median( Minimum( orderedSet ) ).Value;
+            double classifier = comparer * tolerance;
+            IList<double> tolerants = new List<double>();
+
+            for ( int x = 0; x < orderedSet.Count; x++ ) {
+                tolerants.Add( Tolerance( orderedSet[x], classifier, finisher, @params ).Value );
+            }
+
+            return tolerants;
         }
     }
 }

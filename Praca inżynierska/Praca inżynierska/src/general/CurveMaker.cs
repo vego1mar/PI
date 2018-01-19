@@ -1,4 +1,5 @@
-﻿using PI.src.settings;
+﻿using PI.src.parameters;
+using PI.src.settings;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms.DataVisualization.Charting;

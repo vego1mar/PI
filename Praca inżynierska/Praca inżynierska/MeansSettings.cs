@@ -1,6 +1,6 @@
 ﻿using PI.src.general;
 using PI.src.helpers;
-using PI.src.settings;
+using PI.src.parameters;
 using System;
 using System.Windows.Forms;
 

@@ -107,7 +107,7 @@
     <Compile Include="src\settings\MainWindowGeneratorSettings.cs" />
     <Compile Include="src\settings\MainWindowUiSettings.cs" />
     <Compile Include="src\settings\IdealCurveDefinerGeneratorSettings.cs" />
-    <Compile Include="src\settings\HyperbolicParameters.cs" />
+    <Compile Include="src\parameters\HyperbolicParameters.cs" />
     <Compile Include="src\settings\MainChartSettings.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="CurvesDataManager.cs" />
@@ -144,7 +144,7 @@
       <DependentUpon>MeansSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="src\messages\Messages.cs" />
-    <Compile Include="src\settings\CurvesParameters.cs" />
+    <Compile Include="src\parameters\CurvesParameters.cs" />
     <Compile Include="PatternCurveDefiner.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,9 +154,9 @@
     <Compile Include="src\settings\GeneratorSettings.cs" />
     <Compile Include="src\general\Randoms.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="src\settings\MeansParameters.cs" />
-    <Compile Include="src\settings\PolynomialParameters.cs" />
-    <Compile Include="src\settings\WaveformParameters.cs" />
+    <Compile Include="src\parameters\MeansParameters.cs" />
+    <Compile Include="src\parameters\PolynomialParameters.cs" />
+    <Compile Include="src\parameters\WaveformParameters.cs" />
     <Compile Include="src\windows\LanguageSelector.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -316,9 +316,7 @@
     <None Include="Pictures\CustomTolerance_Comparer.png" />
     <None Include="Pictures\StandardDeviation_Formula.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Stuff\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

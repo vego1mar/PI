@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Windows.Forms.DataVisualization.Charting;
 using PI.src.general;
-using PI.src.settings;
 using log4net;
 using System.Reflection;
 using System.Linq;
 using PI.src.enumerators;
+using PI.src.parameters;
 
 namespace PI
 {
@@ -183,10 +183,10 @@ namespace PI
                     result = Averages.Generalized( orderedSetOfCurves, MeansParams.Generalized.Variant, MeansParams.Generalized.Rank );
                     break;
                 case MeanType.Moving:
-                    // TODO: refactor this averaging method
+                    result = Averages.Moving( orderedSetOfCurves, MeansParams.Moving.Type );
                     break;
                 case MeanType.Tolerance:
-                    // TODO: refactor this averaging method
+                    result = Averages.Tolerance( orderedSetOfCurves, MeansParams.Tolerance.Tolerance, MeansParams.Tolerance.Finisher );
                     break;
                 }
             }
@@ -252,44 +252,6 @@ namespace PI
                 }
 
                 emas.Add( (alfa * sum) + ((1.0 - alfa) * emas[i - 1]) );
-            }
-        }
-
-        [Obsolete( "Pending to refactor.", true )]
-        private void MakeAverageCurveOfCustomToleranceMean( int numberOfCurves )
-        {
-            List<List<double>> values = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
-            List<List<double>> origins = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
-            List<List<double>> acceptables = new List<List<double>>();
-            List<double> tolerants = new List<double>();
-            List<double> maximums = new List<double>();
-            List<double> minimums = new List<double>();
-            double comparer = 0.0;
-
-            for ( int x = 0; x < values.Count; x++ ) {
-                acceptables.Add( new List<double>() );
-                maximums.Add( Averages.Maximum( values[x] ).Value );
-                minimums.Add( Averages.Minimum( values[x] ).Value );
-            }
-
-            comparer = Averages.Median( maximums ).Value - Averages.Median( minimums ).Value;
-
-            for ( int x = 0; x < values.Count; x++ ) {
-                Lists.Subtract( values[x], Averages.Median( values[x] ).Value );
-            }
-
-            for ( int x = 0; x < values.Count; x++ ) {
-                for ( int y = 0; y < values[x].Count; y++ ) {
-                    if ( Math.Abs( values[x][y] ) < Math.Abs( MeansParams.Tolerance.Tolerance * comparer ) ) {
-                        acceptables[x].Add( origins[x][y] );
-                    }
-                }
-            }
-
-            for ( int x = 0; x < acceptables.Count; x++ ) {
-                tolerants.Add( Averages.Median( acceptables[x] ).Value );
-                tolerants.Add( Averages.Arithmetic( acceptables[x] ).Value );
-                tolerants.Add( Averages.Geometric( acceptables[x], GeometricMeanVariant.Sign ).Value );
             }
         }
     }
