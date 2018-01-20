@@ -118,5 +118,22 @@ namespace PI.src.general
             movingMeans.Add( Arithmetic( currentSet ).Value );
             return Arithmetic( movingMeans );
         }
+
+        private static double? MovingOfExponential( IList<double> set )
+        {
+            double previousEMA = Moving( set, MovingAverageType.Simple ).Value;
+            IList<double> movingMeans = new List<double>();
+            double alpha = 2.0 / (set.Count + 1.0);
+            double k = 1.0 - alpha;
+            double currentEMA;
+
+            foreach ( double value in set ) {
+                currentEMA = (value * alpha) + (previousEMA * k);
+                movingMeans.Add( currentEMA );
+                previousEMA = currentEMA;
+            }
+
+            return Moving( movingMeans, MovingAverageType.Simple );
+        }
     }
 }

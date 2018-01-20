@@ -123,7 +123,6 @@ namespace PI.src.general
             return null;
         }
 
-        // TODO: implement Exponential Moving Average type
         public static double? Moving( IList<double> set, MovingAverageType type )
         {
             if ( set == null || set.Count == 0 ) {
@@ -133,6 +132,8 @@ namespace PI.src.general
             switch ( type ) {
             case MovingAverageType.Simple:
                 return MovingOfSimple( set );
+            case MovingAverageType.Exponential:
+                return MovingOfExponential( set );
             }
 
             return null;

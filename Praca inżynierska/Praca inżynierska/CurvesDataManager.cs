@@ -4,7 +4,6 @@ using System.Windows.Forms.DataVisualization.Charting;
 using PI.src.general;
 using log4net;
 using System.Reflection;
-using System.Linq;
 using PI.src.enumerators;
 using PI.src.parameters;
 
@@ -210,49 +209,6 @@ namespace PI
             AverageCurve.Points.Clear();
             SeriesAssist.CopyPoints( AverageCurve, IdealCurve, result );
             return SeriesAssist.IsChartAcceptable( AverageCurve );
-        }
-
-
-
-        [Obsolete( "Pending to remove.", false )]
-        private List<List<double>> GetGeneratedCurvesValuesReorderedIntoXByY( int curvesNo )
-        {
-            List<List<double>> argValues = Lists.Get<double>( IdealCurve.Points.Count, curvesNo ).Cast<List<double>>().ToList();
-
-            for ( int i = 0; i < curvesNo; i++ ) {
-                for ( int j = 0; j < ModifiedCurves[i].Points.Count; j++ ) {
-                    double y = ModifiedCurves[i].Points[j].YValues[0];
-                    argValues[j][i] = y;
-                }
-            }
-
-            return argValues;
-        }
-
-        [Obsolete( "Pending to refactor.", true )]
-        private void MakeAverageCurveOfExponentialMean( int numberOfCurves )
-        {
-            List<List<double>> argValues = GetGeneratedCurvesValuesReorderedIntoXByY( numberOfCurves );
-            List<double> emas = new List<double>();
-            double sum = 0.0;
-            double alfa;
-
-            for ( int i = 0; i < argValues[0].Count; i++ ) {
-                sum += argValues[0][i];
-            }
-
-            emas.Add( sum );
-
-            for ( int i = 1; i < argValues.Count; i++ ) {
-                sum = 0.0;
-                alfa = 2.0 / (i + 2);
-
-                for ( int j = 0; j < argValues[i].Count; j++ ) {
-                    sum += argValues[i][j];
-                }
-
-                emas.Add( (alfa * sum) + ((1.0 - alfa) * emas[i - 1]) );
-            }
         }
     }
 }

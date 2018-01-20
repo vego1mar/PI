@@ -2,6 +2,7 @@
 {
     public enum MovingAverageType
     {
-        Simple
+        Simple,
+        Exponential
     }
 }

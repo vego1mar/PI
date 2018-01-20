@@ -31,13 +31,6 @@
             this.ui_TbLay = new System.Windows.Forms.TableLayoutPanel();
             this.ui_Ok_Btn = new System.Windows.Forms.Button();
             this.ui_Grid_TbLay = new System.Windows.Forms.TableLayoutPanel();
-            this.uiGrid_Finish_ComBx = new System.Windows.Forms.ComboBox();
-            this.uiGrid_Finish_TxtBx = new System.Windows.Forms.TextBox();
-            this.uiGrid_Toler_Num = new System.Windows.Forms.NumericUpDown();
-            this.uiGrid_Toler_TxtBx = new System.Windows.Forms.TextBox();
-            this.uiGrid_Comp_ComBx = new System.Windows.Forms.ComboBox();
-            this.uiGrid_Comp_TxtBx = new System.Windows.Forms.TextBox();
-            this.uiGrid_CstTol_TxtBx = new System.Windows.Forms.TextBox();
             this.uiGrid_CstDiff_TxtBx = new System.Windows.Forms.TextBox();
             this.uiGrid_Power_TxtBx = new System.Windows.Forms.TextBox();
             this.uiGrid_DiffMode_ComBx = new System.Windows.Forms.ComboBox();
@@ -46,7 +39,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.uiGrid_PowRank_Num)).BeginInit();
             this.ui_TbLay.SuspendLayout();
             this.ui_Grid_TbLay.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.uiGrid_Toler_Num)).BeginInit();
             this.SuspendLayout();
             // 
             // uiGrid_PowRank_Num
@@ -104,13 +96,6 @@
             this.ui_Grid_TbLay.ColumnCount = 2;
             this.ui_Grid_TbLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.ui_Grid_TbLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.ui_Grid_TbLay.Controls.Add(this.uiGrid_Finish_ComBx, 1, 9);
-            this.ui_Grid_TbLay.Controls.Add(this.uiGrid_Finish_TxtBx, 0, 9);
-            this.ui_Grid_TbLay.Controls.Add(this.uiGrid_Toler_Num, 1, 8);
-            this.ui_Grid_TbLay.Controls.Add(this.uiGrid_Toler_TxtBx, 0, 8);
-            this.ui_Grid_TbLay.Controls.Add(this.uiGrid_Comp_ComBx, 1, 7);
-            this.ui_Grid_TbLay.Controls.Add(this.uiGrid_Comp_TxtBx, 0, 7);
-            this.ui_Grid_TbLay.Controls.Add(this.uiGrid_CstTol_TxtBx, 0, 6);
             this.ui_Grid_TbLay.Controls.Add(this.uiGrid_CstDiff_TxtBx, 0, 3);
             this.ui_Grid_TbLay.Controls.Add(this.uiGrid_Power_TxtBx, 0, 0);
             this.ui_Grid_TbLay.Controls.Add(this.uiGrid_DiffMode_ComBx, 1, 4);
@@ -135,105 +120,6 @@
             this.ui_Grid_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.ui_Grid_TbLay.Size = new System.Drawing.Size(398, 340);
             this.ui_Grid_TbLay.TabIndex = 2;
-            // 
-            // uiGrid_Finish_ComBx
-            // 
-            this.uiGrid_Finish_ComBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiGrid_Finish_ComBx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.uiGrid_Finish_ComBx.FormattingEnabled = true;
-            this.uiGrid_Finish_ComBx.Location = new System.Drawing.Point(202, 228);
-            this.uiGrid_Finish_ComBx.Name = "uiGrid_Finish_ComBx";
-            this.uiGrid_Finish_ComBx.Size = new System.Drawing.Size(193, 21);
-            this.uiGrid_Finish_ComBx.TabIndex = 36;
-            // 
-            // uiGrid_Finish_TxtBx
-            // 
-            this.uiGrid_Finish_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.uiGrid_Finish_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
-            this.uiGrid_Finish_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiGrid_Finish_TxtBx.Location = new System.Drawing.Point(3, 228);
-            this.uiGrid_Finish_TxtBx.Name = "uiGrid_Finish_TxtBx";
-            this.uiGrid_Finish_TxtBx.ReadOnly = true;
-            this.uiGrid_Finish_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiGrid_Finish_TxtBx.Size = new System.Drawing.Size(193, 20);
-            this.uiGrid_Finish_TxtBx.TabIndex = 35;
-            this.uiGrid_Finish_TxtBx.Text = "Finisher function:";
-            // 
-            // uiGrid_Toler_Num
-            // 
-            this.uiGrid_Toler_Num.DecimalPlaces = 2;
-            this.uiGrid_Toler_Num.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiGrid_Toler_Num.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
-            this.uiGrid_Toler_Num.Location = new System.Drawing.Point(202, 203);
-            this.uiGrid_Toler_Num.Maximum = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this.uiGrid_Toler_Num.Name = "uiGrid_Toler_Num";
-            this.uiGrid_Toler_Num.Size = new System.Drawing.Size(193, 20);
-            this.uiGrid_Toler_Num.TabIndex = 34;
-            this.uiGrid_Toler_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.uiGrid_Toler_Num.ThousandsSeparator = true;
-            this.uiGrid_Toler_Num.Value = new decimal(new int[] {
-            105,
-            0,
-            0,
-            131072});
-            // 
-            // uiGrid_Toler_TxtBx
-            // 
-            this.uiGrid_Toler_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.uiGrid_Toler_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
-            this.uiGrid_Toler_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiGrid_Toler_TxtBx.Location = new System.Drawing.Point(3, 203);
-            this.uiGrid_Toler_TxtBx.Name = "uiGrid_Toler_TxtBx";
-            this.uiGrid_Toler_TxtBx.ReadOnly = true;
-            this.uiGrid_Toler_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiGrid_Toler_TxtBx.Size = new System.Drawing.Size(193, 20);
-            this.uiGrid_Toler_TxtBx.TabIndex = 33;
-            this.uiGrid_Toler_TxtBx.Text = "Comparer tolerance:";
-            // 
-            // uiGrid_Comp_ComBx
-            // 
-            this.uiGrid_Comp_ComBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiGrid_Comp_ComBx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.uiGrid_Comp_ComBx.FormattingEnabled = true;
-            this.uiGrid_Comp_ComBx.Location = new System.Drawing.Point(202, 178);
-            this.uiGrid_Comp_ComBx.Name = "uiGrid_Comp_ComBx";
-            this.uiGrid_Comp_ComBx.Size = new System.Drawing.Size(193, 21);
-            this.uiGrid_Comp_ComBx.TabIndex = 32;
-            // 
-            // uiGrid_Comp_TxtBx
-            // 
-            this.uiGrid_Comp_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.uiGrid_Comp_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
-            this.uiGrid_Comp_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiGrid_Comp_TxtBx.Location = new System.Drawing.Point(3, 178);
-            this.uiGrid_Comp_TxtBx.Name = "uiGrid_Comp_TxtBx";
-            this.uiGrid_Comp_TxtBx.ReadOnly = true;
-            this.uiGrid_Comp_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiGrid_Comp_TxtBx.Size = new System.Drawing.Size(193, 20);
-            this.uiGrid_Comp_TxtBx.TabIndex = 31;
-            this.uiGrid_Comp_TxtBx.Text = "Comparer of max/min blocks:";
-            // 
-            // uiGrid_CstTol_TxtBx
-            // 
-            this.uiGrid_CstTol_TxtBx.BackColor = System.Drawing.SystemColors.Control;
-            this.ui_Grid_TbLay.SetColumnSpan(this.uiGrid_CstTol_TxtBx, 2);
-            this.uiGrid_CstTol_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiGrid_CstTol_TxtBx.Enabled = false;
-            this.uiGrid_CstTol_TxtBx.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.uiGrid_CstTol_TxtBx.Location = new System.Drawing.Point(3, 153);
-            this.uiGrid_CstTol_TxtBx.Name = "uiGrid_CstTol_TxtBx";
-            this.uiGrid_CstTol_TxtBx.ReadOnly = true;
-            this.uiGrid_CstTol_TxtBx.Size = new System.Drawing.Size(392, 20);
-            this.uiGrid_CstTol_TxtBx.TabIndex = 30;
-            this.uiGrid_CstTol_TxtBx.Text = "Custom-Tolerance";
             // 
             // uiGrid_CstDiff_TxtBx
             // 
@@ -319,7 +205,6 @@
             this.ui_TbLay.ResumeLayout(false);
             this.ui_Grid_TbLay.ResumeLayout(false);
             this.ui_Grid_TbLay.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.uiGrid_Toler_Num)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -333,13 +218,6 @@
         private System.Windows.Forms.TextBox uiGrid_DiffMode_TxtBx;
         private System.Windows.Forms.ComboBox uiGrid_DiffMode_ComBx;
         private System.Windows.Forms.TextBox uiGrid_Power_TxtBx;
-        private System.Windows.Forms.TextBox uiGrid_CstTol_TxtBx;
         private System.Windows.Forms.TextBox uiGrid_CstDiff_TxtBx;
-        private System.Windows.Forms.ComboBox uiGrid_Comp_ComBx;
-        private System.Windows.Forms.TextBox uiGrid_Comp_TxtBx;
-        private System.Windows.Forms.NumericUpDown uiGrid_Toler_Num;
-        private System.Windows.Forms.TextBox uiGrid_Toler_TxtBx;
-        private System.Windows.Forms.ComboBox uiGrid_Finish_ComBx;
-        private System.Windows.Forms.TextBox uiGrid_Finish_TxtBx;
     }
 }
