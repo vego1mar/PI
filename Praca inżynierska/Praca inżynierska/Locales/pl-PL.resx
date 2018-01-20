@@ -898,4 +898,16 @@
   <data name="Enums_MeanTypes_Tolerance" xml:space="preserve">
     <value>tolerancyjna</value>
   </data>
+  <data name="Localization_Enums_GeometricMeanVariant_Absolute" xml:space="preserve">
+    <value>wartość bezwzględna</value>
+  </data>
+  <data name="Localization_Enums_GeometricMeanVariant_Offset" xml:space="preserve">
+    <value>przesunięcie</value>
+  </data>
+  <data name="Localization_Enums_GeometricMeanVariant_Parity" xml:space="preserve">
+    <value>parzystość</value>
+  </data>
+  <data name="Localization_Enums_GeometricMeanVariant_Sign" xml:space="preserve">
+    <value>znak</value>
+  </data>
 </root>

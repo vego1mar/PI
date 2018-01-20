@@ -1,5 +1,6 @@
-﻿using PI.src.general;
+﻿using PI.src.enumerators;
 using PI.src.helpers;
+using PI.src.localization.enums;
 using PI.src.parameters;
 using System;
 using System.Windows.Forms;
@@ -8,81 +9,53 @@ namespace PI
 {
     public partial class MeansSettings : Form
     {
-        public MeansParameters MeansParams { get; private set; }
+        public MeansParameters MeansParams { get; private set; } = new MeansParameters();
 
         public MeansSettings()
         {
             InitializeComponent();
-            InitializeProperties();
-            LocalizeWindow();
-            UpdateUiByDefaultSettings();
-        }
-
-        private void InitializeProperties()
-        {
-            MeansParams = new MeansParameters();
-        }
-
-        private void LocalizeWindow()
-        {
-            LocalizeForm();
             LocalizeUi();
+            UpdateUiBySettings();
         }
 
-        private void UpdateUiByDefaultSettings()
+        // TODO: provide full settings
+        public void UpdateUiBySettings()
         {
-            UiControls.TrySetValue( uiGrid_PowRank_Num, MeansParams.Generalized.Rank );
+            UiControls.TrySetSelectedIndex( uiGrid_GeoVar_ComBx, (int) MeansParams.Geometric.Variant );
         }
 
-        private void Ui_Ok_Click( object sender, EventArgs e )
+        // TODO: provide full saving
+        private void SaveSettings()
         {
-            SaveAllSettings();
+            MeansParams.Geometric.Variant = (GeometricMeanVariant) UiControls.TryGetSelectedIndex( uiGrid_GeoVar_ComBx );
         }
 
-        private void SaveAllSettings()
+        // TODO: provide proper localization
+        private void LocalizeUi()
         {
-            MeansParams.Generalized.Rank = UiControls.TryGetValue<int>( uiGrid_PowRank_Num );
+            // Form
+            Text = Translator.GetInstance().Strings.MeansSettings.Form.Text.GetString();
+
+            // Ui
+            uiGrid_Geo_TxtBx.Text = "Geometric";
+            uiGrid_GeoVar_TxtBx.Text = "Variant:";
+            EnumsLocalizer.Localize( LocalizableEnumerator.GeometricMeanVariant, uiGrid_GeoVar_ComBx );
+
+            ui_Ok_Btn.Text = "OK";
         }
 
-        public void SetPowerMeanRank( int value )
+        #region Event handlers
+
+        private void OnOkClick( object sender, EventArgs e )
         {
-            if ( SeriesAssist.IsChartAcceptable( value ) ) {
-                MeansParams.Generalized.Rank = value;
-            }
-
-            UiControls.TrySetValue( uiGrid_PowRank_Num, MeansParams.Generalized.Rank );
+            SaveSettings();
         }
 
-        public void SetCustomToleranceMeanTolerance( double value )
-        {
-            MeansParams.Tolerance.Tolerance = value;
-        }
-
-        private void MeansSettings_FormClosing( object sender, FormClosingEventArgs e )
+        private void OnFormClosing( object sender, FormClosingEventArgs e )
         {
             Dispose();
         }
 
-        private void LocalizeForm()
-        {
-            Text = Translator.GetInstance().Strings.MeansSettings.Form.Text.GetString();
-        }
-
-        private void LocalizeUi()
-        {
-            LocalizePowerMean();
-            LocalizeCustomTolerance();
-        }
-
-        private void LocalizePowerMean()
-        {
-            uiGrid_Power_TxtBx.Text = Translator.GetInstance().Strings.MeansSettings.Ui.Power.Power.GetString();
-            uiGrid_PowRank_TxtBx.Text = Translator.GetInstance().Strings.MeansSettings.Ui.Power.PowRank.GetString();
-        }
-
-        private void LocalizeCustomTolerance()
-        {
-            ui_Ok_Btn.Text = Translator.GetInstance().Strings.MeansSettings.Ui.CustomTolerance.Ok.GetString();
-        }
+        #endregion
     }
 }

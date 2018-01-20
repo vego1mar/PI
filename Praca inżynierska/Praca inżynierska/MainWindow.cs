@@ -628,6 +628,7 @@ namespace PI
         {
             using ( var dialog = new MeansSettings() ) {
                 ProvideMeansSettings( dialog );
+                dialog.UpdateUiBySettings();
                 UiControls.TryShowDialog( dialog, this );
 
                 if ( dialog.DialogResult == DialogResult.OK ) {
@@ -638,13 +639,23 @@ namespace PI
 
         private void ProvideMeansSettings( MeansSettings dialog )
         {
-            dialog.SetPowerMeanRank( DataChart.MeansParams.Generalized.Rank );
-            dialog.SetCustomToleranceMeanTolerance( DataChart.MeansParams.Tolerance.Tolerance );
+            dialog.MeansParams.AGM = DataChart.MeansParams.AGM;
+            dialog.MeansParams.Generalized = DataChart.MeansParams.Generalized;
+            dialog.MeansParams.Geometric = DataChart.MeansParams.Geometric;
+            dialog.MeansParams.Harmonic = DataChart.MeansParams.Harmonic;
+            dialog.MeansParams.Heronian = DataChart.MeansParams.Heronian;
+            dialog.MeansParams.Moving = DataChart.MeansParams.Moving;
+            dialog.MeansParams.Tolerance = DataChart.MeansParams.Tolerance;
         }
 
         private void GrabMeansSettings( MeansSettings dialog )
         {
+            DataChart.MeansParams.AGM = dialog.MeansParams.AGM;
             DataChart.MeansParams.Generalized = dialog.MeansParams.Generalized;
+            DataChart.MeansParams.Geometric = dialog.MeansParams.Geometric;
+            DataChart.MeansParams.Harmonic = dialog.MeansParams.Harmonic;
+            DataChart.MeansParams.Heronian = dialog.MeansParams.Heronian;
+            DataChart.MeansParams.Moving = dialog.MeansParams.Moving;
             DataChart.MeansParams.Tolerance = dialog.MeansParams.Tolerance;
         }
 

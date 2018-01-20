@@ -898,4 +898,16 @@
   <data name="MainWindow_Panel_Generate_StandardDeviation1" xml:space="preserve">
     <value>Standard deviation:</value>
   </data>
+  <data name="Localization_Enums_GeometricMeanVariant_Absolute" xml:space="preserve">
+    <value>absolute</value>
+  </data>
+  <data name="Localization_Enums_GeometricMeanVariant_Offset" xml:space="preserve">
+    <value>offset</value>
+  </data>
+  <data name="Localization_Enums_GeometricMeanVariant_Parity" xml:space="preserve">
+    <value>parity</value>
+  </data>
+  <data name="Localization_Enums_GeometricMeanVariant_Sign" xml:space="preserve">
+    <value>sign</value>
+  </data>
 </root>

@@ -1141,6 +1141,42 @@ namespace PI.Locales {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to wartość bezwzględna.
+        /// </summary>
+        internal static string Localization_Enums_GeometricMeanVariant_Absolute {
+            get {
+                return ResourceManager.GetString("Localization_Enums_GeometricMeanVariant_Absolute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to przesunięcie.
+        /// </summary>
+        internal static string Localization_Enums_GeometricMeanVariant_Offset {
+            get {
+                return ResourceManager.GetString("Localization_Enums_GeometricMeanVariant_Offset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to parzystość.
+        /// </summary>
+        internal static string Localization_Enums_GeometricMeanVariant_Parity {
+            get {
+                return ResourceManager.GetString("Localization_Enums_GeometricMeanVariant_Parity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to znak.
+        /// </summary>
+        internal static string Localization_Enums_GeometricMeanVariant_Sign {
+            get {
+                return ResourceManager.GetString("Localization_Enums_GeometricMeanVariant_Sign", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wykres.
         /// </summary>
         internal static string MainWindow_Menu_Chart {

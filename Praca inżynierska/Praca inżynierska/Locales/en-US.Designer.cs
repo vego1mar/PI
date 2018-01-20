@@ -1141,6 +1141,42 @@ namespace PI.Locales {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to absolute.
+        /// </summary>
+        internal static string Localization_Enums_GeometricMeanVariant_Absolute {
+            get {
+                return ResourceManager.GetString("Localization_Enums_GeometricMeanVariant_Absolute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to offset.
+        /// </summary>
+        internal static string Localization_Enums_GeometricMeanVariant_Offset {
+            get {
+                return ResourceManager.GetString("Localization_Enums_GeometricMeanVariant_Offset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to parity.
+        /// </summary>
+        internal static string Localization_Enums_GeometricMeanVariant_Parity {
+            get {
+                return ResourceManager.GetString("Localization_Enums_GeometricMeanVariant_Parity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sign.
+        /// </summary>
+        internal static string Localization_Enums_GeometricMeanVariant_Sign {
+            get {
+                return ResourceManager.GetString("Localization_Enums_GeometricMeanVariant_Sign", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Chart.
         /// </summary>
         internal static string MainWindow_Menu_Chart {

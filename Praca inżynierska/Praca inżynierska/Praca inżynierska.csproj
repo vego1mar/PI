@@ -101,6 +101,7 @@
     <Compile Include="src\general\Mathematics.cs" />
     <Compile Include="src\general\NoiseMaker.cs" />
     <Compile Include="src\general\SeriesAssist.cs" />
+    <Compile Include="src\localization\enums\GeometricMeanVariantStrings.cs" />
     <Compile Include="src\settings\ChartAreaSettings.cs" />
     <Compile Include="src\settings\ChartCommonSettings.cs" />
     <Compile Include="src\settings\CurvesSettings.cs" />
@@ -123,10 +124,10 @@
     <Compile Include="src\messages\MainWindowMessages.cs" />
     <Compile Include="src\messages\PatternCurveDefinerMessages.cs" />
     <Compile Include="src\messages\StatisticalAnalysisMessages.cs" />
-    <Compile Include="src\localization\EnumsLocalizer.cs" />
+    <Compile Include="src\localization\enums\EnumsLocalizer.cs" />
     <Compile Include="src\localization\LanguageHelper.cs" />
     <Compile Include="src\enumerators\Languages.cs" />
-    <Compile Include="src\localization\LocalizableEnumerator.cs" />
+    <Compile Include="src\localization\enums\LocalizableEnumerator.cs" />
     <Compile Include="Locales\en-US.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
