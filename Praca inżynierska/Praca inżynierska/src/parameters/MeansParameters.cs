@@ -9,8 +9,8 @@ namespace PI.src.parameters
         public GeometricMeanSettings Heronian { get; set; } = new GeometricMeanSettings();
         public SimpleMeanSettings Harmonic { get; set; } = new SimpleMeanSettings();
         public GeneralizedMeanSettings Generalized { get; set; } = new GeneralizedMeanSettings();
-        public MovingAverageSettings Moving { get; set; } = new MovingAverageSettings();
         public ToleranceMeanSettings Tolerance { get; set; } = new ToleranceMeanSettings();
+        public CentralMeanSettings Central { get; set; } = new CentralMeanSettings();
 
         public class GeometricMeanSettings
         {
@@ -27,15 +27,16 @@ namespace PI.src.parameters
             public int Rank { get; set; } = 2;
         }
 
-        public class MovingAverageSettings
-        {
-            public MovingAverageType Type { get; set; } = MovingAverageType.Simple;
-        }
-
         public class ToleranceMeanSettings
         {
             public double Tolerance { get; set; } = 1.05;
             public MeanType Finisher { get; set; } = MeanType.Harmonic;
+        }
+
+        public class CentralMeanSettings
+        {
+            public int IntervalDivisions { get; set; } = 100;
+            public short MassPercent { get; set; } = 50;
         }
     }
 }

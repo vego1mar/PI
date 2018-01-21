@@ -267,8 +267,9 @@ namespace PI
                                 Heronian,
                                 Harmonic,
                                 Generalized,
-                                Moving,
-                                Tolerance
+                                SMA,
+                                Tolerance,
+                                Central
                             };
                         }
                     }
@@ -282,8 +283,9 @@ namespace PI
                     public LocalizedString Heronian { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Heronian" ); } }
                     public LocalizedString Harmonic { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Harmonic" ); } }
                     public LocalizedString Generalized { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Generalized" ); } }
-                    public LocalizedString Moving { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Moving" ); } }
+                    public LocalizedString SMA { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_SMA" ); } }
                     public LocalizedString Tolerance { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Tolerance" ); } }
+                    public LocalizedString Central { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Central" ); } }
 
                     public IEnumerator<LocalizedString> GetEnumerator()
                     {

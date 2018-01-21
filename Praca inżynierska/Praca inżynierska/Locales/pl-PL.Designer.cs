@@ -628,6 +628,15 @@ namespace PI.Locales {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to centrum.
+        /// </summary>
+        internal static string Enums_MeanTypes_Central {
+            get {
+                return ResourceManager.GetString("Enums_MeanTypes_Central", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to uogólniona.
         /// </summary>
         internal static string Enums_MeanTypes_Generalized {
@@ -691,11 +700,11 @@ namespace PI.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to krocząca.
+        ///   Looks up a localized string similar to SMA.
         /// </summary>
-        internal static string Enums_MeanTypes_Moving {
+        internal static string Enums_MeanTypes_SMA {
             get {
-                return ResourceManager.GetString("Enums_MeanTypes_Moving", resourceCulture);
+                return ResourceManager.GetString("Enums_MeanTypes_SMA", resourceCulture);
             }
         }
         

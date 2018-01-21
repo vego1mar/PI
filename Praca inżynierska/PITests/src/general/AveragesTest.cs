@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PI.src.averaging;
 using PI.src.enumerators;
 using PI.src.general;
 using PI.src.parameters;
@@ -189,7 +190,7 @@ namespace PITests.src.general
         }
 
         [TestMethod]
-        public void Moving()
+        public void SMA()
         {
             // given
             IList<double> list1 = new List<double>() { 1, 2, 1, 2, 3, 4, 5, 2, 2, 1, 1 };
@@ -202,10 +203,10 @@ namespace PITests.src.general
             IList<double> expected4 = new List<double>() { EXPECTED1, EXPECTED2, expected3 };
 
             // when
-            double result1 = Averages.Moving( list1, MovingAverageType.Simple ).Value;
-            double result2 = Averages.Moving( list2, MovingAverageType.Simple ).Value;
-            double result3 = Averages.Moving( list3, MovingAverageType.Simple ).Value;
-            IList<double> result4 = Averages.Moving( list4, MovingAverageType.Simple );
+            double result1 = Averages.SMA( list1 ).Value;
+            double result2 = Averages.SMA( list2 ).Value;
+            double result3 = Averages.SMA( list3 ).Value;
+            IList<double> result4 = Averages.SMA( list4 );
 
             // then
             Assert.AreEqual( EXPECTED1, result1, Assertions.IBM_FLOAT_SURROUNDING );

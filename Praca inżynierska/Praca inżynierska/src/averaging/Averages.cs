@@ -1,10 +1,11 @@
 ﻿using PI.src.enumerators;
+using PI.src.general;
 using PI.src.parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PI.src.general
+namespace PI.src.averaging
 {
     public static partial class Averages
     {
@@ -123,20 +124,13 @@ namespace PI.src.general
             return null;
         }
 
-        public static double? Moving( IList<double> set, MovingAverageType type )
+        public static double? SMA( IList<double> set )
         {
             if ( set == null || set.Count == 0 ) {
                 return null;
             }
 
-            switch ( type ) {
-            case MovingAverageType.Simple:
-                return MovingOfSimple( set );
-            case MovingAverageType.Exponential:
-                return MovingOfExponential( set );
-            }
-
-            return null;
+            return MovingOfSimple( set );
         }
 
         public static double? Tolerance( IList<double> set, double classifier, MeanType finisher = MeanType.Harmonic, MeansParameters @params = null )
@@ -178,11 +172,41 @@ namespace PI.src.general
                 return Harmonic( acceptables, @params.Harmonic.Variant );
             case MeanType.Generalized:
                 return Generalized( acceptables, @params.Generalized.Variant, @params.Generalized.Rank );
-            case MeanType.Moving:
-                return Moving( acceptables, @params.Moving.Type );
+            case MeanType.SMA:
+                return SMA( acceptables );
+            case MeanType.Central:
+                return Central( acceptables, @params.Central.IntervalDivisions, @params.Central.MassPercent );
             }
 
             return null;
+        }
+
+        public static double? Central( IList<double> set, int intervalDivisions = 10, short massPercent = 50 )
+        {
+            if ( set == null || set.Count == 0 || intervalDivisions <= 0 || massPercent < 10 || massPercent > 90 ) {
+                return null;
+            }
+
+            IList<IList<double>> classified = Lists.GetSortedIntoHistogram( set, intervalDivisions );
+            int indicesNo = (int) (massPercent * 0.01 * set.Count);
+            IList<double> mass = new List<double>();
+            int i = 1;
+
+            while ( i < indicesNo ) {
+                if ( indicesNo - i < 0 || indicesNo + i >= set.Count ) {
+                    break;
+                }
+
+                Lists.Concat( mass, classified[indicesNo - i] );
+                Lists.Concat( mass, classified[indicesNo + i] );
+                i += 2;
+            }
+
+            if ( mass.Count == 0 ) {
+                return Median( set );
+            }
+
+            return Harmonic( mass, StandardMeanVariants.Offset );
         }
 
         public static IList<double> Median( IList<IList<double>> orderedSet )
@@ -320,7 +344,7 @@ namespace PI.src.general
             return means;
         }
 
-        public static IList<double> Moving( IList<IList<double>> orderedSet, MovingAverageType type )
+        public static IList<double> SMA( IList<IList<double>> orderedSet )
         {
             if ( orderedSet == null || orderedSet.Count == 0 ) {
                 return new List<double>().AsReadOnly();
@@ -329,7 +353,7 @@ namespace PI.src.general
             IList<double> movingAverages = new List<double>();
 
             for ( int x = 0; x < orderedSet.Count; x++ ) {
-                movingAverages.Add( Moving( orderedSet[x], type ).Value );
+                movingAverages.Add( SMA( orderedSet[x] ).Value );
             }
 
             return movingAverages;
@@ -350,6 +374,21 @@ namespace PI.src.general
             }
 
             return tolerants;
+        }
+
+        public static IList<double> Central( IList<IList<double>> orderedSet, int intervalDivisions = 10, short massPercent = 50 )
+        {
+            if ( orderedSet == null || orderedSet.Count == 0 ) {
+                return new List<double>().AsReadOnly();
+            }
+
+            IList<double> centrals = new List<double>();
+
+            for ( int x = 0; x < orderedSet.Count; x++ ) {
+                centrals.Add( Central( orderedSet[x], intervalDivisions, massPercent ).Value );
+            }
+
+            return centrals;
         }
     }
 }

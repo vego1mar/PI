@@ -892,8 +892,8 @@
   <data name="Enums_MeanTypes_Geometric" xml:space="preserve">
     <value>geometryczna</value>
   </data>
-  <data name="Enums_MeanTypes_Moving" xml:space="preserve">
-    <value>krocząca</value>
+  <data name="Enums_MeanTypes_SMA" xml:space="preserve">
+    <value>SMA</value>
   </data>
   <data name="Enums_MeanTypes_Tolerance" xml:space="preserve">
     <value>tolerancyjna</value>
@@ -909,5 +909,8 @@
   </data>
   <data name="Localization_Enums_GeometricMeanVariant_Sign" xml:space="preserve">
     <value>znak</value>
+  </data>
+  <data name="Enums_MeanTypes_Central" xml:space="preserve">
+    <value>centrum</value>
   </data>
 </root>

@@ -136,8 +136,8 @@
   <data name="Enums_MeanTypes_Tolerance" xml:space="preserve">
     <value>tolerance</value>
   </data>
-  <data name="Enums_MeanTypes_Moving" xml:space="preserve">
-    <value>moving</value>
+  <data name="Enums_MeanTypes_SMA" xml:space="preserve">
+    <value>SMA</value>
   </data>
   <data name="Enums_MeanTypes_Geometric" xml:space="preserve">
     <value>geometric</value>
@@ -909,5 +909,8 @@
   </data>
   <data name="Localization_Enums_GeometricMeanVariant_Sign" xml:space="preserve">
     <value>sign</value>
+  </data>
+  <data name="Enums_MeanTypes_Central" xml:space="preserve">
+    <value>central</value>
   </data>
 </root>

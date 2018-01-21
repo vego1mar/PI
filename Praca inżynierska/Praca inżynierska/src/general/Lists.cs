@@ -49,6 +49,45 @@ namespace PI.src.general
             return source.OrderBy( v => v ).ToList();
         }
 
+        public static IList<IList<double>> GetSortedIntoHistogram( IList<double> source, int intervalDivisionsNo )
+        {
+            if ( source == null || intervalDivisionsNo <= 0 ) {
+                return new List<IList<double>>().AsReadOnly();
+            }
+
+            double max = source.Max();
+            double min = source.Min();
+            double intervalLength = (max - min) / intervalDivisionsNo;
+            double leftLimit = min - 1.0;
+            double rightLimit = min + intervalLength;
+            IList<IList<double>> resultSet = Get<double>( intervalDivisionsNo, 0 );
+
+            for ( int i = 0; i < intervalDivisionsNo; i++ ) {
+                foreach ( double value in source ) {
+                    if ( value > leftLimit && value <= rightLimit ) {
+                        resultSet[i].Add( value );
+                    }
+                }
+
+                resultSet[i].OrderBy( v => v ).ToList();
+                leftLimit = rightLimit;
+                rightLimit = leftLimit + intervalLength;
+            }
+
+            return resultSet;
+        }
+
+        public static void Concat<T>( IList<T> target, IList<T> source )
+        {
+            if ( target == null || source == null ) {
+                return;
+            }
+
+            foreach ( T value in source ) {
+                target.Add( value );
+            }
+        }
+
         public static double Sum( IList<double> source )
         {
             if ( source == null || source.Count == 0 ) {

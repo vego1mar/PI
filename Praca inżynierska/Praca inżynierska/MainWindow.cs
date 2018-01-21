@@ -644,7 +644,6 @@ namespace PI
             dialog.MeansParams.Geometric = DataChart.MeansParams.Geometric;
             dialog.MeansParams.Harmonic = DataChart.MeansParams.Harmonic;
             dialog.MeansParams.Heronian = DataChart.MeansParams.Heronian;
-            dialog.MeansParams.Moving = DataChart.MeansParams.Moving;
             dialog.MeansParams.Tolerance = DataChart.MeansParams.Tolerance;
         }
 
@@ -655,7 +654,6 @@ namespace PI
             DataChart.MeansParams.Geometric = dialog.MeansParams.Geometric;
             DataChart.MeansParams.Harmonic = dialog.MeansParams.Harmonic;
             DataChart.MeansParams.Heronian = dialog.MeansParams.Heronian;
-            DataChart.MeansParams.Moving = dialog.MeansParams.Moving;
             DataChart.MeansParams.Tolerance = dialog.MeansParams.Tolerance;
         }
 

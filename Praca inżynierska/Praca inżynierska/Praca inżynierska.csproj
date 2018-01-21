@@ -91,10 +91,9 @@
     <Compile Include="src\enumerators\DataSetCurveType.cs" />
     <Compile Include="src\enumerators\GeometricMeanVariant.cs" />
     <Compile Include="src\enumerators\IdealCurveScaffold.cs" />
-    <Compile Include="src\enumerators\MovingAverageType.cs" />
     <Compile Include="src\enumerators\StandardMeanVariants.cs" />
     <Compile Include="src\enumerators\MeanType.cs" />
-    <Compile Include="src\general\Averages.cs" />
+    <Compile Include="src\averaging\Averages.cs" />
     <Compile Include="src\general\ChartAssist.cs" />
     <Compile Include="src\general\CurveMaker.cs" />
     <Compile Include="src\general\Lists.cs" />
@@ -232,7 +231,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="src\general\Averages.Auxiliary.cs" />
+    <Compile Include="src\averaging\Averages.Auxiliary.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

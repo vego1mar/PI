@@ -11,7 +11,8 @@
         Heronian = 6,
         Harmonic = 7,
         Generalized = 8,
-        Moving = 9,
-        Tolerance = 10
+        SMA = 9,
+        Tolerance = 10,
+        Central = 11
     }
 }

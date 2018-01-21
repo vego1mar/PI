@@ -6,6 +6,7 @@ using log4net;
 using System.Reflection;
 using PI.src.enumerators;
 using PI.src.parameters;
+using PI.src.averaging;
 
 namespace PI
 {
@@ -181,11 +182,14 @@ namespace PI
                 case MeanType.Generalized:
                     result = Averages.Generalized( orderedSetOfCurves, MeansParams.Generalized.Variant, MeansParams.Generalized.Rank );
                     break;
-                case MeanType.Moving:
-                    result = Averages.Moving( orderedSetOfCurves, MeansParams.Moving.Type );
+                case MeanType.SMA:
+                    result = Averages.SMA( orderedSetOfCurves );
                     break;
                 case MeanType.Tolerance:
                     result = Averages.Tolerance( orderedSetOfCurves, MeansParams.Tolerance.Tolerance, MeansParams.Tolerance.Finisher );
+                    break;
+                case MeanType.Central:
+                    result = Averages.Central( orderedSetOfCurves, MeansParams.Central.IntervalDivisions, MeansParams.Central.MassPercent );
                     break;
                 }
             }
