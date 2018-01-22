@@ -269,7 +269,8 @@ namespace PI
                                 Generalized,
                                 SMA,
                                 Tolerance,
-                                Central
+                                Central,
+                                NN
                             };
                         }
                     }
@@ -286,6 +287,7 @@ namespace PI
                     public LocalizedString SMA { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_SMA" ); } }
                     public LocalizedString Tolerance { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Tolerance" ); } }
                     public LocalizedString Central { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Central" ); } }
+                    public LocalizedString NN { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_NN" ); } }
 
                     public IEnumerator<LocalizedString> GetEnumerator()
                     {

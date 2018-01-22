@@ -88,6 +88,7 @@
     <Compile Include="ChartSettings.Designer.cs">
       <DependentUpon>ChartSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\averaging\Smoothers.cs" />
     <Compile Include="src\enumerators\DataSetCurveType.cs" />
     <Compile Include="src\enumerators\GeometricMeanVariant.cs" />
     <Compile Include="src\enumerators\IdealCurveScaffold.cs" />

@@ -913,4 +913,7 @@
   <data name="Enums_MeanTypes_Central" xml:space="preserve">
     <value>centrum</value>
   </data>
+  <data name="Enums_MeanTypes_NN" xml:space="preserve">
+    <value>NN</value>
+  </data>
 </root>

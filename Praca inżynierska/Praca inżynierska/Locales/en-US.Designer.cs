@@ -700,6 +700,15 @@ namespace PI.Locales {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to NN.
+        /// </summary>
+        internal static string Enums_MeanTypes_NN {
+            get {
+                return ResourceManager.GetString("Enums_MeanTypes_NN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SMA.
         /// </summary>
         internal static string Enums_MeanTypes_SMA {

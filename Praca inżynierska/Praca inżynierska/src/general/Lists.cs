@@ -15,11 +15,22 @@ namespace PI.src.general
             IList<IList<T>> list = new List<IList<T>>();
 
             for ( int i = 0; i < xLength; i++ ) {
-                list.Add( new List<T>() );
+                list.Add( Get( yLength, initialValue ) );
+            }
 
-                for ( int j = 0; j < yLength; j++ ) {
-                    list[i].Add( initialValue );
-                }
+            return list;
+        }
+
+        public static IList<T> Get<T>( int length, T initialValue = default( T ) )
+        {
+            if ( length < 0 ) {
+                return new List<T>().AsReadOnly();
+            }
+
+            IList<T> list = new List<T>();
+
+            for ( int i = 0; i < length; i++ ) {
+                list.Add( initialValue );
             }
 
             return list;
@@ -31,10 +42,34 @@ namespace PI.src.general
                 return new List<T>().AsReadOnly();
             }
 
+            return GetCopy( source, source.Count );
+        }
+
+        public static IList<T> GetCopy<T>( IList<T> source, int itemsNo )
+        {
+            if ( source == null || itemsNo <= 0 ) {
+                return new List<T>().AsReadOnly();
+            }
+
             IList<T> copy = new List<T>();
 
-            foreach ( T item in source ) {
-                copy.Add( item );
+            for ( int i = 0; i < itemsNo; i++ ) {
+                copy.Add( source[i] );
+            }
+
+            return copy;
+        }
+
+        public static IList<T> GetCopyConcatenated<T>( IList<IList<T>> source, int startIndex, int endIndex )
+        {
+            if ( source == null || startIndex < 0 || endIndex <= 0 ) {
+                return new List<T>().AsReadOnly();
+            }
+
+            IList<T> copy = new List<T>();
+
+            for ( int i = startIndex; i < endIndex; i++ ) {
+                Concat( copy, source[i] );
             }
 
             return copy;
@@ -69,7 +104,7 @@ namespace PI.src.general
                     }
                 }
 
-                resultSet[i].OrderBy( v => v ).ToList();
+                resultSet[i] = resultSet[i].OrderBy( v => v ).ToList();
                 leftLimit = rightLimit;
                 rightLimit = leftLimit + intervalLength;
             }
@@ -85,6 +120,18 @@ namespace PI.src.general
 
             foreach ( T value in source ) {
                 target.Add( value );
+            }
+        }
+
+        public static void Concat<T>( IList<IList<T>> target, IList<IList<T>> source )
+        {
+            if ( target == null || source == null ) {
+                return;
+            }
+
+            foreach ( var list in source ) {
+                target.Add( new List<T>() );
+                Concat( target[target.Count - 1], list );
             }
         }
 

@@ -11,6 +11,41 @@ namespace PITests.src.general
     public class List
     {
         [TestMethod]
+        public void Get()
+        {
+            // given
+            int x1 = 11;
+            int y1 = 20;
+            short initial1 = 66;
+
+            // when
+            IList<IList<short>> result1 = Lists.Get( x1, y1, initial1 );
+
+            // then
+            Assert.IsTrue( result1.Count == x1 );
+            foreach ( var item in result1 ) { Assert.IsTrue( item.Count == y1 ); }
+        }
+
+        [TestMethod]
+        public void GetCopy()
+        {
+            // given
+            IList<short> set1 = new List<short>() { -1, 0, 1 };
+            IList<short> set2 = new List<short>() { 1, 11, 111, -111, -11, -1, 0 };
+            int items2 = 6;
+
+            // when
+            IList<short> copy1 = Lists.GetCopy( set1 );
+            IList<short> copy2 = Lists.GetCopy( set2, items2 );
+
+            // then
+            Assert.IsTrue( copy1.Count == set1.Count );
+            Assert.IsTrue( copy2.Count == items2 );
+            Assertions.SameValues( copy1, set1 );
+            Assertions.SameValues( copy2, new List<short>() { 1, 11, 111, -111, -11, -1 } );
+        }
+
+        [TestMethod]
         public void GetSorted()
         {
             // given
@@ -58,13 +93,27 @@ namespace PITests.src.general
             IList<double> target = new List<double>();
             IList<double> expected = new List<double>() { 0, 3, 4, 5, 1, 2 };
 
+            IList<IList<double>> set4 = new List<IList<double>>() { set1, set2, set3 };
+            int targetLength4 = 3;
+            int targetCounts4 = 10;
+            IList<IList<double>> target4 = Lists.Get<double>( targetLength4, targetCounts4 );
+
             // when
             Lists.Concat( target, set1 );
             Lists.Concat( target, set3 );
             Lists.Concat( target, set2 );
 
+            Lists.Concat( target4, set4 );
+
             // then
             Assertions.SameValues( target, expected );
+
+            Assert.IsTrue( target4.Count == targetLength4 + set4.Count );
+            for ( int i = 0; i < targetLength4; i++ ) { Assert.IsTrue( target4[i].Count == targetCounts4 ); }
+            Assert.IsTrue( target4[targetLength4].Count == set1.Count );
+            Assert.IsTrue( target4[targetLength4 + 1].Count == set2.Count );
+            Assert.IsTrue( target4[targetLength4 + 2].Count == set3.Count );
+            for ( int i = 0; i < set4.Count; i++ ) { Assertions.SameValues( set4[i], target4[i + targetLength4] ); }
         }
 
         [TestMethod]

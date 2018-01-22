@@ -13,6 +13,7 @@
         Generalized = 8,
         SMA = 9,
         Tolerance = 10,
-        Central = 11
+        Central = 11,
+        NN = 12
     }
 }

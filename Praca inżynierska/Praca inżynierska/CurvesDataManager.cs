@@ -191,6 +191,9 @@ namespace PI
                 case MeanType.Central:
                     result = Averages.Central( orderedSetOfCurves, MeansParams.Central.IntervalDivisions, MeansParams.Central.MassPercent );
                     break;
+                case MeanType.NN:
+                    result = Smoothers.NearestNeighbors( orderedSetOfCurves, 8 );
+                    break;
                 }
             }
             catch ( ArgumentOutOfRangeException ex ) {
