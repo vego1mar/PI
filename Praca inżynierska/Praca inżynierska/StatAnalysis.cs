@@ -11,6 +11,7 @@ using PI.src.general;
 using PI.src.enumerators;
 using log4net;
 using System.Reflection;
+using PI.src.localization.enums;
 
 namespace PI
 {
@@ -130,7 +131,7 @@ namespace PI
         {
             List<string> peekColumns = GetDataGridColumnsNames( PhenomenonIndex.Peek );
             List<string> deformColumns = GetDataGridColumnsNames( PhenomenonIndex.Deformation );
-            List<string> meanNames = GetLocalizedMeanTypes().ToList();
+            IList<string> meanNames = new MeanTypesStrings().ToList();
 
             for ( int i = 0; i < meanNames.Count; i++ ) {
                 uiLPeek_Grid.Rows.Add();
@@ -638,7 +639,7 @@ namespace PI
             UiControls.TrySetSelectedIndex( uiRChartDown_CrvT_ComBx, (int) DataSetCurveType.Ideal );
             AddLocalizedPhenomenonsIndices( uiRChartDown_Phen_ComBx );
             UiControls.TrySetSelectedIndex( uiRChartDown_Phen_ComBx, (int) PhenomenonIndex.Peek );
-            Translator.AddLocalizedMeanTypes( uiRChartDown_MeanT_ComBx );
+            EnumsLocalizer.Localize( LocalizableEnumerator.MeanType, uiRChartDown_MeanT_ComBx );
             UiControls.TrySetSelectedIndex( uiRChartDown_MeanT_ComBx, (int) MeanType.Tolerance );
             uiRChartDown_DtSet_Btn.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.DtSet.GetString();
             uiRFormulaDown_CrvsNo2_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.NotApplicable.GetString();
@@ -653,17 +654,6 @@ namespace PI
             uiRChartUp_Surr_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.Noise.GetString();
             uiRChartUp_MeanT_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.MeanT.GetString();
             uiRChartUp_DtSet_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.DtSetSel.GetString();
-        }
-
-        private IList<string> GetLocalizedMeanTypes()
-        {
-            List<string> meanTypes = new List<string>();
-
-            foreach ( var item in Translator.GetInstance().Strings.Enums.MeanTypes ) {
-                meanTypes.Add( item.GetString() );
-            }
-
-            return meanTypes;
         }
 
         private void AddLocalizedPhenomenonsIndices<T>( T control ) where T : ComboBox

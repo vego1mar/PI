@@ -64,7 +64,13 @@ namespace PI.src.averaging
                 previousGM = nextGM;
             }
 
-            return Convert.ToDouble( Strings.GetCommon( nextAM, nextGM ), CultureInfo.InvariantCulture );
+            string result = Strings.GetCommon( nextAM, nextGM );
+
+            if ( string.IsNullOrEmpty( result ) || result.Equals( "-" ) ) {
+                return (nextAM + nextGM) / 2.0;
+            }
+
+            return Convert.ToDouble( result, CultureInfo.InvariantCulture );
         }
 
         private static double? HarmonicOfStraight( IList<double> set )

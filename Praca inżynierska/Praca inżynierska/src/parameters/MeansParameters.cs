@@ -11,6 +11,7 @@ namespace PI.src.parameters
         public GeneralizedMeanSettings Generalized { get; set; } = new GeneralizedMeanSettings();
         public ToleranceMeanSettings Tolerance { get; set; } = new ToleranceMeanSettings();
         public CentralMeanSettings Central { get; set; } = new CentralMeanSettings();
+        public NearestNeighborsSettings NN { get; set; } = new NearestNeighborsSettings();
 
         public class GeometricMeanSettings
         {
@@ -37,6 +38,11 @@ namespace PI.src.parameters
         {
             public int IntervalDivisions { get; set; } = 100;
             public short MassPercent { get; set; } = 50;
+        }
+
+        public class NearestNeighborsSettings
+        {
+            public int Amount { get; set; } = 8;
         }
     }
 }

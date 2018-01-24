@@ -502,87 +502,6 @@ namespace PI.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to mediana.
-        /// </summary>
-        internal static string Enums_CustomDifferentialMeanMode_Mediana {
-            get {
-                return ResourceManager.GetString("Enums_CustomDifferentialMeanMode_Mediana", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to sum.
-        /// </summary>
-        internal static string Enums_CustomDifferentialMeanMode_Sum {
-            get {
-                return ResourceManager.GetString("Enums_CustomDifferentialMeanMode_Sum", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to arithmetic mean.
-        /// </summary>
-        internal static string Enums_CustomToleranceComparerType_ArithmeticMean {
-            get {
-                return ResourceManager.GetString("Enums_CustomToleranceComparerType_ArithmeticMean", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to mediana.
-        /// </summary>
-        internal static string Enums_CustomToleranceComparerType_Mediana {
-            get {
-                return ResourceManager.GetString("Enums_CustomToleranceComparerType_Mediana", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to arithmetic mean.
-        /// </summary>
-        internal static string Enums_CustomToleranceFinisherFunctions_ArithmeticMean {
-            get {
-                return ResourceManager.GetString("Enums_CustomToleranceFinisherFunctions_ArithmeticMean", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to geometric mean.
-        /// </summary>
-        internal static string Enums_CustomToleranceFinisherFunctions_GeometricMean {
-            get {
-                return ResourceManager.GetString("Enums_CustomToleranceFinisherFunctions_GeometricMean", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to maximum.
-        /// </summary>
-        internal static string Enums_CustomToleranceFinisherFunctions_Maximum {
-            get {
-                return ResourceManager.GetString("Enums_CustomToleranceFinisherFunctions_Maximum", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to mediana.
-        /// </summary>
-        internal static string Enums_CustomToleranceFinisherFunctions_Mediana {
-            get {
-                return ResourceManager.GetString("Enums_CustomToleranceFinisherFunctions_Mediana", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to minimum.
-        /// </summary>
-        internal static string Enums_CustomToleranceFinisherFunctions_Minimum {
-            get {
-                return ResourceManager.GetString("Enums_CustomToleranceFinisherFunctions_Minimum", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to average.
         /// </summary>
         internal static string Enums_DataSetCurvesTypes_Average {
@@ -606,123 +525,6 @@ namespace PI.Locales {
         internal static string Enums_DataSetCurvesTypes_Modified {
             get {
                 return ResourceManager.GetString("Enums_DataSetCurvesTypes_Modified", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to AGM.
-        /// </summary>
-        internal static string Enums_MeanTypes_AGM {
-            get {
-                return ResourceManager.GetString("Enums_MeanTypes_AGM", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to arithmetic.
-        /// </summary>
-        internal static string Enums_MeanTypes_Arithmetic {
-            get {
-                return ResourceManager.GetString("Enums_MeanTypes_Arithmetic", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to central.
-        /// </summary>
-        internal static string Enums_MeanTypes_Central {
-            get {
-                return ResourceManager.GetString("Enums_MeanTypes_Central", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to generalized.
-        /// </summary>
-        internal static string Enums_MeanTypes_Generalized {
-            get {
-                return ResourceManager.GetString("Enums_MeanTypes_Generalized", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to geometric.
-        /// </summary>
-        internal static string Enums_MeanTypes_Geometric {
-            get {
-                return ResourceManager.GetString("Enums_MeanTypes_Geometric", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to harmonic.
-        /// </summary>
-        internal static string Enums_MeanTypes_Harmonic {
-            get {
-                return ResourceManager.GetString("Enums_MeanTypes_Harmonic", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Heronian.
-        /// </summary>
-        internal static string Enums_MeanTypes_Heronian {
-            get {
-                return ResourceManager.GetString("Enums_MeanTypes_Heronian", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to maximum.
-        /// </summary>
-        internal static string Enums_MeanTypes_Maximum {
-            get {
-                return ResourceManager.GetString("Enums_MeanTypes_Maximum", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to median.
-        /// </summary>
-        internal static string Enums_MeanTypes_Median {
-            get {
-                return ResourceManager.GetString("Enums_MeanTypes_Median", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to minimum.
-        /// </summary>
-        internal static string Enums_MeanTypes_Minimum {
-            get {
-                return ResourceManager.GetString("Enums_MeanTypes_Minimum", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to NN.
-        /// </summary>
-        internal static string Enums_MeanTypes_NN {
-            get {
-                return ResourceManager.GetString("Enums_MeanTypes_NN", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to SMA.
-        /// </summary>
-        internal static string Enums_MeanTypes_SMA {
-            get {
-                return ResourceManager.GetString("Enums_MeanTypes_SMA", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to tolerance.
-        /// </summary>
-        internal static string Enums_MeanTypes_Tolerance {
-            get {
-                return ResourceManager.GetString("Enums_MeanTypes_Tolerance", resourceCulture);
             }
         }
         
@@ -1191,6 +993,312 @@ namespace PI.Locales {
         internal static string Localization_Enums_GeometricMeanVariant_Sign {
             get {
                 return ResourceManager.GetString("Localization_Enums_GeometricMeanVariant_Sign", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AGM.
+        /// </summary>
+        internal static string Localization_Enums_MeanType_AGM {
+            get {
+                return ResourceManager.GetString("Localization_Enums_MeanType_AGM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to arithmetic.
+        /// </summary>
+        internal static string Localization_Enums_MeanType_Arithmetic {
+            get {
+                return ResourceManager.GetString("Localization_Enums_MeanType_Arithmetic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to central.
+        /// </summary>
+        internal static string Localization_Enums_MeanType_Central {
+            get {
+                return ResourceManager.GetString("Localization_Enums_MeanType_Central", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to generalized.
+        /// </summary>
+        internal static string Localization_Enums_MeanType_Generalized {
+            get {
+                return ResourceManager.GetString("Localization_Enums_MeanType_Generalized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to geometric.
+        /// </summary>
+        internal static string Localization_Enums_MeanType_Geometric {
+            get {
+                return ResourceManager.GetString("Localization_Enums_MeanType_Geometric", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to harmonic.
+        /// </summary>
+        internal static string Localization_Enums_MeanType_Harmonic {
+            get {
+                return ResourceManager.GetString("Localization_Enums_MeanType_Harmonic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Heronian.
+        /// </summary>
+        internal static string Localization_Enums_MeanType_Heronian {
+            get {
+                return ResourceManager.GetString("Localization_Enums_MeanType_Heronian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to maximum.
+        /// </summary>
+        internal static string Localization_Enums_MeanType_Maximum {
+            get {
+                return ResourceManager.GetString("Localization_Enums_MeanType_Maximum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to median.
+        /// </summary>
+        internal static string Localization_Enums_MeanType_Median {
+            get {
+                return ResourceManager.GetString("Localization_Enums_MeanType_Median", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to minimum.
+        /// </summary>
+        internal static string Localization_Enums_MeanType_Minimum {
+            get {
+                return ResourceManager.GetString("Localization_Enums_MeanType_Minimum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NN.
+        /// </summary>
+        internal static string Localization_Enums_MeanType_NN {
+            get {
+                return ResourceManager.GetString("Localization_Enums_MeanType_NN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SMA.
+        /// </summary>
+        internal static string Localization_Enums_MeanType_SMA {
+            get {
+                return ResourceManager.GetString("Localization_Enums_MeanType_SMA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tolerance.
+        /// </summary>
+        internal static string Localization_Enums_MeanType_Tolerance {
+            get {
+                return ResourceManager.GetString("Localization_Enums_MeanType_Tolerance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to offset.
+        /// </summary>
+        internal static string Localization_Enums_StandardMeanVariant_Offset {
+            get {
+                return ResourceManager.GetString("Localization_Enums_StandardMeanVariant_Offset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to straight.
+        /// </summary>
+        internal static string Localization_Enums_StandardMeanVariant_Straight {
+            get {
+                return ResourceManager.GetString("Localization_Enums_StandardMeanVariant_Straight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Means settings.
+        /// </summary>
+        internal static string Localization_Window_MeansSettings_Form_Text {
+            get {
+                return ResourceManager.GetString("Localization_Window_MeansSettings_Form_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Arithmetic-geometric mean (AGM).
+        /// </summary>
+        internal static string Localization_Window_MeansSettings_Ui_AGM {
+            get {
+                return ResourceManager.GetString("Localization_Window_MeansSettings_Ui_AGM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Amount:.
+        /// </summary>
+        internal static string Localization_Window_MeansSettings_Ui_Amount {
+            get {
+                return ResourceManager.GetString("Localization_Window_MeansSettings_Ui_Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Central method.
+        /// </summary>
+        internal static string Localization_Window_MeansSettings_Ui_Central {
+            get {
+                return ResourceManager.GetString("Localization_Window_MeansSettings_Ui_Central", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finisher function:.
+        /// </summary>
+        internal static string Localization_Window_MeansSettings_Ui_FinisherFunction {
+            get {
+                return ResourceManager.GetString("Localization_Window_MeansSettings_Ui_FinisherFunction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generalized (power) mean.
+        /// </summary>
+        internal static string Localization_Window_MeansSettings_Ui_Generalized {
+            get {
+                return ResourceManager.GetString("Localization_Window_MeansSettings_Ui_Generalized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geometric mean.
+        /// </summary>
+        internal static string Localization_Window_MeansSettings_Ui_Geometric {
+            get {
+                return ResourceManager.GetString("Localization_Window_MeansSettings_Ui_Geometric", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Harmonic mean.
+        /// </summary>
+        internal static string Localization_Window_MeansSettings_Ui_Harmonic {
+            get {
+                return ResourceManager.GetString("Localization_Window_MeansSettings_Ui_Harmonic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Heronian mean.
+        /// </summary>
+        internal static string Localization_Window_MeansSettings_Ui_Heronian {
+            get {
+                return ResourceManager.GetString("Localization_Window_MeansSettings_Ui_Heronian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Interval divisions:.
+        /// </summary>
+        internal static string Localization_Window_MeansSettings_Ui_IntervalDivisions {
+            get {
+                return ResourceManager.GetString("Localization_Window_MeansSettings_Ui_IntervalDivisions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mass percent:.
+        /// </summary>
+        internal static string Localization_Window_MeansSettings_Ui_MassPercent {
+            get {
+                return ResourceManager.GetString("Localization_Window_MeansSettings_Ui_MassPercent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nearest Neighbors smoothing.
+        /// </summary>
+        internal static string Localization_Window_MeansSettings_Ui_NN {
+            get {
+                return ResourceManager.GetString("Localization_Window_MeansSettings_Ui_NN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string Localization_Window_MeansSettings_Ui_OK {
+            get {
+                return ResourceManager.GetString("Localization_Window_MeansSettings_Ui_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rank:.
+        /// </summary>
+        internal static string Localization_Window_MeansSettings_Ui_Rank {
+            get {
+                return ResourceManager.GetString("Localization_Window_MeansSettings_Ui_Rank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tolerance method.
+        /// </summary>
+        internal static string Localization_Window_MeansSettings_Ui_ToleranceHeader {
+            get {
+                return ResourceManager.GetString("Localization_Window_MeansSettings_Ui_ToleranceHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tolerance:.
+        /// </summary>
+        internal static string Localization_Window_MeansSettings_Ui_ToleranceText {
+            get {
+                return ResourceManager.GetString("Localization_Window_MeansSettings_Ui_ToleranceText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Variant:.
+        /// </summary>
+        internal static string Localization_Window_MeansSettings_Ui_Variant {
+            get {
+                return ResourceManager.GetString("Localization_Window_MeansSettings_Ui_Variant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not supported mean type.
+        /// </summary>
+        internal static string Localization_Window_MeansSettings_WarningNotSupportedFinisherFunction_Caption {
+            get {
+                return ResourceManager.GetString("Localization_Window_MeansSettings_WarningNotSupportedFinisherFunction_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The chosen mean type is not allowed for this averaging method..
+        /// </summary>
+        internal static string Localization_Window_MeansSettings_WarningNotSupportedFinisherFunction_Text {
+            get {
+                return ResourceManager.GetString("Localization_Window_MeansSettings_WarningNotSupportedFinisherFunction_Text", resourceCulture);
             }
         }
         
@@ -1668,96 +1776,6 @@ namespace PI.Locales {
         internal static string MainWindow_Ui_Form_Text {
             get {
                 return ResourceManager.GetString("MainWindow_Ui_Form_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Means settings.
-        /// </summary>
-        internal static string MeansSettings_Form_Text {
-            get {
-                return ResourceManager.GetString("MeansSettings_Form_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Custom-differential.
-        /// </summary>
-        internal static string MeansSettings_Ui_CustomDifferential_CustomDifferential {
-            get {
-                return ResourceManager.GetString("MeansSettings_Ui_CustomDifferential_CustomDifferential", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Workmode:.
-        /// </summary>
-        internal static string MeansSettings_Ui_CustomDifferential_DifferentialWorkMode {
-            get {
-                return ResourceManager.GetString("MeansSettings_Ui_CustomDifferential_DifferentialWorkMode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Comparer of MIN/MAX blocks:.
-        /// </summary>
-        internal static string MeansSettings_Ui_CustomTolerance_Comparer {
-            get {
-                return ResourceManager.GetString("MeansSettings_Ui_CustomTolerance_Comparer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Custom-tolerance.
-        /// </summary>
-        internal static string MeansSettings_Ui_CustomTolerance_CustomTolerance {
-            get {
-                return ResourceManager.GetString("MeansSettings_Ui_CustomTolerance_CustomTolerance", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Finisher function:.
-        /// </summary>
-        internal static string MeansSettings_Ui_CustomTolerance_FinisherFunction {
-            get {
-                return ResourceManager.GetString("MeansSettings_Ui_CustomTolerance_FinisherFunction", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to OK.
-        /// </summary>
-        internal static string MeansSettings_Ui_CustomTolerance_OK {
-            get {
-                return ResourceManager.GetString("MeansSettings_Ui_CustomTolerance_OK", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Comparer tolerance:.
-        /// </summary>
-        internal static string MeansSettings_Ui_CustomTolerance_Tolerance {
-            get {
-                return ResourceManager.GetString("MeansSettings_Ui_CustomTolerance_Tolerance", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Power mean.
-        /// </summary>
-        internal static string MeansSettings_Ui_Power_Power {
-            get {
-                return ResourceManager.GetString("MeansSettings_Ui_Power_Power", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Rank k:.
-        /// </summary>
-        internal static string MeansSettings_Ui_Power_PowRank {
-            get {
-                return ResourceManager.GetString("MeansSettings_Ui_Power_PowRank", resourceCulture);
             }
         }
         

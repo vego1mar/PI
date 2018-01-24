@@ -10,6 +10,7 @@ using PI.src.general;
 using log4net;
 using System.Reflection;
 using PI.src.enumerators;
+using PI.src.localization.enums;
 
 namespace PI
 {
@@ -627,34 +628,14 @@ namespace PI
         private void UiMenuMeans_Settings_Click( object sender, EventArgs e )
         {
             using ( var dialog = new MeansSettings() ) {
-                ProvideMeansSettings( dialog );
+                dialog.MeansParams = DataChart.MeansParams;
                 dialog.UpdateUiBySettings();
                 UiControls.TryShowDialog( dialog, this );
 
                 if ( dialog.DialogResult == DialogResult.OK ) {
-                    GrabMeansSettings( dialog );
+                    DataChart.MeansParams = dialog.MeansParams;
                 }
             }
-        }
-
-        private void ProvideMeansSettings( MeansSettings dialog )
-        {
-            dialog.MeansParams.AGM = DataChart.MeansParams.AGM;
-            dialog.MeansParams.Generalized = DataChart.MeansParams.Generalized;
-            dialog.MeansParams.Geometric = DataChart.MeansParams.Geometric;
-            dialog.MeansParams.Harmonic = DataChart.MeansParams.Harmonic;
-            dialog.MeansParams.Heronian = DataChart.MeansParams.Heronian;
-            dialog.MeansParams.Tolerance = DataChart.MeansParams.Tolerance;
-        }
-
-        private void GrabMeansSettings( MeansSettings dialog )
-        {
-            DataChart.MeansParams.AGM = dialog.MeansParams.AGM;
-            DataChart.MeansParams.Generalized = dialog.MeansParams.Generalized;
-            DataChart.MeansParams.Geometric = dialog.MeansParams.Geometric;
-            DataChart.MeansParams.Harmonic = dialog.MeansParams.Harmonic;
-            DataChart.MeansParams.Heronian = dialog.MeansParams.Heronian;
-            DataChart.MeansParams.Tolerance = dialog.MeansParams.Tolerance;
         }
 
         private void UiMenuChart_Settings_Click( object sender, EventArgs e )
@@ -946,7 +927,7 @@ namespace PI
             uiPnlGen_Avg_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.Avg.GetString();
             uiPnlGen_MeanT_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.MeanT.GetString();
             uiPnlGen_Crvs2No_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.Crvs2No.GetString();
-            Translator.AddLocalizedMeanTypes( uiPnlGen_MeanT_ComBx );
+            EnumsLocalizer.Localize( LocalizableEnumerator.MeanType, uiPnlGen_MeanT_ComBx );
             RefreshControlToLocalize( uiPnlGen_Crvs2No_Nm );
             uiPnlGen_StdDev1_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.StdDev1.GetString();
             uiPnlGen_Apply_Btn.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.Apply.GetString();

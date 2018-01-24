@@ -102,6 +102,12 @@
     <Compile Include="src\general\NoiseMaker.cs" />
     <Compile Include="src\general\SeriesAssist.cs" />
     <Compile Include="src\localization\enums\GeometricMeanVariantStrings.cs" />
+    <Compile Include="src\localization\enums\MeanTypeStrings.cs" />
+    <Compile Include="src\localization\enums\StandardMeanVariantStrings.cs" />
+    <Compile Include="src\localization\messages\MeansSettingsTexts.cs" />
+    <Compile Include="src\localization\messages\Messages.cs" />
+    <Compile Include="src\localization\windows\MeansSettingsStrings.cs" />
+    <Compile Include="src\messages\MeansSettingsMessages.cs" />
     <Compile Include="src\settings\ChartAreaSettings.cs" />
     <Compile Include="src\settings\ChartCommonSettings.cs" />
     <Compile Include="src\settings\CurvesSettings.cs" />
@@ -138,10 +144,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>pl-PL.resx</DependentUpon>
     </Compile>
-    <Compile Include="MeansSettings.cs">
+    <Compile Include="src\windows\MeansSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MeansSettings.Designer.cs">
+    <Compile Include="src\windows\MeansSettings.Designer.cs">
       <DependentUpon>MeansSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="src\messages\Messages.cs" />
@@ -199,7 +205,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>pl-PL.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="MeansSettings.resx">
+    <EmbeddedResource Include="src\windows\MeansSettings.resx">
       <DependentUpon>MeansSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PatternCurveDefiner.resx">

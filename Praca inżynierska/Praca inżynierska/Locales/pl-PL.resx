@@ -126,26 +126,26 @@
   <data name="Enums_DataSetCurvesTypes_Ideal" xml:space="preserve">
     <value>idealna</value>
   </data>
-  <data name="Enums_MeanTypes_AGM" xml:space="preserve">
+  <data name="Localization_Enums_MeanType_AGM" xml:space="preserve">
     <value>AGM</value>
     <comment>Średnia arytmetyczno-geometryczna</comment>
   </data>
-  <data name="Enums_MeanTypes_Arithmetic" xml:space="preserve">
+  <data name="Localization_Enums_MeanType_Arithmetic" xml:space="preserve">
     <value>arytmetyczna</value>
   </data>
-  <data name="Enums_MeanTypes_Harmonic" xml:space="preserve">
+  <data name="Localization_Enums_MeanType_Harmonic" xml:space="preserve">
     <value>harmoniczna</value>
   </data>
-  <data name="Enums_MeanTypes_Heronian" xml:space="preserve">
+  <data name="Localization_Enums_MeanType_Heronian" xml:space="preserve">
     <value>Herona</value>
   </data>
-  <data name="Enums_MeanTypes_Maximum" xml:space="preserve">
+  <data name="Localization_Enums_MeanType_Maximum" xml:space="preserve">
     <value>maksimum</value>
   </data>
-  <data name="Enums_MeanTypes_Median" xml:space="preserve">
+  <data name="Localization_Enums_MeanType_Median" xml:space="preserve">
     <value>mediana</value>
   </data>
-  <data name="Enums_MeanTypes_Minimum" xml:space="preserve">
+  <data name="Localization_Enums_MeanType_Minimum" xml:space="preserve">
     <value>minimum</value>
   </data>
   <data name="LangSelector_Languages_English" xml:space="preserve">
@@ -784,62 +784,8 @@
   <data name="Enums_ApplyToCurve_Pattern" xml:space="preserve">
     <value>wzorcowa</value>
   </data>
-  <data name="Enums_CustomDifferentialMeanMode_Mediana" xml:space="preserve">
-    <value>mediana</value>
-  </data>
-  <data name="Enums_CustomDifferentialMeanMode_Sum" xml:space="preserve">
-    <value>suma</value>
-  </data>
-  <data name="Enums_CustomToleranceComparerType_ArithmeticMean" xml:space="preserve">
-    <value>średnia arytmetyczna</value>
-  </data>
-  <data name="Enums_CustomToleranceComparerType_Mediana" xml:space="preserve">
-    <value>mediana</value>
-  </data>
-  <data name="Enums_CustomToleranceFinisherFunctions_ArithmeticMean" xml:space="preserve">
-    <value>średnia arytmetyczna</value>
-  </data>
-  <data name="Enums_CustomToleranceFinisherFunctions_GeometricMean" xml:space="preserve">
-    <value>średnia geometryczna</value>
-  </data>
-  <data name="Enums_CustomToleranceFinisherFunctions_Maximum" xml:space="preserve">
-    <value>maksimum</value>
-  </data>
-  <data name="Enums_CustomToleranceFinisherFunctions_Mediana" xml:space="preserve">
-    <value>mediana</value>
-  </data>
-  <data name="Enums_CustomToleranceFinisherFunctions_Minimum" xml:space="preserve">
-    <value>minimum</value>
-  </data>
-  <data name="MeansSettings_Form_Text" xml:space="preserve">
+  <data name="Localization_Window_MeansSettings_Form_Text" xml:space="preserve">
     <value>Ustawienia średnich</value>
-  </data>
-  <data name="MeansSettings_Ui_CustomDifferential_CustomDifferential" xml:space="preserve">
-    <value>Własna-różnicowa</value>
-  </data>
-  <data name="MeansSettings_Ui_CustomDifferential_DifferentialWorkMode" xml:space="preserve">
-    <value>Tryb pracy:</value>
-  </data>
-  <data name="MeansSettings_Ui_CustomTolerance_Comparer" xml:space="preserve">
-    <value>Komparator bloków MIN/MAX:</value>
-  </data>
-  <data name="MeansSettings_Ui_CustomTolerance_CustomTolerance" xml:space="preserve">
-    <value>Własna-tolerująca</value>
-  </data>
-  <data name="MeansSettings_Ui_CustomTolerance_FinisherFunction" xml:space="preserve">
-    <value>Funkcja kończąca:</value>
-  </data>
-  <data name="MeansSettings_Ui_CustomTolerance_OK" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="MeansSettings_Ui_CustomTolerance_Tolerance" xml:space="preserve">
-    <value>Tolerancja komparatora:</value>
-  </data>
-  <data name="MeansSettings_Ui_Power_Power" xml:space="preserve">
-    <value>Średnia potęgowa</value>
-  </data>
-  <data name="MeansSettings_Ui_Power_PowRank" xml:space="preserve">
-    <value>Rząd k:</value>
   </data>
   <data name="MessageBoxShower_General_OutOfMemoryExceptionStop_Caption" xml:space="preserve">
     <value>Błąd alokacji pamięci</value>
@@ -886,16 +832,16 @@
   <data name="MainWindow_Panel_Generate_StandardDeviation1" xml:space="preserve">
     <value>Odch. standardowe:</value>
   </data>
-  <data name="Enums_MeanTypes_Generalized" xml:space="preserve">
+  <data name="Localization_Enums_MeanType_Generalized" xml:space="preserve">
     <value>uogólniona</value>
   </data>
-  <data name="Enums_MeanTypes_Geometric" xml:space="preserve">
+  <data name="Localization_Enums_MeanType_Geometric" xml:space="preserve">
     <value>geometryczna</value>
   </data>
-  <data name="Enums_MeanTypes_SMA" xml:space="preserve">
+  <data name="Localization_Enums_MeanType_SMA" xml:space="preserve">
     <value>SMA</value>
   </data>
-  <data name="Enums_MeanTypes_Tolerance" xml:space="preserve">
+  <data name="Localization_Enums_MeanType_Tolerance" xml:space="preserve">
     <value>tolerancyjna</value>
   </data>
   <data name="Localization_Enums_GeometricMeanVariant_Absolute" xml:space="preserve">
@@ -910,10 +856,70 @@
   <data name="Localization_Enums_GeometricMeanVariant_Sign" xml:space="preserve">
     <value>znak</value>
   </data>
-  <data name="Enums_MeanTypes_Central" xml:space="preserve">
+  <data name="Localization_Enums_MeanType_Central" xml:space="preserve">
     <value>centrum</value>
   </data>
-  <data name="Enums_MeanTypes_NN" xml:space="preserve">
+  <data name="Localization_Enums_MeanType_NN" xml:space="preserve">
     <value>NN</value>
+  </data>
+  <data name="Localization_Enums_StandardMeanVariant_Offset" xml:space="preserve">
+    <value>przesunięcie</value>
+  </data>
+  <data name="Localization_Enums_StandardMeanVariant_Straight" xml:space="preserve">
+    <value>definicja</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_Ui_AGM" xml:space="preserve">
+    <value>Średnia arytmetyczno-geometryczna (AGM)</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_Ui_Amount" xml:space="preserve">
+    <value>Ilość:</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_Ui_Central" xml:space="preserve">
+    <value>Metoda centrum</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_Ui_FinisherFunction" xml:space="preserve">
+    <value>Funkcja kończąca:</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_Ui_Generalized" xml:space="preserve">
+    <value>Uogólniona średnia (potęgowa)</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_Ui_Geometric" xml:space="preserve">
+    <value>Średnia geometryczna</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_Ui_Harmonic" xml:space="preserve">
+    <value>Średnia harmoniczna</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_Ui_Heronian" xml:space="preserve">
+    <value>Średnia Herona</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_Ui_IntervalDivisions" xml:space="preserve">
+    <value>Podziały przedziału:</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_Ui_MassPercent" xml:space="preserve">
+    <value>Procent masy:</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_Ui_NN" xml:space="preserve">
+    <value>Wygładzanie najbliższymi sąsiadami (NN)</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_Ui_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_Ui_Rank" xml:space="preserve">
+    <value>Rząd:</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_Ui_ToleranceHeader" xml:space="preserve">
+    <value>Metoda tolerancyjna</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_Ui_ToleranceText" xml:space="preserve">
+    <value>Tolerancja:</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_Ui_Variant" xml:space="preserve">
+    <value>Wariant:</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_WarningNotSupportedFinisherFunction_Caption" xml:space="preserve">
+    <value>Niewspierany typ średniej</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_WarningNotSupportedFinisherFunction_Text" xml:space="preserve">
+    <value>Wybrany typ średniej nie jest dozwolony dla tej metody uśredniania.</value>
   </data>
 </root>

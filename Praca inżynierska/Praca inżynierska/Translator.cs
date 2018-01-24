@@ -102,7 +102,6 @@ namespace PI
             public StatAnalysisStrings StatAnalysis { get; private set; } = new StatAnalysisStrings();
             public AvgInfoStrings AvgInfo { get; private set; } = new AvgInfoStrings();
             public PatternCurveDefinerStrings PatternCurveDefiner { get; private set; } = new PatternCurveDefinerStrings();
-            public MeansSettingsStrings MeansSettings { get; private set; } = new MeansSettingsStrings();
             public ChartSettingsStrings ChartSettings { get; private set; } = new ChartSettingsStrings();
 
             public class LangSelectorStrings
@@ -242,7 +241,6 @@ namespace PI
 
             public class EnumsStrings
             {
-                public MeanTypesStrings MeanTypes { get; private set; } = new MeanTypesStrings();
                 public LanguagesStrings Languages { get; private set; } = new LanguagesStrings();
                 public DataSetCurveTypeStrings DataSetCurveTypes { get; private set; } = new DataSetCurveTypeStrings();
                 public OperationsStrings Operations { get; private set; } = new OperationsStrings();
@@ -252,54 +250,6 @@ namespace PI
                 public CustomToleranceComparerTypeStrings CustomToleranceComparerTypes { get; private set; } = new CustomToleranceComparerTypeStrings();
                 public CustomToleranceFinisherFunctionsStrings CustomToleranceFinisherFunctions { get; private set; } = new CustomToleranceFinisherFunctionsStrings();
                 public ApplyToCurveStrings ApplyToCurve { get; private set; } = new ApplyToCurveStrings();
-
-                public class MeanTypesStrings : IEnumerable<LocalizedString>
-                {
-                    private List<LocalizedString> MeanTypes {
-                        get {
-                            return new List<LocalizedString>() {
-                                Median,
-                                Maximum,
-                                Minimum,
-                                Arithmetic,
-                                Geometric,
-                                AGM,
-                                Heronian,
-                                Harmonic,
-                                Generalized,
-                                SMA,
-                                Tolerance,
-                                Central,
-                                NN
-                            };
-                        }
-                    }
-
-                    public LocalizedString Median { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Median" ); } }
-                    public LocalizedString Maximum { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Maximum" ); } }
-                    public LocalizedString Minimum { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Minimum" ); } }
-                    public LocalizedString Arithmetic { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Arithmetic" ); } }
-                    public LocalizedString Geometric { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Geometric" ); } }
-                    public LocalizedString AGM { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_AGM" ); } }
-                    public LocalizedString Heronian { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Heronian" ); } }
-                    public LocalizedString Harmonic { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Harmonic" ); } }
-                    public LocalizedString Generalized { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Generalized" ); } }
-                    public LocalizedString SMA { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_SMA" ); } }
-                    public LocalizedString Tolerance { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Tolerance" ); } }
-                    public LocalizedString Central { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_Central" ); } }
-                    public LocalizedString NN { get { return new LocalizedString( CurrentLanguage, "Enums_MeanTypes_NN" ); } }
-
-                    public IEnumerator<LocalizedString> GetEnumerator()
-                    {
-                        return MeanTypes.GetEnumerator();
-                    }
-
-                    IEnumerator IEnumerable.GetEnumerator()
-                    {
-                        return GetEnumerator();
-                    }
-
-                }
 
                 public class LanguagesStrings : IEnumerable<LocalizedString>
                 {
@@ -1047,47 +997,6 @@ namespace PI
 
             }
 
-            public class MeansSettingsStrings
-            {
-                public MsFormStrings Form { get; private set; } = new MsFormStrings();
-                public MsUiStrings Ui { get; private set; } = new MsUiStrings();
-
-                public class MsFormStrings
-                {
-                    public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Form_Text" ); } }
-                }
-
-                public class MsUiStrings
-                {
-                    public MsUiPowerStrings Power { get; private set; } = new MsUiPowerStrings();
-                    public MsUiCustomDifferentialStrings CustomDifferential { get; private set; } = new MsUiCustomDifferentialStrings();
-                    public MsUiCustomToleranceStrings CustomTolerance { get; private set; } = new MsUiCustomToleranceStrings();
-
-                    public class MsUiPowerStrings
-                    {
-                        public LocalizedString Power { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_Power_Power" ); } }
-                        public LocalizedString PowRank { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_Power_PowRank" ); } }
-                    }
-
-                    public class MsUiCustomDifferentialStrings
-                    {
-                        public LocalizedString CstDiff { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_CustomDifferential_CustomDifferential" ); } }
-                        public LocalizedString DiffMode { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_CustomDifferential_DifferentialWorkMode" ); } }
-                    }
-
-                    public class MsUiCustomToleranceStrings
-                    {
-                        public LocalizedString CstTol { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_CustomTolerance_CustomTolerance" ); } }
-                        public LocalizedString Comp { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_CustomTolerance_Comparer" ); } }
-                        public LocalizedString Toler { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_CustomTolerance_Tolerance" ); } }
-                        public LocalizedString Finish { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_CustomTolerance_FinisherFunction" ); } }
-                        public LocalizedString Ok { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_CustomTolerance_OK" ); } }
-                    }
-
-                }
-
-            }
-
             public class ChartSettingsStrings
             {
                 public CsFormStrings Form { get; private set; } = new CsFormStrings();
@@ -1138,17 +1047,6 @@ namespace PI
 
             }
 
-        }
-
-        public static void AddLocalizedMeanTypes<T>( T control, bool clearAtStart = true ) where T : ComboBox
-        {
-            if ( clearAtStart ) {
-                control.Items.Clear();
-            }
-
-            foreach ( var item in GetInstance().Strings.Enums.MeanTypes ) {
-                control.Items.Add( item.GetString() );
-            }
         }
 
         public static void AddLocalizedDataSetCurveTypes<T>( T control, bool clearAtStart = true ) where T : ComboBox

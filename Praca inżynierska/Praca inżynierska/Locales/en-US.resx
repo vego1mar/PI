@@ -126,38 +126,38 @@
   <data name="Enums_DataSetCurvesTypes_Ideal" xml:space="preserve">
     <value>ideal</value>
   </data>
-  <data name="Enums_MeanTypes_AGM" xml:space="preserve">
+  <data name="Localization_Enums_MeanType_AGM" xml:space="preserve">
     <value>AGM</value>
     <comment>Arithmetic-geometric mean</comment>
   </data>
-  <data name="Enums_MeanTypes_Arithmetic" xml:space="preserve">
+  <data name="Localization_Enums_MeanType_Arithmetic" xml:space="preserve">
     <value>arithmetic</value>
   </data>
-  <data name="Enums_MeanTypes_Tolerance" xml:space="preserve">
+  <data name="Localization_Enums_MeanType_Tolerance" xml:space="preserve">
     <value>tolerance</value>
   </data>
-  <data name="Enums_MeanTypes_SMA" xml:space="preserve">
+  <data name="Localization_Enums_MeanType_SMA" xml:space="preserve">
     <value>SMA</value>
   </data>
-  <data name="Enums_MeanTypes_Geometric" xml:space="preserve">
+  <data name="Localization_Enums_MeanType_Geometric" xml:space="preserve">
     <value>geometric</value>
   </data>
-  <data name="Enums_MeanTypes_Harmonic" xml:space="preserve">
+  <data name="Localization_Enums_MeanType_Harmonic" xml:space="preserve">
     <value>harmonic</value>
   </data>
-  <data name="Enums_MeanTypes_Heronian" xml:space="preserve">
+  <data name="Localization_Enums_MeanType_Heronian" xml:space="preserve">
     <value>Heronian</value>
   </data>
-  <data name="Enums_MeanTypes_Maximum" xml:space="preserve">
+  <data name="Localization_Enums_MeanType_Maximum" xml:space="preserve">
     <value>maximum</value>
   </data>
-  <data name="Enums_MeanTypes_Median" xml:space="preserve">
+  <data name="Localization_Enums_MeanType_Median" xml:space="preserve">
     <value>median</value>
   </data>
-  <data name="Enums_MeanTypes_Minimum" xml:space="preserve">
+  <data name="Localization_Enums_MeanType_Minimum" xml:space="preserve">
     <value>minimum</value>
   </data>
-  <data name="Enums_MeanTypes_Generalized" xml:space="preserve">
+  <data name="Localization_Enums_MeanType_Generalized" xml:space="preserve">
     <value>generalized</value>
   </data>
   <data name="LangSelector_Languages_English" xml:space="preserve">
@@ -796,62 +796,8 @@
   <data name="Enums_ApplyToCurve_Pattern" xml:space="preserve">
     <value>pattern</value>
   </data>
-  <data name="Enums_CustomDifferentialMeanMode_Mediana" xml:space="preserve">
-    <value>mediana</value>
-  </data>
-  <data name="Enums_CustomDifferentialMeanMode_Sum" xml:space="preserve">
-    <value>sum</value>
-  </data>
-  <data name="Enums_CustomToleranceComparerType_ArithmeticMean" xml:space="preserve">
-    <value>arithmetic mean</value>
-  </data>
-  <data name="Enums_CustomToleranceComparerType_Mediana" xml:space="preserve">
-    <value>mediana</value>
-  </data>
-  <data name="Enums_CustomToleranceFinisherFunctions_ArithmeticMean" xml:space="preserve">
-    <value>arithmetic mean</value>
-  </data>
-  <data name="Enums_CustomToleranceFinisherFunctions_GeometricMean" xml:space="preserve">
-    <value>geometric mean</value>
-  </data>
-  <data name="Enums_CustomToleranceFinisherFunctions_Maximum" xml:space="preserve">
-    <value>maximum</value>
-  </data>
-  <data name="Enums_CustomToleranceFinisherFunctions_Mediana" xml:space="preserve">
-    <value>mediana</value>
-  </data>
-  <data name="Enums_CustomToleranceFinisherFunctions_Minimum" xml:space="preserve">
-    <value>minimum</value>
-  </data>
-  <data name="MeansSettings_Form_Text" xml:space="preserve">
+  <data name="Localization_Window_MeansSettings_Form_Text" xml:space="preserve">
     <value>Means settings</value>
-  </data>
-  <data name="MeansSettings_Ui_CustomDifferential_CustomDifferential" xml:space="preserve">
-    <value>Custom-differential</value>
-  </data>
-  <data name="MeansSettings_Ui_CustomDifferential_DifferentialWorkMode" xml:space="preserve">
-    <value>Workmode:</value>
-  </data>
-  <data name="MeansSettings_Ui_CustomTolerance_Comparer" xml:space="preserve">
-    <value>Comparer of MIN/MAX blocks:</value>
-  </data>
-  <data name="MeansSettings_Ui_CustomTolerance_CustomTolerance" xml:space="preserve">
-    <value>Custom-tolerance</value>
-  </data>
-  <data name="MeansSettings_Ui_CustomTolerance_FinisherFunction" xml:space="preserve">
-    <value>Finisher function:</value>
-  </data>
-  <data name="MeansSettings_Ui_CustomTolerance_OK" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="MeansSettings_Ui_CustomTolerance_Tolerance" xml:space="preserve">
-    <value>Comparer tolerance:</value>
-  </data>
-  <data name="MeansSettings_Ui_Power_Power" xml:space="preserve">
-    <value>Power mean</value>
-  </data>
-  <data name="MeansSettings_Ui_Power_PowRank" xml:space="preserve">
-    <value>Rank k:</value>
   </data>
   <data name="MessageBoxShower_General_OutOfMemoryExceptionStop_Caption" xml:space="preserve">
     <value>Memory allocation error</value>
@@ -910,10 +856,70 @@
   <data name="Localization_Enums_GeometricMeanVariant_Sign" xml:space="preserve">
     <value>sign</value>
   </data>
-  <data name="Enums_MeanTypes_Central" xml:space="preserve">
+  <data name="Localization_Enums_MeanType_Central" xml:space="preserve">
     <value>central</value>
   </data>
-  <data name="Enums_MeanTypes_NN" xml:space="preserve">
+  <data name="Localization_Enums_MeanType_NN" xml:space="preserve">
     <value>NN</value>
+  </data>
+  <data name="Localization_Enums_StandardMeanVariant_Offset" xml:space="preserve">
+    <value>offset</value>
+  </data>
+  <data name="Localization_Enums_StandardMeanVariant_Straight" xml:space="preserve">
+    <value>straight</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_Ui_AGM" xml:space="preserve">
+    <value>Arithmetic-geometric mean (AGM)</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_Ui_Amount" xml:space="preserve">
+    <value>Amount:</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_Ui_Central" xml:space="preserve">
+    <value>Central method</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_Ui_FinisherFunction" xml:space="preserve">
+    <value>Finisher function:</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_Ui_Generalized" xml:space="preserve">
+    <value>Generalized (power) mean</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_Ui_Geometric" xml:space="preserve">
+    <value>Geometric mean</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_Ui_Harmonic" xml:space="preserve">
+    <value>Harmonic mean</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_Ui_Heronian" xml:space="preserve">
+    <value>Heronian mean</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_Ui_IntervalDivisions" xml:space="preserve">
+    <value>Interval divisions:</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_Ui_MassPercent" xml:space="preserve">
+    <value>Mass percent:</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_Ui_NN" xml:space="preserve">
+    <value>Nearest Neighbors smoothing</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_Ui_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_Ui_Rank" xml:space="preserve">
+    <value>Rank:</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_Ui_ToleranceHeader" xml:space="preserve">
+    <value>Tolerance method</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_Ui_ToleranceText" xml:space="preserve">
+    <value>Tolerance:</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_Ui_Variant" xml:space="preserve">
+    <value>Variant:</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_WarningNotSupportedFinisherFunction_Caption" xml:space="preserve">
+    <value>Not supported mean type</value>
+  </data>
+  <data name="Localization_Window_MeansSettings_WarningNotSupportedFinisherFunction_Text" xml:space="preserve">
+    <value>The chosen mean type is not allowed for this averaging method.</value>
   </data>
 </root>

@@ -15,7 +15,7 @@ namespace PI
         public Series IdealCurve { get; private set; }
         public List<Series> ModifiedCurves { get; private set; }
         public Series AverageCurve { get; private set; }
-        public MeansParameters MeansParams { get; private set; }
+        public MeansParameters MeansParams { get; set; }
         private static readonly ILog log = LogManager.GetLogger( MethodBase.GetCurrentMethod().DeclaringType );
 
         public CurvesDataManager()
@@ -192,7 +192,7 @@ namespace PI
                     result = Averages.Central( orderedSetOfCurves, MeansParams.Central.IntervalDivisions, MeansParams.Central.MassPercent );
                     break;
                 case MeanType.NN:
-                    result = Smoothers.NearestNeighbors( orderedSetOfCurves, 8 );
+                    result = Smoothers.NearestNeighbors( orderedSetOfCurves, MeansParams.NN.Amount );
                     break;
                 }
             }

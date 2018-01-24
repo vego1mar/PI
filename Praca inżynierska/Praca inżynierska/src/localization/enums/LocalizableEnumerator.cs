@@ -3,6 +3,8 @@
     internal enum LocalizableEnumerator
     {
         Languages,
-        GeometricMeanVariant
+        GeometricMeanVariant,
+        StandardMeanVariant,
+        MeanType
     }
 }

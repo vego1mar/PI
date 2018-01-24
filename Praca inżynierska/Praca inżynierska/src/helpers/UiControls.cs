@@ -227,5 +227,61 @@ namespace PI.src.helpers
 
             return value;
         }
+
+        public static void TryRefreshOfProperty( Control control )
+        {
+            var typeSwitch = new Dictionary<Type, Action>() {
+                { typeof(NumericUpDown), () => RefreshNumericUpDown(control as NumericUpDown) }
+            };
+
+            try {
+                typeSwitch[control.GetType()]();
+            }
+            catch ( NullReferenceException ex ) {
+                log.Error( ex.Message, ex );
+            }
+            catch ( KeyNotFoundException ex ) {
+                log.Error( ex.Message, ex );
+            }
+            catch ( InvalidCastException ex ) {
+                log.Error( ex.Message, ex );
+            }
+            catch ( ArgumentOutOfRangeException ex ) {
+                log.Error( ex.Message, ex );
+            }
+            catch ( Exception ex ) {
+                log.Fatal( ex.Message, ex );
+            }
+        }
+
+        private static void RefreshNumericUpDown( NumericUpDown numeric )
+        {
+            decimal original;
+
+            if ( numeric.Value == numeric.Minimum && numeric.Minimum == numeric.Maximum ) {
+                original = numeric.Value;
+                numeric.Maximum += numeric.Increment;
+                numeric.Value = numeric.Maximum;
+                numeric.Value = original;
+                numeric.Maximum -= numeric.Increment;
+                return;
+            }
+
+            if ( numeric.Minimum + numeric.Increment == numeric.Maximum ) {
+                if ( numeric.Value == numeric.Minimum ) {
+                    numeric.Value = numeric.Maximum;
+                    numeric.Value = numeric.Minimum;
+                    return;
+                }
+
+                numeric.Value = numeric.Minimum;
+                numeric.Value = numeric.Maximum;
+                return;
+            }
+
+            original = numeric.Value;
+            numeric.Value = numeric.Minimum + numeric.Increment;
+            numeric.Value = original;
+        }
     }
 }
