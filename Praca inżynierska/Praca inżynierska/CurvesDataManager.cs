@@ -140,7 +140,6 @@ namespace PI
             return true;
         }
 
-        // TODO: make GM variant UI available through MeansParams usage
         public bool? TryMakeAverageCurve( MeanType method, int curvesNo )
         {
             if ( curvesNo < 0 ) {

@@ -1,6 +1,6 @@
 ﻿using PI.src.enumerators;
 using PI.src.helpers;
-using PI.src.localization;
+using PI.src.localization.general;
 using PI.src.localization.enums;
 using System;
 using System.Windows.Forms;

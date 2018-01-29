@@ -61,231 +61,6 @@ namespace PI.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Średnia arytmetyczno-geometryczna jest zdefiniowana następująco:.
-        /// </summary>
-        internal static string AveragingInfo_AGM_TextBox1Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_AGM_TextBox1Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Zostało to zmienione na:.
-        /// </summary>
-        internal static string AveragingInfo_AGM_TextBox2Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_AGM_TextBox2Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Podejście metody Własnej-Różnicowej prezentuje się następująco:.
-        /// </summary>
-        internal static string AveragingInfo_CustomDifferential_TextBox1Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_CustomDifferential_TextBox1Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ma to swoją alternatywną wersję, czyli:.
-        /// </summary>
-        internal static string AveragingInfo_CustomDifferential_TextBox2Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_CustomDifferential_TextBox2Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Średnia geometryczna jest zdefiniowana następująco:.
-        /// </summary>
-        internal static string AveragingInfo_CustomGeometric_TextBox1Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_CustomGeometric_TextBox1Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Zostało to zamienione na:.
-        /// </summary>
-        internal static string AveragingInfo_CustomGeometric_TextBox2Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_CustomGeometric_TextBox2Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Podejście metody Własnej-Tolerującej filtruje wartości wykorzystując komparator (M jest medianą lub średnią arytmetyczną):.
-        /// </summary>
-        internal static string AveragingInfo_CustomTolerance_TextBox1Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_CustomTolerance_TextBox1Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Komparator jest używany do klasyfikowania wartości, które będą przetwarzane w dalszym etapie (FUNC jest średnią kończącą):.
-        /// </summary>
-        internal static string AveragingInfo_CustomTolerance_TextBox2Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_CustomTolerance_TextBox2Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Wykładnicza średnia krocząca jest zdefiniowana następująco:.
-        /// </summary>
-        internal static string AveragingInfo_EMA_TextBox1Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_EMA_TextBox1Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Zostało to zmienione na:.
-        /// </summary>
-        internal static string AveragingInfo_EMA_TextBox2Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_EMA_TextBox2Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Informacje o uśrednianiu.
-        /// </summary>
-        internal static string AveragingInfo_Form_Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_Form_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Średnia geometryczna jest zdefiniowana następująco:.
-        /// </summary>
-        internal static string AveragingInfo_Geometric_TextBox1Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_Geometric_TextBox1Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Zostało to zmienione na:.
-        /// </summary>
-        internal static string AveragingInfo_Geometric_TextBox2Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_Geometric_TextBox2Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Średnia harmoniczna jest określona dla liczb rzeczywistych dodatnich następująco:.
-        /// </summary>
-        internal static string AveragingInfo_Harmonic_TextBox1Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_Harmonic_TextBox1Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Nie zostało to zmienione, jednakże może być wyrażone również jako:.
-        /// </summary>
-        internal static string AveragingInfo_Harmonic_TextBox2Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_Harmonic_TextBox2Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Średnia Herona w geometrii jest zdefiniowana następująco:.
-        /// </summary>
-        internal static string AveragingInfo_Heronian_TextBox1Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_Heronian_TextBox1Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Zostało to zmienione na:.
-        /// </summary>
-        internal static string AveragingInfo_Heronian_TextBox2Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_Heronian_TextBox2Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Standardowa średnia ważona jest określona następująco:.
-        /// </summary>
-        internal static string AveragingInfo_LnWages_TextBox1Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_LnWages_TextBox1Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Zostało to zamienione na średnią ważoną logarytmicznie, jak poniżej:.
-        /// </summary>
-        internal static string AveragingInfo_LnWages_TextBox2Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_LnWages_TextBox2Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Średnia logarytmiczna jest zdefiniowana następująco:.
-        /// </summary>
-        internal static string AveragingInfo_Logarithmic_TextBox1Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_Logarithmic_TextBox1Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Zostało to zmienione na:.
-        /// </summary>
-        internal static string AveragingInfo_Logarithmic_TextBox2Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_Logarithmic_TextBox2Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Średnia potęgowa jest zdefiniowana dla określonego rzędu k jak poniżej:.
-        /// </summary>
-        internal static string AveragingInfo_Power_TextBox1Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_Power_TextBox1Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Nie zostało to zmienione, jednak domyślnym rzędem k jest:.
-        /// </summary>
-        internal static string AveragingInfo_Power_TextBox2Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_Power_TextBox2Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Średnia kwadratowa jest zdefiniowana następująco:.
-        /// </summary>
-        internal static string AveragingInfo_RMS_TextBox1Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_RMS_TextBox1Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Jest to obliczane z użyciem średniej potęgowej w postaci jak poniżej:.
-        /// </summary>
-        internal static string AveragingInfo_RMS_TextBox2Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_RMS_TextBox2Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Ustawienia wykresu.
         /// </summary>
         internal static string ChartSettings_Form_Text {
@@ -360,171 +135,81 @@ namespace PI.Locales {
         /// <summary>
         ///   Looks up a localized string similar to wszystkie.
         /// </summary>
-        internal static string Enums_ApplyToCurve_All {
+        internal static string Enums_CurveApply_All {
             get {
-                return ResourceManager.GetString("Enums_ApplyToCurve_All", resourceCulture);
+                return ResourceManager.GetString("Enums_CurveApply_All", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to uśredniona.
         /// </summary>
-        internal static string Enums_ApplyToCurve_Average {
+        internal static string Enums_CurveApply_Average {
             get {
-                return ResourceManager.GetString("Enums_ApplyToCurve_Average", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to wygenerowana.
-        /// </summary>
-        internal static string Enums_ApplyToCurve_Generated {
-            get {
-                return ResourceManager.GetString("Enums_ApplyToCurve_Generated", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to wzorcowa.
-        /// </summary>
-        internal static string Enums_ApplyToCurve_Pattern {
-            get {
-                return ResourceManager.GetString("Enums_ApplyToCurve_Pattern", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to arytm.-geom..
-        /// </summary>
-        internal static string Enums_AvgInfo_Tabs_AGM {
-            get {
-                return ResourceManager.GetString("Enums_AvgInfo_Tabs_AGM", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to własna-różnicowa.
-        /// </summary>
-        internal static string Enums_AvgInfo_Tabs_CustomDifferential {
-            get {
-                return ResourceManager.GetString("Enums_AvgInfo_Tabs_CustomDifferential", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to własna-geom..
-        /// </summary>
-        internal static string Enums_AvgInfo_Tabs_CustomGeometric {
-            get {
-                return ResourceManager.GetString("Enums_AvgInfo_Tabs_CustomGeometric", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to własna-tolerująca.
-        /// </summary>
-        internal static string Enums_AvgInfo_Tabs_CustomTolerance {
-            get {
-                return ResourceManager.GetString("Enums_AvgInfo_Tabs_CustomTolerance", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to krocząca.
-        /// </summary>
-        internal static string Enums_AvgInfo_Tabs_EMA {
-            get {
-                return ResourceManager.GetString("Enums_AvgInfo_Tabs_EMA", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to geometryczna.
-        /// </summary>
-        internal static string Enums_AvgInfo_Tabs_Geometric {
-            get {
-                return ResourceManager.GetString("Enums_AvgInfo_Tabs_Geometric", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to harmoniczna.
-        /// </summary>
-        internal static string Enums_AvgInfo_Tabs_Harmonic {
-            get {
-                return ResourceManager.GetString("Enums_AvgInfo_Tabs_Harmonic", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Herona.
-        /// </summary>
-        internal static string Enums_AvgInfo_Tabs_Heronian {
-            get {
-                return ResourceManager.GetString("Enums_AvgInfo_Tabs_Heronian", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to log. ważona.
-        /// </summary>
-        internal static string Enums_AvgInfo_Tabs_LnWages {
-            get {
-                return ResourceManager.GetString("Enums_AvgInfo_Tabs_LnWages", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to logarytmiczna.
-        /// </summary>
-        internal static string Enums_AvgInfo_Tabs_Logarithmic {
-            get {
-                return ResourceManager.GetString("Enums_AvgInfo_Tabs_Logarithmic", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to potęgowa.
-        /// </summary>
-        internal static string Enums_AvgInfo_Tabs_Power {
-            get {
-                return ResourceManager.GetString("Enums_AvgInfo_Tabs_Power", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to kwadratowa.
-        /// </summary>
-        internal static string Enums_AvgInfo_Tabs_RMS {
-            get {
-                return ResourceManager.GetString("Enums_AvgInfo_Tabs_RMS", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to uśredniona.
-        /// </summary>
-        internal static string Enums_DataSetCurvesTypes_Average {
-            get {
-                return ResourceManager.GetString("Enums_DataSetCurvesTypes_Average", resourceCulture);
+                return ResourceManager.GetString("Enums_CurveApply_Average", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to idealna.
         /// </summary>
-        internal static string Enums_DataSetCurvesTypes_Ideal {
+        internal static string Enums_CurveApply_Ideal {
             get {
-                return ResourceManager.GetString("Enums_DataSetCurvesTypes_Ideal", resourceCulture);
+                return ResourceManager.GetString("Enums_CurveApply_Ideal", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to zmodyfikowana.
         /// </summary>
-        internal static string Enums_DataSetCurvesTypes_Modified {
+        internal static string Enums_CurveApply_Modified {
             get {
-                return ResourceManager.GetString("Enums_DataSetCurvesTypes_Modified", resourceCulture);
+                return ResourceManager.GetString("Enums_CurveApply_Modified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to uśredniona.
+        /// </summary>
+        internal static string Enums_DataSetCurveType_Average {
+            get {
+                return ResourceManager.GetString("Enums_DataSetCurveType_Average", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to idealna.
+        /// </summary>
+        internal static string Enums_DataSetCurveType_Ideal {
+            get {
+                return ResourceManager.GetString("Enums_DataSetCurveType_Ideal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to zmodyfikowana.
+        /// </summary>
+        internal static string Enums_DataSetCurveType_Modified {
+            get {
+                return ResourceManager.GetString("Enums_DataSetCurveType_Modified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to angielski.
+        /// </summary>
+        internal static string Enums_Languages_English {
+            get {
+                return ResourceManager.GetString("Enums_Languages_English", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to polski.
+        /// </summary>
+        internal static string Enums_Languages_Polish {
+            get {
+                return ResourceManager.GetString("Enums_Languages_Polish", resourceCulture);
             }
         }
         
@@ -619,20 +304,20 @@ namespace PI.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to deformacja.
+        ///   Looks up a localized string similar to pik.
         /// </summary>
-        internal static string Enums_PhenomenonIndex_Deformation {
+        internal static string Enums_Phenomenon_Peek {
             get {
-                return ResourceManager.GetString("Enums_PhenomenonIndex_Deformation", resourceCulture);
+                return ResourceManager.GetString("Enums_Phenomenon_Peek", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to pik.
+        ///   Looks up a localized string similar to saturacja.
         /// </summary>
-        internal static string Enums_PhenomenonIndex_Peek {
+        internal static string Enums_Phenomenon_Saturation {
             get {
-                return ResourceManager.GetString("Enums_PhenomenonIndex_Peek", resourceCulture);
+                return ResourceManager.GetString("Enums_Phenomenon_Saturation", resourceCulture);
             }
         }
         
@@ -921,24 +606,6 @@ namespace PI.Locales {
         internal static string GridPreviewer_Ui_Preview_Preview {
             get {
                 return ResourceManager.GetString("GridPreviewer_Ui_Preview_Preview", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to angielski.
-        /// </summary>
-        internal static string LangSelector_Languages_English {
-            get {
-                return ResourceManager.GetString("LangSelector_Languages_English", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to polski.
-        /// </summary>
-        internal static string LangSelector_Languages_Polish {
-            get {
-                return ResourceManager.GetString("LangSelector_Languages_Polish", resourceCulture);
             }
         }
         

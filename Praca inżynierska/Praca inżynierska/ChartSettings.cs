@@ -1,4 +1,6 @@
-﻿using PI.src.helpers;
+﻿using PI.src.enumerators;
+using PI.src.helpers;
+using PI.src.localization.enums;
 using PI.src.settings;
 using System;
 using System.Drawing;
@@ -12,14 +14,6 @@ namespace PI
         internal MainChartSettings Settings { get; private set; }
         private PreviousValue Previous { get; set; }
         private bool IsFormInitialized { get; set; }
-
-        internal enum ApplyToCurve
-        {
-            Generated = 0,
-            Pattern = 1,
-            Average = 2,
-            All = 3
-        }
 
         private enum ChartSettingsTabs
         {
@@ -44,7 +38,7 @@ namespace PI
         {
             public ChartAreaAxis AxisSelected { get; set; }
             public ChartAreaGrid GridSelected { get; set; }
-            public ApplyToCurve ApplyMode { get; set; }
+            public CurveApply ApplyMode { get; set; }
         }
 
         internal ChartSettings( MainChartSettings settings )
@@ -64,7 +58,7 @@ namespace PI
             Previous = new PreviousValue() {
                 AxisSelected = ChartAreaAxis.X,
                 GridSelected = ChartAreaGrid.MajorGrid,
-                ApplyMode = ApplyToCurve.Average
+                ApplyMode = CurveApply.Average
             };
 
             IsFormInitialized = false;
@@ -79,7 +73,7 @@ namespace PI
 
         private void UpdateUiByDefaultSettings()
         {
-            UiControls.TrySetSelectedIndex( uiTop_ApplyTo_ComBx, (int) ApplyToCurve.Pattern );
+            UiControls.TrySetSelectedIndex( uiTop_ApplyTo_ComBx, (int) CurveApply.Ideal );
             SetChartTabPageDefaults();
             SetChartAreaTabPageDefaults();
             SetSeriesTabPageDefaults();
@@ -115,7 +109,7 @@ namespace PI
         private void UpdateUiByFormInitializeSettings()
         {
             IsFormInitialized = true;
-            UiControls.TrySetSelectedIndex( uiTop_ApplyTo_ComBx, (int) ApplyToCurve.Average );
+            UiControls.TrySetSelectedIndex( uiTop_ApplyTo_ComBx, (int) CurveApply.Average );
         }
 
         private void ChartSettings_Load( object sender, EventArgs e )
@@ -157,7 +151,7 @@ namespace PI
 
         private void DefineChartTabPageComboBoxes()
         {
-            AddApplyToCurve( uiTop_ApplyTo_ComBx );
+            EnumsLocalizer.Localize( LocalizableEnumerator.CurveApply, uiTop_ApplyTo_ComBx );
             DefineChartAntiAliasingComboBox();
             DefineChartSuppressWarningsComboBox();
             DefineChartBackColorComboBox();
@@ -180,28 +174,28 @@ namespace PI
                 return;
             }
 
-            switch ( (ApplyToCurve) uiTop_ApplyTo_ComBx.SelectedIndex ) {
-            case ApplyToCurve.All:
+            switch ( (CurveApply) uiTop_ApplyTo_ComBx.SelectedIndex ) {
+            case CurveApply.All:
                 PerformApplyToCurveAllSwitch();
                 break;
-            case ApplyToCurve.Generated:
+            case CurveApply.Modified:
                 PerformApplyToCurveNotAllSwitch();
                 SaveSeriesSettings( Previous.ApplyMode );
                 UpdateUiByGeneratedCurveSettings();
                 break;
-            case ApplyToCurve.Pattern:
+            case CurveApply.Ideal:
                 PerformApplyToCurveNotAllSwitch();
                 SaveSeriesSettings( Previous.ApplyMode );
                 UpdateUiByPatternCurveSettings();
                 break;
-            case ApplyToCurve.Average:
+            case CurveApply.Average:
                 PerformApplyToCurveNotAllSwitch();
                 SaveSeriesSettings( Previous.ApplyMode );
                 SetSeriesTabPageDefaults();
                 break;
             }
 
-            Previous.ApplyMode = (ApplyToCurve) uiTop_ApplyTo_ComBx.SelectedIndex;
+            Previous.ApplyMode = (CurveApply) uiTop_ApplyTo_ComBx.SelectedIndex;
         }
 
         private void PerformApplyToCurveAllSwitch()
@@ -287,7 +281,7 @@ namespace PI
 
         private void SaveAllSettings()
         {
-            Settings.ApplyMode = (ApplyToCurve) UiControls.TryGetSelectedIndex( uiTop_ApplyTo_ComBx );
+            Settings.ApplyMode = (CurveApply) UiControls.TryGetSelectedIndex( uiTop_ApplyTo_ComBx );
             SaveChartSettings();
             SaveChartAreaSettings();
             SaveSeriesSettings( Settings.ApplyMode );
@@ -309,16 +303,16 @@ namespace PI
             SaveAxesSettings( axis, grid );
         }
 
-        private void SaveSeriesSettings( ApplyToCurve applyMode )
+        private void SaveSeriesSettings( CurveApply applyMode )
         {
             switch ( applyMode ) {
-            case ApplyToCurve.Pattern:
+            case CurveApply.Ideal:
                 SaveSeriesPatternSettings();
                 break;
-            case ApplyToCurve.Generated:
+            case CurveApply.Modified:
                 SaveSeriesGeneratedSettings();
                 break;
-            case ApplyToCurve.Average:
+            case CurveApply.Average:
                 SaveSeriesAverageSettings();
                 break;
             }
@@ -663,15 +657,6 @@ namespace PI
         private void LocalizeTabSeries()
         {
             uiCtr_Srs_TbPg.Text = Translator.GetInstance().Strings.ChartSettings.Ui.Tabs.Series.Srs.GetString();
-        }
-
-        public void AddApplyToCurve<T>( T control ) where T : ComboBox
-        {
-            control.Items.Clear();
-
-            foreach ( var item in Translator.GetInstance().Strings.Enums.ApplyToCurve ) {
-                control.Items.Add( item.GetString() );
-            }
         }
 
     }

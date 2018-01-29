@@ -61,231 +61,6 @@ namespace PI.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Arithmetic-geometric mean is defined as follows:.
-        /// </summary>
-        internal static string AveragingInfo_AGM_TextBox1Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_AGM_TextBox1Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This was modified into:.
-        /// </summary>
-        internal static string AveragingInfo_AGM_TextBox2Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_AGM_TextBox2Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The Custom-Differential approach presents as follows:.
-        /// </summary>
-        internal static string AveragingInfo_CustomDifferential_TextBox1Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_CustomDifferential_TextBox1Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This has its alternative version, that is:.
-        /// </summary>
-        internal static string AveragingInfo_CustomDifferential_TextBox2Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_CustomDifferential_TextBox2Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Geometric mean is defined as follows:.
-        /// </summary>
-        internal static string AveragingInfo_CustomGeometric_TextBox1Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_CustomGeometric_TextBox1Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This was modified into:.
-        /// </summary>
-        internal static string AveragingInfo_CustomGeometric_TextBox2Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_CustomGeometric_TextBox2Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The Custom-Tolerance approach filters values using a comparer (M is mediana or arithmetic mean):.
-        /// </summary>
-        internal static string AveragingInfo_CustomTolerance_TextBox1Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_CustomTolerance_TextBox1Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The comparer is used for classifying values that will be processed further (FUNC is finisher mean):.
-        /// </summary>
-        internal static string AveragingInfo_CustomTolerance_TextBox2Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_CustomTolerance_TextBox2Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Exponential moving average is defined as follows:.
-        /// </summary>
-        internal static string AveragingInfo_EMA_TextBox1Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_EMA_TextBox1Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This has been modified into:.
-        /// </summary>
-        internal static string AveragingInfo_EMA_TextBox2Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_EMA_TextBox2Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Averaging info.
-        /// </summary>
-        internal static string AveragingInfo_Form_Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_Form_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Geometric mean is defined as follows:.
-        /// </summary>
-        internal static string AveragingInfo_Geometric_TextBox1Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_Geometric_TextBox1Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This was modified into:.
-        /// </summary>
-        internal static string AveragingInfo_Geometric_TextBox2Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_Geometric_TextBox2Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Harmonic mean is defined for positive real numbers as follows:.
-        /// </summary>
-        internal static string AveragingInfo_Harmonic_TextBox1Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_Harmonic_TextBox1Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This has not been modified, hence it can be also expressed as:.
-        /// </summary>
-        internal static string AveragingInfo_Harmonic_TextBox2Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_Harmonic_TextBox2Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Heronian mean in geometry is defined as follows:.
-        /// </summary>
-        internal static string AveragingInfo_Heronian_TextBox1Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_Heronian_TextBox1Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This was modified into:.
-        /// </summary>
-        internal static string AveragingInfo_Heronian_TextBox2Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_Heronian_TextBox2Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The standard waged mean is defined as follows:.
-        /// </summary>
-        internal static string AveragingInfo_LnWages_TextBox1Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_LnWages_TextBox1Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This has been modified into logarithmically waged mean as below:.
-        /// </summary>
-        internal static string AveragingInfo_LnWages_TextBox2Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_LnWages_TextBox2Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Logarithmic mean is defined as follows:.
-        /// </summary>
-        internal static string AveragingInfo_Logarithmic_TextBox1Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_Logarithmic_TextBox1Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This has been modified into:.
-        /// </summary>
-        internal static string AveragingInfo_Logarithmic_TextBox2Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_Logarithmic_TextBox2Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Power mean is defined for a specified rank k as below:.
-        /// </summary>
-        internal static string AveragingInfo_Power_TextBox1Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_Power_TextBox1Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This has not been modified, yet the default rank k is:.
-        /// </summary>
-        internal static string AveragingInfo_Power_TextBox2Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_Power_TextBox2Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Root mean square is defined as follows:.
-        /// </summary>
-        internal static string AveragingInfo_RMS_TextBox1Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_RMS_TextBox1Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This is computed using a power mean in a form as below:.
-        /// </summary>
-        internal static string AveragingInfo_RMS_TextBox2Text {
-            get {
-                return ResourceManager.GetString("AveragingInfo_RMS_TextBox2Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Chart settings.
         /// </summary>
         internal static string ChartSettings_Form_Text {
@@ -360,171 +135,81 @@ namespace PI.Locales {
         /// <summary>
         ///   Looks up a localized string similar to all.
         /// </summary>
-        internal static string Enums_ApplyToCurve_All {
+        internal static string Enums_CurveApply_All {
             get {
-                return ResourceManager.GetString("Enums_ApplyToCurve_All", resourceCulture);
+                return ResourceManager.GetString("Enums_CurveApply_All", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to average.
         /// </summary>
-        internal static string Enums_ApplyToCurve_Average {
+        internal static string Enums_CurveApply_Average {
             get {
-                return ResourceManager.GetString("Enums_ApplyToCurve_Average", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to generated.
-        /// </summary>
-        internal static string Enums_ApplyToCurve_Generated {
-            get {
-                return ResourceManager.GetString("Enums_ApplyToCurve_Generated", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to pattern.
-        /// </summary>
-        internal static string Enums_ApplyToCurve_Pattern {
-            get {
-                return ResourceManager.GetString("Enums_ApplyToCurve_Pattern", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to AGM.
-        /// </summary>
-        internal static string Enums_AvgInfo_Tabs_AGM {
-            get {
-                return ResourceManager.GetString("Enums_AvgInfo_Tabs_AGM", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to custom-differential.
-        /// </summary>
-        internal static string Enums_AvgInfo_Tabs_CustomDifferential {
-            get {
-                return ResourceManager.GetString("Enums_AvgInfo_Tabs_CustomDifferential", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to custom-geometric.
-        /// </summary>
-        internal static string Enums_AvgInfo_Tabs_CustomGeometric {
-            get {
-                return ResourceManager.GetString("Enums_AvgInfo_Tabs_CustomGeometric", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to custom-tolerance.
-        /// </summary>
-        internal static string Enums_AvgInfo_Tabs_CustomTolerance {
-            get {
-                return ResourceManager.GetString("Enums_AvgInfo_Tabs_CustomTolerance", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to EMA.
-        /// </summary>
-        internal static string Enums_AvgInfo_Tabs_EMA {
-            get {
-                return ResourceManager.GetString("Enums_AvgInfo_Tabs_EMA", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to geometric.
-        /// </summary>
-        internal static string Enums_AvgInfo_Tabs_Geometric {
-            get {
-                return ResourceManager.GetString("Enums_AvgInfo_Tabs_Geometric", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to harmonic.
-        /// </summary>
-        internal static string Enums_AvgInfo_Tabs_Harmonic {
-            get {
-                return ResourceManager.GetString("Enums_AvgInfo_Tabs_Harmonic", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Heronian.
-        /// </summary>
-        internal static string Enums_AvgInfo_Tabs_Heronian {
-            get {
-                return ResourceManager.GetString("Enums_AvgInfo_Tabs_Heronian", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to log. waged.
-        /// </summary>
-        internal static string Enums_AvgInfo_Tabs_LnWages {
-            get {
-                return ResourceManager.GetString("Enums_AvgInfo_Tabs_LnWages", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to logarithmic.
-        /// </summary>
-        internal static string Enums_AvgInfo_Tabs_Logarithmic {
-            get {
-                return ResourceManager.GetString("Enums_AvgInfo_Tabs_Logarithmic", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to power.
-        /// </summary>
-        internal static string Enums_AvgInfo_Tabs_Power {
-            get {
-                return ResourceManager.GetString("Enums_AvgInfo_Tabs_Power", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to RMS.
-        /// </summary>
-        internal static string Enums_AvgInfo_Tabs_RMS {
-            get {
-                return ResourceManager.GetString("Enums_AvgInfo_Tabs_RMS", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to average.
-        /// </summary>
-        internal static string Enums_DataSetCurvesTypes_Average {
-            get {
-                return ResourceManager.GetString("Enums_DataSetCurvesTypes_Average", resourceCulture);
+                return ResourceManager.GetString("Enums_CurveApply_Average", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to ideal.
         /// </summary>
-        internal static string Enums_DataSetCurvesTypes_Ideal {
+        internal static string Enums_CurveApply_Ideal {
             get {
-                return ResourceManager.GetString("Enums_DataSetCurvesTypes_Ideal", resourceCulture);
+                return ResourceManager.GetString("Enums_CurveApply_Ideal", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to modified.
         /// </summary>
-        internal static string Enums_DataSetCurvesTypes_Modified {
+        internal static string Enums_CurveApply_Modified {
             get {
-                return ResourceManager.GetString("Enums_DataSetCurvesTypes_Modified", resourceCulture);
+                return ResourceManager.GetString("Enums_CurveApply_Modified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to average.
+        /// </summary>
+        internal static string Enums_DataSetCurveType_Average {
+            get {
+                return ResourceManager.GetString("Enums_DataSetCurveType_Average", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ideal.
+        /// </summary>
+        internal static string Enums_DataSetCurveType_Ideal {
+            get {
+                return ResourceManager.GetString("Enums_DataSetCurveType_Ideal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to modified.
+        /// </summary>
+        internal static string Enums_DataSetCurveType_Modified {
+            get {
+                return ResourceManager.GetString("Enums_DataSetCurveType_Modified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to English.
+        /// </summary>
+        internal static string Enums_Languages_English {
+            get {
+                return ResourceManager.GetString("Enums_Languages_English", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Polish.
+        /// </summary>
+        internal static string Enums_Languages_Polish {
+            get {
+                return ResourceManager.GetString("Enums_Languages_Polish", resourceCulture);
             }
         }
         
@@ -619,20 +304,20 @@ namespace PI.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to deformation.
+        ///   Looks up a localized string similar to peek.
         /// </summary>
-        internal static string Enums_PhenomenonIndex_Deformation {
+        internal static string Enums_Phenomenon_Peek {
             get {
-                return ResourceManager.GetString("Enums_PhenomenonIndex_Deformation", resourceCulture);
+                return ResourceManager.GetString("Enums_Phenomenon_Peek", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to peek.
+        ///   Looks up a localized string similar to saturation.
         /// </summary>
-        internal static string Enums_PhenomenonIndex_Peek {
+        internal static string Enums_Phenomenon_Saturation {
             get {
-                return ResourceManager.GetString("Enums_PhenomenonIndex_Peek", resourceCulture);
+                return ResourceManager.GetString("Enums_Phenomenon_Saturation", resourceCulture);
             }
         }
         
@@ -921,24 +606,6 @@ namespace PI.Locales {
         internal static string GridPreviewer_Ui_Preview_Preview {
             get {
                 return ResourceManager.GetString("GridPreviewer_Ui_Preview_Preview", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to English.
-        /// </summary>
-        internal static string LangSelector_Languages_English {
-            get {
-                return ResourceManager.GetString("LangSelector_Languages_English", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Polish.
-        /// </summary>
-        internal static string LangSelector_Languages_Polish {
-            get {
-                return ResourceManager.GetString("LangSelector_Languages_Polish", resourceCulture);
             }
         }
         

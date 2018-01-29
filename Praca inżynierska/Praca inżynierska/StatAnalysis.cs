@@ -29,12 +29,6 @@ namespace PI
 
         private static readonly ILog log = LogManager.GetLogger( MethodBase.GetCurrentMethod().DeclaringType );
 
-        public enum PhenomenonIndex
-        {
-            Peek = 0,
-            Deformation = 1
-        }
-
         private struct DatasetControlsValues
         {
             public int PhenomNo { get; set; }
@@ -92,7 +86,7 @@ namespace PI
 
             Data = new List<List<CurvesDataManager>>();
 
-            foreach ( PhenomenonIndex idx in Enum.GetValues( typeof( PhenomenonIndex ) ) ) {
+            foreach ( Phenomenon idx in Enum.GetValues( typeof( Phenomenon ) ) ) {
                 Data.Add( new List<CurvesDataManager>() );                                      // [a][-] 
 
                 for ( int i = 0; i < Surroundings.Count; i++ ) {
@@ -113,7 +107,7 @@ namespace PI
 
             Averages = new List<List<List<Series>>>();
 
-            foreach ( PhenomenonIndex idx in Enum.GetValues( typeof( PhenomenonIndex ) ) ) {
+            foreach ( Phenomenon idx in Enum.GetValues( typeof( Phenomenon ) ) ) {
                 Averages.Add( new List<List<Series>>() );                                           // [a][-][-] 
 
                 for ( int i = 0; i < Surroundings.Count; i++ ) {
@@ -129,8 +123,8 @@ namespace PI
 
         private void InitializeDataGridViewUiFields()
         {
-            List<string> peekColumns = GetDataGridColumnsNames( PhenomenonIndex.Peek );
-            List<string> deformColumns = GetDataGridColumnsNames( PhenomenonIndex.Deformation );
+            List<string> peekColumns = GetDataGridColumnsNames( Phenomenon.Peek );
+            List<string> deformColumns = GetDataGridColumnsNames( Phenomenon.Saturation );
             IList<string> meanNames = new MeanTypesStrings().ToList();
 
             for ( int i = 0; i < meanNames.Count; i++ ) {
@@ -165,7 +159,7 @@ namespace PI
 
             StdDeviations = new List<List<List<double>>>();
 
-            foreach ( PhenomenonIndex idx in Enum.GetValues( typeof( PhenomenonIndex ) ) ) {
+            foreach ( Phenomenon idx in Enum.GetValues( typeof( Phenomenon ) ) ) {
                 StdDeviations.Add( new List<List<double>>() );                                           // [a][-][-] 
 
                 for ( int i = 0; i < Surroundings.Count; i++ ) {
@@ -180,7 +174,7 @@ namespace PI
 
         private void SetWindowDefaults()
         {
-            UiControls.TrySelectTab( uiL_TbCtrl, (int) PhenomenonIndex.Peek );
+            UiControls.TrySelectTab( uiL_TbCtrl, (int) Phenomenon.Peek );
             UiControls.TrySelectTab( uiR_TbCtrl, 0 );
             ChartAssist.SetDefaultSettings( uiRChart_Chart );
             AddDataSetCurveTypes( uiRChartDown_CrvT_ComBx );
@@ -189,7 +183,7 @@ namespace PI
             uiRChartDown_CrvIdx_Num.Maximum = Settings.Ui.CurvesNo - 1;
             UiControls.TrySetValue( uiRChartDown_CrvIdx_Num, Settings.Ui.CurvesNo / 2 );
             AddPhenomenonsIndexNames( uiRChartDown_Phen_ComBx );
-            UiControls.TrySetSelectedIndex( uiRChartDown_Phen_ComBx, (int) PhenomenonIndex.Peek );
+            UiControls.TrySetSelectedIndex( uiRChartDown_Phen_ComBx, (int) Phenomenon.Peek );
             AddSurroundings( uiRChartDown_Surr_ComBx );
             UiControls.TrySetSelectedIndex( uiRChartDown_Surr_ComBx, 0 );
             AddMeanTypes( uiRChartDown_MeanT_ComBx );
@@ -212,7 +206,7 @@ namespace PI
 
         private void AddPhenomenonsIndexNames( ComboBox comboBox )
         {
-            foreach ( string phenomenon in Enum.GetNames( typeof( PhenomenonIndex ) ) ) {
+            foreach ( string phenomenon in Enum.GetNames( typeof( Phenomenon ) ) ) {
                 comboBox.Items.Add( phenomenon );
             }
         }
@@ -238,7 +232,7 @@ namespace PI
                     Data[i][j].GenerateIdealCurve( Settings.Pcd.Scaffold, Settings.Pcd.Parameters, Settings.Ui.StartX, Settings.Ui.EndX, Settings.Ui.PointsNo );
                     Data[i][j].PropagateIdealCurve( Settings.Ui.CurvesNo );
                     Data[i][j].MakeNoiseOfGaussian( Settings.Ui.CurvesNo, Surroundings[j] );
-                    MakePeekOrDeformation( (PhenomenonIndex) i, Data[i][j], Settings.Ui.CurvesNo / 2 );
+                    MakePeekOrDeformation( (Phenomenon) i, Data[i][j], Settings.Ui.CurvesNo / 2 );
 
                     foreach ( string type in Enum.GetNames( typeof( MeanType ) ) ) {
                         Enum.TryParse( type, out MeanType meanType );
@@ -346,7 +340,7 @@ namespace PI
             };
         }
 
-        private void MakePeekOrDeformation( PhenomenonIndex idx, CurvesDataManager data, int curveIdx, int yValuesIdx = 0 )
+        private void MakePeekOrDeformation( Phenomenon idx, CurvesDataManager data, int curveIdx, int yValuesIdx = 0 )
         {
             Series newSeries = data.ModifiedCurves[curveIdx];
             int leftIntervalPoint = Convert.ToInt32( (3.0 / 7.0) * newSeries.Points.Count );
@@ -357,10 +351,10 @@ namespace PI
             double malformationValue = 0.5 * (maxValue - minValue);
 
             switch ( idx ) {
-            case PhenomenonIndex.Peek:
+            case Phenomenon.Peek:
                 newSeries.Points[middlePoint].YValues[yValuesIdx] += malformationValue;
                 break;
-            case PhenomenonIndex.Deformation:
+            case Phenomenon.Saturation:
                 OverrideSeriesValuesWithinInterval( newSeries, leftIntervalPoint, rightIntervalPoint, malformationValue, yValuesIdx );
                 break;
             }
@@ -481,17 +475,17 @@ namespace PI
             IsFormShown = false;
         }
 
-        private List<string> GetDataGridColumnsNames( PhenomenonIndex phenomenon )
+        private List<string> GetDataGridColumnsNames( Phenomenon phenomenon )
         {
             switch ( phenomenon ) {
-            case PhenomenonIndex.Peek:
+            case Phenomenon.Peek:
                 return new List<string>() {
                     nameof( uiLPeekGrid_Noise01_Col ),
                     nameof( uiLPeekGrid_Noise05_Col ),
                     nameof( uiLPeekGrid_Noise1_Col ),
                     nameof( uiLPeekGrid_Noise2_Col )
                 };
-            case PhenomenonIndex.Deformation:
+            case Phenomenon.Saturation:
                 return new List<string>() {
                     nameof( uiLDeformGrid_Noise01_Col ),
                     nameof( uiLDeformGrid_Noise05_Col ),
@@ -520,12 +514,12 @@ namespace PI
         {
             DataGridView[] grids = { uiLPeek_Grid, uiLDeform_Grid };
 
-            if ( grids.Count() != Enum.GetNames( typeof( PhenomenonIndex ) ).Count() ) {
+            if ( grids.Count() != Enum.GetNames( typeof( Phenomenon ) ).Count() ) {
                 return;
             }
 
-            foreach ( string name in Enum.GetNames( typeof( PhenomenonIndex ) ) ) {
-                Enum.TryParse( name, out PhenomenonIndex phenomenon );
+            foreach ( string name in Enum.GetNames( typeof( Phenomenon ) ) ) {
+                Enum.TryParse( name, out Phenomenon phenomenon );
                 List<string> columns = GetDataGridColumnsNames( phenomenon );
 
                 foreach ( string mean in Enum.GetNames( typeof( MeanType ) ) ) {
@@ -548,11 +542,11 @@ namespace PI
         {
             DataGridView[] grids = { uiLPeek_Grid, uiLDeform_Grid };
 
-            if ( grids.Count() != Enum.GetValues( typeof( PhenomenonIndex ) ).Length ) {
+            if ( grids.Count() != Enum.GetValues( typeof( Phenomenon ) ).Length ) {
                 return;
             }
 
-            for ( int i = 0; i < Enum.GetValues( typeof( PhenomenonIndex ) ).Length; i++ ) {
+            for ( int i = 0; i < Enum.GetValues( typeof( Phenomenon ) ).Length; i++ ) {
                 for ( int j = 0; j < Surroundings.Count; j++ ) {
                     int maxValueIdx = GetIndexOfMaximumValue( StdDeviations[i][j] );
                     int minValueIdx = GetIndexOfMinimumValue( StdDeviations[i][j] );
@@ -635,10 +629,10 @@ namespace PI
             uiR_Prv_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.Prv.GetString();
             uiR_Chart_TbPg.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.Chart.GetString();
             uiR_Formula_TbPg.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.Formula.GetString();
-            Translator.AddLocalizedDataSetCurveTypes( uiRChartDown_CrvT_ComBx );
+            EnumsLocalizer.Localize( LocalizableEnumerator.DataSetCurveType, uiRChartDown_CrvT_ComBx );
             UiControls.TrySetSelectedIndex( uiRChartDown_CrvT_ComBx, (int) DataSetCurveType.Ideal );
-            AddLocalizedPhenomenonsIndices( uiRChartDown_Phen_ComBx );
-            UiControls.TrySetSelectedIndex( uiRChartDown_Phen_ComBx, (int) PhenomenonIndex.Peek );
+            EnumsLocalizer.Localize( LocalizableEnumerator.Phenomenon, uiRChartDown_Phen_ComBx );
+            UiControls.TrySetSelectedIndex( uiRChartDown_Phen_ComBx, (int) Phenomenon.Peek );
             EnumsLocalizer.Localize( LocalizableEnumerator.MeanType, uiRChartDown_MeanT_ComBx );
             UiControls.TrySetSelectedIndex( uiRChartDown_MeanT_ComBx, (int) MeanType.Tolerance );
             uiRChartDown_DtSet_Btn.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.DtSet.GetString();
@@ -654,15 +648,6 @@ namespace PI
             uiRChartUp_Surr_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.Noise.GetString();
             uiRChartUp_MeanT_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.MeanT.GetString();
             uiRChartUp_DtSet_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.DtSetSel.GetString();
-        }
-
-        private void AddLocalizedPhenomenonsIndices<T>( T control ) where T : ComboBox
-        {
-            control.Items.Clear();
-
-            foreach ( var item in Translator.GetInstance().Strings.Enums.Phenomenons ) {
-                control.Items.Add( item.GetString() );
-            }
         }
 
     }

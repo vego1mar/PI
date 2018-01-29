@@ -76,12 +76,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AvgInfo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AvgInfo.Designer.cs">
-      <DependentUpon>AvgInfo.cs</DependentUpon>
-    </Compile>
     <Compile Include="ChartSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,9 +83,13 @@
       <DependentUpon>ChartSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="src\averaging\Smoothers.cs" />
+    <Compile Include="src\enumerators\AutoSizeColumnsMode.cs" />
+    <Compile Include="src\enumerators\CurveApply.cs" />
     <Compile Include="src\enumerators\DataSetCurveType.cs" />
     <Compile Include="src\enumerators\GeometricMeanVariant.cs" />
     <Compile Include="src\enumerators\IdealCurveScaffold.cs" />
+    <Compile Include="src\enumerators\Operation.cs" />
+    <Compile Include="src\enumerators\Phenomenon.cs" />
     <Compile Include="src\enumerators\StandardMeanVariants.cs" />
     <Compile Include="src\enumerators\MeanType.cs" />
     <Compile Include="src\averaging\Averages.cs" />
@@ -101,9 +99,15 @@
     <Compile Include="src\general\Mathematics.cs" />
     <Compile Include="src\general\NoiseMaker.cs" />
     <Compile Include="src\general\SeriesAssist.cs" />
+    <Compile Include="src\localization\enums\CurveApplyStrings.cs" />
+    <Compile Include="src\localization\enums\DataSetCurveTypeStrings.cs" />
     <Compile Include="src\localization\enums\GeometricMeanVariantStrings.cs" />
+    <Compile Include="src\localization\enums\LanguagesStrings.cs" />
     <Compile Include="src\localization\enums\MeanTypeStrings.cs" />
+    <Compile Include="src\localization\enums\OperationStrings.cs" />
+    <Compile Include="src\localization\enums\PhenomenonStrings.cs" />
     <Compile Include="src\localization\enums\StandardMeanVariantStrings.cs" />
+    <Compile Include="src\localization\general\LocalizedString.cs" />
     <Compile Include="src\localization\messages\MeansSettingsTexts.cs" />
     <Compile Include="src\localization\messages\Messages.cs" />
     <Compile Include="src\localization\windows\MeansSettingsStrings.cs" />
@@ -116,7 +120,6 @@
     <Compile Include="src\settings\IdealCurveDefinerGeneratorSettings.cs" />
     <Compile Include="src\parameters\HyperbolicParameters.cs" />
     <Compile Include="src\settings\MainChartSettings.cs" />
-    <Compile Include="Enums.cs" />
     <Compile Include="CurvesDataManager.cs" />
     <Compile Include="src\general\ArgumentsMaker.cs" />
     <Compile Include="GridPreviewer.cs">
@@ -131,7 +134,7 @@
     <Compile Include="src\messages\PatternCurveDefinerMessages.cs" />
     <Compile Include="src\messages\StatisticalAnalysisMessages.cs" />
     <Compile Include="src\localization\enums\EnumsLocalizer.cs" />
-    <Compile Include="src\localization\LanguageHelper.cs" />
+    <Compile Include="src\localization\general\LanguageHelper.cs" />
     <Compile Include="src\enumerators\Languages.cs" />
     <Compile Include="src\localization\enums\LocalizableEnumerator.cs" />
     <Compile Include="Locales\en-US.Designer.cs">
@@ -188,9 +191,6 @@
     <Compile Include="Translator.cs" />
     <Compile Include="src\settings\UiSettings.cs" />
     <Compile Include="src\helpers\UiControls.cs" />
-    <EmbeddedResource Include="AvgInfo.resx">
-      <DependentUpon>AvgInfo.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ChartSettings.resx">
       <DependentUpon>ChartSettings.cs</DependentUpon>
     </EmbeddedResource>

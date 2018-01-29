@@ -117,13 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Enums_DataSetCurvesTypes_Average" xml:space="preserve">
+  <data name="Enums_DataSetCurveType_Average" xml:space="preserve">
     <value>uśredniona</value>
   </data>
-  <data name="Enums_DataSetCurvesTypes_Modified" xml:space="preserve">
+  <data name="Enums_DataSetCurveType_Modified" xml:space="preserve">
     <value>zmodyfikowana</value>
   </data>
-  <data name="Enums_DataSetCurvesTypes_Ideal" xml:space="preserve">
+  <data name="Enums_DataSetCurveType_Ideal" xml:space="preserve">
     <value>idealna</value>
   </data>
   <data name="Localization_Enums_MeanType_AGM" xml:space="preserve">
@@ -148,10 +148,10 @@
   <data name="Localization_Enums_MeanType_Minimum" xml:space="preserve">
     <value>minimum</value>
   </data>
-  <data name="LangSelector_Languages_English" xml:space="preserve">
+  <data name="Enums_Languages_English" xml:space="preserve">
     <value>angielski</value>
   </data>
-  <data name="LangSelector_Languages_Polish" xml:space="preserve">
+  <data name="Enums_Languages_Polish" xml:space="preserve">
     <value>polski</value>
   </data>
   <data name="LangSelector_Ui_Down_OkBtn" xml:space="preserve">
@@ -550,121 +550,10 @@
   <data name="MessageBoxShower_StatisticalAnalysis_Preview_ValueOutOfRangeProblem_Text" xml:space="preserve">
     <value>Zapewniona wartość nie znajduje się w określonym przedziale.</value>
   </data>
-  <data name="AveragingInfo_AGM_TextBox1Text" xml:space="preserve">
-    <value>Średnia arytmetyczno-geometryczna jest zdefiniowana następująco:</value>
+  <data name="Enums_Phenomenon_Saturation" xml:space="preserve">
+    <value>saturacja</value>
   </data>
-  <data name="AveragingInfo_AGM_TextBox2Text" xml:space="preserve">
-    <value>Zostało to zmienione na:</value>
-  </data>
-  <data name="AveragingInfo_CustomDifferential_TextBox1Text" xml:space="preserve">
-    <value>Podejście metody Własnej-Różnicowej prezentuje się następująco:</value>
-  </data>
-  <data name="AveragingInfo_CustomDifferential_TextBox2Text" xml:space="preserve">
-    <value>Ma to swoją alternatywną wersję, czyli:</value>
-  </data>
-  <data name="AveragingInfo_CustomGeometric_TextBox1Text" xml:space="preserve">
-    <value>Średnia geometryczna jest zdefiniowana następująco:</value>
-  </data>
-  <data name="AveragingInfo_CustomGeometric_TextBox2Text" xml:space="preserve">
-    <value>Zostało to zamienione na:</value>
-  </data>
-  <data name="AveragingInfo_CustomTolerance_TextBox1Text" xml:space="preserve">
-    <value>Podejście metody Własnej-Tolerującej filtruje wartości wykorzystując komparator (M jest medianą lub średnią arytmetyczną):</value>
-  </data>
-  <data name="AveragingInfo_CustomTolerance_TextBox2Text" xml:space="preserve">
-    <value>Komparator jest używany do klasyfikowania wartości, które będą przetwarzane w dalszym etapie (FUNC jest średnią kończącą):</value>
-  </data>
-  <data name="AveragingInfo_EMA_TextBox1Text" xml:space="preserve">
-    <value>Wykładnicza średnia krocząca jest zdefiniowana następująco:</value>
-  </data>
-  <data name="AveragingInfo_EMA_TextBox2Text" xml:space="preserve">
-    <value>Zostało to zmienione na:</value>
-  </data>
-  <data name="AveragingInfo_Form_Text" xml:space="preserve">
-    <value>Informacje o uśrednianiu</value>
-  </data>
-  <data name="AveragingInfo_Geometric_TextBox1Text" xml:space="preserve">
-    <value>Średnia geometryczna jest zdefiniowana następująco:</value>
-  </data>
-  <data name="AveragingInfo_Geometric_TextBox2Text" xml:space="preserve">
-    <value>Zostało to zmienione na:</value>
-  </data>
-  <data name="AveragingInfo_Harmonic_TextBox1Text" xml:space="preserve">
-    <value>Średnia harmoniczna jest określona dla liczb rzeczywistych dodatnich następująco:</value>
-  </data>
-  <data name="AveragingInfo_Harmonic_TextBox2Text" xml:space="preserve">
-    <value>Nie zostało to zmienione, jednakże może być wyrażone również jako:</value>
-  </data>
-  <data name="AveragingInfo_Heronian_TextBox1Text" xml:space="preserve">
-    <value>Średnia Herona w geometrii jest zdefiniowana następująco:</value>
-  </data>
-  <data name="AveragingInfo_Heronian_TextBox2Text" xml:space="preserve">
-    <value>Zostało to zmienione na:</value>
-  </data>
-  <data name="AveragingInfo_LnWages_TextBox1Text" xml:space="preserve">
-    <value>Standardowa średnia ważona jest określona następująco:</value>
-  </data>
-  <data name="AveragingInfo_LnWages_TextBox2Text" xml:space="preserve">
-    <value>Zostało to zamienione na średnią ważoną logarytmicznie, jak poniżej:</value>
-  </data>
-  <data name="AveragingInfo_Logarithmic_TextBox1Text" xml:space="preserve">
-    <value>Średnia logarytmiczna jest zdefiniowana następująco:</value>
-  </data>
-  <data name="AveragingInfo_Logarithmic_TextBox2Text" xml:space="preserve">
-    <value>Zostało to zmienione na:</value>
-  </data>
-  <data name="AveragingInfo_Power_TextBox1Text" xml:space="preserve">
-    <value>Średnia potęgowa jest zdefiniowana dla określonego rzędu k jak poniżej:</value>
-  </data>
-  <data name="AveragingInfo_Power_TextBox2Text" xml:space="preserve">
-    <value>Nie zostało to zmienione, jednak domyślnym rzędem k jest:</value>
-  </data>
-  <data name="AveragingInfo_RMS_TextBox1Text" xml:space="preserve">
-    <value>Średnia kwadratowa jest zdefiniowana następująco:</value>
-  </data>
-  <data name="AveragingInfo_RMS_TextBox2Text" xml:space="preserve">
-    <value>Jest to obliczane z użyciem średniej potęgowej w postaci jak poniżej:</value>
-  </data>
-  <data name="Enums_AvgInfo_Tabs_AGM" xml:space="preserve">
-    <value>arytm.-geom.</value>
-  </data>
-  <data name="Enums_AvgInfo_Tabs_CustomDifferential" xml:space="preserve">
-    <value>własna-różnicowa</value>
-  </data>
-  <data name="Enums_AvgInfo_Tabs_CustomGeometric" xml:space="preserve">
-    <value>własna-geom.</value>
-  </data>
-  <data name="Enums_AvgInfo_Tabs_CustomTolerance" xml:space="preserve">
-    <value>własna-tolerująca</value>
-  </data>
-  <data name="Enums_AvgInfo_Tabs_EMA" xml:space="preserve">
-    <value>krocząca</value>
-  </data>
-  <data name="Enums_AvgInfo_Tabs_Geometric" xml:space="preserve">
-    <value>geometryczna</value>
-  </data>
-  <data name="Enums_AvgInfo_Tabs_Harmonic" xml:space="preserve">
-    <value>harmoniczna</value>
-  </data>
-  <data name="Enums_AvgInfo_Tabs_Heronian" xml:space="preserve">
-    <value>Herona</value>
-  </data>
-  <data name="Enums_AvgInfo_Tabs_LnWages" xml:space="preserve">
-    <value>log. ważona</value>
-  </data>
-  <data name="Enums_AvgInfo_Tabs_Logarithmic" xml:space="preserve">
-    <value>logarytmiczna</value>
-  </data>
-  <data name="Enums_AvgInfo_Tabs_Power" xml:space="preserve">
-    <value>potęgowa</value>
-  </data>
-  <data name="Enums_AvgInfo_Tabs_RMS" xml:space="preserve">
-    <value>kwadratowa</value>
-  </data>
-  <data name="Enums_PhenomenonIndex_Deformation" xml:space="preserve">
-    <value>deformacja</value>
-  </data>
-  <data name="Enums_PhenomenonIndex_Peek" xml:space="preserve">
+  <data name="Enums_Phenomenon_Peek" xml:space="preserve">
     <value>pik</value>
   </data>
   <data name="StatisticalAnalysis_Ui_Form_Text" xml:space="preserve">
@@ -772,17 +661,17 @@
   <data name="ChartSettings_Ui_Tabs_Series_Title" xml:space="preserve">
     <value>Serie danych</value>
   </data>
-  <data name="Enums_ApplyToCurve_All" xml:space="preserve">
+  <data name="Enums_CurveApply_All" xml:space="preserve">
     <value>wszystkie</value>
   </data>
-  <data name="Enums_ApplyToCurve_Average" xml:space="preserve">
+  <data name="Enums_CurveApply_Average" xml:space="preserve">
     <value>uśredniona</value>
   </data>
-  <data name="Enums_ApplyToCurve_Generated" xml:space="preserve">
-    <value>wygenerowana</value>
+  <data name="Enums_CurveApply_Modified" xml:space="preserve">
+    <value>zmodyfikowana</value>
   </data>
-  <data name="Enums_ApplyToCurve_Pattern" xml:space="preserve">
-    <value>wzorcowa</value>
+  <data name="Enums_CurveApply_Ideal" xml:space="preserve">
+    <value>idealna</value>
   </data>
   <data name="Localization_Window_MeansSettings_Form_Text" xml:space="preserve">
     <value>Ustawienia średnich</value>

@@ -7,6 +7,8 @@ using PI.src.messages;
 using PI.src.general;
 using log4net;
 using System.Reflection;
+using PI.src.enumerators;
+using PI.src.localization.enums;
 
 namespace PI
 {
@@ -31,8 +33,8 @@ namespace PI
             ChartAssist.SetDefaultSettings( uiChart_Prv );
             ChartDataSet = series;
             OriginalValues = GetPointsValues( series );
-            UiControls.TrySetSelectedIndex( uiPnl_AutoSize_ComBx, (int) Enums.AutoSizeColumnsMode.Fill );
-            UiControls.TrySetSelectedIndex( uiPnl_OperT_ComBx, (int) Enums.Operation.Positive );
+            UiControls.TrySetSelectedIndex( uiPnl_AutoSize_ComBx, (int) DataGridViewAutoSizeColumnsMode.Fill );
+            UiControls.TrySetSelectedIndex( uiPnl_OperT_ComBx, (int) Operation.Positive );
             uiPnl_StartIdx_Num.Minimum = 0;
             uiPnl_StartIdx_Num.Maximum = ChartDataSet.Points.Count - 1;
             uiPnl_StartIdx_Num.Value = 0;
@@ -98,19 +100,19 @@ namespace PI
 
         private void UiPanel_AutoSizeColumnsMode_SelectedIndexChanged( object sender, EventArgs e )
         {
-            Enums.AutoSizeColumnsMode mode = (Enums.AutoSizeColumnsMode) uiPnl_AutoSize_ComBx.SelectedIndex;
+            AutoSizeColumnsMode mode = (AutoSizeColumnsMode) uiPnl_AutoSize_ComBx.SelectedIndex;
 
             switch ( mode ) {
-            case Enums.AutoSizeColumnsMode.None:
+            case AutoSizeColumnsMode.None:
                 uiGrid_db_grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
                 break;
-            case Enums.AutoSizeColumnsMode.AllCells:
+            case AutoSizeColumnsMode.AllCells:
                 uiGrid_db_grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                 break;
-            case Enums.AutoSizeColumnsMode.DisplayedCells:
+            case AutoSizeColumnsMode.DisplayedCells:
                 uiGrid_db_grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
                 break;
-            case Enums.AutoSizeColumnsMode.Fill:
+            case AutoSizeColumnsMode.Fill:
                 uiGrid_db_grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 break;
             }
@@ -123,36 +125,36 @@ namespace PI
 
         private void UpdateUiBySwitchingOperationType()
         {
-            Enums.Operation operation = (Enums.Operation) uiPnl_OperT_ComBx.SelectedIndex;
+            Operation operation = (Operation) uiPnl_OperT_ComBx.SelectedIndex;
             uiPnl_Val2_TxtBx.Enabled = true;
 
             switch ( operation ) {
-            case Enums.Operation.Addition:
+            case Operation.Addition:
                 uiPnl_Val1_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Addend.GetString();
                 break;
-            case Enums.Operation.Substraction:
+            case Operation.Subtraction:
                 uiPnl_Val1_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Subtrahend.GetString();
                 break;
-            case Enums.Operation.Multiplication:
+            case Operation.Multiplication:
                 uiPnl_Val1_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Multiplier.GetString();
                 break;
-            case Enums.Operation.Division:
+            case Operation.Division:
                 uiPnl_Val1_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Divisor.GetString();
                 break;
-            case Enums.Operation.Exponentiation:
+            case Operation.Exponentiation:
                 uiPnl_Val1_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Exponent.GetString();
                 break;
-            case Enums.Operation.Logarithmic:
+            case Operation.Logarithmic:
                 uiPnl_Val1_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Basis.GetString();
                 break;
-            case Enums.Operation.Rooting:
+            case Operation.Rooting:
                 uiPnl_Val1_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Basis.GetString();
                 break;
-            case Enums.Operation.Constant:
+            case Operation.Constant:
                 uiPnl_Val1_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Value.GetString();
                 break;
-            case Enums.Operation.Positive:
-            case Enums.Operation.Negative:
+            case Operation.Positive:
+            case Operation.Negative:
                 uiPnl_Val1_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.NotApplicable.GetString();
                 uiPnl_Val2_TxtBx.Enabled = false;
                 break;
@@ -188,7 +190,7 @@ namespace PI
             int startIndex = UiControls.TryGetValue<int>( uiPnl_StartIdx_Num );
             int endIndex = UiControls.TryGetValue<int>( uiPnl_EndIdx_Num );
             Series seriesCopy = GetCopyOfSeriesPoints();
-            Enums.Operation operation = (Enums.Operation) uiPnl_OperT_ComBx.SelectedIndex;
+            Operation operation = (Operation) uiPnl_OperT_ComBx.SelectedIndex;
             bool result = PerformOperation( operation, startIndex, endIndex, userValue.Value, ref seriesCopy );
 
             if ( !result ) {
@@ -211,9 +213,9 @@ namespace PI
 
         private double? GetUserValue()
         {
-            switch ( (Enums.Operation) uiPnl_OperT_ComBx.SelectedIndex ) {
-            case Enums.Operation.Positive:
-            case Enums.Operation.Negative:
+            switch ( (Operation) uiPnl_OperT_ComBx.SelectedIndex ) {
+            case Operation.Positive:
+            case Operation.Negative:
                 return 0.0;
             }
 
@@ -260,7 +262,7 @@ namespace PI
             }
         }
 
-        private bool PerformOperation( Enums.Operation operation, int startIndex, int endIndex, double value, ref Series series )
+        private bool PerformOperation( Operation operation, int startIndex, int endIndex, double value, ref Series series )
         {
             string signature = string.Empty;
 
@@ -269,34 +271,34 @@ namespace PI
                 signature = @base.DeclaringType.Name + "." + @base.Name + "()";
 
                 switch ( operation ) {
-                case Enums.Operation.Addition:
+                case Operation.Addition:
                     PerformAddition( startIndex, endIndex, value, ref series );
                     break;
-                case Enums.Operation.Substraction:
+                case Operation.Subtraction:
                     PerformSubstraction( startIndex, endIndex, value, ref series );
                     break;
-                case Enums.Operation.Multiplication:
+                case Operation.Multiplication:
                     PerformMultiplication( startIndex, endIndex, value, ref series );
                     break;
-                case Enums.Operation.Division:
+                case Operation.Division:
                     PerformDivision( startIndex, endIndex, value, ref series );
                     break;
-                case Enums.Operation.Exponentiation:
+                case Operation.Exponentiation:
                     PerformExponentiation( startIndex, endIndex, value, ref series );
                     break;
-                case Enums.Operation.Logarithmic:
+                case Operation.Logarithmic:
                     PerformLogarithmic( startIndex, endIndex, value, ref series );
                     break;
-                case Enums.Operation.Rooting:
+                case Operation.Rooting:
                     PerformRooting( startIndex, endIndex, value, ref series );
                     break;
-                case Enums.Operation.Constant:
+                case Operation.Constant:
                     PerformConstant( startIndex, endIndex, value, ref series );
                     break;
-                case Enums.Operation.Positive:
+                case Operation.Positive:
                     PerformPositive( startIndex, endIndex, ref series );
                     break;
-                case Enums.Operation.Negative:
+                case Operation.Negative:
                     PerformNegative( startIndex, endIndex, ref series );
                     break;
                 }
@@ -466,7 +468,7 @@ namespace PI
             uiPnl_AutoSize_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.AutoSize.GetString();
             uiPnl_Edit_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Edit.GetString();
             uiPnl_OperT_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.OperT.GetString();
-            AddLocalizedOperations( uiPnl_OperT_ComBx );
+            EnumsLocalizer.Localize( LocalizableEnumerator.Operation, uiPnl_OperT_ComBx );
             uiPnl_StartIdx_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.StartIdx.GetString();
             uiPnl_EndIdx_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.EndIdx.GetString();
             UpdateUiBySwitchingOperationType();
@@ -485,15 +487,6 @@ namespace PI
         private void LocalizePreview()
         {
             uiChart_Prv_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Preview.Prv.GetString();
-        }
-
-        private void AddLocalizedOperations<T>( T control ) where T : ComboBox
-        {
-            control.Items.Clear();
-
-            foreach ( var item in Translator.GetInstance().Strings.Enums.Operations ) {
-                control.Items.Add( item.GetString() );
-            }
         }
 
         public void SetFastEditControls( bool isAvailable )

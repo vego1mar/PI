@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using PI.src.localization.general;
+using System.Collections;
 using System.Collections.Generic;
 using static PI.Translator;
 

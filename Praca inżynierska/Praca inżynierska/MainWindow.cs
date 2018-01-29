@@ -554,6 +554,7 @@ namespace PI
         {
             ChartAssist.SetDefaultSettings( uiCharts_Crv );
             UiControls.TrySetSelectedIndex( uiPnlGen_MeanT_ComBx, (int) MeanType.Geometric );
+            //EnumsLocalizer.Localize( LocalizableEnumerator.DataSetCurveType, uiPnlDtSh_CrvT_ComBx );
             UpdateUiByChosenScaffoldStatus();
         }
 
@@ -616,13 +617,6 @@ namespace PI
             Settings.MainWindow.Menu.Panel.Lock = !Settings.MainWindow.Menu.Panel.Lock;
             uiMenuPnl_Lock.Checked = Settings.MainWindow.Menu.Panel.Lock;
             uiMw_SpCtn.Panel1.Enabled = !Settings.MainWindow.Menu.Panel.Lock;
-        }
-
-        private void UiMenuMeans_AveragingInfo_Click( object sender, EventArgs e )
-        {
-            using ( var msgBox = new AvgInfo() ) {
-                UiControls.TryShowDialog( msgBox, this );
-            }
         }
 
         private void UiMenuMeans_Settings_Click( object sender, EventArgs e )
@@ -692,12 +686,12 @@ namespace PI
         private void SetChartSettings( MainChartSettings settings, Chart chart, int areaNo = 0 )
         {
             switch ( settings.ApplyMode ) {
-            case ChartSettings.ApplyToCurve.All:
+            case CurveApply.All:
                 SetCommonChartSettings( settings, chart, areaNo );
                 break;
-            case ChartSettings.ApplyToCurve.Average:
-            case ChartSettings.ApplyToCurve.Generated:
-            case ChartSettings.ApplyToCurve.Pattern:
+            case CurveApply.Average:
+            case CurveApply.Modified:
+            case CurveApply.Ideal:
                 SetSeriesChartSettings( settings );
                 break;
             }
@@ -731,13 +725,13 @@ namespace PI
         private void SetSeriesChartSettings( MainChartSettings settings )
         {
             switch ( settings.ApplyMode ) {
-            case ChartSettings.ApplyToCurve.Pattern:
+            case CurveApply.Ideal:
                 SetPatternSeriesChartSettings( settings );
                 break;
-            case ChartSettings.ApplyToCurve.Generated:
+            case CurveApply.Modified:
                 SetGeneratedSeriesChartSettings( settings );
                 break;
-            case ChartSettings.ApplyToCurve.Average:
+            case CurveApply.Average:
                 SetAverageSeriesChartSettings( settings );
                 break;
             }
@@ -890,7 +884,6 @@ namespace PI
         private void LocalizeMenuMeans()
         {
             uiMenu_Means.Text = Translator.GetInstance().Strings.MainWindow.Menu.Means.Title.GetString();
-            uiMenuMeans_AvgInfo.Text = Translator.GetInstance().Strings.MainWindow.Menu.Means.AvgInfo.GetString();
             uiMenuMeans_Settings.Text = Translator.GetInstance().Strings.MainWindow.Menu.Means.Settings.GetString();
         }
 
@@ -1009,7 +1002,7 @@ namespace PI
             uiPnlDtSh_TbPg.Text = Translator.GetInstance().Strings.MainWindow.Panel.Datasheet.Title.GetString();
             uiPnlDtSh_DtSetCtrl_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Datasheet.DtSetCtrl.GetString();
             uiPnlDtSh_CrvT_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Datasheet.CrvT.GetString();
-            Translator.AddLocalizedDataSetCurveTypes( uiPnlDtSh_CrvT_ComBx );
+            EnumsLocalizer.Localize( LocalizableEnumerator.DataSetCurveType, uiPnlDtSh_CrvT_ComBx );
             uiPnlDtSh_CrvIdx_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Datasheet.CrvIdx.GetString();
 
             if ( DataChart.IdealCurve.Points.Count != 0 ) {

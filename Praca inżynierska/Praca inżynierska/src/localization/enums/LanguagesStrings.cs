@@ -5,19 +5,19 @@ using static PI.Translator;
 
 namespace PI.src.localization.enums
 {
-    public class StandardMeanVariantStrings : IEnumerable<LocalizedString>
+    public class LanguagesStrings : IEnumerable<LocalizedString>
     {
         private IList<LocalizedString> Strings {
             get {
                 return new List<LocalizedString>() {
-                    Straight,
-                    Offset
+                    English,
+                    Polish
                 };
             }
         }
 
-        private LocalizedString Straight { get { return new LocalizedString( CurrentLanguage, "Localization_Enums_StandardMeanVariant_Straight" ); } }
-        private LocalizedString Offset { get { return new LocalizedString( CurrentLanguage, "Localization_Enums_StandardMeanVariant_Offset" ); } }
+        private LocalizedString English { get { return new LocalizedString( CurrentLanguage, "Enums_Languages_English" ); } }
+        private LocalizedString Polish { get { return new LocalizedString( CurrentLanguage, "Enums_Languages_Polish" ); } }
 
         public IEnumerator<LocalizedString> GetEnumerator()
         {

@@ -1,4 +1,5 @@
-﻿using static PI.Translator;
+﻿using PI.src.localization.general;
+using static PI.Translator;
 
 namespace PI.src.localization.windows
 {

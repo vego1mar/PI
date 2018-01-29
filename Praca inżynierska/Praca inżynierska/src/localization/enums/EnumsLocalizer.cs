@@ -1,4 +1,5 @@
 ﻿using log4net;
+using PI.src.localization.general;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -14,21 +15,33 @@ namespace PI.src.localization.enums
         {
             switch ( enumerator ) {
             case LocalizableEnumerator.Languages:
-                Traverse( Translator.GetInstance().Strings.Enums.Languages, control as ListBox );
+                Traverse( new LanguagesStrings(), control );
                 break;
             case LocalizableEnumerator.GeometricMeanVariant:
-                Traverse( new GeometricMeanVariantStrings(), control as ComboBox );
+                Traverse( new GeometricMeanVariantStrings(), control );
                 break;
             case LocalizableEnumerator.StandardMeanVariant:
-                Traverse( new StandardMeanVariantStrings(), control as ComboBox );
+                Traverse( new StandardMeanVariantStrings(), control );
                 break;
             case LocalizableEnumerator.MeanType:
                 Traverse( new MeanTypesStrings(), control );
                 break;
+            case LocalizableEnumerator.DataSetCurveType:
+                Traverse( new DataSetCurveTypeStrings(), control );
+                break;
+            case LocalizableEnumerator.Operation:
+                Traverse( new OperationStrings(), control );
+                break;
+            case LocalizableEnumerator.Phenomenon:
+                Traverse( new PhenomenonStrings(), control );
+                break;
+            case LocalizableEnumerator.CurveApply:
+                Traverse( new CurveApplyStrings(), control );
+                break;
             }
         }
 
-        private static void Traverse<T>( IEnumerable<Translator.LocalizedString> strings, T control ) where T : Control
+        private static void Traverse<T>( IEnumerable<LocalizedString> strings, T control ) where T : Control
         {
             var typeSwitch = new Dictionary<Type, Action>() {
                 { typeof(ComboBox), () => LocalizeComboBox(strings, control as ComboBox) },
@@ -52,20 +65,20 @@ namespace PI.src.localization.enums
             }
         }
 
-        private static void LocalizeComboBox( IEnumerable<Translator.LocalizedString> strings, ComboBox comboBox )
+        private static void LocalizeComboBox( IEnumerable<LocalizedString> strings, ComboBox comboBox )
         {
             comboBox.Items.Clear();
 
-            foreach ( Translator.LocalizedString item in strings ) {
+            foreach ( LocalizedString item in strings ) {
                 comboBox.Items.Add( item.GetString() );
             }
         }
 
-        private static void LocalizeListBox( IEnumerable<Translator.LocalizedString> strings, ListBox listBox )
+        private static void LocalizeListBox( IEnumerable<LocalizedString> strings, ListBox listBox )
         {
             listBox.Items.Clear();
 
-            foreach ( Translator.LocalizedString item in strings ) {
+            foreach ( LocalizedString item in strings ) {
                 listBox.Items.Add( item.GetString() );
             }
         }

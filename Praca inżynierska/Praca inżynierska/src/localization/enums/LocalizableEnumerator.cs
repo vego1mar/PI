@@ -5,6 +5,10 @@
         Languages,
         GeometricMeanVariant,
         StandardMeanVariant,
-        MeanType
+        MeanType,
+        DataSetCurveType,
+        Operation,
+        Phenomenon,
+        CurveApply,
     }
 }

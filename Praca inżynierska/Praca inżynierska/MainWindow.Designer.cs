@@ -97,7 +97,6 @@
             this.uiMenuPnl_Hide = new System.Windows.Forms.ToolStripMenuItem();
             this.uiMenuPnl_Lock = new System.Windows.Forms.ToolStripMenuItem();
             this.uiMenu_Means = new System.Windows.Forms.ToolStripMenuItem();
-            this.uiMenuMeans_AvgInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.uiMenuMeans_Settings = new System.Windows.Forms.ToolStripMenuItem();
             this.uiMenu_Chart = new System.Windows.Forms.ToolStripMenuItem();
             this.uiMenuChart_Settings = new System.Windows.Forms.ToolStripMenuItem();
@@ -1171,24 +1170,16 @@
             // 
             this.uiMenu_Means.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.uiMenu_Means.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.uiMenuMeans_AvgInfo,
             this.uiMenuMeans_Settings});
             this.uiMenu_Means.Font = new System.Drawing.Font("Consolas", 8.25F);
             this.uiMenu_Means.Name = "uiMenu_Means";
             this.uiMenu_Means.Size = new System.Drawing.Size(49, 20);
             this.uiMenu_Means.Text = "Means";
             // 
-            // uiMenuMeans_AvgInfo
-            // 
-            this.uiMenuMeans_AvgInfo.Name = "uiMenuMeans_AvgInfo";
-            this.uiMenuMeans_AvgInfo.Size = new System.Drawing.Size(158, 22);
-            this.uiMenuMeans_AvgInfo.Text = "Averaging info";
-            this.uiMenuMeans_AvgInfo.Click += new System.EventHandler(this.UiMenuMeans_AveragingInfo_Click);
-            // 
             // uiMenuMeans_Settings
             // 
             this.uiMenuMeans_Settings.Name = "uiMenuMeans_Settings";
-            this.uiMenuMeans_Settings.Size = new System.Drawing.Size(158, 22);
+            this.uiMenuMeans_Settings.Size = new System.Drawing.Size(152, 22);
             this.uiMenuMeans_Settings.Text = "Settings";
             this.uiMenuMeans_Settings.Click += new System.EventHandler(this.UiMenuMeans_Settings_Click);
             // 
@@ -1205,7 +1196,7 @@
             // uiMenuChart_Settings
             // 
             this.uiMenuChart_Settings.Name = "uiMenuChart_Settings";
-            this.uiMenuChart_Settings.Size = new System.Drawing.Size(122, 22);
+            this.uiMenuChart_Settings.Size = new System.Drawing.Size(152, 22);
             this.uiMenuChart_Settings.Text = "Settings";
             this.uiMenuChart_Settings.Click += new System.EventHandler(this.UiMenuChart_Settings_Click);
             // 
@@ -1337,7 +1328,6 @@
         private System.Windows.Forms.ToolStripMenuItem uiMenuPnl_Hide;
         private System.Windows.Forms.ToolStripMenuItem uiMenuPnl_Lock;
         private System.Windows.Forms.ToolStripMenuItem uiMenu_Means;
-        private System.Windows.Forms.ToolStripMenuItem uiMenuMeans_AvgInfo;
         private System.Windows.Forms.ToolStripMenuItem uiMenuMeans_Settings;
         private System.Windows.Forms.ToolStripMenuItem uiMenu_Chart;
         private System.Windows.Forms.ToolStripMenuItem uiMenuChart_Settings;
