@@ -1,12 +1,13 @@
 ﻿using log4net;
 using PI.src.enumerators;
 using System;
+using System.Globalization;
 using System.Reflection;
 using System.Threading;
 
 namespace PI.src.localization.general
 {
-    public static class LanguageHelper
+    public static class LanguageAssist
     {
         private static readonly ILog log = LogManager.GetLogger( MethodBase.GetCurrentMethod().DeclaringType );
 
@@ -57,6 +58,34 @@ namespace PI.src.localization.general
             }
 
             return resourceString;
+        }
+
+        public static void TryLocalizeCulture( Languages language )
+        {
+            string signature = string.Empty;
+
+            try {
+                MethodBase @base = MethodBase.GetCurrentMethod();
+                signature = @base.DeclaringType.Name + "." + @base.Name + "(" + language + ")";
+
+                switch ( language ) {
+                case Languages.English:
+                    Thread.CurrentThread.CurrentCulture = new CultureInfo( "en-US" );
+                    break;
+                case Languages.Polish:
+                    Thread.CurrentThread.CurrentCulture = new CultureInfo( "pl-PL" );
+                    break;
+                }
+            }
+            catch ( CultureNotFoundException ex ) {
+                log.Error( signature, ex );
+            }
+            catch ( ArgumentNullException ex ) {
+                log.Error( signature, ex );
+            }
+            catch ( Exception ex ) {
+                log.Fatal( signature, ex );
+            }
         }
     }
 }

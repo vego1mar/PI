@@ -11,6 +11,8 @@ using log4net;
 using System.Reflection;
 using PI.src.enumerators;
 using PI.src.localization.enums;
+using PI.src.localization.windows;
+using PI.src.localization.general;
 
 namespace PI
 {
@@ -41,14 +43,13 @@ namespace PI
         {
             UpdateUiByDotNetFrameworkVersion();
             UpdateUiByOsVersionName();
-            uiPnlPrg_LogPath2_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Program.InfoObtErrTxt.GetString();
             UpdateUiByDefaultSettings();
             DefineTimerThread();
             Threads.TryStart( Timer );
             UpdateUiByStatusOfTimerThread();
             Translator.GetInstance();
             Translator.SetLanguage( Languages.English );
-            LocalizeCulture( Languages.English );
+            LanguageAssist.TryLocalizeCulture( Languages.English );
         }
 
         private void UiMenuProgram_Exit_Click( object sender, EventArgs e )
@@ -171,11 +172,13 @@ namespace PI
 
         private void UpdateUiByStatusOfTimerThread()
         {
+            MainWindowStrings names = new MainWindowStrings();
+
             if ( Timer == null ) {
-                uiPnlPrg_ActState2_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Program.StateFail.GetString();
+                uiPnlPrg_ActState2_TxtBx.Text = names.Ui.Panel.ProgramStateFail.GetString();
             }
             else {
-                uiPnlPrg_ActState2_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Program.StateSucc.GetString();
+                uiPnlPrg_ActState2_TxtBx.Text = names.Ui.Panel.ProgramStateSuccess.GetString();
             }
         }
 
@@ -210,21 +213,23 @@ namespace PI
 
         private void UpdateUiByChosenScaffoldStatus()
         {
+            MainWindowStrings names = new MainWindowStrings();
+
             switch ( Settings.Presets.Pcd.Scaffold ) {
             case IdealCurveScaffold.Polynomial:
-                uiPnlGen_Def_Btn.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.ScaffPoly.GetString();
+                uiPnlGen_Def_Btn.Text = names.Ui.Panel.GenerateScaffoldPolynomial.GetString();
                 break;
             case IdealCurveScaffold.Hyperbolic:
-                uiPnlGen_Def_Btn.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.ScaffHyp.GetString();
+                uiPnlGen_Def_Btn.Text = names.Ui.Panel.GenerateScaffoldHyperbolic.GetString();
                 break;
             case IdealCurveScaffold.WaveformSine:
             case IdealCurveScaffold.WaveformSquare:
             case IdealCurveScaffold.WaveformTriangle:
             case IdealCurveScaffold.WaveformSawtooth:
-                uiPnlGen_Def_Btn.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.ScaffWave.GetString();
+                uiPnlGen_Def_Btn.Text = names.Ui.Panel.GenerateScaffoldWaveform.GetString();
                 break;
             default:
-                uiPnlGen_Def_Btn.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.ScaffNone.GetString();
+                uiPnlGen_Def_Btn.Text = names.Ui.Panel.GenerateScaffoldNone.GetString();
                 break;
             }
         }
@@ -266,7 +271,7 @@ namespace PI
 
         private void UiPanelGenerate_GenerateSet_Click( object sender, EventArgs e )
         {
-            if ( uiPnlGen_Def_Btn.Text == Translator.GetInstance().Strings.MainWindow.Panel.Generate.ScaffNone.GetString() ) {
+            if ( uiPnlGen_Def_Btn.Text == new MainWindowStrings().Ui.Panel.GenerateScaffoldNone.GetString() ) {
                 Messages.MainWindow.StopOfPatternCurveNotChosen();
                 return;
             }
@@ -377,9 +382,9 @@ namespace PI
 
         private void UpdateUiBySettingRangesForCurvesNumber()
         {
-            uiPnlGen_Crvs2No_Nm.Minimum = 1;
-            uiPnlGen_Crvs2No_Nm.Maximum = Settings.Presets.Ui.CurvesNo;
-            uiPnlGen_Crvs2No_Nm.Value = uiPnlGen_Crvs2No_Nm.Maximum;
+            uiPnlGen_Crvs2No_Num.Minimum = 1;
+            uiPnlGen_Crvs2No_Num.Maximum = Settings.Presets.Ui.CurvesNo;
+            uiPnlGen_Crvs2No_Num.Value = uiPnlGen_Crvs2No_Num.Maximum;
             uiPnlDtSh_CrvIdx_Num.Minimum = 1;
             uiPnlDtSh_CrvIdx_Num.Maximum = Settings.Presets.Ui.CurvesNo;
             uiPnlDtSh_CrvIdx_Num.Value = uiPnlDtSh_CrvIdx_Num.Minimum;
@@ -396,7 +401,7 @@ namespace PI
             string dotNetVersion = SystemInfo.TryGetDotNetFrameworkVersion();
 
             if ( dotNetVersion == null ) {
-                uiPnlPrg_DotNetFr2_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Program.InfoObtErrTxt.GetString();
+                uiPnlPrg_DotNetFr2_TxtBx.Text = new MainWindowStrings().Ui.Panel.ProgramDotNetFramework1.GetString();
                 return;
             }
 
@@ -409,7 +414,7 @@ namespace PI
             string osVersion = SystemInfo.TryGetOSVersion();
 
             if ( osVersion == null ) {
-                uiPnlPrg_OsVer2_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Program.InfoObtErrTxt.GetString();
+                uiPnlPrg_OsVer2_TxtBx.Text = new MainWindowStrings().Ui.Panel.ProgramOsVersion1.GetString();
                 return;
             }
 
@@ -528,7 +533,7 @@ namespace PI
             }
 
             MeanType meanType = (MeanType) UiControls.TryGetSelectedIndex( uiPnlGen_MeanT_ComBx );
-            int numberOfCurves = UiControls.TryGetValue<int>( uiPnlGen_Crvs2No_Nm );
+            int numberOfCurves = UiControls.TryGetValue<int>( uiPnlGen_Crvs2No_Num );
             bool isNumberOfCurvesInsufficient = (meanType == MeanType.Median
                 || meanType == MeanType.Tolerance)
                 && numberOfCurves < 3;
@@ -554,7 +559,6 @@ namespace PI
         {
             ChartAssist.SetDefaultSettings( uiCharts_Crv );
             UiControls.TrySetSelectedIndex( uiPnlGen_MeanT_ComBx, (int) MeanType.Geometric );
-            //EnumsLocalizer.Localize( LocalizableEnumerator.DataSetCurveType, uiPnlDtSh_CrvT_ComBx );
             UpdateUiByChosenScaffoldStatus();
         }
 
@@ -844,7 +848,7 @@ namespace PI
 
                 if ( dialog.DialogResult == DialogResult.OK ) {
                     Translator.SetLanguage( dialog.GetSelectedLanguage() );
-                    LocalizeCulture( dialog.GetSelectedLanguage() );
+                    LanguageAssist.TryLocalizeCulture( dialog.GetSelectedLanguage() );
                     LocalizeWindow();
                 }
             }
@@ -852,184 +856,88 @@ namespace PI
 
         private void LocalizeWindow()
         {
-            Text = Translator.GetInstance().Strings.MainWindow.Ui.Form.Text.GetString();
-            LocalizeMenu();
-            LocalizePanel();
-        }
+            MainWindowStrings names = new MainWindowStrings();
+            Text = names.Form.Text.GetString();
 
-        private void LocalizeMenu()
-        {
-            LocalizeMenuProgram();
-            LocalizeMenuPanel();
-            LocalizeMenuMeans();
-            LocalizeMenuChart();
-        }
+            // Menu: Program
+            uiMenu_Prg.Text = names.Ui.Menu.ProgramTitle.GetString();
+            uiMenuPrg_StatAnal.Text = names.Ui.Menu.ProgramStatisticalAnalysis.GetString();
+            uiMenuPrg_Lang.Text = names.Ui.Menu.ProgramSelectLanguage.GetString();
+            uiMenuPrg_Exit.Text = names.Ui.Menu.ProgramExit.GetString();
 
-        private void LocalizeMenuProgram()
-        {
-            uiMenu_Prg.Text = Translator.GetInstance().Strings.MainWindow.Menu.Program.Title.GetString();
-            uiMenuPrg_StatAnal.Text = Translator.GetInstance().Strings.MainWindow.Menu.Program.StatAnal.GetString();
-            uiMenuPrg_Lang.Text = Translator.GetInstance().Strings.MainWindow.Menu.Program.Lang.GetString();
-            uiMenuPrg_Exit.Text = Translator.GetInstance().Strings.MainWindow.Menu.Program.Exit.GetString();
-        }
+            // Menu: Panel
+            uiMenu_Pnl.Text = names.Ui.Menu.PanelTitle.GetString();
+            uiMenuPnl_KeepProp.Text = names.Ui.Menu.PanelKeepProportions.GetString();
+            uiMenuPnl_Hide.Text = names.Ui.Menu.PanelHide.GetString();
+            uiMenuPnl_Lock.Text = names.Ui.Menu.PanelLock.GetString();
 
-        private void LocalizeMenuPanel()
-        {
-            uiMenu_Pnl.Text = Translator.GetInstance().Strings.MainWindow.Menu.Panel.Title.GetString();
-            uiMenuPnl_KeepProp.Text = Translator.GetInstance().Strings.MainWindow.Menu.Panel.KeepProp.GetString();
-            uiMenuPnl_Hide.Text = Translator.GetInstance().Strings.MainWindow.Menu.Panel.Hide.GetString();
-            uiMenuPnl_Lock.Text = Translator.GetInstance().Strings.MainWindow.Menu.Panel.Lock.GetString();
-        }
+            // Menu: Means
+            uiMenu_Means.Text = names.Ui.Menu.MeansTitle.GetString();
+            uiMenuMeans_Settings.Text = names.Ui.Menu.MeansSettings.GetString();
 
-        private void LocalizeMenuMeans()
-        {
-            uiMenu_Means.Text = Translator.GetInstance().Strings.MainWindow.Menu.Means.Title.GetString();
-            uiMenuMeans_Settings.Text = Translator.GetInstance().Strings.MainWindow.Menu.Means.Settings.GetString();
-        }
+            // Menu: Chart
+            uiMenu_Chart.Text = names.Ui.Menu.ChartTitle.GetString();
+            uiMenuChart_Settings.Text = names.Ui.Menu.ChartSettings.GetString();
 
-        private void LocalizeMenuChart()
-        {
-            uiMenu_Chart.Text = Translator.GetInstance().Strings.MainWindow.Menu.Chart.Title.GetString();
-            uiMenuChart_Settings.Text = Translator.GetInstance().Strings.MainWindow.Menu.Chart.Settings.GetString();
-        }
-
-        private void LocalizePanel()
-        {
-            LocalizePanelTabGenerate();
-            LocalizePanelTabDatasheet();
-            LocalizePanelTabProgram();
-        }
-
-        private void LocalizePanelTabGenerate()
-        {
-            uiPnlGen_TbPg.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.Title.GetString();
-            uiPnlGen_PattCrvScaff_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.PattCrvScaff.GetString();
-            uiPnlGen_CrvScaff1_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.CrvScaff1.GetString();
-            uiPnlGen_Def_Btn.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.ScaffNone.GetString();
+            // Tab: Generate
+            uiPnlGen_TbPg.Text = names.Ui.Panel.GenerateTitle.GetString();
+            uiPnlGen_PattCrvScaff_TxtBx.Text = names.Ui.Panel.GeneratePatternCurveScaffold.GetString();
+            uiPnlGen_CrvScaff1_TxtBx.Text = names.Ui.Panel.GenerateCurveScaffold1.GetString();
+            uiPnlGen_Def_Btn.Text = names.Ui.Panel.GenerateScaffoldNone.GetString();
             UpdateUiByChosenScaffoldStatus();
-            uiPnlGen_CrvsSet_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.CrvsSet.GetString();
-            uiPnlGen_Crvs1No_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.Crvs1No.GetString();
-            uiPnlGen_StartX_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.StartX.GetString();
-            uiPnlGen_EndX_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.EndX.GetString();
-            uiPnlGen_Dens_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.Dens.GetString();
-            RefreshControlToLocalize( uiPnlGen_Crvs1No_Num );
-            RefreshControlToLocalize( uiPnlGen_StartX_Num );
-            RefreshControlToLocalize( uiPnlGen_EndX_Num );
-            RefreshControlToLocalize( uiPnlGen_Dens_Num );
-            uiPnlGen_GenSet_Btn.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.GenSet.GetString();
-            uiPnlGen_Avg_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.Avg.GetString();
-            uiPnlGen_MeanT_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.MeanT.GetString();
-            uiPnlGen_Crvs2No_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.Crvs2No.GetString();
+            uiPnlGen_CrvsSet_TxtBx.Text = names.Ui.Panel.GenerateCurvesSet.GetString();
+            uiPnlGen_Crvs1No_TxtBx.Text = names.Ui.Panel.GenerateCurves1No.GetString();
+            uiPnlGen_StartX_TxtBx.Text = names.Ui.Panel.GenerateStartX.GetString();
+            uiPnlGen_EndX_TxtBx.Text = names.Ui.Panel.GenerateEndX.GetString();
+            uiPnlGen_Dens_TxtBx.Text = names.Ui.Panel.GenerateDensity.GetString();
+            UiControls.TryRefreshOfProperty( uiPnlGen_Crvs1No_Num );
+            UiControls.TryRefreshOfProperty( uiPnlGen_StartX_Num );
+            UiControls.TryRefreshOfProperty( uiPnlGen_EndX_Num );
+            UiControls.TryRefreshOfProperty( uiPnlGen_Dens_Num );
+            uiPnlGen_GenSet_Btn.Text = names.Ui.Panel.GenerateGenerateSet.GetString();
+            uiPnlGen_Avg_TxtBx.Text = names.Ui.Panel.GenerateAveraging.GetString();
+            uiPnlGen_MeanT_TxtBx.Text = names.Ui.Panel.GenerateMeanType.GetString();
+            uiPnlGen_Crvs2No_TxtBx.Text = names.Ui.Panel.GenerateCurves2No.GetString();
             EnumsLocalizer.Localize( LocalizableEnumerator.MeanType, uiPnlGen_MeanT_ComBx );
-            RefreshControlToLocalize( uiPnlGen_Crvs2No_Nm );
-            uiPnlGen_StdDev1_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.StdDev1.GetString();
-            uiPnlGen_Apply_Btn.Text = Translator.GetInstance().Strings.MainWindow.Panel.Generate.Apply.GetString();
-        }
+            UiControls.TryRefreshOfProperty( uiPnlGen_Crvs2No_Num );
+            uiPnlGen_StdDev1_TxtBx.Text = names.Ui.Panel.GenerateStandardDeviation1.GetString();
+            uiPnlGen_Apply_Btn.Text = names.Ui.Panel.GenerateApply.GetString();
 
-        private void LocalizeCulture( Languages language )
-        {
-            string signature = string.Empty;
+            // Tab: Datasheet
+            uiPnlDtSh_TbPg.Text = names.Ui.Panel.DatasheetTitle.GetString();
+            uiPnlDtSh_DtSetCtrl_TxtBx.Text = names.Ui.Panel.DatasheetDataSetControl.GetString();
+            uiPnlDtSh_CrvT_TxtBx.Text = names.Ui.Panel.DatasheetCurveType.GetString();
+            EnumsLocalizer.Localize( LocalizableEnumerator.DataSetCurveType, uiPnlDtSh_CrvT_ComBx );
+            uiPnlDtSh_CrvIdx_TxtBx.Text = names.Ui.Panel.DatasheetCurveIndex.GetString();
 
-            try {
-                signature = @base.DeclaringType.Name + "." + @base.Name + "(" + language + ")";
-
-                switch ( language ) {
-                case Languages.English:
-                    Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo( "en-US" );
-                    break;
-                case Languages.Polish:
-                    Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo( "pl-PL" );
-                    break;
-                }
+            if ( DataChart.IdealCurve.Points.Count != 0 ) {
+                UiControls.TryRefreshOfProperty( uiPnlDtSh_CrvIdx_Num );
             }
-            catch ( System.Globalization.CultureNotFoundException ex ) {
-                log.Error( signature, ex );
-            }
-            catch ( ArgumentNullException ex ) {
-                log.Error( signature, ex );
-            }
-            catch ( Exception ex ) {
-                log.Fatal( signature, ex );
-            }
-        }
 
-        private void RefreshControlToLocalize( Control control )
-        {
-            string signature = string.Empty;
+            uiPnlDtSh_ShowDtSet_Btn.Text = names.Ui.Panel.DatasheetShowDataSet.GetString();
+            uiPnlDtSh_GsNoise_TxtBx.Text = names.Ui.Panel.DatasheetGaussianNoise.GetString();
+            uiPnlDtSh_CrvNo_TxtBx.Text = names.Ui.Panel.DatasheetCurvesNo.GetString();
+            UiControls.TryRefreshOfProperty( uiPnlDtSh_CrvNo_Num );
+            uiPnlDtSh_Surr_TxtBx.Text = names.Ui.Panel.DatasheetSurrounding.GetString();
+            UiControls.TryRefreshOfProperty( uiPnlDtSh_Surr_Num );
+            uiPnlDtSh_Malform_Btn.Text = names.Ui.Panel.DatasheetMalform.GetString();
 
-            try {
-                signature = @base.DeclaringType.Name + "." + @base.Name + "(" + control + ")";
-
-                if ( control is NumericUpDown ) {
-                    decimal originalValue = (control as NumericUpDown).Value;
-
-                    if ( (control as NumericUpDown).Minimum == (control as NumericUpDown).Maximum ) {
-                        (control as NumericUpDown).Maximum++;
-                        UiControls.TrySetValue( control as NumericUpDown, (control as NumericUpDown).Maximum );
-                        UiControls.TrySetValue( control as NumericUpDown, (control as NumericUpDown).Minimum );
-                        (control as NumericUpDown).Maximum--;
-                        return;
-                    }
-
-                    if ( originalValue == (control as NumericUpDown).Minimum ) {
-                        UiControls.TrySetValue( control as NumericUpDown, originalValue + ((control as NumericUpDown).Increment) );
-                        UiControls.TrySetValue( control as NumericUpDown, originalValue );
-                        return;
-                    }
-
-                    decimal originalIncrement = (control as NumericUpDown).Increment;
-                    (control as NumericUpDown).Increment = 0.0001M;
-                    UiControls.TrySetValue( control as NumericUpDown, originalValue - ((control as NumericUpDown).Increment) );
-                    UiControls.TrySetValue( control as NumericUpDown, originalValue );
-                    (control as NumericUpDown).Increment = originalIncrement;
-                }
-            }
-            catch ( ArgumentOutOfRangeException ex ) {
-                log.Error( signature, ex );
-            }
-            catch ( Exception ex ) {
-                log.Fatal( signature, ex );
-            }
+            // Tab: Program
+            uiPnlPrg_TbPg.Text = names.Ui.Panel.ProgramTitle.GetString();
+            uiPnlPrg_Timer_TxtBx.Text = names.Ui.Panel.ProgramTimer.GetString();
+            uiPnlPrg_ActState1_TxtBx.Text = names.Ui.Panel.ProgramActualState1.GetString();
+            UpdateUiByStatusOfTimerThread();
+            uiPnlPrg_Cnts1_TxtBx.Text = names.Ui.Panel.ProgramCounts1.GetString();
+            uiPnlPrg_Info_TxtBx.Text = names.Ui.Panel.ProgramInformations.GetString();
+            uiPnlPrg_DotNetFr1_TxtBx.Text = names.Ui.Panel.ProgramDotNetFramework1.GetString();
+            uiPnlPrg_OsVer1_TxtBx.Text = names.Ui.Panel.ProgramOsVersion1.GetString();
+            uiPnlPrg_Log_TxtBx.Text = names.Ui.Panel.ProgramLogging.GetString();
+            uiPnlPrg_LogPath1_TxtBx.Text = names.Ui.Panel.ProgramLogPath1.GetString();
         }
 
         private void UiMainWindow_Shown( object sender, EventArgs e )
         {
             LocalizeWindow();
-        }
-
-        private void LocalizePanelTabDatasheet()
-        {
-            uiPnlDtSh_TbPg.Text = Translator.GetInstance().Strings.MainWindow.Panel.Datasheet.Title.GetString();
-            uiPnlDtSh_DtSetCtrl_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Datasheet.DtSetCtrl.GetString();
-            uiPnlDtSh_CrvT_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Datasheet.CrvT.GetString();
-            EnumsLocalizer.Localize( LocalizableEnumerator.DataSetCurveType, uiPnlDtSh_CrvT_ComBx );
-            uiPnlDtSh_CrvIdx_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Datasheet.CrvIdx.GetString();
-
-            if ( DataChart.IdealCurve.Points.Count != 0 ) {
-                RefreshControlToLocalize( uiPnlDtSh_CrvIdx_Num );
-            }
-
-            uiPnlDtSh_ShowDtSet_Btn.Text = Translator.GetInstance().Strings.MainWindow.Panel.Datasheet.ShowDtSet.GetString();
-            uiPnlDtSh_GsNoise_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Datasheet.GsNoise.GetString();
-            uiPnlDtSh_CrvNo_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Datasheet.CrvNo.GetString();
-            RefreshControlToLocalize( uiPnlDtSh_CrvNo_Num );
-            uiPnlDtSh_Surr_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Datasheet.Surr.GetString();
-            RefreshControlToLocalize( uiPnlDtSh_Surr_Num );
-            uiPnlDtSh_Malform_Btn.Text = Translator.GetInstance().Strings.MainWindow.Panel.Datasheet.Malform.GetString();
-        }
-
-        private void LocalizePanelTabProgram()
-        {
-            uiPnlPrg_TbPg.Text = Translator.GetInstance().Strings.MainWindow.Panel.Program.Title.GetString();
-            uiPnlPrg_Timer_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Program.Timer.GetString();
-            uiPnlPrg_ActState1_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Program.ActState1.GetString();
-            UpdateUiByStatusOfTimerThread();
-            uiPnlPrg_Cnts1_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Program.Cnts1.GetString();
-            uiPnlPrg_Info_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Program.Info.GetString();
-            uiPnlPrg_DotNetFr1_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Program.DotNetFr1.GetString();
-            uiPnlPrg_OsVer1_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Program.OsVer1.GetString();
-            uiPnlPrg_Log_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Program.Log.GetString();
-            uiPnlPrg_LogPath1_TxtBx.Text = Translator.GetInstance().Strings.MainWindow.Panel.Program.LogPath1.GetString();
         }
 
         private void SetWindowDefaultDimensions()

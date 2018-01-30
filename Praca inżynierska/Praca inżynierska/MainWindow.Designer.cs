@@ -45,7 +45,7 @@
             this.uiPnlGen_Def_Btn = new System.Windows.Forms.Button();
             this.uiPnlGen_CrvScaff1_TxtBx = new System.Windows.Forms.TextBox();
             this.uiPnlGen_PattCrvScaff_TxtBx = new System.Windows.Forms.TextBox();
-            this.uiPnlGen_Crvs2No_Nm = new System.Windows.Forms.NumericUpDown();
+            this.uiPnlGen_Crvs2No_Num = new System.Windows.Forms.NumericUpDown();
             this.uiPnlGen_Crvs2No_TxtBx = new System.Windows.Forms.TextBox();
             this.uiPnlGen_MeanT_TxtBx = new System.Windows.Forms.TextBox();
             this.uiPnlGen_Avg_TxtBx = new System.Windows.Forms.TextBox();
@@ -108,7 +108,7 @@
             this.uiPnlGen_TblLay.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiPnlGen_Dens_Num)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiPnlGen_EndX_Num)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uiPnlGen_Crvs2No_Nm)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiPnlGen_Crvs2No_Num)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiPnlGen_StartX_Num)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiPnlGen_Crvs1No_Num)).BeginInit();
             this.uiPnlDtSh_TbPg.SuspendLayout();
@@ -220,7 +220,7 @@
             this.uiPnlGen_TblLay.Controls.Add(this.uiPnlGen_Def_Btn, 1, 1);
             this.uiPnlGen_TblLay.Controls.Add(this.uiPnlGen_CrvScaff1_TxtBx, 0, 1);
             this.uiPnlGen_TblLay.Controls.Add(this.uiPnlGen_PattCrvScaff_TxtBx, 0, 0);
-            this.uiPnlGen_TblLay.Controls.Add(this.uiPnlGen_Crvs2No_Nm, 1, 15);
+            this.uiPnlGen_TblLay.Controls.Add(this.uiPnlGen_Crvs2No_Num, 1, 15);
             this.uiPnlGen_TblLay.Controls.Add(this.uiPnlGen_Crvs2No_TxtBx, 0, 15);
             this.uiPnlGen_TblLay.Controls.Add(this.uiPnlGen_MeanT_TxtBx, 0, 14);
             this.uiPnlGen_TblLay.Controls.Add(this.uiPnlGen_Avg_TxtBx, 0, 13);
@@ -408,24 +408,24 @@
             // 
             // uiPnlGen_Crvs2No_Nm
             // 
-            this.uiPnlGen_Crvs2No_Nm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlGen_Crvs2No_Nm.Location = new System.Drawing.Point(130, 378);
-            this.uiPnlGen_Crvs2No_Nm.Maximum = new decimal(new int[] {
+            this.uiPnlGen_Crvs2No_Num.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiPnlGen_Crvs2No_Num.Location = new System.Drawing.Point(130, 378);
+            this.uiPnlGen_Crvs2No_Num.Maximum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.uiPnlGen_Crvs2No_Nm.Minimum = new decimal(new int[] {
+            this.uiPnlGen_Crvs2No_Num.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.uiPnlGen_Crvs2No_Nm.Name = "uiPnlGen_Crvs2No_Nm";
-            this.uiPnlGen_Crvs2No_Nm.Size = new System.Drawing.Size(121, 20);
-            this.uiPnlGen_Crvs2No_Nm.TabIndex = 18;
-            this.uiPnlGen_Crvs2No_Nm.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.uiPnlGen_Crvs2No_Nm.ThousandsSeparator = true;
-            this.uiPnlGen_Crvs2No_Nm.Value = new decimal(new int[] {
+            this.uiPnlGen_Crvs2No_Num.Name = "uiPnlGen_Crvs2No_Nm";
+            this.uiPnlGen_Crvs2No_Num.Size = new System.Drawing.Size(121, 20);
+            this.uiPnlGen_Crvs2No_Num.TabIndex = 18;
+            this.uiPnlGen_Crvs2No_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.uiPnlGen_Crvs2No_Num.ThousandsSeparator = true;
+            this.uiPnlGen_Crvs2No_Num.Value = new decimal(new int[] {
             1,
             0,
             0,
@@ -1240,7 +1240,7 @@
             this.uiPnlGen_TblLay.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiPnlGen_Dens_Num)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiPnlGen_EndX_Num)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uiPnlGen_Crvs2No_Nm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiPnlGen_Crvs2No_Num)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiPnlGen_StartX_Num)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiPnlGen_Crvs1No_Num)).EndInit();
             this.uiPnlDtSh_TbPg.ResumeLayout(false);
@@ -1291,7 +1291,7 @@
         private System.Windows.Forms.TextBox uiPnlDtSh_CrvT_TxtBx;
         private System.Windows.Forms.ComboBox uiPnlDtSh_CrvT_ComBx;
         private System.Windows.Forms.TextBox uiPnlGen_Crvs2No_TxtBx;
-        private System.Windows.Forms.NumericUpDown uiPnlGen_Crvs2No_Nm;
+        private System.Windows.Forms.NumericUpDown uiPnlGen_Crvs2No_Num;
         private System.Windows.Forms.TabPage uiPnlPrg_TbPg;
         private System.Windows.Forms.TableLayoutPanel uiPnlPrg_TblLay;
         private System.Windows.Forms.TextBox uiPnlPrg_Cnts2_TxtBx;

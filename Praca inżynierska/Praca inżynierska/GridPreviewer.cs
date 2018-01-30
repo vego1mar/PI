@@ -9,6 +9,7 @@ using log4net;
 using System.Reflection;
 using PI.src.enumerators;
 using PI.src.localization.enums;
+using PI.src.localization.windows;
 
 namespace PI
 {
@@ -17,7 +18,7 @@ namespace PI
     {
 
         public Series ChartDataSet { get; private set; }
-        private List<double> OriginalValues { get; set; }
+        private IList<double> OriginalValues { get; set; }
 
         private static readonly ILog log = LogManager.GetLogger( MethodBase.GetCurrentMethod().DeclaringType );
 
@@ -32,8 +33,8 @@ namespace PI
         {
             ChartAssist.SetDefaultSettings( uiChart_Prv );
             ChartDataSet = series;
-            OriginalValues = GetPointsValues( series );
-            UiControls.TrySetSelectedIndex( uiPnl_AutoSize_ComBx, (int) DataGridViewAutoSizeColumnsMode.Fill );
+            OriginalValues = SeriesAssist.GetValues( series );
+            UiControls.TrySetSelectedIndex( uiPnl_AutoSize_ComBx, (int) AutoSizeColumnsMode.Fill );
             UiControls.TrySetSelectedIndex( uiPnl_OperT_ComBx, (int) Operation.Positive );
             uiPnl_StartIdx_Num.Minimum = 0;
             uiPnl_StartIdx_Num.Maximum = ChartDataSet.Points.Count - 1;
@@ -43,18 +44,7 @@ namespace PI
             uiPnl_EndIdx_Num.Value = ChartDataSet.Points.Count - 1;
             UpdateUiByPopulatingGrid();
             UpdateUiByRefreshingChart();
-            UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.InfoGprvLoaded.GetString() );
-        }
-
-        private List<double> GetPointsValues( Series series )
-        {
-            List<double> values = new List<double>();
-
-            for ( int i = 0; i < series.Points.Count; i++ ) {
-                values.Add( series.Points[i].YValues[0] );
-            }
-
-            return values;
+            UpdateUiByPanelStateInfo( new GridPreviewerStrings().Ui.PanelInfoGridPreviewerLoaded.GetString() );
         }
 
         private void UpdateUiByPopulatingGrid()
@@ -80,13 +70,14 @@ namespace PI
         private void UiPanel_Save_Click( object sender, EventArgs e )
         {
             Series series = new Series();
+            GridPreviewerStrings names = new GridPreviewerStrings();
 
             for ( int i = 0; i < uiGrid_db_grid.Rows.Count; i++ ) {
                 series.Points.AddY( (double) uiGrid_db_grid.Rows[i].Cells["y"].Value );
             }
 
             if ( !SeriesAssist.IsChartAcceptable( series ) ) {
-                UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.InfoOperationRevoked.GetString() );
+                UpdateUiByPanelStateInfo( names.Ui.PanelInfoOperationRevoked.GetString() );
                 Messages.GridPreviewer.ErrorOfInvalidCurvePoints();
                 return;
             }
@@ -95,7 +86,7 @@ namespace PI
                 ChartDataSet.Points[i].YValues[0] = (double) uiGrid_db_grid.Rows[i].Cells["y"].Value;
             }
 
-            UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.InfoChangesSaved.GetString() );
+            UpdateUiByPanelStateInfo( names.Ui.PanelInfoChangesSaved.GetString() );
         }
 
         private void UiPanel_AutoSizeColumnsMode_SelectedIndexChanged( object sender, EventArgs e )
@@ -103,17 +94,26 @@ namespace PI
             AutoSizeColumnsMode mode = (AutoSizeColumnsMode) uiPnl_AutoSize_ComBx.SelectedIndex;
 
             switch ( mode ) {
-            case AutoSizeColumnsMode.None:
-                uiGrid_db_grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
-                break;
             case AutoSizeColumnsMode.AllCells:
                 uiGrid_db_grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                break;
+            case AutoSizeColumnsMode.AllCellsExceptHeader:
+                uiGrid_db_grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
+                break;
+            case AutoSizeColumnsMode.ColumnHeader:
+                uiGrid_db_grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
                 break;
             case AutoSizeColumnsMode.DisplayedCells:
                 uiGrid_db_grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
                 break;
+            case AutoSizeColumnsMode.DisplayedCellsExceptHeader:
+                uiGrid_db_grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCellsExceptHeader;
+                break;
             case AutoSizeColumnsMode.Fill:
                 uiGrid_db_grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                break;
+            case AutoSizeColumnsMode.None:
+                uiGrid_db_grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
                 break;
             }
         }
@@ -125,37 +125,38 @@ namespace PI
 
         private void UpdateUiBySwitchingOperationType()
         {
+            GridPreviewerStrings names = new GridPreviewerStrings();
             Operation operation = (Operation) uiPnl_OperT_ComBx.SelectedIndex;
             uiPnl_Val2_TxtBx.Enabled = true;
 
             switch ( operation ) {
             case Operation.Addition:
-                uiPnl_Val1_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Addend.GetString();
+                uiPnl_Val1_TxtBx.Text = names.Ui.PanelAddend.GetString();
                 break;
             case Operation.Subtraction:
-                uiPnl_Val1_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Subtrahend.GetString();
+                uiPnl_Val1_TxtBx.Text = names.Ui.PanelSubtrahend.GetString();
                 break;
             case Operation.Multiplication:
-                uiPnl_Val1_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Multiplier.GetString();
+                uiPnl_Val1_TxtBx.Text = names.Ui.PanelMultiplier.GetString();
                 break;
             case Operation.Division:
-                uiPnl_Val1_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Divisor.GetString();
+                uiPnl_Val1_TxtBx.Text = names.Ui.PanelDivisor.GetString();
                 break;
             case Operation.Exponentiation:
-                uiPnl_Val1_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Exponent.GetString();
+                uiPnl_Val1_TxtBx.Text = names.Ui.PanelExponent.GetString();
                 break;
             case Operation.Logarithmic:
-                uiPnl_Val1_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Basis.GetString();
+                uiPnl_Val1_TxtBx.Text = names.Ui.PanelBasis.GetString();
                 break;
             case Operation.Rooting:
-                uiPnl_Val1_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Basis.GetString();
+                uiPnl_Val1_TxtBx.Text = names.Ui.PanelBasis.GetString();
                 break;
             case Operation.Constant:
-                uiPnl_Val1_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Value.GetString();
+                uiPnl_Val1_TxtBx.Text = names.Ui.PanelValue.GetString();
                 break;
             case Operation.Positive:
             case Operation.Negative:
-                uiPnl_Val1_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.NotApplicable.GetString();
+                uiPnl_Val1_TxtBx.Text = names.Ui.PanelNotApplicable.GetString();
                 uiPnl_Val2_TxtBx.Enabled = false;
                 break;
             }
@@ -179,10 +180,11 @@ namespace PI
 
         private void UiPanel_Perform_Click( object sender, EventArgs e )
         {
+            GridPreviewerStrings names = new GridPreviewerStrings();
             double? userValue = GetUserValue();
 
             if ( userValue == null ) {
-                UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.InfoInvalidUserValue.GetString() );
+                UpdateUiByPanelStateInfo( names.Ui.PanelInfoInvalidUserValue.GetString() );
                 Messages.GridPreviewer.ExclamationOfImproperUserValue();
                 return;
             }
@@ -194,13 +196,13 @@ namespace PI
             bool result = PerformOperation( operation, startIndex, endIndex, userValue.Value, ref seriesCopy );
 
             if ( !result ) {
-                UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.InfoOperationRejected.GetString() );
+                UpdateUiByPanelStateInfo( names.Ui.PanelInfoOperationRejected.GetString() );
                 Messages.GridPreviewer.ErrorOfPerformOperation();
                 return;
             }
 
             if ( !SeriesAssist.IsChartAcceptable( seriesCopy ) ) {
-                UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.InfoOperationRevoked.GetString() );
+                UpdateUiByPanelStateInfo( names.Ui.PanelInfoOperationRevoked.GetString() );
                 Messages.GridPreviewer.ErrorOfInvalidCurvePoints();
                 return;
             }
@@ -208,7 +210,7 @@ namespace PI
             ApplyPointsAlteration( seriesCopy );
             UpdateUiByAlteringGrid();
             UpdateUiByRefreshingChart();
-            UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.InfoPerformedAndRefreshed.GetString() );
+            UpdateUiByPanelStateInfo( names.Ui.PanelInfoPerformedAndRefreshed.GetString() );
         }
 
         private double? GetUserValue()
@@ -401,7 +403,7 @@ namespace PI
 
             UpdateUiByAlteringGrid();
             UpdateUiByRefreshingChart();
-            UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.InfoValuesRestored.GetString() );
+            UpdateUiByPanelStateInfo( new GridPreviewerStrings().Ui.PanelInfoValuesRestored.GetString() );
         }
 
         private void UiPanel_Refresh_Click( object sender, EventArgs e )
@@ -411,6 +413,7 @@ namespace PI
 
         private void UpdateUiByRefreshingChart()
         {
+            GridPreviewerStrings names = new GridPreviewerStrings();
             string signature = string.Empty;
 
             try {
@@ -426,15 +429,15 @@ namespace PI
             }
             catch ( InvalidOperationException ex ) {
                 log.Error( signature, ex );
-                UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Preview.InfoChartNotRepainted.GetString() );
+                UpdateUiByPanelStateInfo( names.Ui.PreviewInfoChartNotRepainted.GetString() );
                 Messages.GridPreviewer.ErrorOfChartRefreshing();
             }
             catch ( Exception ex ) {
                 log.Fatal( signature, ex );
-                UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Preview.InfoChartRefreshError.GetString() );
+                UpdateUiByPanelStateInfo( names.Ui.PreviewInfoChartRefreshError.GetString() );
             }
 
-            UpdateUiByPanelStateInfo( Translator.GetInstance().Strings.GridPreviewer.Ui.Preview.InfoChartRefreshed.GetString() );
+            UpdateUiByPanelStateInfo( names.Ui.PreviewInfoChartRefreshed.GetString() );
         }
 
         private void UiGridPreviewer_Load( object sender, EventArgs e )
@@ -451,42 +454,30 @@ namespace PI
 
         private void LocalizeWindow()
         {
-            LocalizeForm();
-            LocalizePanel();
-            LocalizeGrid();
-            LocalizePreview();
-        }
+            GridPreviewerStrings names = new GridPreviewerStrings();
+            Text = names.Form.Text.GetString();
 
-        private void LocalizeForm()
-        {
-            Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Form.Text.GetString();
-        }
-
-        private void LocalizePanel()
-        {
-            uiPnl_DtGrid_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.DtGrid.GetString();
-            uiPnl_AutoSize_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.AutoSize.GetString();
-            uiPnl_Edit_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Edit.GetString();
-            uiPnl_OperT_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.OperT.GetString();
+            // Panel
+            uiPnl_DtGrid_TxtBx.Text = names.Ui.PanelDatasetGrid.GetString();
+            EnumsLocalizer.Localize( LocalizableEnumerator.AutoSizeColumnsMode, uiPnl_AutoSize_ComBx );
+            uiPnl_AutoSize_TxtBx.Text = names.Ui.PanelAutoSizeColumnsMode.GetString();
+            uiPnl_Edit_TxtBx.Text = names.Ui.PanelFastEdit.GetString();
+            uiPnl_OperT_TxtBx.Text = names.Ui.PanelOperationType.GetString();
             EnumsLocalizer.Localize( LocalizableEnumerator.Operation, uiPnl_OperT_ComBx );
-            uiPnl_StartIdx_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.StartIdx.GetString();
-            uiPnl_EndIdx_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.EndIdx.GetString();
+            uiPnl_StartIdx_TxtBx.Text = names.Ui.PanelStartIndex.GetString();
+            uiPnl_EndIdx_TxtBx.Text = names.Ui.PanelEndIndex.GetString();
             UpdateUiBySwitchingOperationType();
-            uiPnl_Reset_Btn.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Reset.GetString();
-            uiPnl_Perform_Btn.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Perform.GetString();
-            uiPnl_Refresh_Btn.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Refresh.GetString();
-            uiPnl_Save_Btn.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Save.GetString();
-            uiPnl_Ok_Btn.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Panel.Ok.GetString();
-        }
+            uiPnl_Reset_Btn.Text = names.Ui.PanelReset.GetString();
+            uiPnl_Perform_Btn.Text = names.Ui.PanelPerform.GetString();
+            uiPnl_Refresh_Btn.Text = names.Ui.PanelRefresh.GetString();
+            uiPnl_Save_Btn.Text = names.Ui.PanelSave.GetString();
+            uiPnl_Ok_Btn.Text = names.Ui.PanelOk.GetString();
 
-        private void LocalizeGrid()
-        {
-            uiGrid_DtSet_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Dataset.DtSet.GetString();
-        }
+            // Grid
+            uiGrid_DtSet_TxtBx.Text = names.Ui.DatasetTitle.GetString();
 
-        private void LocalizePreview()
-        {
-            uiChart_Prv_TxtBx.Text = Translator.GetInstance().Strings.GridPreviewer.Ui.Preview.Prv.GetString();
+            // Preview
+            uiChart_Prv_TxtBx.Text = names.Ui.PreviewTitle.GetString();
         }
 
         public void SetFastEditControls( bool isAvailable )

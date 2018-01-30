@@ -9,8 +9,8 @@ namespace PI.src.localization.messages
 
         public class WarningNotSupportedFinisherFunction
         {
-            public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "Localization_Window_MeansSettings_WarningNotSupportedFinisherFunction_Text" ); } }
-            public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "Localization_Window_MeansSettings_WarningNotSupportedFinisherFunction_Caption" ); } }
+            public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "Messages_MeansSettings_WarningNotSupportedFinisherFunction_Text" ); } }
+            public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "Messages_MeansSettings_WarningNotSupportedFinisherFunction_Caption" ); } }
         }
     }
 }

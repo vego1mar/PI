@@ -15,7 +15,7 @@ namespace PI.src.localization.general
 
         public string GetString()
         {
-            return LanguageHelper.TryGetLocalizedString( StringName, Language );
+            return LanguageAssist.TryGetLocalizedString( StringName, Language );
         }
     }
 }

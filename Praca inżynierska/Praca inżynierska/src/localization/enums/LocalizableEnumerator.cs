@@ -10,5 +10,7 @@
         Operation,
         Phenomenon,
         CurveApply,
+        AutoSizeColumnsMode,
+        Boolean
     }
 }

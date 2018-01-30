@@ -1,6 +1,7 @@
 ﻿using PI.src.enumerators;
 using PI.src.helpers;
 using PI.src.localization.enums;
+using PI.src.localization.windows;
 using PI.src.settings;
 using System;
 using System.Drawing;
@@ -20,18 +21,6 @@ namespace PI
             Chart = 0,
             ChartArea = 1,
             Series = 2
-        }
-
-        private enum ChartAreaAxis
-        {
-            X = 0,
-            Y = 1
-        }
-
-        private enum ChartAreaGrid
-        {
-            MajorGrid = 0,
-            MinorGrid = 1
         }
 
         private class PreviousValue
@@ -57,7 +46,7 @@ namespace PI
 
             Previous = new PreviousValue() {
                 AxisSelected = ChartAreaAxis.X,
-                GridSelected = ChartAreaGrid.MajorGrid,
+                GridSelected = ChartAreaGrid.Major,
                 ApplyMode = CurveApply.Average
             };
 
@@ -66,9 +55,25 @@ namespace PI
 
         private void UpdateUiByComposingControls()
         {
-            DefineChartTabPageComboBoxes();
-            DefineChartAreaTabPageComboBoxes();
-            DefineSeriesTabPageComboBoxes();
+            // Tab: Chart
+            EnumsLocalizer.Localize( LocalizableEnumerator.CurveApply, uiTop_ApplyTo_ComBx );
+            EnumsLocalizer.Populate( CSharpEnumerable.AntiAliasingStyles, uiCtrChart_Aa_ComBx );
+            EnumsLocalizer.Localize( LocalizableEnumerator.Boolean, uiCtrChart_SupEx_ComBx );
+            EnumsLocalizer.Populate( CSharpEnumerable.Color, uiCtrChart_BkCol_ComBx );
+
+            // Tab: Chart area
+            EnumsLocalizer.Localize( LocalizableEnumerator.Boolean, uiCtrArea_3d_ComBx );
+            EnumsLocalizer.Populate( CSharpEnumerable.Color, uiCtrArea_BkCol_ComBx );
+            EnumsLocalizer.Localize( LocalizableEnumerator.Boolean, uiCtrArea_En_ComBx );
+            EnumsLocalizer.Populate( CSharpEnumerable.Color, uiCtrArea_LnCol_ComBx );
+            EnumsLocalizer.Populate( CSharpEnumerable.ChartDashStyle, uiCtrArea_LnStyle_ComBx );
+            EnumsLocalizer.Populate( CSharpEnumerable.ChartAreaAxis, uiCtrArea_Axis_ComBx );
+            EnumsLocalizer.Populate( CSharpEnumerable.ChartAreaGrid, uiCtrArea_Grid_ComBx );
+
+            // Tab: Series
+            EnumsLocalizer.Populate( CSharpEnumerable.Color, uiCtrSrs_Color_ComBx );
+            EnumsLocalizer.Populate( CSharpEnumerable.ChartDashStyle, uiCtrSrs_BorStyle_ComBx );
+            EnumsLocalizer.Populate( CSharpEnumerable.SeriesChartType, uiCtrSrs_ChT_ComBx );
         }
 
         private void UpdateUiByDefaultSettings()
@@ -91,7 +96,7 @@ namespace PI
             UiControls.TrySetSelectedIndex( uiCtrArea_3d_ComBx, Convert.ToInt32( Settings.Areas.Common.Area3dStyle ) );
             UiControls.TrySetSelectedIndex( uiCtrArea_BkCol_ComBx, uiCtrArea_BkCol_ComBx.Items.IndexOf( Settings.Areas.Common.BackColor.Name ) );
             UiControls.TrySetSelectedIndex( uiCtrArea_Axis_ComBx, (int) ChartAreaAxis.X );
-            UiControls.TrySetSelectedIndex( uiCtrArea_Grid_ComBx, (int) ChartAreaGrid.MajorGrid );
+            UiControls.TrySetSelectedIndex( uiCtrArea_Grid_ComBx, (int) ChartAreaGrid.Major );
             UiControls.TrySetSelectedIndex( uiCtrArea_En_ComBx, Convert.ToInt32( Settings.Areas.X.MajorGrid.Enabled ) );
             UiControls.TrySetSelectedIndex( uiCtrArea_LnCol_ComBx, uiCtrArea_LnCol_ComBx.Items.IndexOf( Settings.Areas.X.MajorGrid.LineColor.Name ) );
             UiControls.TrySetSelectedIndex( uiCtrArea_LnStyle_ComBx, (int) Settings.Areas.X.MajorGrid.LineDashStyle );
@@ -115,57 +120,6 @@ namespace PI
         private void ChartSettings_Load( object sender, EventArgs e )
         {
             uiBtm_Ok_Btn.Select();
-        }
-
-        private void DefineChartAntiAliasingComboBox()
-        {
-            uiCtrChart_Aa_ComBx.Items.Clear();
-            AddAntiAliasingStyles( uiCtrChart_Aa_ComBx );
-        }
-
-        private void AddAntiAliasingStyles( ComboBox comboBox )
-        {
-            comboBox.Items.Add( AntiAliasingStyles.None.ToString() );
-            comboBox.Items.Add( AntiAliasingStyles.Text.ToString() );
-            comboBox.Items.Add( AntiAliasingStyles.Graphics.ToString() );
-            comboBox.Items.Add( AntiAliasingStyles.All.ToString() );
-        }
-
-        private void DefineChartSuppressWarningsComboBox()
-        {
-            uiCtrChart_SupEx_ComBx.Items.Clear();
-            AddBooleanValues( uiCtrChart_SupEx_ComBx );
-        }
-
-        private void AddBooleanValues( ComboBox comboBox )
-        {
-            comboBox.Items.Add( Boolean.FalseString );
-            comboBox.Items.Add( Boolean.TrueString );
-        }
-
-        private void DefineChartBackColorComboBox()
-        {
-            uiCtrChart_BkCol_ComBx.Items.Clear();
-            AddSystemDrawingColors( uiCtrChart_BkCol_ComBx );
-        }
-
-        private void DefineChartTabPageComboBoxes()
-        {
-            EnumsLocalizer.Localize( LocalizableEnumerator.CurveApply, uiTop_ApplyTo_ComBx );
-            DefineChartAntiAliasingComboBox();
-            DefineChartSuppressWarningsComboBox();
-            DefineChartBackColorComboBox();
-        }
-
-        private void AddSystemDrawingColors<T>( T control ) where T : ComboBox
-        {
-            control.Items.Clear();
-
-            foreach ( var property in typeof( Color ).GetProperties( System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public ) ) {
-                if ( property.PropertyType == typeof( Color ) ) {
-                    control.Items.Add( property.Name );
-                }
-            }
         }
 
         private void UiTop_ApplyToCurve_SelectedIndexChanged( object sender, EventArgs e )
@@ -342,70 +296,6 @@ namespace PI
             Settings.Series.Average.ChartType = (SeriesChartType) UiControls.TryGetSelectedIndex( uiCtrSrs_ChT_ComBx );
         }
 
-        private void DefineChartAreaTabPageComboBoxes()
-        {
-            DefineChartArea3dStyleComboBox();
-            DefineChartAreaBackColorComboBox();
-            DefineChartAreaEnableComboBox();
-            DefineChartAreaLineColorComboBox();
-            DefineChartAreaLineDashStyleComboBox();
-            DefineChartAreaAxisComboBox();
-            DefineChartAreaGridComboBox();
-        }
-
-        private void DefineChartArea3dStyleComboBox()
-        {
-            uiCtrArea_3d_ComBx.Items.Clear();
-            AddBooleanValues( uiCtrArea_3d_ComBx );
-        }
-
-        private void DefineChartAreaBackColorComboBox()
-        {
-            uiCtrArea_BkCol_ComBx.Items.Clear();
-            AddSystemDrawingColors( uiCtrArea_BkCol_ComBx );
-        }
-
-        private void DefineChartAreaEnableComboBox()
-        {
-            uiCtrArea_En_ComBx.Items.Clear();
-            AddBooleanValues( uiCtrArea_En_ComBx );
-        }
-
-        private void DefineChartAreaLineColorComboBox()
-        {
-            uiCtrArea_LnCol_ComBx.Items.Clear();
-            AddSystemDrawingColors( uiCtrArea_LnCol_ComBx );
-        }
-
-        private void DefineChartAreaLineDashStyleComboBox()
-        {
-            uiCtrArea_LnStyle_ComBx.Items.Clear();
-            AddChartDashStyles( uiCtrArea_LnStyle_ComBx );
-        }
-
-        private void AddChartDashStyles<T>( T control ) where T : ComboBox
-        {
-            control.Items.Clear();
-
-            foreach ( string name in Enum.GetNames( typeof( ChartDashStyle ) ) ) {
-                control.Items.Add( name );
-            }
-        }
-
-        private void DefineChartAreaAxisComboBox()
-        {
-            uiCtrArea_Axis_ComBx.Items.Clear();
-            uiCtrArea_Axis_ComBx.Items.Add( ChartAreaAxis.X.ToString() );
-            uiCtrArea_Axis_ComBx.Items.Add( ChartAreaAxis.Y.ToString() );
-        }
-
-        private void DefineChartAreaGridComboBox()
-        {
-            uiCtrArea_Grid_ComBx.Items.Clear();
-            uiCtrArea_Grid_ComBx.Items.Add( ChartAreaGrid.MajorGrid.ToString() );
-            uiCtrArea_Grid_ComBx.Items.Add( ChartAreaGrid.MinorGrid.ToString() );
-        }
-
         private void PerformAxisGridSwitch()
         {
             SaveAxesSettings( Previous.AxisSelected, Previous.GridSelected );
@@ -443,10 +333,10 @@ namespace PI
         private void SaveAxisXSettings( ChartAreaGrid grid )
         {
             switch ( grid ) {
-            case ChartAreaGrid.MajorGrid:
+            case ChartAreaGrid.Major:
                 SaveAxisXMajorGridSettings();
                 break;
-            case ChartAreaGrid.MinorGrid:
+            case ChartAreaGrid.Minor:
                 SaveAxisXMinorGridSettings();
                 break;
             }
@@ -455,10 +345,10 @@ namespace PI
         private void SaveAxisYSettings( ChartAreaGrid grid )
         {
             switch ( grid ) {
-            case ChartAreaGrid.MajorGrid:
+            case ChartAreaGrid.Major:
                 SaveAxisYMajorGridSettings();
                 break;
-            case ChartAreaGrid.MinorGrid:
+            case ChartAreaGrid.Minor:
                 SaveAxisYMinorGridSettings();
                 break;
             }
@@ -518,10 +408,10 @@ namespace PI
         private void SetAxisXSettings( ChartAreaGrid grid )
         {
             switch ( grid ) {
-            case ChartAreaGrid.MajorGrid:
+            case ChartAreaGrid.Major:
                 SetAxisXMajorGridSettings();
                 break;
-            case ChartAreaGrid.MinorGrid:
+            case ChartAreaGrid.Minor:
                 SetAxisXMinorGridSettings();
                 break;
             }
@@ -530,10 +420,10 @@ namespace PI
         private void SetAxisYSettings( ChartAreaGrid grid )
         {
             switch ( grid ) {
-            case ChartAreaGrid.MajorGrid:
+            case ChartAreaGrid.Major:
                 SetAxisYMajorGridSettings();
                 break;
-            case ChartAreaGrid.MinorGrid:
+            case ChartAreaGrid.Minor:
                 SetAxisYMinorGridSettings();
                 break;
             }
@@ -576,41 +466,6 @@ namespace PI
             CheckFormInitialization();
         }
 
-        private void DefineSeriesTabPageComboBoxes()
-        {
-            DefineSeriesColorComboBox();
-            DefineSeriesBorderDashStyleComboBox();
-            DefineSeriesChartTypeComboBox();
-        }
-
-        private void DefineSeriesColorComboBox()
-        {
-            uiCtrSrs_Color_ComBx.Items.Clear();
-            AddSystemDrawingColors( uiCtrSrs_Color_ComBx );
-        }
-
-        private void DefineSeriesBorderDashStyleComboBox()
-        {
-            uiCtrSrs_BorStyle_ComBx.Items.Clear();
-            AddChartDashStyles( uiCtrSrs_BorStyle_ComBx );
-        }
-
-        private void DefineSeriesChartTypeComboBox()
-        {
-            uiCtrSrs_ChT_ComBx.Items.Clear();
-            AddChartTypes( uiCtrSrs_ChT_ComBx );
-
-        }
-
-        private void AddChartTypes<T>( T control ) where T : ComboBox
-        {
-            control.Items.Clear();
-
-            foreach ( string name in Enum.GetNames( typeof( SeriesChartType ) ) ) {
-                control.Items.Add( name );
-            }
-        }
-
         private void ChartSettings_FormClosing( object sender, FormClosingEventArgs e )
         {
             Previous = null;
@@ -619,44 +474,23 @@ namespace PI
 
         private void LocalizeWindow()
         {
-            LocalizeForm();
-            LocalizeUi();
-        }
+            ChartSettingsStrings names = new ChartSettingsStrings();
+            Text = names.Form.Text.GetString();
 
-        private void LocalizeForm()
-        {
-            Text = Translator.GetInstance().Strings.ChartSettings.Form.Text.GetString();
-        }
+            // General
+            uiTop_ApplyTo_TxtBx.Text = names.Ui.GeneralApplyTo.GetString();
+            uiBtm_Ok_Btn.Text = names.Ui.GeneralOk.GetString();
 
-        private void LocalizeUi()
-        {
-            LocalizeGenerals();
-            LocalizeTabChart();
-            LocalizeTabChartArea();
-            LocalizeTabSeries();
-        }
+            // Tab: Chart
+            uiCtr_Chart_TbPg.Text = names.Ui.ChartTitle.GetString();
 
-        private void LocalizeGenerals()
-        {
-            uiTop_ApplyTo_TxtBx.Text = Translator.GetInstance().Strings.ChartSettings.Ui.General.ApplyTo.GetString();
-            uiBtm_Ok_Btn.Text = Translator.GetInstance().Strings.ChartSettings.Ui.General.Ok.GetString();
-        }
+            // Tab: Chart area
+            uiCtr_Area_TbPg.Text = names.Ui.ChartAreaTitle.GetString();
+            uiCtrArea_ChA_TxtBx.Text = names.Ui.ChartAreaText.GetString();
+            uiCtrArea_Axes_TxtBx.Text = names.Ui.ChartAreaAxes.GetString();
 
-        private void LocalizeTabChart()
-        {
-            uiCtr_Chart_TbPg.Text = Translator.GetInstance().Strings.ChartSettings.Ui.Tabs.Chart.Chart.GetString();
-        }
-
-        private void LocalizeTabChartArea()
-        {
-            uiCtr_Area_TbPg.Text = Translator.GetInstance().Strings.ChartSettings.Ui.Tabs.ChartArea.Area.GetString();
-            uiCtrArea_ChA_TxtBx.Text = Translator.GetInstance().Strings.ChartSettings.Ui.Tabs.ChartArea.ChA.GetString();
-            uiCtrArea_Axes_TxtBx.Text = Translator.GetInstance().Strings.ChartSettings.Ui.Tabs.ChartArea.Axes.GetString();
-        }
-
-        private void LocalizeTabSeries()
-        {
-            uiCtr_Srs_TbPg.Text = Translator.GetInstance().Strings.ChartSettings.Ui.Tabs.Series.Srs.GetString();
+            // Tab: Series
+            uiCtr_Srs_TbPg.Text = names.Ui.SeriesTitle.GetString();
         }
 
     }

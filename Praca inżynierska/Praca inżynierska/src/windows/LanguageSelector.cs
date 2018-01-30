@@ -4,6 +4,7 @@ using PI.src.localization.general;
 using PI.src.localization.enums;
 using System;
 using System.Windows.Forms;
+using PI.src.localization.windows;
 
 namespace PI.src.windows
 {
@@ -23,12 +24,14 @@ namespace PI.src.windows
         private void SetWindowDefaults()
         {
             LocalizeWindow();
-            UiControls.TrySetSelectedIndex( uiUp_LstBx, (int) LanguageHelper.GetCurrentUiLanguage() );
+            UiControls.TrySetSelectedIndex( uiUp_LstBx, (int) LanguageAssist.GetCurrentUiLanguage() );
         }
 
         private void LocalizeWindow()
         {
-            Text = Translator.GetInstance().Strings.LangSelector.Ui.Form.Text.GetString();
+            LanguageSelectorStrings names = new LanguageSelectorStrings();
+            Text = names.Form.Text.GetString();
+
             EnumsLocalizer.Localize( LocalizableEnumerator.Languages, uiUp_LstBx );
         }
 

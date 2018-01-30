@@ -18,10 +18,10 @@ namespace PI.src.localization.enums
             }
         }
 
-        private LocalizedString Sign { get { return new LocalizedString( CurrentLanguage, "Localization_Enums_GeometricMeanVariant_Sign" ); } }
-        private LocalizedString Parity { get { return new LocalizedString( CurrentLanguage, "Localization_Enums_GeometricMeanVariant_Parity" ); } }
-        private LocalizedString Absolute { get { return new LocalizedString( CurrentLanguage, "Localization_Enums_GeometricMeanVariant_Absolute" ); } }
-        private LocalizedString Offset { get { return new LocalizedString( CurrentLanguage, "Localization_Enums_GeometricMeanVariant_Offset" ); } }
+        private LocalizedString Sign { get { return new LocalizedString( CurrentLanguage, "Enums_GeometricMeanVariant_Sign" ); } }
+        private LocalizedString Parity { get { return new LocalizedString( CurrentLanguage, "Enums_GeometricMeanVariant_Parity" ); } }
+        private LocalizedString Absolute { get { return new LocalizedString( CurrentLanguage, "Enums_GeometricMeanVariant_Absolute" ); } }
+        private LocalizedString Offset { get { return new LocalizedString( CurrentLanguage, "Enums_GeometricMeanVariant_Offset" ); } }
 
         public IEnumerator<LocalizedString> GetEnumerator()
         {

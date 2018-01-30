@@ -46,7 +46,7 @@
             this.uiLPeekGrid_Noise05_Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uiLPeekGrid_Noise1_Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uiLPeekGrid_Noise2_Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.uiL_Deform_TbPg = new System.Windows.Forms.TabPage();
+            this.uiL_Sat_TbPg = new System.Windows.Forms.TabPage();
             this.uiLDeform_Grid = new System.Windows.Forms.DataGridView();
             this.uiLDeformGrid_Noise01_Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uiLDeformGrid_Noise05_Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -82,7 +82,7 @@
             this.uiL_TbCtrl.SuspendLayout();
             this.uiL_Peek_TbPg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiLPeek_Grid)).BeginInit();
-            this.uiL_Deform_TbPg.SuspendLayout();
+            this.uiL_Sat_TbPg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiLDeform_Grid)).BeginInit();
             this.uiR_TbCtrl.SuspendLayout();
             this.uiR_Chart_TbPg.SuspendLayout();
@@ -142,7 +142,7 @@
             // uiL_TbCtrl
             // 
             this.uiL_TbCtrl.Controls.Add(this.uiL_Peek_TbPg);
-            this.uiL_TbCtrl.Controls.Add(this.uiL_Deform_TbPg);
+            this.uiL_TbCtrl.Controls.Add(this.uiL_Sat_TbPg);
             this.uiL_TbCtrl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiL_TbCtrl.Location = new System.Drawing.Point(3, 28);
             this.uiL_TbCtrl.Name = "uiL_TbCtrl";
@@ -220,14 +220,14 @@
             // 
             // uiL_Deform_TbPg
             // 
-            this.uiL_Deform_TbPg.Controls.Add(this.uiLDeform_Grid);
-            this.uiL_Deform_TbPg.Location = new System.Drawing.Point(4, 22);
-            this.uiL_Deform_TbPg.Name = "uiL_Deform_TbPg";
-            this.uiL_Deform_TbPg.Padding = new System.Windows.Forms.Padding(3);
-            this.uiL_Deform_TbPg.Size = new System.Drawing.Size(520, 528);
-            this.uiL_Deform_TbPg.TabIndex = 1;
-            this.uiL_Deform_TbPg.Text = "Deformation";
-            this.uiL_Deform_TbPg.UseVisualStyleBackColor = true;
+            this.uiL_Sat_TbPg.Controls.Add(this.uiLDeform_Grid);
+            this.uiL_Sat_TbPg.Location = new System.Drawing.Point(4, 22);
+            this.uiL_Sat_TbPg.Name = "uiL_Deform_TbPg";
+            this.uiL_Sat_TbPg.Padding = new System.Windows.Forms.Padding(3);
+            this.uiL_Sat_TbPg.Size = new System.Drawing.Size(520, 528);
+            this.uiL_Sat_TbPg.TabIndex = 1;
+            this.uiL_Sat_TbPg.Text = "Deformation";
+            this.uiL_Sat_TbPg.UseVisualStyleBackColor = true;
             // 
             // uiLDeform_Grid
             // 
@@ -678,7 +678,7 @@
             this.uiL_TbCtrl.ResumeLayout(false);
             this.uiL_Peek_TbPg.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.uiLPeek_Grid)).EndInit();
-            this.uiL_Deform_TbPg.ResumeLayout(false);
+            this.uiL_Sat_TbPg.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.uiLDeform_Grid)).EndInit();
             this.uiR_TbCtrl.ResumeLayout(false);
             this.uiR_Chart_TbPg.ResumeLayout(false);
@@ -704,7 +704,7 @@
         private System.Windows.Forms.TextBox uiR_Prv_TxtBx;
         private System.Windows.Forms.TabControl uiL_TbCtrl;
         private System.Windows.Forms.TabPage uiL_Peek_TbPg;
-        private System.Windows.Forms.TabPage uiL_Deform_TbPg;
+        private System.Windows.Forms.TabPage uiL_Sat_TbPg;
         private System.Windows.Forms.TabControl uiR_TbCtrl;
         private System.Windows.Forms.TabPage uiR_Chart_TbPg;
         private System.Windows.Forms.TabPage uiR_Formula_TbPg;

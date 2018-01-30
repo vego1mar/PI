@@ -231,7 +231,7 @@ namespace PI.src.helpers
         public static void TryRefreshOfProperty( Control control )
         {
             var typeSwitch = new Dictionary<Type, Action>() {
-                { typeof(NumericUpDown), () => RefreshNumericUpDown(control as NumericUpDown) }
+                { typeof(NumericUpDown), () => TryRefreshNumericUpDown(control as NumericUpDown) }
             };
 
             try {
@@ -254,34 +254,46 @@ namespace PI.src.helpers
             }
         }
 
-        private static void RefreshNumericUpDown( NumericUpDown numeric )
+        private static void TryRefreshNumericUpDown( NumericUpDown numeric )
         {
+            string signature = string.Empty;
             decimal original;
 
-            if ( numeric.Value == numeric.Minimum && numeric.Minimum == numeric.Maximum ) {
-                original = numeric.Value;
-                numeric.Maximum += numeric.Increment;
-                numeric.Value = numeric.Maximum;
-                numeric.Value = original;
-                numeric.Maximum -= numeric.Increment;
-                return;
-            }
+            try {
+                MethodBase @base = MethodBase.GetCurrentMethod();
+                signature = @base.DeclaringType.Name + "." + @base.Name + "(" + numeric.Name + ")";
 
-            if ( numeric.Minimum + numeric.Increment == numeric.Maximum ) {
-                if ( numeric.Value == numeric.Minimum ) {
+                if ( numeric.Value == numeric.Minimum && numeric.Minimum == numeric.Maximum ) {
+                    original = numeric.Value;
+                    numeric.Maximum += numeric.Increment;
                     numeric.Value = numeric.Maximum;
-                    numeric.Value = numeric.Minimum;
+                    numeric.Value = original;
+                    numeric.Maximum -= numeric.Increment;
                     return;
                 }
 
-                numeric.Value = numeric.Minimum;
-                numeric.Value = numeric.Maximum;
-                return;
-            }
+                if ( numeric.Minimum + numeric.Increment == numeric.Maximum ) {
+                    if ( numeric.Value == numeric.Minimum ) {
+                        numeric.Value = numeric.Maximum;
+                        numeric.Value = numeric.Minimum;
+                        return;
+                    }
 
-            original = numeric.Value;
-            numeric.Value = numeric.Minimum + numeric.Increment;
-            numeric.Value = original;
+                    numeric.Value = numeric.Minimum;
+                    numeric.Value = numeric.Maximum;
+                    return;
+                }
+
+                original = numeric.Value;
+                numeric.Value = numeric.Minimum + numeric.Increment;
+                numeric.Value = original;
+            }
+            catch ( ArgumentOutOfRangeException ex ) {
+                log.Fatal( signature, ex );
+            }
+            catch ( Exception ex ) {
+                log.Fatal( signature, ex );
+            }
         }
     }
 }

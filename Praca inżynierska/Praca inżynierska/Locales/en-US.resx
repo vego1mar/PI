@@ -126,38 +126,38 @@
   <data name="Enums_DataSetCurveType_Ideal" xml:space="preserve">
     <value>ideal</value>
   </data>
-  <data name="Localization_Enums_MeanType_AGM" xml:space="preserve">
+  <data name="Enums_MeanType_AGM" xml:space="preserve">
     <value>AGM</value>
     <comment>Arithmetic-geometric mean</comment>
   </data>
-  <data name="Localization_Enums_MeanType_Arithmetic" xml:space="preserve">
+  <data name="Enums_MeanType_Arithmetic" xml:space="preserve">
     <value>arithmetic</value>
   </data>
-  <data name="Localization_Enums_MeanType_Tolerance" xml:space="preserve">
+  <data name="Enums_MeanType_Tolerance" xml:space="preserve">
     <value>tolerance</value>
   </data>
-  <data name="Localization_Enums_MeanType_SMA" xml:space="preserve">
+  <data name="Enums_MeanType_SMA" xml:space="preserve">
     <value>SMA</value>
   </data>
-  <data name="Localization_Enums_MeanType_Geometric" xml:space="preserve">
+  <data name="Enums_MeanType_Geometric" xml:space="preserve">
     <value>geometric</value>
   </data>
-  <data name="Localization_Enums_MeanType_Harmonic" xml:space="preserve">
+  <data name="Enums_MeanType_Harmonic" xml:space="preserve">
     <value>harmonic</value>
   </data>
-  <data name="Localization_Enums_MeanType_Heronian" xml:space="preserve">
+  <data name="Enums_MeanType_Heronian" xml:space="preserve">
     <value>Heronian</value>
   </data>
-  <data name="Localization_Enums_MeanType_Maximum" xml:space="preserve">
+  <data name="Enums_MeanType_Maximum" xml:space="preserve">
     <value>maximum</value>
   </data>
-  <data name="Localization_Enums_MeanType_Median" xml:space="preserve">
+  <data name="Enums_MeanType_Median" xml:space="preserve">
     <value>median</value>
   </data>
-  <data name="Localization_Enums_MeanType_Minimum" xml:space="preserve">
+  <data name="Enums_MeanType_Minimum" xml:space="preserve">
     <value>minimum</value>
   </data>
-  <data name="Localization_Enums_MeanType_Generalized" xml:space="preserve">
+  <data name="Enums_MeanType_Generalized" xml:space="preserve">
     <value>generalized</value>
   </data>
   <data name="Enums_Languages_English" xml:space="preserve">
@@ -166,7 +166,7 @@
   <data name="Enums_Languages_Polish" xml:space="preserve">
     <value>Polish</value>
   </data>
-  <data name="LangSelector_Ui_Down_OkBtn" xml:space="preserve">
+  <data name="LangSelector_Ui_Down_OkButton" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="LangSelector_Ui_Form_Text" xml:space="preserve">
@@ -303,9 +303,6 @@
   </data>
   <data name="MainWindow_Panel_Program_ActualState2_Failure" xml:space="preserve">
     <value>Failure</value>
-  </data>
-  <data name="MainWindow_Panel_Program_ActualState2_InfoObtainingErrorText" xml:space="preserve">
-    <value>Unknown</value>
   </data>
   <data name="MainWindow_Panel_Program_ActualState2_Informations" xml:space="preserve">
     <value>Informations</value>
@@ -685,7 +682,7 @@
   <data name="Enums_CurveApply_Ideal" xml:space="preserve">
     <value>ideal</value>
   </data>
-  <data name="Localization_Window_MeansSettings_Form_Text" xml:space="preserve">
+  <data name="MeansSettings_Form_Text" xml:space="preserve">
     <value>Means settings</value>
   </data>
   <data name="MessageBoxShower_General_OutOfMemoryExceptionStop_Caption" xml:space="preserve">
@@ -733,82 +730,109 @@
   <data name="MainWindow_Panel_Generate_StandardDeviation1" xml:space="preserve">
     <value>Standard deviation:</value>
   </data>
-  <data name="Localization_Enums_GeometricMeanVariant_Absolute" xml:space="preserve">
+  <data name="Enums_GeometricMeanVariant_Absolute" xml:space="preserve">
     <value>absolute</value>
   </data>
-  <data name="Localization_Enums_GeometricMeanVariant_Offset" xml:space="preserve">
+  <data name="Enums_GeometricMeanVariant_Offset" xml:space="preserve">
     <value>offset</value>
   </data>
-  <data name="Localization_Enums_GeometricMeanVariant_Parity" xml:space="preserve">
+  <data name="Enums_GeometricMeanVariant_Parity" xml:space="preserve">
     <value>parity</value>
   </data>
-  <data name="Localization_Enums_GeometricMeanVariant_Sign" xml:space="preserve">
+  <data name="Enums_GeometricMeanVariant_Sign" xml:space="preserve">
     <value>sign</value>
   </data>
-  <data name="Localization_Enums_MeanType_Central" xml:space="preserve">
+  <data name="Enums_MeanType_Central" xml:space="preserve">
     <value>central</value>
   </data>
-  <data name="Localization_Enums_MeanType_NN" xml:space="preserve">
+  <data name="Enums_MeanType_NN" xml:space="preserve">
     <value>NN</value>
   </data>
-  <data name="Localization_Enums_StandardMeanVariant_Offset" xml:space="preserve">
+  <data name="Enums_StandardMeanVariant_Offset" xml:space="preserve">
     <value>offset</value>
   </data>
-  <data name="Localization_Enums_StandardMeanVariant_Straight" xml:space="preserve">
+  <data name="Enums_StandardMeanVariant_Straight" xml:space="preserve">
     <value>straight</value>
   </data>
-  <data name="Localization_Window_MeansSettings_Ui_AGM" xml:space="preserve">
+  <data name="MeansSettings_Ui_AGM" xml:space="preserve">
     <value>Arithmetic-geometric mean (AGM)</value>
   </data>
-  <data name="Localization_Window_MeansSettings_Ui_Amount" xml:space="preserve">
+  <data name="MeansSettings_Ui_Amount" xml:space="preserve">
     <value>Amount:</value>
   </data>
-  <data name="Localization_Window_MeansSettings_Ui_Central" xml:space="preserve">
+  <data name="MeansSettings_Ui_Central" xml:space="preserve">
     <value>Central method</value>
   </data>
-  <data name="Localization_Window_MeansSettings_Ui_FinisherFunction" xml:space="preserve">
+  <data name="MeansSettings_Ui_FinisherFunction" xml:space="preserve">
     <value>Finisher function:</value>
   </data>
-  <data name="Localization_Window_MeansSettings_Ui_Generalized" xml:space="preserve">
+  <data name="MeansSettings_Ui_Generalized" xml:space="preserve">
     <value>Generalized (power) mean</value>
   </data>
-  <data name="Localization_Window_MeansSettings_Ui_Geometric" xml:space="preserve">
+  <data name="MeansSettings_Ui_Geometric" xml:space="preserve">
     <value>Geometric mean</value>
   </data>
-  <data name="Localization_Window_MeansSettings_Ui_Harmonic" xml:space="preserve">
+  <data name="MeansSettings_Ui_Harmonic" xml:space="preserve">
     <value>Harmonic mean</value>
   </data>
-  <data name="Localization_Window_MeansSettings_Ui_Heronian" xml:space="preserve">
+  <data name="MeansSettings_Ui_Heronian" xml:space="preserve">
     <value>Heronian mean</value>
   </data>
-  <data name="Localization_Window_MeansSettings_Ui_IntervalDivisions" xml:space="preserve">
+  <data name="MeansSettings_Ui_IntervalDivisions" xml:space="preserve">
     <value>Interval divisions:</value>
   </data>
-  <data name="Localization_Window_MeansSettings_Ui_MassPercent" xml:space="preserve">
+  <data name="MeansSettings_Ui_MassPercent" xml:space="preserve">
     <value>Mass percent:</value>
   </data>
-  <data name="Localization_Window_MeansSettings_Ui_NN" xml:space="preserve">
+  <data name="MeansSettings_Ui_NN" xml:space="preserve">
     <value>Nearest Neighbors smoothing</value>
   </data>
-  <data name="Localization_Window_MeansSettings_Ui_OK" xml:space="preserve">
+  <data name="MeansSettings_Ui_OK" xml:space="preserve">
     <value>OK</value>
   </data>
-  <data name="Localization_Window_MeansSettings_Ui_Rank" xml:space="preserve">
+  <data name="MeansSettings_Ui_Rank" xml:space="preserve">
     <value>Rank:</value>
   </data>
-  <data name="Localization_Window_MeansSettings_Ui_ToleranceHeader" xml:space="preserve">
+  <data name="MeansSettings_Ui_ToleranceHeader" xml:space="preserve">
     <value>Tolerance method</value>
   </data>
-  <data name="Localization_Window_MeansSettings_Ui_ToleranceText" xml:space="preserve">
+  <data name="MeansSettings_Ui_ToleranceText" xml:space="preserve">
     <value>Tolerance:</value>
   </data>
-  <data name="Localization_Window_MeansSettings_Ui_Variant" xml:space="preserve">
+  <data name="MeansSettings_Ui_Variant" xml:space="preserve">
     <value>Variant:</value>
   </data>
-  <data name="Localization_Window_MeansSettings_WarningNotSupportedFinisherFunction_Caption" xml:space="preserve">
+  <data name="Messages_MeansSettings_WarningNotSupportedFinisherFunction_Caption" xml:space="preserve">
     <value>Not supported mean type</value>
   </data>
-  <data name="Localization_Window_MeansSettings_WarningNotSupportedFinisherFunction_Text" xml:space="preserve">
+  <data name="Messages_MeansSettings_WarningNotSupportedFinisherFunction_Text" xml:space="preserve">
     <value>The chosen mean type is not allowed for this averaging method.</value>
+  </data>
+  <data name="Enums_AutoSizeColumnsMode_AllCells" xml:space="preserve">
+    <value>AllCells</value>
+  </data>
+  <data name="Enums_AutoSizeColumnsMode_AllCellsExceptHeader" xml:space="preserve">
+    <value>AllCellsExceptHeader</value>
+  </data>
+  <data name="Enums_AutoSizeColumnsMode_ColumnHeader" xml:space="preserve">
+    <value>ColumnHeader</value>
+  </data>
+  <data name="Enums_AutoSizeColumnsMode_DisplayedCells" xml:space="preserve">
+    <value>DisplayedCells</value>
+  </data>
+  <data name="Enums_AutoSizeColumnsMode_DisplayedCellsExceptHeader" xml:space="preserve">
+    <value>DisplayedCellsExceptHeader</value>
+  </data>
+  <data name="Enums_AutoSizeColumnsMode_Fill" xml:space="preserve">
+    <value>Fill</value>
+  </data>
+  <data name="Enums_AutoSizeColumnsMode_None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="Enums_Boolean_False" xml:space="preserve">
+    <value>False</value>
+  </data>
+  <data name="Enums_Boolean_True" xml:space="preserve">
+    <value>True</value>
   </data>
 </root>

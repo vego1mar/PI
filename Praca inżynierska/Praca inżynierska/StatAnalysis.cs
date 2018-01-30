@@ -12,6 +12,7 @@ using PI.src.enumerators;
 using log4net;
 using System.Reflection;
 using PI.src.localization.enums;
+using PI.src.localization.windows;
 
 namespace PI
 {
@@ -177,16 +178,16 @@ namespace PI
             UiControls.TrySelectTab( uiL_TbCtrl, (int) Phenomenon.Peek );
             UiControls.TrySelectTab( uiR_TbCtrl, 0 );
             ChartAssist.SetDefaultSettings( uiRChart_Chart );
-            AddDataSetCurveTypes( uiRChartDown_CrvT_ComBx );
+            EnumsLocalizer.Localize( LocalizableEnumerator.DataSetCurveType, uiRChartDown_CrvT_ComBx );
             UiControls.TrySetSelectedIndex( uiRChartDown_CrvT_ComBx, (int) DataSetCurveType.Ideal );
             uiRChartDown_CrvIdx_Num.Minimum = 0;
             uiRChartDown_CrvIdx_Num.Maximum = Settings.Ui.CurvesNo - 1;
             UiControls.TrySetValue( uiRChartDown_CrvIdx_Num, Settings.Ui.CurvesNo / 2 );
-            AddPhenomenonsIndexNames( uiRChartDown_Phen_ComBx );
+            EnumsLocalizer.Localize( LocalizableEnumerator.Phenomenon, uiRChartDown_Phen_ComBx );
             UiControls.TrySetSelectedIndex( uiRChartDown_Phen_ComBx, (int) Phenomenon.Peek );
             AddSurroundings( uiRChartDown_Surr_ComBx );
             UiControls.TrySetSelectedIndex( uiRChartDown_Surr_ComBx, 0 );
-            AddMeanTypes( uiRChartDown_MeanT_ComBx );
+            EnumsLocalizer.Localize( LocalizableEnumerator.MeanType, uiRChartDown_MeanT_ComBx );
             UiControls.TrySetSelectedIndex( uiRChartDown_MeanT_ComBx, (int) MeanType.Tolerance );
             uiRFormulaDown_CrvsNo2_TxtBx.Text = Settings.Ui.CurvesNo.ToString();
             uiRFormulaDown_Dens2_TxtBx.Text = (Settings.Ui.PointsNo + 1).ToString();
@@ -197,31 +198,10 @@ namespace PI
             uiLPeek_Grid.Select();
         }
 
-        private void AddDataSetCurveTypes( ComboBox comboBox )
-        {
-            foreach ( string type in Enum.GetNames( typeof( DataSetCurveType ) ) ) {
-                comboBox.Items.Add( type );
-            }
-        }
-
-        private void AddPhenomenonsIndexNames( ComboBox comboBox )
-        {
-            foreach ( string phenomenon in Enum.GetNames( typeof( Phenomenon ) ) ) {
-                comboBox.Items.Add( phenomenon );
-            }
-        }
-
         private void AddSurroundings( ComboBox comboBox )
         {
             foreach ( double surrounding in Surroundings ) {
-                comboBox.Items.Add( surrounding.ToString( System.Threading.Thread.CurrentThread.CurrentCulture ) );
-            }
-        }
-
-        private void AddMeanTypes( ComboBox comboBox )
-        {
-            foreach ( string type in Enum.GetNames( typeof( MeanType ) ) ) {
-                comboBox.Items.Add( type );
+                comboBox.Items.Add( surrounding.ToString( Thread.CurrentThread.CurrentCulture ) );
             }
         }
 
@@ -232,7 +212,7 @@ namespace PI
                     Data[i][j].GenerateIdealCurve( Settings.Pcd.Scaffold, Settings.Pcd.Parameters, Settings.Ui.StartX, Settings.Ui.EndX, Settings.Ui.PointsNo );
                     Data[i][j].PropagateIdealCurve( Settings.Ui.CurvesNo );
                     Data[i][j].MakeNoiseOfGaussian( Settings.Ui.CurvesNo, Surroundings[j] );
-                    MakePeekOrDeformation( (Phenomenon) i, Data[i][j], Settings.Ui.CurvesNo / 2 );
+                    MakePeekOrSaturation( (Phenomenon) i, Data[i][j], Settings.Ui.CurvesNo / 2 );
 
                     foreach ( string type in Enum.GetNames( typeof( MeanType ) ) ) {
                         Enum.TryParse( type, out MeanType meanType );
@@ -340,7 +320,7 @@ namespace PI
             };
         }
 
-        private void MakePeekOrDeformation( Phenomenon idx, CurvesDataManager data, int curveIdx, int yValuesIdx = 0 )
+        private void MakePeekOrSaturation( Phenomenon idx, CurvesDataManager data, int curveIdx, int yValuesIdx = 0 )
         {
             Series newSeries = data.ModifiedCurves[curveIdx];
             int leftIntervalPoint = Convert.ToInt32( (3.0 / 7.0) * newSeries.Points.Count );
@@ -548,42 +528,12 @@ namespace PI
 
             for ( int i = 0; i < Enum.GetValues( typeof( Phenomenon ) ).Length; i++ ) {
                 for ( int j = 0; j < Surroundings.Count; j++ ) {
-                    int maxValueIdx = GetIndexOfMaximumValue( StdDeviations[i][j] );
-                    int minValueIdx = GetIndexOfMinimumValue( StdDeviations[i][j] );
+                    int maxValueIdx = StdDeviations[i][j].IndexOf( StdDeviations[i][j].Max() );
+                    int minValueIdx = StdDeviations[i][j].IndexOf( StdDeviations[i][j].Min() );
                     grids[i].Rows[maxValueIdx].Cells[j].Style.BackColor = System.Drawing.Color.OrangeRed;
                     grids[i].Rows[minValueIdx].Cells[j].Style.BackColor = System.Drawing.Color.SpringGreen;
                 }
             }
-        }
-
-        private int GetIndexOfMaximumValue( List<double> list )
-        {
-            double maxValue = Double.MinValue;
-            int idx = -1;
-
-            for ( int i = 0; i < list.Count; i++ ) {
-                if ( list[i] > maxValue ) {
-                    maxValue = list[i];
-                    idx = i;
-                }
-            }
-
-            return idx;
-        }
-
-        private int GetIndexOfMinimumValue( List<double> list )
-        {
-            double minValue = Double.MaxValue;
-            int idx = -1;
-
-            for ( int i = 0; i < list.Count; i++ ) {
-                if ( list[i] < minValue ) {
-                    minValue = list[i];
-                    idx = i;
-                }
-            }
-
-            return idx;
         }
 
         private void UiStatAnalysis_FormClosing( object sender, FormClosingEventArgs e )
@@ -599,55 +549,45 @@ namespace PI
 
         private void LocalizeWindow()
         {
-            LocalizeForm();
-            LocalizeStandardDeviation();
-            LocalizePreview();
-        }
+            StatisticalAnalysisStrings names = new StatisticalAnalysisStrings();
+            Text = names.Form.Text.GetString();
 
-        private void LocalizeForm()
-        {
-            Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Form.Text.GetString();
-        }
+            // Standard deviation
+            uiL_StdDev_TxtBx.Text = names.Ui.StandardDeviationTitle.GetString();
+            uiL_Peek_TbPg.Text = names.Ui.StandardDeviationPeek.GetString();
+            uiL_Sat_TbPg.Text = names.Ui.StandardDeviationSaturation.GetString();
+            uiLPeekGrid_Noise01_Col.HeaderText = names.Ui.StandardDeviationNoise01.GetString();
+            uiLPeekGrid_Noise05_Col.HeaderText = names.Ui.StandardDeviationNoise05.GetString();
+            uiLPeekGrid_Noise1_Col.HeaderText = names.Ui.StandardDeviationNoise1.GetString();
+            uiLPeekGrid_Noise2_Col.HeaderText = names.Ui.StandardDeviationNoise2.GetString();
+            uiLDeformGrid_Noise01_Col.HeaderText = names.Ui.StandardDeviationNoise01.GetString();
+            uiLDeformGrid_Noise05_Col.HeaderText = names.Ui.StandardDeviationNoise05.GetString();
+            uiLDeformGrid_Noise1_Col.HeaderText = names.Ui.StandardDeviationNoise1.GetString();
+            uiLDeformGrid_Noise2_Col.HeaderText = names.Ui.StandardDeviationNoise2.GetString();
 
-        private void LocalizeStandardDeviation()
-        {
-            uiL_StdDev_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.StdDeviation.StdDev.GetString();
-            uiL_Peek_TbPg.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.StdDeviation.Peek.GetString();
-            uiL_Deform_TbPg.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.StdDeviation.Deform.GetString();
-            uiLPeekGrid_Noise01_Col.HeaderText = Translator.GetInstance().Strings.StatAnalysis.Ui.StdDeviation.Noise01.GetString();
-            uiLPeekGrid_Noise05_Col.HeaderText = Translator.GetInstance().Strings.StatAnalysis.Ui.StdDeviation.Noise05.GetString();
-            uiLPeekGrid_Noise1_Col.HeaderText = Translator.GetInstance().Strings.StatAnalysis.Ui.StdDeviation.Noise1.GetString();
-            uiLPeekGrid_Noise2_Col.HeaderText = Translator.GetInstance().Strings.StatAnalysis.Ui.StdDeviation.Noise2.GetString();
-            uiLDeformGrid_Noise01_Col.HeaderText = Translator.GetInstance().Strings.StatAnalysis.Ui.StdDeviation.Noise01.GetString();
-            uiLDeformGrid_Noise05_Col.HeaderText = Translator.GetInstance().Strings.StatAnalysis.Ui.StdDeviation.Noise05.GetString();
-            uiLDeformGrid_Noise1_Col.HeaderText = Translator.GetInstance().Strings.StatAnalysis.Ui.StdDeviation.Noise1.GetString();
-            uiLDeformGrid_Noise2_Col.HeaderText = Translator.GetInstance().Strings.StatAnalysis.Ui.StdDeviation.Noise2.GetString();
-        }
-
-        private void LocalizePreview()
-        {
-            uiR_Prv_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.Prv.GetString();
-            uiR_Chart_TbPg.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.Chart.GetString();
-            uiR_Formula_TbPg.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.Formula.GetString();
+            // Preview
+            uiR_Prv_TxtBx.Text = names.Ui.PreviewTitle.GetString();
+            uiR_Chart_TbPg.Text = names.Ui.PreviewChart.GetString();
+            uiR_Formula_TbPg.Text = names.Ui.PreviewFormula.GetString();
             EnumsLocalizer.Localize( LocalizableEnumerator.DataSetCurveType, uiRChartDown_CrvT_ComBx );
             UiControls.TrySetSelectedIndex( uiRChartDown_CrvT_ComBx, (int) DataSetCurveType.Ideal );
             EnumsLocalizer.Localize( LocalizableEnumerator.Phenomenon, uiRChartDown_Phen_ComBx );
             UiControls.TrySetSelectedIndex( uiRChartDown_Phen_ComBx, (int) Phenomenon.Peek );
             EnumsLocalizer.Localize( LocalizableEnumerator.MeanType, uiRChartDown_MeanT_ComBx );
-            UiControls.TrySetSelectedIndex( uiRChartDown_MeanT_ComBx, (int) MeanType.Tolerance );
-            uiRChartDown_DtSet_Btn.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.DtSet.GetString();
-            uiRFormulaDown_CrvsNo2_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.NotApplicable.GetString();
-            uiRFormulaDown_Dens2_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.NotApplicable.GetString();
+            UiControls.TrySetSelectedIndex( uiRChartDown_MeanT_ComBx, (int) MeanType.NN );
+            uiRChartDown_DtSet_Btn.Text = names.Ui.PreviewDataSet.GetString();
+            uiRFormulaDown_CrvsNo2_TxtBx.Text = names.Ui.PreviewNotApplicable.GetString();
+            uiRFormulaDown_Dens2_TxtBx.Text = names.Ui.PreviewNotApplicable.GetString();
             uiRFormulaDown_CrvsNo2_TxtBx.Text = Settings.Ui.CurvesNo.ToString( Thread.CurrentThread.CurrentCulture );
             uiRFormulaDown_Dens2_TxtBx.Text = (Settings.Ui.PointsNo + 1).ToString( Thread.CurrentThread.CurrentCulture );
-            uiRFormulaDown_CrvsNo1_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.CrvsNo1.GetString();
-            uiRFormulaDown_Dens1_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.Dens1.GetString();
-            uiRChartUp_CrvIdx_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.CrvIdx.GetString();
-            uiRChartUp_CrvT_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.CrvT.GetString();
-            uiRChartUp_Phen_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.Phen.GetString();
-            uiRChartUp_Surr_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.Noise.GetString();
-            uiRChartUp_MeanT_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.MeanT.GetString();
-            uiRChartUp_DtSet_TxtBx.Text = Translator.GetInstance().Strings.StatAnalysis.Ui.Preview.DtSetSel.GetString();
+            uiRFormulaDown_CrvsNo1_TxtBx.Text = names.Ui.PreviewCurvesNo1.GetString();
+            uiRFormulaDown_Dens1_TxtBx.Text = names.Ui.PreviewDensity1.GetString();
+            uiRChartUp_CrvIdx_TxtBx.Text = names.Ui.PreviewCurveIndex.GetString();
+            uiRChartUp_CrvT_TxtBx.Text = names.Ui.PreviewCurveType.GetString();
+            uiRChartUp_Phen_TxtBx.Text = names.Ui.PreviewPhenomenon.GetString();
+            uiRChartUp_Surr_TxtBx.Text = names.Ui.PreviewNoise.GetString();
+            uiRChartUp_MeanT_TxtBx.Text = names.Ui.PreviewMeanType.GetString();
+            uiRChartUp_DtSet_TxtBx.Text = names.Ui.PreviewDataSetSelection.GetString();
         }
 
     }
