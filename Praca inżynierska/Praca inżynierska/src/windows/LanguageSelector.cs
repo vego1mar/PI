@@ -13,7 +13,8 @@ namespace PI.src.windows
         public LanguageSelector()
         {
             InitializeComponent();
-            SetWindowDefaults();
+            LocalizeWindow();
+            UpdateUiBySettings();
         }
 
         public Languages GetSelectedLanguage()
@@ -21,9 +22,8 @@ namespace PI.src.windows
             return (Languages) UiControls.TryGetSelectedIndex( uiUp_LstBx );
         }
 
-        private void SetWindowDefaults()
+        private void UpdateUiBySettings()
         {
-            LocalizeWindow();
             UiControls.TrySetSelectedIndex( uiUp_LstBx, (int) LanguageAssist.GetCurrentUiLanguage() );
         }
 
@@ -32,6 +32,7 @@ namespace PI.src.windows
             LanguageSelectorStrings names = new LanguageSelectorStrings();
             Text = names.Form.Text.GetString();
 
+            // Ui
             EnumsLocalizer.Localize( LocalizableEnumerator.Languages, uiUp_LstBx );
         }
 

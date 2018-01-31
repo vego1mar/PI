@@ -1,5 +1,5 @@
 ﻿using PI.src.localization.general;
-using static PI.Translator;
+using static PI.src.localization.general.LanguageAssist;
 
 namespace PI.src.localization.windows
 {
@@ -10,7 +10,7 @@ namespace PI.src.localization.windows
 
         public class GridPreviewerFormStrings
         {
-            public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Form_Text" ); } }
+            public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Form_Text" ); } }
         }
 
         public class GridPreviewerUiStrings
@@ -44,8 +44,8 @@ namespace PI.src.localization.windows
             public LocalizedString PreviewInfoChartNotRepainted { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Preview_Info_ChartNotRepainted" ); } }
             public LocalizedString PreviewInfoChartRefreshError { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Preview_Info_ChartRefreshError" ); } }
             public LocalizedString PreviewInfoChartRefreshed { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Preview_Info_ChartRefreshed" ); } }
-            public LocalizedString PreviewTitle { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Preview_Preview" ); } }
-            public LocalizedString DatasetTitle { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Dataset_Dataset" ); } }
+            public LocalizedString PreviewTitle { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Preview_Title" ); } }
+            public LocalizedString DatasetTitle { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Dataset_Title" ); } }
         }
     }
 }

@@ -17,7 +17,7 @@ namespace PI.src.windows
         {
             InitializeComponent();
             MeansParams = new MeansParameters();
-            LocalizeUi();
+            LocalizeWindow();
             UpdateUiBySettings();
         }
 
@@ -51,7 +51,7 @@ namespace PI.src.windows
             MeansParams.NN.Amount = UiControls.TryGetValue<int>( uiGrid_NNk_Num );
         }
 
-        private void LocalizeUi()
+        private void LocalizeWindow()
         {
             MeansSettingsStrings names = new MeansSettingsStrings();
             Text = names.Form.Text.GetString();
@@ -101,13 +101,13 @@ namespace PI.src.windows
             Dispose();
         }
 
-        private void OnToleranceFinisherFunctionSelectedIndexChanged( object sender, EventArgs e )
+        private void OnToleranceFinisherFunctionSelection( object sender, EventArgs e )
         {
             switch ( (MeanType) UiControls.TryGetSelectedIndex( uiGrid_TolerFin_ComBx ) ) {
             case MeanType.Tolerance:
             case MeanType.NN:
                 UiControls.TrySetSelectedIndex( uiGrid_TolerFin_ComBx, (int) MeansParams.Tolerance.Finisher );
-                Messages.MeansSettings.WarningNotSupportedFinisherFunction();
+                AppMessages.MeansSettings.WarningOfNotSupportedFinisherFunction();
                 break;
             default:
                 MeansParams.Tolerance.Finisher = (MeanType) UiControls.TryGetSelectedIndex( uiGrid_TolerFin_ComBx );

@@ -47,8 +47,7 @@ namespace PI
             DefineTimerThread();
             Threads.TryStart( Timer );
             UpdateUiByStatusOfTimerThread();
-            Translator.GetInstance();
-            Translator.SetLanguage( Languages.English );
+            LanguageAssist.CurrentLanguage = Languages.English;
             LanguageAssist.TryLocalizeCulture( Languages.English );
         }
 
@@ -272,7 +271,7 @@ namespace PI
         private void UiPanelGenerate_GenerateSet_Click( object sender, EventArgs e )
         {
             if ( uiPnlGen_Def_Btn.Text == new MainWindowStrings().Ui.Panel.GenerateScaffoldNone.GetString() ) {
-                Messages.MainWindow.StopOfPatternCurveNotChosen();
+                AppMessages.MainWindow.StopOfPatternCurveNotChosen();
                 return;
             }
 
@@ -304,7 +303,7 @@ namespace PI
 
             if ( !DataChart.GenerateIdealCurve( Settings.Presets.Pcd.Scaffold, Settings.Presets.Pcd.Parameters, xStart, xEnd, density ) ) {
                 DataChart.RemoveInvalidPoints( DataSetCurveType.Ideal );
-                Messages.MainWindow.ExclamationOfPointsNotValidToChart();
+                AppMessages.MainWindow.ExclamationOfPointsNotValidToChart();
             }
 
             if ( DataChart.IdealCurve.Points.Count > 0 ) {
@@ -340,12 +339,12 @@ namespace PI
             }
             catch ( InvalidOperationException ex ) {
                 log.Error( ex.Message, ex );
-                Messages.MainWindow.ErrorOfChartRefreshing();
+                AppMessages.MainWindow.ErrorOfChartRefreshing();
                 return false;
             }
             catch ( ArgumentOutOfRangeException ex ) {
                 log.Error( ex.Message, ex );
-                Messages.MainWindow.ExclamationOfSeriesSelection();
+                AppMessages.MainWindow.ExclamationOfSeriesSelection();
                 return false;
             }
             catch ( Exception ex ) {
@@ -432,14 +431,14 @@ namespace PI
             case DataSetCurveType.Average:
                 break;
             default:
-                Messages.MainWindow.AsteriskOfCurveTypeNotSelected();
+                AppMessages.MainWindow.AsteriskOfCurveTypeNotSelected();
                 return;
             }
 
             Series selectedCurveSeries = SpecifyCurveSeries( selectedCurveType, selectedCurveIndex );
 
             if ( selectedCurveSeries == null || DataChart.IdealCurve.Points.Count == 0 ) {
-                Messages.MainWindow.ExclamationOfSeriesSelection();
+                AppMessages.MainWindow.ExclamationOfSeriesSelection();
                 return;
             }
 
@@ -463,7 +462,7 @@ namespace PI
                 }
                 catch ( InvalidOperationException ex ) {
                     log.Error( signature, ex );
-                    Messages.MainWindow.ErrorOfChartRefreshing();
+                    AppMessages.MainWindow.ErrorOfChartRefreshing();
                 }
                 catch ( System.ComponentModel.InvalidEnumArgumentException ex ) {
                     log.Error( signature, ex );
@@ -503,7 +502,7 @@ namespace PI
         private void UiPanelDataSheet_Malform_Click( object sender, EventArgs e )
         {
             if ( DataChart.IdealCurve.Points.Count == 0 ) {
-                Messages.MainWindow.ExclamationOfSeriesSelection();
+                AppMessages.MainWindow.ExclamationOfSeriesSelection();
                 return;
             }
 
@@ -512,12 +511,12 @@ namespace PI
             bool? result = DataChart.MakeNoiseOfGaussian( numberOfCurves, surrounding );
 
             if ( result == null ) {
-                Messages.MainWindow.ExclamationOfSpecifiedCurveDoesNotExist();
+                AppMessages.MainWindow.ExclamationOfSpecifiedCurveDoesNotExist();
                 return;
             }
 
             if ( !result.Value ) {
-                Messages.MainWindow.StopOfOperationMalformRejected();
+                AppMessages.MainWindow.StopOfOperationMalformRejected();
                 return;
             }
 
@@ -528,26 +527,17 @@ namespace PI
         private void UiPanelGenerate_Apply_Click( object sender, EventArgs e )
         {
             if ( DataChart.IdealCurve.Points.Count == 0 ) {
-                Messages.MainWindow.ExclamationOfSeriesSelection();
+                AppMessages.MainWindow.ExclamationOfSeriesSelection();
                 return;
             }
 
             MeanType meanType = (MeanType) UiControls.TryGetSelectedIndex( uiPnlGen_MeanT_ComBx );
             int numberOfCurves = UiControls.TryGetValue<int>( uiPnlGen_Crvs2No_Num );
-            bool isNumberOfCurvesInsufficient = (meanType == MeanType.Median
-                || meanType == MeanType.Tolerance)
-                && numberOfCurves < 3;
-
-            if ( isNumberOfCurvesInsufficient ) {
-                Messages.MainWindow.ErrorOfNotEnoughCurvesForMediana();
-                return;
-            }
-
             bool? averageResult = DataChart.TryMakeAverageCurve( meanType, numberOfCurves );
 
             if ( !averageResult.Value ) {
                 DataChart.RemoveInvalidPoints( DataSetCurveType.Average );
-                Messages.MainWindow.ExclamationOfPointsNotValidToChart();
+                AppMessages.MainWindow.ExclamationOfPointsNotValidToChart();
             }
 
             UiControls.TrySetSelectedIndex( uiPnlDtSh_CrvT_ComBx, (int) DataSetCurveType.Average );
@@ -786,6 +776,7 @@ namespace PI
 
             try {
                 signature = @base.DeclaringType.Name + "." + @base.Name + "(" + sender + ", " + e + ")";
+                GrabPreSetsForCurvesGeneration();
 
                 Thread window = new Thread( DelegatorForStatAnalysis ) {
                     Name = nameof( StatAnalysis ),
@@ -799,7 +790,7 @@ namespace PI
             }
             catch ( OutOfMemoryException ex ) {
                 log.Fatal( signature, ex );
-                Messages.Application.StopOfOutOfMemoryException();
+                AppMessages.General.StopOfOutOfMemoryException();
             }
             catch ( ArgumentNullException ex ) {
                 log.Error( signature, ex );
@@ -814,23 +805,9 @@ namespace PI
 
         private void DelegatorForStatAnalysis()
         {
-            if ( IsGeneratedCurvesSeriesEmpty() ) {
-                Messages.StatisticalAnalysis.ErrorOfNoSavedPresets();
-                return;
-            }
-
             using ( var dialog = new StatAnalysis( Settings.Presets, DataChart ) ) {
                 dialog.ShowDialog();
             }
-        }
-
-        private bool IsGeneratedCurvesSeriesEmpty()
-        {
-            if ( DataChart.ModifiedCurves.Count <= 0 ) {
-                return true;
-            }
-
-            return false;
         }
 
         private void MainWindow_FormClosing( object sender, FormClosingEventArgs e )
@@ -847,7 +824,7 @@ namespace PI
                 UiControls.TryShowDialog( dialog, this );
 
                 if ( dialog.DialogResult == DialogResult.OK ) {
-                    Translator.SetLanguage( dialog.GetSelectedLanguage() );
+                    LanguageAssist.CurrentLanguage = dialog.GetSelectedLanguage();
                     LanguageAssist.TryLocalizeCulture( dialog.GetSelectedLanguage() );
                     LocalizeWindow();
                 }

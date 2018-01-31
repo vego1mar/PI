@@ -1,5 +1,4 @@
-﻿using PI.src.messages;
-using PI.src.helpers;
+﻿using PI.src.helpers;
 using PI.src.settings;
 using System;
 using System.Windows.Forms;
@@ -162,7 +161,6 @@ namespace PI
             // Checking 'decimal' value, not 'double'.
             // Four zeros after decimal separator are revelant here, not floating-point precision.
             if ( userValue == 0.0000 ) {
-                Messages.PatternCurveDefiner.ExclamationOfDivisionByZero();
                 userValue = 0.0001;
             }
 

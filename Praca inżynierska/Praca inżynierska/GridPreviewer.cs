@@ -78,7 +78,7 @@ namespace PI
 
             if ( !SeriesAssist.IsChartAcceptable( series ) ) {
                 UpdateUiByPanelStateInfo( names.Ui.PanelInfoOperationRevoked.GetString() );
-                Messages.GridPreviewer.ErrorOfInvalidCurvePoints();
+                AppMessages.GridPreviewer.ErrorOfInvalidCurvePoints();
                 return;
             }
 
@@ -166,7 +166,7 @@ namespace PI
         {
             if ( uiPnl_StartIdx_Num.Value > uiPnl_EndIdx_Num.Value ) {
                 uiPnl_StartIdx_Num.Value -= 1;
-                Messages.GridPreviewer.ExclamationOfIndexGreaterThanAllowed();
+                AppMessages.GridPreviewer.ExclamationOfIndexGreaterThanAllowed();
             }
         }
 
@@ -174,7 +174,7 @@ namespace PI
         {
             if ( uiPnl_EndIdx_Num.Value < uiPnl_StartIdx_Num.Value ) {
                 uiPnl_EndIdx_Num.Value += 1;
-                Messages.GridPreviewer.ExclamationOfIndexLowerThanAllowed();
+                AppMessages.GridPreviewer.ExclamationOfIndexLowerThanAllowed();
             }
         }
 
@@ -185,7 +185,7 @@ namespace PI
 
             if ( userValue == null ) {
                 UpdateUiByPanelStateInfo( names.Ui.PanelInfoInvalidUserValue.GetString() );
-                Messages.GridPreviewer.ExclamationOfImproperUserValue();
+                AppMessages.GridPreviewer.ExclamationOfImproperUserValue();
                 return;
             }
 
@@ -197,13 +197,13 @@ namespace PI
 
             if ( !result ) {
                 UpdateUiByPanelStateInfo( names.Ui.PanelInfoOperationRejected.GetString() );
-                Messages.GridPreviewer.ErrorOfPerformOperation();
+                AppMessages.GridPreviewer.ErrorOfPerformOperation();
                 return;
             }
 
             if ( !SeriesAssist.IsChartAcceptable( seriesCopy ) ) {
                 UpdateUiByPanelStateInfo( names.Ui.PanelInfoOperationRevoked.GetString() );
-                Messages.GridPreviewer.ErrorOfInvalidCurvePoints();
+                AppMessages.GridPreviewer.ErrorOfInvalidCurvePoints();
                 return;
             }
 
@@ -430,7 +430,7 @@ namespace PI
             catch ( InvalidOperationException ex ) {
                 log.Error( signature, ex );
                 UpdateUiByPanelStateInfo( names.Ui.PreviewInfoChartNotRepainted.GetString() );
-                Messages.GridPreviewer.ErrorOfChartRefreshing();
+                AppMessages.GridPreviewer.ErrorOfChartRefreshing();
             }
             catch ( Exception ex ) {
                 log.Fatal( signature, ex );

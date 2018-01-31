@@ -1,4 +1,5 @@
 ﻿using PI.src.helpers;
+using PI.src.localization.messages;
 using System.Windows.Forms;
 
 namespace PI.src.messages
@@ -7,44 +8,62 @@ namespace PI.src.messages
     {
         public void ExclamationOfIndexGreaterThanAllowed()
         {
-            string text = Translator.GetInstance().Strings.MsgBxShower.GridPreviewer.Panel.ProblemIndexGreaterThanAllowed.Text.GetString();
-            string caption = Translator.GetInstance().Strings.MsgBxShower.GridPreviewer.Panel.ProblemIndexGreaterThanAllowed.Caption.GetString();
-            UiControls.TryShowMessageBox( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+            UiControls.TryShowMessageBox( 
+                Messages.GetInstance().GridPreviewer.IndexGreaterThanAllowed.Text.GetString(),
+                Messages.GetInstance().GridPreviewer.IndexGreaterThanAllowed.Caption.GetString(), 
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation 
+                );
         }
 
         public void ExclamationOfIndexLowerThanAllowed()
         {
-            string text = Translator.GetInstance().Strings.MsgBxShower.GridPreviewer.Panel.ProblemIndexLowerThanAllowed.Text.GetString();
-            string caption = Translator.GetInstance().Strings.MsgBxShower.GridPreviewer.Panel.ProblemIndexLowerThanAllowed.Caption.GetString();
-            UiControls.TryShowMessageBox( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+            UiControls.TryShowMessageBox(
+                Messages.GetInstance().GridPreviewer.IndexLowerThanAllowed.Text.GetString(),
+                Messages.GetInstance().GridPreviewer.IndexLowerThanAllowed.Caption.GetString(),
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation
+                );
         }
 
         public void ExclamationOfImproperUserValue()
         {
-            string text = Translator.GetInstance().Strings.MsgBxShower.GridPreviewer.Panel.ProblemImproperUserValue.Text.GetString();
-            string caption = Translator.GetInstance().Strings.MsgBxShower.GridPreviewer.Panel.ProblemImproperUserValue.Caption.GetString();
-            UiControls.TryShowMessageBox( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+            UiControls.TryShowMessageBox(
+                Messages.GetInstance().GridPreviewer.ImproperUserValue.Text.GetString(),
+                Messages.GetInstance().GridPreviewer.ImproperUserValue.Caption.GetString(),
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation
+                );
         }
 
         public void ErrorOfPerformOperation()
         {
-            string text = Translator.GetInstance().Strings.MsgBxShower.GridPreviewer.Panel.ErrorPerformOperation.Text.GetString();
-            string caption = Translator.GetInstance().Strings.MsgBxShower.GridPreviewer.Panel.ErrorPerformOperation.Caption.GetString();
-            UiControls.TryShowMessageBox( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
+            UiControls.TryShowMessageBox(
+                Messages.GetInstance().GridPreviewer.PerformOperation.Text.GetString(),
+                Messages.GetInstance().GridPreviewer.PerformOperation.Caption.GetString(),
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error
+                );
         }
 
         public void ErrorOfInvalidCurvePoints()
         {
-            string text = Translator.GetInstance().Strings.MsgBxShower.GridPreviewer.Panel.ErrorInvalidCurvePoints.Text.GetString();
-            string caption = Translator.GetInstance().Strings.MsgBxShower.GridPreviewer.Panel.ErrorInvalidCurvePoints.Caption.GetString();
-            UiControls.TryShowMessageBox( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
+            UiControls.TryShowMessageBox(
+                Messages.GetInstance().GridPreviewer.InvalidCurvePoints.Text.GetString(),
+                Messages.GetInstance().GridPreviewer.InvalidCurvePoints.Caption.GetString(),
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error
+                );
         }
 
         public void ErrorOfChartRefreshing()
         {
-            string text = Translator.GetInstance().Strings.MsgBxShower.GridPreviewer.Chart.ErrorChartRefreshing.Text.GetString();
-            string caption = Translator.GetInstance().Strings.MsgBxShower.GridPreviewer.Chart.ErrorChartRefreshing.Caption.GetString();
-            UiControls.TryShowMessageBox( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error );
+            UiControls.TryShowMessageBox(
+                Messages.GetInstance().GridPreviewer.ChartRefreshing.Text.GetString(),
+                Messages.GetInstance().GridPreviewer.ChartRefreshing.Caption.GetString(),
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error
+                );
         }
     }
 }

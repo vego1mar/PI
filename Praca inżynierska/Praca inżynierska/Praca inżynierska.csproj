@@ -118,8 +118,12 @@
     <Compile Include="src\localization\enums\PhenomenonStrings.cs" />
     <Compile Include="src\localization\enums\StandardMeanVariantStrings.cs" />
     <Compile Include="src\localization\general\LocalizedString.cs" />
+    <Compile Include="src\localization\messages\GeneralTexts.cs" />
+    <Compile Include="src\localization\messages\GridPreviewerTexts.cs" />
+    <Compile Include="src\localization\messages\MainWindowTexts.cs" />
     <Compile Include="src\localization\messages\MeansSettingsTexts.cs" />
     <Compile Include="src\localization\messages\Messages.cs" />
+    <Compile Include="src\localization\messages\StatisticalAnalysisTexts.cs" />
     <Compile Include="src\localization\windows\ChartSettingsStrings.cs" />
     <Compile Include="src\localization\windows\GridPreviewerStrings.cs" />
     <Compile Include="src\localization\windows\LanguageSelectorStrings.cs" />
@@ -147,7 +151,6 @@
     <Compile Include="src\messages\GeneralMessages.cs" />
     <Compile Include="src\messages\GridPreviewerMessages.cs" />
     <Compile Include="src\messages\MainWindowMessages.cs" />
-    <Compile Include="src\messages\PatternCurveDefinerMessages.cs" />
     <Compile Include="src\messages\StatisticalAnalysisMessages.cs" />
     <Compile Include="src\localization\enums\EnumsLocalizer.cs" />
     <Compile Include="src\localization\general\LanguageAssist.cs" />
@@ -169,7 +172,7 @@
     <Compile Include="src\windows\MeansSettings.Designer.cs">
       <DependentUpon>MeansSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\messages\Messages.cs" />
+    <Compile Include="src\messages\AppMessages.cs" />
     <Compile Include="src\parameters\CurvesParameters.cs" />
     <Compile Include="PatternCurveDefiner.cs">
       <SubType>Form</SubType>
@@ -204,7 +207,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Translator.cs" />
     <Compile Include="src\settings\UiSettings.cs" />
     <Compile Include="src\helpers\UiControls.cs" />
     <EmbeddedResource Include="ChartSettings.resx">

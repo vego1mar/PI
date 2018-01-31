@@ -571,7 +571,7 @@
             this.uiGrid_TolerFin_ComBx.Name = "uiGrid_TolerFin_ComBx";
             this.uiGrid_TolerFin_ComBx.Size = new System.Drawing.Size(180, 21);
             this.uiGrid_TolerFin_ComBx.TabIndex = 52;
-            this.uiGrid_TolerFin_ComBx.SelectedIndexChanged += new System.EventHandler(this.OnToleranceFinisherFunctionSelectedIndexChanged);
+            this.uiGrid_TolerFin_ComBx.SelectedIndexChanged += new System.EventHandler(this.OnToleranceFinisherFunctionSelection);
             // 
             // uiGrid_GenRank_TxtBx
             // 

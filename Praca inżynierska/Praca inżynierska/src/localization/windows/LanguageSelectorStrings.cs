@@ -1,5 +1,5 @@
 ﻿using PI.src.localization.general;
-using static PI.Translator;
+using static PI.src.localization.general.LanguageAssist;
 
 namespace PI.src.localization.windows
 {
@@ -10,12 +10,12 @@ namespace PI.src.localization.windows
 
         public class LanguageSelectorFormStrings
         {
-            public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "LangSelector_Ui_Form_Text" ); } }
+            public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "LangSelector_Form_Text" ); } }
         }
 
         public class LanguageSelectorUiStrings
         {
-            public LocalizedString OkButton { get { return new LocalizedString( CurrentLanguage, "LangSelector_Ui_Down_OkButton" ); } }
+            public LocalizedString DownOkButton { get { return new LocalizedString( CurrentLanguage, "LangSelector_Ui_Down_OkButton" ); } }
         }
     }
 }

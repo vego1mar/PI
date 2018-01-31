@@ -1,4 +1,5 @@
 ﻿using PI.src.helpers;
+using PI.src.localization.messages;
 using System.Windows.Forms;
 
 namespace PI.src.messages
@@ -7,9 +8,12 @@ namespace PI.src.messages
     {
         public void StopOfOutOfMemoryException()
         {
-            string text = Translator.GetInstance().Strings.MsgBxShower.General.StopOutOfMemoryException.Text.GetString();
-            string caption = Translator.GetInstance().Strings.MsgBxShower.General.StopOutOfMemoryException.Caption.GetString();
-            UiControls.TryShowMessageBox( text, caption, MessageBoxButtons.OK, MessageBoxIcon.Stop );
+            UiControls.TryShowMessageBox(
+                Messages.GetInstance().General.OutOfMemoryException.Text.GetString(),
+                Messages.GetInstance().General.OutOfMemoryException.Caption.GetString(),
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Stop
+                );
         }
     }
 }

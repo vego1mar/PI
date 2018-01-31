@@ -1,15 +1,16 @@
 ﻿using PI.src.helpers;
+using PI.src.localization.messages;
 using System.Windows.Forms;
 
 namespace PI.src.messages
 {
     internal class MeansSettingsMessages
     {
-        public void WarningNotSupportedFinisherFunction()
+        public void WarningOfNotSupportedFinisherFunction()
         {
             UiControls.TryShowMessageBox(
-                localization.messages.Messages.GetInstance().MeansSettings.NotSupportedFinisher.Text.GetString(),
-                localization.messages.Messages.GetInstance().MeansSettings.NotSupportedFinisher.Caption.GetString(),
+                Messages.GetInstance().MeansSettings.NotSupportedFinisherFunction.Text.GetString(),
+                Messages.GetInstance().MeansSettings.NotSupportedFinisherFunction.Caption.GetString(),
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Warning
                 );

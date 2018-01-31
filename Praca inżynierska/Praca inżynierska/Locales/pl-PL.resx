@@ -128,7 +128,6 @@
   </data>
   <data name="Enums_MeanType_AGM" xml:space="preserve">
     <value>AGM</value>
-    <comment>Średnia arytmetyczno-geometryczna</comment>
   </data>
   <data name="Enums_MeanType_Arithmetic" xml:space="preserve">
     <value>arytmetyczna</value>
@@ -157,16 +156,16 @@
   <data name="LangSelector_Ui_Down_OkButton" xml:space="preserve">
     <value>OK</value>
   </data>
-  <data name="LangSelector_Ui_Form_Text" xml:space="preserve">
+  <data name="LangSelector_Form_Text" xml:space="preserve">
     <value>Wybór języka</value>
   </data>
-  <data name="MainWindow_Menu_Chart" xml:space="preserve">
+  <data name="MainWindow_Menu_Chart_Title" xml:space="preserve">
     <value>Wykres</value>
   </data>
   <data name="MainWindow_Menu_Chart_Settings" xml:space="preserve">
     <value>Ustawienia</value>
   </data>
-  <data name="MainWindow_Menu_Means" xml:space="preserve">
+  <data name="MainWindow_Menu_Means_Title" xml:space="preserve">
     <value>Uśrednianie</value>
   </data>
   <data name="MainWindow_Menu_Means_AveragingInfo" xml:space="preserve">
@@ -175,7 +174,7 @@
   <data name="MainWindow_Menu_Means_Settings" xml:space="preserve">
     <value>Ustawienia</value>
   </data>
-  <data name="MainWindow_Menu_Panel" xml:space="preserve">
+  <data name="MainWindow_Menu_Panel_Title" xml:space="preserve">
     <value>Panel</value>
   </data>
   <data name="MainWindow_Menu_Panel_Hide" xml:space="preserve">
@@ -187,7 +186,7 @@
   <data name="MainWindow_Menu_Panel_Lock" xml:space="preserve">
     <value>Zablokuj</value>
   </data>
-  <data name="MainWindow_Menu_Program" xml:space="preserve">
+  <data name="MainWindow_Menu_Program_Title" xml:space="preserve">
     <value>Program</value>
   </data>
   <data name="MainWindow_Menu_Program_Exit" xml:space="preserve">
@@ -199,7 +198,7 @@
   <data name="MainWindow_Menu_Program_StatisticalAnalysis" xml:space="preserve">
     <value>Analiza statystyczna</value>
   </data>
-  <data name="MainWindow_Panel_Datasheet" xml:space="preserve">
+  <data name="MainWindow_Panel_Datasheet_Title" xml:space="preserve">
     <value>Dane</value>
   </data>
   <data name="MainWindow_Panel_Datasheet_CurveIndex" xml:space="preserve">
@@ -226,7 +225,7 @@
   <data name="MainWindow_Panel_Datasheet_Surrounding" xml:space="preserve">
     <value>Otoczenie:</value>
   </data>
-  <data name="MainWindow_Panel_Generate" xml:space="preserve">
+  <data name="MainWindow_Panel_Generate_Title" xml:space="preserve">
     <value>Generowanie</value>
   </data>
   <data name="MainWindow_Panel_Generate_Apply" xml:space="preserve">
@@ -277,7 +276,7 @@
   <data name="MainWindow_Panel_Generate_StartingXPoint" xml:space="preserve">
     <value>Początkowy punkt x:</value>
   </data>
-  <data name="MainWindow_Panel_Program" xml:space="preserve">
+  <data name="MainWindow_Panel_Program_Title" xml:space="preserve">
     <value>Program</value>
   </data>
   <data name="MainWindow_Panel_Program_ActualState1" xml:space="preserve">
@@ -313,55 +312,49 @@
   <data name="MainWindow_Ui_Form_Text" xml:space="preserve">
     <value>Praca inżynierska</value>
   </data>
-  <data name="MessageBoxShower_GridPreviewer_Panel_IndexGreaterThanAllowedProblem_Caption" xml:space="preserve">
+  <data name="Messages_GridPreviewer_IndexGreaterThanAllowed_Caption" xml:space="preserve">
     <value>Niewłaściwa wartość indeksu</value>
   </data>
-  <data name="MessageBoxShower_GridPreviewer_Panel_IndexGreaterThanAllowedProblem_Text" xml:space="preserve">
+  <data name="Messages_GridPreviewer_IndexGreaterThanAllowed_Text" xml:space="preserve">
     <value>Wskazany indeks byłby wyższy niż dozwolony. Zmiana odrzucona.</value>
   </data>
-  <data name="MessageBoxShower_MainWindow_Ui_ChartRefreshingError_Caption" xml:space="preserve">
+  <data name="Messages_MainWindow_ChartRefreshing_Caption" xml:space="preserve">
     <value>Unieważnione dane</value>
   </data>
-  <data name="MessageBoxShower_MainWindow_Ui_ChartRefreshingError_Text" xml:space="preserve">
+  <data name="Messages_MainWindow_ChartRefreshing_Text" xml:space="preserve">
     <value>Wystąpił problem podczas próby odświeżania wykresu lub ponownego obliczania wymiarów osi.</value>
   </data>
-  <data name="MessageBoxShower_MainWindow_Ui_CurveTypeNotSelectedInfo_Caption" xml:space="preserve">
+  <data name="Messages_MainWindow_CurveTypeNotSelected_Caption" xml:space="preserve">
     <value>Niespełnione wymaganie wstępne</value>
   </data>
-  <data name="MessageBoxShower_MainWindow_Ui_CurveTypeNotSelectedInfo_Text" xml:space="preserve">
+  <data name="Messages_MainWindow_CurveTypeNotSelected_Text" xml:space="preserve">
     <value>Musisz wybrać typ krzywej z sekcji "Kontrola zestawem danych".</value>
   </data>
-  <data name="MessageBoxShower_MainWindow_Ui_NotEnoughCurvesForMedianaStop_Caption" xml:space="preserve">
-    <value>Problem metody uśredniania</value>
-  </data>
-  <data name="MessageBoxShower_MainWindow_Ui_NotEnoughCurvesForMedianaStop_Text" xml:space="preserve">
-    <value>Musisz wskazać przynajmniej trzy krzywe, aby uśrednić je korzystając z mediany.</value>
-  </data>
-  <data name="MessageBoxShower_MainWindow_Ui_OperationMalformRejectedStop_Caption" xml:space="preserve">
+  <data name="Messages_MainWindow_OperationMalformRejected_Caption" xml:space="preserve">
     <value>Niewspierana operacja</value>
   </data>
-  <data name="MessageBoxShower_MainWindow_Ui_OperationMalformRejectedStop_Text" xml:space="preserve">
+  <data name="Messages_MainWindow_OperationMalformRejected_Text" xml:space="preserve">
     <value>Wyniki tej operacji zostały odrzucone ze względu na niewłaściwe wartości.</value>
   </data>
-  <data name="MessageBoxShower_MainWindow_Ui_PatternCurveNotChosenPrerequisite_Caption" xml:space="preserve">
+  <data name="Messages_MainWindow_PatternCurveNotChosen_Caption" xml:space="preserve">
     <value>Niespełnione wymaganie wstępne</value>
   </data>
-  <data name="MessageBoxShower_MainWindow_Ui_PatternCurveNotChosenPrerequisite_Text" xml:space="preserve">
+  <data name="Messages_MainWindow_PatternCurveNotChosen_Text" xml:space="preserve">
     <value>Szkielet krzywej wzorcowej nie został wybrany.</value>
   </data>
-  <data name="MessageBoxShower_MainWindow_Ui_PointsNotValidToChartProblem_Text" xml:space="preserve">
+  <data name="Messages_MainWindow_PointsNotValidToChart_Text" xml:space="preserve">
     <value>Część z wygenerowanych punktów jest niewłaściwa, żeby wyświetlić je na wykresie. Punkty te zostaną usunięte z zestawu.</value>
   </data>
-  <data name="MessageBoxShower_MainWindow_Ui_SeriesSelectionProblem_Caption" xml:space="preserve">
+  <data name="Messages_MainWindow_SeriesSelection_Caption" xml:space="preserve">
     <value>Problem wyboru danych</value>
   </data>
-  <data name="MessageBoxShower_MainWindow_Ui_SeriesSelectionProblem_Text" xml:space="preserve">
+  <data name="Messages_MainWindow_SeriesSelection_Text" xml:space="preserve">
     <value>Żadna krzywa nie została jeszcze wygenerowana.</value>
   </data>
-  <data name="MessageBoxShower_MainWindow_Ui_SpecifiedCurveDoesntExistProblem_Caption" xml:space="preserve">
+  <data name="Messages_MainWindow_SpecifiedCurveDoesNotExist_Caption" xml:space="preserve">
     <value>Nieważny indeks krzywej</value>
   </data>
-  <data name="MessageBoxShower_MainWindow_Ui_SpecifiedCurveDoesntExistProblem_Text" xml:space="preserve">
+  <data name="Messages_MainWindow_SpecifiedCurveDoesNotExist_Text" xml:space="preserve">
     <value>Dane określonej krzywej nie istnieją.</value>
   </data>
   <data name="Enums_Operations_Addition" xml:space="preserve">
@@ -394,10 +387,10 @@
   <data name="Enums_Operations_Substraction" xml:space="preserve">
     <value>odejmowanie</value>
   </data>
-  <data name="GridPreviewer_Ui_Dataset_Dataset" xml:space="preserve">
+  <data name="GridPreviewer_Ui_Dataset_Title" xml:space="preserve">
     <value>Zestaw danych</value>
   </data>
-  <data name="GridPreviewer_Ui_Form_Text" xml:space="preserve">
+  <data name="GridPreviewer_Form_Text" xml:space="preserve">
     <value>Siatka podglądu danych</value>
   </data>
   <data name="GridPreviewer_Ui_Panel_AutoSizeColumnsMode" xml:space="preserve">
@@ -487,64 +480,58 @@
   <data name="GridPreviewer_Ui_Preview_Info_ChartRefreshError" xml:space="preserve">
     <value>Błąd odświeżania wykresu</value>
   </data>
-  <data name="GridPreviewer_Ui_Preview_Preview" xml:space="preserve">
+  <data name="GridPreviewer_Ui_Preview_Title" xml:space="preserve">
     <value>Podgląd</value>
   </data>
-  <data name="MessageBoxShower_GridPreviewer_Chart_ChartRefreshingError_Caption" xml:space="preserve">
+  <data name="Messages_GridPreviewer_ChartRefreshing_Caption" xml:space="preserve">
     <value>Nieważna operacja</value>
   </data>
-  <data name="MessageBoxShower_GridPreviewer_Chart_ChartRefreshingError_Text" xml:space="preserve">
+  <data name="Messages_GridPreviewer_ChartRefreshing_Text" xml:space="preserve">
     <value>Błąd odświeżania wykresu, najprawdopodobniej związany z ponownym obliczaniem skal osi (zbyt wielkie do wyświetlenia).</value>
   </data>
-  <data name="MessageBoxShower_GridPreviewer_Panel_ImproperUserValueProblem_Caption" xml:space="preserve">
+  <data name="Messages_GridPreviewer_ImproperUserValue_Caption" xml:space="preserve">
     <value>Złe rzutowanie, konwersja lub formatowanie</value>
   </data>
-  <data name="MessageBoxShower_GridPreviewer_Panel_ImproperUserValueProblem_Text" xml:space="preserve">
+  <data name="Messages_GridPreviewer_ImproperUserValue_Text" xml:space="preserve">
     <value>Podana wartość jest niewłaściwa. Weź pod uwagę, że liczby powinny być zlokalizowane zgodnie z obecnymi ustawieniami regionalnymi systemu operacyjnego.</value>
   </data>
-  <data name="MessageBoxShower_GridPreviewer_Panel_IndexLowerThanAllowedProblem_Caption" xml:space="preserve">
+  <data name="Messages_GridPreviewer_IndexLowerThanAllowed_Caption" xml:space="preserve">
     <value>Niewłaściwa wartość indeksu</value>
   </data>
-  <data name="MessageBoxShower_GridPreviewer_Panel_IndexLowerThanAllowedProblem_Text" xml:space="preserve">
+  <data name="Messages_GridPreviewer_IndexLowerThanAllowed_Text" xml:space="preserve">
     <value>Wskazany indeks byłby niższy niż dozwolony. Zmiana wycofana.</value>
   </data>
-  <data name="MessageBoxShower_GridPreviewer_Panel_InvalidCurvePointsError_Caption" xml:space="preserve">
+  <data name="Messages_GridPreviewer_InvalidCurvePoints_Caption" xml:space="preserve">
     <value>Nieważne punkty krzywej</value>
   </data>
-  <data name="MessageBoxShower_GridPreviewer_Panel_InvalidCurvePointsError_Text" xml:space="preserve">
+  <data name="Messages_GridPreviewer_InvalidCurvePoints_Text" xml:space="preserve">
     <value>Przynajmniej jedna z wartości punktów jest zbyt duża albo niewłaściwa, aby być wyświetloną na wykresie.</value>
   </data>
-  <data name="MessageBoxShower_GridPreviewer_Panel_PerformOperationError_Caption" xml:space="preserve">
+  <data name="Messages_GridPreviewer_PerformOperation_Caption" xml:space="preserve">
     <value>Wyjątek podczas obliczeń</value>
   </data>
-  <data name="MessageBoxShower_GridPreviewer_Panel_PerformOperationError_Text" xml:space="preserve">
+  <data name="Messages_GridPreviewer_PerformOperation_Text" xml:space="preserve">
     <value>Nie można obliczyć wartości dla wszystkich wskazanych argumentów. Przeciążenie. Zmiany odrzucone.</value>
   </data>
-  <data name="MessageBoxShower_MainWindow_Ui_PointsNotValidToChartProblem_Caption" xml:space="preserve">
+  <data name="Messages_MainWindow_PointsNotValidToChart_Caption" xml:space="preserve">
     <value>Ostrzeżenie generowania punktów</value>
   </data>
-  <data name="MessageBoxShower_PatternCurveDefiner_Hyperbolic_DivisionByZeroProblem_Caption" xml:space="preserve">
-    <value>Dzielenie przez zero</value>
-  </data>
-  <data name="MessageBoxShower_PatternCurveDefiner_Hyperbolic_DivisionByZeroProblem_Text" xml:space="preserve">
-    <value>Nie można podzielić przez 0.0000. Zamiast tego zostanie użyta wartość 0.0001.</value>
-  </data>
-  <data name="MessageBoxShower_StatisticalAnalysis_Preview_PointsNotValidToChartProblem_Caption" xml:space="preserve">
+  <data name="Messages_StatisticalAnalysis_PointsNotValidToChart_Caption" xml:space="preserve">
     <value>Problem wyboru danych</value>
   </data>
-  <data name="MessageBoxShower_StatisticalAnalysis_Preview_PointsNotValidToChartProblem_Text" xml:space="preserve">
+  <data name="Messages_StatisticalAnalysis_PointsNotValidToChart_Text" xml:space="preserve">
     <value>Niektóre punkty nie mogą zostać pokazane na wykresie. Wykres nie zostanie odświeżony.</value>
   </data>
-  <data name="MessageBoxShower_StatisticalAnalysis_Preview_UnrecognizedError_Caption" xml:space="preserve">
+  <data name="Messages_StatisticalAnalysis_Unrecognized_Caption" xml:space="preserve">
     <value>Nierozpoznany błąd</value>
   </data>
-  <data name="MessageBoxShower_StatisticalAnalysis_Preview_UnrecognizedError_Text" xml:space="preserve">
+  <data name="Messages_StatisticalAnalysis_Unrecognized_Text" xml:space="preserve">
     <value>Wystąpił nieznany błąd podczas odświeżania wykresu.</value>
   </data>
-  <data name="MessageBoxShower_StatisticalAnalysis_Preview_ValueOutOfRangeProblem_Caption" xml:space="preserve">
+  <data name="Messages_StatisticalAnalysis_ValueOutOfRange_Caption" xml:space="preserve">
     <value>Poza zakresem</value>
   </data>
-  <data name="MessageBoxShower_StatisticalAnalysis_Preview_ValueOutOfRangeProblem_Text" xml:space="preserve">
+  <data name="Messages_StatisticalAnalysis_ValueOutOfRange_Text" xml:space="preserve">
     <value>Zapewniona wartość nie znajduje się w określonym przedziale.</value>
   </data>
   <data name="Enums_Phenomenon_Saturation" xml:space="preserve">
@@ -553,7 +540,7 @@
   <data name="Enums_Phenomenon_Peek" xml:space="preserve">
     <value>pik</value>
   </data>
-  <data name="StatisticalAnalysis_Ui_Form_Text" xml:space="preserve">
+  <data name="StatisticalAnalysis_Form_Text" xml:space="preserve">
     <value>Analiza statystyczna</value>
   </data>
   <data name="StatisticalAnalysis_Ui_Preview_Chart" xml:space="preserve">
@@ -574,16 +561,16 @@
   <data name="StatisticalAnalysis_Ui_Preview_NumberOfCurves1" xml:space="preserve">
     <value>Ilość krzywych:</value>
   </data>
-  <data name="StatisticalAnalysis_Ui_Preview_Preview" xml:space="preserve">
+  <data name="StatisticalAnalysis_Ui_Preview_Title" xml:space="preserve">
     <value>Podgląd</value>
   </data>
-  <data name="StatisticalAnalysis_Ui_StandardDeviation_Deform" xml:space="preserve">
-    <value>Deformacja</value>
+  <data name="StatisticalAnalysis_Ui_StandardDeviation_Saturation" xml:space="preserve">
+    <value>Saturacja</value>
   </data>
   <data name="StatisticalAnalysis_Ui_StandardDeviation_Peek" xml:space="preserve">
     <value>Pik</value>
   </data>
-  <data name="StatisticalAnalysis_Ui_StandardDeviation_StandardDeviation" xml:space="preserve">
+  <data name="StatisticalAnalysis_Ui_StandardDeviation_Title" xml:space="preserve">
     <value>Odchylenie standardowe</value>
   </data>
   <data name="PatternCurveDefiner_Form_Text" xml:space="preserve">
@@ -673,10 +660,10 @@
   <data name="MeansSettings_Form_Text" xml:space="preserve">
     <value>Ustawienia średnich</value>
   </data>
-  <data name="MessageBoxShower_General_OutOfMemoryExceptionStop_Caption" xml:space="preserve">
+  <data name="Messages_General_OutOfMemoryException_Caption" xml:space="preserve">
     <value>Błąd alokacji pamięci</value>
   </data>
-  <data name="MessageBoxShower_General_OutOfMemoryExceptionStop_Text" xml:space="preserve">
+  <data name="Messages_General_OutOfMemoryException_Text" xml:space="preserve">
     <value>Wyjątek typu OutOfMemoryException został rzucony. Dzieje się tak, kiedy nie wystarczającej ilości pamięci, aby kontynuować wykonywanie programu.</value>
   </data>
   <data name="StatisticalAnalysis_Ui_StandardDeviation_Noise01" xml:space="preserve">
@@ -690,12 +677,6 @@
   </data>
   <data name="StatisticalAnalysis_Ui_StandardDeviation_Noise2" xml:space="preserve">
     <value>Szum 2,0</value>
-  </data>
-  <data name="MessageBoxShower_StatisticalAnalysis_Preview_NoSavedPresetsError_Caption" xml:space="preserve">
-    <value>Błąd wymagań</value>
-  </data>
-  <data name="MessageBoxShower_StatisticalAnalysis_Preview_NoSavedPresetsError_Text" xml:space="preserve">
-    <value>Nie wygenerowano danych żadnej krzywej, więc nie zapisano żadnych ustawień wstępnych.</value>
   </data>
   <data name="StatisticalAnalysis_Ui_Preview_CurveIndex" xml:space="preserve">
     <value>Indeks krzywej:</value>
@@ -802,10 +783,10 @@
   <data name="MeansSettings_Ui_Variant" xml:space="preserve">
     <value>Wariant:</value>
   </data>
-  <data name="Messages_MeansSettings_WarningNotSupportedFinisherFunction_Caption" xml:space="preserve">
+  <data name="Messages_MeansSettings_NotSupportedFinisherFunction_Caption" xml:space="preserve">
     <value>Niewspierany typ średniej</value>
   </data>
-  <data name="Messages_MeansSettings_WarningNotSupportedFinisherFunction_Text" xml:space="preserve">
+  <data name="Messages_MeansSettings_NotSupportedFinisherFunction_Text" xml:space="preserve">
     <value>Wybrany typ średniej nie jest dozwolony dla tej metody uśredniania.</value>
   </data>
   <data name="Enums_AutoSizeColumnsMode_AllCells" xml:space="preserve">

@@ -128,7 +128,6 @@
   </data>
   <data name="Enums_MeanType_AGM" xml:space="preserve">
     <value>AGM</value>
-    <comment>Arithmetic-geometric mean</comment>
   </data>
   <data name="Enums_MeanType_Arithmetic" xml:space="preserve">
     <value>arithmetic</value>
@@ -169,16 +168,16 @@
   <data name="LangSelector_Ui_Down_OkButton" xml:space="preserve">
     <value>OK</value>
   </data>
-  <data name="LangSelector_Ui_Form_Text" xml:space="preserve">
+  <data name="LangSelector_Form_Text" xml:space="preserve">
     <value>Language selector</value>
   </data>
-  <data name="MainWindow_Menu_Chart" xml:space="preserve">
+  <data name="MainWindow_Menu_Chart_Title" xml:space="preserve">
     <value>Chart</value>
   </data>
   <data name="MainWindow_Menu_Chart_Settings" xml:space="preserve">
     <value>Settings</value>
   </data>
-  <data name="MainWindow_Menu_Means" xml:space="preserve">
+  <data name="MainWindow_Menu_Means_Title" xml:space="preserve">
     <value>Means</value>
   </data>
   <data name="MainWindow_Menu_Means_AveragingInfo" xml:space="preserve">
@@ -187,7 +186,7 @@
   <data name="MainWindow_Menu_Means_Settings" xml:space="preserve">
     <value>Settings</value>
   </data>
-  <data name="MainWindow_Menu_Panel" xml:space="preserve">
+  <data name="MainWindow_Menu_Panel_Title" xml:space="preserve">
     <value>Panel</value>
   </data>
   <data name="MainWindow_Menu_Panel_Hide" xml:space="preserve">
@@ -199,7 +198,7 @@
   <data name="MainWindow_Menu_Panel_Lock" xml:space="preserve">
     <value>Lock</value>
   </data>
-  <data name="MainWindow_Menu_Program" xml:space="preserve">
+  <data name="MainWindow_Menu_Program_Title" xml:space="preserve">
     <value>Program</value>
   </data>
   <data name="MainWindow_Menu_Program_Exit" xml:space="preserve">
@@ -211,7 +210,7 @@
   <data name="MainWindow_Menu_Program_StatisticalAnalysis" xml:space="preserve">
     <value>Statistical analysis</value>
   </data>
-  <data name="MainWindow_Panel_Datasheet" xml:space="preserve">
+  <data name="MainWindow_Panel_Datasheet_Title" xml:space="preserve">
     <value>Datasheet</value>
   </data>
   <data name="MainWindow_Panel_Datasheet_CurveIndex" xml:space="preserve">
@@ -238,7 +237,7 @@
   <data name="MainWindow_Panel_Datasheet_Surrounding" xml:space="preserve">
     <value>Surrounding:</value>
   </data>
-  <data name="MainWindow_Panel_Generate" xml:space="preserve">
+  <data name="MainWindow_Panel_Generate_Title" xml:space="preserve">
     <value>Generate</value>
   </data>
   <data name="MainWindow_Panel_Generate_Apply" xml:space="preserve">
@@ -289,7 +288,7 @@
   <data name="MainWindow_Panel_Generate_StartingXPoint" xml:space="preserve">
     <value>Starting X point:</value>
   </data>
-  <data name="MainWindow_Panel_Program" xml:space="preserve">
+  <data name="MainWindow_Panel_Program_Title" xml:space="preserve">
     <value>Program</value>
   </data>
   <data name="MainWindow_Panel_Program_ActualState1" xml:space="preserve">
@@ -325,55 +324,49 @@
   <data name="MainWindow_Ui_Form_Text" xml:space="preserve">
     <value>Engineer's thesis</value>
   </data>
-  <data name="MessageBoxShower_GridPreviewer_Panel_IndexGreaterThanAllowedProblem_Caption" xml:space="preserve">
+  <data name="Messages_GridPreviewer_IndexGreaterThanAllowed_Caption" xml:space="preserve">
     <value>Improper index value</value>
   </data>
-  <data name="MessageBoxShower_GridPreviewer_Panel_IndexGreaterThanAllowedProblem_Text" xml:space="preserve">
+  <data name="Messages_GridPreviewer_IndexGreaterThanAllowed_Text" xml:space="preserve">
     <value>Specified index would be greater than allowed. Change rejected.</value>
   </data>
-  <data name="MessageBoxShower_MainWindow_Ui_ChartRefreshingError_Caption" xml:space="preserve">
+  <data name="Messages_MainWindow_ChartRefreshing_Caption" xml:space="preserve">
     <value>Invalidated data</value>
   </data>
-  <data name="MessageBoxShower_MainWindow_Ui_ChartRefreshingError_Text" xml:space="preserve">
+  <data name="Messages_MainWindow_ChartRefreshing_Text" xml:space="preserve">
     <value>A problem occured when trying to refresh a chart or recalculating axes scales.</value>
   </data>
-  <data name="MessageBoxShower_MainWindow_Ui_CurveTypeNotSelectedInfo_Caption" xml:space="preserve">
+  <data name="Messages_MainWindow_CurveTypeNotSelected_Caption" xml:space="preserve">
     <value>Prerequisite not matched</value>
   </data>
-  <data name="MessageBoxShower_MainWindow_Ui_CurveTypeNotSelectedInfo_Text" xml:space="preserve">
+  <data name="Messages_MainWindow_CurveTypeNotSelected_Text" xml:space="preserve">
     <value>You must choose a curve type from 'Dataset control' section.</value>
   </data>
-  <data name="MessageBoxShower_MainWindow_Ui_NotEnoughCurvesForMedianaStop_Caption" xml:space="preserve">
-    <value>Averaging method problem</value>
-  </data>
-  <data name="MessageBoxShower_MainWindow_Ui_NotEnoughCurvesForMedianaStop_Text" xml:space="preserve">
-    <value>You must specify at least 3 curves to average them using mediana.</value>
-  </data>
-  <data name="MessageBoxShower_MainWindow_Ui_OperationMalformRejectedStop_Caption" xml:space="preserve">
+  <data name="Messages_MainWindow_OperationMalformRejected_Caption" xml:space="preserve">
     <value>Not supported operation</value>
   </data>
-  <data name="MessageBoxShower_MainWindow_Ui_OperationMalformRejectedStop_Text" xml:space="preserve">
+  <data name="Messages_MainWindow_OperationMalformRejected_Text" xml:space="preserve">
     <value>Results of this operation was rejected due to improper values.</value>
   </data>
-  <data name="MessageBoxShower_MainWindow_Ui_PatternCurveNotChosenPrerequisite_Caption" xml:space="preserve">
+  <data name="Messages_MainWindow_PatternCurveNotChosen_Caption" xml:space="preserve">
     <value>Prerequisite not matched</value>
   </data>
-  <data name="MessageBoxShower_MainWindow_Ui_PatternCurveNotChosenPrerequisite_Text" xml:space="preserve">
+  <data name="Messages_MainWindow_PatternCurveNotChosen_Text" xml:space="preserve">
     <value>Pattern curve scaffold has not been chosen.</value>
   </data>
-  <data name="MessageBoxShower_MainWindow_Ui_PointsNotValidToChartProblem_Text" xml:space="preserve">
+  <data name="Messages_MainWindow_PointsNotValidToChart_Text" xml:space="preserve">
     <value>Some of the generated points are not valid to display them on a chart. Those points will be removed from the set.</value>
   </data>
-  <data name="MessageBoxShower_MainWindow_Ui_SeriesSelectionProblem_Caption" xml:space="preserve">
+  <data name="Messages_MainWindow_SeriesSelection_Caption" xml:space="preserve">
     <value>Data selection problem</value>
   </data>
-  <data name="MessageBoxShower_MainWindow_Ui_SeriesSelectionProblem_Text" xml:space="preserve">
+  <data name="Messages_MainWindow_SeriesSelection_Text" xml:space="preserve">
     <value>Any curve has not been generated yet.</value>
   </data>
-  <data name="MessageBoxShower_MainWindow_Ui_SpecifiedCurveDoesntExistProblem_Caption" xml:space="preserve">
+  <data name="Messages_MainWindow_SpecifiedCurveDoesNotExist_Caption" xml:space="preserve">
     <value>Invalid curve index</value>
   </data>
-  <data name="MessageBoxShower_MainWindow_Ui_SpecifiedCurveDoesntExistProblem_Text" xml:space="preserve">
+  <data name="Messages_MainWindow_SpecifiedCurveDoesNotExist_Text" xml:space="preserve">
     <value>The specified curve data doesn't exist.</value>
   </data>
   <data name="Enums_Operations_Addition" xml:space="preserve">
@@ -406,10 +399,10 @@
   <data name="Enums_Operations_Substraction" xml:space="preserve">
     <value>substraction</value>
   </data>
-  <data name="GridPreviewer_Ui_Dataset_Dataset" xml:space="preserve">
+  <data name="GridPreviewer_Ui_Dataset_Title" xml:space="preserve">
     <value>Dataset</value>
   </data>
-  <data name="GridPreviewer_Ui_Form_Text" xml:space="preserve">
+  <data name="GridPreviewer_Form_Text" xml:space="preserve">
     <value>Grid previewer</value>
   </data>
   <data name="GridPreviewer_Ui_Panel_AutoSizeColumnsMode" xml:space="preserve">
@@ -499,64 +492,58 @@
   <data name="GridPreviewer_Ui_Preview_Info_ChartRefreshError" xml:space="preserve">
     <value>Chart refresh error</value>
   </data>
-  <data name="GridPreviewer_Ui_Preview_Preview" xml:space="preserve">
+  <data name="GridPreviewer_Ui_Preview_Title" xml:space="preserve">
     <value>Preview</value>
   </data>
-  <data name="MessageBoxShower_GridPreviewer_Chart_ChartRefreshingError_Caption" xml:space="preserve">
+  <data name="Messages_GridPreviewer_ChartRefreshing_Caption" xml:space="preserve">
     <value>Invalid operation</value>
   </data>
-  <data name="MessageBoxShower_GridPreviewer_Chart_ChartRefreshingError_Text" xml:space="preserve">
+  <data name="Messages_GridPreviewer_ChartRefreshing_Text" xml:space="preserve">
     <value>Chart refreshing error, possibly recalculating axes scales (too large to display).</value>
   </data>
-  <data name="MessageBoxShower_GridPreviewer_Panel_ImproperUserValueProblem_Caption" xml:space="preserve">
+  <data name="Messages_GridPreviewer_ImproperUserValue_Caption" xml:space="preserve">
     <value>Wrong cast, conversion or format</value>
   </data>
-  <data name="MessageBoxShower_GridPreviewer_Panel_ImproperUserValueProblem_Text" xml:space="preserve">
+  <data name="Messages_GridPreviewer_ImproperUserValue_Text" xml:space="preserve">
     <value>The given value is improper. Note, that numbers should be localized in accord with your operating system current regional settings.</value>
   </data>
-  <data name="MessageBoxShower_GridPreviewer_Panel_IndexLowerThanAllowedProblem_Caption" xml:space="preserve">
+  <data name="Messages_GridPreviewer_IndexLowerThanAllowed_Caption" xml:space="preserve">
     <value>Improper index value</value>
   </data>
-  <data name="MessageBoxShower_GridPreviewer_Panel_IndexLowerThanAllowedProblem_Text" xml:space="preserve">
+  <data name="Messages_GridPreviewer_IndexLowerThanAllowed_Text" xml:space="preserve">
     <value>Specified index would be lower than allowed. Change revoked.</value>
   </data>
-  <data name="MessageBoxShower_GridPreviewer_Panel_InvalidCurvePointsError_Caption" xml:space="preserve">
+  <data name="Messages_GridPreviewer_InvalidCurvePoints_Caption" xml:space="preserve">
     <value>Invalid curve points</value>
   </data>
-  <data name="MessageBoxShower_GridPreviewer_Panel_InvalidCurvePointsError_Text" xml:space="preserve">
+  <data name="Messages_GridPreviewer_InvalidCurvePoints_Text" xml:space="preserve">
     <value>At least one of points value is too large or improper to be displayed on a chart.</value>
   </data>
-  <data name="MessageBoxShower_GridPreviewer_Panel_PerformOperationError_Caption" xml:space="preserve">
+  <data name="Messages_GridPreviewer_PerformOperation_Caption" xml:space="preserve">
     <value>Exception during calculation</value>
   </data>
-  <data name="MessageBoxShower_GridPreviewer_Panel_PerformOperationError_Text" xml:space="preserve">
+  <data name="Messages_GridPreviewer_PerformOperation_Text" xml:space="preserve">
     <value>Cannot calculate values for all specified arguments. Overflow. Changes rejected.</value>
   </data>
-  <data name="MessageBoxShower_MainWindow_Ui_PointsNotValidToChartProblem_Caption" xml:space="preserve">
+  <data name="Messages_MainWindow_PointsNotValidToChart_Caption" xml:space="preserve">
     <value>Generating points warning</value>
   </data>
-  <data name="MessageBoxShower_PatternCurveDefiner_Hyperbolic_DivisionByZeroProblem_Caption" xml:space="preserve">
-    <value>Division by zero</value>
-  </data>
-  <data name="MessageBoxShower_PatternCurveDefiner_Hyperbolic_DivisionByZeroProblem_Text" xml:space="preserve">
-    <value>Cannot divide by 0.0000. A value of 0.0001 will be used instead.</value>
-  </data>
-  <data name="MessageBoxShower_StatisticalAnalysis_Preview_PointsNotValidToChartProblem_Caption" xml:space="preserve">
+  <data name="Messages_StatisticalAnalysis_PointsNotValidToChart_Caption" xml:space="preserve">
     <value>Data selection problem</value>
   </data>
-  <data name="MessageBoxShower_StatisticalAnalysis_Preview_PointsNotValidToChartProblem_Text" xml:space="preserve">
+  <data name="Messages_StatisticalAnalysis_PointsNotValidToChart_Text" xml:space="preserve">
     <value>Some points cannot be shown on a chart. The chart will not be refreshed.</value>
   </data>
-  <data name="MessageBoxShower_StatisticalAnalysis_Preview_UnrecognizedError_Caption" xml:space="preserve">
+  <data name="Messages_StatisticalAnalysis_Unrecognized_Caption" xml:space="preserve">
     <value>Unrecognized error</value>
   </data>
-  <data name="MessageBoxShower_StatisticalAnalysis_Preview_UnrecognizedError_Text" xml:space="preserve">
+  <data name="Messages_StatisticalAnalysis_Unrecognized_Text" xml:space="preserve">
     <value>An unkown error has occured while refreshing chart.</value>
   </data>
-  <data name="MessageBoxShower_StatisticalAnalysis_Preview_ValueOutOfRangeProblem_Caption" xml:space="preserve">
+  <data name="Messages_StatisticalAnalysis_ValueOutOfRange_Caption" xml:space="preserve">
     <value>Out of range</value>
   </data>
-  <data name="MessageBoxShower_StatisticalAnalysis_Preview_ValueOutOfRangeProblem_Text" xml:space="preserve">
+  <data name="Messages_StatisticalAnalysis_ValueOutOfRange_Text" xml:space="preserve">
     <value>The provided value is not within a specified range.</value>
   </data>
   <data name="Enums_Phenomenon_Saturation" xml:space="preserve">
@@ -565,7 +552,7 @@
   <data name="Enums_Phenomenon_Peek" xml:space="preserve">
     <value>peek</value>
   </data>
-  <data name="StatisticalAnalysis_Ui_Form_Text" xml:space="preserve">
+  <data name="StatisticalAnalysis_Form_Text" xml:space="preserve">
     <value>Statistical analysis</value>
   </data>
   <data name="StatisticalAnalysis_Ui_Preview_Chart" xml:space="preserve">
@@ -586,16 +573,16 @@
   <data name="StatisticalAnalysis_Ui_Preview_NumberOfCurves1" xml:space="preserve">
     <value>Number of curves:</value>
   </data>
-  <data name="StatisticalAnalysis_Ui_Preview_Preview" xml:space="preserve">
+  <data name="StatisticalAnalysis_Ui_Preview_Title" xml:space="preserve">
     <value>Preview</value>
   </data>
-  <data name="StatisticalAnalysis_Ui_StandardDeviation_Deform" xml:space="preserve">
-    <value>Deform</value>
+  <data name="StatisticalAnalysis_Ui_StandardDeviation_Saturation" xml:space="preserve">
+    <value>Saturation</value>
   </data>
   <data name="StatisticalAnalysis_Ui_StandardDeviation_Peek" xml:space="preserve">
     <value>Peek</value>
   </data>
-  <data name="StatisticalAnalysis_Ui_StandardDeviation_StandardDeviation" xml:space="preserve">
+  <data name="StatisticalAnalysis_Ui_StandardDeviation_Title" xml:space="preserve">
     <value>Standard deviation</value>
   </data>
   <data name="PatternCurveDefiner_Form_Text" xml:space="preserve">
@@ -685,10 +672,10 @@
   <data name="MeansSettings_Form_Text" xml:space="preserve">
     <value>Means settings</value>
   </data>
-  <data name="MessageBoxShower_General_OutOfMemoryExceptionStop_Caption" xml:space="preserve">
+  <data name="Messages_General_OutOfMemoryException_Caption" xml:space="preserve">
     <value>Memory allocation error</value>
   </data>
-  <data name="MessageBoxShower_General_OutOfMemoryExceptionStop_Text" xml:space="preserve">
+  <data name="Messages_General_OutOfMemoryException_Text" xml:space="preserve">
     <value>An exception of type OutOfMemoryException has been thrown. This happens when there is no enough memory to continue the execution of a program.</value>
   </data>
   <data name="StatisticalAnalysis_Ui_StandardDeviation_Noise01" xml:space="preserve">
@@ -702,12 +689,6 @@
   </data>
   <data name="StatisticalAnalysis_Ui_StandardDeviation_Noise2" xml:space="preserve">
     <value>Noise 2.0</value>
-  </data>
-  <data name="MessageBoxShower_StatisticalAnalysis_Preview_NoSavedPresetsError_Caption" xml:space="preserve">
-    <value>Requirements error</value>
-  </data>
-  <data name="MessageBoxShower_StatisticalAnalysis_Preview_NoSavedPresetsError_Text" xml:space="preserve">
-    <value>No curves data has been produced, so no presets has been saved.</value>
   </data>
   <data name="StatisticalAnalysis_Ui_Preview_CurveIndex" xml:space="preserve">
     <value>Curve index:</value>
@@ -802,10 +783,10 @@
   <data name="MeansSettings_Ui_Variant" xml:space="preserve">
     <value>Variant:</value>
   </data>
-  <data name="Messages_MeansSettings_WarningNotSupportedFinisherFunction_Caption" xml:space="preserve">
+  <data name="Messages_MeansSettings_NotSupportedFinisherFunction_Caption" xml:space="preserve">
     <value>Not supported mean type</value>
   </data>
-  <data name="Messages_MeansSettings_WarningNotSupportedFinisherFunction_Text" xml:space="preserve">
+  <data name="Messages_MeansSettings_NotSupportedFinisherFunction_Text" xml:space="preserve">
     <value>The chosen mean type is not allowed for this averaging method.</value>
   </data>
   <data name="Enums_AutoSizeColumnsMode_AllCells" xml:space="preserve">

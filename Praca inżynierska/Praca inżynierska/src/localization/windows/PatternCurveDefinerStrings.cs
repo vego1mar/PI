@@ -1,5 +1,5 @@
 ﻿using PI.src.localization.general;
-using static PI.Translator;
+using static PI.src.localization.general.LanguageAssist;
 
 namespace PI.src.localization.windows
 {

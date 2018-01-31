@@ -9,6 +9,7 @@ namespace PI.src.localization.general
 {
     public static class LanguageAssist
     {
+        public static Languages CurrentLanguage { get; set; } = Languages.English;
         private static readonly ILog log = LogManager.GetLogger( MethodBase.GetCurrentMethod().DeclaringType );
 
         public static Languages GetCurrentUiLanguage()

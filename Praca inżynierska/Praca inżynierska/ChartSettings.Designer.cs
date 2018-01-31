@@ -138,7 +138,7 @@
             this.uiTop_ApplyTo_ComBx.Name = "uiTop_ApplyTo_ComBx";
             this.uiTop_ApplyTo_ComBx.Size = new System.Drawing.Size(105, 21);
             this.uiTop_ApplyTo_ComBx.TabIndex = 1;
-            this.uiTop_ApplyTo_ComBx.SelectedIndexChanged += new System.EventHandler(this.UiTop_ApplyToCurve_SelectedIndexChanged);
+            this.uiTop_ApplyTo_ComBx.SelectedIndexChanged += new System.EventHandler(this.OnCurveSelection);
             // 
             // uiCtr_TbCtrl
             // 
@@ -313,7 +313,7 @@
             this.uiCtrArea_Grid_ComBx.Name = "uiCtrArea_Grid_ComBx";
             this.uiCtrArea_Grid_ComBx.Size = new System.Drawing.Size(127, 21);
             this.uiCtrArea_Grid_ComBx.TabIndex = 19;
-            this.uiCtrArea_Grid_ComBx.SelectedIndexChanged += new System.EventHandler(this.UiCenterArea_Grid_SelectedIndexChanged);
+            this.uiCtrArea_Grid_ComBx.SelectedIndexChanged += new System.EventHandler(this.OnGridSelection);
             // 
             // uiCtrArea_Axis_ComBx
             // 
@@ -324,7 +324,7 @@
             this.uiCtrArea_Axis_ComBx.Name = "uiCtrArea_Axis_ComBx";
             this.uiCtrArea_Axis_ComBx.Size = new System.Drawing.Size(127, 21);
             this.uiCtrArea_Axis_ComBx.TabIndex = 18;
-            this.uiCtrArea_Axis_ComBx.SelectedIndexChanged += new System.EventHandler(this.UiCenterChartArea_Axis_SelectedIndexChanged);
+            this.uiCtrArea_Axis_ComBx.SelectedIndexChanged += new System.EventHandler(this.OnAxisSelection);
             // 
             // uiCtrArea_Grid_TxtBx
             // 
@@ -650,7 +650,7 @@
             this.uiBtm_Ok_Btn.TabIndex = 2;
             this.uiBtm_Ok_Btn.Text = "OK";
             this.uiBtm_Ok_Btn.UseVisualStyleBackColor = true;
-            this.uiBtm_Ok_Btn.Click += new System.EventHandler(this.UiBottom_Ok_Click);
+            this.uiBtm_Ok_Btn.Click += new System.EventHandler(this.OnOkClick);
             // 
             // ChartSettings
             // 
@@ -665,8 +665,8 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Chart Settings";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChartSettings_FormClosing);
-            this.Load += new System.EventHandler(this.ChartSettings_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
+            this.Load += new System.EventHandler(this.OnLoad);
             this.ui_TbLay.ResumeLayout(false);
             this.uiTop_TbLay.ResumeLayout(false);
             this.uiTop_TbLay.PerformLayout();

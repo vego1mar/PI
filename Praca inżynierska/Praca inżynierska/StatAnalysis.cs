@@ -249,7 +249,7 @@ namespace PI
                 log.Error( signature, ex );
             }
             catch ( OutOfMemoryException ex ) {
-                Messages.Application.StopOfOutOfMemoryException();
+                AppMessages.General.StopOfOutOfMemoryException();
                 log.Fatal( signature, ex );
             }
             catch ( ArgumentNullException ex ) {
@@ -359,7 +359,7 @@ namespace PI
         private void UiRightChartDown_CurveIndex_Numeric_ValueChanged( object sender, EventArgs e )
         {
             if ( !IsCurveIndexProperValue() ) {
-                Messages.StatisticalAnalysis.ExclamationOfValueOutOfRange();
+                AppMessages.StatisticalAnalysis.ExclamationOfValueOutOfRange();
                 return;
             }
 
@@ -414,7 +414,7 @@ namespace PI
                 uiRChart_Chart.Series.Add( GetSeriesSpecifiedByControls() );
 
                 if ( !SeriesAssist.IsChartAcceptable( uiRChart_Chart.Series[0] ) ) {
-                    Messages.StatisticalAnalysis.ExclamationOfPointsNotValidToChart();
+                    AppMessages.StatisticalAnalysis.ExclamationOfPointsNotValidToChart();
                     return;
                 }
 
@@ -425,7 +425,7 @@ namespace PI
             }
             catch ( Exception ex ) {
                 log.Fatal( signature, ex );
-                Messages.StatisticalAnalysis.ErrorOfUnrecognized();
+                AppMessages.StatisticalAnalysis.ErrorOfUnrecognized();
             }
         }
 

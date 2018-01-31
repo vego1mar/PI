@@ -25,74 +25,34 @@ namespace PI
 
         private class PreviousValue
         {
-            public ChartAreaAxis AxisSelected { get; set; }
-            public ChartAreaGrid GridSelected { get; set; }
-            public CurveApply ApplyMode { get; set; }
+            public ChartAreaAxis AxisSelected { get; set; } = ChartAreaAxis.X;
+            public ChartAreaGrid GridSelected { get; set; } = ChartAreaGrid.Major;
+            public CurveApply ApplyMode { get; set; } = CurveApply.Average;
         }
 
         internal ChartSettings( MainChartSettings settings )
         {
             InitializeComponent();
-            InitializeProperties( settings );
-            LocalizeWindow();
-            UpdateUiByComposingControls();
-            UpdateUiByDefaultSettings();
-            UpdateUiByFormInitializeSettings();
-        }
-
-        private void InitializeProperties( MainChartSettings settings )
-        {
             Settings = settings;
-
-            Previous = new PreviousValue() {
-                AxisSelected = ChartAreaAxis.X,
-                GridSelected = ChartAreaGrid.Major,
-                ApplyMode = CurveApply.Average
-            };
-
+            Previous = new PreviousValue();
             IsFormInitialized = false;
+            LocalizeWindow();
+            UpdateUiBySettings();
+            IsFormInitialized = true;
+            UiControls.TrySetSelectedIndex( uiTop_ApplyTo_ComBx, (int) CurveApply.Average );
         }
 
-        private void UpdateUiByComposingControls()
+        private void UpdateUiBySettings()
         {
-            // Tab: Chart
-            EnumsLocalizer.Localize( LocalizableEnumerator.CurveApply, uiTop_ApplyTo_ComBx );
-            EnumsLocalizer.Populate( CSharpEnumerable.AntiAliasingStyles, uiCtrChart_Aa_ComBx );
-            EnumsLocalizer.Localize( LocalizableEnumerator.Boolean, uiCtrChart_SupEx_ComBx );
-            EnumsLocalizer.Populate( CSharpEnumerable.Color, uiCtrChart_BkCol_ComBx );
-
-            // Tab: Chart area
-            EnumsLocalizer.Localize( LocalizableEnumerator.Boolean, uiCtrArea_3d_ComBx );
-            EnumsLocalizer.Populate( CSharpEnumerable.Color, uiCtrArea_BkCol_ComBx );
-            EnumsLocalizer.Localize( LocalizableEnumerator.Boolean, uiCtrArea_En_ComBx );
-            EnumsLocalizer.Populate( CSharpEnumerable.Color, uiCtrArea_LnCol_ComBx );
-            EnumsLocalizer.Populate( CSharpEnumerable.ChartDashStyle, uiCtrArea_LnStyle_ComBx );
-            EnumsLocalizer.Populate( CSharpEnumerable.ChartAreaAxis, uiCtrArea_Axis_ComBx );
-            EnumsLocalizer.Populate( CSharpEnumerable.ChartAreaGrid, uiCtrArea_Grid_ComBx );
-
-            // Tab: Series
-            EnumsLocalizer.Populate( CSharpEnumerable.Color, uiCtrSrs_Color_ComBx );
-            EnumsLocalizer.Populate( CSharpEnumerable.ChartDashStyle, uiCtrSrs_BorStyle_ComBx );
-            EnumsLocalizer.Populate( CSharpEnumerable.SeriesChartType, uiCtrSrs_ChT_ComBx );
-        }
-
-        private void UpdateUiByDefaultSettings()
-        {
+            // Common
             UiControls.TrySetSelectedIndex( uiTop_ApplyTo_ComBx, (int) CurveApply.Ideal );
-            SetChartTabPageDefaults();
-            SetChartAreaTabPageDefaults();
-            SetSeriesTabPageDefaults();
-        }
 
-        private void SetChartTabPageDefaults()
-        {
+            // Tab: Chart
             UiControls.TrySetSelectedIndex( uiCtrChart_Aa_ComBx, (int) Settings.Common.AntiAliasing );
             UiControls.TrySetSelectedIndex( uiCtrChart_SupEx_ComBx, Convert.ToInt32( Settings.Common.SuppressExceptions ) );
             UiControls.TrySetSelectedIndex( uiCtrChart_BkCol_ComBx, uiCtrChart_BkCol_ComBx.Items.IndexOf( Settings.Common.BackColor.Name ) );
-        }
 
-        private void SetChartAreaTabPageDefaults()
-        {
+            // Tab: Chart area
             UiControls.TrySetSelectedIndex( uiCtrArea_3d_ComBx, Convert.ToInt32( Settings.Areas.Common.Area3dStyle ) );
             UiControls.TrySetSelectedIndex( uiCtrArea_BkCol_ComBx, uiCtrArea_BkCol_ComBx.Items.IndexOf( Settings.Areas.Common.BackColor.Name ) );
             UiControls.TrySetSelectedIndex( uiCtrArea_Axis_ComBx, (int) ChartAreaAxis.X );
@@ -101,221 +61,130 @@ namespace PI
             UiControls.TrySetSelectedIndex( uiCtrArea_LnCol_ComBx, uiCtrArea_LnCol_ComBx.Items.IndexOf( Settings.Areas.X.MajorGrid.LineColor.Name ) );
             UiControls.TrySetSelectedIndex( uiCtrArea_LnStyle_ComBx, (int) Settings.Areas.X.MajorGrid.LineDashStyle );
             UiControls.TrySetValue( uiCtrArea_LnWth_Num, Settings.Areas.X.MajorGrid.LineWidth );
+
+            // Tab: Series
+            UpdateUiByCurveSwitch( CurveApply.Average );
         }
 
-        private void SetSeriesTabPageDefaults()
+        private void UpdateUiByCurveSwitch( CurveApply curve )
         {
-            UiControls.TrySetSelectedIndex( uiCtrSrs_Color_ComBx, uiCtrSrs_Color_ComBx.Items.IndexOf( Settings.Series.Average.Color.Name ) );
-            UiControls.TrySetValue( uiCtrSrs_BorWth_Num, Settings.Series.Average.BorderWidth );
-            UiControls.TrySetSelectedIndex( uiCtrSrs_BorStyle_ComBx, (int) Settings.Series.Average.BorderDashStyle );
-            UiControls.TrySetSelectedIndex( uiCtrSrs_ChT_ComBx, (int) Settings.Series.Average.ChartType );
-        }
-
-        private void UpdateUiByFormInitializeSettings()
-        {
-            IsFormInitialized = true;
-            UiControls.TrySetSelectedIndex( uiTop_ApplyTo_ComBx, (int) CurveApply.Average );
-        }
-
-        private void ChartSettings_Load( object sender, EventArgs e )
-        {
-            uiBtm_Ok_Btn.Select();
-        }
-
-        private void UiTop_ApplyToCurve_SelectedIndexChanged( object sender, EventArgs e )
-        {
-            if ( !IsFormInitialized ) {
-                return;
-            }
-
-            switch ( (CurveApply) uiTop_ApplyTo_ComBx.SelectedIndex ) {
-            case CurveApply.All:
-                PerformApplyToCurveAllSwitch();
+            switch ( curve ) {
+            case CurveApply.Ideal:
+                UiControls.TrySetSelectedIndex( uiCtrSrs_Color_ComBx, uiCtrSrs_Color_ComBx.Items.IndexOf( Settings.Series.Ideal.Color.Name ) );
+                UiControls.TrySetValue( uiCtrSrs_BorWth_Num, Settings.Series.Ideal.BorderWidth );
+                UiControls.TrySetSelectedIndex( uiCtrSrs_BorStyle_ComBx, (int) Settings.Series.Ideal.BorderDashStyle );
+                UiControls.TrySetSelectedIndex( uiCtrSrs_ChT_ComBx, (int) Settings.Series.Ideal.ChartType );
                 break;
             case CurveApply.Modified:
-                PerformApplyToCurveNotAllSwitch();
-                SaveSeriesSettings( Previous.ApplyMode );
-                UpdateUiByGeneratedCurveSettings();
-                break;
-            case CurveApply.Ideal:
-                PerformApplyToCurveNotAllSwitch();
-                SaveSeriesSettings( Previous.ApplyMode );
-                UpdateUiByPatternCurveSettings();
+                UiControls.TrySetSelectedIndex( uiCtrSrs_Color_ComBx, uiCtrSrs_Color_ComBx.Items.IndexOf( Settings.Series.Modified.Color.Name ) );
+                UiControls.TrySetValue( uiCtrSrs_BorWth_Num, Settings.Series.Modified.BorderWidth );
+                UiControls.TrySetSelectedIndex( uiCtrSrs_BorStyle_ComBx, (int) Settings.Series.Modified.BorderDashStyle );
+                UiControls.TrySetSelectedIndex( uiCtrSrs_ChT_ComBx, (int) Settings.Series.Modified.ChartType );
                 break;
             case CurveApply.Average:
-                PerformApplyToCurveNotAllSwitch();
-                SaveSeriesSettings( Previous.ApplyMode );
-                SetSeriesTabPageDefaults();
+                UiControls.TrySetSelectedIndex( uiCtrSrs_Color_ComBx, uiCtrSrs_Color_ComBx.Items.IndexOf( Settings.Series.Average.Color.Name ) );
+                UiControls.TrySetValue( uiCtrSrs_BorWth_Num, Settings.Series.Average.BorderWidth );
+                UiControls.TrySetSelectedIndex( uiCtrSrs_BorStyle_ComBx, (int) Settings.Series.Average.BorderDashStyle );
+                UiControls.TrySetSelectedIndex( uiCtrSrs_ChT_ComBx, (int) Settings.Series.Average.ChartType );
                 break;
             }
-
-            Previous.ApplyMode = (CurveApply) uiTop_ApplyTo_ComBx.SelectedIndex;
         }
 
-        private void PerformApplyToCurveAllSwitch()
+        private void UpdateUiByEnablingControls( ChartSettingsTabs tab, bool isEnabled )
         {
-            UiControls.TrySelectTab( uiCtr_TbCtrl, (int) ChartSettingsTabs.Chart );
-            EnableChartTabPageControls( true );
-            EnableChartAreaTabPageControls( true );
-            EnableSeriesTabPageControls( false );
-        }
-
-        private void PerformApplyToCurveNotAllSwitch()
-        {
-            UiControls.TrySelectTab( uiCtr_TbCtrl, (int) ChartSettingsTabs.Series );
-            EnableChartTabPageControls( false );
-            EnableChartAreaTabPageControls( false );
-            EnableSeriesTabPageControls( true );
-        }
-
-        private void UpdateUiByGeneratedCurveSettings()
-        {
-            UiControls.TrySetSelectedIndex( uiCtrSrs_Color_ComBx, uiCtrSrs_Color_ComBx.Items.IndexOf( Settings.Series.Modified.Color.Name ) );
-            UiControls.TrySetValue( uiCtrSrs_BorWth_Num, Settings.Series.Modified.BorderWidth );
-            UiControls.TrySetSelectedIndex( uiCtrSrs_BorStyle_ComBx, (int) Settings.Series.Modified.BorderDashStyle );
-            UiControls.TrySetSelectedIndex( uiCtrSrs_ChT_ComBx, (int) Settings.Series.Modified.ChartType );
-        }
-
-        private void UpdateUiByPatternCurveSettings()
-        {
-            UiControls.TrySetSelectedIndex( uiCtrSrs_Color_ComBx, uiCtrSrs_Color_ComBx.Items.IndexOf( Settings.Series.Ideal.Color.Name ) );
-            UiControls.TrySetValue( uiCtrSrs_BorWth_Num, Settings.Series.Ideal.BorderWidth );
-            UiControls.TrySetSelectedIndex( uiCtrSrs_BorStyle_ComBx, (int) Settings.Series.Ideal.BorderDashStyle );
-            UiControls.TrySetSelectedIndex( uiCtrSrs_ChT_ComBx, (int) Settings.Series.Ideal.ChartType );
-        }
-
-        private void EnableChartTabPageControls( bool value )
-        {
-            uiCtrChart_Aa_TxtBx.Enabled = value;
-            uiCtrChart_Aa_ComBx.Enabled = value;
-            uiCtrChart_SupEx_TxtBx.Enabled = value;
-            uiCtrChart_SupEx_ComBx.Enabled = value;
-            uiCtrChart_BkCol_TxtBx.Enabled = value;
-            uiCtrChart_BkCol_ComBx.Enabled = value;
-        }
-
-        private void EnableChartAreaTabPageControls( bool value )
-        {
-            uiCtrArea_ChA_TxtBx.Enabled = value;
-            uiCtrArea_3d_TxtBx.Enabled = value;
-            uiCtrArea_3d_ComBx.Enabled = value;
-            uiCtrArea_BkCol_TxtBx.Enabled = value;
-            uiCtrArea_BkCol_ComBx.Enabled = value;
-            uiCtrArea_Axes_TxtBx.Enabled = value;
-            uiCtrArea_Axis_TxtBx.Enabled = value;
-            uiCtrArea_Axis_ComBx.Enabled = value;
-            uiCtrArea_Grid_TxtBx.Enabled = value;
-            uiCtrArea_Grid_ComBx.Enabled = value;
-            uiCtrArea_En_TxtBx.Enabled = value;
-            uiCtrArea_En_ComBx.Enabled = value;
-            uiCtrArea_LnCol_TxtBx.Enabled = value;
-            uiCtrArea_LnCol_ComBx.Enabled = value;
-            uiCtrArea_LnStyle_TxtBx.Enabled = value;
-            uiCtrArea_LnStyle_ComBx.Enabled = value;
-            uiCtrArea_LnWth_TxtBx.Enabled = value;
-            uiCtrArea_LnWth_Num.Enabled = value;
-        }
-
-        private void EnableSeriesTabPageControls( bool value )
-        {
-            uiCtrSrs_Color_TxtBx.Enabled = value;
-            uiCtrSrs_Color_ComBx.Enabled = value;
-            uiCtrSrs_BorWth_TxtBx.Enabled = value;
-            uiCtrSrs_BorWth_Num.Enabled = value;
-            uiCtrSrs_BorStyle_TxtBx.Enabled = value;
-            uiCtrSrs_BorStyle_ComBx.Enabled = value;
-            uiCtrSrs_ChT_TxtBx.Enabled = value;
-            uiCtrSrs_ChT_ComBx.Enabled = value;
-        }
-
-        private void UiBottom_Ok_Click( object sender, EventArgs e )
-        {
-            SaveAllSettings();
+            switch ( tab ) {
+            case ChartSettingsTabs.Chart:
+                uiCtrChart_Aa_TxtBx.Enabled = isEnabled;
+                uiCtrChart_Aa_ComBx.Enabled = isEnabled;
+                uiCtrChart_SupEx_TxtBx.Enabled = isEnabled;
+                uiCtrChart_SupEx_ComBx.Enabled = isEnabled;
+                uiCtrChart_BkCol_TxtBx.Enabled = isEnabled;
+                uiCtrChart_BkCol_ComBx.Enabled = isEnabled;
+                break;
+            case ChartSettingsTabs.ChartArea:
+                uiCtrArea_ChA_TxtBx.Enabled = isEnabled;
+                uiCtrArea_3d_TxtBx.Enabled = isEnabled;
+                uiCtrArea_3d_ComBx.Enabled = isEnabled;
+                uiCtrArea_BkCol_TxtBx.Enabled = isEnabled;
+                uiCtrArea_BkCol_ComBx.Enabled = isEnabled;
+                uiCtrArea_Axes_TxtBx.Enabled = isEnabled;
+                uiCtrArea_Axis_TxtBx.Enabled = isEnabled;
+                uiCtrArea_Axis_ComBx.Enabled = isEnabled;
+                uiCtrArea_Grid_TxtBx.Enabled = isEnabled;
+                uiCtrArea_Grid_ComBx.Enabled = isEnabled;
+                uiCtrArea_En_TxtBx.Enabled = isEnabled;
+                uiCtrArea_En_ComBx.Enabled = isEnabled;
+                uiCtrArea_LnCol_TxtBx.Enabled = isEnabled;
+                uiCtrArea_LnCol_ComBx.Enabled = isEnabled;
+                uiCtrArea_LnStyle_TxtBx.Enabled = isEnabled;
+                uiCtrArea_LnStyle_ComBx.Enabled = isEnabled;
+                uiCtrArea_LnWth_TxtBx.Enabled = isEnabled;
+                uiCtrArea_LnWth_Num.Enabled = isEnabled;
+                break;
+            case ChartSettingsTabs.Series:
+                uiCtrSrs_Color_TxtBx.Enabled = isEnabled;
+                uiCtrSrs_Color_ComBx.Enabled = isEnabled;
+                uiCtrSrs_BorWth_TxtBx.Enabled = isEnabled;
+                uiCtrSrs_BorWth_Num.Enabled = isEnabled;
+                uiCtrSrs_BorStyle_TxtBx.Enabled = isEnabled;
+                uiCtrSrs_BorStyle_ComBx.Enabled = isEnabled;
+                uiCtrSrs_ChT_TxtBx.Enabled = isEnabled;
+                uiCtrSrs_ChT_ComBx.Enabled = isEnabled;
+                break;
+            }
         }
 
         private void SaveAllSettings()
         {
+            // Common
             Settings.ApplyMode = (CurveApply) UiControls.TryGetSelectedIndex( uiTop_ApplyTo_ComBx );
-            SaveChartSettings();
-            SaveChartAreaSettings();
-            SaveSeriesSettings( Settings.ApplyMode );
-        }
 
-        private void SaveChartSettings()
-        {
+            // Tab: Chart
             Settings.Common.AntiAliasing = (AntiAliasingStyles) UiControls.TryGetSelectedIndex( uiCtrChart_Aa_ComBx );
             Settings.Common.SuppressExceptions = Convert.ToBoolean( UiControls.TryGetSelectedIndex( uiCtrChart_SupEx_ComBx ) );
             Settings.Common.BackColor = Color.FromName( uiCtrChart_BkCol_ComBx.Items[uiCtrChart_BkCol_ComBx.SelectedIndex].ToString() );
-        }
 
-        private void SaveChartAreaSettings()
-        {
+            // Tab: Chart area
             Settings.Areas.Common.Area3dStyle = Convert.ToBoolean( UiControls.TryGetSelectedIndex( uiCtrArea_3d_ComBx ) );
             Settings.Areas.Common.BackColor = Color.FromName( uiCtrArea_BkCol_ComBx.Items[uiCtrArea_BkCol_ComBx.SelectedIndex].ToString() );
             ChartAreaAxis axis = (ChartAreaAxis) UiControls.TryGetSelectedIndex( uiCtrArea_Axis_ComBx );
             ChartAreaGrid grid = (ChartAreaGrid) UiControls.TryGetSelectedIndex( uiCtrArea_Grid_ComBx );
             SaveAxesSettings( axis, grid );
+
+            // Tab: Series
+            SaveCurveSettings( Settings.ApplyMode );
         }
 
-        private void SaveSeriesSettings( CurveApply applyMode )
+        private void SaveCurveSettings( CurveApply curve )
         {
-            switch ( applyMode ) {
+            switch ( curve ) {
             case CurveApply.Ideal:
-                SaveSeriesPatternSettings();
+                Settings.Series.Ideal.Color = Color.FromName( uiCtrSrs_Color_ComBx.Items[uiCtrSrs_Color_ComBx.SelectedIndex].ToString() );
+                Settings.Series.Ideal.BorderWidth = UiControls.TryGetValue<int>( uiCtrSrs_BorWth_Num );
+                Settings.Series.Ideal.BorderDashStyle = (ChartDashStyle) UiControls.TryGetSelectedIndex( uiCtrSrs_BorStyle_ComBx );
+                Settings.Series.Ideal.ChartType = (SeriesChartType) UiControls.TryGetSelectedIndex( uiCtrSrs_ChT_ComBx );
                 break;
             case CurveApply.Modified:
-                SaveSeriesGeneratedSettings();
+                Settings.Series.Modified.Color = Color.FromName( uiCtrSrs_Color_ComBx.Items[uiCtrSrs_Color_ComBx.SelectedIndex].ToString() );
+                Settings.Series.Modified.BorderWidth = UiControls.TryGetValue<int>( uiCtrSrs_BorWth_Num );
+                Settings.Series.Modified.BorderDashStyle = (ChartDashStyle) UiControls.TryGetSelectedIndex( uiCtrSrs_BorStyle_ComBx );
+                Settings.Series.Modified.ChartType = (SeriesChartType) UiControls.TryGetSelectedIndex( uiCtrSrs_ChT_ComBx );
                 break;
             case CurveApply.Average:
-                SaveSeriesAverageSettings();
+                Settings.Series.Average.Color = Color.FromName( uiCtrSrs_Color_ComBx.Items[uiCtrSrs_Color_ComBx.SelectedIndex].ToString() );
+                Settings.Series.Average.BorderWidth = UiControls.TryGetValue<int>( uiCtrSrs_BorWth_Num );
+                Settings.Series.Average.BorderDashStyle = (ChartDashStyle) UiControls.TryGetSelectedIndex( uiCtrSrs_BorStyle_ComBx );
+                Settings.Series.Average.ChartType = (SeriesChartType) UiControls.TryGetSelectedIndex( uiCtrSrs_ChT_ComBx );
                 break;
             }
         }
 
-        private void SaveSeriesPatternSettings()
-        {
-            Settings.Series.Ideal.Color = Color.FromName( uiCtrSrs_Color_ComBx.Items[uiCtrSrs_Color_ComBx.SelectedIndex].ToString() );
-            Settings.Series.Ideal.BorderWidth = UiControls.TryGetValue<int>( uiCtrSrs_BorWth_Num );
-            Settings.Series.Ideal.BorderDashStyle = (ChartDashStyle) UiControls.TryGetSelectedIndex( uiCtrSrs_BorStyle_ComBx );
-            Settings.Series.Ideal.ChartType = (SeriesChartType) UiControls.TryGetSelectedIndex( uiCtrSrs_ChT_ComBx );
-        }
-
-        private void SaveSeriesGeneratedSettings()
-        {
-            Settings.Series.Modified.Color = Color.FromName( uiCtrSrs_Color_ComBx.Items[uiCtrSrs_Color_ComBx.SelectedIndex].ToString() );
-            Settings.Series.Modified.BorderWidth = UiControls.TryGetValue<int>( uiCtrSrs_BorWth_Num );
-            Settings.Series.Modified.BorderDashStyle = (ChartDashStyle) UiControls.TryGetSelectedIndex( uiCtrSrs_BorStyle_ComBx );
-            Settings.Series.Modified.ChartType = (SeriesChartType) UiControls.TryGetSelectedIndex( uiCtrSrs_ChT_ComBx );
-        }
-
-        private void SaveSeriesAverageSettings()
-        {
-            Settings.Series.Average.Color = Color.FromName( uiCtrSrs_Color_ComBx.Items[uiCtrSrs_Color_ComBx.SelectedIndex].ToString() );
-            Settings.Series.Average.BorderWidth = UiControls.TryGetValue<int>( uiCtrSrs_BorWth_Num );
-            Settings.Series.Average.BorderDashStyle = (ChartDashStyle) UiControls.TryGetSelectedIndex( uiCtrSrs_BorStyle_ComBx );
-            Settings.Series.Average.ChartType = (SeriesChartType) UiControls.TryGetSelectedIndex( uiCtrSrs_ChT_ComBx );
-        }
-
-        private void PerformAxisGridSwitch()
+        private void PerformAxisAndGridSwitch()
         {
             SaveAxesSettings( Previous.AxisSelected, Previous.GridSelected );
             Previous.AxisSelected = (ChartAreaAxis) UiControls.TryGetSelectedIndex( uiCtrArea_Axis_ComBx );
             Previous.GridSelected = (ChartAreaGrid) UiControls.TryGetSelectedIndex( uiCtrArea_Grid_ComBx );
             UpdateUiByAxesSettings();
-        }
-
-        private void UiCenterChartArea_Axis_SelectedIndexChanged( object sender, EventArgs e )
-        {
-            CheckFormInitialization();
-        }
-
-        private void CheckFormInitialization()
-        {
-            if ( !IsFormInitialized ) {
-                return;
-            }
-
-            PerformAxisGridSwitch();
         }
 
         private void SaveAxesSettings( ChartAreaAxis axis, ChartAreaGrid grid )
@@ -461,37 +330,101 @@ namespace PI
             UiControls.TrySetValue( uiCtrArea_LnWth_Num, Settings.Areas.Y.MinorGrid.LineWidth );
         }
 
-        private void UiCenterArea_Grid_SelectedIndexChanged( object sender, EventArgs e )
-        {
-            CheckFormInitialization();
-        }
-
-        private void ChartSettings_FormClosing( object sender, FormClosingEventArgs e )
-        {
-            Previous = null;
-            Dispose();
-        }
-
         private void LocalizeWindow()
         {
             ChartSettingsStrings names = new ChartSettingsStrings();
             Text = names.Form.Text.GetString();
 
-            // General
+            // Common
             uiTop_ApplyTo_TxtBx.Text = names.Ui.GeneralApplyTo.GetString();
             uiBtm_Ok_Btn.Text = names.Ui.GeneralOk.GetString();
+            EnumsLocalizer.Localize( LocalizableEnumerator.CurveApply, uiTop_ApplyTo_ComBx );
 
             // Tab: Chart
             uiCtr_Chart_TbPg.Text = names.Ui.ChartTitle.GetString();
+            EnumsLocalizer.Populate( CSharpEnumerable.AntiAliasingStyles, uiCtrChart_Aa_ComBx );
+            EnumsLocalizer.Localize( LocalizableEnumerator.Boolean, uiCtrChart_SupEx_ComBx );
+            EnumsLocalizer.Populate( CSharpEnumerable.Color, uiCtrChart_BkCol_ComBx );
 
             // Tab: Chart area
             uiCtr_Area_TbPg.Text = names.Ui.ChartAreaTitle.GetString();
             uiCtrArea_ChA_TxtBx.Text = names.Ui.ChartAreaText.GetString();
             uiCtrArea_Axes_TxtBx.Text = names.Ui.ChartAreaAxes.GetString();
+            EnumsLocalizer.Localize( LocalizableEnumerator.Boolean, uiCtrArea_3d_ComBx );
+            EnumsLocalizer.Populate( CSharpEnumerable.Color, uiCtrArea_BkCol_ComBx );
+            EnumsLocalizer.Localize( LocalizableEnumerator.Boolean, uiCtrArea_En_ComBx );
+            EnumsLocalizer.Populate( CSharpEnumerable.Color, uiCtrArea_LnCol_ComBx );
+            EnumsLocalizer.Populate( CSharpEnumerable.ChartDashStyle, uiCtrArea_LnStyle_ComBx );
+            EnumsLocalizer.Populate( CSharpEnumerable.ChartAreaAxis, uiCtrArea_Axis_ComBx );
+            EnumsLocalizer.Populate( CSharpEnumerable.ChartAreaGrid, uiCtrArea_Grid_ComBx );
 
             // Tab: Series
             uiCtr_Srs_TbPg.Text = names.Ui.SeriesTitle.GetString();
+            EnumsLocalizer.Populate( CSharpEnumerable.Color, uiCtrSrs_Color_ComBx );
+            EnumsLocalizer.Populate( CSharpEnumerable.ChartDashStyle, uiCtrSrs_BorStyle_ComBx );
+            EnumsLocalizer.Populate( CSharpEnumerable.SeriesChartType, uiCtrSrs_ChT_ComBx );
         }
 
+        #region Event handlers
+
+        private void OnGridSelection( object sender, EventArgs e )
+        {
+            if ( IsFormInitialized ) {
+                PerformAxisAndGridSwitch();
+            }
+        }
+
+        private void OnFormClosing( object sender, FormClosingEventArgs e )
+        {
+            Settings = null;
+            Previous = null;
+            IsFormInitialized = false;
+            Dispose();
+        }
+
+        private void OnAxisSelection( object sender, EventArgs e )
+        {
+            if ( IsFormInitialized ) {
+                PerformAxisAndGridSwitch();
+            }
+        }
+
+        private void OnLoad( object sender, EventArgs e )
+        {
+            uiBtm_Ok_Btn.Select();
+        }
+
+        private void OnCurveSelection( object sender, EventArgs e )
+        {
+            if ( !IsFormInitialized ) {
+                return;
+            }
+
+            CurveApply curve = (CurveApply) UiControls.TryGetSelectedIndex( uiTop_ApplyTo_ComBx );
+
+            if ( curve == CurveApply.All ) {
+                UiControls.TrySelectTab( uiCtr_TbCtrl, (int) ChartSettingsTabs.Chart );
+                UpdateUiByEnablingControls( ChartSettingsTabs.Chart, true );
+                UpdateUiByEnablingControls( ChartSettingsTabs.ChartArea, true );
+                UpdateUiByEnablingControls( ChartSettingsTabs.Series, false );
+                return;
+            }
+
+            UiControls.TrySelectTab( uiCtr_TbCtrl, (int) ChartSettingsTabs.Series );
+            UpdateUiByEnablingControls( ChartSettingsTabs.Chart, false );
+            UpdateUiByEnablingControls( ChartSettingsTabs.ChartArea, false );
+            UpdateUiByEnablingControls( ChartSettingsTabs.Series, true );
+            SaveCurveSettings( Previous.ApplyMode );
+            UpdateUiByCurveSwitch( curve );
+
+            Previous.ApplyMode = (CurveApply) uiTop_ApplyTo_ComBx.SelectedIndex;
+        }
+
+        private void OnOkClick( object sender, EventArgs e )
+        {
+            SaveAllSettings();
+        }
+
+        #endregion
     }
 }

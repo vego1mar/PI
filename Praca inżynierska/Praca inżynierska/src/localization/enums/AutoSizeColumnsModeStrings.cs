@@ -1,7 +1,7 @@
 ﻿using PI.src.localization.general;
 using System.Collections;
 using System.Collections.Generic;
-using static PI.Translator;
+using static PI.src.localization.general.LanguageAssist;
 
 namespace PI.src.localization.enums
 {
