@@ -8,7 +8,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
-namespace PI
+namespace PI.src.windows
 {
     public partial class ChartSettings : Form
     {
@@ -179,12 +179,56 @@ namespace PI
             }
         }
 
-        private void PerformAxisAndGridSwitch()
+        private void UpdateUiByPerformingAxisOrGridSwitch()
         {
             SaveAxesSettings( Previous.AxisSelected, Previous.GridSelected );
             Previous.AxisSelected = (ChartAreaAxis) UiControls.TryGetSelectedIndex( uiCtrArea_Axis_ComBx );
             Previous.GridSelected = (ChartAreaGrid) UiControls.TryGetSelectedIndex( uiCtrArea_Grid_ComBx );
-            UpdateUiByAxesSettings();
+
+            switch ( Previous.AxisSelected ) {
+            case ChartAreaAxis.X:
+                SetAxisXSettings( Previous.GridSelected );
+                break;
+            case ChartAreaAxis.Y:
+                SetAxisYSettings( Previous.GridSelected );
+                break;
+            }
+        }
+
+        private void SetAxisXSettings( ChartAreaGrid grid )
+        {
+            switch ( grid ) {
+            case ChartAreaGrid.Major:
+                UiControls.TrySetSelectedIndex( uiCtrArea_En_ComBx, Convert.ToInt32( Settings.Areas.X.MajorGrid.Enabled ) );
+                UiControls.TrySetSelectedIndex( uiCtrArea_LnCol_ComBx, uiCtrArea_LnCol_ComBx.Items.IndexOf( Settings.Areas.X.MajorGrid.LineColor.Name ) );
+                UiControls.TrySetSelectedIndex( uiCtrArea_LnStyle_ComBx, uiCtrArea_LnStyle_ComBx.Items.IndexOf( Settings.Areas.X.MajorGrid.LineDashStyle.ToString() ) );
+                UiControls.TrySetValue( uiCtrArea_LnWth_Num, Settings.Areas.X.MajorGrid.LineWidth );
+                break;
+            case ChartAreaGrid.Minor:
+                UiControls.TrySetSelectedIndex( uiCtrArea_En_ComBx, Convert.ToInt32( Settings.Areas.X.MinorGrid.Enabled ) );
+                UiControls.TrySetSelectedIndex( uiCtrArea_LnCol_ComBx, uiCtrArea_LnCol_ComBx.Items.IndexOf( Settings.Areas.X.MinorGrid.LineColor.Name ) );
+                UiControls.TrySetSelectedIndex( uiCtrArea_LnStyle_ComBx, uiCtrArea_LnStyle_ComBx.Items.IndexOf( Settings.Areas.X.MinorGrid.LineDashStyle.ToString() ) );
+                UiControls.TrySetValue( uiCtrArea_LnWth_Num, Settings.Areas.X.MinorGrid.LineWidth );
+                break;
+            }
+        }
+
+        private void SetAxisYSettings( ChartAreaGrid grid )
+        {
+            switch ( grid ) {
+            case ChartAreaGrid.Major:
+                UiControls.TrySetSelectedIndex( uiCtrArea_En_ComBx, Convert.ToInt32( Settings.Areas.Y.MajorGrid.Enabled ) );
+                UiControls.TrySetSelectedIndex( uiCtrArea_LnCol_ComBx, uiCtrArea_LnCol_ComBx.Items.IndexOf( Settings.Areas.Y.MajorGrid.LineColor.Name ) );
+                UiControls.TrySetSelectedIndex( uiCtrArea_LnStyle_ComBx, uiCtrArea_LnStyle_ComBx.Items.IndexOf( Settings.Areas.Y.MajorGrid.LineDashStyle.ToString() ) );
+                UiControls.TrySetValue( uiCtrArea_LnWth_Num, Settings.Areas.Y.MajorGrid.LineWidth );
+                break;
+            case ChartAreaGrid.Minor:
+                UiControls.TrySetSelectedIndex( uiCtrArea_En_ComBx, Convert.ToInt32( Settings.Areas.Y.MinorGrid.Enabled ) );
+                UiControls.TrySetSelectedIndex( uiCtrArea_LnCol_ComBx, uiCtrArea_LnCol_ComBx.Items.IndexOf( Settings.Areas.Y.MinorGrid.LineColor.Name ) );
+                UiControls.TrySetSelectedIndex( uiCtrArea_LnStyle_ComBx, uiCtrArea_LnStyle_ComBx.Items.IndexOf( Settings.Areas.Y.MinorGrid.LineDashStyle.ToString() ) );
+                UiControls.TrySetValue( uiCtrArea_LnWth_Num, Settings.Areas.Y.MinorGrid.LineWidth );
+                break;
+            }
         }
 
         private void SaveAxesSettings( ChartAreaAxis axis, ChartAreaGrid grid )
@@ -203,10 +247,16 @@ namespace PI
         {
             switch ( grid ) {
             case ChartAreaGrid.Major:
-                SaveAxisXMajorGridSettings();
+                Settings.Areas.X.MajorGrid.Enabled = Convert.ToBoolean( UiControls.TryGetSelectedIndex( uiCtrArea_En_ComBx ) );
+                Settings.Areas.X.MajorGrid.LineColor = Color.FromName( uiCtrArea_LnCol_ComBx.Items[uiCtrArea_LnCol_ComBx.SelectedIndex].ToString() );
+                Settings.Areas.X.MajorGrid.LineDashStyle = (ChartDashStyle) UiControls.TryGetSelectedIndex( uiCtrArea_LnStyle_ComBx );
+                Settings.Areas.X.MajorGrid.LineWidth = UiControls.TryGetValue<int>( uiCtrArea_LnWth_Num );
                 break;
             case ChartAreaGrid.Minor:
-                SaveAxisXMinorGridSettings();
+                Settings.Areas.X.MinorGrid.Enabled = Convert.ToBoolean( UiControls.TryGetSelectedIndex( uiCtrArea_En_ComBx ) );
+                Settings.Areas.X.MinorGrid.LineColor = Color.FromName( uiCtrArea_LnCol_ComBx.Items[uiCtrArea_LnCol_ComBx.SelectedIndex].ToString() );
+                Settings.Areas.X.MinorGrid.LineDashStyle = (ChartDashStyle) UiControls.TryGetSelectedIndex( uiCtrArea_LnStyle_ComBx );
+                Settings.Areas.X.MinorGrid.LineWidth = UiControls.TryGetValue<int>( uiCtrArea_LnWth_Num );
                 break;
             }
         }
@@ -215,119 +265,18 @@ namespace PI
         {
             switch ( grid ) {
             case ChartAreaGrid.Major:
-                SaveAxisYMajorGridSettings();
+                Settings.Areas.Y.MajorGrid.Enabled = Convert.ToBoolean( UiControls.TryGetSelectedIndex( uiCtrArea_En_ComBx ) );
+                Settings.Areas.Y.MajorGrid.LineColor = Color.FromName( uiCtrArea_LnCol_ComBx.Items[uiCtrArea_LnCol_ComBx.SelectedIndex].ToString() );
+                Settings.Areas.Y.MajorGrid.LineDashStyle = (ChartDashStyle) UiControls.TryGetSelectedIndex( uiCtrArea_LnStyle_ComBx );
+                Settings.Areas.Y.MajorGrid.LineWidth = UiControls.TryGetValue<int>( uiCtrArea_LnWth_Num );
                 break;
             case ChartAreaGrid.Minor:
-                SaveAxisYMinorGridSettings();
+                Settings.Areas.Y.MinorGrid.Enabled = Convert.ToBoolean( UiControls.TryGetSelectedIndex( uiCtrArea_En_ComBx ) );
+                Settings.Areas.Y.MinorGrid.LineColor = Color.FromName( uiCtrArea_LnCol_ComBx.Items[uiCtrArea_LnCol_ComBx.SelectedIndex].ToString() );
+                Settings.Areas.Y.MinorGrid.LineDashStyle = (ChartDashStyle) UiControls.TryGetSelectedIndex( uiCtrArea_LnStyle_ComBx );
+                Settings.Areas.Y.MinorGrid.LineWidth = UiControls.TryGetValue<int>( uiCtrArea_LnWth_Num );
                 break;
             }
-        }
-
-        private void SaveAxisYMajorGridSettings()
-        {
-            Settings.Areas.Y.MajorGrid.Enabled = Convert.ToBoolean( UiControls.TryGetSelectedIndex( uiCtrArea_En_ComBx ) );
-            Settings.Areas.Y.MajorGrid.LineColor = Color.FromName( uiCtrArea_LnCol_ComBx.Items[uiCtrArea_LnCol_ComBx.SelectedIndex].ToString() );
-            Settings.Areas.Y.MajorGrid.LineDashStyle = (ChartDashStyle) UiControls.TryGetSelectedIndex( uiCtrArea_LnStyle_ComBx );
-            Settings.Areas.Y.MajorGrid.LineWidth = UiControls.TryGetValue<int>( uiCtrArea_LnWth_Num );
-        }
-
-        private void SaveAxisYMinorGridSettings()
-        {
-            Settings.Areas.Y.MinorGrid.Enabled = Convert.ToBoolean( UiControls.TryGetSelectedIndex( uiCtrArea_En_ComBx ) );
-            Settings.Areas.Y.MinorGrid.LineColor = Color.FromName( uiCtrArea_LnCol_ComBx.Items[uiCtrArea_LnCol_ComBx.SelectedIndex].ToString() );
-            Settings.Areas.Y.MinorGrid.LineDashStyle = (ChartDashStyle) UiControls.TryGetSelectedIndex( uiCtrArea_LnStyle_ComBx );
-            Settings.Areas.Y.MinorGrid.LineWidth = UiControls.TryGetValue<int>( uiCtrArea_LnWth_Num );
-        }
-
-        private void SaveAxisXMajorGridSettings()
-        {
-            Settings.Areas.X.MajorGrid.Enabled = Convert.ToBoolean( UiControls.TryGetSelectedIndex( uiCtrArea_En_ComBx ) );
-            Settings.Areas.X.MajorGrid.LineColor = Color.FromName( uiCtrArea_LnCol_ComBx.Items[uiCtrArea_LnCol_ComBx.SelectedIndex].ToString() );
-            Settings.Areas.X.MajorGrid.LineDashStyle = (ChartDashStyle) UiControls.TryGetSelectedIndex( uiCtrArea_LnStyle_ComBx );
-            Settings.Areas.X.MajorGrid.LineWidth = UiControls.TryGetValue<int>( uiCtrArea_LnWth_Num );
-        }
-
-        private void SaveAxisXMinorGridSettings()
-        {
-            Settings.Areas.X.MinorGrid.Enabled = Convert.ToBoolean( UiControls.TryGetSelectedIndex( uiCtrArea_En_ComBx ) );
-            Settings.Areas.X.MinorGrid.LineColor = Color.FromName( uiCtrArea_LnCol_ComBx.Items[uiCtrArea_LnCol_ComBx.SelectedIndex].ToString() );
-            Settings.Areas.X.MinorGrid.LineDashStyle = (ChartDashStyle) UiControls.TryGetSelectedIndex( uiCtrArea_LnStyle_ComBx );
-            Settings.Areas.X.MinorGrid.LineWidth = UiControls.TryGetValue<int>( uiCtrArea_LnWth_Num );
-        }
-
-        private void UpdateUiByAxesSettings()
-        {
-            ChartAreaAxis axis = (ChartAreaAxis) UiControls.TryGetSelectedIndex( uiCtrArea_Axis_ComBx );
-            ChartAreaGrid grid = (ChartAreaGrid) UiControls.TryGetSelectedIndex( uiCtrArea_Grid_ComBx );
-            SetAxesSettings( axis, grid );
-        }
-
-        private void SetAxesSettings( ChartAreaAxis axis, ChartAreaGrid grid )
-        {
-            switch ( axis ) {
-            case ChartAreaAxis.X:
-                SetAxisXSettings( grid );
-                break;
-            case ChartAreaAxis.Y:
-                SetAxisYSettings( grid );
-                break;
-            }
-        }
-
-        private void SetAxisXSettings( ChartAreaGrid grid )
-        {
-            switch ( grid ) {
-            case ChartAreaGrid.Major:
-                SetAxisXMajorGridSettings();
-                break;
-            case ChartAreaGrid.Minor:
-                SetAxisXMinorGridSettings();
-                break;
-            }
-        }
-
-        private void SetAxisYSettings( ChartAreaGrid grid )
-        {
-            switch ( grid ) {
-            case ChartAreaGrid.Major:
-                SetAxisYMajorGridSettings();
-                break;
-            case ChartAreaGrid.Minor:
-                SetAxisYMinorGridSettings();
-                break;
-            }
-        }
-
-        private void SetAxisXMajorGridSettings()
-        {
-            UiControls.TrySetSelectedIndex( uiCtrArea_En_ComBx, Convert.ToInt32( Settings.Areas.X.MajorGrid.Enabled ) );
-            UiControls.TrySetSelectedIndex( uiCtrArea_LnCol_ComBx, uiCtrArea_LnCol_ComBx.Items.IndexOf( Settings.Areas.X.MajorGrid.LineColor.Name ) );
-            UiControls.TrySetSelectedIndex( uiCtrArea_LnStyle_ComBx, uiCtrArea_LnStyle_ComBx.Items.IndexOf( Settings.Areas.X.MajorGrid.LineDashStyle.ToString() ) );
-            UiControls.TrySetValue( uiCtrArea_LnWth_Num, Settings.Areas.X.MajorGrid.LineWidth );
-        }
-
-        private void SetAxisXMinorGridSettings()
-        {
-            UiControls.TrySetSelectedIndex( uiCtrArea_En_ComBx, Convert.ToInt32( Settings.Areas.X.MinorGrid.Enabled ) );
-            UiControls.TrySetSelectedIndex( uiCtrArea_LnCol_ComBx, uiCtrArea_LnCol_ComBx.Items.IndexOf( Settings.Areas.X.MinorGrid.LineColor.Name ) );
-            UiControls.TrySetSelectedIndex( uiCtrArea_LnStyle_ComBx, uiCtrArea_LnStyle_ComBx.Items.IndexOf( Settings.Areas.X.MinorGrid.LineDashStyle.ToString() ) );
-            UiControls.TrySetValue( uiCtrArea_LnWth_Num, Settings.Areas.X.MinorGrid.LineWidth );
-        }
-
-        private void SetAxisYMajorGridSettings()
-        {
-            UiControls.TrySetSelectedIndex( uiCtrArea_En_ComBx, Convert.ToInt32( Settings.Areas.Y.MajorGrid.Enabled ) );
-            UiControls.TrySetSelectedIndex( uiCtrArea_LnCol_ComBx, uiCtrArea_LnCol_ComBx.Items.IndexOf( Settings.Areas.Y.MajorGrid.LineColor.Name ) );
-            UiControls.TrySetSelectedIndex( uiCtrArea_LnStyle_ComBx, uiCtrArea_LnStyle_ComBx.Items.IndexOf( Settings.Areas.Y.MajorGrid.LineDashStyle.ToString() ) );
-            UiControls.TrySetValue( uiCtrArea_LnWth_Num, Settings.Areas.Y.MajorGrid.LineWidth );
-        }
-
-        private void SetAxisYMinorGridSettings()
-        {
-            UiControls.TrySetSelectedIndex( uiCtrArea_En_ComBx, Convert.ToInt32( Settings.Areas.Y.MinorGrid.Enabled ) );
-            UiControls.TrySetSelectedIndex( uiCtrArea_LnCol_ComBx, uiCtrArea_LnCol_ComBx.Items.IndexOf( Settings.Areas.Y.MinorGrid.LineColor.Name ) );
-            UiControls.TrySetSelectedIndex( uiCtrArea_LnStyle_ComBx, uiCtrArea_LnStyle_ComBx.Items.IndexOf( Settings.Areas.Y.MinorGrid.LineDashStyle.ToString() ) );
-            UiControls.TrySetValue( uiCtrArea_LnWth_Num, Settings.Areas.Y.MinorGrid.LineWidth );
         }
 
         private void LocalizeWindow()
@@ -370,13 +319,13 @@ namespace PI
         private void OnGridSelection( object sender, EventArgs e )
         {
             if ( IsFormInitialized ) {
-                PerformAxisAndGridSwitch();
+                UpdateUiByPerformingAxisOrGridSwitch();
             }
         }
 
         private void OnFormClosing( object sender, FormClosingEventArgs e )
         {
-            Settings = null;
+            // Do not nullify Settings property
             Previous = null;
             IsFormInitialized = false;
             Dispose();
@@ -385,7 +334,7 @@ namespace PI
         private void OnAxisSelection( object sender, EventArgs e )
         {
             if ( IsFormInitialized ) {
-                PerformAxisAndGridSwitch();
+                UpdateUiByPerformingAxisOrGridSwitch();
             }
         }
 

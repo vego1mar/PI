@@ -1,4 +1,4 @@
-﻿namespace PI
+﻿namespace PI.src.windows
     {
     partial class PatternCurveDefiner
         {
@@ -155,6 +155,7 @@
             // 
             // uiTabs_Wave_Btn
             // 
+            this.uiTabs_Wave_Btn.BackColor = System.Drawing.Color.White;
             this.uiTabs_Wave_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiTabs_Wave_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiTabs_Wave_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -164,11 +165,12 @@
             this.uiTabs_Wave_Btn.Size = new System.Drawing.Size(164, 34);
             this.uiTabs_Wave_Btn.TabIndex = 2;
             this.uiTabs_Wave_Btn.Text = "Waveform";
-            this.uiTabs_Wave_Btn.UseVisualStyleBackColor = true;
-            this.uiTabs_Wave_Btn.Click += new System.EventHandler(this.UiTabs_Waveform_Click);
+            this.uiTabs_Wave_Btn.UseVisualStyleBackColor = false;
+            this.uiTabs_Wave_Btn.Click += new System.EventHandler(this.OnWaveformTabSelection);
             // 
             // uiTabs_Hyp_Btn
             // 
+            this.uiTabs_Hyp_Btn.BackColor = System.Drawing.Color.White;
             this.uiTabs_Hyp_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiTabs_Hyp_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiTabs_Hyp_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -178,11 +180,12 @@
             this.uiTabs_Hyp_Btn.Size = new System.Drawing.Size(164, 34);
             this.uiTabs_Hyp_Btn.TabIndex = 1;
             this.uiTabs_Hyp_Btn.Text = "Hyperbolic";
-            this.uiTabs_Hyp_Btn.UseVisualStyleBackColor = true;
-            this.uiTabs_Hyp_Btn.Click += new System.EventHandler(this.UiTabs_Hyperbolic_Click);
+            this.uiTabs_Hyp_Btn.UseVisualStyleBackColor = false;
+            this.uiTabs_Hyp_Btn.Click += new System.EventHandler(this.OnHyperbolicTabSelection);
             // 
             // uiTabs_Pol_Btn
             // 
+            this.uiTabs_Pol_Btn.BackColor = System.Drawing.Color.White;
             this.uiTabs_Pol_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiTabs_Pol_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiTabs_Pol_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -192,8 +195,8 @@
             this.uiTabs_Pol_Btn.Size = new System.Drawing.Size(164, 34);
             this.uiTabs_Pol_Btn.TabIndex = 0;
             this.uiTabs_Pol_Btn.Text = "Polynomial";
-            this.uiTabs_Pol_Btn.UseVisualStyleBackColor = true;
-            this.uiTabs_Pol_Btn.Click += new System.EventHandler(this.UiTabs_Polynomial_Click);
+            this.uiTabs_Pol_Btn.UseVisualStyleBackColor = false;
+            this.uiTabs_Pol_Btn.Click += new System.EventHandler(this.OnPolynomialTabSelection);
             // 
             // uiCnt_TbCtrl
             // 
@@ -659,7 +662,7 @@
             0,
             0,
             0});
-            this.uiCntHyp_d_Num.ValueChanged += new System.EventHandler(this.UiContentHyperbolic_ParameterD_ValueChanged);
+            this.uiCntHyp_d_Num.ValueChanged += new System.EventHandler(this.OnParameterDAlteration);
             // 
             // uiCntHyp_d_Lb
             // 
@@ -697,7 +700,7 @@
             0,
             0,
             0});
-            this.uiCntHyp_c_Num.ValueChanged += new System.EventHandler(this.UiContentHyperbolic_ParameterC_ValueChanged);
+            this.uiCntHyp_c_Num.ValueChanged += new System.EventHandler(this.OnParameterCAlteration);
             // 
             // uiCntHyp_c_Lb
             // 
@@ -767,7 +770,7 @@
             0,
             0,
             0});
-            this.uiCntHyp_b_Num.ValueChanged += new System.EventHandler(this.UiContentHyperbolic_ParameterB_ValueChanged);
+            this.uiCntHyp_b_Num.ValueChanged += new System.EventHandler(this.OnParameterBAlteration);
             // 
             // uiCntHyp_b_Lb
             // 
@@ -805,7 +808,7 @@
             0,
             0,
             0});
-            this.uiCntHyp_a_Num.ValueChanged += new System.EventHandler(this.UiContentHyperbolic_ParameterA_ValueChanged);
+            this.uiCntHyp_a_Num.ValueChanged += new System.EventHandler(this.OnParameterAAlteration);
             // 
             // uiCntHyp_a_Lb
             // 
@@ -1060,7 +1063,7 @@
             this.uiCntWaveT_Saw_RdBtn.TabIndex = 3;
             this.uiCntWaveT_Saw_RdBtn.Text = "Sawtooth";
             this.uiCntWaveT_Saw_RdBtn.UseVisualStyleBackColor = true;
-            this.uiCntWaveT_Saw_RdBtn.CheckedChanged += new System.EventHandler(this.UiContentWaveformType_Sawtooth_CheckedChanged);
+            this.uiCntWaveT_Saw_RdBtn.CheckedChanged += new System.EventHandler(this.OnSawtoothOptionChecked);
             // 
             // uiCntWaveT_Trg_RdBtn
             // 
@@ -1072,7 +1075,7 @@
             this.uiCntWaveT_Trg_RdBtn.TabIndex = 2;
             this.uiCntWaveT_Trg_RdBtn.Text = "Triangle";
             this.uiCntWaveT_Trg_RdBtn.UseVisualStyleBackColor = true;
-            this.uiCntWaveT_Trg_RdBtn.CheckedChanged += new System.EventHandler(this.UiContentWaveformType_Triangle_CheckedChanged);
+            this.uiCntWaveT_Trg_RdBtn.CheckedChanged += new System.EventHandler(this.OnTriangleOptionChecked);
             // 
             // uiCntWaveT_Sq_RdBtn
             // 
@@ -1084,7 +1087,7 @@
             this.uiCntWaveT_Sq_RdBtn.TabIndex = 1;
             this.uiCntWaveT_Sq_RdBtn.Text = "Square";
             this.uiCntWaveT_Sq_RdBtn.UseVisualStyleBackColor = true;
-            this.uiCntWaveT_Sq_RdBtn.CheckedChanged += new System.EventHandler(this.UiContentWaveformType_Square_CheckedChanged);
+            this.uiCntWaveT_Sq_RdBtn.CheckedChanged += new System.EventHandler(this.OnSquareOptionChecked);
             // 
             // uiCntWaveT_Sine_RdBtn
             // 
@@ -1098,7 +1101,7 @@
             this.uiCntWaveT_Sine_RdBtn.TabStop = true;
             this.uiCntWaveT_Sine_RdBtn.Text = "Sine";
             this.uiCntWaveT_Sine_RdBtn.UseVisualStyleBackColor = true;
-            this.uiCntWaveT_Sine_RdBtn.CheckedChanged += new System.EventHandler(this.UiContentWaveformType_Sine_CheckedChanged);
+            this.uiCntWaveT_Sine_RdBtn.CheckedChanged += new System.EventHandler(this.OnSineOptionChecked);
             // 
             // uiCfrm_Cancel_Btn
             // 
@@ -1112,7 +1115,7 @@
             this.uiCfrm_Cancel_Btn.TabIndex = 1;
             this.uiCfrm_Cancel_Btn.Text = "Cancel";
             this.uiCfrm_Cancel_Btn.UseVisualStyleBackColor = true;
-            this.uiCfrm_Cancel_Btn.Click += new System.EventHandler(this.UiConfirmationPanel_Cancel_Click);
+            this.uiCfrm_Cancel_Btn.Click += new System.EventHandler(this.OnCancelClick);
             // 
             // uiCfrm_Ok_Btn
             // 
@@ -1126,7 +1129,7 @@
             this.uiCfrm_Ok_Btn.TabIndex = 0;
             this.uiCfrm_Ok_Btn.Text = "OK";
             this.uiCfrm_Ok_Btn.UseVisualStyleBackColor = true;
-            this.uiCfrm_Ok_Btn.Click += new System.EventHandler(this.UiConfirmationPanel_Ok_Click);
+            this.uiCfrm_Ok_Btn.Click += new System.EventHandler(this.OnOkClick);
             // 
             // ui_tbLay
             // 
@@ -1193,7 +1196,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Pattern Curve Definer";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PatternCurveDefiner_FormClosing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
             this.uiTabs_TblLay.ResumeLayout(false);
             this.uiCnt_TbCtrl.ResumeLayout(false);
             this.uiCntPol_TbPg.ResumeLayout(false);

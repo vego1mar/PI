@@ -63,6 +63,7 @@
     <Compile Include="src\general\ArgumentsMakerTest.cs" />
     <Compile Include="src\general\ListsTest.cs" />
     <Compile Include="src\general\AveragesTest.cs" />
+    <Compile Include="src\general\MathematicsTest.cs" />
     <Compile Include="src\helpers\UiControlsTest.cs" />
     <Compile Include="src\helpers\ThreadsTest.cs" />
     <Compile Include="src\helpers\StringsTest.cs" />

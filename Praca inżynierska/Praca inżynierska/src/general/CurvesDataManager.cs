@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms.DataVisualization.Charting;
-using PI.src.general;
 using log4net;
 using System.Reflection;
 using PI.src.enumerators;
 using PI.src.parameters;
 using PI.src.averaging;
 
-namespace PI
+namespace PI.src.general
 {
     public class CurvesDataManager
     {
@@ -81,11 +80,11 @@ namespace PI
             }
         }
 
-        public void PropagateIdealCurve( int numberOfCurves )
+        public void PropagateIdealCurve( int curvesNo )
         {
             ModifiedCurves = new List<Series>();
 
-            for ( int i = 0; i < numberOfCurves; i++ ) {
+            for ( int i = 0; i < curvesNo; i++ ) {
                 Series series = new Series();
                 SeriesAssist.SetDefaultSettings( series );
                 SeriesAssist.CopyPoints( IdealCurve, series );
