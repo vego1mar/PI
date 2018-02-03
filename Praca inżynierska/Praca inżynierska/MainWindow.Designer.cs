@@ -406,7 +406,7 @@
             this.uiPnlGen_PattCrvScaff_TxtBx.TabIndex = 19;
             this.uiPnlGen_PattCrvScaff_TxtBx.Text = "Pattern curve scaffold";
             // 
-            // uiPnlGen_Crvs2No_Nm
+            // uiPnlGen_Crvs2No_Num
             // 
             this.uiPnlGen_Crvs2No_Num.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiPnlGen_Crvs2No_Num.Location = new System.Drawing.Point(130, 378);
@@ -420,7 +420,7 @@
             0,
             0,
             0});
-            this.uiPnlGen_Crvs2No_Num.Name = "uiPnlGen_Crvs2No_Nm";
+            this.uiPnlGen_Crvs2No_Num.Name = "uiPnlGen_Crvs2No_Num";
             this.uiPnlGen_Crvs2No_Num.Size = new System.Drawing.Size(121, 20);
             this.uiPnlGen_Crvs2No_Num.TabIndex = 18;
             this.uiPnlGen_Crvs2No_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -578,23 +578,6 @@
             this.uiPnlGen_MeanT_ComBx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiPnlGen_MeanT_ComBx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.uiPnlGen_MeanT_ComBx.FormattingEnabled = true;
-            this.uiPnlGen_MeanT_ComBx.Items.AddRange(new object[] {
-            "Mediana",
-            "Maximum",
-            "Minimum",
-            "Arithmetic",
-            "Geometric",
-            "AGM",
-            "Heronian",
-            "Harmonic",
-            "RMS",
-            "Power",
-            "Logarithmic",
-            "EMA",
-            "Ln-wages",
-            "Custom-Differential",
-            "Custom-Tolerance",
-            "Custom-Geometric"});
             this.uiPnlGen_MeanT_ComBx.Location = new System.Drawing.Point(130, 353);
             this.uiPnlGen_MeanT_ComBx.Name = "uiPnlGen_MeanT_ComBx";
             this.uiPnlGen_MeanT_ComBx.Size = new System.Drawing.Size(121, 21);
@@ -828,10 +811,6 @@
             this.uiPnlDtSh_CrvT_ComBx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiPnlDtSh_CrvT_ComBx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.uiPnlDtSh_CrvT_ComBx.FormattingEnabled = true;
-            this.uiPnlDtSh_CrvT_ComBx.Items.AddRange(new object[] {
-            "Generated",
-            "Pattern",
-            "Average"});
             this.uiPnlDtSh_CrvT_ComBx.Location = new System.Drawing.Point(141, 28);
             this.uiPnlDtSh_CrvT_ComBx.Name = "uiPnlDtSh_CrvT_ComBx";
             this.uiPnlDtSh_CrvT_ComBx.Size = new System.Drawing.Size(133, 21);
@@ -1179,7 +1158,7 @@
             // uiMenuMeans_Settings
             // 
             this.uiMenuMeans_Settings.Name = "uiMenuMeans_Settings";
-            this.uiMenuMeans_Settings.Size = new System.Drawing.Size(152, 22);
+            this.uiMenuMeans_Settings.Size = new System.Drawing.Size(122, 22);
             this.uiMenuMeans_Settings.Text = "Settings";
             this.uiMenuMeans_Settings.Click += new System.EventHandler(this.UiMenuMeans_Settings_Click);
             // 
@@ -1196,7 +1175,7 @@
             // uiMenuChart_Settings
             // 
             this.uiMenuChart_Settings.Name = "uiMenuChart_Settings";
-            this.uiMenuChart_Settings.Size = new System.Drawing.Size(152, 22);
+            this.uiMenuChart_Settings.Size = new System.Drawing.Size(122, 22);
             this.uiMenuChart_Settings.Text = "Settings";
             this.uiMenuChart_Settings.Click += new System.EventHandler(this.UiMenuChart_Settings_Click);
             // 
@@ -1230,7 +1209,6 @@
             this.Text = "Praca inżynierska";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
             this.Load += new System.EventHandler(this.UiMainWindow_Load);
-            this.Shown += new System.EventHandler(this.UiMainWindow_Shown);
             this.Resize += new System.EventHandler(this.UiMainWindow_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.uiCharts_Crv)).EndInit();
             this.ui_Pnl.ResumeLayout(false);

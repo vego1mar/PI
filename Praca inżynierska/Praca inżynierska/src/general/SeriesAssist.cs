@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using PI.src.enumerators;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -190,6 +192,30 @@ namespace PI.src.general
             return copy;
         }
 
+        public static Series GetCopy( Series source, int yValuesIndex = 0, bool isChartable = true )
+        {
+            Series series = new Series();
+
+            if ( isChartable ) {
+                SetDefaultSettings( series );
+            }
+
+            if ( source == null || yValuesIndex < 0 ) {
+                return series;
+            }
+
+            double x;
+            double y;
+
+            for ( int i = 0; i < source.Points.Count; i++ ) {
+                x = source.Points[i].XValue;
+                y = source.Points[i].YValues[yValuesIndex];
+                series.Points.AddXY( x, y );
+            }
+
+            return series;
+        }
+
         /// <summary>Get copy of Series.Points.YValues[yValuesIndex] organized to use like List[x][y].</summary>
         public static IList<IList<double>> GetOrderedCopy( IList<Series> source, int seriesNo, int yValuesIndex = 0 )
         {
@@ -206,6 +232,126 @@ namespace PI.src.general
             }
 
             return copy;
+        }
+
+        /// <exception cref="ArgumentOutOfRangeException">Indices are negative or improper.</exception>
+        /// <exception cref="ArgumentNullException">Series data are not provided.</exception>
+        /// <exception cref="NotFiniteNumberException">Performed operation turnes values into not finite or not chart acceptable values.</exception>
+        /// <exception cref="KeyNotFoundException">Requested operation has not been implemented.</exception>
+        public static void Alter( Operation @operator, double operand, Series series, int startIndex, int endIndex, int yValuesIndex = 0 )
+        {
+            if ( startIndex < 0 || endIndex < 0 || endIndex < startIndex || yValuesIndex < 0 ) {
+                string message = nameof( startIndex ) + ',' + nameof( endIndex ) + ',' + nameof( yValuesIndex );
+                throw new ArgumentOutOfRangeException( message );
+            }
+
+            if ( series == null ) {
+                throw new ArgumentNullException( nameof( series ) );
+            }
+
+            var operationSwitch = new Dictionary<Operation, Action>() {
+                { Operation.Addition, () => AlterOfAddition(series, operand, startIndex, endIndex, yValuesIndex) },
+                { Operation.Subtraction, () => AlterOfSubtraction(series, operand, startIndex, endIndex, yValuesIndex) },
+                { Operation.Multiplication, () => AlterOfMultiplication(series, operand, startIndex, endIndex, yValuesIndex) },
+                { Operation.Division, () => AlterOfDivision(series, operand, startIndex, endIndex, yValuesIndex) },
+                { Operation.Exponentiation, () => AlterOfExponentiation(series, operand, startIndex, endIndex, yValuesIndex) },
+                { Operation.Logarithmic, () => AlterOfLogarithmic(series, operand, startIndex, endIndex, yValuesIndex) },
+                { Operation.Rooting, () => AlterOfRooting(series, operand, startIndex, endIndex, yValuesIndex) },
+                { Operation.Constant, () => AlterOfConstant(series, operand, startIndex, endIndex, yValuesIndex) },
+                { Operation.Positive, () => AlterOfPositive(series, startIndex, endIndex, yValuesIndex) },
+                { Operation.Negative, () => AlterOfNegative(series, startIndex, endIndex, yValuesIndex) }
+            };
+
+            operationSwitch[@operator]();
+
+            if ( !IsChartAcceptable( series, yValuesIndex ) ) {
+                throw new NotFiniteNumberException();
+            }
+        }
+
+        private static void AlterOfAddition( Series series, double addend, int startIndex, int endIndex, int yValuesIndex = 0 )
+        {
+            for ( int i = startIndex; i <= endIndex; i++ ) {
+                series.Points[i].YValues[yValuesIndex] += addend;
+            }
+        }
+
+        private static void AlterOfSubtraction( Series series, double subtrahend, int startIndex, int endIndex, int yValuesIndex = 0 )
+        {
+            for ( int i = startIndex; i <= endIndex; i++ ) {
+                series.Points[i].YValues[yValuesIndex] -= subtrahend;
+            }
+        }
+
+        private static void AlterOfMultiplication( Series series, double multiplier, int startIndex, int endIndex, int yValuesIndex = 0 )
+        {
+            for ( int i = startIndex; i <= endIndex; i++ ) {
+                series.Points[i].YValues[yValuesIndex] *= multiplier;
+            }
+        }
+
+        private static void AlterOfDivision( Series series, double divisor, int startIndex, int endIndex, int yValuesIndex = 0 )
+        {
+            for ( int i = startIndex; i <= endIndex; i++ ) {
+                series.Points[i].YValues[yValuesIndex] /= divisor;
+            }
+        }
+
+        private static void AlterOfExponentiation( Series series, double exponent, int startIndex, int endIndex, int yValuesIndex = 0 )
+        {
+            double y;
+
+            for ( int i = startIndex; i <= endIndex; i++ ) {
+                y = series.Points[i].YValues[yValuesIndex];
+                series.Points[i].YValues[yValuesIndex] = Math.Pow( y, exponent );
+            }
+        }
+
+        private static void AlterOfLogarithmic( Series series, double basis, int startIndex, int endIndex, int yValuesIndex = 0 )
+        {
+            double y;
+
+            for ( int i = startIndex; i <= endIndex; i++ ) {
+                y = series.Points[i].YValues[yValuesIndex];
+                series.Points[i].YValues[yValuesIndex] = Math.Log( y, basis );
+            }
+        }
+
+        private static void AlterOfRooting( Series series, double level, int startIndex, int endIndex, int yValuesIndex = 0 )
+        {
+            double y;
+
+            for ( int i = startIndex; i <= endIndex; i++ ) {
+                y = series.Points[i].YValues[yValuesIndex];
+                series.Points[i].YValues[yValuesIndex] = Mathematics.Root( y, level );
+            }
+        }
+
+        private static void AlterOfConstant( Series series, double value, int startIndex, int endIndex, int yValuesIndex = 0 )
+        {
+            for ( int i = startIndex; i <= endIndex; i++ ) {
+                series.Points[i].YValues[yValuesIndex] = value;
+            }
+        }
+
+        private static void AlterOfPositive( Series series, int startIndex, int endIndex, int yValuesIndex = 0 )
+        {
+            double y;
+
+            for ( int i = startIndex; i <= endIndex; i++ ) {
+                y = series.Points[i].YValues[yValuesIndex];
+                series.Points[i].YValues[yValuesIndex] = Math.Abs( y );
+            }
+        }
+
+        private static void AlterOfNegative( Series series, int startIndex, int endIndex, int yValuesIndex = 0 )
+        {
+            double y;
+
+            for ( int i = startIndex; i <= endIndex; i++ ) {
+                y = series.Points[i].YValues[yValuesIndex];
+                series.Points[i].YValues[yValuesIndex] = -Math.Abs( y );
+            }
         }
     }
 }

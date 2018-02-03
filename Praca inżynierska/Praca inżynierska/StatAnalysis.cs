@@ -266,7 +266,6 @@ namespace PI
         private void DelegatorForGridPreviewer( Series controlsSpecifiedSeries )
         {
             using ( var dialog = new GridPreviewer( controlsSpecifiedSeries ) ) {
-                dialog.SetFastEditControls( false );
                 dialog.ShowDialog();
             }
         }

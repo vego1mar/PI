@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace PITests.src.tests
 {
@@ -42,6 +43,28 @@ namespace PITests.src.tests
 
             for ( int i = 0; i < list1.Count; i++ ) {
                 Assert.AreEqual( list1[i], list2[i], error );
+            }
+        }
+
+        public static void SameValues( IList<double> list, Series series, int yValuesIndex = 0, double error = IBM_FLOAT_SURROUNDING )
+        {
+            if ( series == null || list == null || series.Points.Count != list.Count ) {
+                Assert.Fail();
+            }
+
+            for ( int i = 0; i < series.Points.Count; i++ ) {
+                Assert.AreEqual( series.Points[i].YValues[yValuesIndex], list[i], error );
+            }
+        }
+
+        public static void SameValues( Series series1, Series series2, int yValuesIndex = 0, double error = IBM_FLOAT_SURROUNDING )
+        {
+            if ( series1 == null || series2 == null || yValuesIndex < 0 || series1.Points.Count != series2.Points.Count ) {
+                Assert.Fail();
+            }
+
+            for ( int i = 0; i < series1.Points.Count; i++ ) {
+                Assert.AreEqual( series1.Points[i].YValues[yValuesIndex], series2.Points[i].YValues[yValuesIndex], error );
             }
         }
     }

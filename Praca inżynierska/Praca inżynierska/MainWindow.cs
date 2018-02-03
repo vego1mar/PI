@@ -13,6 +13,7 @@ using PI.src.enumerators;
 using PI.src.localization.enums;
 using PI.src.localization.windows;
 using PI.src.localization.general;
+using System.Drawing;
 
 namespace PI
 {
@@ -43,12 +44,13 @@ namespace PI
         {
             UpdateUiByDotNetFrameworkVersion();
             UpdateUiByOsVersionName();
-            UpdateUiByDefaultSettings();
             DefineTimerThread();
             Threads.TryStart( Timer );
             UpdateUiByStatusOfTimerThread();
             LanguageAssist.CurrentLanguage = Languages.English;
             LanguageAssist.TryLocalizeCulture( Languages.English );
+            LocalizeWindow();
+            UpdateUiByDefaultSettings();
         }
 
         private void UiMenuProgram_Exit_Click( object sender, EventArgs e )
@@ -313,29 +315,36 @@ namespace PI
             return false;
         }
 
-        private bool UpdateUiByShowingCurveOnChart( DataSetCurveType curveType, int indexOfGeneratedCurve = 1 )
+        private bool UpdateUiByShowingCurveOnChart( DataSetCurveType curveType, int indexOfModifiedCurve = 1 )
         {
             try {
-                uiCharts_Crv.Series.Clear();
+                Series selectedSeries = null;
 
                 switch ( curveType ) {
                 case DataSetCurveType.Ideal:
-                    uiCharts_Crv.Series.Add( DataChart.IdealCurve );
-                    SetPatternCurveSeriesSettings( uiCharts_Crv );
+                    uiCharts_Crv.Series[0].Color = Settings.Series.Ideal.Color;
+                    uiCharts_Crv.Series[0].BorderWidth = Settings.Series.Ideal.BorderWidth;
+                    uiCharts_Crv.Series[0].BorderDashStyle = Settings.Series.Ideal.BorderDashStyle;
+                    uiCharts_Crv.Series[0].ChartType = Settings.Series.Ideal.ChartType;
+                    selectedSeries = DataChart.IdealCurve;
                     break;
                 case DataSetCurveType.Modified:
-                    uiCharts_Crv.Series.Add( DataChart.ModifiedCurves[indexOfGeneratedCurve - 1] );
-                    SetGeneratedCurveSeriesSettings( uiCharts_Crv );
+                    uiCharts_Crv.Series[0].Color = Settings.Series.Modified.Color;
+                    uiCharts_Crv.Series[0].BorderWidth = Settings.Series.Modified.BorderWidth;
+                    uiCharts_Crv.Series[0].BorderDashStyle = Settings.Series.Modified.BorderDashStyle;
+                    uiCharts_Crv.Series[0].ChartType = Settings.Series.Modified.ChartType;
+                    selectedSeries = DataChart.ModifiedCurves[indexOfModifiedCurve - 1];
                     break;
                 case DataSetCurveType.Average:
-                    uiCharts_Crv.Series.Add( DataChart.AverageCurve );
-                    SetAverageCurveSeriesSettings( uiCharts_Crv );
+                    uiCharts_Crv.Series[0].Color = Settings.Series.Average.Color;
+                    uiCharts_Crv.Series[0].BorderWidth = Settings.Series.Average.BorderWidth;
+                    uiCharts_Crv.Series[0].BorderDashStyle = Settings.Series.Average.BorderDashStyle;
+                    uiCharts_Crv.Series[0].ChartType = Settings.Series.Average.ChartType;
+                    selectedSeries = DataChart.AverageCurve;
                     break;
                 }
 
-                uiCharts_Crv.ChartAreas[0].RecalculateAxesScale();
-                uiCharts_Crv.Visible = true;
-                uiCharts_Crv.Invalidate();
+                ChartAssist.Refresh( selectedSeries, uiCharts_Crv.Series[0].Color, uiCharts_Crv );
             }
             catch ( InvalidOperationException ex ) {
                 log.Error( ex.Message, ex );
@@ -353,30 +362,6 @@ namespace PI
             }
 
             return true;
-        }
-
-        private void SetPatternCurveSeriesSettings( Chart chart, int seriesNo = 0 )
-        {
-            chart.Series[seriesNo].Color = Settings.Series.Ideal.Color;
-            chart.Series[seriesNo].BorderWidth = Settings.Series.Ideal.BorderWidth;
-            chart.Series[seriesNo].BorderDashStyle = Settings.Series.Ideal.BorderDashStyle;
-            chart.Series[seriesNo].ChartType = Settings.Series.Ideal.ChartType;
-        }
-
-        private void SetGeneratedCurveSeriesSettings( Chart chart, int seriesNo = 0 )
-        {
-            chart.Series[seriesNo].Color = Settings.Series.Modified.Color;
-            chart.Series[seriesNo].BorderWidth = Settings.Series.Modified.BorderWidth;
-            chart.Series[seriesNo].BorderDashStyle = Settings.Series.Modified.BorderDashStyle;
-            chart.Series[seriesNo].ChartType = Settings.Series.Modified.ChartType;
-        }
-
-        private void SetAverageCurveSeriesSettings( Chart chart, int seriesNo = 0 )
-        {
-            chart.Series[seriesNo].Color = Settings.Series.Average.Color;
-            chart.Series[seriesNo].BorderWidth = Settings.Series.Average.BorderWidth;
-            chart.Series[seriesNo].BorderDashStyle = Settings.Series.Average.BorderDashStyle;
-            chart.Series[seriesNo].ChartType = Settings.Series.Average.ChartType;
         }
 
         private void UpdateUiBySettingRangesForCurvesNumber()
@@ -437,12 +422,12 @@ namespace PI
 
             Series selectedCurveSeries = SpecifyCurveSeries( selectedCurveType, selectedCurveIndex );
 
-            if ( selectedCurveSeries == null || DataChart.IdealCurve.Points.Count == 0 ) {
+            if ( selectedCurveSeries == null || selectedCurveSeries.Points.Count == 0 ) {
                 AppMessages.MainWindow.ExclamationOfSeriesSelection();
                 return;
             }
 
-            using ( var gprvDialog = new GridPreviewer( selectedCurveSeries ) ) {
+            using ( var gprvDialog = new GridPreviewer( SeriesAssist.GetCopy( selectedCurveSeries ) ) ) {
                 UiControls.TryShowDialog( gprvDialog, this );
                 string signature = string.Empty;
 
@@ -450,14 +435,8 @@ namespace PI
                     signature = @base.DeclaringType.Name + "." + @base.Name + "(" + sender + ", " + e + ")";
 
                     if ( gprvDialog.DialogResult == DialogResult.OK ) {
-                        DataChart.AlterCurve( gprvDialog.ChartDataSet, (DataSetCurveType) selectedCurveType, selectedCurveIndex );
-                        uiCharts_Crv.Series.Clear();
-                        uiCharts_Crv.Series.Add( gprvDialog.ChartDataSet );
-                        uiCharts_Crv.Series[0].BorderWidth = 3;
-                        uiCharts_Crv.Series[0].Color = System.Drawing.Color.Indigo;
-                        uiCharts_Crv.ChartAreas[0].RecalculateAxesScale();
-                        uiCharts_Crv.Visible = true;
-                        uiCharts_Crv.Invalidate();
+                        DataChart.AlterCurve( gprvDialog.Curve, (DataSetCurveType) selectedCurveType, selectedCurveIndex );
+                        ChartAssist.Refresh( gprvDialog.Curve, Color.Indigo, uiCharts_Crv );
                     }
                 }
                 catch ( InvalidOperationException ex ) {
@@ -548,7 +527,7 @@ namespace PI
         private void UpdateUiByDefaultSettings()
         {
             ChartAssist.SetDefaultSettings( uiCharts_Crv );
-            UiControls.TrySetSelectedIndex( uiPnlGen_MeanT_ComBx, (int) MeanType.Geometric );
+            UiControls.TrySetSelectedIndex( uiPnlGen_MeanT_ComBx, (int) MeanType.NN );
             UpdateUiByChosenScaffoldStatus();
         }
 
@@ -793,11 +772,6 @@ namespace PI
             uiPnlPrg_OsVer1_TxtBx.Text = names.Ui.Panel.ProgramOsVersion1.GetString();
             uiPnlPrg_Log_TxtBx.Text = names.Ui.Panel.ProgramLogging.GetString();
             uiPnlPrg_LogPath1_TxtBx.Text = names.Ui.Panel.ProgramLogPath1.GetString();
-        }
-
-        private void UiMainWindow_Shown( object sender, EventArgs e )
-        {
-            LocalizeWindow();
         }
 
         private void SetWindowDefaultDimensions()

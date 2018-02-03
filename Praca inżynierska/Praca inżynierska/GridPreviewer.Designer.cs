@@ -246,7 +246,7 @@
             this.uiPnl_Refresh_Btn.TabIndex = 15;
             this.uiPnl_Refresh_Btn.Text = "Refresh";
             this.uiPnl_Refresh_Btn.UseVisualStyleBackColor = false;
-            this.uiPnl_Refresh_Btn.Click += new System.EventHandler(this.UiPanel_Refresh_Click);
+            this.uiPnl_Refresh_Btn.Click += new System.EventHandler(this.OnRefreshClick);
             // 
             // uiPnl_Save_Btn
             // 
@@ -258,7 +258,7 @@
             this.uiPnl_Save_Btn.TabIndex = 16;
             this.uiPnl_Save_Btn.Text = "Save";
             this.uiPnl_Save_Btn.UseVisualStyleBackColor = false;
-            this.uiPnl_Save_Btn.Click += new System.EventHandler(this.UiPanel_Save_Click);
+            this.uiPnl_Save_Btn.Click += new System.EventHandler(this.OnSaveClick);
             // 
             // uiPnl_Reset_Btn
             // 
@@ -269,7 +269,7 @@
             this.uiPnl_Reset_Btn.TabIndex = 13;
             this.uiPnl_Reset_Btn.Text = "Reset";
             this.uiPnl_Reset_Btn.UseVisualStyleBackColor = true;
-            this.uiPnl_Reset_Btn.Click += new System.EventHandler(this.UiPanel_Reset_Click);
+            this.uiPnl_Reset_Btn.Click += new System.EventHandler(this.OnResetClick);
             // 
             // uiPnl_EndIdx_Num
             // 
@@ -285,7 +285,7 @@
             this.uiPnl_EndIdx_Num.TabIndex = 10;
             this.uiPnl_EndIdx_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.uiPnl_EndIdx_Num.ThousandsSeparator = true;
-            this.uiPnl_EndIdx_Num.ValueChanged += new System.EventHandler(this.UiPanel_EndIndex_ValueChanged);
+            this.uiPnl_EndIdx_Num.ValueChanged += new System.EventHandler(this.OnEndIndexAlteration);
             // 
             // uiPnl_Val1_TxtBx
             // 
@@ -340,7 +340,7 @@
             this.uiPnl_OperT_ComBx.Name = "uiPnl_OperT_ComBx";
             this.uiPnl_OperT_ComBx.Size = new System.Drawing.Size(106, 21);
             this.uiPnl_OperT_ComBx.TabIndex = 6;
-            this.uiPnl_OperT_ComBx.SelectedIndexChanged += new System.EventHandler(this.UiPanel_OperationType_SelectedIndexChanged);
+            this.uiPnl_OperT_ComBx.SelectedIndexChanged += new System.EventHandler(this.OnOperationTypeSelection);
             // 
             // uiPnl_OperT_TxtBx
             // 
@@ -402,7 +402,7 @@
             this.uiPnl_AutoSize_ComBx.Name = "uiPnl_AutoSize_ComBx";
             this.uiPnl_AutoSize_ComBx.Size = new System.Drawing.Size(106, 21);
             this.uiPnl_AutoSize_ComBx.TabIndex = 3;
-            this.uiPnl_AutoSize_ComBx.SelectedIndexChanged += new System.EventHandler(this.UiPanel_AutoSizeColumnsMode_SelectedIndexChanged);
+            this.uiPnl_AutoSize_ComBx.SelectedIndexChanged += new System.EventHandler(this.OnAutoSizeColumnsModeSelection);
             // 
             // uiPnl_StartIdx_Num
             // 
@@ -418,7 +418,7 @@
             this.uiPnl_StartIdx_Num.TabIndex = 8;
             this.uiPnl_StartIdx_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.uiPnl_StartIdx_Num.ThousandsSeparator = true;
-            this.uiPnl_StartIdx_Num.ValueChanged += new System.EventHandler(this.UiPanel_StartIndex_ValueChanged);
+            this.uiPnl_StartIdx_Num.ValueChanged += new System.EventHandler(this.OnStartIndexAlteration);
             // 
             // uiPnl_Perform_Btn
             // 
@@ -431,7 +431,7 @@
             this.uiPnl_Perform_Btn.TabIndex = 14;
             this.uiPnl_Perform_Btn.Text = "Perform";
             this.uiPnl_Perform_Btn.UseVisualStyleBackColor = false;
-            this.uiPnl_Perform_Btn.Click += new System.EventHandler(this.UiPanel_Perform_Click);
+            this.uiPnl_Perform_Btn.Click += new System.EventHandler(this.OnPerformClick);
             // 
             // uiPnl_Val2_TxtBx
             // 
@@ -497,8 +497,8 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Grid Previewer";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GridPreviewer_FormClosing);
-            this.Load += new System.EventHandler(this.UiGridPreviewer_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
+            this.Load += new System.EventHandler(this.OnLoad);
             this.ui_TbLay.ResumeLayout(false);
             this.uiGrid_TbLay.ResumeLayout(false);
             this.uiGrid_TbLay.PerformLayout();
