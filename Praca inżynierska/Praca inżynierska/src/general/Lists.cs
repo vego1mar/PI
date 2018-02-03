@@ -84,6 +84,19 @@ namespace PI.src.general
             return source.OrderBy( v => v ).ToList();
         }
 
+        public static IList<ulong> GetOrdinalValues( ulong startValue, ulong valuesNo )
+        {
+            IList<ulong> list = new List<ulong>() { startValue };
+            ulong currentValue = startValue;
+
+            for ( ulong i = 1; i < valuesNo; i++ ) {
+                currentValue++;
+                list.Add( currentValue );
+            }
+
+            return list;
+        }
+
         public static IList<IList<double>> GetSortedIntoHistogram( IList<double> source, int intervalDivisionsNo )
         {
             if ( source == null || intervalDivisionsNo <= 0 ) {
@@ -133,6 +146,21 @@ namespace PI.src.general
                 target.Add( new List<T>() );
                 Concat( target[target.Count - 1], list );
             }
+        }
+
+        public static IList<E> Cast<T, E>( IList<T> source )
+        {
+            if ( source == null ) {
+                return new List<E>().AsReadOnly();
+            }
+
+            IList<E> list = new List<E>();
+
+            foreach ( T value in source ) {
+                list.Add( (E) Convert.ChangeType( value, typeof( E ) ) );
+            }
+
+            return list;
         }
 
         public static double Sum( IList<double> source )

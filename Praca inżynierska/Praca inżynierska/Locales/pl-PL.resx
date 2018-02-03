@@ -816,4 +816,7 @@
   <data name="Enums_Boolean_True" xml:space="preserve">
     <value>Prawda</value>
   </data>
+  <data name="GridPreviewer_Ui_Dataset_Index" xml:space="preserve">
+    <value>Indeks</value>
+  </data>
 </root>

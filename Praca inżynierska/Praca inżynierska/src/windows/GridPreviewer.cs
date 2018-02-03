@@ -12,13 +12,28 @@ using PI.src.localization.enums;
 using PI.src.localization.windows;
 using System.Drawing;
 
-namespace PI
+namespace PI.src.windows
 {
     public partial class GridPreviewer : Form
     {
         public Series Curve { get; private set; }
         private IList<double> Originals { get; set; }
         private static readonly ILog log = LogManager.GetLogger( MethodBase.GetCurrentMethod().DeclaringType );
+        private const int VALUES_DECIMAL_PLACES = 8;
+
+        private enum PanelStateInformation
+        {
+            GridPreviewerLoaded,
+            ChartNotRepainted,
+            ChartRefreshingError,
+            ChartRefreshed,
+            InvalidUserValue,
+            OperationRevoked,
+            OperationRejected,
+            PerformedAndRefreshed,
+            ValuesRestored,
+            ChangesSaved
+        }
 
         public GridPreviewer( Series series )
         {
@@ -40,35 +55,26 @@ namespace PI
             uiPnl_EndIdx_Num.Minimum = 0;
             uiPnl_EndIdx_Num.Maximum = Curve.Points.Count - 1;
             uiPnl_EndIdx_Num.Value = Curve.Points.Count - 1;
+            GridAssist.SetDefaultSettings( uiGrid_db_grid );
             UpdateUiByPopulatingGrid();
             UpdateUiByRefreshingChart();
-            UpdateUiByPanelStateInfo( new GridPreviewerStrings().Ui.PanelInfoGridPreviewerLoaded.GetString() );
+            UpdateUiByPanelStateInfo( PanelStateInformation.GridPreviewerLoaded );
         }
 
         private void UpdateUiByPopulatingGrid()
         {
-            for ( int i = 0; i < Curve.Points.Count; i++ ) {
-                uiGrid_db_grid.Rows.Add();
-                uiGrid_db_grid.Rows[i].Cells["Index"].ValueType = typeof( ulong );
-                uiGrid_db_grid.Rows[i].Cells["x"].ValueType = typeof( double );
-                uiGrid_db_grid.Rows[i].Cells["y"].ValueType = typeof( double );
-                uiGrid_db_grid.Rows[i].Cells["Index"].Value = i;
-                uiGrid_db_grid.Rows[i].Cells["x"].Value = Curve.Points[i].XValue;
-                uiGrid_db_grid.Rows[i].Cells["y"].Value = Curve.Points[i].YValues[0];
-            }
+            GridAssist.AlterColumnHeader( Index, new GridPreviewerStrings().Ui.DatasetIndex.GetString() );
+            GridAssist.AlterColumnHeader( x, "x" );
+            GridAssist.AlterColumnHeader( y, "y", false );
+            GridAssist.AddRows( uiGrid_db_grid, Curve.Points.Count );
+            GridAssist.PopulateColumn( uiGrid_db_grid, Index.Name, Lists.GetOrdinalValues( 0, Convert.ToUInt64( Curve.Points.Count ) ) );
+            GridAssist.PopulateColumn( uiGrid_db_grid, x.Name, SeriesAssist.GetArguments( Curve ), 4 );
+            GridAssist.PopulateColumn( uiGrid_db_grid, y.Name, SeriesAssist.GetValues( Curve ), VALUES_DECIMAL_PLACES );
         }
 
-        private void UpdateUiByAlteringGrid()
-        {
-            for ( int i = 0; i < Curve.Points.Count; i++ ) {
-                uiGrid_db_grid.Rows[i].Cells["y"].Value = Curve.Points[i].YValues[0];
-            }
-        }
-
-        private void UpdateUiBySwitchingOperationType()
+        private void UpdateUiBySwitchingOperationType( Operation operation )
         {
             GridPreviewerStrings names = new GridPreviewerStrings();
-            Operation operation = (Operation) uiPnl_OperT_ComBx.SelectedIndex;
             uiPnl_Val2_TxtBx.Enabled = true;
 
             switch ( operation ) {
@@ -104,70 +110,62 @@ namespace PI
             }
         }
 
-        private double? GetUserValue()
+        private void UpdateUiByPanelStateInfo( PanelStateInformation information )
         {
-            switch ( (Operation) uiPnl_OperT_ComBx.SelectedIndex ) {
-            case Operation.Positive:
-            case Operation.Negative:
-                return 0.0;
-            }
+            GridPreviewerStrings names = new GridPreviewerStrings();
+            string commonString = '(' + Strings.GetTimeHeader() + ") ";
 
-            double? userValue = null;
-            string signature = string.Empty;
-
-            try {
-                MethodBase @base = MethodBase.GetCurrentMethod();
-                signature = @base.DeclaringType.Name + "." + @base.Name + "()";
-                userValue = Convert.ToDouble( uiPnl_Val2_TxtBx.Text );
+            switch ( information ) {
+            case PanelStateInformation.ChangesSaved:
+                uiPnl_Info_TxtBx.Text = commonString + names.Ui.PanelInfoChangesSaved.GetString();
+                break;
+            case PanelStateInformation.ChartNotRepainted:
+                uiPnl_Info_TxtBx.Text = commonString + names.Ui.PreviewInfoChartNotRepainted.GetString();
+                break;
+            case PanelStateInformation.ChartRefreshed:
+                uiPnl_Info_TxtBx.Text = commonString + names.Ui.PreviewInfoChartRefreshed.GetString();
+                break;
+            case PanelStateInformation.ChartRefreshingError:
+                uiPnl_Info_TxtBx.Text = commonString + names.Ui.PreviewInfoChartRefreshError.GetString();
+                break;
+            case PanelStateInformation.GridPreviewerLoaded:
+                uiPnl_Info_TxtBx.Text = commonString + names.Ui.PanelInfoGridPreviewerLoaded.GetString();
+                break;
+            case PanelStateInformation.InvalidUserValue:
+                uiPnl_Info_TxtBx.Text = commonString + names.Ui.PanelInfoInvalidUserValue.GetString();
+                break;
+            case PanelStateInformation.OperationRejected:
+                uiPnl_Info_TxtBx.Text = commonString + names.Ui.PanelInfoOperationRejected.GetString();
+                break;
+            case PanelStateInformation.OperationRevoked:
+                uiPnl_Info_TxtBx.Text = commonString + names.Ui.PanelInfoOperationRevoked.GetString();
+                break;
+            case PanelStateInformation.PerformedAndRefreshed:
+                uiPnl_Info_TxtBx.Text = commonString + names.Ui.PanelInfoPerformedAndRefreshed.GetString();
+                break;
+            case PanelStateInformation.ValuesRestored:
+                uiPnl_Info_TxtBx.Text = commonString + names.Ui.PanelInfoValuesRestored.GetString();
+                break;
             }
-            catch ( OverflowException ex ) {
-                log.Error( signature, ex );
-                return null;
-            }
-            catch ( FormatException ex ) {
-                log.Error( signature, ex );
-                return null;
-            }
-            catch ( Exception ex ) {
-                log.Fatal( signature, ex );
-                return null;
-            }
-
-            return userValue;
-        }
-
-        private string GetStateInfoTimeHeader()
-        {
-            string date = DateTime.Now.ToString( System.Globalization.CultureInfo.InvariantCulture );
-            string time = date.Substring( date.IndexOf( ' ' ) + 1 );
-            return "(" + time + ") ";
-        }
-
-        private void UpdateUiByPanelStateInfo( string info )
-        {
-            uiPnl_Info_TxtBx.Text = GetStateInfoTimeHeader() + info;
         }
 
         private void UpdateUiByRefreshingChart()
         {
-            GridPreviewerStrings names = new GridPreviewerStrings();
-            string signature = string.Empty;
-
             try {
-                signature = MethodBase.GetCurrentMethod().Name + "()";
                 ChartAssist.Refresh( Curve, Color.Black, uiChart_Prv );
             }
             catch ( InvalidOperationException ex ) {
-                log.Error( signature, ex );
-                UpdateUiByPanelStateInfo( names.Ui.PreviewInfoChartNotRepainted.GetString() );
+                log.Error( MethodBase.GetCurrentMethod().Name + '(' + PanelStateInformation.ChartNotRepainted + ')', ex );
+                UpdateUiByPanelStateInfo( PanelStateInformation.ChartNotRepainted );
                 AppMessages.GridPreviewer.ErrorOfChartRefreshing();
             }
             catch ( Exception ex ) {
-                log.Error( signature, ex );
-                UpdateUiByPanelStateInfo( names.Ui.PreviewInfoChartRefreshError.GetString() );
+                log.Error( MethodBase.GetCurrentMethod().Name + '(' + PanelStateInformation.ChartRefreshingError + ')', ex );
+                UpdateUiByPanelStateInfo( PanelStateInformation.ChartRefreshingError );
             }
 
-            UpdateUiByPanelStateInfo( names.Ui.PreviewInfoChartRefreshed.GetString() );
+            UpdateUiByPanelStateInfo( PanelStateInformation.ChartRefreshed );
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + PanelStateInformation.ChartRefreshed + ')' );
         }
 
         private void LocalizeWindow()
@@ -184,7 +182,7 @@ namespace PI
             EnumsLocalizer.Localize( LocalizableEnumerator.Operation, uiPnl_OperT_ComBx );
             uiPnl_StartIdx_TxtBx.Text = names.Ui.PanelStartIndex.GetString();
             uiPnl_EndIdx_TxtBx.Text = names.Ui.PanelEndIndex.GetString();
-            UpdateUiBySwitchingOperationType();
+            UpdateUiBySwitchingOperationType( (Operation) UiControls.TryGetSelectedIndex( uiPnl_OperT_ComBx ) );
             uiPnl_Reset_Btn.Text = names.Ui.PanelReset.GetString();
             uiPnl_Perform_Btn.Text = names.Ui.PanelPerform.GetString();
             uiPnl_Refresh_Btn.Text = names.Ui.PanelRefresh.GetString();
@@ -204,6 +202,7 @@ namespace PI
         {
             uiPnl_Ok_Btn.Select();
             uiPnl_Ok_Btn.Focus();
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + (sender as Form).Name + ')' );
         }
 
         private void OnFormClosing( object sender, FormClosingEventArgs e )
@@ -211,41 +210,21 @@ namespace PI
             // Do not nullify Curve property
             Originals = null;
             Dispose();
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + (sender as Form).Name + ',' + e.CloseReason + ')' );
         }
 
-        // TODO: GridAssist
         private void OnAutoSizeColumnsModeSelection( object sender, EventArgs e )
         {
-            AutoSizeColumnsMode mode = (AutoSizeColumnsMode) uiPnl_AutoSize_ComBx.SelectedIndex;
-
-            switch ( mode ) {
-            case AutoSizeColumnsMode.AllCells:
-                uiGrid_db_grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-                break;
-            case AutoSizeColumnsMode.AllCellsExceptHeader:
-                uiGrid_db_grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
-                break;
-            case AutoSizeColumnsMode.ColumnHeader:
-                uiGrid_db_grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
-                break;
-            case AutoSizeColumnsMode.DisplayedCells:
-                uiGrid_db_grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-                break;
-            case AutoSizeColumnsMode.DisplayedCellsExceptHeader:
-                uiGrid_db_grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCellsExceptHeader;
-                break;
-            case AutoSizeColumnsMode.Fill:
-                uiGrid_db_grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                break;
-            case AutoSizeColumnsMode.None:
-                uiGrid_db_grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
-                break;
-            }
+            AutoSizeColumnsMode mode = (AutoSizeColumnsMode) UiControls.TryGetSelectedIndex( uiPnl_AutoSize_ComBx );
+            GridAssist.SetAutoSizeColumnsMode( uiGrid_db_grid, mode );
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + mode + ')' );
         }
 
         private void OnOperationTypeSelection( object sender, EventArgs e )
         {
-            UpdateUiBySwitchingOperationType();
+            Operation operation = (Operation) UiControls.TryGetSelectedIndex( uiPnl_OperT_ComBx );
+            UpdateUiBySwitchingOperationType( operation );
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + operation + ')' );
         }
 
         private void OnStartIndexAlteration( object sender, EventArgs e )
@@ -254,6 +233,8 @@ namespace PI
                 uiPnl_StartIdx_Num.Value -= 1;
                 AppMessages.GridPreviewer.ExclamationOfIndexGreaterThanAllowed();
             }
+
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + (sender as NumericUpDown).Value + ')' );
         }
 
         private void OnEndIndexAlteration( object sender, EventArgs e )
@@ -262,15 +243,18 @@ namespace PI
                 uiPnl_EndIdx_Num.Value += 1;
                 AppMessages.GridPreviewer.ExclamationOfIndexLowerThanAllowed();
             }
+
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + (sender as NumericUpDown).Value + ')' );
         }
 
         private void OnPerformClick( object sender, EventArgs e )
         {
-            GridPreviewerStrings names = new GridPreviewerStrings();
-            double? userValue = GetUserValue();
+            Operation @operator = (Operation) UiControls.TryGetSelectedIndex( uiPnl_OperT_ComBx );
+            double? userValue = (@operator == Operation.Positive || @operator == Operation.Negative) ? default( double ) : Strings.TryGetValue( uiPnl_Val2_TxtBx.Text );
 
             if ( userValue == null || Curve == null ) {
-                UpdateUiByPanelStateInfo( names.Ui.PanelInfoInvalidUserValue.GetString() );
+                log.Info( MethodBase.GetCurrentMethod().Name + '(' + userValue + ',' + Curve + ')' );
+                UpdateUiByPanelStateInfo( PanelStateInformation.InvalidUserValue );
                 AppMessages.GridPreviewer.ExclamationOfImproperUserValue();
                 return;
             }
@@ -282,27 +266,28 @@ namespace PI
             string signature = string.Empty;
 
             try {
-                signature = MethodBase.GetCurrentMethod().Name + "(" + ( sender as Button ).Name + ", " + e + ")";
+                signature = MethodBase.GetCurrentMethod().Name + '(' + startIndex + ',' + endIndex + ',' + operation + ',' + userValue.Value + ')';
                 SeriesAssist.Alter( operation, userValue.Value, seriesCopy, startIndex, endIndex );
             }
             catch ( NotFiniteNumberException ex ) {
                 log.Error( signature, ex );
-                UpdateUiByPanelStateInfo( names.Ui.PanelInfoOperationRevoked.GetString() );
+                UpdateUiByPanelStateInfo( PanelStateInformation.OperationRevoked );
                 AppMessages.GridPreviewer.ErrorOfInvalidCurvePoints();
                 return;
             }
             catch ( Exception ex ) {
                 log.Fatal( signature, ex );
-                UpdateUiByPanelStateInfo( names.Ui.PanelInfoOperationRejected.GetString() );
+                UpdateUiByPanelStateInfo( PanelStateInformation.OperationRejected );
                 AppMessages.GridPreviewer.ErrorOfPerformOperation();
                 return;
             }
 
             Curve.Points.Clear();
             SeriesAssist.CopyPoints( seriesCopy, Curve );
-            UpdateUiByAlteringGrid();
+            GridAssist.PopulateColumn( uiGrid_db_grid, y.Name, SeriesAssist.GetValues( Curve ), VALUES_DECIMAL_PLACES );
             UpdateUiByRefreshingChart();
-            UpdateUiByPanelStateInfo( names.Ui.PanelInfoPerformedAndRefreshed.GetString() );
+            UpdateUiByPanelStateInfo( PanelStateInformation.PerformedAndRefreshed );
+            log.Info( signature );
         }
 
         private void OnResetClick( object sender, EventArgs e )
@@ -310,36 +295,32 @@ namespace PI
             Series copy = SeriesAssist.GetCopy( Curve );
             Curve.Points.Clear();
             SeriesAssist.CopyPoints( Curve, copy, Originals );
-            UpdateUiByAlteringGrid();
+            GridAssist.PopulateColumn( uiGrid_db_grid, y.Name, SeriesAssist.GetValues( Curve ), VALUES_DECIMAL_PLACES );
             UpdateUiByRefreshingChart();
-            UpdateUiByPanelStateInfo( new GridPreviewerStrings().Ui.PanelInfoValuesRestored.GetString() );
+            UpdateUiByPanelStateInfo( PanelStateInformation.ValuesRestored );
+            log.Info( MethodBase.GetCurrentMethod().Name + "()" );
         }
 
         private void OnRefreshClick( object sender, EventArgs e )
         {
             UpdateUiByRefreshingChart();
+            log.Info( MethodBase.GetCurrentMethod().Name + "()" );
         }
 
         private void OnSaveClick( object sender, EventArgs e )
         {
-            Series series = new Series();
-            GridPreviewerStrings names = new GridPreviewerStrings();
+            IList<double> values = Lists.Cast<object, double>( GridAssist.GetColumnValues( uiGrid_db_grid, y.HeaderText ) );
 
-            for ( int i = 0; i < uiGrid_db_grid.Rows.Count; i++ ) {
-                series.Points.AddY( (double) uiGrid_db_grid.Rows[i].Cells["y"].Value );
-            }
-
-            if ( !SeriesAssist.IsChartAcceptable( series ) ) {
-                UpdateUiByPanelStateInfo( names.Ui.PanelInfoOperationRevoked.GetString() );
+            if ( !SeriesAssist.IsChartAcceptable( values ) ) {
+                log.Info( MethodBase.GetCurrentMethod().Name + '(' + PanelStateInformation.OperationRevoked + ')' );
+                UpdateUiByPanelStateInfo( PanelStateInformation.OperationRevoked );
                 AppMessages.GridPreviewer.ErrorOfInvalidCurvePoints();
                 return;
             }
 
-            for ( int i = 0; i < Curve.Points.Count; i++ ) {
-                Curve.Points[i].YValues[0] = (double) uiGrid_db_grid.Rows[i].Cells["y"].Value;
-            }
-
-            UpdateUiByPanelStateInfo( names.Ui.PanelInfoChangesSaved.GetString() );
+            SeriesAssist.OverrideValues( Curve, values );
+            UpdateUiByPanelStateInfo( PanelStateInformation.ChangesSaved );
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + PanelStateInformation.ChangesSaved + ')' );
         }
 
         #endregion

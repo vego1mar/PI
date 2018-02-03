@@ -76,6 +76,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\general\GridAssist.cs" />
     <Compile Include="src\windows\ChartSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,10 +143,10 @@
     <Compile Include="src\settings\MainChartSettings.cs" />
     <Compile Include="src\general\CurvesDataManager.cs" />
     <Compile Include="src\general\ArgumentsMaker.cs" />
-    <Compile Include="GridPreviewer.cs">
+    <Compile Include="src\windows\GridPreviewer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GridPreviewer.Designer.cs">
+    <Compile Include="src\windows\GridPreviewer.Designer.cs">
       <DependentUpon>GridPreviewer.cs</DependentUpon>
     </Compile>
     <Compile Include="src\messages\GeneralMessages.cs" />
@@ -212,7 +213,7 @@
     <EmbeddedResource Include="src\windows\ChartSettings.resx">
       <DependentUpon>ChartSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GridPreviewer.resx">
+    <EmbeddedResource Include="src\windows\GridPreviewer.resx">
       <DependentUpon>GridPreviewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Locales\en-US.resx">

@@ -5,11 +5,15 @@ using PI.src.localization.enums;
 using System;
 using System.Windows.Forms;
 using PI.src.localization.windows;
+using log4net;
+using System.Reflection;
 
 namespace PI.src.windows
 {
     public partial class LanguageSelector : Form
     {
+        private static readonly ILog log = LogManager.GetLogger( MethodBase.GetCurrentMethod().DeclaringType );
+
         public LanguageSelector()
         {
             InitializeComponent();
@@ -41,11 +45,13 @@ namespace PI.src.windows
         private void OnLoad( object sender, EventArgs e )
         {
             uiUp_LstBx.Select();
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + (sender as Form).Name + ')' );
         }
 
         private void OnFormClosing( object sender, FormClosingEventArgs e )
         {
             Dispose();
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + (sender as Form).Name + ',' + e.CloseReason + ')' );
         }
 
         #endregion

@@ -1,4 +1,4 @@
-﻿namespace PI
+﻿namespace PI.src.windows
 {
     partial class GridPreviewer
     {

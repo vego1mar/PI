@@ -62,5 +62,36 @@ namespace PI.src.helpers
 
             return builder.ToString();
         }
+
+        public static double? TryGetValue( string number )
+        {
+            double? value = null;
+            string signature = string.Empty;
+
+            try {
+                signature = MethodBase.GetCurrentMethod().Name + '(' + number + ')';
+                value = Convert.ToDouble( number );
+            }
+            catch ( OverflowException ex ) {
+                log.Error( signature, ex );
+                return null;
+            }
+            catch ( FormatException ex ) {
+                log.Error( signature, ex );
+                return null;
+            }
+            catch ( Exception ex ) {
+                log.Fatal( signature, ex );
+                return null;
+            }
+
+            return value;
+        }
+
+        public static string GetTimeHeader()
+        {
+            string date = DateTime.Now.ToString( CultureInfo.InvariantCulture );
+            return date.Substring( date.IndexOf( ' ' ) + 1 );
+        }
     }
 }

@@ -1,10 +1,12 @@
-﻿using PI.src.enumerators;
+﻿using log4net;
+using PI.src.enumerators;
 using PI.src.helpers;
 using PI.src.localization.enums;
 using PI.src.localization.windows;
 using PI.src.settings;
 using System;
 using System.Drawing;
+using System.Reflection;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -15,6 +17,7 @@ namespace PI.src.windows
         internal MainChartSettings Settings { get; private set; }
         private PreviousValue Previous { get; set; }
         private bool IsFormInitialized { get; set; }
+        private static readonly ILog log = LogManager.GetLogger( MethodBase.GetCurrentMethod().DeclaringType );
 
         private enum ChartSettingsTabs
         {
@@ -316,19 +319,28 @@ namespace PI.src.windows
 
         #region Event handlers
 
-        private void OnGridSelection( object sender, EventArgs e )
-        {
-            if ( IsFormInitialized ) {
-                UpdateUiByPerformingAxisOrGridSwitch();
-            }
-        }
-
         private void OnFormClosing( object sender, FormClosingEventArgs e )
         {
             // Do not nullify Settings property
             Previous = null;
             IsFormInitialized = false;
             Dispose();
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + (sender as Form).Name + ',' + e.CloseReason + ')' );
+        }
+
+        private void OnLoad( object sender, EventArgs e )
+        {
+            uiBtm_Ok_Btn.Select();
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + (sender as Form).Name + ')' );
+        }
+
+        private void OnGridSelection( object sender, EventArgs e )
+        {
+            if ( IsFormInitialized ) {
+                UpdateUiByPerformingAxisOrGridSwitch();
+            }
+
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + IsFormInitialized + ')' );
         }
 
         private void OnAxisSelection( object sender, EventArgs e )
@@ -336,20 +348,19 @@ namespace PI.src.windows
             if ( IsFormInitialized ) {
                 UpdateUiByPerformingAxisOrGridSwitch();
             }
-        }
 
-        private void OnLoad( object sender, EventArgs e )
-        {
-            uiBtm_Ok_Btn.Select();
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + IsFormInitialized + ')' );
         }
 
         private void OnCurveSelection( object sender, EventArgs e )
         {
             if ( !IsFormInitialized ) {
+                log.Info( MethodBase.GetCurrentMethod().Name + '(' + IsFormInitialized + ')' );
                 return;
             }
 
             CurveApply curve = (CurveApply) UiControls.TryGetSelectedIndex( uiTop_ApplyTo_ComBx );
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + curve + ')' );
 
             if ( curve == CurveApply.All ) {
                 UiControls.TrySelectTab( uiCtr_TbCtrl, (int) ChartSettingsTabs.Chart );
@@ -365,13 +376,13 @@ namespace PI.src.windows
             UpdateUiByEnablingControls( ChartSettingsTabs.Series, true );
             SaveCurveSettings( Previous.ApplyMode );
             UpdateUiByCurveSwitch( curve );
-
-            Previous.ApplyMode = (CurveApply) uiTop_ApplyTo_ComBx.SelectedIndex;
+            Previous.ApplyMode = (CurveApply) UiControls.TryGetSelectedIndex( uiTop_ApplyTo_ComBx );
         }
 
         private void OnOkClick( object sender, EventArgs e )
         {
             SaveAllSettings();
+            log.Info( MethodBase.GetCurrentMethod().Name + "()" );
         }
 
         #endregion

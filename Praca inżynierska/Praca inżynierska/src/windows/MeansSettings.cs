@@ -1,10 +1,12 @@
-﻿using PI.src.enumerators;
+﻿using log4net;
+using PI.src.enumerators;
 using PI.src.helpers;
 using PI.src.localization.enums;
 using PI.src.localization.windows;
 using PI.src.messages;
 using PI.src.parameters;
 using System;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace PI.src.windows
@@ -12,6 +14,7 @@ namespace PI.src.windows
     public partial class MeansSettings : Form
     {
         public MeansParameters MeansParams { get; set; }
+        private static readonly ILog log = LogManager.GetLogger( MethodBase.GetCurrentMethod().DeclaringType );
 
         public MeansSettings()
         {
@@ -91,19 +94,24 @@ namespace PI.src.windows
 
         #region Event handlers
 
+        private void OnFormClosing( object sender, FormClosingEventArgs e )
+        {
+            // Do not nullify MeansParams property
+            Dispose();
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + (sender as Form).Name + ',' + e.CloseReason + ')' );
+        }
+
         private void OnOkClick( object sender, EventArgs e )
         {
             SaveSettings();
-        }
-
-        private void OnFormClosing( object sender, FormClosingEventArgs e )
-        {
-            Dispose();
+            log.Info( MethodBase.GetCurrentMethod().Name + "()" );
         }
 
         private void OnToleranceFinisherFunctionSelection( object sender, EventArgs e )
         {
-            switch ( (MeanType) UiControls.TryGetSelectedIndex( uiGrid_TolerFin_ComBx ) ) {
+            MeanType before = (MeanType) UiControls.TryGetSelectedIndex( uiGrid_TolerFin_ComBx );
+
+            switch ( before ) {
             case MeanType.Tolerance:
             case MeanType.NN:
                 UiControls.TrySetSelectedIndex( uiGrid_TolerFin_ComBx, (int) MeansParams.Tolerance.Finisher );
@@ -113,6 +121,9 @@ namespace PI.src.windows
                 MeansParams.Tolerance.Finisher = (MeanType) UiControls.TryGetSelectedIndex( uiGrid_TolerFin_ComBx );
                 break;
             }
+
+            MeanType after = (MeanType) UiControls.TryGetSelectedIndex( uiGrid_TolerFin_ComBx );
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + before + ',' + after + ')' );
         }
 
         #endregion

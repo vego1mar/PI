@@ -28,6 +28,17 @@ namespace PI.src.general
             series.YValuesPerPoint = 1;
         }
 
+        public static bool IsChartAcceptable( IList<double> values )
+        {
+            foreach ( double value in values ) {
+                if ( !IsChartAcceptable( value ) ) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         public static bool IsChartAcceptable( Series series, int yValuesIndex = 0 )
         {
             for ( int i = 0; i < series.Points.Count; i++ ) {
@@ -66,6 +77,21 @@ namespace PI.src.general
             return value < CHART_ACCEPTABLE_MAXIMUM_VALUE && value > CHART_ACCEPTABLE_MINIMUM_VALUE;
         }
 
+        public static IList<double> GetArguments( Series series )
+        {
+            if ( series == null ) {
+                return new List<double>().AsReadOnly();
+            }
+
+            IList<double> xValues = new List<double>();
+
+            for ( int i = 0; i < series.Points.Count; i++ ) {
+                xValues.Add( series.Points[i].XValue );
+            }
+
+            return xValues;
+        }
+
         public static IList<double> GetValues( Series series, int yValuesIndex = 0 )
         {
             if ( series == null || yValuesIndex < 0 ) {
@@ -88,6 +114,17 @@ namespace PI.src.general
             }
 
             return GetValues( seriesList[seriesNo], yValuesIndex );
+        }
+
+        public static void OverrideValues( Series series, IList<double> values, int yValuesIndex = 0 )
+        {
+            if ( series == null || values == null || series.Points.Count != values.Count || yValuesIndex < 0 ) {
+                return;
+            }
+
+            for ( int i = 0; i < series.Points.Count; i++ ) {
+                series.Points[i].YValues[yValuesIndex] = values[i];
+            }
         }
 
         public static void CopyPoints( Series source, Series target, int yValuesIndex = 0 )

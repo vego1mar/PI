@@ -6,12 +6,15 @@ using PI.src.enumerators;
 using PI.src.localization.windows;
 using System.Drawing;
 using PI.src.general;
+using log4net;
+using System.Reflection;
 
 namespace PI.src.windows
 {
     public partial class PatternCurveDefiner : Form
     {
         internal IdealCurveDefinerGeneratorSettings Settings { get; private set; }
+        private static readonly ILog log = LogManager.GetLogger( MethodBase.GetCurrentMethod().DeclaringType );
 
         private enum Tabs
         {
@@ -150,6 +153,13 @@ namespace PI.src.windows
 
         #region Event handlers
 
+        private void OnFormClosing( object sender, FormClosingEventArgs e )
+        {
+            // Do not nullify Settings property
+            Dispose();
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + (sender as Form).Name + ',' + e.CloseReason + ')' );
+        }
+
         private void OnSineOptionChecked( object sender, EventArgs e )
         {
             if ( uiCntWaveT_Sine_RdBtn.Checked ) {
@@ -157,6 +167,8 @@ namespace PI.src.windows
                 uiCntWave_o_Num.Enabled = true;
                 uiCntWave_PicBx.Image = Properties.Resources.PatternScaffold_WaveformSine;
             }
+
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + Settings.Scaffold + ')' );
         }
 
         private void OnSquareOptionChecked( object sender, EventArgs e )
@@ -166,6 +178,8 @@ namespace PI.src.windows
                 uiCntWave_o_Num.Enabled = false;
                 uiCntWave_PicBx.Image = Properties.Resources.PatternScaffold_WaveformSquare;
             }
+
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + Settings.Scaffold + ')' );
         }
 
         private void OnTriangleOptionChecked( object sender, EventArgs e )
@@ -175,6 +189,8 @@ namespace PI.src.windows
                 uiCntWave_o_Num.Enabled = false;
                 uiCntWave_PicBx.Image = Properties.Resources.PatternScaffold_WaveformTriangle;
             }
+
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + Settings.Scaffold + ')' );
         }
 
         private void OnSawtoothOptionChecked( object sender, EventArgs e )
@@ -184,6 +200,8 @@ namespace PI.src.windows
                 uiCntWave_o_Num.Enabled = false;
                 uiCntWave_PicBx.Image = Properties.Resources.PatternScaffold_WaveformSawtooth;
             }
+
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + Settings.Scaffold + ')' );
         }
 
         private void OnParameterAAlteration( object sender, EventArgs e )
@@ -191,6 +209,8 @@ namespace PI.src.windows
             if ( uiCntHyp_ac_ChBx.Checked ) {
                 UiControls.TrySetValue( uiCntHyp_c_Num, UiControls.TryGetValue<decimal>( uiCntHyp_a_Num ) );
             }
+
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + uiCntHyp_a_Num.Value + ')' );
         }
 
         private void OnParameterCAlteration( object sender, EventArgs e )
@@ -198,6 +218,8 @@ namespace PI.src.windows
             if ( uiCntHyp_ac_ChBx.Checked ) {
                 UiControls.TrySetValue( uiCntHyp_a_Num, UiControls.TryGetValue<decimal>( uiCntHyp_c_Num ) );
             }
+
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + uiCntHyp_c_Num.Value + ')' );
         }
 
         private void OnParameterBAlteration( object sender, EventArgs e )
@@ -205,6 +227,8 @@ namespace PI.src.windows
             if ( uiCntHyp_bd_ChBx.Checked ) {
                 UiControls.TrySetValue( uiCntHyp_d_Num, UiControls.TryGetValue<decimal>( uiCntHyp_b_Num ) );
             }
+
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + uiCntHyp_b_Num.Value + ')' );
         }
 
         private void OnParameterDAlteration( object sender, EventArgs e )
@@ -212,12 +236,8 @@ namespace PI.src.windows
             if ( uiCntHyp_bd_ChBx.Checked ) {
                 UiControls.TrySetValue( uiCntHyp_b_Num, UiControls.TryGetValue<decimal>( uiCntHyp_d_Num ) );
             }
-        }
 
-        private void OnFormClosing( object sender, FormClosingEventArgs e )
-        {
-            // Do not nullify Settings property
-            Dispose();
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + uiCntHyp_d_Num.Value + ')' );
         }
 
         private void OnPolynomialTabSelection( object sender, EventArgs e )
@@ -227,6 +247,7 @@ namespace PI.src.windows
             uiTabs_Pol_Btn.BackColor = Color.GhostWhite;
             uiTabs_Hyp_Btn.BackColor = Color.White;
             uiTabs_Wave_Btn.BackColor = Color.White;
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + Tabs.Polynomial + ')' );
         }
 
         private void OnHyperbolicTabSelection( object sender, EventArgs e )
@@ -236,6 +257,7 @@ namespace PI.src.windows
             uiTabs_Hyp_Btn.BackColor = Color.GhostWhite;
             uiTabs_Pol_Btn.BackColor = Color.White;
             uiTabs_Wave_Btn.BackColor = Color.White;
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + Tabs.Hyperbolic + ')' );
         }
 
         private void OnWaveformTabSelection( object sender, EventArgs e )
@@ -245,17 +267,20 @@ namespace PI.src.windows
             uiTabs_Wave_Btn.BackColor = Color.GhostWhite;
             uiTabs_Pol_Btn.BackColor = Color.White;
             uiTabs_Hyp_Btn.BackColor = Color.White;
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + Tabs.Waveform + ')' );
         }
 
         private void OnCancelClick( object sender, EventArgs e )
         {
             DialogResult = DialogResult.Cancel;
+            log.Info( MethodBase.GetCurrentMethod().Name + "()" );
         }
 
         private void OnOkClick( object sender, EventArgs e )
         {
             SaveParameters();
             DialogResult = DialogResult.OK;
+            log.Info( MethodBase.GetCurrentMethod().Name + "()" );
         }
 
         #endregion

@@ -583,6 +583,15 @@ namespace PI.Locales {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Index.
+        /// </summary>
+        internal static string GridPreviewer_Ui_Dataset_Index {
+            get {
+                return ResourceManager.GetString("GridPreviewer_Ui_Dataset_Index", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dataset.
         /// </summary>
         internal static string GridPreviewer_Ui_Dataset_Title {

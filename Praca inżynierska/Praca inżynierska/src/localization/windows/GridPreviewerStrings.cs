@@ -46,6 +46,7 @@ namespace PI.src.localization.windows
             public LocalizedString PreviewInfoChartRefreshed { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Preview_Info_ChartRefreshed" ); } }
             public LocalizedString PreviewTitle { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Preview_Title" ); } }
             public LocalizedString DatasetTitle { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Dataset_Title" ); } }
+            public LocalizedString DatasetIndex { get { return new LocalizedString( CurrentLanguage, "GridPreviewer_Ui_Dataset_Index" ); } }
         }
     }
 }

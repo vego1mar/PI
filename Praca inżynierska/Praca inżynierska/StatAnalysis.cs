@@ -13,6 +13,7 @@ using log4net;
 using System.Reflection;
 using PI.src.localization.enums;
 using PI.src.localization.windows;
+using PI.src.windows;
 
 namespace PI
 {
@@ -322,9 +323,9 @@ namespace PI
         private void MakePeekOrSaturation( Phenomenon idx, CurvesDataManager data, int curveIdx, int yValuesIdx = 0 )
         {
             Series newSeries = data.ModifiedCurves[curveIdx];
-            int leftIntervalPoint = Convert.ToInt32( (3.0 / 7.0) * newSeries.Points.Count );
+            int leftIntervalPoint = Convert.ToInt32( (4.0 / 11.0) * newSeries.Points.Count );
             int middlePoint = newSeries.Points.Count / 2;
-            int rightIntervalPoint = Convert.ToInt32( (5.0 / 7.0) * newSeries.Points.Count );
+            int rightIntervalPoint = Convert.ToInt32( (8.0 / 11.0) * newSeries.Points.Count );
             double maxValue = newSeries.Points.FindMaxByValue().YValues[yValuesIdx];
             double minValue = newSeries.Points.FindMinByValue().YValues[yValuesIdx];
             double malformationValue = 0.5 * (maxValue - minValue);
