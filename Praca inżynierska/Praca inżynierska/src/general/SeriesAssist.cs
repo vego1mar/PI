@@ -57,7 +57,7 @@ namespace PI.src.general
             return IsChartAcceptable( x ) && IsChartAcceptable( y );
         }
 
-        public static bool IsChartAcceptable( IList<DataPoint> set, int yValueIndex = 0 )
+        public static bool IsChartAcceptable( IList<DataPoint> set, int yValueIndex )
         {
             bool result = true;
 
@@ -251,6 +251,21 @@ namespace PI.src.general
             }
 
             return series;
+        }
+
+        public static IList<Series> GetCopy( IList<Series> source, int yValuesIndex, bool isChartable = true )
+        {
+            IList<Series> set = new List<Series>();
+
+            if ( source == null ) {
+                return new List<Series>().AsReadOnly();
+            }
+
+            for ( int i = 0; i < source.Count; i++ ) {
+                set.Add( GetCopy( source[i], yValuesIndex, isChartable ) );
+            }
+
+            return set;
         }
 
         /// <summary>Get copy of Series.Points.YValues[yValuesIndex] organized to use like List[x][y].</summary>

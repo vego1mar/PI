@@ -549,18 +549,6 @@
   <data name="StatisticalAnalysis_Ui_Preview_Dataset" xml:space="preserve">
     <value>Dane</value>
   </data>
-  <data name="StatisticalAnalysis_Ui_Preview_Density1" xml:space="preserve">
-    <value>Gęstość punktów (na przedział):</value>
-  </data>
-  <data name="StatisticalAnalysis_Ui_Preview_Formula" xml:space="preserve">
-    <value>Formuła</value>
-  </data>
-  <data name="StatisticalAnalysis_Ui_Preview_NotApplicable" xml:space="preserve">
-    <value>N/D</value>
-  </data>
-  <data name="StatisticalAnalysis_Ui_Preview_NumberOfCurves1" xml:space="preserve">
-    <value>Ilość krzywych:</value>
-  </data>
   <data name="StatisticalAnalysis_Ui_Preview_Title" xml:space="preserve">
     <value>Podgląd</value>
   </data>

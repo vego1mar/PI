@@ -36,6 +36,81 @@ namespace PI.src.general
             return list;
         }
 
+        public static IList<IList<T>> GetCloneable<T>( int xLength, int yLength, T initialValue = default( T ) ) where T : ICloneable
+        {
+            if ( xLength < 0 || yLength < 0 ) {
+                return new List<IList<T>>().AsReadOnly();
+            }
+
+            IList<IList<T>> list = new List<IList<T>>();
+
+            for ( int i = 0; i < xLength; i++ ) {
+                list.Add( GetCloneable( yLength, initialValue ) );
+            }
+
+            return list;
+        }
+
+        public static IList<T> GetCloneable<T>( int length, T initialValue = default( T ) ) where T : ICloneable
+        {
+            if ( length < 0 ) {
+                return new List<T>().AsReadOnly();
+            }
+
+            IList<T> list = new List<T>();
+
+            for ( int i = 0; i < length; i++ ) {
+                list.Add( (T) initialValue.Clone() );
+            }
+
+            return list;
+        }
+
+        public static IList<IList<IList<T>>> GetNew<T>( int xLength, int yLength, int zLength )
+        {
+            if ( zLength < 0 ) {
+                return new List<IList<IList<T>>>().AsReadOnly();
+            }
+
+            IList<IList<IList<T>>> list = new List<IList<IList<T>>>();
+
+            for ( int i = 0; i < xLength; i++ ) {
+                list.Add( GetNew<T>( yLength, zLength ) );
+            }
+
+            return list;
+        }
+
+        public static IList<IList<T>> GetNew<T>( int xLength, int yLength )
+        {
+            if ( yLength < 0 ) {
+                return new List<IList<T>>().AsReadOnly();
+            }
+
+            IList<IList<T>> list = new List<IList<T>>();
+
+            for ( int i = 0; i < xLength; i++ ) {
+                list.Add( GetNew<T>( yLength ) );
+            }
+
+            return list;
+        }
+
+        public static IList<T> GetNew<T>( int length )
+        {
+            if ( length < 0 ) {
+                return new List<T>().AsReadOnly();
+            }
+
+            IList<T> list = new List<T>();
+
+            for ( int i = 0; i < length; i++ ) {
+                list.Add( Activator.CreateInstance<T>() );
+            }
+
+            return list;
+        }
+
         public static IList<T> GetCopy<T>( IList<T> source )
         {
             if ( source == null ) {

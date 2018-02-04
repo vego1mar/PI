@@ -6,13 +6,14 @@ using System.Reflection;
 using PI.src.enumerators;
 using PI.src.parameters;
 using PI.src.averaging;
+using System.Linq;
 
 namespace PI.src.general
 {
-    public class CurvesDataManager
+    public class CurvesDataManager : ICloneable
     {
         public Series IdealCurve { get; private set; }
-        public List<Series> ModifiedCurves { get; private set; }
+        public IList<Series> ModifiedCurves { get; private set; }
         public Series AverageCurve { get; private set; }
         public MeansParameters MeansParams { get; set; }
         private static readonly ILog log = LogManager.GetLogger( MethodBase.GetCurrentMethod().DeclaringType );
@@ -25,6 +26,7 @@ namespace PI.src.general
             MeansParams = new MeansParameters();
             SeriesAssist.SetDefaultSettings( IdealCurve );
             SeriesAssist.SetDefaultSettings( AverageCurve );
+            ModifiedCurves.ToList().ForEach( s => SeriesAssist.SetDefaultSettings( s ) );
         }
 
         public bool GenerateIdealCurve( IdealCurveScaffold type, CurvesParameters @params, double startX, double endX, int pointsDensity )
@@ -57,7 +59,7 @@ namespace PI.src.general
             return SeriesAssist.IsChartAcceptable( IdealCurve );
         }
 
-        // TODO: Replace Series with IList<DataPoint>
+        // TODO: Overrride points
         public void AlterCurve( Series series, DataSetCurveType curveType, int curveIndex )
         {
             if ( series == null || curveIndex < 0 ) {
@@ -121,12 +123,12 @@ namespace PI.src.general
                 return null;
             }
 
-            IList<IList<DataPoint>> curves = SeriesAssist.GetCopy( ModifiedCurves, curvesNo );
+            IList<IList<DataPoint>> curves = SeriesAssist.GetCopy( ModifiedCurves, curvesNo, 0 );
 
             for ( int i = 0; i < curves.Count; i++ ) {
                 curves[i] = NoiseMaker.OfUniform( curves[i], surrounding );
 
-                if ( !SeriesAssist.IsChartAcceptable( curves[i] ) ) {
+                if ( !SeriesAssist.IsChartAcceptable( curves[i], 0 ) ) {
                     return false;
                 }
             }
@@ -214,6 +216,16 @@ namespace PI.src.general
             AverageCurve.Points.Clear();
             SeriesAssist.CopyPoints( AverageCurve, IdealCurve, result );
             return SeriesAssist.IsChartAcceptable( AverageCurve );
+        }
+
+        public object Clone()
+        {
+            return new CurvesDataManager() {
+                IdealCurve = SeriesAssist.GetCopy( IdealCurve, 0, false ),
+                ModifiedCurves = SeriesAssist.GetCopy( ModifiedCurves, 0, false ),
+                AverageCurve = SeriesAssist.GetCopy( AverageCurve, 0, false ),
+                MeansParams = MeansParams
+            };
         }
     }
 }

@@ -2032,24 +2032,6 @@ namespace PI.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Points density (on interval):.
-        /// </summary>
-        internal static string StatisticalAnalysis_Ui_Preview_Density1 {
-            get {
-                return ResourceManager.GetString("StatisticalAnalysis_Ui_Preview_Density1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Formula.
-        /// </summary>
-        internal static string StatisticalAnalysis_Ui_Preview_Formula {
-            get {
-                return ResourceManager.GetString("StatisticalAnalysis_Ui_Preview_Formula", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Mean type:.
         /// </summary>
         internal static string StatisticalAnalysis_Ui_Preview_MeanType {
@@ -2064,24 +2046,6 @@ namespace PI.Locales {
         internal static string StatisticalAnalysis_Ui_Preview_Noise {
             get {
                 return ResourceManager.GetString("StatisticalAnalysis_Ui_Preview_Noise", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to N/A.
-        /// </summary>
-        internal static string StatisticalAnalysis_Ui_Preview_NotApplicable {
-            get {
-                return ResourceManager.GetString("StatisticalAnalysis_Ui_Preview_NotApplicable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Number of curves:.
-        /// </summary>
-        internal static string StatisticalAnalysis_Ui_Preview_NumberOfCurves1 {
-            get {
-                return ResourceManager.GetString("StatisticalAnalysis_Ui_Preview_NumberOfCurves1", resourceCulture);
             }
         }
         

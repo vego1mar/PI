@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Threading;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -17,18 +16,14 @@ using PI.src.windows;
 
 namespace PI
 {
-    public partial class StatAnalysis : Form
+    public partial class StatisticalAnalysis : Form
     {
-
         internal GeneratorSettings Settings { get; private set; }
-        private List<List<CurvesDataManager>> Data { get; set; }
-        private List<double> Surroundings { get; set; }
-        private List<List<List<Series>>> Averages { get; set; }
-        private List<List<List<double>>> StdDeviations { get; set; }
+        private IList<IList<CurvesDataManager>> Data { get; set; }
+        private IList<double> Surroundings { get; set; }
+        private IList<IList<IList<Series>>> Averages { get; set; }
+        private IList<IList<IList<double>>> StdDeviations { get; set; }
         private bool IsFormShown = false;
-        private static uint WindowNo { get; set; } = 0;
-        private string WindowThreadsName { get; set; }
-
         private static readonly ILog log = LogManager.GetLogger( MethodBase.GetCurrentMethod().DeclaringType );
 
         private struct DatasetControlsValues
@@ -40,89 +35,30 @@ namespace PI
             public int CrvT { get; set; }
         }
 
-        internal StatAnalysis( GeneratorSettings genSets, CurvesDataManager curvesData )
+        internal StatisticalAnalysis( GeneratorSettings genSets )
         {
             InitializeComponent();
-            InitializePropertySettings( genSets );
-            InitializeProperties();
-            SetWindowDefaults();
+
+            Settings = genSets;
+            Surroundings = new List<double>() { 0.1, 0.5, 1.0, 2.0 };
+            int dimension1 = Enum.GetValues( typeof( Phenomenon ) ).Length;
+            int dimension2 = Surroundings.Count;
+            int dimension3 = Enum.GetValues( typeof( MeanType ) ).Length;
+            Data = Lists.GetCloneable( dimension1, dimension2, new CurvesDataManager() );
+            Averages = Lists.GetNew<Series>( dimension1, dimension2, dimension3 );
+            Averages.ToList().ForEach( l2 => l2.ToList().ForEach( l1 => l1.ToList().ForEach( s => SeriesAssist.SetDefaultSettings( s ) ) ) );
+            StdDeviations = Lists.GetNew<double>( dimension1, dimension2, dimension3 );
+
+            InitializeDataGridViewUiFields();
+
+            UpdateUiBySettings();
             PerformStatisticalAnalysis();
             UpdateUiByPopulatingGridWithStandardDeviations();
             UpdateUiByColoringUiGrids();
             LocalizeWindow();
         }
 
-        private void InitializeProperties()
-        {
-            InitializePropertySurroundings();
-            InitializePropertyData();
-            InitializePropertyAverages();
-            InitializeDataGridViewUiFields();
-            InitializePropertyStdDeviations();
-            WindowNo++;
-            WindowThreadsName = nameof( StatAnalysis ) + "::" + nameof( GridPreviewer ) + "::" + WindowNo;
-        }
-
-        private void InitializePropertySettings( GeneratorSettings genSets )
-        {
-            Settings = genSets;
-        }
-
-        private void InitializePropertySurroundings()
-        {
-            Surroundings = new List<double>() {
-                0.1,
-                0.5,
-                1.0,
-                2.0
-            };
-        }
-
-        private void InitializePropertyData()
-        {
-            /*
-             *  Data[a][b]
-             *  a := { peek, deformation } - malformation type no.
-             *  b := { 0.1, 0.5, 1.0, 2.0 } - noise surrounding no.
-             */
-
-            Data = new List<List<CurvesDataManager>>();
-
-            foreach ( Phenomenon idx in Enum.GetValues( typeof( Phenomenon ) ) ) {
-                Data.Add( new List<CurvesDataManager>() );                                      // [a][-] 
-
-                for ( int i = 0; i < Surroundings.Count; i++ ) {
-                    Data[(int) idx].Add( new CurvesDataManager() );    // [-][b] 
-                }
-            }
-
-        }
-
-        private void InitializePropertyAverages()
-        {
-            /*
-             *  Averages[a][b][c]
-             *  a := { peek, deformation } - malformation type no.
-             *  b := { 0.1, 0.5, 1.0, 2.0 } - noise surrounding no.
-             *  c := { arithmetic, geometric, mediana, ... } - mean type no.
-             */
-
-            Averages = new List<List<List<Series>>>();
-
-            foreach ( Phenomenon idx in Enum.GetValues( typeof( Phenomenon ) ) ) {
-                Averages.Add( new List<List<Series>>() );                                           // [a][-][-] 
-
-                for ( int i = 0; i < Surroundings.Count; i++ ) {
-                    Averages[(int) idx].Add( new List<Series>() );                                  // [-][b][-] 
-
-                    for ( int j = 0; j < Enum.GetNames( typeof( MeanType ) ).Length; j++ ) {
-                        Averages[(int) idx][i].Add( new Series() );                                 // [-][-][c]
-                        SeriesAssist.SetDefaultSettings( Averages[(int) idx][i][j] );
-                    }
-                }
-            }
-        }
-
+        // TODO: Use GridAssist
         private void InitializeDataGridViewUiFields()
         {
             List<string> peekColumns = GetDataGridColumnsNames( Phenomenon.Peek );
@@ -150,31 +86,7 @@ namespace PI
             uiLDeform_Grid.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
-        private void InitializePropertyStdDeviations()
-        {
-            /*
-             *  StdDeviations[a][b][c]
-             *  a := { peek, deformation } - malformation type no.
-             *  b := { 0.1, 0.5, 1.0, 2.0 } - noise surrounding no.
-             *  c := { arithmetic, geometric, mediana, ... } - mean type no.
-             */
-
-            StdDeviations = new List<List<List<double>>>();
-
-            foreach ( Phenomenon idx in Enum.GetValues( typeof( Phenomenon ) ) ) {
-                StdDeviations.Add( new List<List<double>>() );                                           // [a][-][-] 
-
-                for ( int i = 0; i < Surroundings.Count; i++ ) {
-                    StdDeviations[(int) idx].Add( new List<double>() );                                  // [-][b][-] 
-
-                    for ( int j = 0; j < Enum.GetNames( typeof( MeanType ) ).Length; j++ ) {
-                        StdDeviations[(int) idx][i].Add( new double() );                                 // [-][-][c]
-                    }
-                }
-            }
-        }
-
-        private void SetWindowDefaults()
+        private void UpdateUiBySettings()
         {
             UiControls.TrySelectTab( uiL_TbCtrl, (int) Phenomenon.Peek );
             UiControls.TrySelectTab( uiR_TbCtrl, 0 );
@@ -186,24 +98,10 @@ namespace PI
             UiControls.TrySetValue( uiRChartDown_CrvIdx_Num, Settings.Ui.CurvesNo / 2 );
             EnumsLocalizer.Localize( LocalizableEnumerator.Phenomenon, uiRChartDown_Phen_ComBx );
             UiControls.TrySetSelectedIndex( uiRChartDown_Phen_ComBx, (int) Phenomenon.Peek );
-            AddSurroundings( uiRChartDown_Surr_ComBx );
+            EnumsLocalizer.PopulateComboBox( Lists.Cast<double, string>( Surroundings ), uiRChartDown_Surr_ComBx );
             UiControls.TrySetSelectedIndex( uiRChartDown_Surr_ComBx, 0 );
             EnumsLocalizer.Localize( LocalizableEnumerator.MeanType, uiRChartDown_MeanT_ComBx );
             UiControls.TrySetSelectedIndex( uiRChartDown_MeanT_ComBx, (int) MeanType.Tolerance );
-            uiRFormulaDown_CrvsNo2_TxtBx.Text = Settings.Ui.CurvesNo.ToString();
-            uiRFormulaDown_Dens2_TxtBx.Text = (Settings.Ui.PointsNo + 1).ToString();
-        }
-
-        private void UiStatAnalysis_Load( object sender, EventArgs e )
-        {
-            uiLPeek_Grid.Select();
-        }
-
-        private void AddSurroundings( ComboBox comboBox )
-        {
-            foreach ( double surrounding in Surroundings ) {
-                comboBox.Items.Add( surrounding.ToString( Thread.CurrentThread.CurrentCulture ) );
-            }
         }
 
         private void PerformStatisticalAnalysis()
@@ -218,78 +116,11 @@ namespace PI
                     foreach ( string type in Enum.GetNames( typeof( MeanType ) ) ) {
                         Enum.TryParse( type, out MeanType meanType );
                         Data[i][j].TryMakeAverageCurve( meanType, Settings.Ui.CurvesNo );
-                        AddSeriesPoints( Averages[i][j][Convert.ToInt32( meanType )], Data[i][j].AverageCurve );
+                        SeriesAssist.CopyPoints( Data[i][j].AverageCurve, Averages[i][j][(int) meanType] );
                         double stdDeviation = GetRelativeStandardDeviationFromSeriesValues( Averages[i][j][(int) meanType], Data[i][j].IdealCurve );
                         StdDeviations[i][j][Convert.ToInt32( meanType )] = stdDeviation;
                     }
                 }
-            }
-        }
-
-        private void UiRightChartDown_ShowDataset_Button_Click( object sender, EventArgs e )
-        {
-            if ( !IsCurveIndexProperValue() ) {
-                return;
-            }
-
-            string signature = string.Empty;
-
-            try {
-                MethodBase @base = MethodBase.GetCurrentMethod();
-                signature = @base.DeclaringType.Name + "." + @base.Name + "()";
-                Series controlsSpecifiedSeries = GetSeriesSpecifiedByControls();
-
-                Thread window = new Thread( () => DelegatorForGridPreviewer( controlsSpecifiedSeries ) ) {
-                    Name = WindowThreadsName,
-                    IsBackground = true
-                };
-
-                window.Start();
-            }
-            catch ( ThreadStateException ex ) {
-                log.Error( signature, ex );
-            }
-            catch ( OutOfMemoryException ex ) {
-                AppMessages.General.StopOfOutOfMemoryException();
-                log.Fatal( signature, ex );
-            }
-            catch ( ArgumentNullException ex ) {
-                log.Error( signature, ex );
-            }
-            catch ( InvalidOperationException ex ) {
-                log.Error( signature, ex );
-            }
-            catch ( Exception ex ) {
-                log.Fatal( signature, ex );
-            }
-        }
-
-        private void DelegatorForGridPreviewer( Series controlsSpecifiedSeries )
-        {
-            using ( var dialog = new GridPreviewer( controlsSpecifiedSeries ) ) {
-                dialog.ShowDialog();
-            }
-        }
-
-        private void UiRightChartDown_CurveType_ComboBox_SelectedIndexChanged( object sender, EventArgs e )
-        {
-            switch ( (DataSetCurveType) UiControls.TryGetSelectedIndex( uiRChartDown_CrvT_ComBx ) ) {
-            case DataSetCurveType.Modified:
-                uiRChartDown_CrvIdx_Num.Enabled = true;
-                uiRChartDown_MeanT_ComBx.Enabled = false;
-                break;
-            case DataSetCurveType.Average:
-                uiRChartDown_CrvIdx_Num.Enabled = false;
-                uiRChartDown_MeanT_ComBx.Enabled = true;
-                break;
-            case DataSetCurveType.Ideal:
-                uiRChartDown_CrvIdx_Num.Enabled = false;
-                uiRChartDown_MeanT_ComBx.Enabled = false;
-                break;
-            }
-
-            if ( IsFormShown ) {
-                UpdateUiByRefreshingChart();
             }
         }
 
@@ -320,6 +151,7 @@ namespace PI
             };
         }
 
+        // TODO: provide random alterations
         private void MakePeekOrSaturation( Phenomenon idx, CurvesDataManager data, int curveIdx, int yValuesIdx = 0 )
         {
             Series newSeries = data.ModifiedCurves[curveIdx];
@@ -349,59 +181,7 @@ namespace PI
             }
         }
 
-        private void AddSeriesPoints( Series target, Series source, int yValuesIdx = 0 )
-        {
-            for ( int i = 0; i < source.Points.Count; i++ ) {
-                target.Points.AddXY( source.Points[i].XValue, source.Points[i].YValues[yValuesIdx] );
-            }
-        }
-
-        private void UiRightChartDown_CurveIndex_Numeric_ValueChanged( object sender, EventArgs e )
-        {
-            if ( !IsCurveIndexProperValue() ) {
-                AppMessages.StatisticalAnalysis.ExclamationOfValueOutOfRange();
-                return;
-            }
-
-            if ( IsFormShown ) {
-                UpdateUiByRefreshingChart();
-            }
-        }
-
-        private bool IsCurveIndexProperValue()
-        {
-            int value = UiControls.TryGetValue<int>( uiRChartDown_CrvIdx_Num );
-
-            if ( value < 0 || value >= Settings.Ui.CurvesNo ) {
-                return false;
-            }
-
-            return true;
-        }
-
-        private void UiRightChartDown_Phenomenon_ComboBox_SelectedIndexChanged( object sender, EventArgs e )
-        {
-            if ( IsFormShown ) {
-                UpdateUiByRefreshingChart();
-            }
-
-            UiControls.TrySelectTab( uiL_TbCtrl, UiControls.TryGetSelectedIndex( uiRChartDown_Phen_ComBx ) );
-        }
-
-        private void UiRightChartDown_Surroundings_ComboBox_SelectedIndexChanged( object sender, EventArgs e )
-        {
-            if ( IsFormShown ) {
-                UpdateUiByRefreshingChart();
-            }
-        }
-
-        private void UiRightChartDown_MeanType_ComboBox_SelectedIndexChanged( object sender, EventArgs e )
-        {
-            if ( IsFormShown ) {
-                UpdateUiByRefreshingChart();
-            }
-        }
-
+        // TODO: Use ChartAssist
         private void UpdateUiByRefreshingChart()
         {
             string signature = string.Empty;
@@ -444,17 +224,6 @@ namespace PI
             }
         }
 
-        private void UiStatAnalysis_Shown( object sender, EventArgs e )
-        {
-            IsFormShown = true;
-            UpdateUiByRefreshingChart();
-        }
-
-        private void UiStatAnalysis_FormClosed( object sender, FormClosedEventArgs e )
-        {
-            IsFormShown = false;
-        }
-
         private List<string> GetDataGridColumnsNames( Phenomenon phenomenon )
         {
             switch ( phenomenon ) {
@@ -477,6 +246,7 @@ namespace PI
             return new List<string>();
         }
 
+        // TODO: Extract -> Mathematics.GetSD( IList<T>, IList<T> )
         public static double GetRelativeStandardDeviationFromSeriesValues( Series average, Series pattern, int yValuesIdx = 0 )
         {
             double sum = 0.0;
@@ -490,6 +260,7 @@ namespace PI
             return Math.Sqrt( sum / Convert.ToDouble( average.Points.Count ) );
         }
 
+        // TODO: Use GridAssist
         private void UpdateUiByPopulatingGridWithStandardDeviations()
         {
             DataGridView[] grids = { uiLPeek_Grid, uiLDeform_Grid };
@@ -513,11 +284,6 @@ namespace PI
             }
         }
 
-        private void UiLeft_TabControl_SelectedIndexChanged( object sender, EventArgs e )
-        {
-            UiControls.TrySetSelectedIndex( uiRChartDown_Phen_ComBx, UiControls.TryGetSelectedIndex( uiL_TbCtrl ) );
-        }
-
         private void UpdateUiByColoringUiGrids()
         {
             DataGridView[] grids = { uiLPeek_Grid, uiLDeform_Grid };
@@ -534,17 +300,6 @@ namespace PI
                     grids[i].Rows[minValueIdx].Cells[j].Style.BackColor = System.Drawing.Color.SpringGreen;
                 }
             }
-        }
-
-        private void UiStatAnalysis_FormClosing( object sender, FormClosingEventArgs e )
-        {
-            Settings = null;
-            Data = null;
-            Surroundings = null;
-            Averages = null;
-            StdDeviations = null;
-            WindowThreadsName = null;
-            Dispose();
         }
 
         private void LocalizeWindow()
@@ -568,7 +323,6 @@ namespace PI
             // Preview
             uiR_Prv_TxtBx.Text = names.Ui.PreviewTitle.GetString();
             uiR_Chart_TbPg.Text = names.Ui.PreviewChart.GetString();
-            uiR_Formula_TbPg.Text = names.Ui.PreviewFormula.GetString();
             EnumsLocalizer.Localize( LocalizableEnumerator.DataSetCurveType, uiRChartDown_CrvT_ComBx );
             UiControls.TrySetSelectedIndex( uiRChartDown_CrvT_ComBx, (int) DataSetCurveType.Ideal );
             EnumsLocalizer.Localize( LocalizableEnumerator.Phenomenon, uiRChartDown_Phen_ComBx );
@@ -576,12 +330,6 @@ namespace PI
             EnumsLocalizer.Localize( LocalizableEnumerator.MeanType, uiRChartDown_MeanT_ComBx );
             UiControls.TrySetSelectedIndex( uiRChartDown_MeanT_ComBx, (int) MeanType.NN );
             uiRChartDown_DtSet_Btn.Text = names.Ui.PreviewDataSet.GetString();
-            uiRFormulaDown_CrvsNo2_TxtBx.Text = names.Ui.PreviewNotApplicable.GetString();
-            uiRFormulaDown_Dens2_TxtBx.Text = names.Ui.PreviewNotApplicable.GetString();
-            uiRFormulaDown_CrvsNo2_TxtBx.Text = Settings.Ui.CurvesNo.ToString( Thread.CurrentThread.CurrentCulture );
-            uiRFormulaDown_Dens2_TxtBx.Text = (Settings.Ui.PointsNo + 1).ToString( Thread.CurrentThread.CurrentCulture );
-            uiRFormulaDown_CrvsNo1_TxtBx.Text = names.Ui.PreviewCurvesNo1.GetString();
-            uiRFormulaDown_Dens1_TxtBx.Text = names.Ui.PreviewDensity1.GetString();
             uiRChartUp_CrvIdx_TxtBx.Text = names.Ui.PreviewCurveIndex.GetString();
             uiRChartUp_CrvT_TxtBx.Text = names.Ui.PreviewCurveType.GetString();
             uiRChartUp_Phen_TxtBx.Text = names.Ui.PreviewPhenomenon.GetString();
@@ -590,5 +338,143 @@ namespace PI
             uiRChartUp_DtSet_TxtBx.Text = names.Ui.PreviewDataSetSelection.GetString();
         }
 
+        #region Event handlers
+
+        private void OnShown( object sender, EventArgs e )
+        {
+            IsFormShown = true;
+            UpdateUiByRefreshingChart();
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + (sender as Form).Name + ')' );
+        }
+
+        private void OnLoad( object sender, EventArgs e )
+        {
+            uiLPeek_Grid.Select();
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + (sender as Form).Name + ')' );
+        }
+
+        private void OnFormClosing( object sender, FormClosingEventArgs e )
+        {
+            Settings = null;
+            Data = null;
+            Surroundings = null;
+            Averages = null;
+            StdDeviations = null;
+            Dispose();
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + (sender as Form).Name + ',' + e.CloseReason + ')' );
+        }
+
+        private void OnFormClosed( object sender, FormClosedEventArgs e )
+        {
+            IsFormShown = false;
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + (sender as Form).Name + ',' + e.CloseReason + ')' );
+        }
+
+        private void OnPhenomenonSelection( object sender, EventArgs e )
+        {
+            if ( IsFormShown ) {
+                UpdateUiByRefreshingChart();
+            }
+
+            int selection = UiControls.TryGetSelectedIndex( uiRChartDown_Phen_ComBx );
+            UiControls.TrySelectTab( uiL_TbCtrl, selection );
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + IsFormShown + ',' + ((Phenomenon) selection) + ')' );
+        }
+
+        private void OnSurroundingsSelection( object sender, EventArgs e )
+        {
+            if ( IsFormShown ) {
+                UpdateUiByRefreshingChart();
+            }
+
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + IsFormShown + ',' + Surroundings[UiControls.TryGetSelectedIndex( uiRChartDown_Surr_ComBx )] + ')' );
+        }
+
+        private void OnMeanTypeSelection( object sender, EventArgs e )
+        {
+            if ( IsFormShown ) {
+                UpdateUiByRefreshingChart();
+            }
+
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + IsFormShown + ',' + (MeanType) UiControls.TryGetSelectedIndex( uiRChartDown_MeanT_ComBx ) + ')' );
+        }
+
+        private void OnTabSelection( object sender, EventArgs e )
+        {
+            int selection = UiControls.TryGetSelectedIndex( uiL_TbCtrl );
+            UiControls.TrySetSelectedIndex( uiRChartDown_Phen_ComBx, selection );
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + (Phenomenon) selection + ')' );
+        }
+
+        private void OnCurveIndexAlteration( object sender, EventArgs e )
+        {
+            int curveIndex = UiControls.TryGetValue<int>( uiRChartDown_CrvIdx_Num );
+
+            if ( curveIndex < 0 || curveIndex >= Settings.Ui.CurvesNo ) {
+                log.Info( MethodBase.GetCurrentMethod().Name + '(' + curveIndex + ')' );
+                AppMessages.StatisticalAnalysis.ExclamationOfValueOutOfRange();
+                return;
+            }
+
+            if ( IsFormShown ) {
+                UpdateUiByRefreshingChart();
+            }
+
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + IsFormShown + ',' + curveIndex + ')' );
+        }
+
+        private void OnCurveTypeSelection( object sender, EventArgs e )
+        {
+            DataSetCurveType curveType = (DataSetCurveType) UiControls.TryGetSelectedIndex( uiRChartDown_CrvT_ComBx );
+
+            switch ( curveType ) {
+            case DataSetCurveType.Modified:
+                uiRChartDown_CrvIdx_Num.Enabled = true;
+                uiRChartDown_MeanT_ComBx.Enabled = false;
+                break;
+            case DataSetCurveType.Average:
+                uiRChartDown_CrvIdx_Num.Enabled = false;
+                uiRChartDown_MeanT_ComBx.Enabled = true;
+                break;
+            case DataSetCurveType.Ideal:
+                uiRChartDown_CrvIdx_Num.Enabled = false;
+                uiRChartDown_MeanT_ComBx.Enabled = false;
+                break;
+            }
+
+            if ( IsFormShown ) {
+                UpdateUiByRefreshingChart();
+            }
+
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + IsFormShown + ',' + curveType + ')' );
+        }
+
+        private void OnShowDatasetClick( object sender, EventArgs e )
+        {
+            int curveIndex = UiControls.TryGetValue<int>( uiRChartDown_CrvIdx_Num );
+            string signature = MethodBase.GetCurrentMethod().Name + '(' + curveIndex + ')';
+            log.Info( signature );
+
+            if ( curveIndex < 0 || curveIndex >= Settings.Ui.CurvesNo ) {
+                return;
+            }
+
+            try {
+                Series controlsSpecifiedSeries = GetSeriesSpecifiedByControls();
+
+                using ( var dialog = new GridPreviewer( controlsSpecifiedSeries ) ) {
+                    UiControls.TryShowDialog( dialog, this );
+                }
+            }
+            catch ( OutOfMemoryException ex ) {
+                AppMessages.General.StopOfOutOfMemoryException();
+                log.Fatal( signature, ex );
+            }
+            catch ( Exception ex ) {
+                log.Fatal( signature, ex );
+            }
+        }
+
+        #endregion
     }
 }

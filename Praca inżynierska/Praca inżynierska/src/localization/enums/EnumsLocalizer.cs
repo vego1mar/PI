@@ -130,7 +130,7 @@ namespace PI.src.localization.enums
             }
         }
 
-        private static void PopulateComboBox( IList<string> strings, ComboBox comboBox )
+        public static void PopulateComboBox( IList<string> strings, ComboBox comboBox )
         {
             comboBox.Items.Clear();
 

@@ -24,11 +24,7 @@ namespace PI.src.localization.windows
             public LocalizedString StandardDeviationNoise2 { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_StandardDeviation_Noise2" ); } }
             public LocalizedString PreviewTitle { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_Title" ); } }
             public LocalizedString PreviewChart { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_Chart" ); } }
-            public LocalizedString PreviewFormula { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_Formula" ); } }
             public LocalizedString PreviewDataSet { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_Dataset" ); } }
-            public LocalizedString PreviewCurvesNo1 { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_NumberOfCurves1" ); } }
-            public LocalizedString PreviewDensity1 { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_Density1" ); } }
-            public LocalizedString PreviewNotApplicable { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_NotApplicable" ); } }
             public LocalizedString PreviewCurveIndex { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_CurveIndex" ); } }
             public LocalizedString PreviewCurveType { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_CurveType" ); } }
             public LocalizedString PreviewPhenomenon { get { return new LocalizedString( CurrentLanguage, "StatisticalAnalysis_Ui_Preview_Phenomenon" ); } }

@@ -520,7 +520,7 @@ namespace PI
             }
 
             UiControls.TrySetSelectedIndex( uiPnlDtSh_CrvT_ComBx, (int) DataSetCurveType.Average );
-            double standardDeviation = StatAnalysis.GetRelativeStandardDeviationFromSeriesValues( DataChart.AverageCurve, DataChart.IdealCurve );
+            double standardDeviation = StatisticalAnalysis.GetRelativeStandardDeviationFromSeriesValues( DataChart.AverageCurve, DataChart.IdealCurve );
             uiPnlGen_StdDev2_TxtBx.Text = Strings.TryFormatAsNumeric( 8, standardDeviation );
         }
 
@@ -641,7 +641,7 @@ namespace PI
                 GrabPreSetsForCurvesGeneration();
 
                 Thread window = new Thread( DelegatorForStatAnalysis ) {
-                    Name = nameof( StatAnalysis ),
+                    Name = nameof( StatisticalAnalysis ),
                     IsBackground = true
                 };
 
@@ -667,7 +667,7 @@ namespace PI
 
         private void DelegatorForStatAnalysis()
         {
-            using ( var dialog = new StatAnalysis( Settings.Presets, DataChart ) ) {
+            using ( var dialog = new StatisticalAnalysis( Settings.Presets ) ) {
                 dialog.ShowDialog();
             }
         }

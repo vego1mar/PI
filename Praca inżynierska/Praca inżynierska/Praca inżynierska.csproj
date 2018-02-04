@@ -191,11 +191,11 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="src\windows\LanguageSelector.Designer.cs" />
-    <Compile Include="StatAnalysis.cs">
+    <Compile Include="StatisticalAnalysis.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StatAnalysis.Designer.cs">
-      <DependentUpon>StatAnalysis.cs</DependentUpon>
+    <Compile Include="StatisticalAnalysis.Designer.cs">
+      <DependentUpon>StatisticalAnalysis.cs</DependentUpon>
     </Compile>
     <Compile Include="src\helpers\Strings.cs" />
     <Compile Include="src\helpers\SystemInfo.cs" />
@@ -239,8 +239,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="src\windows\LanguageSelector.resx" />
-    <EmbeddedResource Include="StatAnalysis.resx">
-      <DependentUpon>StatAnalysis.cs</DependentUpon>
+    <EmbeddedResource Include="StatisticalAnalysis.resx">
+      <DependentUpon>StatisticalAnalysis.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -345,10 +345,7 @@ namespace PI.src.windows
 
         private void OnAxisSelection( object sender, EventArgs e )
         {
-            if ( IsFormInitialized ) {
-                UpdateUiByPerformingAxisOrGridSwitch();
-            }
-
+            OnGridSelection( sender, e );
             log.Info( MethodBase.GetCurrentMethod().Name + '(' + IsFormInitialized + ')' );
         }
 
