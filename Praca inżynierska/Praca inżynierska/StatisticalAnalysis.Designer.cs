@@ -42,23 +42,23 @@
             this.uiL_TbCtrl = new System.Windows.Forms.TabControl();
             this.uiL_Peek_TbPg = new System.Windows.Forms.TabPage();
             this.uiLPeek_Grid = new System.Windows.Forms.DataGridView();
-            this.uiLPeekGrid_Noise01_Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.uiLPeekGrid_Noise05_Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.uiLPeekGrid_Noise1_Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.uiLPeekGrid_Noise2_Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.uiLPeekGrid_NoiseA_Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.uiLPeekGrid_NoiseB_Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.uiLPeekGrid_NoiseC_Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.uiLPeekGrid_NoiseD_Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uiL_Sat_TbPg = new System.Windows.Forms.TabPage();
-            this.uiLDeform_Grid = new System.Windows.Forms.DataGridView();
-            this.uiLDeformGrid_Noise01_Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.uiLDeformGrid_Noise05_Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.uiLDeformGrid_Noise1_Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.uiLDeformGrid_Noise2_Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.uiLSat_Grid = new System.Windows.Forms.DataGridView();
+            this.uiLSatGrid_NoiseA_Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.uiLSatGrid_NoiseB_Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.uiLSatGrid_NoiseC_Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.uiLSatGrid_NoiseD_Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uiR_TbCtrl = new System.Windows.Forms.TabControl();
             this.uiR_Chart_TbPg = new System.Windows.Forms.TabPage();
             this.uiRChart_TbLay = new System.Windows.Forms.TableLayoutPanel();
             this.uiRChart_Chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.uiRChart_Down_TbLay = new System.Windows.Forms.TableLayoutPanel();
             this.uiRChartDown_MeanT_ComBx = new System.Windows.Forms.ComboBox();
-            this.uiRChartDown_Surr_ComBx = new System.Windows.Forms.ComboBox();
+            this.uiRChartDown_Noises_ComBx = new System.Windows.Forms.ComboBox();
             this.uiRChartDown_Phen_ComBx = new System.Windows.Forms.ComboBox();
             this.uiRChartDown_DtSet_Btn = new System.Windows.Forms.Button();
             this.uiRChartDown_CrvIdx_Num = new System.Windows.Forms.NumericUpDown();
@@ -75,7 +75,7 @@
             this.uiL_Peek_TbPg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiLPeek_Grid)).BeginInit();
             this.uiL_Sat_TbPg.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.uiLDeform_Grid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiLSat_Grid)).BeginInit();
             this.uiR_TbCtrl.SuspendLayout();
             this.uiR_Chart_TbPg.SuspendLayout();
             this.uiRChart_TbLay.SuspendLayout();
@@ -160,10 +160,10 @@
             this.uiLPeek_Grid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.uiLPeek_Grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.uiLPeek_Grid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.uiLPeekGrid_Noise01_Col,
-            this.uiLPeekGrid_Noise05_Col,
-            this.uiLPeekGrid_Noise1_Col,
-            this.uiLPeekGrid_Noise2_Col});
+            this.uiLPeekGrid_NoiseA_Col,
+            this.uiLPeekGrid_NoiseB_Col,
+            this.uiLPeekGrid_NoiseC_Col,
+            this.uiLPeekGrid_NoiseD_Col});
             this.uiLPeek_Grid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiLPeek_Grid.Location = new System.Drawing.Point(3, 3);
             this.uiLPeek_Grid.Name = "uiLPeek_Grid";
@@ -182,58 +182,58 @@
             this.uiLPeek_Grid.Size = new System.Drawing.Size(514, 522);
             this.uiLPeek_Grid.TabIndex = 0;
             // 
-            // uiLPeekGrid_Noise01_Col
+            // uiLPeekGrid_NoiseA_Col
             // 
-            this.uiLPeekGrid_Noise01_Col.HeaderText = "Noise 0.1";
-            this.uiLPeekGrid_Noise01_Col.Name = "uiLPeekGrid_Noise01_Col";
-            this.uiLPeekGrid_Noise01_Col.ReadOnly = true;
+            this.uiLPeekGrid_NoiseA_Col.HeaderText = "Noise A";
+            this.uiLPeekGrid_NoiseA_Col.Name = "uiLPeekGrid_NoiseA_Col";
+            this.uiLPeekGrid_NoiseA_Col.ReadOnly = true;
             // 
-            // uiLPeekGrid_Noise05_Col
+            // uiLPeekGrid_NoiseB_Col
             // 
-            this.uiLPeekGrid_Noise05_Col.HeaderText = "Noise 0.5";
-            this.uiLPeekGrid_Noise05_Col.Name = "uiLPeekGrid_Noise05_Col";
-            this.uiLPeekGrid_Noise05_Col.ReadOnly = true;
+            this.uiLPeekGrid_NoiseB_Col.HeaderText = "Noise B";
+            this.uiLPeekGrid_NoiseB_Col.Name = "uiLPeekGrid_NoiseB_Col";
+            this.uiLPeekGrid_NoiseB_Col.ReadOnly = true;
             // 
-            // uiLPeekGrid_Noise1_Col
+            // uiLPeekGrid_NoiseC_Col
             // 
-            this.uiLPeekGrid_Noise1_Col.HeaderText = "Noise 1.0";
-            this.uiLPeekGrid_Noise1_Col.Name = "uiLPeekGrid_Noise1_Col";
-            this.uiLPeekGrid_Noise1_Col.ReadOnly = true;
+            this.uiLPeekGrid_NoiseC_Col.HeaderText = "Noise C";
+            this.uiLPeekGrid_NoiseC_Col.Name = "uiLPeekGrid_NoiseC_Col";
+            this.uiLPeekGrid_NoiseC_Col.ReadOnly = true;
             // 
-            // uiLPeekGrid_Noise2_Col
+            // uiLPeekGrid_NoiseD_Col
             // 
-            this.uiLPeekGrid_Noise2_Col.HeaderText = "Noise 2.0";
-            this.uiLPeekGrid_Noise2_Col.Name = "uiLPeekGrid_Noise2_Col";
-            this.uiLPeekGrid_Noise2_Col.ReadOnly = true;
+            this.uiLPeekGrid_NoiseD_Col.HeaderText = "Noise D";
+            this.uiLPeekGrid_NoiseD_Col.Name = "uiLPeekGrid_NoiseD_Col";
+            this.uiLPeekGrid_NoiseD_Col.ReadOnly = true;
             // 
             // uiL_Sat_TbPg
             // 
-            this.uiL_Sat_TbPg.Controls.Add(this.uiLDeform_Grid);
+            this.uiL_Sat_TbPg.Controls.Add(this.uiLSat_Grid);
             this.uiL_Sat_TbPg.Location = new System.Drawing.Point(4, 22);
             this.uiL_Sat_TbPg.Name = "uiL_Sat_TbPg";
             this.uiL_Sat_TbPg.Padding = new System.Windows.Forms.Padding(3);
             this.uiL_Sat_TbPg.Size = new System.Drawing.Size(520, 528);
             this.uiL_Sat_TbPg.TabIndex = 1;
-            this.uiL_Sat_TbPg.Text = "Deformation";
+            this.uiL_Sat_TbPg.Text = "Saturation";
             this.uiL_Sat_TbPg.UseVisualStyleBackColor = true;
             // 
-            // uiLDeform_Grid
+            // uiLSat_Grid
             // 
-            this.uiLDeform_Grid.AllowUserToAddRows = false;
-            this.uiLDeform_Grid.AllowUserToDeleteRows = false;
+            this.uiLSat_Grid.AllowUserToAddRows = false;
+            this.uiLSat_Grid.AllowUserToDeleteRows = false;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.uiLDeform_Grid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.uiLDeform_Grid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.uiLDeform_Grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.uiLDeform_Grid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.uiLDeformGrid_Noise01_Col,
-            this.uiLDeformGrid_Noise05_Col,
-            this.uiLDeformGrid_Noise1_Col,
-            this.uiLDeformGrid_Noise2_Col});
-            this.uiLDeform_Grid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiLDeform_Grid.Location = new System.Drawing.Point(3, 3);
-            this.uiLDeform_Grid.Name = "uiLDeform_Grid";
+            this.uiLSat_Grid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.uiLSat_Grid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.uiLSat_Grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.uiLSat_Grid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.uiLSatGrid_NoiseA_Col,
+            this.uiLSatGrid_NoiseB_Col,
+            this.uiLSatGrid_NoiseC_Col,
+            this.uiLSatGrid_NoiseD_Col});
+            this.uiLSat_Grid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiLSat_Grid.Location = new System.Drawing.Point(3, 3);
+            this.uiLSat_Grid.Name = "uiLSat_Grid";
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -241,37 +241,37 @@
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.uiLDeform_Grid.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.uiLSat_Grid.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.uiLDeform_Grid.RowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.uiLDeform_Grid.Size = new System.Drawing.Size(514, 522);
-            this.uiLDeform_Grid.TabIndex = 1;
+            this.uiLSat_Grid.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.uiLSat_Grid.Size = new System.Drawing.Size(514, 522);
+            this.uiLSat_Grid.TabIndex = 1;
             // 
-            // uiLDeformGrid_Noise01_Col
+            // uiLSatGrid_NoiseA_Col
             // 
-            this.uiLDeformGrid_Noise01_Col.HeaderText = "Noise 0.1";
-            this.uiLDeformGrid_Noise01_Col.Name = "uiLDeformGrid_Noise01_Col";
-            this.uiLDeformGrid_Noise01_Col.ReadOnly = true;
+            this.uiLSatGrid_NoiseA_Col.HeaderText = "Noise A";
+            this.uiLSatGrid_NoiseA_Col.Name = "uiLSatGrid_NoiseA_Col";
+            this.uiLSatGrid_NoiseA_Col.ReadOnly = true;
             // 
-            // uiLDeformGrid_Noise05_Col
+            // uiLSatGrid_NoiseB_Col
             // 
-            this.uiLDeformGrid_Noise05_Col.HeaderText = "Noise 0.5";
-            this.uiLDeformGrid_Noise05_Col.Name = "uiLDeformGrid_Noise05_Col";
-            this.uiLDeformGrid_Noise05_Col.ReadOnly = true;
+            this.uiLSatGrid_NoiseB_Col.HeaderText = "Noise B";
+            this.uiLSatGrid_NoiseB_Col.Name = "uiLSatGrid_NoiseB_Col";
+            this.uiLSatGrid_NoiseB_Col.ReadOnly = true;
             // 
-            // uiLDeformGrid_Noise1_Col
+            // uiLSatGrid_NoiseC_Col
             // 
-            this.uiLDeformGrid_Noise1_Col.HeaderText = "Noise 1.0";
-            this.uiLDeformGrid_Noise1_Col.Name = "uiLDeformGrid_Noise1_Col";
-            this.uiLDeformGrid_Noise1_Col.ReadOnly = true;
+            this.uiLSatGrid_NoiseC_Col.HeaderText = "Noise C";
+            this.uiLSatGrid_NoiseC_Col.Name = "uiLSatGrid_NoiseC_Col";
+            this.uiLSatGrid_NoiseC_Col.ReadOnly = true;
             // 
-            // uiLDeformGrid_Noise2_Col
+            // uiLSatGrid_NoiseD_Col
             // 
-            this.uiLDeformGrid_Noise2_Col.HeaderText = "Noise 2.0";
-            this.uiLDeformGrid_Noise2_Col.Name = "uiLDeformGrid_Noise2_Col";
-            this.uiLDeformGrid_Noise2_Col.ReadOnly = true;
+            this.uiLSatGrid_NoiseD_Col.HeaderText = "Noise D";
+            this.uiLSatGrid_NoiseD_Col.Name = "uiLSatGrid_NoiseD_Col";
+            this.uiLSatGrid_NoiseD_Col.ReadOnly = true;
             // 
             // uiR_TbCtrl
             // 
@@ -338,7 +338,7 @@
             this.uiRChart_Down_TbLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.uiRChart_Down_TbLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.uiRChart_Down_TbLay.Controls.Add(this.uiRChartDown_MeanT_ComBx, 4, 0);
-            this.uiRChart_Down_TbLay.Controls.Add(this.uiRChartDown_Surr_ComBx, 3, 0);
+            this.uiRChart_Down_TbLay.Controls.Add(this.uiRChartDown_Noises_ComBx, 3, 0);
             this.uiRChart_Down_TbLay.Controls.Add(this.uiRChartDown_Phen_ComBx, 2, 0);
             this.uiRChart_Down_TbLay.Controls.Add(this.uiRChartDown_DtSet_Btn, 5, 0);
             this.uiRChart_Down_TbLay.Controls.Add(this.uiRChartDown_CrvIdx_Num, 1, 0);
@@ -362,16 +362,16 @@
             this.uiRChartDown_MeanT_ComBx.TabIndex = 32;
             this.uiRChartDown_MeanT_ComBx.SelectedIndexChanged += new System.EventHandler(this.OnMeanTypeSelection);
             // 
-            // uiRChartDown_Surr_ComBx
+            // uiRChartDown_Noises_ComBx
             // 
-            this.uiRChartDown_Surr_ComBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiRChartDown_Surr_ComBx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.uiRChartDown_Surr_ComBx.FormattingEnabled = true;
-            this.uiRChartDown_Surr_ComBx.Location = new System.Drawing.Point(255, 3);
-            this.uiRChartDown_Surr_ComBx.Name = "uiRChartDown_Surr_ComBx";
-            this.uiRChartDown_Surr_ComBx.Size = new System.Drawing.Size(78, 21);
-            this.uiRChartDown_Surr_ComBx.TabIndex = 31;
-            this.uiRChartDown_Surr_ComBx.SelectedIndexChanged += new System.EventHandler(this.OnSurroundingsSelection);
+            this.uiRChartDown_Noises_ComBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiRChartDown_Noises_ComBx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.uiRChartDown_Noises_ComBx.FormattingEnabled = true;
+            this.uiRChartDown_Noises_ComBx.Location = new System.Drawing.Point(255, 3);
+            this.uiRChartDown_Noises_ComBx.Name = "uiRChartDown_Noises_ComBx";
+            this.uiRChartDown_Noises_ComBx.Size = new System.Drawing.Size(78, 21);
+            this.uiRChartDown_Noises_ComBx.TabIndex = 31;
+            this.uiRChartDown_Noises_ComBx.SelectedIndexChanged += new System.EventHandler(this.OnSurroundingsSelection);
             // 
             // uiRChartDown_Phen_ComBx
             // 
@@ -556,7 +556,7 @@
             this.uiL_Peek_TbPg.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.uiLPeek_Grid)).EndInit();
             this.uiL_Sat_TbPg.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.uiLDeform_Grid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiLSat_Grid)).EndInit();
             this.uiR_TbCtrl.ResumeLayout(false);
             this.uiR_Chart_TbPg.ResumeLayout(false);
             this.uiRChart_TbLay.ResumeLayout(false);
@@ -580,15 +580,15 @@
         private System.Windows.Forms.TabControl uiR_TbCtrl;
         private System.Windows.Forms.TabPage uiR_Chart_TbPg;
         private System.Windows.Forms.DataGridView uiLPeek_Grid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn uiLPeekGrid_Noise01_Col;
-        private System.Windows.Forms.DataGridViewTextBoxColumn uiLPeekGrid_Noise05_Col;
-        private System.Windows.Forms.DataGridViewTextBoxColumn uiLPeekGrid_Noise1_Col;
-        private System.Windows.Forms.DataGridViewTextBoxColumn uiLPeekGrid_Noise2_Col;
-        private System.Windows.Forms.DataGridView uiLDeform_Grid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn uiLDeformGrid_Noise01_Col;
-        private System.Windows.Forms.DataGridViewTextBoxColumn uiLDeformGrid_Noise05_Col;
-        private System.Windows.Forms.DataGridViewTextBoxColumn uiLDeformGrid_Noise1_Col;
-        private System.Windows.Forms.DataGridViewTextBoxColumn uiLDeformGrid_Noise2_Col;
+        private System.Windows.Forms.DataGridViewTextBoxColumn uiLPeekGrid_NoiseA_Col;
+        private System.Windows.Forms.DataGridViewTextBoxColumn uiLPeekGrid_NoiseB_Col;
+        private System.Windows.Forms.DataGridViewTextBoxColumn uiLPeekGrid_NoiseC_Col;
+        private System.Windows.Forms.DataGridViewTextBoxColumn uiLPeekGrid_NoiseD_Col;
+        private System.Windows.Forms.DataGridView uiLSat_Grid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn uiLSatGrid_NoiseA_Col;
+        private System.Windows.Forms.DataGridViewTextBoxColumn uiLSatGrid_NoiseB_Col;
+        private System.Windows.Forms.DataGridViewTextBoxColumn uiLSatGrid_NoiseC_Col;
+        private System.Windows.Forms.DataGridViewTextBoxColumn uiLSatGrid_NoiseD_Col;
         private System.Windows.Forms.TableLayoutPanel uiRChart_TbLay;
         private System.Windows.Forms.DataVisualization.Charting.Chart uiRChart_Chart;
         private System.Windows.Forms.TableLayoutPanel uiRChart_Down_TbLay;
@@ -596,7 +596,7 @@
         private System.Windows.Forms.NumericUpDown uiRChartDown_CrvIdx_Num;
         private System.Windows.Forms.Button uiRChartDown_DtSet_Btn;
         private System.Windows.Forms.ComboBox uiRChartDown_MeanT_ComBx;
-        private System.Windows.Forms.ComboBox uiRChartDown_Surr_ComBx;
+        private System.Windows.Forms.ComboBox uiRChartDown_Noises_ComBx;
         private System.Windows.Forms.ComboBox uiRChartDown_Phen_ComBx;
         private System.Windows.Forms.TableLayoutPanel uiRChart_Up_TbLay;
         private System.Windows.Forms.TextBox uiRChartUp_CrvT_TxtBx;

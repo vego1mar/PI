@@ -666,17 +666,8 @@
   <data name="Messages_General_OutOfMemoryException_Text" xml:space="preserve">
     <value>An exception of type OutOfMemoryException has been thrown. This happens when there is no enough memory to continue the execution of a program.</value>
   </data>
-  <data name="StatisticalAnalysis_Ui_StandardDeviation_Noise01" xml:space="preserve">
-    <value>Noise 0.1</value>
-  </data>
-  <data name="StatisticalAnalysis_Ui_StandardDeviation_Noise05" xml:space="preserve">
-    <value>Noise 0.5</value>
-  </data>
-  <data name="StatisticalAnalysis_Ui_StandardDeviation_Noise1" xml:space="preserve">
-    <value>Noise 1.0</value>
-  </data>
-  <data name="StatisticalAnalysis_Ui_StandardDeviation_Noise2" xml:space="preserve">
-    <value>Noise 2.0</value>
+  <data name="StatisticalAnalysis_Ui_StandardDeviation_Noise" xml:space="preserve">
+    <value>Noise</value>
   </data>
   <data name="StatisticalAnalysis_Ui_Preview_CurveIndex" xml:space="preserve">
     <value>Curve index:</value>

@@ -654,17 +654,8 @@
   <data name="Messages_General_OutOfMemoryException_Text" xml:space="preserve">
     <value>Wyjątek typu OutOfMemoryException został rzucony. Dzieje się tak, kiedy nie wystarczającej ilości pamięci, aby kontynuować wykonywanie programu.</value>
   </data>
-  <data name="StatisticalAnalysis_Ui_StandardDeviation_Noise01" xml:space="preserve">
-    <value>Szum 0,1</value>
-  </data>
-  <data name="StatisticalAnalysis_Ui_StandardDeviation_Noise05" xml:space="preserve">
-    <value>Szum 0,5</value>
-  </data>
-  <data name="StatisticalAnalysis_Ui_StandardDeviation_Noise1" xml:space="preserve">
-    <value>Szum 1,0</value>
-  </data>
-  <data name="StatisticalAnalysis_Ui_StandardDeviation_Noise2" xml:space="preserve">
-    <value>Szum 2,0</value>
+  <data name="StatisticalAnalysis_Ui_StandardDeviation_Noise" xml:space="preserve">
+    <value>Szum</value>
   </data>
   <data name="StatisticalAnalysis_Ui_Preview_CurveIndex" xml:space="preserve">
     <value>Indeks krzywej:</value>

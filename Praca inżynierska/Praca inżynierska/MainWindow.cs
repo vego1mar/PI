@@ -520,7 +520,7 @@ namespace PI
             }
 
             UiControls.TrySetSelectedIndex( uiPnlDtSh_CrvT_ComBx, (int) DataSetCurveType.Average );
-            double standardDeviation = StatisticalAnalysis.GetRelativeStandardDeviationFromSeriesValues( DataChart.AverageCurve, DataChart.IdealCurve );
+            double standardDeviation = Mathematics.GetRelativeStandardDeviation( SeriesAssist.GetValues( DataChart.AverageCurve ), SeriesAssist.GetValues( DataChart.IdealCurve ) );
             uiPnlGen_StdDev2_TxtBx.Text = Strings.TryFormatAsNumeric( 8, standardDeviation );
         }
 

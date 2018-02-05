@@ -46,6 +46,15 @@ namespace PI.src.general
             column.ReadOnly = isReadOnly;
         }
 
+        public static void AlterRowHeader( DataGridViewRow row, object headerValue )
+        {
+            if ( row == null ) {
+                return;
+            }
+
+            row.HeaderCell.Value = headerValue;
+        }
+
         public static void PopulateColumn<T>( DataGridView grid, string columnName, IList<T> values )
         {
             if ( grid == null || columnName == null || values == null ) {

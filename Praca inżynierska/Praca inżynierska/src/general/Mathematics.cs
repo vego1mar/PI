@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace PI.src.general
 {
@@ -19,6 +20,23 @@ namespace PI.src.general
         public static bool IsZero( double value )
         {
             return value >= -IBM_FLOAT_SURROUNDING && value <= IBM_FLOAT_SURROUNDING;
+        }
+
+        public static double GetRelativeStandardDeviation( IList<double> average, IList<double> ideal )
+        {
+            if ( average.Count != ideal.Count ) {
+                return double.NaN;
+            }
+
+            double sum = 0.0;
+            double difference;
+
+            for ( int i = 0; i < average.Count; i++ ) {
+                difference = average[i] - ideal[i];
+                sum += difference * difference;
+            }
+
+            return Math.Sqrt( sum / Convert.ToDouble( average.Count ) );
         }
     }
 }

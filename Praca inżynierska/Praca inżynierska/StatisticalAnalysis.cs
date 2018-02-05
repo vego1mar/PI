@@ -20,70 +20,48 @@ namespace PI
     {
         internal GeneratorSettings Settings { get; private set; }
         private IList<IList<CurvesDataManager>> Data { get; set; }
-        private IList<double> Surroundings { get; set; }
+        private IList<double> Noises { get; set; }
         private IList<IList<IList<Series>>> Averages { get; set; }
         private IList<IList<IList<double>>> StdDeviations { get; set; }
         private bool IsFormShown = false;
         private static readonly ILog log = LogManager.GetLogger( MethodBase.GetCurrentMethod().DeclaringType );
 
-        private struct DatasetControlsValues
-        {
-            public int PhenomNo { get; set; }
-            public int NoiseNo { get; set; }
-            public int CrvIdx { get; set; }
-            public int MeanT { get; set; }
-            public int CrvT { get; set; }
-        }
-
         internal StatisticalAnalysis( GeneratorSettings genSets )
         {
             InitializeComponent();
-
             Settings = genSets;
-            Surroundings = new List<double>() { 0.1, 0.5, 1.0, 2.0 };
+            Noises = new List<double>() { 0.1, 0.5, 1.0, 11.0 };
             int dimension1 = Enum.GetValues( typeof( Phenomenon ) ).Length;
-            int dimension2 = Surroundings.Count;
+            int dimension2 = Noises.Count;
             int dimension3 = Enum.GetValues( typeof( MeanType ) ).Length;
             Data = Lists.GetCloneable( dimension1, dimension2, new CurvesDataManager() );
             Averages = Lists.GetNew<Series>( dimension1, dimension2, dimension3 );
             Averages.ToList().ForEach( l2 => l2.ToList().ForEach( l1 => l1.ToList().ForEach( s => SeriesAssist.SetDefaultSettings( s ) ) ) );
             StdDeviations = Lists.GetNew<double>( dimension1, dimension2, dimension3 );
-
-            InitializeDataGridViewUiFields();
-
+            UpdateUiByGridPresentation();
             UpdateUiBySettings();
+
             PerformStatisticalAnalysis();
             UpdateUiByPopulatingGridWithStandardDeviations();
             UpdateUiByColoringUiGrids();
             LocalizeWindow();
         }
 
-        // TODO: Use GridAssist
-        private void InitializeDataGridViewUiFields()
+        private void UpdateUiByGridPresentation()
         {
-            List<string> peekColumns = GetDataGridColumnsNames( Phenomenon.Peek );
-            List<string> deformColumns = GetDataGridColumnsNames( Phenomenon.Saturation );
+            const int FIRST_ROW_HEADER_WIDTH = 23 * 6 + 23;
             IList<string> meanNames = new MeanTypesStrings().ToList();
+            IList<DataGridView> grids = new List<DataGridView>() { uiLPeek_Grid, uiLSat_Grid };
+
+            grids.ToList().ForEach( grid => {
+                GridAssist.AddRows( grid, meanNames.Count );
+                grid.RowHeadersWidth = FIRST_ROW_HEADER_WIDTH;
+                grid.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            } );
 
             for ( int i = 0; i < meanNames.Count; i++ ) {
-                uiLPeek_Grid.Rows.Add();
-                uiLPeek_Grid.Rows[i].HeaderCell.Value = meanNames[i];
-                uiLDeform_Grid.Rows.Add();
-                uiLDeform_Grid.Rows[i].HeaderCell.Value = meanNames[i];
-
-                for ( int j = 0; j < peekColumns.Count; j++ ) {
-                    uiLPeek_Grid.Rows[i].Cells[peekColumns[j]].ValueType = typeof( double );
-                    uiLDeform_Grid.Rows[i].Cells[deformColumns[j]].ValueType = typeof( double );
-                }
+                grids.ToList().ForEach( grid => GridAssist.AlterRowHeader( grid.Rows[i], meanNames[i] ) );
             }
-
-            const int ROW_HEADERS_WIDTH = 23 * 8 + 11;
-            uiLPeek_Grid.RowHeadersWidth = ROW_HEADERS_WIDTH;
-            uiLPeek_Grid.RowHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            uiLPeek_Grid.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            uiLDeform_Grid.RowHeadersWidth = ROW_HEADERS_WIDTH;
-            uiLDeform_Grid.RowHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            uiLDeform_Grid.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
         private void UpdateUiBySettings()
@@ -98,61 +76,63 @@ namespace PI
             UiControls.TrySetValue( uiRChartDown_CrvIdx_Num, Settings.Ui.CurvesNo / 2 );
             EnumsLocalizer.Localize( LocalizableEnumerator.Phenomenon, uiRChartDown_Phen_ComBx );
             UiControls.TrySetSelectedIndex( uiRChartDown_Phen_ComBx, (int) Phenomenon.Peek );
-            EnumsLocalizer.PopulateComboBox( Lists.Cast<double, string>( Surroundings ), uiRChartDown_Surr_ComBx );
-            UiControls.TrySetSelectedIndex( uiRChartDown_Surr_ComBx, 0 );
+            EnumsLocalizer.PopulateComboBox( Lists.Cast<double, string>( Noises ), uiRChartDown_Noises_ComBx );
+            UiControls.TrySetSelectedIndex( uiRChartDown_Noises_ComBx, 0 );
             EnumsLocalizer.Localize( LocalizableEnumerator.MeanType, uiRChartDown_MeanT_ComBx );
             UiControls.TrySetSelectedIndex( uiRChartDown_MeanT_ComBx, (int) MeanType.Tolerance );
+            GridAssist.SetDefaultSettings( uiLPeek_Grid );
+            GridAssist.SetDefaultSettings( uiLSat_Grid );
         }
 
         private void PerformStatisticalAnalysis()
         {
+            double stdDeviation;
+            IList<double> averagesValues;
+            IList<double> idealValues;
+
             for ( int i = 0; i < Data.Count; i++ ) {
-                for ( int j = 0; j < Surroundings.Count; j++ ) {
+                for ( int j = 0; j < Noises.Count; j++ ) {
                     Data[i][j].GenerateIdealCurve( Settings.Pcd.Scaffold, Settings.Pcd.Parameters, Settings.Ui.StartX, Settings.Ui.EndX, Settings.Ui.PointsNo );
                     Data[i][j].PropagateIdealCurve( Settings.Ui.CurvesNo );
-                    Data[i][j].MakeNoiseOfGaussian( Settings.Ui.CurvesNo, Surroundings[j] );
-                    MakePeekOrSaturation( (Phenomenon) i, Data[i][j], Settings.Ui.CurvesNo / 2 );
+                    Data[i][j].MakeNoiseOfGaussian( Settings.Ui.CurvesNo, Noises[j] );
+                    MakeMalformation( (Phenomenon) i, Data[i][j], Settings.Ui.CurvesNo / 2 );
 
                     foreach ( string type in Enum.GetNames( typeof( MeanType ) ) ) {
                         Enum.TryParse( type, out MeanType meanType );
                         Data[i][j].TryMakeAverageCurve( meanType, Settings.Ui.CurvesNo );
                         SeriesAssist.CopyPoints( Data[i][j].AverageCurve, Averages[i][j][(int) meanType] );
-                        double stdDeviation = GetRelativeStandardDeviationFromSeriesValues( Averages[i][j][(int) meanType], Data[i][j].IdealCurve );
-                        StdDeviations[i][j][Convert.ToInt32( meanType )] = stdDeviation;
+
+                        averagesValues = SeriesAssist.GetValues( Averages[i][j][(int) meanType] );
+                        idealValues = SeriesAssist.GetValues( Data[i][j].IdealCurve );
+                        stdDeviation = Mathematics.GetRelativeStandardDeviation( averagesValues, idealValues );
+                        StdDeviations[i][j][(int) meanType] = stdDeviation;
                     }
                 }
             }
         }
 
-        private Series GetSeriesSpecifiedByControls()
+        private Series GetUiSpecifiedSeries()
         {
-            DatasetControlsValues indices = GetDatasetControlsValues();
+            int phenomenonNo = UiControls.TryGetSelectedIndex( uiRChartDown_Phen_ComBx );
+            int curveIndex = UiControls.TryGetValue<int>( uiRChartDown_CrvIdx_Num );
+            int noiseNo = UiControls.TryGetSelectedIndex( uiRChartDown_Noises_ComBx );
+            int meanType = UiControls.TryGetSelectedIndex( uiRChartDown_MeanT_ComBx );
+            int curveType = UiControls.TryGetSelectedIndex( uiRChartDown_CrvT_ComBx );
 
-            switch ( (DataSetCurveType) indices.CrvT ) {
+            switch ( (DataSetCurveType) curveType ) {
             case DataSetCurveType.Modified:
-                return Data[indices.PhenomNo][indices.NoiseNo].ModifiedCurves[indices.CrvIdx];
+                return Data[phenomenonNo][noiseNo].ModifiedCurves[curveIndex];
             case DataSetCurveType.Average:
-                return Averages[indices.PhenomNo][indices.NoiseNo][indices.MeanT];
+                return Averages[phenomenonNo][noiseNo][meanType];
             case DataSetCurveType.Ideal:
-                return Data[indices.PhenomNo][indices.NoiseNo].IdealCurve;
+                return Data[phenomenonNo][noiseNo].IdealCurve;
             }
 
             return new Series();
         }
 
-        private DatasetControlsValues GetDatasetControlsValues()
-        {
-            return new DatasetControlsValues() {
-                PhenomNo = UiControls.TryGetSelectedIndex( uiRChartDown_Phen_ComBx ),
-                CrvIdx = UiControls.TryGetValue<int>( uiRChartDown_CrvIdx_Num ),
-                NoiseNo = UiControls.TryGetSelectedIndex( uiRChartDown_Surr_ComBx ),
-                MeanT = UiControls.TryGetSelectedIndex( uiRChartDown_MeanT_ComBx ),
-                CrvT = UiControls.TryGetSelectedIndex( uiRChartDown_CrvT_ComBx )
-            };
-        }
-
         // TODO: provide random alterations
-        private void MakePeekOrSaturation( Phenomenon idx, CurvesDataManager data, int curveIdx, int yValuesIdx = 0 )
+        private void MakeMalformation( Phenomenon idx, CurvesDataManager data, int curveIdx, int yValuesIdx = 0 )
         {
             Series newSeries = data.ModifiedCurves[curveIdx];
             int leftIntervalPoint = Convert.ToInt32( (4.0 / 11.0) * newSeries.Points.Count );
@@ -191,7 +171,7 @@ namespace PI
                 signature = @base.DeclaringType.Name + "." + @base.Name + "()";
                 uiRChart_Chart.Visible = false;
                 uiRChart_Chart.Series.Clear();
-                uiRChart_Chart.Series.Add( GetSeriesSpecifiedByControls() );
+                uiRChart_Chart.Series.Add( GetUiSpecifiedSeries() );
 
                 if ( !SeriesAssist.IsChartAcceptable( uiRChart_Chart.Series[0] ) ) {
                     AppMessages.StatisticalAnalysis.ExclamationOfPointsNotValidToChart();
@@ -224,46 +204,22 @@ namespace PI
             }
         }
 
-        private List<string> GetDataGridColumnsNames( Phenomenon phenomenon )
+        private IList<string> GetDataGridColumnsNames( Phenomenon phenomenon )
         {
             switch ( phenomenon ) {
             case Phenomenon.Peek:
-                return new List<string>() {
-                    nameof( uiLPeekGrid_Noise01_Col ),
-                    nameof( uiLPeekGrid_Noise05_Col ),
-                    nameof( uiLPeekGrid_Noise1_Col ),
-                    nameof( uiLPeekGrid_Noise2_Col )
-                };
+                return new List<string>() { uiLPeekGrid_NoiseA_Col.Name, uiLPeekGrid_NoiseB_Col.Name, uiLPeekGrid_NoiseC_Col.Name, uiLPeekGrid_NoiseD_Col.Name };
             case Phenomenon.Saturation:
-                return new List<string>() {
-                    nameof( uiLDeformGrid_Noise01_Col ),
-                    nameof( uiLDeformGrid_Noise05_Col ),
-                    nameof( uiLDeformGrid_Noise1_Col ),
-                    nameof( uiLDeformGrid_Noise2_Col )
-                };
+                return new List<string>() { uiLSatGrid_NoiseA_Col.Name, uiLSatGrid_NoiseB_Col.Name, uiLSatGrid_NoiseC_Col.Name, uiLSatGrid_NoiseD_Col.Name };
             }
 
-            return new List<string>();
+            return new List<string>().AsReadOnly();
         }
 
-        // TODO: Extract -> Mathematics.GetSD( IList<T>, IList<T> )
-        public static double GetRelativeStandardDeviationFromSeriesValues( Series average, Series pattern, int yValuesIdx = 0 )
-        {
-            double sum = 0.0;
-            double difference;
-
-            for ( int i = 0; i < average.Points.Count; i++ ) {
-                difference = average.Points[i].YValues[yValuesIdx] - pattern.Points[i].YValues[yValuesIdx];
-                sum += difference * difference;
-            }
-
-            return Math.Sqrt( sum / Convert.ToDouble( average.Points.Count ) );
-        }
-
-        // TODO: Use GridAssist
+        // TODO: Use GridAssist.PopulateColumn<T>()
         private void UpdateUiByPopulatingGridWithStandardDeviations()
         {
-            DataGridView[] grids = { uiLPeek_Grid, uiLDeform_Grid };
+            DataGridView[] grids = { uiLPeek_Grid, uiLSat_Grid };
 
             if ( grids.Count() != Enum.GetNames( typeof( Phenomenon ) ).Count() ) {
                 return;
@@ -271,12 +227,12 @@ namespace PI
 
             foreach ( string name in Enum.GetNames( typeof( Phenomenon ) ) ) {
                 Enum.TryParse( name, out Phenomenon phenomenon );
-                List<string> columns = GetDataGridColumnsNames( phenomenon );
+                IList<string> columns = GetDataGridColumnsNames( phenomenon );
 
                 foreach ( string mean in Enum.GetNames( typeof( MeanType ) ) ) {
                     Enum.TryParse( mean, out MeanType type );
 
-                    for ( int k = 0; k < Surroundings.Count; k++ ) {
+                    for ( int k = 0; k < Noises.Count; k++ ) {
                         string stdDeviation = Strings.TryFormatAsNumeric( 4, StdDeviations[(int) phenomenon][k][(int) type] );
                         grids[(int) phenomenon].Rows[(int) type].Cells[columns[k]].Value = stdDeviation;
                     }
@@ -286,14 +242,14 @@ namespace PI
 
         private void UpdateUiByColoringUiGrids()
         {
-            DataGridView[] grids = { uiLPeek_Grid, uiLDeform_Grid };
+            DataGridView[] grids = { uiLPeek_Grid, uiLSat_Grid };
 
             if ( grids.Count() != Enum.GetValues( typeof( Phenomenon ) ).Length ) {
                 return;
             }
 
             for ( int i = 0; i < Enum.GetValues( typeof( Phenomenon ) ).Length; i++ ) {
-                for ( int j = 0; j < Surroundings.Count; j++ ) {
+                for ( int j = 0; j < Noises.Count; j++ ) {
                     int maxValueIdx = StdDeviations[i][j].IndexOf( StdDeviations[i][j].Max() );
                     int minValueIdx = StdDeviations[i][j].IndexOf( StdDeviations[i][j].Min() );
                     grids[i].Rows[maxValueIdx].Cells[j].Style.BackColor = System.Drawing.Color.OrangeRed;
@@ -311,14 +267,14 @@ namespace PI
             uiL_StdDev_TxtBx.Text = names.Ui.StandardDeviationTitle.GetString();
             uiL_Peek_TbPg.Text = names.Ui.StandardDeviationPeek.GetString();
             uiL_Sat_TbPg.Text = names.Ui.StandardDeviationSaturation.GetString();
-            uiLPeekGrid_Noise01_Col.HeaderText = names.Ui.StandardDeviationNoise01.GetString();
-            uiLPeekGrid_Noise05_Col.HeaderText = names.Ui.StandardDeviationNoise05.GetString();
-            uiLPeekGrid_Noise1_Col.HeaderText = names.Ui.StandardDeviationNoise1.GetString();
-            uiLPeekGrid_Noise2_Col.HeaderText = names.Ui.StandardDeviationNoise2.GetString();
-            uiLDeformGrid_Noise01_Col.HeaderText = names.Ui.StandardDeviationNoise01.GetString();
-            uiLDeformGrid_Noise05_Col.HeaderText = names.Ui.StandardDeviationNoise05.GetString();
-            uiLDeformGrid_Noise1_Col.HeaderText = names.Ui.StandardDeviationNoise1.GetString();
-            uiLDeformGrid_Noise2_Col.HeaderText = names.Ui.StandardDeviationNoise2.GetString();
+            GridAssist.AlterColumnHeader( uiLPeekGrid_NoiseA_Col, names.Ui.StandardDeviationNoise.GetString() + ' ' + Noises[0], true );
+            GridAssist.AlterColumnHeader( uiLPeekGrid_NoiseB_Col, names.Ui.StandardDeviationNoise.GetString() + ' ' + Noises[1], true );
+            GridAssist.AlterColumnHeader( uiLPeekGrid_NoiseC_Col, names.Ui.StandardDeviationNoise.GetString() + ' ' + Noises[2], true );
+            GridAssist.AlterColumnHeader( uiLPeekGrid_NoiseD_Col, names.Ui.StandardDeviationNoise.GetString() + ' ' + Noises[3], true );
+            GridAssist.AlterColumnHeader( uiLSatGrid_NoiseA_Col, names.Ui.StandardDeviationNoise.GetString() + ' ' + Noises[0], true );
+            GridAssist.AlterColumnHeader( uiLSatGrid_NoiseB_Col, names.Ui.StandardDeviationNoise.GetString() + ' ' + Noises[1], true );
+            GridAssist.AlterColumnHeader( uiLSatGrid_NoiseC_Col, names.Ui.StandardDeviationNoise.GetString() + ' ' + Noises[2], true );
+            GridAssist.AlterColumnHeader( uiLSatGrid_NoiseD_Col, names.Ui.StandardDeviationNoise.GetString() + ' ' + Noises[3], true );
 
             // Preview
             uiR_Prv_TxtBx.Text = names.Ui.PreviewTitle.GetString();
@@ -357,7 +313,7 @@ namespace PI
         {
             Settings = null;
             Data = null;
-            Surroundings = null;
+            Noises = null;
             Averages = null;
             StdDeviations = null;
             Dispose();
@@ -387,7 +343,7 @@ namespace PI
                 UpdateUiByRefreshingChart();
             }
 
-            log.Info( MethodBase.GetCurrentMethod().Name + '(' + IsFormShown + ',' + Surroundings[UiControls.TryGetSelectedIndex( uiRChartDown_Surr_ComBx )] + ')' );
+            log.Info( MethodBase.GetCurrentMethod().Name + '(' + IsFormShown + ',' + Noises[UiControls.TryGetSelectedIndex( uiRChartDown_Noises_ComBx )] + ')' );
         }
 
         private void OnMeanTypeSelection( object sender, EventArgs e )
@@ -460,7 +416,7 @@ namespace PI
             }
 
             try {
-                Series controlsSpecifiedSeries = GetSeriesSpecifiedByControls();
+                Series controlsSpecifiedSeries = GetUiSpecifiedSeries();
 
                 using ( var dialog = new GridPreviewer( controlsSpecifiedSeries ) ) {
                     UiControls.TryShowDialog( dialog, this );
