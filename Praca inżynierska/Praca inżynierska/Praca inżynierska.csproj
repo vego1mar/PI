@@ -191,10 +191,10 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="src\windows\LanguageSelector.Designer.cs" />
-    <Compile Include="StatisticalAnalysis.cs">
+    <Compile Include="src\windows\StatisticalAnalysis.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StatisticalAnalysis.Designer.cs">
+    <Compile Include="src\windows\StatisticalAnalysis.Designer.cs">
       <DependentUpon>StatisticalAnalysis.cs</DependentUpon>
     </Compile>
     <Compile Include="src\helpers\Strings.cs" />
@@ -239,7 +239,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="src\windows\LanguageSelector.resx" />
-    <EmbeddedResource Include="StatisticalAnalysis.resx">
+    <EmbeddedResource Include="src\windows\StatisticalAnalysis.resx">
       <DependentUpon>StatisticalAnalysis.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />

@@ -12,9 +12,9 @@ using log4net;
 using System.Reflection;
 using PI.src.localization.enums;
 using PI.src.localization.windows;
-using PI.src.windows;
+using System.Drawing;
 
-namespace PI
+namespace PI.src.windows
 {
     public partial class StatisticalAnalysis : Form
     {
@@ -40,10 +40,9 @@ namespace PI
             StdDeviations = Lists.GetNew<double>( dimension1, dimension2, dimension3 );
             UpdateUiByGridPresentation();
             UpdateUiBySettings();
-
-            PerformStatisticalAnalysis();
-            UpdateUiByPopulatingGridWithStandardDeviations();
-            UpdateUiByColoringUiGrids();
+            CalculateStandardDeviations();
+            UpdateUiByPopulatingStandardDeviationsOnGrid();
+            UpdateUiByColoringGridsExtremums();
             LocalizeWindow();
         }
 
@@ -51,7 +50,7 @@ namespace PI
         {
             const int FIRST_ROW_HEADER_WIDTH = 23 * 6 + 23;
             IList<string> meanNames = new MeanTypesStrings().ToList();
-            IList<DataGridView> grids = new List<DataGridView>() { uiLPeek_Grid, uiLSat_Grid };
+            DataGridView[] grids = GetUiGrids();
 
             grids.ToList().ForEach( grid => {
                 GridAssist.AddRows( grid, meanNames.Count );
@@ -84,8 +83,9 @@ namespace PI
             GridAssist.SetDefaultSettings( uiLSat_Grid );
         }
 
-        private void PerformStatisticalAnalysis()
+        private void CalculateStandardDeviations()
         {
+            int meanTypes = new MeanTypesStrings().Count();
             double stdDeviation;
             IList<double> averagesValues;
             IList<double> idealValues;
@@ -97,15 +97,13 @@ namespace PI
                     Data[i][j].MakeNoiseOfGaussian( Settings.Ui.CurvesNo, Noises[j] );
                     MakeMalformation( (Phenomenon) i, Data[i][j], Settings.Ui.CurvesNo / 2 );
 
-                    foreach ( string type in Enum.GetNames( typeof( MeanType ) ) ) {
-                        Enum.TryParse( type, out MeanType meanType );
-                        Data[i][j].TryMakeAverageCurve( meanType, Settings.Ui.CurvesNo );
-                        SeriesAssist.CopyPoints( Data[i][j].AverageCurve, Averages[i][j][(int) meanType] );
-
-                        averagesValues = SeriesAssist.GetValues( Averages[i][j][(int) meanType] );
+                    for ( int k = 0; k < meanTypes; k++ ) {
+                        Data[i][j].TryMakeAverageCurve( (MeanType) k, Settings.Ui.CurvesNo );
+                        SeriesAssist.CopyPoints( Data[i][j].AverageCurve, Averages[i][j][k] );
+                        averagesValues = SeriesAssist.GetValues( Averages[i][j][k] );
                         idealValues = SeriesAssist.GetValues( Data[i][j].IdealCurve );
                         stdDeviation = Mathematics.GetRelativeStandardDeviation( averagesValues, idealValues );
-                        StdDeviations[i][j][(int) meanType] = stdDeviation;
+                        StdDeviations[i][j][k] = stdDeviation;
                     }
                 }
             }
@@ -131,57 +129,46 @@ namespace PI
             return new Series();
         }
 
-        // TODO: provide random alterations
-        private void MakeMalformation( Phenomenon idx, CurvesDataManager data, int curveIdx, int yValuesIdx = 0 )
+        private void MakeMalformation( Phenomenon index, CurvesDataManager data, int curveIndex )
         {
-            Series newSeries = data.ModifiedCurves[curveIdx];
-            int leftIntervalPoint = Convert.ToInt32( (4.0 / 11.0) * newSeries.Points.Count );
-            int middlePoint = newSeries.Points.Count / 2;
-            int rightIntervalPoint = Convert.ToInt32( (8.0 / 11.0) * newSeries.Points.Count );
-            double maxValue = newSeries.Points.FindMaxByValue().YValues[yValuesIdx];
-            double minValue = newSeries.Points.FindMinByValue().YValues[yValuesIdx];
-            double malformationValue = 0.5 * (maxValue - minValue);
+            const int Y_VALUES_INDEX = 0;
+            Series series = data.ModifiedCurves[curveIndex];
+            int pointsNo = series.Points.Count;
+            double valuesInterval = SeriesAssist.GetValuesInterval( series, Y_VALUES_INDEX );
 
-            switch ( idx ) {
+            switch ( index ) {
             case Phenomenon.Peek:
-                newSeries.Points[middlePoint].YValues[yValuesIdx] += malformationValue;
+                SeriesAssist.OverrideValue( series, Convert.ToInt32( (1.0 / 4.0) * pointsNo ), -(1.0 / 2.0) * valuesInterval, Y_VALUES_INDEX );
+                SeriesAssist.OverrideValue( series, Convert.ToInt32( (1.0 / 3.0) * pointsNo ), (1.0 / 5.0) * valuesInterval, Y_VALUES_INDEX );
+                SeriesAssist.OverrideValue( series, Convert.ToInt32( (1.0 / 2.0) * pointsNo ), (1.0 / 2.0) * valuesInterval, Y_VALUES_INDEX );
+                SeriesAssist.OverrideValue( series, Convert.ToInt32( (2.0 / 3.0) * pointsNo ), -(1.0 / 5.0) * valuesInterval, Y_VALUES_INDEX );
+                SeriesAssist.OverrideValue( series, Convert.ToInt32( (3.0 / 4.0) * pointsNo ), (1.0 / 2.0) * valuesInterval, Y_VALUES_INDEX );
                 break;
             case Phenomenon.Saturation:
-                OverrideSeriesValuesWithinInterval( newSeries, leftIntervalPoint, rightIntervalPoint, malformationValue, yValuesIdx );
+                int leftPoint = Convert.ToInt32( (4.0 / 11.0) * pointsNo );
+                int rightPoint = Convert.ToInt32( (8.0 / 11.0) * pointsNo );
+                SeriesAssist.OverrideValues( series, leftPoint, rightPoint, (3.0 / 11.0) * valuesInterval, Y_VALUES_INDEX );
                 break;
             }
 
-            data.AlterCurve( newSeries, DataSetCurveType.Modified, curveIdx );
+            data.AlterCurve( series, DataSetCurveType.Modified, curveIndex );
         }
 
-        private void OverrideSeriesValuesWithinInterval( Series series, int leftPoint, int rightPoint, double value, int yValuesIdx = 0 )
-        {
-            for ( int i = leftPoint; i <= rightPoint; i++ ) {
-                series.Points[i].YValues[yValuesIdx] = value;
-            }
-        }
-
-        // TODO: Use ChartAssist
         private void UpdateUiByRefreshingChart()
         {
             string signature = string.Empty;
 
             try {
-                MethodBase @base = MethodBase.GetCurrentMethod();
-                signature = @base.DeclaringType.Name + "." + @base.Name + "()";
-                uiRChart_Chart.Visible = false;
-                uiRChart_Chart.Series.Clear();
-                uiRChart_Chart.Series.Add( GetUiSpecifiedSeries() );
-
-                if ( !SeriesAssist.IsChartAcceptable( uiRChart_Chart.Series[0] ) ) {
-                    AppMessages.StatisticalAnalysis.ExclamationOfPointsNotValidToChart();
-                    return;
-                }
-
-                ChooseChartSeriesColor( uiRChart_Chart );
-                uiRChart_Chart.ChartAreas[0].RecalculateAxesScale();
-                uiRChart_Chart.Visible = true;
-                uiRChart_Chart.Invalidate();
+                signature = MethodBase.GetCurrentMethod().Name + '(' + (DataSetCurveType) UiControls.TryGetSelectedIndex( uiRChartDown_CrvT_ComBx ) + ')';
+                ChartAssist.Refresh( GetUiSpecifiedSeries(), GetChartSeriesColor(), uiRChart_Chart );
+            }
+            catch ( InvalidOperationException ex ) {
+                log.Fatal( signature, ex );
+                AppMessages.StatisticalAnalysis.ExclamationOfPointsNotValidToChart();
+            }
+            catch ( OverflowException ex ) {
+                log.Fatal( signature, ex );
+                AppMessages.StatisticalAnalysis.ExclamationOfValueOutOfRange();
             }
             catch ( Exception ex ) {
                 log.Fatal( signature, ex );
@@ -189,22 +176,21 @@ namespace PI
             }
         }
 
-        private void ChooseChartSeriesColor( Chart chart, int seriesIdx = 0 )
+        private Color GetChartSeriesColor()
         {
             switch ( (DataSetCurveType) UiControls.TryGetSelectedIndex( uiRChartDown_CrvT_ComBx ) ) {
-            case DataSetCurveType.Modified:
-                chart.Series[seriesIdx].Color = System.Drawing.Color.Crimson;
-                break;
             case DataSetCurveType.Ideal:
-                chart.Series[seriesIdx].Color = System.Drawing.Color.Black;
-                break;
+                return Color.Black;
+            case DataSetCurveType.Modified:
+                return Color.Crimson;
             case DataSetCurveType.Average:
-                chart.Series[seriesIdx].Color = System.Drawing.Color.ForestGreen;
-                break;
+                return Color.ForestGreen;
             }
+
+            return Color.Indigo;
         }
 
-        private IList<string> GetDataGridColumnsNames( Phenomenon phenomenon )
+        private IList<string> GetUiGridColumnsNames( Phenomenon phenomenon )
         {
             switch ( phenomenon ) {
             case Phenomenon.Peek:
@@ -216,44 +202,33 @@ namespace PI
             return new List<string>().AsReadOnly();
         }
 
-        // TODO: Use GridAssist.PopulateColumn<T>()
-        private void UpdateUiByPopulatingGridWithStandardDeviations()
+        private DataGridView[] GetUiGrids()
         {
-            DataGridView[] grids = { uiLPeek_Grid, uiLSat_Grid };
+            return new DataGridView[] { uiLPeek_Grid, uiLSat_Grid };
+        }
 
-            if ( grids.Count() != Enum.GetNames( typeof( Phenomenon ) ).Count() ) {
-                return;
-            }
+        private void UpdateUiByPopulatingStandardDeviationsOnGrid()
+        {
+            DataGridView[] grids = GetUiGrids();
+            IList<string> columnsNames;
 
-            foreach ( string name in Enum.GetNames( typeof( Phenomenon ) ) ) {
-                Enum.TryParse( name, out Phenomenon phenomenon );
-                IList<string> columns = GetDataGridColumnsNames( phenomenon );
+            for ( int i = 0; i < grids.Count(); i++ ) {
+                columnsNames = GetUiGridColumnsNames( (Phenomenon) i );
 
-                foreach ( string mean in Enum.GetNames( typeof( MeanType ) ) ) {
-                    Enum.TryParse( mean, out MeanType type );
-
-                    for ( int k = 0; k < Noises.Count; k++ ) {
-                        string stdDeviation = Strings.TryFormatAsNumeric( 4, StdDeviations[(int) phenomenon][k][(int) type] );
-                        grids[(int) phenomenon].Rows[(int) type].Cells[columns[k]].Value = stdDeviation;
-                    }
+                for ( int j = 0; j < Noises.Count; j++ ) {
+                    GridAssist.PopulateColumn( grids[i], columnsNames[j], StdDeviations[i][j], 4 );
                 }
             }
         }
 
-        private void UpdateUiByColoringUiGrids()
+        private void UpdateUiByColoringGridsExtremums()
         {
-            DataGridView[] grids = { uiLPeek_Grid, uiLSat_Grid };
-
-            if ( grids.Count() != Enum.GetValues( typeof( Phenomenon ) ).Length ) {
-                return;
-            }
+            DataGridView[] grids = GetUiGrids();
 
             for ( int i = 0; i < Enum.GetValues( typeof( Phenomenon ) ).Length; i++ ) {
                 for ( int j = 0; j < Noises.Count; j++ ) {
-                    int maxValueIdx = StdDeviations[i][j].IndexOf( StdDeviations[i][j].Max() );
-                    int minValueIdx = StdDeviations[i][j].IndexOf( StdDeviations[i][j].Min() );
-                    grids[i].Rows[maxValueIdx].Cells[j].Style.BackColor = System.Drawing.Color.OrangeRed;
-                    grids[i].Rows[minValueIdx].Cells[j].Style.BackColor = System.Drawing.Color.SpringGreen;
+                    GridAssist.SetCellBackColor( grids[i], StdDeviations[i][j].IndexOf( StdDeviations[i][j].Max() ), j, Color.OrangeRed );
+                    GridAssist.SetCellBackColor( grids[i], StdDeviations[i][j].IndexOf( StdDeviations[i][j].Min() ), j, Color.SpringGreen );
                 }
             }
         }
@@ -337,7 +312,7 @@ namespace PI
             log.Info( MethodBase.GetCurrentMethod().Name + '(' + IsFormShown + ',' + ((Phenomenon) selection) + ')' );
         }
 
-        private void OnSurroundingsSelection( object sender, EventArgs e )
+        private void OnNoiseSelection( object sender, EventArgs e )
         {
             if ( IsFormShown ) {
                 UpdateUiByRefreshingChart();

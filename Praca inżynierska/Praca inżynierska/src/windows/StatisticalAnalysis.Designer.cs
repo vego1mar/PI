@@ -1,4 +1,4 @@
-﻿namespace PI
+﻿namespace PI.src.windows
 {
     partial class StatisticalAnalysis
     {
@@ -371,7 +371,7 @@
             this.uiRChartDown_Noises_ComBx.Name = "uiRChartDown_Noises_ComBx";
             this.uiRChartDown_Noises_ComBx.Size = new System.Drawing.Size(78, 21);
             this.uiRChartDown_Noises_ComBx.TabIndex = 31;
-            this.uiRChartDown_Noises_ComBx.SelectedIndexChanged += new System.EventHandler(this.OnSurroundingsSelection);
+            this.uiRChartDown_Noises_ComBx.SelectedIndexChanged += new System.EventHandler(this.OnNoiseSelection);
             // 
             // uiRChartDown_Phen_ComBx
             // 

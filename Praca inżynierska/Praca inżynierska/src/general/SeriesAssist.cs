@@ -116,6 +116,15 @@ namespace PI.src.general
             return GetValues( seriesList[seriesNo], yValuesIndex );
         }
 
+        public static double GetValuesInterval( Series series, int yValuesIndex = 0 )
+        {
+            if ( series == null || yValuesIndex < 0 ) {
+                return double.NaN;
+            }
+
+            return series.Points.FindMaxByValue().YValues[yValuesIndex] - series.Points.FindMinByValue().YValues[yValuesIndex];
+        }
+
         public static void OverrideValues( Series series, IList<double> values, int yValuesIndex = 0 )
         {
             if ( series == null || values == null || series.Points.Count != values.Count || yValuesIndex < 0 ) {
@@ -125,6 +134,26 @@ namespace PI.src.general
             for ( int i = 0; i < series.Points.Count; i++ ) {
                 series.Points[i].YValues[yValuesIndex] = values[i];
             }
+        }
+
+        public static void OverrideValues( Series series, int leftPoint, int rightPoint, double value, int yValuesIndex = 0 )
+        {
+            if ( series == null || leftPoint < 0 || rightPoint < 0 || leftPoint > rightPoint || yValuesIndex < 0 ) {
+                return;
+            }
+
+            for ( int i = leftPoint; i <= rightPoint; i++ ) {
+                series.Points[i].YValues[yValuesIndex] = value;
+            }
+        }
+
+        public static void OverrideValue( Series series, int index, double value, int yValueIndex = 0 )
+        {
+            if ( series == null || index < 0 || yValueIndex < 0 ) {
+                return;
+            }
+
+            series.Points[index].YValues[yValueIndex] = value;
         }
 
         public static void CopyPoints( Series source, Series target, int yValuesIndex = 0 )

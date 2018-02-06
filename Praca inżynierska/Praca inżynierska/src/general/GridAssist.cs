@@ -121,6 +121,15 @@ namespace PI.src.general
             }
         }
 
+        public static void SetCellBackColor( DataGridView grid, int rowIndex, int cellIndex, Color color )
+        {
+            if ( grid == null || rowIndex < 0 || cellIndex < 0 ) {
+                return;
+            }
+
+            grid.Rows[rowIndex].Cells[cellIndex].Style.BackColor = color;
+        }
+
         public static IList<object> GetColumnValues( DataGridView grid, string headerText )
         {
             if ( grid == null || headerText == null ) {
