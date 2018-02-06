@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using PI.src.general;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -8,13 +9,13 @@ namespace PITests.src.tests
     {
         public static Series GetSeries( IList<double> values = null )
         {
-            if (values == null) {
+            if ( values == null ) {
                 values = new List<double>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             }
 
             Series series = new Series();
 
-            for ( int i=0; i<values.Count; i++ ) {
+            for ( int i = 0; i < values.Count; i++ ) {
                 series.Points.AddXY( i, values[i] );
             }
 
@@ -39,5 +40,6 @@ namespace PITests.src.tests
             chart.Series.Add( series );
             return chart;
         }
+
     }
 }

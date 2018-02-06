@@ -64,26 +64,6 @@ namespace PITests.src.general
         }
 
         [TestMethod]
-        public void GetSortedIntoHistogram()
-        {
-            // given
-            IList<double> set1 = new List<double>() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            IList<double> set2 = new List<double>() { -2.2, -0.4, 0.5, 1.79, 3.2, 5.1 };
-            int divisions1 = 10;
-            int divisions2 = 11;
-
-            // when
-            IList<IList<double>> result1 = Lists.GetSortedIntoHistogram( set1, divisions1 );
-            IList<IList<double>> result2 = Lists.GetSortedIntoHistogram( set2, divisions2 );
-
-            // then
-            Assert.IsTrue( result1.Count == divisions1 );
-            Assert.IsTrue( result2.Count == divisions2 );
-            foreach ( var list in result1 ) { Assert.IsTrue( list.Count == (divisions1 / set1.Count) ); }
-            for ( int i = 0; i < result2.Count; i++ ) { Assert.IsTrue( (i % 2 == 0) ? (result2[i].Count == 1) : (result2[i].Count == 0) ); }
-        }
-
-        [TestMethod]
         public void Concat()
         {
             // given

@@ -29,48 +29,17 @@ namespace PI
         public MainWindow()
         {
             InitializeComponent();
-            InitalizeFields();
-            SetWindowDefaultDimensions();
-        }
-
-        private void InitalizeFields()
-        {
             Timer = null;
             Settings = new UiSettings();
             DataChart = new CurvesDataManager();
+            UpdateUiBySettings();
         }
 
-        private void UiMainWindow_Load( object sender, EventArgs e )
+        private void UpdateUiBySettings()
         {
-            UpdateUiByDotNetFrameworkVersion();
-            UpdateUiByOsVersionName();
-            DefineTimerThread();
-            Threads.TryStart( Timer );
-            UpdateUiByStatusOfTimerThread();
-            LanguageAssist.CurrentLanguage = Languages.English;
-            LanguageAssist.TryLocalizeCulture( Languages.English );
-            LocalizeWindow();
-            UpdateUiByDefaultSettings();
-        }
-
-        private void UiMenuProgram_Exit_Click( object sender, EventArgs e )
-        {
-            string signature = string.Empty;
-
-            try {
-                signature = @base.DeclaringType.Name + "." + @base.Name + "(" + sender + ", " + e + ")";
-                Close();
-                Application.Exit();
-            }
-            catch ( ObjectDisposedException ex ) {
-                log.Error( signature, ex );
-            }
-            catch ( InvalidOperationException ex ) {
-                log.Error( signature, ex );
-            }
-            catch ( Exception ex ) {
-                log.Fatal( signature, ex );
-            }
+            // Ui
+            Width = Settings.MainWindow.Dimensions.Width;
+            Height = Settings.MainWindow.Dimensions.Height;
         }
 
         private void DefineTimerThread()
@@ -183,29 +152,6 @@ namespace PI
             }
         }
 
-        private void UiPanelGenerate_Define_Click( object sender, EventArgs e )
-        {
-            using ( var pcdDialog = new PatternCurveDefiner( Settings.Presets.Pcd ) ) {
-                UiControls.TryShowDialog( pcdDialog, this );
-                string signature = string.Empty;
-
-                try {
-                    signature = @base.DeclaringType.Name + "." + @base.Name + "(" + sender + ", " + e + ")";
-
-                    if ( pcdDialog.DialogResult == DialogResult.OK ) {
-                        CopyDialogPropertiesIntoPreSetsArea( pcdDialog );
-                        UpdateUiByChosenScaffoldStatus();
-                    }
-                }
-                catch ( System.ComponentModel.InvalidEnumArgumentException ex ) {
-                    log.Error( signature, ex );
-                }
-                catch ( Exception ex ) {
-                    log.Fatal( signature, ex );
-                }
-            }
-        }
-
         private void CopyDialogPropertiesIntoPreSetsArea( PatternCurveDefiner pcdDialog )
         {
             Settings.Presets.Pcd.Scaffold = pcdDialog.Settings.Scaffold;
@@ -233,60 +179,6 @@ namespace PI
                 uiPnlGen_Def_Btn.Text = names.Ui.Panel.GenerateScaffoldNone.GetString();
                 break;
             }
-        }
-
-        private void UiPanelDataSheet_CurveType_SelectedIndexChanged( object sender, EventArgs e )
-        {
-            switch ( (DataSetCurveType) UiControls.TryGetSelectedIndex( uiPnlDtSh_CrvT_ComBx ) ) {
-            case DataSetCurveType.Modified:
-                uiPnlDtSh_CrvIdx_Num.Enabled = true;
-                uiPnlDtSh_CrvIdx_TrBr.Enabled = true;
-                UpdateUiByShowingCurveOnChart( DataSetCurveType.Modified, UiControls.TryGetValue<int>( uiPnlDtSh_CrvIdx_TrBr ) );
-                break;
-            case DataSetCurveType.Ideal:
-                uiPnlDtSh_CrvIdx_Num.Enabled = false;
-                uiPnlDtSh_CrvIdx_TrBr.Enabled = false;
-                UpdateUiByShowingCurveOnChart( DataSetCurveType.Ideal );
-                break;
-            case DataSetCurveType.Average:
-                uiPnlDtSh_CrvIdx_Num.Enabled = false;
-                uiPnlDtSh_CrvIdx_TrBr.Enabled = false;
-                UpdateUiByShowingCurveOnChart( DataSetCurveType.Average );
-                break;
-            }
-        }
-
-        private void UiPanelDataSheet_CurveIndex_NumericUpDown_ValueChanged( object sender, EventArgs e )
-        {
-            int curveIndex = UiControls.TryGetValue<int>( uiPnlDtSh_CrvIdx_Num );
-            UiControls.TrySetValue( uiPnlDtSh_CrvIdx_TrBr, curveIndex );
-            UpdateUiByShowingCurveOnChart( DataSetCurveType.Modified, curveIndex );
-        }
-
-        private void UiPanelDataSheet_CurveIndex_TrackBar_Scroll( object sender, EventArgs e )
-        {
-            int curveIndex = UiControls.TryGetValue<int>( uiPnlDtSh_CrvIdx_TrBr );
-            UiControls.TrySetValue( uiPnlDtSh_CrvIdx_Num, curveIndex );
-            UpdateUiByShowingCurveOnChart( DataSetCurveType.Modified, curveIndex );
-        }
-
-        private void UiPanelGenerate_GenerateSet_Click( object sender, EventArgs e )
-        {
-            if ( uiPnlGen_Def_Btn.Text == new MainWindowStrings().Ui.Panel.GenerateScaffoldNone.GetString() ) {
-                AppMessages.MainWindow.StopOfPatternCurveNotChosen();
-                return;
-            }
-
-            GrabPreSetsForCurvesGeneration();
-
-            if ( !GenerateAndShowPatternCurve() ) {
-                // TODO: show message - GREAT ISSUE (hyperbolic high)
-                return;
-            }
-
-            DataChart.PropagateIdealCurve( Settings.Presets.Ui.CurvesNo );
-            UpdateUiBySettingRangesForCurvesNumber();
-            UiControls.TrySetSelectedIndex( uiPnlDtSh_CrvT_ComBx, (int) DataSetCurveType.Modified );
         }
 
         private void GrabPreSetsForCurvesGeneration()
@@ -405,53 +297,6 @@ namespace PI
             uiPnlPrg_OsVer2_TxtBx.Text = osVersion;
         }
 
-        private void UiPanelDataSheet_ShowDataSet_Click( object sender, EventArgs e )
-        {
-            int selectedCurveType = UiControls.TryGetSelectedIndex( uiPnlDtSh_CrvT_ComBx );
-            int selectedCurveIndex = UiControls.TryGetValue<int>( uiPnlDtSh_CrvIdx_Num );
-
-            switch ( (DataSetCurveType) selectedCurveType ) {
-            case DataSetCurveType.Ideal:
-            case DataSetCurveType.Modified:
-            case DataSetCurveType.Average:
-                break;
-            default:
-                AppMessages.MainWindow.AsteriskOfCurveTypeNotSelected();
-                return;
-            }
-
-            Series selectedCurveSeries = SpecifyCurveSeries( selectedCurveType, selectedCurveIndex );
-
-            if ( selectedCurveSeries == null || selectedCurveSeries.Points.Count == 0 ) {
-                AppMessages.MainWindow.ExclamationOfSeriesSelection();
-                return;
-            }
-
-            using ( var gprvDialog = new GridPreviewer( SeriesAssist.GetCopy( selectedCurveSeries ) ) ) {
-                UiControls.TryShowDialog( gprvDialog, this );
-                string signature = string.Empty;
-
-                try {
-                    signature = @base.DeclaringType.Name + "." + @base.Name + "(" + sender + ", " + e + ")";
-
-                    if ( gprvDialog.DialogResult == DialogResult.OK ) {
-                        DataChart.AlterCurve( gprvDialog.Curve, (DataSetCurveType) selectedCurveType, selectedCurveIndex );
-                        ChartAssist.Refresh( gprvDialog.Curve, Color.Indigo, uiCharts_Crv );
-                    }
-                }
-                catch ( InvalidOperationException ex ) {
-                    log.Error( signature, ex );
-                    AppMessages.MainWindow.ErrorOfChartRefreshing();
-                }
-                catch ( System.ComponentModel.InvalidEnumArgumentException ex ) {
-                    log.Error( signature, ex );
-                }
-                catch ( Exception ex ) {
-                    log.Fatal( signature, ex );
-                }
-            }
-        }
-
         private Series SpecifyCurveSeries( int curveType, int curveIndex )
         {
             string signature = string.Empty;
@@ -478,143 +323,11 @@ namespace PI
             return null;
         }
 
-        private void UiPanelDataSheet_Malform_Click( object sender, EventArgs e )
-        {
-            if ( DataChart.IdealCurve.Points.Count == 0 ) {
-                AppMessages.MainWindow.ExclamationOfSeriesSelection();
-                return;
-            }
-
-            int numberOfCurves = UiControls.TryGetValue<int>( uiPnlDtSh_CrvNo_Num );
-            double surrounding = UiControls.TryGetValue<double>( uiPnlDtSh_Surr_Num );
-            bool? result = DataChart.MakeNoiseOfGaussian( numberOfCurves, surrounding );
-
-            if ( result == null ) {
-                AppMessages.MainWindow.ExclamationOfSpecifiedCurveDoesNotExist();
-                return;
-            }
-
-            if ( !result.Value ) {
-                AppMessages.MainWindow.StopOfOperationMalformRejected();
-                return;
-            }
-
-            UiControls.TrySetSelectedIndex( uiPnlDtSh_CrvT_ComBx, (int) DataSetCurveType.Modified );
-            UpdateUiByShowingCurveOnChart( DataSetCurveType.Modified );
-        }
-
-        private void UiPanelGenerate_Apply_Click( object sender, EventArgs e )
-        {
-            if ( DataChart.IdealCurve.Points.Count == 0 ) {
-                AppMessages.MainWindow.ExclamationOfSeriesSelection();
-                return;
-            }
-
-            MeanType meanType = (MeanType) UiControls.TryGetSelectedIndex( uiPnlGen_MeanT_ComBx );
-            int numberOfCurves = UiControls.TryGetValue<int>( uiPnlGen_Crvs2No_Num );
-            bool? averageResult = DataChart.TryMakeAverageCurve( meanType, numberOfCurves );
-
-            if ( !averageResult.Value ) {
-                DataChart.RemoveInvalidPoints( DataSetCurveType.Average );
-                AppMessages.MainWindow.ExclamationOfPointsNotValidToChart();
-            }
-
-            UiControls.TrySetSelectedIndex( uiPnlDtSh_CrvT_ComBx, (int) DataSetCurveType.Average );
-            double standardDeviation = Mathematics.GetRelativeStandardDeviation( SeriesAssist.GetValues( DataChart.AverageCurve ), SeriesAssist.GetValues( DataChart.IdealCurve ) );
-            uiPnlGen_StdDev2_TxtBx.Text = Strings.TryFormatAsNumeric( 8, standardDeviation );
-        }
-
         private void UpdateUiByDefaultSettings()
         {
             ChartAssist.SetDefaultSettings( uiCharts_Crv );
             UiControls.TrySetSelectedIndex( uiPnlGen_MeanT_ComBx, (int) MeanType.NN );
             UpdateUiByChosenScaffoldStatus();
-        }
-
-        private void UiMainWindow_Resize( object sender, EventArgs e )
-        {
-            if ( Settings.MainWindow.Menu.Panel.Hide ) {
-                return;
-            }
-
-            if ( WindowState == FormWindowState.Minimized ) {
-                return;
-            }
-
-            string signature = string.Empty;
-
-            try {
-                signature = @base.DeclaringType.Name + "." + @base.Name + "(" + sender + ", " + e + ")";
-
-                if ( Settings.MainWindow.Menu.Panel.KeepProportions ) {
-                    uiMw_SpCtn.SplitterDistance = Settings.MainWindow.Menu.Panel.SplitterDistance;
-                }
-            }
-            catch ( ArgumentOutOfRangeException ex ) {
-                log.Error( signature, ex );
-            }
-            catch ( InvalidOperationException ex ) {
-                log.Error( signature, ex );
-            }
-            catch ( Exception ex ) {
-                log.Fatal( signature, ex );
-            }
-        }
-
-        private void UiMenuPanel_KeepProportions_Click( object sender, EventArgs e )
-        {
-            Settings.MainWindow.Menu.Panel.KeepProportions = !Settings.MainWindow.Menu.Panel.KeepProportions;
-            uiMenuPnl_KeepProp.Checked = Settings.MainWindow.Menu.Panel.KeepProportions;
-        }
-
-        private void UiMenuPanel_Hide_Click( object sender, EventArgs e )
-        {
-            Settings.MainWindow.Menu.Panel.Hide = !Settings.MainWindow.Menu.Panel.Hide;
-            uiMenuPnl_Hide.Checked = Settings.MainWindow.Menu.Panel.Hide;
-
-            if ( uiMenuPnl_Hide.Checked ) {
-                Settings.MainWindow.Menu.Panel.SplitterDistance = uiMw_SpCtn.SplitterDistance;
-                uiMw_SpCtn.SplitterDistance = 0;
-                uiMw_SpCtn.Panel1.Hide();
-                uiMw_SpCtn.Enabled = false;
-                return;
-            }
-
-            uiMw_SpCtn.SplitterDistance = Settings.MainWindow.Menu.Panel.SplitterDistance;
-            uiMw_SpCtn.Panel1.Show();
-            uiMw_SpCtn.Enabled = true;
-        }
-
-        private void UiMenuPanel_Lock_Click( object sender, EventArgs e )
-        {
-            Settings.MainWindow.Menu.Panel.Lock = !Settings.MainWindow.Menu.Panel.Lock;
-            uiMenuPnl_Lock.Checked = Settings.MainWindow.Menu.Panel.Lock;
-            uiMw_SpCtn.Panel1.Enabled = !Settings.MainWindow.Menu.Panel.Lock;
-        }
-
-        private void UiMenuMeans_Settings_Click( object sender, EventArgs e )
-        {
-            using ( var dialog = new MeansSettings() ) {
-                dialog.MeansParams = DataChart.MeansParams;
-                dialog.UpdateUiBySettings();
-                UiControls.TryShowDialog( dialog, this );
-
-                if ( dialog.DialogResult == DialogResult.OK ) {
-                    DataChart.MeansParams = dialog.MeansParams;
-                }
-            }
-        }
-
-        private void UiMenuChart_Settings_Click( object sender, EventArgs e )
-        {
-            using ( var dialog = new ChartSettings( MainChartSettings.Get( Settings.Series, uiCharts_Crv ) ) ) {
-                UiControls.TryShowDialog( dialog, this );
-
-                if ( dialog.DialogResult == DialogResult.OK ) {
-                    MainChartSettings.Set( dialog.Settings, Settings.Series, uiCharts_Crv );
-                    UpdateUiByInvalidatingChartSettings();
-                }
-            }
         }
 
         private void UpdateUiByInvalidatingChartSettings()
@@ -632,64 +345,10 @@ namespace PI
             }
         }
 
-        private void UiMenuProgram_StatisticalAnalysis_Click( object sender, EventArgs e )
-        {
-            string signature = string.Empty;
-
-            try {
-                signature = @base.DeclaringType.Name + "." + @base.Name + "(" + sender + ", " + e + ")";
-                GrabPreSetsForCurvesGeneration();
-
-                Thread window = new Thread( DelegatorForStatAnalysis ) {
-                    Name = nameof( StatisticalAnalysis ),
-                    IsBackground = true
-                };
-
-                window.Start();
-            }
-            catch ( ThreadStateException ex ) {
-                log.Error( signature, ex );
-            }
-            catch ( OutOfMemoryException ex ) {
-                log.Fatal( signature, ex );
-                AppMessages.General.StopOfOutOfMemoryException();
-            }
-            catch ( ArgumentNullException ex ) {
-                log.Error( signature, ex );
-            }
-            catch ( InvalidOperationException ex ) {
-                log.Error( signature, ex );
-            }
-            catch ( Exception ex ) {
-                log.Fatal( signature, ex );
-            }
-        }
-
         private void DelegatorForStatAnalysis()
         {
             using ( var dialog = new StatisticalAnalysis( Settings.Presets ) ) {
                 dialog.ShowDialog();
-            }
-        }
-
-        private void MainWindow_FormClosing( object sender, FormClosingEventArgs e )
-        {
-            Timer = null;
-            Settings = null;
-            DataChart = null;
-            Dispose();
-        }
-
-        private void UiMenuProgram_SelectLanguage_Click( object sender, EventArgs e )
-        {
-            using ( var dialog = new LanguageSelector() ) {
-                UiControls.TryShowDialog( dialog, this );
-
-                if ( dialog.DialogResult == DialogResult.OK ) {
-                    LanguageAssist.CurrentLanguage = dialog.GetSelectedLanguage();
-                    LanguageAssist.TryLocalizeCulture( dialog.GetSelectedLanguage() );
-                    LocalizeWindow();
-                }
             }
         }
 
@@ -720,7 +379,7 @@ namespace PI
 
             // Tab: Generate
             uiPnlGen_TbPg.Text = names.Ui.Panel.GenerateTitle.GetString();
-            uiPnlGen_PattCrvScaff_TxtBx.Text = names.Ui.Panel.GeneratePatternCurveScaffold.GetString();
+            uiPnlGen_IdealCrvScaff_TxtBx.Text = names.Ui.Panel.GeneratePatternCurveScaffold.GetString();
             uiPnlGen_CrvScaff1_TxtBx.Text = names.Ui.Panel.GenerateCurveScaffold1.GetString();
             uiPnlGen_Def_Btn.Text = names.Ui.Panel.GenerateScaffoldNone.GetString();
             UpdateUiByChosenScaffoldStatus();
@@ -774,12 +433,352 @@ namespace PI
             uiPnlPrg_LogPath1_TxtBx.Text = names.Ui.Panel.ProgramLogPath1.GetString();
         }
 
-        private void SetWindowDefaultDimensions()
+        #region Event handlers
+
+        private void OnLoad( object sender, EventArgs e )
         {
-            Width = Settings.MainWindow.Dimensions.Width;
-            Height = Settings.MainWindow.Dimensions.Height;
+            UpdateUiByDotNetFrameworkVersion();
+            UpdateUiByOsVersionName();
+            DefineTimerThread();
+            Threads.TryStart( Timer );
+            UpdateUiByStatusOfTimerThread();
+            LanguageAssist.CurrentLanguage = Languages.English;
+            LanguageAssist.TryLocalizeCulture( Languages.English );
+            LocalizeWindow();
+            UpdateUiByDefaultSettings();
         }
 
+        private void OnFormClosing( object sender, FormClosingEventArgs e )
+        {
+            Timer = null;
+            Settings = null;
+            DataChart = null;
+            Dispose();
+        }
+
+        private void OnResize( object sender, EventArgs e )
+        {
+            if ( Settings.MainWindow.Menu.Panel.Hide ) {
+                return;
+            }
+
+            if ( WindowState == FormWindowState.Minimized ) {
+                return;
+            }
+
+            string signature = string.Empty;
+
+            try {
+                signature = @base.DeclaringType.Name + "." + @base.Name + "(" + sender + ", " + e + ")";
+
+                if ( Settings.MainWindow.Menu.Panel.KeepProportions ) {
+                    uiMw_SpCtn.SplitterDistance = Settings.MainWindow.Menu.Panel.SplitterDistance;
+                }
+            }
+            catch ( ArgumentOutOfRangeException ex ) {
+                log.Error( signature, ex );
+            }
+            catch ( InvalidOperationException ex ) {
+                log.Error( signature, ex );
+            }
+            catch ( Exception ex ) {
+                log.Fatal( signature, ex );
+            }
+        }
+
+        private void OnMenuExit( object sender, EventArgs e )
+        {
+            string signature = string.Empty;
+
+            try {
+                signature = @base.DeclaringType.Name + "." + @base.Name + "(" + sender + ", " + e + ")";
+                Close();
+                Application.Exit();
+            }
+            catch ( ObjectDisposedException ex ) {
+                log.Error( signature, ex );
+            }
+            catch ( InvalidOperationException ex ) {
+                log.Error( signature, ex );
+            }
+            catch ( Exception ex ) {
+                log.Fatal( signature, ex );
+            }
+        }
+
+        private void OnMenuSelectLanguage( object sender, EventArgs e )
+        {
+            using ( var dialog = new LanguageSelector() ) {
+                UiControls.TryShowDialog( dialog, this );
+
+                if ( dialog.DialogResult == DialogResult.OK ) {
+                    LanguageAssist.CurrentLanguage = dialog.GetSelectedLanguage();
+                    LanguageAssist.TryLocalizeCulture( dialog.GetSelectedLanguage() );
+                    LocalizeWindow();
+                }
+            }
+        }
+
+        private void OnMenuStatisticalAnalysis( object sender, EventArgs e )
+        {
+            string signature = string.Empty;
+
+            try {
+                signature = @base.DeclaringType.Name + "." + @base.Name + "(" + sender + ", " + e + ")";
+                GrabPreSetsForCurvesGeneration();
+
+                Thread window = new Thread( DelegatorForStatAnalysis ) {
+                    Name = nameof( StatisticalAnalysis ),
+                    IsBackground = true
+                };
+
+                window.Start();
+            }
+            catch ( ThreadStateException ex ) {
+                log.Error( signature, ex );
+            }
+            catch ( OutOfMemoryException ex ) {
+                log.Fatal( signature, ex );
+                AppMessages.General.StopOfOutOfMemoryException();
+            }
+            catch ( ArgumentNullException ex ) {
+                log.Error( signature, ex );
+            }
+            catch ( InvalidOperationException ex ) {
+                log.Error( signature, ex );
+            }
+            catch ( Exception ex ) {
+                log.Fatal( signature, ex );
+            }
+        }
+
+        private void OnMenuKeepProportions( object sender, EventArgs e )
+        {
+            Settings.MainWindow.Menu.Panel.KeepProportions = !Settings.MainWindow.Menu.Panel.KeepProportions;
+            uiMenuPnl_KeepProp.Checked = Settings.MainWindow.Menu.Panel.KeepProportions;
+        }
+
+        private void OnMenuPanelHide( object sender, EventArgs e )
+        {
+            Settings.MainWindow.Menu.Panel.Hide = !Settings.MainWindow.Menu.Panel.Hide;
+            uiMenuPnl_Hide.Checked = Settings.MainWindow.Menu.Panel.Hide;
+
+            if ( uiMenuPnl_Hide.Checked ) {
+                Settings.MainWindow.Menu.Panel.SplitterDistance = uiMw_SpCtn.SplitterDistance;
+                uiMw_SpCtn.SplitterDistance = 0;
+                uiMw_SpCtn.Panel1.Hide();
+                uiMw_SpCtn.Enabled = false;
+                return;
+            }
+
+            uiMw_SpCtn.SplitterDistance = Settings.MainWindow.Menu.Panel.SplitterDistance;
+            uiMw_SpCtn.Panel1.Show();
+            uiMw_SpCtn.Enabled = true;
+        }
+
+        private void OnMenuPanelLock( object sender, EventArgs e )
+        {
+            Settings.MainWindow.Menu.Panel.Lock = !Settings.MainWindow.Menu.Panel.Lock;
+            uiMenuPnl_Lock.Checked = Settings.MainWindow.Menu.Panel.Lock;
+            uiMw_SpCtn.Panel1.Enabled = !Settings.MainWindow.Menu.Panel.Lock;
+        }
+
+        private void OnMenuMeansSettings( object sender, EventArgs e )
+        {
+            using ( var dialog = new MeansSettings() ) {
+                dialog.MeansParams = DataChart.MeansParams;
+                dialog.UpdateUiBySettings();
+                UiControls.TryShowDialog( dialog, this );
+
+                if ( dialog.DialogResult == DialogResult.OK ) {
+                    DataChart.MeansParams = dialog.MeansParams;
+                }
+            }
+        }
+
+        private void OnMenuChartSettings( object sender, EventArgs e )
+        {
+            using ( var dialog = new ChartSettings( MainChartSettings.Get( Settings.Series, uiCharts_Crv ) ) ) {
+                UiControls.TryShowDialog( dialog, this );
+
+                if ( dialog.DialogResult == DialogResult.OK ) {
+                    MainChartSettings.Set( dialog.Settings, Settings.Series, uiCharts_Crv );
+                    UpdateUiByInvalidatingChartSettings();
+                }
+            }
+        }
+
+        private void OnMalformClick( object sender, EventArgs e )
+        {
+            if ( DataChart.IdealCurve.Points.Count == 0 ) {
+                AppMessages.MainWindow.ExclamationOfSeriesSelection();
+                return;
+            }
+
+            int numberOfCurves = UiControls.TryGetValue<int>( uiPnlDtSh_CrvNo_Num );
+            double surrounding = UiControls.TryGetValue<double>( uiPnlDtSh_Surr_Num );
+            bool? result = DataChart.MakeNoiseOfGaussian( numberOfCurves, surrounding );
+
+            if ( result == null ) {
+                AppMessages.MainWindow.ExclamationOfSpecifiedCurveDoesNotExist();
+                return;
+            }
+
+            if ( !result.Value ) {
+                AppMessages.MainWindow.StopOfOperationMalformRejected();
+                return;
+            }
+
+            UiControls.TrySetSelectedIndex( uiPnlDtSh_CrvT_ComBx, (int) DataSetCurveType.Modified );
+            UpdateUiByShowingCurveOnChart( DataSetCurveType.Modified );
+        }
+
+        private void OnApplyClick( object sender, EventArgs e )
+        {
+            if ( DataChart.IdealCurve.Points.Count == 0 ) {
+                AppMessages.MainWindow.ExclamationOfSeriesSelection();
+                return;
+            }
+
+            MeanType meanType = (MeanType) UiControls.TryGetSelectedIndex( uiPnlGen_MeanT_ComBx );
+            int numberOfCurves = UiControls.TryGetValue<int>( uiPnlGen_Crvs2No_Num );
+            bool? averageResult = DataChart.TryMakeAverageCurve( meanType, numberOfCurves );
+
+            if ( !averageResult.Value ) {
+                DataChart.RemoveInvalidPoints( DataSetCurveType.Average );
+                AppMessages.MainWindow.ExclamationOfPointsNotValidToChart();
+            }
+
+            UiControls.TrySetSelectedIndex( uiPnlDtSh_CrvT_ComBx, (int) DataSetCurveType.Average );
+            double standardDeviation = Mathematics.GetRelativeStandardDeviation( SeriesAssist.GetValues( DataChart.AverageCurve ), SeriesAssist.GetValues( DataChart.IdealCurve ) );
+            uiPnlGen_StdDev2_TxtBx.Text = Strings.TryFormatAsNumeric( 8, standardDeviation );
+        }
+
+        private void OnShowDataSetClick( object sender, EventArgs e )
+        {
+            int selectedCurveType = UiControls.TryGetSelectedIndex( uiPnlDtSh_CrvT_ComBx );
+            int selectedCurveIndex = UiControls.TryGetValue<int>( uiPnlDtSh_CrvIdx_Num );
+
+            switch ( (DataSetCurveType) selectedCurveType ) {
+            case DataSetCurveType.Ideal:
+            case DataSetCurveType.Modified:
+            case DataSetCurveType.Average:
+                break;
+            default:
+                AppMessages.MainWindow.AsteriskOfCurveTypeNotSelected();
+                return;
+            }
+
+            Series selectedCurveSeries = SpecifyCurveSeries( selectedCurveType, selectedCurveIndex );
+
+            if ( selectedCurveSeries == null || selectedCurveSeries.Points.Count == 0 ) {
+                AppMessages.MainWindow.ExclamationOfSeriesSelection();
+                return;
+            }
+
+            using ( var gprvDialog = new GridPreviewer( SeriesAssist.GetCopy( selectedCurveSeries ) ) ) {
+                UiControls.TryShowDialog( gprvDialog, this );
+                string signature = string.Empty;
+
+                try {
+                    signature = @base.DeclaringType.Name + "." + @base.Name + "(" + sender + ", " + e + ")";
+
+                    if ( gprvDialog.DialogResult == DialogResult.OK ) {
+                        DataChart.AlterCurve( gprvDialog.Curve, (DataSetCurveType) selectedCurveType, selectedCurveIndex );
+                        ChartAssist.Refresh( gprvDialog.Curve, Color.Indigo, uiCharts_Crv );
+                    }
+                }
+                catch ( InvalidOperationException ex ) {
+                    log.Error( signature, ex );
+                    AppMessages.MainWindow.ErrorOfChartRefreshing();
+                }
+                catch ( System.ComponentModel.InvalidEnumArgumentException ex ) {
+                    log.Error( signature, ex );
+                }
+                catch ( Exception ex ) {
+                    log.Fatal( signature, ex );
+                }
+            }
+        }
+
+        private void OnCurveTypeSelection( object sender, EventArgs e )
+        {
+            switch ( (DataSetCurveType) UiControls.TryGetSelectedIndex( uiPnlDtSh_CrvT_ComBx ) ) {
+            case DataSetCurveType.Modified:
+                uiPnlDtSh_CrvIdx_Num.Enabled = true;
+                uiPnlDtSh_CrvIdx_TrBr.Enabled = true;
+                UpdateUiByShowingCurveOnChart( DataSetCurveType.Modified, UiControls.TryGetValue<int>( uiPnlDtSh_CrvIdx_TrBr ) );
+                break;
+            case DataSetCurveType.Ideal:
+                uiPnlDtSh_CrvIdx_Num.Enabled = false;
+                uiPnlDtSh_CrvIdx_TrBr.Enabled = false;
+                UpdateUiByShowingCurveOnChart( DataSetCurveType.Ideal );
+                break;
+            case DataSetCurveType.Average:
+                uiPnlDtSh_CrvIdx_Num.Enabled = false;
+                uiPnlDtSh_CrvIdx_TrBr.Enabled = false;
+                UpdateUiByShowingCurveOnChart( DataSetCurveType.Average );
+                break;
+            }
+        }
+
+        private void OnCurveIndexAlteration( object sender, EventArgs e )
+        {
+            int curveIndex = UiControls.TryGetValue<int>( uiPnlDtSh_CrvIdx_Num );
+            UiControls.TrySetValue( uiPnlDtSh_CrvIdx_TrBr, curveIndex );
+            UpdateUiByShowingCurveOnChart( DataSetCurveType.Modified, curveIndex );
+        }
+
+        private void OnCurveIndexScroll( object sender, EventArgs e )
+        {
+            int curveIndex = UiControls.TryGetValue<int>( uiPnlDtSh_CrvIdx_TrBr );
+            UiControls.TrySetValue( uiPnlDtSh_CrvIdx_Num, curveIndex );
+            UpdateUiByShowingCurveOnChart( DataSetCurveType.Modified, curveIndex );
+        }
+
+        private void OnGenerateSetClick( object sender, EventArgs e )
+        {
+            if ( uiPnlGen_Def_Btn.Text == new MainWindowStrings().Ui.Panel.GenerateScaffoldNone.GetString() ) {
+                AppMessages.MainWindow.StopOfPatternCurveNotChosen();
+                return;
+            }
+
+            GrabPreSetsForCurvesGeneration();
+
+            if ( !GenerateAndShowPatternCurve() ) {
+                // TODO: show message - GREAT ISSUE (hyperbolic high)
+                return;
+            }
+
+            DataChart.PropagateIdealCurve( Settings.Presets.Ui.CurvesNo );
+            UpdateUiBySettingRangesForCurvesNumber();
+            UiControls.TrySetSelectedIndex( uiPnlDtSh_CrvT_ComBx, (int) DataSetCurveType.Modified );
+        }
+
+        private void OnDefineClick( object sender, EventArgs e )
+        {
+            using ( var pcdDialog = new PatternCurveDefiner( Settings.Presets.Pcd ) ) {
+                UiControls.TryShowDialog( pcdDialog, this );
+                string signature = string.Empty;
+
+                try {
+                    signature = @base.DeclaringType.Name + "." + @base.Name + "(" + sender + ", " + e + ")";
+
+                    if ( pcdDialog.DialogResult == DialogResult.OK ) {
+                        CopyDialogPropertiesIntoPreSetsArea( pcdDialog );
+                        UpdateUiByChosenScaffoldStatus();
+                    }
+                }
+                catch ( System.ComponentModel.InvalidEnumArgumentException ex ) {
+                    log.Error( signature, ex );
+                }
+                catch ( Exception ex ) {
+                    log.Fatal( signature, ex );
+                }
+            }
+        }
+
+        #endregion
     }
 
 }

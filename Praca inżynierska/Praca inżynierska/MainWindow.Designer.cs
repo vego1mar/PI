@@ -44,7 +44,7 @@
             this.uiPnlGen_EndX_TxtBx = new System.Windows.Forms.TextBox();
             this.uiPnlGen_Def_Btn = new System.Windows.Forms.Button();
             this.uiPnlGen_CrvScaff1_TxtBx = new System.Windows.Forms.TextBox();
-            this.uiPnlGen_PattCrvScaff_TxtBx = new System.Windows.Forms.TextBox();
+            this.uiPnlGen_IdealCrvScaff_TxtBx = new System.Windows.Forms.TextBox();
             this.uiPnlGen_Crvs2No_Num = new System.Windows.Forms.NumericUpDown();
             this.uiPnlGen_Crvs2No_TxtBx = new System.Windows.Forms.TextBox();
             this.uiPnlGen_MeanT_TxtBx = new System.Windows.Forms.TextBox();
@@ -147,7 +147,7 @@
             chartArea1.AxisY.TitleFont = new System.Drawing.Font("Consolas", 8F);
             chartArea1.BackColor = System.Drawing.Color.White;
             chartArea1.IsSameFontSizeForAllAxes = true;
-            chartArea1.Name = "PatternCurveChartArea";
+            chartArea1.Name = "IdealCurveChartArea";
             this.uiCharts_Crv.ChartAreas.Add(chartArea1);
             this.uiCharts_Crv.Dock = System.Windows.Forms.DockStyle.Fill;
             legend1.Enabled = false;
@@ -156,7 +156,7 @@
             this.uiCharts_Crv.Location = new System.Drawing.Point(0, 0);
             this.uiCharts_Crv.Name = "uiCharts_Crv";
             series1.BorderWidth = 5;
-            series1.ChartArea = "PatternCurveChartArea";
+            series1.ChartArea = "IdealCurveChartArea";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series1.Color = System.Drawing.Color.Black;
             series1.CustomProperties = "EmptyPointValue=Zero";
@@ -164,7 +164,7 @@
             series1.IsVisibleInLegend = false;
             series1.IsXValueIndexed = true;
             series1.Legend = "Legend1";
-            series1.Name = "PatternCurveSeries";
+            series1.Name = "IdealCurveSeries";
             series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             this.uiCharts_Crv.Series.Add(series1);
@@ -219,7 +219,7 @@
             this.uiPnlGen_TblLay.Controls.Add(this.uiPnlGen_EndX_TxtBx, 0, 7);
             this.uiPnlGen_TblLay.Controls.Add(this.uiPnlGen_Def_Btn, 1, 1);
             this.uiPnlGen_TblLay.Controls.Add(this.uiPnlGen_CrvScaff1_TxtBx, 0, 1);
-            this.uiPnlGen_TblLay.Controls.Add(this.uiPnlGen_PattCrvScaff_TxtBx, 0, 0);
+            this.uiPnlGen_TblLay.Controls.Add(this.uiPnlGen_IdealCrvScaff_TxtBx, 0, 0);
             this.uiPnlGen_TblLay.Controls.Add(this.uiPnlGen_Crvs2No_Num, 1, 15);
             this.uiPnlGen_TblLay.Controls.Add(this.uiPnlGen_Crvs2No_TxtBx, 0, 15);
             this.uiPnlGen_TblLay.Controls.Add(this.uiPnlGen_MeanT_TxtBx, 0, 14);
@@ -377,7 +377,7 @@
             this.uiPnlGen_Def_Btn.TabIndex = 22;
             this.uiPnlGen_Def_Btn.Text = "Define";
             this.uiPnlGen_Def_Btn.UseVisualStyleBackColor = true;
-            this.uiPnlGen_Def_Btn.Click += new System.EventHandler(this.UiPanelGenerate_Define_Click);
+            this.uiPnlGen_Def_Btn.Click += new System.EventHandler(this.OnDefineClick);
             // 
             // uiPnlGen_CrvScaff1_TxtBx
             // 
@@ -394,17 +394,17 @@
             // 
             // uiPnlGen_PattCrvScaff_TxtBx
             // 
-            this.uiPnlGen_PattCrvScaff_TxtBx.BackColor = System.Drawing.SystemColors.Control;
-            this.uiPnlGen_TblLay.SetColumnSpan(this.uiPnlGen_PattCrvScaff_TxtBx, 2);
-            this.uiPnlGen_PattCrvScaff_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlGen_PattCrvScaff_TxtBx.Enabled = false;
-            this.uiPnlGen_PattCrvScaff_TxtBx.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.uiPnlGen_PattCrvScaff_TxtBx.Location = new System.Drawing.Point(3, 3);
-            this.uiPnlGen_PattCrvScaff_TxtBx.Name = "uiPnlGen_PattCrvScaff_TxtBx";
-            this.uiPnlGen_PattCrvScaff_TxtBx.ReadOnly = true;
-            this.uiPnlGen_PattCrvScaff_TxtBx.Size = new System.Drawing.Size(248, 20);
-            this.uiPnlGen_PattCrvScaff_TxtBx.TabIndex = 19;
-            this.uiPnlGen_PattCrvScaff_TxtBx.Text = "Pattern curve scaffold";
+            this.uiPnlGen_IdealCrvScaff_TxtBx.BackColor = System.Drawing.SystemColors.Control;
+            this.uiPnlGen_TblLay.SetColumnSpan(this.uiPnlGen_IdealCrvScaff_TxtBx, 2);
+            this.uiPnlGen_IdealCrvScaff_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiPnlGen_IdealCrvScaff_TxtBx.Enabled = false;
+            this.uiPnlGen_IdealCrvScaff_TxtBx.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.uiPnlGen_IdealCrvScaff_TxtBx.Location = new System.Drawing.Point(3, 3);
+            this.uiPnlGen_IdealCrvScaff_TxtBx.Name = "uiPnlGen_IdealCrvScaff_TxtBx";
+            this.uiPnlGen_IdealCrvScaff_TxtBx.ReadOnly = true;
+            this.uiPnlGen_IdealCrvScaff_TxtBx.Size = new System.Drawing.Size(248, 20);
+            this.uiPnlGen_IdealCrvScaff_TxtBx.TabIndex = 19;
+            this.uiPnlGen_IdealCrvScaff_TxtBx.Text = "Ideal curve scaffold";
             // 
             // uiPnlGen_Crvs2No_Num
             // 
@@ -557,7 +557,7 @@
             this.uiPnlGen_Crvs1No_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.uiPnlGen_Crvs1No_Num.ThousandsSeparator = true;
             this.uiPnlGen_Crvs1No_Num.Value = new decimal(new int[] {
-            5,
+            125,
             0,
             0,
             0});
@@ -571,7 +571,7 @@
             this.uiPnlGen_GenSet_Btn.TabIndex = 10;
             this.uiPnlGen_GenSet_Btn.Text = "Generate set";
             this.uiPnlGen_GenSet_Btn.UseVisualStyleBackColor = true;
-            this.uiPnlGen_GenSet_Btn.Click += new System.EventHandler(this.UiPanelGenerate_GenerateSet_Click);
+            this.uiPnlGen_GenSet_Btn.Click += new System.EventHandler(this.OnGenerateSetClick);
             // 
             // uiPnlGen_MeanT_ComBx
             // 
@@ -592,7 +592,7 @@
             this.uiPnlGen_Apply_Btn.TabIndex = 16;
             this.uiPnlGen_Apply_Btn.Text = "Apply";
             this.uiPnlGen_Apply_Btn.UseVisualStyleBackColor = true;
-            this.uiPnlGen_Apply_Btn.Click += new System.EventHandler(this.UiPanelGenerate_Apply_Click);
+            this.uiPnlGen_Apply_Btn.Click += new System.EventHandler(this.OnApplyClick);
             // 
             // uiPnlDtSh_TbPg
             // 
@@ -737,7 +737,7 @@
             this.uiPnlDtSh_ShowDtSet_Btn.TabIndex = 28;
             this.uiPnlDtSh_ShowDtSet_Btn.Text = "Show dataset";
             this.uiPnlDtSh_ShowDtSet_Btn.UseVisualStyleBackColor = true;
-            this.uiPnlDtSh_ShowDtSet_Btn.Click += new System.EventHandler(this.UiPanelDataSheet_ShowDataSet_Click);
+            this.uiPnlDtSh_ShowDtSet_Btn.Click += new System.EventHandler(this.OnShowDataSetClick);
             // 
             // uiPnlDtSh_CrvT_TxtBx
             // 
@@ -777,7 +777,7 @@
             0,
             0,
             0});
-            this.uiPnlDtSh_CrvIdx_Num.ValueChanged += new System.EventHandler(this.UiPanelDataSheet_CurveIndex_NumericUpDown_ValueChanged);
+            this.uiPnlDtSh_CrvIdx_Num.ValueChanged += new System.EventHandler(this.OnCurveIndexAlteration);
             // 
             // uiPnlDtSh_CrvIdx_TxtBx
             // 
@@ -815,7 +815,7 @@
             this.uiPnlDtSh_CrvT_ComBx.Name = "uiPnlDtSh_CrvT_ComBx";
             this.uiPnlDtSh_CrvT_ComBx.Size = new System.Drawing.Size(133, 21);
             this.uiPnlDtSh_CrvT_ComBx.TabIndex = 6;
-            this.uiPnlDtSh_CrvT_ComBx.SelectedIndexChanged += new System.EventHandler(this.UiPanelDataSheet_CurveType_SelectedIndexChanged);
+            this.uiPnlDtSh_CrvT_ComBx.SelectedIndexChanged += new System.EventHandler(this.OnCurveTypeSelection);
             // 
             // uiPnlDtSh_CrvIdx_TrBr
             // 
@@ -829,7 +829,7 @@
             this.uiPnlDtSh_CrvIdx_TrBr.TabIndex = 23;
             this.uiPnlDtSh_CrvIdx_TrBr.TickStyle = System.Windows.Forms.TickStyle.None;
             this.uiPnlDtSh_CrvIdx_TrBr.Value = 1;
-            this.uiPnlDtSh_CrvIdx_TrBr.Scroll += new System.EventHandler(this.UiPanelDataSheet_CurveIndex_TrackBar_Scroll);
+            this.uiPnlDtSh_CrvIdx_TrBr.Scroll += new System.EventHandler(this.OnCurveIndexScroll);
             // 
             // uiPnlDtSh_Malform_Btn
             // 
@@ -840,7 +840,7 @@
             this.uiPnlDtSh_Malform_Btn.TabIndex = 34;
             this.uiPnlDtSh_Malform_Btn.Text = "Malform";
             this.uiPnlDtSh_Malform_Btn.UseVisualStyleBackColor = true;
-            this.uiPnlDtSh_Malform_Btn.Click += new System.EventHandler(this.UiPanelDataSheet_Malform_Click);
+            this.uiPnlDtSh_Malform_Btn.Click += new System.EventHandler(this.OnMalformClick);
             // 
             // uiPnlPrg_TbPg
             // 
@@ -1094,21 +1094,21 @@
             this.uiMenuPrg_StatAnal.Name = "uiMenuPrg_StatAnal";
             this.uiMenuPrg_StatAnal.Size = new System.Drawing.Size(194, 22);
             this.uiMenuPrg_StatAnal.Text = "Statistical analysis";
-            this.uiMenuPrg_StatAnal.Click += new System.EventHandler(this.UiMenuProgram_StatisticalAnalysis_Click);
+            this.uiMenuPrg_StatAnal.Click += new System.EventHandler(this.OnMenuStatisticalAnalysis);
             // 
             // uiMenuPrg_Lang
             // 
             this.uiMenuPrg_Lang.Name = "uiMenuPrg_Lang";
             this.uiMenuPrg_Lang.Size = new System.Drawing.Size(194, 22);
             this.uiMenuPrg_Lang.Text = "Select language";
-            this.uiMenuPrg_Lang.Click += new System.EventHandler(this.UiMenuProgram_SelectLanguage_Click);
+            this.uiMenuPrg_Lang.Click += new System.EventHandler(this.OnMenuSelectLanguage);
             // 
             // uiMenuPrg_Exit
             // 
             this.uiMenuPrg_Exit.Name = "uiMenuPrg_Exit";
             this.uiMenuPrg_Exit.Size = new System.Drawing.Size(194, 22);
             this.uiMenuPrg_Exit.Text = "Exit";
-            this.uiMenuPrg_Exit.Click += new System.EventHandler(this.UiMenuProgram_Exit_Click);
+            this.uiMenuPrg_Exit.Click += new System.EventHandler(this.OnMenuExit);
             // 
             // uiMenu_Pnl
             // 
@@ -1129,21 +1129,21 @@
             this.uiMenuPnl_KeepProp.Name = "uiMenuPnl_KeepProp";
             this.uiMenuPnl_KeepProp.Size = new System.Drawing.Size(170, 22);
             this.uiMenuPnl_KeepProp.Text = "Keep proportions";
-            this.uiMenuPnl_KeepProp.Click += new System.EventHandler(this.UiMenuPanel_KeepProportions_Click);
+            this.uiMenuPnl_KeepProp.Click += new System.EventHandler(this.OnMenuKeepProportions);
             // 
             // uiMenuPnl_Hide
             // 
             this.uiMenuPnl_Hide.Name = "uiMenuPnl_Hide";
             this.uiMenuPnl_Hide.Size = new System.Drawing.Size(170, 22);
             this.uiMenuPnl_Hide.Text = "Hide";
-            this.uiMenuPnl_Hide.Click += new System.EventHandler(this.UiMenuPanel_Hide_Click);
+            this.uiMenuPnl_Hide.Click += new System.EventHandler(this.OnMenuPanelHide);
             // 
             // uiMenuPnl_Lock
             // 
             this.uiMenuPnl_Lock.Name = "uiMenuPnl_Lock";
             this.uiMenuPnl_Lock.Size = new System.Drawing.Size(170, 22);
             this.uiMenuPnl_Lock.Text = "Lock";
-            this.uiMenuPnl_Lock.Click += new System.EventHandler(this.UiMenuPanel_Lock_Click);
+            this.uiMenuPnl_Lock.Click += new System.EventHandler(this.OnMenuPanelLock);
             // 
             // uiMenu_Means
             // 
@@ -1160,7 +1160,7 @@
             this.uiMenuMeans_Settings.Name = "uiMenuMeans_Settings";
             this.uiMenuMeans_Settings.Size = new System.Drawing.Size(122, 22);
             this.uiMenuMeans_Settings.Text = "Settings";
-            this.uiMenuMeans_Settings.Click += new System.EventHandler(this.UiMenuMeans_Settings_Click);
+            this.uiMenuMeans_Settings.Click += new System.EventHandler(this.OnMenuMeansSettings);
             // 
             // uiMenu_Chart
             // 
@@ -1177,7 +1177,7 @@
             this.uiMenuChart_Settings.Name = "uiMenuChart_Settings";
             this.uiMenuChart_Settings.Size = new System.Drawing.Size(122, 22);
             this.uiMenuChart_Settings.Text = "Settings";
-            this.uiMenuChart_Settings.Click += new System.EventHandler(this.UiMenuChart_Settings_Click);
+            this.uiMenuChart_Settings.Click += new System.EventHandler(this.OnMenuChartSettings);
             // 
             // uiMw_SpCtn
             // 
@@ -1207,9 +1207,9 @@
             this.MainMenuStrip = this.uiMenu;
             this.Name = "MainWindow";
             this.Text = "Praca inżynierska";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
-            this.Load += new System.EventHandler(this.UiMainWindow_Load);
-            this.Resize += new System.EventHandler(this.UiMainWindow_Resize);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
+            this.Load += new System.EventHandler(this.OnLoad);
+            this.Resize += new System.EventHandler(this.OnResize);
             ((System.ComponentModel.ISupportInitialize)(this.uiCharts_Crv)).EndInit();
             this.ui_Pnl.ResumeLayout(false);
             this.uiPnl_TabCtrl.ResumeLayout(false);
@@ -1278,7 +1278,7 @@
         private System.Windows.Forms.TextBox uiPnlPrg_ActState1_TxtBx;
         private System.Windows.Forms.TextBox uiPnlPrg_Timer_TxtBx;
         private System.Windows.Forms.TextBox uiPnlGen_CrvScaff1_TxtBx;
-        private System.Windows.Forms.TextBox uiPnlGen_PattCrvScaff_TxtBx;
+        private System.Windows.Forms.TextBox uiPnlGen_IdealCrvScaff_TxtBx;
         private System.Windows.Forms.Button uiPnlGen_Def_Btn;
         private System.Windows.Forms.TrackBar uiPnlDtSh_CrvIdx_TrBr;
         private System.Windows.Forms.TextBox uiPnlGen_EndX_TxtBx;

@@ -187,24 +187,11 @@ namespace PI.src.averaging
                 return null;
             }
 
-            IList<IList<double>> classified = Lists.GetSortedIntoHistogram( set, intervalDivisions );
-            int indicesNo = (int) (massPercent * 0.01 * set.Count);
-            IList<double> mass = new List<double>();
-            int i = 1;
-
-            while ( i < indicesNo ) {
-                if ( indicesNo - i < 0 || indicesNo + i >= set.Count ) {
-                    break;
-                }
-
-                Lists.Concat( mass, classified[indicesNo - i] );
-                Lists.Concat( mass, classified[indicesNo + i] );
-                i += 2;
-            }
-
-            if ( mass.Count == 0 ) {
-                return Median( set );
-            }
+            IList<double> mass = Lists.GetSelected( 
+                Lists.GetSorted( set ),
+                Convert.ToInt32( ((100 - massPercent) / 2.0) * 0.01 * set.Count ),
+                Convert.ToInt32( (100 - ((100 - massPercent) / 2.0)) * 0.01 * set.Count )
+                );
 
             return Harmonic( mass, StandardMeanVariants.Offset );
         }
