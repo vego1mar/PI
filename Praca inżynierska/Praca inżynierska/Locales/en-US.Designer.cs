@@ -1249,38 +1249,11 @@ namespace PI.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Actual state:.
-        /// </summary>
-        internal static string MainWindow_Panel_Program_ActualState1 {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Program_ActualState1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Counts:.
-        /// </summary>
-        internal static string MainWindow_Panel_Program_ActualState2_Counts1 {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Program_ActualState2_Counts1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to .NET Framework:.
         /// </summary>
         internal static string MainWindow_Panel_Program_ActualState2_DotNetFramework {
             get {
                 return ResourceManager.GetString("MainWindow_Panel_Program_ActualState2_DotNetFramework", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Failure.
-        /// </summary>
-        internal static string MainWindow_Panel_Program_ActualState2_Failure {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Program_ActualState2_Failure", resourceCulture);
             }
         }
         
@@ -1294,47 +1267,11 @@ namespace PI.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Logging.
-        /// </summary>
-        internal static string MainWindow_Panel_Program_ActualState2_Logging {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Program_ActualState2_Logging", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Log path:.
-        /// </summary>
-        internal static string MainWindow_Panel_Program_ActualState2_LogPath1 {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Program_ActualState2_LogPath1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to OS version:.
         /// </summary>
         internal static string MainWindow_Panel_Program_ActualState2_OsVersion1 {
             get {
                 return ResourceManager.GetString("MainWindow_Panel_Program_ActualState2_OsVersion1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Success.
-        /// </summary>
-        internal static string MainWindow_Panel_Program_ActualState2_Success {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Program_ActualState2_Success", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Timer.
-        /// </summary>
-        internal static string MainWindow_Panel_Program_Timer {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Program_Timer", resourceCulture);
             }
         }
         

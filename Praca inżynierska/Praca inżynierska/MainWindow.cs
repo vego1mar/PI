@@ -22,14 +22,12 @@ namespace PI
         private static readonly MethodBase @base = MethodBase.GetCurrentMethod();
         private static readonly ILog log = LogManager.GetLogger( @base.DeclaringType );
 
-        private Thread Timer { get; set; }
         private UiSettings Settings { get; set; }
         private CurvesDataManager DataChart { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();
-            Timer = null;
             Settings = new UiSettings();
             DataChart = new CurvesDataManager();
             UpdateUiBySettings();
@@ -40,116 +38,6 @@ namespace PI
             // Ui
             Width = Settings.MainWindow.Dimensions.Width;
             Height = Settings.MainWindow.Dimensions.Height;
-        }
-
-        private void DefineTimerThread()
-        {
-            string signature = string.Empty;
-
-            Timer = new Thread( () => {
-                try {
-                    signature = @base.DeclaringType.Name + "." + @base.Name + "()";
-                    Thread.CurrentThread.IsBackground = true;
-                    System.Timers.Timer timer = new System.Timers.Timer();
-                    InstallEventForTimer( ref timer );
-                    timer.Interval = 1000;
-                    timer.Start();
-                    timer.Enabled = true;
-                }
-                catch ( ThreadStateException ex ) {
-                    log.Error( signature, ex );
-                }
-                catch ( ObjectDisposedException ex ) {
-                    log.Error( signature, ex );
-                }
-                catch ( ArgumentOutOfRangeException ex ) {
-                    log.Error( signature, ex );
-                }
-                catch ( ArgumentException ex ) {
-                    log.Error( signature, ex );
-                }
-                catch ( Exception ex ) {
-                    log.Fatal( signature, ex );
-                }
-            } );
-
-            try {
-                Timer.Name = nameof( Timer );
-            }
-            catch ( InvalidOperationException ex ) {
-                log.Error( signature, ex );
-            }
-            catch ( Exception ex ) {
-                log.Fatal( signature, ex );
-            }
-        }
-
-        private void InstallEventForTimer( ref System.Timers.Timer timer )
-        {
-            ushort numberOfSeconds = 0;
-            ushort numberOfMinutes = 0;
-            ushort numberOfHours = 0;
-            ulong numberOfDays = 0;
-
-            timer.Elapsed += ( object sender, System.Timers.ElapsedEventArgs e ) => {
-                numberOfSeconds++;
-
-                if ( numberOfSeconds > 59 ) {
-                    numberOfSeconds = 0;
-                    numberOfMinutes++;
-                }
-
-                if ( numberOfMinutes > 59 ) {
-                    numberOfMinutes = 0;
-                    numberOfHours++;
-                }
-
-                if ( numberOfHours > 23 ) {
-                    numberOfHours = 0;
-                    numberOfDays++;
-                }
-
-                string numberOfHoursText = numberOfHours.ToString( "00" );
-                string numberOfMinutesText = numberOfMinutes.ToString( "00" );
-                string numberOfSecondsText = numberOfSeconds.ToString( "00" );
-                string numberOfDaysText = numberOfDays.ToString();
-                UpdateUiByTimerCounts( numberOfDaysText + ":" + numberOfHoursText + ":" + numberOfMinutesText + ":" + numberOfSecondsText );
-            };
-        }
-
-        private void UpdateUiByTimerCounts( string text )
-        {
-            string signature = string.Empty;
-
-            try {
-                signature = @base.DeclaringType.Name + "." + @base.Name + "()";
-
-                BeginInvoke( (MethodInvoker) delegate {
-                    uiPnlPrg_Cnts2_TxtBx.Text = text;
-                    uiPnlPrg_Cnts2_TxtBx.Refresh();
-                } );
-            }
-            catch ( ObjectDisposedException ex ) {
-                log.Error( signature, ex );
-            }
-            catch ( InvalidOperationException ex ) {
-                log.Error( signature, ex );
-            }
-            catch ( Exception ex ) {
-                log.Fatal( signature, ex );
-            }
-        }
-
-        private void UpdateUiByStatusOfTimerThread()
-        {
-            MainWindowStrings names = new MainWindowStrings();
-
-            if ( Timer == null ) {
-                uiPnlPrg_ActState2_TxtBx.Text = names.Ui.Panel.ProgramStateFail.GetString();
-            }
-            else {
-                uiPnlPrg_ActState2_TxtBx.Text = names.Ui.Panel.ProgramStateSuccess.GetString();
-            }
         }
 
         private void CopyDialogPropertiesIntoPreSetsArea( PatternCurveDefiner pcdDialog )
@@ -422,15 +310,9 @@ namespace PI
 
             // Tab: Program
             uiPnlPrg_TbPg.Text = names.Ui.Panel.ProgramTitle.GetString();
-            uiPnlPrg_Timer_TxtBx.Text = names.Ui.Panel.ProgramTimer.GetString();
-            uiPnlPrg_ActState1_TxtBx.Text = names.Ui.Panel.ProgramActualState1.GetString();
-            UpdateUiByStatusOfTimerThread();
-            uiPnlPrg_Cnts1_TxtBx.Text = names.Ui.Panel.ProgramCounts1.GetString();
             uiPnlPrg_Info_TxtBx.Text = names.Ui.Panel.ProgramInformations.GetString();
             uiPnlPrg_DotNetFr1_TxtBx.Text = names.Ui.Panel.ProgramDotNetFramework1.GetString();
             uiPnlPrg_OsVer1_TxtBx.Text = names.Ui.Panel.ProgramOsVersion1.GetString();
-            uiPnlPrg_Log_TxtBx.Text = names.Ui.Panel.ProgramLogging.GetString();
-            uiPnlPrg_LogPath1_TxtBx.Text = names.Ui.Panel.ProgramLogPath1.GetString();
         }
 
         #region Event handlers
@@ -439,9 +321,6 @@ namespace PI
         {
             UpdateUiByDotNetFrameworkVersion();
             UpdateUiByOsVersionName();
-            DefineTimerThread();
-            Threads.TryStart( Timer );
-            UpdateUiByStatusOfTimerThread();
             LanguageAssist.CurrentLanguage = Languages.English;
             LanguageAssist.TryLocalizeCulture( Languages.English );
             LocalizeWindow();
@@ -450,7 +329,6 @@ namespace PI
 
         private void OnFormClosing( object sender, FormClosingEventArgs e )
         {
-            Timer = null;
             Settings = null;
             DataChart = null;
             Dispose();

@@ -68,6 +68,7 @@
     <Compile Include="src\general\MathematicsTest.cs" />
     <Compile Include="src\general\SeriesAssistTest.cs" />
     <Compile Include="src\general\ChartAssistTest.cs" />
+    <Compile Include="src\general\AppTimerTest.cs" />
     <Compile Include="src\helpers\UiControlsTest.cs" />
     <Compile Include="src\helpers\ThreadsTest.cs" />
     <Compile Include="src\helpers\StringsTest.cs" />

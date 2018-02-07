@@ -76,6 +76,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\general\AppTimer.cs" />
     <Compile Include="src\general\GridAssist.cs" />
     <Compile Include="src\windows\ChartSettings.cs">
       <SubType>Form</SubType>

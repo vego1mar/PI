@@ -64,16 +64,9 @@ namespace PI.src.localization.windows
                 public LocalizedString DatasheetSurrounding { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Datasheet_Surrounding" ); } }
                 public LocalizedString DatasheetMalform { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Datasheet_Malform" ); } }
                 public LocalizedString ProgramTitle { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Program_Title" ); } }
-                public LocalizedString ProgramTimer { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Program_Timer" ); } }
-                public LocalizedString ProgramActualState1 { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Program_ActualState1" ); } }
-                public LocalizedString ProgramStateFail { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Program_ActualState2_Failure" ); } }
-                public LocalizedString ProgramStateSuccess { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Program_ActualState2_Success" ); } }
-                public LocalizedString ProgramCounts1 { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Program_ActualState2_Counts1" ); } }
                 public LocalizedString ProgramInformations { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Program_ActualState2_Informations" ); } }
                 public LocalizedString ProgramDotNetFramework1 { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Program_ActualState2_DotNetFramework" ); } }
                 public LocalizedString ProgramOsVersion1 { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Program_ActualState2_OsVersion1" ); } }
-                public LocalizedString ProgramLogging { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Program_ActualState2_Logging" ); } }
-                public LocalizedString ProgramLogPath1 { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Program_ActualState2_LogPath1" ); } }
             }
         }
     }

@@ -291,35 +291,14 @@
   <data name="MainWindow_Panel_Program_Title" xml:space="preserve">
     <value>Program</value>
   </data>
-  <data name="MainWindow_Panel_Program_ActualState1" xml:space="preserve">
-    <value>Actual state:</value>
-  </data>
-  <data name="MainWindow_Panel_Program_ActualState2_Counts1" xml:space="preserve">
-    <value>Counts:</value>
-  </data>
   <data name="MainWindow_Panel_Program_ActualState2_DotNetFramework" xml:space="preserve">
     <value>.NET Framework:</value>
-  </data>
-  <data name="MainWindow_Panel_Program_ActualState2_Failure" xml:space="preserve">
-    <value>Failure</value>
   </data>
   <data name="MainWindow_Panel_Program_ActualState2_Informations" xml:space="preserve">
     <value>Informations</value>
   </data>
-  <data name="MainWindow_Panel_Program_ActualState2_Logging" xml:space="preserve">
-    <value>Logging</value>
-  </data>
-  <data name="MainWindow_Panel_Program_ActualState2_LogPath1" xml:space="preserve">
-    <value>Log path:</value>
-  </data>
   <data name="MainWindow_Panel_Program_ActualState2_OsVersion1" xml:space="preserve">
     <value>OS version:</value>
-  </data>
-  <data name="MainWindow_Panel_Program_ActualState2_Success" xml:space="preserve">
-    <value>Success</value>
-  </data>
-  <data name="MainWindow_Panel_Program_Timer" xml:space="preserve">
-    <value>Timer</value>
   </data>
   <data name="MainWindow_Ui_Form_Text" xml:space="preserve">
     <value>Engineer's thesis</value>
