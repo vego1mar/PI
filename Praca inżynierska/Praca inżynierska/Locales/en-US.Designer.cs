@@ -1249,42 +1249,6 @@ namespace PI.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .NET Framework:.
-        /// </summary>
-        internal static string MainWindow_Panel_Program_ActualState2_DotNetFramework {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Program_ActualState2_DotNetFramework", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Informations.
-        /// </summary>
-        internal static string MainWindow_Panel_Program_ActualState2_Informations {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Program_ActualState2_Informations", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to OS version:.
-        /// </summary>
-        internal static string MainWindow_Panel_Program_ActualState2_OsVersion1 {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Program_ActualState2_OsVersion1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Program.
-        /// </summary>
-        internal static string MainWindow_Panel_Program_Title {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Program_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Engineer&apos;s thesis.
         /// </summary>
         internal static string MainWindow_Ui_Form_Text {

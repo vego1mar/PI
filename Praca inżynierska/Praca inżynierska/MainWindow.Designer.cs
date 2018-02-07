@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
             {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.uiCharts_Crv = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.ui_Pnl = new System.Windows.Forms.Panel();
             this.uiPnl_TabCtrl = new System.Windows.Forms.TabControl();
@@ -72,13 +72,6 @@
             this.uiPnlDtSh_CrvT_ComBx = new System.Windows.Forms.ComboBox();
             this.uiPnlDtSh_CrvIdx_TrBr = new System.Windows.Forms.TrackBar();
             this.uiPnlDtSh_Malform_Btn = new System.Windows.Forms.Button();
-            this.uiPnlPrg_TbPg = new System.Windows.Forms.TabPage();
-            this.uiPnlPrg_TblLay = new System.Windows.Forms.TableLayoutPanel();
-            this.uiPnlPrg_OsVer2_TxtBx = new System.Windows.Forms.TextBox();
-            this.uiPnlPrg_OsVer1_TxtBx = new System.Windows.Forms.TextBox();
-            this.uiPnlPrg_DotNetFr2_TxtBx = new System.Windows.Forms.TextBox();
-            this.uiPnlPrg_DotNetFr1_TxtBx = new System.Windows.Forms.TextBox();
-            this.uiPnlPrg_Info_TxtBx = new System.Windows.Forms.TextBox();
             this.uiMenu = new System.Windows.Forms.MenuStrip();
             this.uiMenu_Prg = new System.Windows.Forms.ToolStripMenuItem();
             this.uiMenuPrg_StatAnal = new System.Windows.Forms.ToolStripMenuItem();
@@ -109,8 +102,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.uiPnlDtSh_CrvNo_Num)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiPnlDtSh_CrvIdx_Num)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiPnlDtSh_CrvIdx_TrBr)).BeginInit();
-            this.uiPnlPrg_TbPg.SuspendLayout();
-            this.uiPnlPrg_TblLay.SuspendLayout();
             this.uiMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiMw_SpCtn)).BeginInit();
             this.uiMw_SpCtn.Panel1.SuspendLayout();
@@ -120,46 +111,46 @@
             // 
             // uiCharts_Crv
             // 
-            chartArea2.AxisX.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
-            chartArea2.AxisX.IsLabelAutoFit = false;
-            chartArea2.AxisX.IsMarginVisible = false;
-            chartArea2.AxisX.LabelAutoFitMaxFontSize = 8;
-            chartArea2.AxisX.LabelAutoFitMinFontSize = 8;
-            chartArea2.AxisX.LabelAutoFitStyle = System.Windows.Forms.DataVisualization.Charting.LabelAutoFitStyles.None;
-            chartArea2.AxisX.LabelStyle.Font = new System.Drawing.Font("Consolas", 8F);
-            chartArea2.AxisX.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea2.AxisX.MajorTickMark.Enabled = false;
-            chartArea2.AxisX.TitleFont = new System.Drawing.Font("Consolas", 8F);
-            chartArea2.AxisY.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
-            chartArea2.AxisY.IsLabelAutoFit = false;
-            chartArea2.AxisY.LabelAutoFitMaxFontSize = 8;
-            chartArea2.AxisY.LabelStyle.Font = new System.Drawing.Font("Consolas", 8F);
-            chartArea2.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea2.AxisY.MajorTickMark.Enabled = false;
-            chartArea2.AxisY.TitleFont = new System.Drawing.Font("Consolas", 8F);
-            chartArea2.BackColor = System.Drawing.Color.White;
-            chartArea2.IsSameFontSizeForAllAxes = true;
-            chartArea2.Name = "IdealCurveChartArea";
-            this.uiCharts_Crv.ChartAreas.Add(chartArea2);
+            chartArea1.AxisX.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
+            chartArea1.AxisX.IsLabelAutoFit = false;
+            chartArea1.AxisX.IsMarginVisible = false;
+            chartArea1.AxisX.LabelAutoFitMaxFontSize = 8;
+            chartArea1.AxisX.LabelAutoFitMinFontSize = 8;
+            chartArea1.AxisX.LabelAutoFitStyle = System.Windows.Forms.DataVisualization.Charting.LabelAutoFitStyles.None;
+            chartArea1.AxisX.LabelStyle.Font = new System.Drawing.Font("Consolas", 8F);
+            chartArea1.AxisX.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea1.AxisX.MajorTickMark.Enabled = false;
+            chartArea1.AxisX.TitleFont = new System.Drawing.Font("Consolas", 8F);
+            chartArea1.AxisY.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
+            chartArea1.AxisY.IsLabelAutoFit = false;
+            chartArea1.AxisY.LabelAutoFitMaxFontSize = 8;
+            chartArea1.AxisY.LabelStyle.Font = new System.Drawing.Font("Consolas", 8F);
+            chartArea1.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea1.AxisY.MajorTickMark.Enabled = false;
+            chartArea1.AxisY.TitleFont = new System.Drawing.Font("Consolas", 8F);
+            chartArea1.BackColor = System.Drawing.Color.White;
+            chartArea1.IsSameFontSizeForAllAxes = true;
+            chartArea1.Name = "IdealCurveChartArea";
+            this.uiCharts_Crv.ChartAreas.Add(chartArea1);
             this.uiCharts_Crv.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Enabled = false;
-            legend2.Name = "Legend1";
-            this.uiCharts_Crv.Legends.Add(legend2);
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.uiCharts_Crv.Legends.Add(legend1);
             this.uiCharts_Crv.Location = new System.Drawing.Point(0, 0);
             this.uiCharts_Crv.Name = "uiCharts_Crv";
-            series2.BorderWidth = 5;
-            series2.ChartArea = "IdealCurveChartArea";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Color = System.Drawing.Color.Black;
-            series2.CustomProperties = "EmptyPointValue=Zero";
-            series2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            series2.IsVisibleInLegend = false;
-            series2.IsXValueIndexed = true;
-            series2.Legend = "Legend1";
-            series2.Name = "IdealCurveSeries";
-            series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            series2.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            this.uiCharts_Crv.Series.Add(series2);
+            series1.BorderWidth = 5;
+            series1.ChartArea = "IdealCurveChartArea";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Color = System.Drawing.Color.Black;
+            series1.CustomProperties = "EmptyPointValue=Zero";
+            series1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            series1.IsVisibleInLegend = false;
+            series1.IsXValueIndexed = true;
+            series1.Legend = "Legend1";
+            series1.Name = "IdealCurveSeries";
+            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            this.uiCharts_Crv.Series.Add(series1);
             this.uiCharts_Crv.Size = new System.Drawing.Size(666, 614);
             this.uiCharts_Crv.TabIndex = 0;
             this.uiCharts_Crv.Text = "uiCurveChart";
@@ -178,7 +169,6 @@
             // 
             this.uiPnl_TabCtrl.Controls.Add(this.uiPnlGen_TbPg);
             this.uiPnl_TabCtrl.Controls.Add(this.uiPnlDtSh_TbPg);
-            this.uiPnl_TabCtrl.Controls.Add(this.uiPnlPrg_TbPg);
             this.uiPnl_TabCtrl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiPnl_TabCtrl.Location = new System.Drawing.Point(0, 0);
             this.uiPnl_TabCtrl.Name = "uiPnl_TabCtrl";
@@ -834,114 +824,6 @@
             this.uiPnlDtSh_Malform_Btn.UseVisualStyleBackColor = true;
             this.uiPnlDtSh_Malform_Btn.Click += new System.EventHandler(this.OnMalformClick);
             // 
-            // uiPnlPrg_TbPg
-            // 
-            this.uiPnlPrg_TbPg.Controls.Add(this.uiPnlPrg_TblLay);
-            this.uiPnlPrg_TbPg.Location = new System.Drawing.Point(4, 22);
-            this.uiPnlPrg_TbPg.Name = "uiPnlPrg_TbPg";
-            this.uiPnlPrg_TbPg.Size = new System.Drawing.Size(282, 588);
-            this.uiPnlPrg_TbPg.TabIndex = 3;
-            this.uiPnlPrg_TbPg.Text = "Program";
-            this.uiPnlPrg_TbPg.UseVisualStyleBackColor = true;
-            // 
-            // uiPnlPrg_TblLay
-            // 
-            this.uiPnlPrg_TblLay.AutoScroll = true;
-            this.uiPnlPrg_TblLay.ColumnCount = 2;
-            this.uiPnlPrg_TblLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.uiPnlPrg_TblLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.uiPnlPrg_TblLay.Controls.Add(this.uiPnlPrg_OsVer2_TxtBx, 1, 6);
-            this.uiPnlPrg_TblLay.Controls.Add(this.uiPnlPrg_OsVer1_TxtBx, 0, 6);
-            this.uiPnlPrg_TblLay.Controls.Add(this.uiPnlPrg_DotNetFr2_TxtBx, 1, 5);
-            this.uiPnlPrg_TblLay.Controls.Add(this.uiPnlPrg_DotNetFr1_TxtBx, 0, 5);
-            this.uiPnlPrg_TblLay.Controls.Add(this.uiPnlPrg_Info_TxtBx, 0, 4);
-            this.uiPnlPrg_TblLay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlPrg_TblLay.Location = new System.Drawing.Point(0, 0);
-            this.uiPnlPrg_TblLay.Name = "uiPnlPrg_TblLay";
-            this.uiPnlPrg_TblLay.RowCount = 14;
-            this.uiPnlPrg_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.uiPnlPrg_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.uiPnlPrg_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.uiPnlPrg_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.uiPnlPrg_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.uiPnlPrg_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.uiPnlPrg_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.uiPnlPrg_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.uiPnlPrg_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.uiPnlPrg_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.uiPnlPrg_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.uiPnlPrg_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.uiPnlPrg_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.uiPnlPrg_TblLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.uiPnlPrg_TblLay.Size = new System.Drawing.Size(282, 588);
-            this.uiPnlPrg_TblLay.TabIndex = 0;
-            // 
-            // uiPnlPrg_OsVer2_TxtBx
-            // 
-            this.uiPnlPrg_OsVer2_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.uiPnlPrg_OsVer2_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
-            this.uiPnlPrg_OsVer2_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlPrg_OsVer2_TxtBx.Location = new System.Drawing.Point(144, 153);
-            this.uiPnlPrg_OsVer2_TxtBx.Name = "uiPnlPrg_OsVer2_TxtBx";
-            this.uiPnlPrg_OsVer2_TxtBx.ReadOnly = true;
-            this.uiPnlPrg_OsVer2_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiPnlPrg_OsVer2_TxtBx.Size = new System.Drawing.Size(135, 20);
-            this.uiPnlPrg_OsVer2_TxtBx.TabIndex = 14;
-            this.uiPnlPrg_OsVer2_TxtBx.Text = "Not known";
-            // 
-            // uiPnlPrg_OsVer1_TxtBx
-            // 
-            this.uiPnlPrg_OsVer1_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.uiPnlPrg_OsVer1_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
-            this.uiPnlPrg_OsVer1_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlPrg_OsVer1_TxtBx.Location = new System.Drawing.Point(3, 153);
-            this.uiPnlPrg_OsVer1_TxtBx.Name = "uiPnlPrg_OsVer1_TxtBx";
-            this.uiPnlPrg_OsVer1_TxtBx.ReadOnly = true;
-            this.uiPnlPrg_OsVer1_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiPnlPrg_OsVer1_TxtBx.Size = new System.Drawing.Size(135, 20);
-            this.uiPnlPrg_OsVer1_TxtBx.TabIndex = 13;
-            this.uiPnlPrg_OsVer1_TxtBx.Text = "OS version:";
-            // 
-            // uiPnlPrg_DotNetFr2_TxtBx
-            // 
-            this.uiPnlPrg_DotNetFr2_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.uiPnlPrg_DotNetFr2_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
-            this.uiPnlPrg_DotNetFr2_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlPrg_DotNetFr2_TxtBx.Location = new System.Drawing.Point(144, 128);
-            this.uiPnlPrg_DotNetFr2_TxtBx.Name = "uiPnlPrg_DotNetFr2_TxtBx";
-            this.uiPnlPrg_DotNetFr2_TxtBx.ReadOnly = true;
-            this.uiPnlPrg_DotNetFr2_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiPnlPrg_DotNetFr2_TxtBx.Size = new System.Drawing.Size(135, 20);
-            this.uiPnlPrg_DotNetFr2_TxtBx.TabIndex = 12;
-            this.uiPnlPrg_DotNetFr2_TxtBx.Text = "Not known";
-            // 
-            // uiPnlPrg_DotNetFr1_TxtBx
-            // 
-            this.uiPnlPrg_DotNetFr1_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.uiPnlPrg_DotNetFr1_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
-            this.uiPnlPrg_DotNetFr1_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlPrg_DotNetFr1_TxtBx.Location = new System.Drawing.Point(3, 128);
-            this.uiPnlPrg_DotNetFr1_TxtBx.Name = "uiPnlPrg_DotNetFr1_TxtBx";
-            this.uiPnlPrg_DotNetFr1_TxtBx.ReadOnly = true;
-            this.uiPnlPrg_DotNetFr1_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiPnlPrg_DotNetFr1_TxtBx.Size = new System.Drawing.Size(135, 20);
-            this.uiPnlPrg_DotNetFr1_TxtBx.TabIndex = 11;
-            this.uiPnlPrg_DotNetFr1_TxtBx.Text = ".NET Framework:";
-            // 
-            // uiPnlPrg_Info_TxtBx
-            // 
-            this.uiPnlPrg_Info_TxtBx.BackColor = System.Drawing.SystemColors.Control;
-            this.uiPnlPrg_TblLay.SetColumnSpan(this.uiPnlPrg_Info_TxtBx, 2);
-            this.uiPnlPrg_Info_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlPrg_Info_TxtBx.Enabled = false;
-            this.uiPnlPrg_Info_TxtBx.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.uiPnlPrg_Info_TxtBx.Location = new System.Drawing.Point(3, 103);
-            this.uiPnlPrg_Info_TxtBx.Name = "uiPnlPrg_Info_TxtBx";
-            this.uiPnlPrg_Info_TxtBx.ReadOnly = true;
-            this.uiPnlPrg_Info_TxtBx.Size = new System.Drawing.Size(276, 20);
-            this.uiPnlPrg_Info_TxtBx.TabIndex = 10;
-            this.uiPnlPrg_Info_TxtBx.Text = "Information";
-            // 
             // uiMenu
             // 
             this.uiMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1106,9 +988,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.uiPnlDtSh_CrvNo_Num)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiPnlDtSh_CrvIdx_Num)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiPnlDtSh_CrvIdx_TrBr)).EndInit();
-            this.uiPnlPrg_TbPg.ResumeLayout(false);
-            this.uiPnlPrg_TblLay.ResumeLayout(false);
-            this.uiPnlPrg_TblLay.PerformLayout();
             this.uiMenu.ResumeLayout(false);
             this.uiMenu.PerformLayout();
             this.uiMw_SpCtn.Panel1.ResumeLayout(false);
@@ -1148,18 +1027,11 @@
         private System.Windows.Forms.ComboBox uiPnlDtSh_CrvT_ComBx;
         private System.Windows.Forms.TextBox uiPnlGen_Crvs2No_TxtBx;
         private System.Windows.Forms.NumericUpDown uiPnlGen_Crvs2No_Num;
-        private System.Windows.Forms.TabPage uiPnlPrg_TbPg;
-        private System.Windows.Forms.TableLayoutPanel uiPnlPrg_TblLay;
         private System.Windows.Forms.TextBox uiPnlGen_CrvScaff1_TxtBx;
         private System.Windows.Forms.TextBox uiPnlGen_IdealCrvScaff_TxtBx;
         private System.Windows.Forms.Button uiPnlGen_Def_Btn;
         private System.Windows.Forms.TrackBar uiPnlDtSh_CrvIdx_TrBr;
         private System.Windows.Forms.TextBox uiPnlGen_EndX_TxtBx;
-        private System.Windows.Forms.TextBox uiPnlPrg_DotNetFr2_TxtBx;
-        private System.Windows.Forms.TextBox uiPnlPrg_DotNetFr1_TxtBx;
-        private System.Windows.Forms.TextBox uiPnlPrg_Info_TxtBx;
-        private System.Windows.Forms.TextBox uiPnlPrg_OsVer2_TxtBx;
-        private System.Windows.Forms.TextBox uiPnlPrg_OsVer1_TxtBx;
         private System.Windows.Forms.SplitContainer uiMw_SpCtn;
         private System.Windows.Forms.Button uiPnlDtSh_ShowDtSet_Btn;
         private System.Windows.Forms.TextBox uiPnlDtSh_GsNoise_TxtBx;

@@ -276,18 +276,6 @@
   <data name="MainWindow_Panel_Generate_StartingXPoint" xml:space="preserve">
     <value>Początkowy punkt x:</value>
   </data>
-  <data name="MainWindow_Panel_Program_Title" xml:space="preserve">
-    <value>Program</value>
-  </data>
-  <data name="MainWindow_Panel_Program_ActualState2_DotNetFramework" xml:space="preserve">
-    <value>.NET Framework:</value>
-  </data>
-  <data name="MainWindow_Panel_Program_ActualState2_Informations" xml:space="preserve">
-    <value>Informacje</value>
-  </data>
-  <data name="MainWindow_Panel_Program_ActualState2_OsVersion1" xml:space="preserve">
-    <value>Wersja sys. oper.:</value>
-  </data>
   <data name="MainWindow_Ui_Form_Text" xml:space="preserve">
     <value>Praca inżynierska</value>
   </data>

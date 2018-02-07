@@ -34,6 +34,5 @@ namespace PI.src.settings
             Series.Modified.Color = Color.Crimson;
             Series.Average.Color = Color.ForestGreen;
         }
-
     }
 }

@@ -63,10 +63,6 @@ namespace PI.src.localization.windows
                 public LocalizedString DatasheetCurvesNo { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Datasheet_CurvesNumber" ); } }
                 public LocalizedString DatasheetSurrounding { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Datasheet_Surrounding" ); } }
                 public LocalizedString DatasheetMalform { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Datasheet_Malform" ); } }
-                public LocalizedString ProgramTitle { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Program_Title" ); } }
-                public LocalizedString ProgramInformations { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Program_ActualState2_Informations" ); } }
-                public LocalizedString ProgramDotNetFramework1 { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Program_ActualState2_DotNetFramework" ); } }
-                public LocalizedString ProgramOsVersion1 { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Program_ActualState2_OsVersion1" ); } }
             }
         }
     }

@@ -16,6 +16,18 @@ namespace PI.src.settings
             public ChartDashStyle BorderDashStyle { get; set; }
             public SeriesChartType ChartType { get; set; }
         }
+
+        public static void Set( Chart chart, ChartSeriesSettings settings, int seriesIndex = 0 )
+        {
+            if ( chart == null || settings == null || seriesIndex < 0 ) {
+                return;
+            }
+
+            chart.Series[seriesIndex].Color = settings.Color;
+            chart.Series[seriesIndex].BorderWidth = settings.BorderWidth;
+            chart.Series[seriesIndex].BorderDashStyle = settings.BorderDashStyle;
+            chart.Series[seriesIndex].ChartType = settings.ChartType;
+        }
     }
 
 }
