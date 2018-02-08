@@ -889,7 +889,7 @@ namespace PI.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ustawienia.
+        ///   Looks up a localized string similar to Ustawienia....
         /// </summary>
         internal static string MainWindow_Menu_Chart_Settings {
             get {
@@ -916,7 +916,7 @@ namespace PI.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ustawienia.
+        ///   Looks up a localized string similar to Ustawienia....
         /// </summary>
         internal static string MainWindow_Menu_Means_Settings {
             get {
@@ -979,7 +979,7 @@ namespace PI.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wybierz język.
+        ///   Looks up a localized string similar to Wybierz język....
         /// </summary>
         internal static string MainWindow_Menu_Program_SelectLanguage {
             get {
@@ -988,7 +988,7 @@ namespace PI.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Analiza statystyczna.
+        ///   Looks up a localized string similar to Analiza statystyczna....
         /// </summary>
         internal static string MainWindow_Menu_Program_StatisticalAnalysis {
             get {
@@ -1006,245 +1006,254 @@ namespace PI.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Indeks krzywej:.
-        /// </summary>
-        internal static string MainWindow_Panel_Datasheet_CurveIndex {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Datasheet_CurveIndex", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ilość krzywych:.
-        /// </summary>
-        internal static string MainWindow_Panel_Datasheet_CurvesNumber {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Datasheet_CurvesNumber", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Typ krzywej:.
-        /// </summary>
-        internal static string MainWindow_Panel_Datasheet_CurveType {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Datasheet_CurveType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Kontrola zestawem danych.
-        /// </summary>
-        internal static string MainWindow_Panel_Datasheet_DatasetControl {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Datasheet_DatasetControl", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Szum Gaussa.
-        /// </summary>
-        internal static string MainWindow_Panel_Datasheet_GaussianNoise {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Datasheet_GaussianNoise", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Zniekształć.
-        /// </summary>
-        internal static string MainWindow_Panel_Datasheet_Malform {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Datasheet_Malform", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Pokaż zestaw danych.
-        /// </summary>
-        internal static string MainWindow_Panel_Datasheet_ShowDataSet {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Datasheet_ShowDataSet", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Otoczenie:.
-        /// </summary>
-        internal static string MainWindow_Panel_Datasheet_Surrounding {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Datasheet_Surrounding", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Dane.
-        /// </summary>
-        internal static string MainWindow_Panel_Datasheet_Title {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Datasheet_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Zastosuj.
         /// </summary>
-        internal static string MainWindow_Panel_Generate_Apply {
+        internal static string MainWindow_Panel_Average_Apply {
             get {
-                return ResourceManager.GetString("MainWindow_Panel_Generate_Apply", resourceCulture);
+                return ResourceManager.GetString("MainWindow_Panel_Average_Apply", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Uśrednianie.
+        ///   Looks up a localized string similar to Uśrednianie i wygładzanie.
         /// </summary>
-        internal static string MainWindow_Panel_Generate_Averaging {
+        internal static string MainWindow_Panel_Average_Averaging {
             get {
-                return ResourceManager.GetString("MainWindow_Panel_Generate_Averaging", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Szkielet krzywej:.
-        /// </summary>
-        internal static string MainWindow_Panel_Generate_CurveScaffold1 {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Generate_CurveScaffold1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to hiperboliczny.
-        /// </summary>
-        internal static string MainWindow_Panel_Generate_CurveScaffold2_Hyperbolic {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Generate_CurveScaffold2_Hyperbolic", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to nie wybrany.
-        /// </summary>
-        internal static string MainWindow_Panel_Generate_CurveScaffold2_NotChosen {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Generate_CurveScaffold2_NotChosen", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to wielomianowy.
-        /// </summary>
-        internal static string MainWindow_Panel_Generate_CurveScaffold2_Polynomial {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Generate_CurveScaffold2_Polynomial", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to falowy.
-        /// </summary>
-        internal static string MainWindow_Panel_Generate_CurveScaffold2_Waveform {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Generate_CurveScaffold2_Waveform", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cały zestaw krzywych.
-        /// </summary>
-        internal static string MainWindow_Panel_Generate_CurvesSet {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Generate_CurvesSet", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Punkty przedziału:.
-        /// </summary>
-        internal static string MainWindow_Panel_Generate_Density {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Generate_Density", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Końcowy punkt x:.
-        /// </summary>
-        internal static string MainWindow_Panel_Generate_EndingXPoint {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Generate_EndingXPoint", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Wygeneruj zestaw.
-        /// </summary>
-        internal static string MainWindow_Panel_Generate_GenerateSet {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Generate_GenerateSet", resourceCulture);
+                return ResourceManager.GetString("MainWindow_Panel_Average_Averaging", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Typ średniej:.
         /// </summary>
-        internal static string MainWindow_Panel_Generate_MeanType {
+        internal static string MainWindow_Panel_Average_MeanType {
             get {
-                return ResourceManager.GetString("MainWindow_Panel_Generate_MeanType", resourceCulture);
+                return ResourceManager.GetString("MainWindow_Panel_Average_MeanType", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Ilość krzywych:.
         /// </summary>
-        internal static string MainWindow_Panel_Generate_NumberOfCurves1 {
+        internal static string MainWindow_Panel_Average_NumberOfCurves2 {
             get {
-                return ResourceManager.GetString("MainWindow_Panel_Generate_NumberOfCurves1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ilość krzywych:.
-        /// </summary>
-        internal static string MainWindow_Panel_Generate_NumberOfCurves2 {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Generate_NumberOfCurves2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Szkielet krzywej wzorcowej.
-        /// </summary>
-        internal static string MainWindow_Panel_Generate_PatternCurveScaffold {
-            get {
-                return ResourceManager.GetString("MainWindow_Panel_Generate_PatternCurveScaffold", resourceCulture);
+                return ResourceManager.GetString("MainWindow_Panel_Average_NumberOfCurves2", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Odch. standardowe:.
         /// </summary>
-        internal static string MainWindow_Panel_Generate_StandardDeviation1 {
+        internal static string MainWindow_Panel_Average_StandardDeviation1 {
             get {
-                return ResourceManager.GetString("MainWindow_Panel_Generate_StandardDeviation1", resourceCulture);
+                return ResourceManager.GetString("MainWindow_Panel_Average_StandardDeviation1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uśredniona.
+        /// </summary>
+        internal static string MainWindow_Panel_Average_Title {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Average_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Szkielet krzywej:.
+        /// </summary>
+        internal static string MainWindow_Panel_Ideal_CurveScaffold1 {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Ideal_CurveScaffold1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to hiperboliczny.
+        /// </summary>
+        internal static string MainWindow_Panel_Ideal_CurveScaffold2_Hyperbolic {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Ideal_CurveScaffold2_Hyperbolic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to nie wybrany.
+        /// </summary>
+        internal static string MainWindow_Panel_Ideal_CurveScaffold2_NotChosen {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Ideal_CurveScaffold2_NotChosen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to wielomianowy.
+        /// </summary>
+        internal static string MainWindow_Panel_Ideal_CurveScaffold2_Polynomial {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Ideal_CurveScaffold2_Polynomial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to falowy.
+        /// </summary>
+        internal static string MainWindow_Panel_Ideal_CurveScaffold2_Waveform {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Ideal_CurveScaffold2_Waveform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cały zestaw krzywych.
+        /// </summary>
+        internal static string MainWindow_Panel_Ideal_CurvesSet {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Ideal_CurvesSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Punkty przedziału:.
+        /// </summary>
+        internal static string MainWindow_Panel_Ideal_Density {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Ideal_Density", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Końcowy punkt x:.
+        /// </summary>
+        internal static string MainWindow_Panel_Ideal_EndingXPoint {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Ideal_EndingXPoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wygeneruj zestaw.
+        /// </summary>
+        internal static string MainWindow_Panel_Ideal_GenerateSet {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Ideal_GenerateSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Szkielet krzywej wzorcowej.
+        /// </summary>
+        internal static string MainWindow_Panel_Ideal_IdealCurveScaffold {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Ideal_IdealCurveScaffold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ilość krzywych:.
+        /// </summary>
+        internal static string MainWindow_Panel_Ideal_NumberOfCurves1 {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Ideal_NumberOfCurves1", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Początkowy punkt x:.
         /// </summary>
-        internal static string MainWindow_Panel_Generate_StartingXPoint {
+        internal static string MainWindow_Panel_Ideal_StartingXPoint {
             get {
-                return ResourceManager.GetString("MainWindow_Panel_Generate_StartingXPoint", resourceCulture);
+                return ResourceManager.GetString("MainWindow_Panel_Ideal_StartingXPoint", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Generowanie.
+        ///   Looks up a localized string similar to Idealna.
         /// </summary>
-        internal static string MainWindow_Panel_Generate_Title {
+        internal static string MainWindow_Panel_Ideal_Title {
             get {
-                return ResourceManager.GetString("MainWindow_Panel_Generate_Title", resourceCulture);
+                return ResourceManager.GetString("MainWindow_Panel_Ideal_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indeks krzywej:.
+        /// </summary>
+        internal static string MainWindow_Panel_Modified_CurveIndex {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Modified_CurveIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ilość krzywych:.
+        /// </summary>
+        internal static string MainWindow_Panel_Modified_CurvesNumber {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Modified_CurvesNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Typ krzywej:.
+        /// </summary>
+        internal static string MainWindow_Panel_Modified_CurveType {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Modified_CurveType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kontrola zestawem danych.
+        /// </summary>
+        internal static string MainWindow_Panel_Modified_DatasetControl {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Modified_DatasetControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Szum Gaussa.
+        /// </summary>
+        internal static string MainWindow_Panel_Modified_GaussianNoise {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Modified_GaussianNoise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zniekształć.
+        /// </summary>
+        internal static string MainWindow_Panel_Modified_Malform {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Modified_Malform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pokaż zestaw danych.
+        /// </summary>
+        internal static string MainWindow_Panel_Modified_ShowDataSet {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Modified_ShowDataSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Otoczenie:.
+        /// </summary>
+        internal static string MainWindow_Panel_Modified_Surrounding {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Modified_Surrounding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zmodyfikowana.
+        /// </summary>
+        internal static string MainWindow_Panel_Modified_Title {
+            get {
+                return ResourceManager.GetString("MainWindow_Panel_Modified_Title", resourceCulture);
             }
         }
         
@@ -1335,15 +1344,6 @@ namespace PI.Locales {
         internal static string MeansSettings_Ui_Heronian {
             get {
                 return ResourceManager.GetString("MeansSettings_Ui_Heronian", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Podziały przedziału:.
-        /// </summary>
-        internal static string MeansSettings_Ui_IntervalDivisions {
-            get {
-                return ResourceManager.GetString("MeansSettings_Ui_IntervalDivisions", resourceCulture);
             }
         }
         

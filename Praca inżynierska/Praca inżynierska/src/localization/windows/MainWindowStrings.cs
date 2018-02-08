@@ -36,33 +36,34 @@ namespace PI.src.localization.windows
 
             public class MainWindowPanelStrings
             {
-                public LocalizedString GenerateTitle { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_Title" ); } }
-                public LocalizedString GeneratePatternCurveScaffold { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_PatternCurveScaffold" ); } }
-                public LocalizedString GenerateCurveScaffold1 { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_CurveScaffold1" ); } }
-                public LocalizedString GenerateScaffoldPolynomial { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_CurveScaffold2_Polynomial" ); } }
-                public LocalizedString GenerateScaffoldHyperbolic { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_CurveScaffold2_Hyperbolic" ); } }
-                public LocalizedString GenerateScaffoldWaveform { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_CurveScaffold2_Waveform" ); } }
-                public LocalizedString GenerateScaffoldNone { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_CurveScaffold2_NotChosen" ); } }
-                public LocalizedString GenerateCurvesSet { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_CurvesSet" ); } }
-                public LocalizedString GenerateCurves1No { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_NumberOfCurves1" ); } }
-                public LocalizedString GenerateStartX { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_StartingXPoint" ); } }
-                public LocalizedString GenerateEndX { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_EndingXPoint" ); } }
-                public LocalizedString GenerateDensity { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_Density" ); } }
-                public LocalizedString GenerateGenerateSet { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_GenerateSet" ); } }
-                public LocalizedString GenerateAveraging { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_Averaging" ); } }
-                public LocalizedString GenerateMeanType { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_MeanType" ); } }
-                public LocalizedString GenerateCurves2No { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_NumberOfCurves2" ); } }
-                public LocalizedString GenerateApply { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_Apply" ); } }
-                public LocalizedString GenerateStandardDeviation1 { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Generate_StandardDeviation1" ); } }
-                public LocalizedString DatasheetTitle { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Datasheet_Title" ); } }
-                public LocalizedString DatasheetDataSetControl { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Datasheet_DatasetControl" ); } }
-                public LocalizedString DatasheetCurveType { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Datasheet_CurveType" ); } }
-                public LocalizedString DatasheetCurveIndex { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Datasheet_CurveIndex" ); } }
-                public LocalizedString DatasheetShowDataSet { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Datasheet_ShowDataSet" ); } }
-                public LocalizedString DatasheetGaussianNoise { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Datasheet_GaussianNoise" ); } }
-                public LocalizedString DatasheetCurvesNo { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Datasheet_CurvesNumber" ); } }
-                public LocalizedString DatasheetSurrounding { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Datasheet_Surrounding" ); } }
-                public LocalizedString DatasheetMalform { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Datasheet_Malform" ); } }
+                public LocalizedString IdealTitle { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Ideal_Title" ); } }
+                public LocalizedString IdealPatternCurveScaffold { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Ideal_IdealCurveScaffold" ); } }
+                public LocalizedString IdealCurveScaffold1 { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Ideal_CurveScaffold1" ); } }
+                public LocalizedString IdealScaffoldPolynomial { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Ideal_CurveScaffold2_Polynomial" ); } }
+                public LocalizedString IdealScaffoldHyperbolic { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Ideal_CurveScaffold2_Hyperbolic" ); } }
+                public LocalizedString IdealScaffoldWaveform { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Ideal_CurveScaffold2_Waveform" ); } }
+                public LocalizedString IdealScaffoldNone { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Ideal_CurveScaffold2_NotChosen" ); } }
+                public LocalizedString IdealCurvesSet { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Ideal_CurvesSet" ); } }
+                public LocalizedString IdealCurves1No { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Ideal_NumberOfCurves1" ); } }
+                public LocalizedString IdealStartX { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Ideal_StartingXPoint" ); } }
+                public LocalizedString IdealEndX { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Ideal_EndingXPoint" ); } }
+                public LocalizedString IdealDensity { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Ideal_Density" ); } }
+                public LocalizedString IdealGenerateSet { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Ideal_GenerateSet" ); } }
+                public LocalizedString ModifiedTitle { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Modified_Title" ); } }
+                public LocalizedString ModifiedDataSetControl { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Modified_DatasetControl" ); } }
+                public LocalizedString ModifiedCurveType { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Modified_CurveType" ); } }
+                public LocalizedString ModifiedCurveIndex { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Modified_CurveIndex" ); } }
+                public LocalizedString ModifiedShowDataSet { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Modified_ShowDataSet" ); } }
+                public LocalizedString ModifiedGaussianNoise { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Modified_GaussianNoise" ); } }
+                public LocalizedString ModifiedCurvesNo { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Modified_CurvesNumber" ); } }
+                public LocalizedString ModifiedSurrounding { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Modified_Surrounding" ); } }
+                public LocalizedString ModifiedMalform { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Modified_Malform" ); } }
+                public LocalizedString AverageTitle { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Average_Title" ); } }
+                public LocalizedString AverageAveraging { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Average_Averaging" ); } }
+                public LocalizedString AverageMeanType { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Average_MeanType" ); } }
+                public LocalizedString AverageCurves2No { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Average_NumberOfCurves2" ); } }
+                public LocalizedString AverageApply { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Average_Apply" ); } }
+                public LocalizedString AverageStandardDeviation1 { get { return new LocalizedString( CurrentLanguage, "MainWindow_Panel_Average_StandardDeviation1" ); } }
             }
         }
     }

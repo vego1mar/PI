@@ -163,7 +163,7 @@
     <value>Wykres</value>
   </data>
   <data name="MainWindow_Menu_Chart_Settings" xml:space="preserve">
-    <value>Ustawienia</value>
+    <value>Ustawienia...</value>
   </data>
   <data name="MainWindow_Menu_Means_Title" xml:space="preserve">
     <value>Uśrednianie</value>
@@ -172,7 +172,7 @@
     <value>Informacje</value>
   </data>
   <data name="MainWindow_Menu_Means_Settings" xml:space="preserve">
-    <value>Ustawienia</value>
+    <value>Ustawienia...</value>
   </data>
   <data name="MainWindow_Menu_Panel_Title" xml:space="preserve">
     <value>Panel</value>
@@ -193,87 +193,87 @@
     <value>Zakończ</value>
   </data>
   <data name="MainWindow_Menu_Program_SelectLanguage" xml:space="preserve">
-    <value>Wybierz język</value>
+    <value>Wybierz język...</value>
   </data>
   <data name="MainWindow_Menu_Program_StatisticalAnalysis" xml:space="preserve">
-    <value>Analiza statystyczna</value>
+    <value>Analiza statystyczna...</value>
   </data>
-  <data name="MainWindow_Panel_Datasheet_Title" xml:space="preserve">
-    <value>Dane</value>
+  <data name="MainWindow_Panel_Modified_Title" xml:space="preserve">
+    <value>Zmodyfikowana</value>
   </data>
-  <data name="MainWindow_Panel_Datasheet_CurveIndex" xml:space="preserve">
+  <data name="MainWindow_Panel_Modified_CurveIndex" xml:space="preserve">
     <value>Indeks krzywej:</value>
   </data>
-  <data name="MainWindow_Panel_Datasheet_CurvesNumber" xml:space="preserve">
+  <data name="MainWindow_Panel_Modified_CurvesNumber" xml:space="preserve">
     <value>Ilość krzywych:</value>
   </data>
-  <data name="MainWindow_Panel_Datasheet_CurveType" xml:space="preserve">
+  <data name="MainWindow_Panel_Modified_CurveType" xml:space="preserve">
     <value>Typ krzywej:</value>
   </data>
-  <data name="MainWindow_Panel_Datasheet_DatasetControl" xml:space="preserve">
+  <data name="MainWindow_Panel_Modified_DatasetControl" xml:space="preserve">
     <value>Kontrola zestawem danych</value>
   </data>
-  <data name="MainWindow_Panel_Datasheet_GaussianNoise" xml:space="preserve">
+  <data name="MainWindow_Panel_Modified_GaussianNoise" xml:space="preserve">
     <value>Szum Gaussa</value>
   </data>
-  <data name="MainWindow_Panel_Datasheet_Malform" xml:space="preserve">
+  <data name="MainWindow_Panel_Modified_Malform" xml:space="preserve">
     <value>Zniekształć</value>
   </data>
-  <data name="MainWindow_Panel_Datasheet_ShowDataSet" xml:space="preserve">
+  <data name="MainWindow_Panel_Modified_ShowDataSet" xml:space="preserve">
     <value>Pokaż zestaw danych</value>
   </data>
-  <data name="MainWindow_Panel_Datasheet_Surrounding" xml:space="preserve">
+  <data name="MainWindow_Panel_Modified_Surrounding" xml:space="preserve">
     <value>Otoczenie:</value>
   </data>
-  <data name="MainWindow_Panel_Generate_Title" xml:space="preserve">
-    <value>Generowanie</value>
+  <data name="MainWindow_Panel_Ideal_Title" xml:space="preserve">
+    <value>Idealna</value>
   </data>
-  <data name="MainWindow_Panel_Generate_Apply" xml:space="preserve">
+  <data name="MainWindow_Panel_Average_Apply" xml:space="preserve">
     <value>Zastosuj</value>
   </data>
-  <data name="MainWindow_Panel_Generate_Averaging" xml:space="preserve">
-    <value>Uśrednianie</value>
+  <data name="MainWindow_Panel_Average_Averaging" xml:space="preserve">
+    <value>Uśrednianie i wygładzanie</value>
   </data>
-  <data name="MainWindow_Panel_Generate_CurveScaffold1" xml:space="preserve">
+  <data name="MainWindow_Panel_Ideal_CurveScaffold1" xml:space="preserve">
     <value>Szkielet krzywej:</value>
   </data>
-  <data name="MainWindow_Panel_Generate_CurveScaffold2_Hyperbolic" xml:space="preserve">
+  <data name="MainWindow_Panel_Ideal_CurveScaffold2_Hyperbolic" xml:space="preserve">
     <value>hiperboliczny</value>
   </data>
-  <data name="MainWindow_Panel_Generate_CurveScaffold2_NotChosen" xml:space="preserve">
+  <data name="MainWindow_Panel_Ideal_CurveScaffold2_NotChosen" xml:space="preserve">
     <value>nie wybrany</value>
   </data>
-  <data name="MainWindow_Panel_Generate_CurveScaffold2_Polynomial" xml:space="preserve">
+  <data name="MainWindow_Panel_Ideal_CurveScaffold2_Polynomial" xml:space="preserve">
     <value>wielomianowy</value>
   </data>
-  <data name="MainWindow_Panel_Generate_CurveScaffold2_Waveform" xml:space="preserve">
+  <data name="MainWindow_Panel_Ideal_CurveScaffold2_Waveform" xml:space="preserve">
     <value>falowy</value>
   </data>
-  <data name="MainWindow_Panel_Generate_CurvesSet" xml:space="preserve">
+  <data name="MainWindow_Panel_Ideal_CurvesSet" xml:space="preserve">
     <value>Cały zestaw krzywych</value>
   </data>
-  <data name="MainWindow_Panel_Generate_Density" xml:space="preserve">
+  <data name="MainWindow_Panel_Ideal_Density" xml:space="preserve">
     <value>Punkty przedziału:</value>
   </data>
-  <data name="MainWindow_Panel_Generate_EndingXPoint" xml:space="preserve">
+  <data name="MainWindow_Panel_Ideal_EndingXPoint" xml:space="preserve">
     <value>Końcowy punkt x:</value>
   </data>
-  <data name="MainWindow_Panel_Generate_GenerateSet" xml:space="preserve">
+  <data name="MainWindow_Panel_Ideal_GenerateSet" xml:space="preserve">
     <value>Wygeneruj zestaw</value>
   </data>
-  <data name="MainWindow_Panel_Generate_MeanType" xml:space="preserve">
+  <data name="MainWindow_Panel_Average_MeanType" xml:space="preserve">
     <value>Typ średniej:</value>
   </data>
-  <data name="MainWindow_Panel_Generate_NumberOfCurves1" xml:space="preserve">
+  <data name="MainWindow_Panel_Ideal_NumberOfCurves1" xml:space="preserve">
     <value>Ilość krzywych:</value>
   </data>
-  <data name="MainWindow_Panel_Generate_NumberOfCurves2" xml:space="preserve">
+  <data name="MainWindow_Panel_Average_NumberOfCurves2" xml:space="preserve">
     <value>Ilość krzywych:</value>
   </data>
-  <data name="MainWindow_Panel_Generate_PatternCurveScaffold" xml:space="preserve">
+  <data name="MainWindow_Panel_Ideal_IdealCurveScaffold" xml:space="preserve">
     <value>Szkielet krzywej wzorcowej</value>
   </data>
-  <data name="MainWindow_Panel_Generate_StartingXPoint" xml:space="preserve">
+  <data name="MainWindow_Panel_Ideal_StartingXPoint" xml:space="preserve">
     <value>Początkowy punkt x:</value>
   </data>
   <data name="MainWindow_Ui_Form_Text" xml:space="preserve">
@@ -642,7 +642,7 @@
   <data name="StatisticalAnalysis_Ui_Preview_Phenomenon" xml:space="preserve">
     <value>Zjawisko:</value>
   </data>
-  <data name="MainWindow_Panel_Generate_StandardDeviation1" xml:space="preserve">
+  <data name="MainWindow_Panel_Average_StandardDeviation1" xml:space="preserve">
     <value>Odch. standardowe:</value>
   </data>
   <data name="Enums_MeanType_Generalized" xml:space="preserve">
@@ -705,9 +705,6 @@
   <data name="MeansSettings_Ui_Heronian" xml:space="preserve">
     <value>Średnia Herona</value>
   </data>
-  <data name="MeansSettings_Ui_IntervalDivisions" xml:space="preserve">
-    <value>Podziały przedziału:</value>
-  </data>
   <data name="MeansSettings_Ui_MassPercent" xml:space="preserve">
     <value>Procent masy:</value>
   </data>
@@ -764,5 +761,8 @@
   </data>
   <data name="GridPreviewer_Ui_Dataset_Index" xml:space="preserve">
     <value>Indeks</value>
+  </data>
+  <data name="MainWindow_Panel_Average_Title" xml:space="preserve">
+    <value>Uśredniona</value>
   </data>
 </root>

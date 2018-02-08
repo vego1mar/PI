@@ -175,15 +175,15 @@ namespace PI.src.averaging
             case MeanType.SMA:
                 return SMA( acceptables );
             case MeanType.Central:
-                return Central( acceptables, @params.Central.IntervalDivisions, @params.Central.MassPercent );
+                return Central( acceptables, @params.Central.MassPercent );
             }
 
             return null;
         }
 
-        public static double? Central( IList<double> set, int intervalDivisions = 10, short massPercent = 50 )
+        public static double? Central( IList<double> set, short massPercent = 50 )
         {
-            if ( set == null || set.Count == 0 || intervalDivisions <= 0 || massPercent < 10 || massPercent > 90 ) {
+            if ( set == null || set.Count == 0 || massPercent < 10 || massPercent > 90 ) {
                 return null;
             }
 
@@ -363,7 +363,7 @@ namespace PI.src.averaging
             return tolerants;
         }
 
-        public static IList<double> Central( IList<IList<double>> orderedSet, int intervalDivisions = 10, short massPercent = 50 )
+        public static IList<double> Central( IList<IList<double>> orderedSet, short massPercent = 50 )
         {
             if ( orderedSet == null || orderedSet.Count == 0 ) {
                 return new List<double>().AsReadOnly();
@@ -372,7 +372,7 @@ namespace PI.src.averaging
             IList<double> centrals = new List<double>();
 
             for ( int x = 0; x < orderedSet.Count; x++ ) {
-                centrals.Add( Central( orderedSet[x], intervalDivisions, massPercent ).Value );
+                centrals.Add( Central( orderedSet[x], massPercent ).Value );
             }
 
             return centrals;

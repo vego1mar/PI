@@ -59,7 +59,6 @@ namespace PI.src.general
             return SeriesAssist.IsChartAcceptable( IdealCurve );
         }
 
-        // TODO: Overrride points
         public void AlterCurve( Series series, DataSetCurveType curveType, int curveIndex )
         {
             if ( series == null || curveIndex < 0 ) {
@@ -189,7 +188,7 @@ namespace PI.src.general
                     result = Averages.Tolerance( orderedSetOfCurves, MeansParams.Tolerance.Tolerance, MeansParams.Tolerance.Finisher );
                     break;
                 case MeanType.Central:
-                    result = Averages.Central( orderedSetOfCurves, MeansParams.Central.IntervalDivisions, MeansParams.Central.MassPercent );
+                    result = Averages.Central( orderedSetOfCurves, MeansParams.Central.MassPercent );
                     break;
                 case MeanType.NN:
                     result = Smoothers.NearestNeighbors( orderedSetOfCurves, MeansParams.NN.Amount );

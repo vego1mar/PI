@@ -38,7 +38,7 @@ namespace PI
 
             // Ui
             ChartAssist.SetDefaultSettings( uiCharts_Crv );
-            UiControls.TrySetSelectedIndex( uiPnlGen_MeanT_ComBx, (int) MeanType.NN );
+            UiControls.TrySetSelectedIndex( uiPnlAvg_MeanT_ComBx, (int) MeanType.NN );
             UpdateUiByCurveScaffold();
         }
 
@@ -48,45 +48,45 @@ namespace PI
 
             switch ( Settings.Presets.Pcd.Scaffold ) {
             case IdealCurveScaffold.Polynomial:
-                uiPnlGen_Def_Btn.Text = names.Ui.Panel.GenerateScaffoldPolynomial.GetString();
+                uiPnlId_Def_Btn.Text = names.Ui.Panel.IdealScaffoldPolynomial.GetString();
                 break;
             case IdealCurveScaffold.Hyperbolic:
-                uiPnlGen_Def_Btn.Text = names.Ui.Panel.GenerateScaffoldHyperbolic.GetString();
+                uiPnlId_Def_Btn.Text = names.Ui.Panel.IdealScaffoldHyperbolic.GetString();
                 break;
             case IdealCurveScaffold.WaveformSine:
             case IdealCurveScaffold.WaveformSquare:
             case IdealCurveScaffold.WaveformTriangle:
             case IdealCurveScaffold.WaveformSawtooth:
-                uiPnlGen_Def_Btn.Text = names.Ui.Panel.GenerateScaffoldWaveform.GetString();
+                uiPnlId_Def_Btn.Text = names.Ui.Panel.IdealScaffoldWaveform.GetString();
                 break;
             default:
-                uiPnlGen_Def_Btn.Text = names.Ui.Panel.GenerateScaffoldNone.GetString();
+                uiPnlId_Def_Btn.Text = names.Ui.Panel.IdealScaffoldNone.GetString();
                 break;
             }
         }
 
         private void SavePresets()
         {
-            Settings.Presets.Ui.CurvesNo = UiControls.TryGetValue<int>( uiPnlGen_Crvs1No_Num );
-            Settings.Presets.Ui.StartX = UiControls.TryGetValue<double>( uiPnlGen_StartX_Num );
-            Settings.Presets.Ui.EndX = UiControls.TryGetValue<double>( uiPnlGen_EndX_Num );
-            Settings.Presets.Ui.PointsNo = UiControls.TryGetValue<int>( uiPnlGen_Dens_Num );
+            Settings.Presets.Ui.CurvesNo = UiControls.TryGetValue<int>( uiPnlId_Crvs1No_Num );
+            Settings.Presets.Ui.StartX = UiControls.TryGetValue<double>( uiPnlId_StartX_Num );
+            Settings.Presets.Ui.EndX = UiControls.TryGetValue<double>( uiPnlId_EndX_Num );
+            Settings.Presets.Ui.PointsNo = UiControls.TryGetValue<int>( uiPnlId_Dens_Num );
         }
 
         private void UpdateUiByCurveControlsRanges()
         {
-            uiPnlGen_Crvs2No_Num.Minimum = 1;
-            uiPnlGen_Crvs2No_Num.Maximum = Settings.Presets.Ui.CurvesNo;
-            uiPnlGen_Crvs2No_Num.Value = uiPnlGen_Crvs2No_Num.Maximum;
-            uiPnlDtSh_CrvIdx_Num.Minimum = 1;
-            uiPnlDtSh_CrvIdx_Num.Maximum = Settings.Presets.Ui.CurvesNo;
-            uiPnlDtSh_CrvIdx_Num.Value = uiPnlDtSh_CrvIdx_Num.Minimum;
+            uiPnlAvg_Crvs2No_Num.Minimum = 1;
+            uiPnlAvg_Crvs2No_Num.Maximum = Settings.Presets.Ui.CurvesNo;
+            uiPnlAvg_Crvs2No_Num.Value = uiPnlAvg_Crvs2No_Num.Maximum;
+            uiPnlMod_CrvIdx_Num.Minimum = 1;
+            uiPnlMod_CrvIdx_Num.Maximum = Settings.Presets.Ui.CurvesNo;
+            uiPnlMod_CrvIdx_Num.Value = uiPnlMod_CrvIdx_Num.Minimum;
             uiPnlDtSh_CrvIdx_TrBr.Minimum = 1;
             uiPnlDtSh_CrvIdx_TrBr.Maximum = Settings.Presets.Ui.CurvesNo;
             uiPnlDtSh_CrvIdx_TrBr.Value = uiPnlDtSh_CrvIdx_TrBr.Minimum;
-            uiPnlDtSh_CrvNo_Num.Minimum = 1;
-            uiPnlDtSh_CrvNo_Num.Maximum = Settings.Presets.Ui.CurvesNo;
-            uiPnlDtSh_CrvNo_Num.Value = uiPnlDtSh_CrvNo_Num.Maximum;
+            uiPnlMod_CrvNo_Num.Minimum = 1;
+            uiPnlMod_CrvNo_Num.Maximum = Settings.Presets.Ui.CurvesNo;
+            uiPnlMod_CrvNo_Num.Value = uiPnlMod_CrvNo_Num.Maximum;
         }
 
         private void UpdateUiByShowingCurveOnChart( DataSetCurveType curveType, int indexOfModifiedCurve = 1 )
@@ -163,6 +163,7 @@ namespace PI
         private void LocalizeWindow()
         {
             MainWindowStrings names = new MainWindowStrings();
+            int selectedIndex = 0;
             Text = names.Form.Text.GetString();
 
             // Menu: Program
@@ -185,48 +186,56 @@ namespace PI
             uiMenu_Chart.Text = names.Ui.Menu.ChartTitle.GetString();
             uiMenuChart_Settings.Text = names.Ui.Menu.ChartSettings.GetString();
 
-            // Tab: Generate
-            uiPnlGen_TbPg.Text = names.Ui.Panel.GenerateTitle.GetString();
-            uiPnlGen_IdealCrvScaff_TxtBx.Text = names.Ui.Panel.GeneratePatternCurveScaffold.GetString();
-            uiPnlGen_CrvScaff1_TxtBx.Text = names.Ui.Panel.GenerateCurveScaffold1.GetString();
-            uiPnlGen_Def_Btn.Text = names.Ui.Panel.GenerateScaffoldNone.GetString();
+            // Tab: Ideal
+            uiPnlId_TbPg.Text = names.Ui.Panel.IdealTitle.GetString();
+            uiPnlId_IdealCrvScaff_TxtBx.Text = names.Ui.Panel.IdealPatternCurveScaffold.GetString();
+            uiPnlId_CrvScaff1_TxtBx.Text = names.Ui.Panel.IdealCurveScaffold1.GetString();
+            uiPnlId_Def_Btn.Text = names.Ui.Panel.IdealScaffoldNone.GetString();
             UpdateUiByCurveScaffold();
-            uiPnlGen_CrvsSet_TxtBx.Text = names.Ui.Panel.GenerateCurvesSet.GetString();
-            uiPnlGen_Crvs1No_TxtBx.Text = names.Ui.Panel.GenerateCurves1No.GetString();
-            uiPnlGen_StartX_TxtBx.Text = names.Ui.Panel.GenerateStartX.GetString();
-            uiPnlGen_EndX_TxtBx.Text = names.Ui.Panel.GenerateEndX.GetString();
-            uiPnlGen_Dens_TxtBx.Text = names.Ui.Panel.GenerateDensity.GetString();
-            UiControls.TryRefreshOfProperty( uiPnlGen_Crvs1No_Num );
-            UiControls.TryRefreshOfProperty( uiPnlGen_StartX_Num );
-            UiControls.TryRefreshOfProperty( uiPnlGen_EndX_Num );
-            UiControls.TryRefreshOfProperty( uiPnlGen_Dens_Num );
-            uiPnlGen_GenSet_Btn.Text = names.Ui.Panel.GenerateGenerateSet.GetString();
-            uiPnlGen_Avg_TxtBx.Text = names.Ui.Panel.GenerateAveraging.GetString();
-            uiPnlGen_MeanT_TxtBx.Text = names.Ui.Panel.GenerateMeanType.GetString();
-            uiPnlGen_Crvs2No_TxtBx.Text = names.Ui.Panel.GenerateCurves2No.GetString();
-            EnumsLocalizer.Localize( LocalizableEnumerator.MeanType, uiPnlGen_MeanT_ComBx );
-            UiControls.TryRefreshOfProperty( uiPnlGen_Crvs2No_Num );
-            uiPnlGen_StdDev1_TxtBx.Text = names.Ui.Panel.GenerateStandardDeviation1.GetString();
-            uiPnlGen_Apply_Btn.Text = names.Ui.Panel.GenerateApply.GetString();
+            uiPnlId_CrvsSet_TxtBx.Text = names.Ui.Panel.IdealCurvesSet.GetString();
+            uiPnlId_Crvs1No_TxtBx.Text = names.Ui.Panel.IdealCurves1No.GetString();
+            uiPnlId_StartX_TxtBx.Text = names.Ui.Panel.IdealStartX.GetString();
+            uiPnlId_EndX_TxtBx.Text = names.Ui.Panel.IdealEndX.GetString();
+            uiPnlId_Dens_TxtBx.Text = names.Ui.Panel.IdealDensity.GetString();
+            UiControls.TryRefreshOfProperty( uiPnlId_Crvs1No_Num );
+            UiControls.TryRefreshOfProperty( uiPnlId_StartX_Num );
+            UiControls.TryRefreshOfProperty( uiPnlId_EndX_Num );
+            UiControls.TryRefreshOfProperty( uiPnlId_Dens_Num );
+            uiPnlId_GenSet_Btn.Text = names.Ui.Panel.IdealGenerateSet.GetString();
 
-            // Tab: Datasheet
-            uiPnlDtSh_TbPg.Text = names.Ui.Panel.DatasheetTitle.GetString();
-            uiPnlDtSh_DtSetCtrl_TxtBx.Text = names.Ui.Panel.DatasheetDataSetControl.GetString();
-            uiPnlDtSh_CrvT_TxtBx.Text = names.Ui.Panel.DatasheetCurveType.GetString();
-            EnumsLocalizer.Localize( LocalizableEnumerator.DataSetCurveType, uiPnlDtSh_CrvT_ComBx );
-            uiPnlDtSh_CrvIdx_TxtBx.Text = names.Ui.Panel.DatasheetCurveIndex.GetString();
+            // Tab: Modified
+            uiPnlMod_TbPg.Text = names.Ui.Panel.ModifiedTitle.GetString();
+            uiPnlMod_DtSetCtrl_TxtBx.Text = names.Ui.Panel.ModifiedDataSetControl.GetString();
+            uiPnlMod_CrvT_TxtBx.Text = names.Ui.Panel.ModifiedCurveType.GetString();
+            selectedIndex = UiControls.TryGetSelectedIndex( uiPnlMod_CrvT_ComBx );
+            EnumsLocalizer.Localize( LocalizableEnumerator.DataSetCurveType, uiPnlMod_CrvT_ComBx );
+            UiControls.TrySetSelectedIndex( uiPnlMod_CrvT_ComBx, selectedIndex );
+            uiPnlMod_CrvIdx_TxtBx.Text = names.Ui.Panel.ModifiedCurveIndex.GetString();
 
             if ( DataChart.IdealCurve.Points.Count != 0 ) {
-                UiControls.TryRefreshOfProperty( uiPnlDtSh_CrvIdx_Num );
+                UiControls.TryRefreshOfProperty( uiPnlMod_CrvIdx_Num );
             }
 
-            uiPnlDtSh_ShowDtSet_Btn.Text = names.Ui.Panel.DatasheetShowDataSet.GetString();
-            uiPnlDtSh_GsNoise_TxtBx.Text = names.Ui.Panel.DatasheetGaussianNoise.GetString();
-            uiPnlDtSh_CrvNo_TxtBx.Text = names.Ui.Panel.DatasheetCurvesNo.GetString();
-            UiControls.TryRefreshOfProperty( uiPnlDtSh_CrvNo_Num );
-            uiPnlDtSh_Surr_TxtBx.Text = names.Ui.Panel.DatasheetSurrounding.GetString();
-            UiControls.TryRefreshOfProperty( uiPnlDtSh_Surr_Num );
-            uiPnlDtSh_Malform_Btn.Text = names.Ui.Panel.DatasheetMalform.GetString();
+            uiPnlMod_ShowDtSet_Btn.Text = names.Ui.Panel.ModifiedShowDataSet.GetString();
+            uiPnlMod_GsNoise_TxtBx.Text = names.Ui.Panel.ModifiedGaussianNoise.GetString();
+            uiPnlMod_CrvNo_TxtBx.Text = names.Ui.Panel.ModifiedCurvesNo.GetString();
+            UiControls.TryRefreshOfProperty( uiPnlMod_CrvNo_Num );
+            uiPnlMod_Surr_TxtBx.Text = names.Ui.Panel.ModifiedSurrounding.GetString();
+            UiControls.TryRefreshOfProperty( uiPnlMod_Surr_Num );
+            uiPnlMod_Malform_Btn.Text = names.Ui.Panel.ModifiedMalform.GetString();
+
+            // Tab: Average
+            uiPnlAvg_TbPg.Text = names.Ui.Panel.AverageTitle.GetString();
+            uiPnlAvg_Avg_TxtBx.Text = names.Ui.Panel.AverageAveraging.GetString();
+            uiPnlAvg_MeanT_TxtBx.Text = names.Ui.Panel.AverageMeanType.GetString();
+            selectedIndex = UiControls.TryGetSelectedIndex( uiPnlAvg_MeanT_ComBx );
+            EnumsLocalizer.Localize( LocalizableEnumerator.MeanType, uiPnlAvg_MeanT_ComBx );
+            UiControls.TrySetSelectedIndex( uiPnlAvg_MeanT_ComBx, selectedIndex );
+            uiPnlAvg_Crvs2No_TxtBx.Text = names.Ui.Panel.AverageCurves2No.GetString();
+            UiControls.TryRefreshOfProperty( uiPnlAvg_Crvs2No_Num );
+            uiPnlAvg_StdDev1_TxtBx.Text = names.Ui.Panel.AverageStandardDeviation1.GetString();
+            uiPnlAvg_StdDev2_TxtBx.Text = double.NaN.ToString( Thread.CurrentThread.CurrentCulture );
+            uiPnlAvg_Apply_Btn.Text = names.Ui.Panel.AverageApply.GetString();
         }
 
         #region Event handlers
@@ -386,7 +395,7 @@ namespace PI
 
                 if ( dialog.DialogResult == DialogResult.OK ) {
                     MainChartSettings.Set( dialog.Settings, Settings.Series, uiCharts_Crv );
-                    UpdateUiByShowingCurveOnChart( (DataSetCurveType) UiControls.TryGetSelectedIndex( uiPnlDtSh_CrvT_ComBx ) );
+                    UpdateUiByShowingCurveOnChart( (DataSetCurveType) UiControls.TryGetSelectedIndex( uiPnlMod_CrvT_ComBx ) );
                 }
             }
 
@@ -401,8 +410,8 @@ namespace PI
                 return;
             }
 
-            int curvesNo = UiControls.TryGetValue<int>( uiPnlDtSh_CrvNo_Num );
-            double surrounding = UiControls.TryGetValue<double>( uiPnlDtSh_Surr_Num );
+            int curvesNo = UiControls.TryGetValue<int>( uiPnlMod_CrvNo_Num );
+            double surrounding = UiControls.TryGetValue<double>( uiPnlMod_Surr_Num );
             bool? result = DataChart.MakeNoiseOfGaussian( curvesNo, surrounding );
             log.Info( MethodBase.GetCurrentMethod().Name + '(' + curvesNo + ',' + surrounding + ',' + result.HasValue + ')' );
 
@@ -416,7 +425,7 @@ namespace PI
                 return;
             }
 
-            UiControls.TrySetSelectedIndex( uiPnlDtSh_CrvT_ComBx, (int) DataSetCurveType.Modified );
+            UiControls.TrySetSelectedIndex( uiPnlMod_CrvT_ComBx, (int) DataSetCurveType.Modified );
             UpdateUiByShowingCurveOnChart( DataSetCurveType.Modified );
         }
 
@@ -428,8 +437,8 @@ namespace PI
                 return;
             }
 
-            MeanType meanType = (MeanType) UiControls.TryGetSelectedIndex( uiPnlGen_MeanT_ComBx );
-            int curvesNo = UiControls.TryGetValue<int>( uiPnlGen_Crvs2No_Num );
+            MeanType meanType = (MeanType) UiControls.TryGetSelectedIndex( uiPnlAvg_MeanT_ComBx );
+            int curvesNo = UiControls.TryGetValue<int>( uiPnlAvg_Crvs2No_Num );
             bool? result = DataChart.TryMakeAverageCurve( meanType, curvesNo );
             log.Info( MethodBase.GetCurrentMethod().Name + '(' + meanType + ',' + curvesNo + ',' + result.HasValue + ')' );
 
@@ -438,16 +447,16 @@ namespace PI
                 AppMessages.MainWindow.ExclamationOfPointsNotValidToChart();
             }
 
-            UiControls.TrySetSelectedIndex( uiPnlDtSh_CrvT_ComBx, (int) DataSetCurveType.Average );
+            UiControls.TrySetSelectedIndex( uiPnlMod_CrvT_ComBx, (int) DataSetCurveType.Average );
             UpdateUiByShowingCurveOnChart( DataSetCurveType.Average );
             double standardDeviation = Mathematics.GetRelativeStandardDeviation( SeriesAssist.GetValues( DataChart.AverageCurve ), SeriesAssist.GetValues( DataChart.IdealCurve ) );
-            uiPnlGen_StdDev2_TxtBx.Text = Strings.TryFormatAsNumeric( 8, standardDeviation );
+            uiPnlAvg_StdDev2_TxtBx.Text = Strings.TryFormatAsNumeric( 8, standardDeviation );
         }
 
         private void OnShowDataSetClick( object sender, EventArgs e )
         {
-            DataSetCurveType curveType = (DataSetCurveType) UiControls.TryGetSelectedIndex( uiPnlDtSh_CrvT_ComBx );
-            int curveIndex = UiControls.TryGetValue<int>( uiPnlDtSh_CrvIdx_Num );
+            DataSetCurveType curveType = (DataSetCurveType) UiControls.TryGetSelectedIndex( uiPnlMod_CrvT_ComBx );
+            int curveIndex = UiControls.TryGetValue<int>( uiPnlMod_CrvIdx_Num );
             string signature = MethodBase.GetCurrentMethod().Name + '(' + curveType + ',' + curveIndex + ')';
 
             switch ( curveType ) {
@@ -492,22 +501,22 @@ namespace PI
 
         private void OnCurveTypeSelection( object sender, EventArgs e )
         {
-            DataSetCurveType curveType = (DataSetCurveType) UiControls.TryGetSelectedIndex( uiPnlDtSh_CrvT_ComBx );
+            DataSetCurveType curveType = (DataSetCurveType) UiControls.TryGetSelectedIndex( uiPnlMod_CrvT_ComBx );
             log.Info( MethodBase.GetCurrentMethod().Name + '(' + curveType + ')' );
 
             switch ( curveType ) {
             case DataSetCurveType.Modified:
-                uiPnlDtSh_CrvIdx_Num.Enabled = true;
+                uiPnlMod_CrvIdx_Num.Enabled = true;
                 uiPnlDtSh_CrvIdx_TrBr.Enabled = true;
                 UpdateUiByShowingCurveOnChart( DataSetCurveType.Modified, UiControls.TryGetValue<int>( uiPnlDtSh_CrvIdx_TrBr ) );
                 break;
             case DataSetCurveType.Ideal:
-                uiPnlDtSh_CrvIdx_Num.Enabled = false;
+                uiPnlMod_CrvIdx_Num.Enabled = false;
                 uiPnlDtSh_CrvIdx_TrBr.Enabled = false;
                 UpdateUiByShowingCurveOnChart( DataSetCurveType.Ideal );
                 break;
             case DataSetCurveType.Average:
-                uiPnlDtSh_CrvIdx_Num.Enabled = false;
+                uiPnlMod_CrvIdx_Num.Enabled = false;
                 uiPnlDtSh_CrvIdx_TrBr.Enabled = false;
                 UpdateUiByShowingCurveOnChart( DataSetCurveType.Average );
                 break;
@@ -516,7 +525,7 @@ namespace PI
 
         private void OnCurveIndexAlteration( object sender, EventArgs e )
         {
-            int curveIndex = UiControls.TryGetValue<int>( uiPnlDtSh_CrvIdx_Num );
+            int curveIndex = UiControls.TryGetValue<int>( uiPnlMod_CrvIdx_Num );
             UiControls.TrySetValue( uiPnlDtSh_CrvIdx_TrBr, curveIndex );
             UpdateUiByShowingCurveOnChart( DataSetCurveType.Modified, curveIndex );
             log.Info( MethodBase.GetCurrentMethod().Name + '(' + curveIndex + ')' );
@@ -525,15 +534,15 @@ namespace PI
         private void OnCurveIndexScroll( object sender, EventArgs e )
         {
             int curveIndex = UiControls.TryGetValue<int>( uiPnlDtSh_CrvIdx_TrBr );
-            UiControls.TrySetValue( uiPnlDtSh_CrvIdx_Num, curveIndex );
+            UiControls.TrySetValue( uiPnlMod_CrvIdx_Num, curveIndex );
             UpdateUiByShowingCurveOnChart( DataSetCurveType.Modified, curveIndex );
             log.Info( MethodBase.GetCurrentMethod().Name + '(' + curveIndex + ')' );
         }
 
         private void OnGenerateSetClick( object sender, EventArgs e )
         {
-            if ( uiPnlGen_Def_Btn.Text == new MainWindowStrings().Ui.Panel.GenerateScaffoldNone.GetString() ) {
-                log.Info( MethodBase.GetCurrentMethod().Name + '(' + uiPnlGen_Def_Btn.Text + ')' );
+            if ( uiPnlId_Def_Btn.Text == new MainWindowStrings().Ui.Panel.IdealScaffoldNone.GetString() ) {
+                log.Info( MethodBase.GetCurrentMethod().Name + '(' + uiPnlId_Def_Btn.Text + ')' );
                 AppMessages.MainWindow.StopOfPatternCurveNotChosen();
                 return;
             }
@@ -556,7 +565,7 @@ namespace PI
             UpdateUiByShowingCurveOnChart( DataSetCurveType.Ideal );
             DataChart.PropagateIdealCurve( Settings.Presets.Ui.CurvesNo );
             UpdateUiByCurveControlsRanges();
-            UiControls.TrySetSelectedIndex( uiPnlDtSh_CrvT_ComBx, (int) DataSetCurveType.Modified );
+            UiControls.TrySetSelectedIndex( uiPnlMod_CrvT_ComBx, (int) DataSetCurveType.Modified );
             log.Info( MethodBase.GetCurrentMethod().Name + '(' + Settings.Presets.Ui.ToString() + ')' );
         }
 

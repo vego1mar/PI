@@ -26,7 +26,6 @@ namespace PI.src.localization.windows
             public LocalizedString Tolerance2 { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_ToleranceText" ); } }
             public LocalizedString FinisherFunction { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_FinisherFunction" ); } }
             public LocalizedString Central { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_Central" ); } }
-            public LocalizedString IntervalDivisions { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_IntervalDivisions" ); } }
             public LocalizedString MassPercent { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_MassPercent" ); } }
             public LocalizedString NN { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_NN" ); } }
             public LocalizedString Amount { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_Amount" ); } }

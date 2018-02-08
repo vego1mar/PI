@@ -34,7 +34,6 @@ namespace PI.src.windows
             UiControls.TrySetValue( uiGrid_GenRank_Num, MeansParams.Generalized.Rank );
             UiControls.TrySetValue( uiGrid_TolerTol_Num, MeansParams.Tolerance.Tolerance );
             UiControls.TrySetSelectedIndex( uiGrid_TolerFin_ComBx, (int) MeansParams.Tolerance.Finisher );
-            UiControls.TrySetValue( uiGrid_CentralDivs_Num, MeansParams.Central.IntervalDivisions );
             UiControls.TrySetValue( uiGrid_CentralMass_Num, MeansParams.Central.MassPercent );
             UiControls.TrySetValue( uiGrid_NNk_Num, MeansParams.NN.Amount );
         }
@@ -49,7 +48,6 @@ namespace PI.src.windows
             MeansParams.Generalized.Rank = UiControls.TryGetValue<int>( uiGrid_GenRank_Num );
             MeansParams.Tolerance.Tolerance = UiControls.TryGetValue<double>( uiGrid_TolerTol_Num );
             MeansParams.Tolerance.Finisher = (MeanType) UiControls.TryGetSelectedIndex( uiGrid_TolerFin_ComBx );
-            MeansParams.Central.IntervalDivisions = UiControls.TryGetValue<int>( uiGrid_CentralDivs_Num );
             MeansParams.Central.MassPercent = UiControls.TryGetValue<short>( uiGrid_CentralMass_Num );
             MeansParams.NN.Amount = UiControls.TryGetValue<int>( uiGrid_NNk_Num );
         }
@@ -82,8 +80,6 @@ namespace PI.src.windows
             uiGrid_TolerFin_TxtBx.Text = names.Ui.FinisherFunction.GetString();
             EnumsLocalizer.Localize( LocalizableEnumerator.MeanType, uiGrid_TolerFin_ComBx );
             uiGrid_Central_TxtBx.Text = names.Ui.Central.GetString();
-            uiGrid_CentralDivs_TxtBx.Text = names.Ui.IntervalDivisions.GetString();
-            UiControls.TryRefreshOfProperty( uiGrid_CentralDivs_Num );
             uiGrid_CentralMass_TxtBx.Text = names.Ui.MassPercent.GetString();
             UiControls.TryRefreshOfProperty( uiGrid_CentralMass_Num );
             uiGrid_NN_TxtBx.Text = names.Ui.NN.GetString();

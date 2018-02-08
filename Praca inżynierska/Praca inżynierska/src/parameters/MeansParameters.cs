@@ -36,7 +36,6 @@ namespace PI.src.parameters
 
         public class CentralMeanSettings
         {
-            public int IntervalDivisions { get; set; } = 100;
             public short MassPercent { get; set; } = 50;
         }
 
