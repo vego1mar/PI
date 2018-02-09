@@ -765,4 +765,43 @@
   <data name="MainWindow_Panel_Average_Title" xml:space="preserve">
     <value>Average</value>
   </data>
+  <data name="About_Form_Text" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="About_Ui_AssemblyMetadata_Company" xml:space="preserve">
+    <value>Company:</value>
+  </data>
+  <data name="About_Ui_AssemblyMetadata_Title" xml:space="preserve">
+    <value>Assembly metadata</value>
+  </data>
+  <data name="About_Ui_AssemblyMetadata_Version" xml:space="preserve">
+    <value>Version:</value>
+  </data>
+  <data name="About_Ui_Other_Counter" xml:space="preserve">
+    <value>Counter:</value>
+  </data>
+  <data name="About_Ui_Other_Promoter1" xml:space="preserve">
+    <value>Promoter:</value>
+  </data>
+  <data name="About_Ui_Other_Promoter2" xml:space="preserve">
+    <value>Paweł Kowalczyk, PhD (DSc)</value>
+  </data>
+  <data name="About_Ui_Other_Repository" xml:space="preserve">
+    <value>Repository:</value>
+  </data>
+  <data name="About_Ui_Other_Title" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="About_Ui_TechnicalInformations_LogPath" xml:space="preserve">
+    <value>Log path:</value>
+  </data>
+  <data name="About_Ui_TechnicalInformations_NETFramework" xml:space="preserve">
+    <value>.NET Framework:</value>
+  </data>
+  <data name="About_Ui_TechnicalInformations_Title" xml:space="preserve">
+    <value>Technical informations</value>
+  </data>
+  <data name="MainWindow_Menu_Program_About" xml:space="preserve">
+    <value>About...</value>
+  </data>
 </root>

@@ -765,4 +765,43 @@
   <data name="MainWindow_Panel_Average_Title" xml:space="preserve">
     <value>Uśredniona</value>
   </data>
+  <data name="About_Form_Text" xml:space="preserve">
+    <value>O programie</value>
+  </data>
+  <data name="About_Ui_AssemblyMetadata_Company" xml:space="preserve">
+    <value>Firma:</value>
+  </data>
+  <data name="About_Ui_AssemblyMetadata_Title" xml:space="preserve">
+    <value>Metadane aplikacji</value>
+  </data>
+  <data name="About_Ui_AssemblyMetadata_Version" xml:space="preserve">
+    <value>Wersja:</value>
+  </data>
+  <data name="About_Ui_Other_Counter" xml:space="preserve">
+    <value>Czasomierz:</value>
+  </data>
+  <data name="About_Ui_Other_Promoter1" xml:space="preserve">
+    <value>Promotor:</value>
+  </data>
+  <data name="About_Ui_Other_Promoter2" xml:space="preserve">
+    <value>dr hab. Paweł Kowalczyk</value>
+  </data>
+  <data name="About_Ui_Other_Repository" xml:space="preserve">
+    <value>Repozytorium:</value>
+  </data>
+  <data name="About_Ui_Other_Title" xml:space="preserve">
+    <value>Inne</value>
+  </data>
+  <data name="About_Ui_TechnicalInformations_LogPath" xml:space="preserve">
+    <value>Ścieżka logu:</value>
+  </data>
+  <data name="About_Ui_TechnicalInformations_NETFramework" xml:space="preserve">
+    <value>.NET Framework:</value>
+  </data>
+  <data name="About_Ui_TechnicalInformations_Title" xml:space="preserve">
+    <value>Informacje techniczne</value>
+  </data>
+  <data name="MainWindow_Menu_Program_About" xml:space="preserve">
+    <value>O programie...</value>
+  </data>
 </root>

@@ -115,7 +115,6 @@ namespace PI.src.general
             }
         }
 
-        // TODO: Handle inconsistency between Gaussian and uniform noise
         public bool? MakeNoiseOfGaussian( int curvesNo, double surrounding )
         {
             if ( curvesNo < 0 ) {
@@ -125,7 +124,7 @@ namespace PI.src.general
             IList<IList<DataPoint>> curves = SeriesAssist.GetCopy( ModifiedCurves, curvesNo, 0 );
 
             for ( int i = 0; i < curves.Count; i++ ) {
-                curves[i] = NoiseMaker.OfUniform( curves[i], surrounding );
+                curves[i] = NoiseMaker.OfGaussian( curves[i], surrounding );
 
                 if ( !SeriesAssist.IsChartAcceptable( curves[i], 0 ) ) {
                     return false;

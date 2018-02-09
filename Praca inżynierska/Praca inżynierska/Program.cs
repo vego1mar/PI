@@ -2,6 +2,7 @@
 using System.Reflection;
 using System;
 using log4net;
+using PI.src.windows;
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo( "PITests" )]
 [assembly: log4net.Config.XmlConfigurator( Watch = true )]

@@ -1190,7 +1190,9 @@
             this.Controls.Add(this.ui_tbLay);
             this.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1000, 500);
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(820, 420);
             this.Name = "PatternCurveDefiner";
             this.ShowIcon = false;

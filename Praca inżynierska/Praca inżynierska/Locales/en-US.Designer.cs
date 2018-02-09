@@ -61,6 +61,114 @@ namespace PI.Locales {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        internal static string About_Form_Text {
+            get {
+                return ResourceManager.GetString("About_Form_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Company:.
+        /// </summary>
+        internal static string About_Ui_AssemblyMetadata_Company {
+            get {
+                return ResourceManager.GetString("About_Ui_AssemblyMetadata_Company", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assembly metadata.
+        /// </summary>
+        internal static string About_Ui_AssemblyMetadata_Title {
+            get {
+                return ResourceManager.GetString("About_Ui_AssemblyMetadata_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version:.
+        /// </summary>
+        internal static string About_Ui_AssemblyMetadata_Version {
+            get {
+                return ResourceManager.GetString("About_Ui_AssemblyMetadata_Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Counter:.
+        /// </summary>
+        internal static string About_Ui_Other_Counter {
+            get {
+                return ResourceManager.GetString("About_Ui_Other_Counter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Promoter:.
+        /// </summary>
+        internal static string About_Ui_Other_Promoter1 {
+            get {
+                return ResourceManager.GetString("About_Ui_Other_Promoter1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paweł Kowalczyk, PhD (DSc).
+        /// </summary>
+        internal static string About_Ui_Other_Promoter2 {
+            get {
+                return ResourceManager.GetString("About_Ui_Other_Promoter2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Repository:.
+        /// </summary>
+        internal static string About_Ui_Other_Repository {
+            get {
+                return ResourceManager.GetString("About_Ui_Other_Repository", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other.
+        /// </summary>
+        internal static string About_Ui_Other_Title {
+            get {
+                return ResourceManager.GetString("About_Ui_Other_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log path:.
+        /// </summary>
+        internal static string About_Ui_TechnicalInformations_LogPath {
+            get {
+                return ResourceManager.GetString("About_Ui_TechnicalInformations_LogPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .NET Framework:.
+        /// </summary>
+        internal static string About_Ui_TechnicalInformations_NETFramework {
+            get {
+                return ResourceManager.GetString("About_Ui_TechnicalInformations_NETFramework", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technical informations.
+        /// </summary>
+        internal static string About_Ui_TechnicalInformations_Title {
+            get {
+                return ResourceManager.GetString("About_Ui_TechnicalInformations_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Chart settings.
         /// </summary>
         internal static string ChartSettings_Form_Text {
@@ -966,6 +1074,15 @@ namespace PI.Locales {
         internal static string MainWindow_Menu_Panel_Title {
             get {
                 return ResourceManager.GetString("MainWindow_Menu_Panel_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About....
+        /// </summary>
+        internal static string MainWindow_Menu_Program_About {
+            get {
+                return ResourceManager.GetString("MainWindow_Menu_Program_About", resourceCulture);
             }
         }
         

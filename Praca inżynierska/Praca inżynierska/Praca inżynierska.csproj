@@ -78,6 +78,14 @@
   <ItemGroup>
     <Compile Include="src\general\AppTimer.cs" />
     <Compile Include="src\general\GridAssist.cs" />
+    <Compile Include="src\localization\windows\AboutStrings.cs" />
+    <Compile Include="src\settings\WindowDimensions.cs" />
+    <Compile Include="src\windows\About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\windows\About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\windows\ChartSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,18 +207,21 @@
       <DependentUpon>StatisticalAnalysis.cs</DependentUpon>
     </Compile>
     <Compile Include="src\helpers\Strings.cs" />
-    <Compile Include="src\helpers\SystemInfo.cs" />
+    <Compile Include="src\helpers\SystemInfos.cs" />
     <Compile Include="src\helpers\Threads.cs" />
-    <Compile Include="MainWindow.cs">
+    <Compile Include="src\windows\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainWindow.Designer.cs">
+    <Compile Include="src\windows\MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\settings\UiSettings.cs" />
     <Compile Include="src\helpers\UiControls.cs" />
+    <EmbeddedResource Include="src\windows\About.resx">
+      <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\windows\ChartSettings.resx">
       <DependentUpon>ChartSettings.cs</DependentUpon>
     </EmbeddedResource>
@@ -231,7 +242,7 @@
     <EmbeddedResource Include="src\windows\PatternCurveDefiner.resx">
       <DependentUpon>PatternCurveDefiner.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainWindow.resx">
+    <EmbeddedResource Include="src\windows\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

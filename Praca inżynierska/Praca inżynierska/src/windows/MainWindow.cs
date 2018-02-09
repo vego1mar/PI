@@ -1,5 +1,4 @@
-﻿using PI.src.windows;
-using System;
+﻿using System;
 using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -15,11 +14,12 @@ using PI.src.localization.windows;
 using PI.src.localization.general;
 using System.Drawing;
 
-namespace PI
+namespace PI.src.windows
 {
     public partial class MainWindow : Form
     {
         private static readonly ILog log = LogManager.GetLogger( MethodBase.GetCurrentMethod().DeclaringType );
+        private static readonly About aboutDialog = new About();
         private UiSettings Settings { get; set; }
         private CurvesDataManager DataChart { get; set; }
 
@@ -27,14 +27,16 @@ namespace PI
         {
             InitializeComponent();
             Settings = new UiSettings();
+            aboutDialog.Height = Settings.Dimensions.About.Height;
+            aboutDialog.Width = Settings.Dimensions.About.Width;
             DataChart = new CurvesDataManager();
         }
 
         private void UpdateUiBySettings()
         {
             // Form
-            Width = Settings.MainWindow.Dimensions.Width;
-            Height = Settings.MainWindow.Dimensions.Height;
+            Width = Settings.Dimensions.MainWindow.Width;
+            Height = Settings.Dimensions.MainWindow.Height;
 
             // Ui
             ChartAssist.SetDefaultSettings( uiCharts_Crv );
@@ -81,9 +83,9 @@ namespace PI
             uiPnlMod_CrvIdx_Num.Minimum = 1;
             uiPnlMod_CrvIdx_Num.Maximum = Settings.Presets.Ui.CurvesNo;
             uiPnlMod_CrvIdx_Num.Value = uiPnlMod_CrvIdx_Num.Minimum;
-            uiPnlDtSh_CrvIdx_TrBr.Minimum = 1;
-            uiPnlDtSh_CrvIdx_TrBr.Maximum = Settings.Presets.Ui.CurvesNo;
-            uiPnlDtSh_CrvIdx_TrBr.Value = uiPnlDtSh_CrvIdx_TrBr.Minimum;
+            uiPnlMod_CrvIdx_TrBr.Minimum = 1;
+            uiPnlMod_CrvIdx_TrBr.Maximum = Settings.Presets.Ui.CurvesNo;
+            uiPnlMod_CrvIdx_TrBr.Value = uiPnlMod_CrvIdx_TrBr.Minimum;
             uiPnlMod_CrvNo_Num.Minimum = 1;
             uiPnlMod_CrvNo_Num.Maximum = Settings.Presets.Ui.CurvesNo;
             uiPnlMod_CrvNo_Num.Value = uiPnlMod_CrvNo_Num.Maximum;
@@ -156,6 +158,8 @@ namespace PI
         private void ShowStatisticalAnalysis()
         {
             using ( var dialog = new StatisticalAnalysis( Settings.Presets ) ) {
+                dialog.Width = Settings.Dimensions.StatisticalAnalysis.Width;
+                dialog.Height = Settings.Dimensions.StatisticalAnalysis.Height;
                 dialog.ShowDialog();
             }
         }
@@ -170,6 +174,7 @@ namespace PI
             uiMenu_Prg.Text = names.Ui.Menu.ProgramTitle.GetString();
             uiMenuPrg_StatAnal.Text = names.Ui.Menu.ProgramStatisticalAnalysis.GetString();
             uiMenuPrg_Lang.Text = names.Ui.Menu.ProgramSelectLanguage.GetString();
+            uiMenuPrg_About.Text = names.Ui.Menu.ProgramAbout.GetString();
             uiMenuPrg_Exit.Text = names.Ui.Menu.ProgramExit.GetString();
 
             // Menu: Panel
@@ -314,6 +319,8 @@ namespace PI
         private void OnMenuSelectLanguage( object sender, EventArgs e )
         {
             using ( var dialog = new LanguageSelector() ) {
+                dialog.Height = Settings.Dimensions.LanguageSelector.Height;
+                dialog.Width = Settings.Dimensions.LanguageSelector.Width;
                 UiControls.TryShowDialog( dialog, this );
 
                 if ( dialog.DialogResult == DialogResult.OK ) {
@@ -378,6 +385,8 @@ namespace PI
             using ( var dialog = new MeansSettings() ) {
                 dialog.MeansParams = DataChart.MeansParams;
                 dialog.UpdateUiBySettings();
+                dialog.Height = Settings.Dimensions.MeansSettings.Height;
+                dialog.Width = Settings.Dimensions.MeansSettings.Width;
                 UiControls.TryShowDialog( dialog, this );
 
                 if ( dialog.DialogResult == DialogResult.OK ) {
@@ -391,6 +400,8 @@ namespace PI
         private void OnMenuChartSettings( object sender, EventArgs e )
         {
             using ( var dialog = new ChartSettings( MainChartSettings.Get( Settings.Series, uiCharts_Crv ) ) ) {
+                dialog.Height = Settings.Dimensions.ChartSettings.Height;
+                dialog.Width = Settings.Dimensions.ChartSettings.Width;
                 UiControls.TryShowDialog( dialog, this );
 
                 if ( dialog.DialogResult == DialogResult.OK ) {
@@ -478,13 +489,15 @@ namespace PI
                 return;
             }
 
-            using ( var gprvDialog = new GridPreviewer( SeriesAssist.GetCopy( curveSeries ) ) ) {
-                UiControls.TryShowDialog( gprvDialog, this );
+            using ( var dialog = new GridPreviewer( SeriesAssist.GetCopy( curveSeries ) ) ) {
+                dialog.Height = Settings.Dimensions.GridPreviewer.Height;
+                dialog.Width = Settings.Dimensions.GridPreviewer.Width;
+                UiControls.TryShowDialog( dialog, this );
 
                 try {
-                    if ( gprvDialog.DialogResult == DialogResult.OK ) {
-                        DataChart.AlterCurve( gprvDialog.Curve, curveType, curveIndex );
-                        ChartAssist.Refresh( gprvDialog.Curve, Color.Indigo, uiCharts_Crv );
+                    if ( dialog.DialogResult == DialogResult.OK ) {
+                        DataChart.AlterCurve( dialog.Curve, curveType, curveIndex );
+                        ChartAssist.Refresh( dialog.Curve, Color.Indigo, uiCharts_Crv );
                     }
                 }
                 catch ( InvalidOperationException ex ) {
@@ -507,17 +520,17 @@ namespace PI
             switch ( curveType ) {
             case DataSetCurveType.Modified:
                 uiPnlMod_CrvIdx_Num.Enabled = true;
-                uiPnlDtSh_CrvIdx_TrBr.Enabled = true;
-                UpdateUiByShowingCurveOnChart( DataSetCurveType.Modified, UiControls.TryGetValue<int>( uiPnlDtSh_CrvIdx_TrBr ) );
+                uiPnlMod_CrvIdx_TrBr.Enabled = true;
+                UpdateUiByShowingCurveOnChart( DataSetCurveType.Modified, UiControls.TryGetValue<int>( uiPnlMod_CrvIdx_TrBr ) );
                 break;
             case DataSetCurveType.Ideal:
                 uiPnlMod_CrvIdx_Num.Enabled = false;
-                uiPnlDtSh_CrvIdx_TrBr.Enabled = false;
+                uiPnlMod_CrvIdx_TrBr.Enabled = false;
                 UpdateUiByShowingCurveOnChart( DataSetCurveType.Ideal );
                 break;
             case DataSetCurveType.Average:
                 uiPnlMod_CrvIdx_Num.Enabled = false;
-                uiPnlDtSh_CrvIdx_TrBr.Enabled = false;
+                uiPnlMod_CrvIdx_TrBr.Enabled = false;
                 UpdateUiByShowingCurveOnChart( DataSetCurveType.Average );
                 break;
             }
@@ -526,14 +539,14 @@ namespace PI
         private void OnCurveIndexAlteration( object sender, EventArgs e )
         {
             int curveIndex = UiControls.TryGetValue<int>( uiPnlMod_CrvIdx_Num );
-            UiControls.TrySetValue( uiPnlDtSh_CrvIdx_TrBr, curveIndex );
+            UiControls.TrySetValue( uiPnlMod_CrvIdx_TrBr, curveIndex );
             UpdateUiByShowingCurveOnChart( DataSetCurveType.Modified, curveIndex );
             log.Info( MethodBase.GetCurrentMethod().Name + '(' + curveIndex + ')' );
         }
 
         private void OnCurveIndexScroll( object sender, EventArgs e )
         {
-            int curveIndex = UiControls.TryGetValue<int>( uiPnlDtSh_CrvIdx_TrBr );
+            int curveIndex = UiControls.TryGetValue<int>( uiPnlMod_CrvIdx_TrBr );
             UiControls.TrySetValue( uiPnlMod_CrvIdx_Num, curveIndex );
             UpdateUiByShowingCurveOnChart( DataSetCurveType.Modified, curveIndex );
             log.Info( MethodBase.GetCurrentMethod().Name + '(' + curveIndex + ')' );
@@ -573,12 +586,14 @@ namespace PI
         {
             string signature = MethodBase.GetCurrentMethod().Name + "()";
 
-            using ( var pcdDialog = new PatternCurveDefiner( Settings.Presets.Pcd ) ) {
-                UiControls.TryShowDialog( pcdDialog, this );
+            using ( var dialog = new PatternCurveDefiner( Settings.Presets.Pcd ) ) {
+                dialog.Width = Settings.Dimensions.PatternCurveDefiner.Width;
+                dialog.Height = Settings.Dimensions.PatternCurveDefiner.Height;
+                UiControls.TryShowDialog( dialog, this );
 
                 try {
-                    if ( pcdDialog.DialogResult == DialogResult.OK ) {
-                        Settings.Presets.Pcd = pcdDialog.Settings;
+                    if ( dialog.DialogResult == DialogResult.OK ) {
+                        Settings.Presets.Pcd = dialog.Settings;
                         UpdateUiByCurveScaffold();
                     }
                 }
@@ -588,6 +603,12 @@ namespace PI
             }
 
             log.Info( signature );
+        }
+
+        private void OnMenuAboutClick( object sender, EventArgs e )
+        {
+            UiControls.TryShowDialog( aboutDialog, this );
+            log.Info( MethodBase.GetCurrentMethod().Name + "()" );
         }
 
         #endregion

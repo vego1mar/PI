@@ -2,14 +2,7 @@
 {
     internal class MainWindowUiSettings
     {
-        public MainWindowDimensions Dimensions { get; set; } = new MainWindowDimensions();
         public MenuSettings Menu { get; set; } = new MenuSettings();
-
-        internal class MainWindowDimensions
-        {
-            public int Height { get; set; } = 720;
-            public int Width { get; set; } = 1300;
-        }
 
         internal class MenuSettings
         {

@@ -14,20 +14,10 @@ namespace PITests.src.helpers
             const string DOT_NET_FRAMEWORK_MAJOR_VERSION = "4.7";
 
             // when
-            string result1 = SystemInfo.TryGetDotNetFrameworkVersion();
+            string result1 = SystemInfos.TryGetDotNetFrameworkVersion();
 
             // then
             Assert.IsTrue( result1.Contains( DOT_NET_FRAMEWORK_MAJOR_VERSION ) );
-        }
-
-        [TestMethod]
-        public void TryGetOSVersion()
-        {
-            // when
-            string result1 = SystemInfo.TryGetOSVersion();
-
-            // then
-            Assert.IsTrue( TestStrings.IsVersionNumber( result1 ) );
         }
     }
 }

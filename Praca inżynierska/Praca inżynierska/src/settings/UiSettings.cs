@@ -10,6 +10,7 @@ namespace PI.src.settings
         public MainWindowUiSettings MainWindow { get; set; } = new MainWindowUiSettings();
         public CurvesSettings Series { get; set; } = new CurvesSettings();
         public GeneratorSettings Presets { get; set; } = new GeneratorSettings();
+        public WindowDimensions Dimensions { get; set; } = new WindowDimensions();
 
         public UiSettings()
         {

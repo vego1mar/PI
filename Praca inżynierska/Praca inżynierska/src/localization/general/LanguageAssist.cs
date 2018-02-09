@@ -30,8 +30,7 @@ namespace PI.src.localization.general
             string signature = string.Empty;
 
             try {
-                MethodBase @base = MethodBase.GetCurrentMethod();
-                signature = @base.DeclaringType.Name + "." + @base.Name + "(" + name + ", " + lang + ")";
+                signature = MethodBase.GetCurrentMethod().Name + '(' + name + ',' + lang + ')' ;
 
                 switch ( lang ) {
                 case Languages.English:
@@ -66,8 +65,7 @@ namespace PI.src.localization.general
             string signature = string.Empty;
 
             try {
-                MethodBase @base = MethodBase.GetCurrentMethod();
-                signature = @base.DeclaringType.Name + "." + @base.Name + "(" + language + ")";
+                signature = MethodBase.GetCurrentMethod().Name + '(' + language + ')';
 
                 switch ( language ) {
                 case Languages.English:
