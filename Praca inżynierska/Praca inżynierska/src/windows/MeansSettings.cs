@@ -36,6 +36,9 @@ namespace PI.src.windows
             UiControls.TrySetSelectedIndex( uiGrid_TolerFin_ComBx, (int) MeansParams.Tolerance.Finisher );
             UiControls.TrySetValue( uiGrid_CentralMass_Num, MeansParams.Central.MassPercent );
             UiControls.TrySetValue( uiGrid_NNk_Num, MeansParams.NN.Amount );
+            UiControls.TrySetSelectedIndex( uiGrid_NWVar_ComBx, (int) MeansParams.NadarayaWatson.Variant );
+            UiControls.TrySetSelectedIndex( uiGrid_NWKerT_ComBx, (int) MeansParams.NadarayaWatson.KernelType );
+            UiControls.TrySetValue( uiGrid_NWKerS_Num, MeansParams.NadarayaWatson.KernelSize );
         }
 
         private void SaveSettings()
@@ -50,6 +53,9 @@ namespace PI.src.windows
             MeansParams.Tolerance.Finisher = (MeanType) UiControls.TryGetSelectedIndex( uiGrid_TolerFin_ComBx );
             MeansParams.Central.MassPercent = UiControls.TryGetValue<short>( uiGrid_CentralMass_Num );
             MeansParams.NN.Amount = UiControls.TryGetValue<int>( uiGrid_NNk_Num );
+            MeansParams.NadarayaWatson.Variant = (NadarayaWatsonVariant) UiControls.TryGetSelectedIndex( uiGrid_NWVar_ComBx );
+            MeansParams.NadarayaWatson.KernelType = (KernelType) UiControls.TryGetSelectedIndex( uiGrid_NWKerT_ComBx );
+            MeansParams.NadarayaWatson.KernelSize = UiControls.TryGetValue<double>( uiGrid_NWKerS_Num );
         }
 
         private void LocalizeWindow()
@@ -85,6 +91,12 @@ namespace PI.src.windows
             uiGrid_NN_TxtBx.Text = names.Ui.NN.GetString();
             uiGrid_NNk_TxtBx.Text = names.Ui.Amount.GetString();
             UiControls.TryRefreshOfProperty( uiGrid_NNk_Num );
+            uiGrid_NW_TxtBx.Text = names.Ui.NadarayaWatson.GetString();
+            uiGrid_NWVar_TxtBx.Text = names.Ui.Variant.GetString();
+            EnumsLocalizer.Localize( LocalizableEnumerator.NadarayaWatsonVariant, uiGrid_NWVar_ComBx );
+            uiGrid_NWKerT_TxtBx.Text = names.Ui.KernelType.GetString();
+            EnumsLocalizer.Localize( LocalizableEnumerator.KernelType, uiGrid_NWKerT_ComBx );
+            uiGrid_NWKerS_TxtBx.Text = names.Ui.KernelSize.GetString();
             ui_Ok_Btn.Text = names.Ui.OK.GetString();
         }
 
@@ -110,6 +122,7 @@ namespace PI.src.windows
             switch ( before ) {
             case MeanType.Tolerance:
             case MeanType.NN:
+            case MeanType.NadarayaWatson:
                 UiControls.TrySetSelectedIndex( uiGrid_TolerFin_ComBx, (int) MeansParams.Tolerance.Finisher );
                 AppMessages.MeansSettings.WarningOfNotSupportedFinisherFunction();
                 break;

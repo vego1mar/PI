@@ -394,6 +394,9 @@ namespace PI.src.windows
                 Series controlsSpecifiedSeries = GetUiSpecifiedSeries();
 
                 using ( var dialog = new GridPreviewer( controlsSpecifiedSeries ) ) {
+                    WindowDimensions dimensions = new WindowDimensions();
+                    dialog.Width = dimensions.GridPreviewer.Width;
+                    dialog.Height = dimensions.GridPreviewer.Height;
                     UiControls.TryShowDialog( dialog, this );
                 }
             }

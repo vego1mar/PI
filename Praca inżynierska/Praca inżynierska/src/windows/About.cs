@@ -27,10 +27,10 @@ namespace PI.src.windows
 
         private void UpdateUiBySettings()
         {
-            uiTech_DotNet2_TxtBx.Text = SystemInfos.TryGetDotNetFrameworkVersion();
-            uiTech_LogPath2_TxtBx.Text = "NotImplemented";
-            uiMeta_Ver2_TxtBx.Text = SystemInfos.TryGetAssemblyVersion();
-            uiMeta_Com2_TxtBx.Text = SystemInfos.TryGetCompanyName();
+            uiTech_DotNet2_TxtBx.Text = Informations.TryGetDotNetFrameworkVersion();
+            uiTech_LogPath2_TxtBx.Text = Informations.TryGetLogPath();
+            uiMeta_Ver2_TxtBx.Text = Informations.TryGetAssemblyVersion();
+            uiMeta_Com2_TxtBx.Text = Informations.TryGetCompanyName();
             uiOth_Ctr2_TxtBx.Text = "0:00:00:00";
             uiOth_Repo2_TxtBx.Text = "https://www.github.com/vego1mar/PI/releases";
         }

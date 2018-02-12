@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace PI.src.averaging
+namespace PI.src.averaging.means
 {
     public static partial class Averages
     {

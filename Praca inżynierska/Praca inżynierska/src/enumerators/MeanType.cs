@@ -14,6 +14,7 @@
         SMA = 9,
         Tolerance = 10,
         Central = 11,
-        NN = 12
+        NN = 12,
+        NadarayaWatson = 13
     }
 }

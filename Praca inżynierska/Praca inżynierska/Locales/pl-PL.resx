@@ -804,4 +804,31 @@
   <data name="MainWindow_Menu_Program_About" xml:space="preserve">
     <value>O programie...</value>
   </data>
+  <data name="Enums_MeanType_NadarayaWatson" xml:space="preserve">
+    <value>Nadaraya-Watsona</value>
+  </data>
+  <data name="Enums_KernelType_Boxcar" xml:space="preserve">
+    <value>kwadratowy</value>
+  </data>
+  <data name="Enums_KernelType_Epanechnikov" xml:space="preserve">
+    <value>Epanechnikova</value>
+  </data>
+  <data name="Enums_KernelType_Gaussian" xml:space="preserve">
+    <value>Gaussa</value>
+  </data>
+  <data name="Enums_NadarayaWatsonVariant_NoiseCoursing" xml:space="preserve">
+    <value>pogoń szumu</value>
+  </data>
+  <data name="Enums_NadarayaWatsonVariant_Subsitution" xml:space="preserve">
+    <value>podstawienie</value>
+  </data>
+  <data name="MeansSettings_Ui_KernelSize" xml:space="preserve">
+    <value>Rozmiar jądra:</value>
+  </data>
+  <data name="MeansSettings_Ui_KernelType" xml:space="preserve">
+    <value>Typ jądra:</value>
+  </data>
+  <data name="MeansSettings_Ui_NadarayaWatson" xml:space="preserve">
+    <value>Ważona jądrem średnia Nadarayi-Watsona</value>
+  </data>
 </root>

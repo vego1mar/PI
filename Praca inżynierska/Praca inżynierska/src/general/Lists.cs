@@ -187,6 +187,21 @@ namespace PI.src.general
             return list;
         }
 
+        public static double GetNorm( IList<double> source, int level )
+        {
+            if ( source == null || source.Count == 0 || level < 0 ) {
+                return double.NaN;
+            }
+
+            double powerSum = 0.0;
+
+            foreach ( double value in source ) {
+                powerSum += Math.Pow( value, level );
+            }
+
+            return Mathematics.Root( powerSum, level );
+        }
+
         public static void Concat<T>( IList<T> target, IList<T> source )
         {
             if ( target == null || source == null ) {
@@ -262,6 +277,17 @@ namespace PI.src.general
 
             for ( int i = 0; i < target.Count; i++ ) {
                 target[i] -= subtrahend;
+            }
+        }
+
+        public static void Subtract( IList<double> target, IList<double> subtrahend )
+        {
+            if ( target == null || target.Count == 0 || subtrahend == null || target.Count != subtrahend.Count ) {
+                return;
+            }
+
+            for ( int i = 0; i < target.Count; i++ ) {
+                target[i] -= subtrahend[i];
             }
         }
 

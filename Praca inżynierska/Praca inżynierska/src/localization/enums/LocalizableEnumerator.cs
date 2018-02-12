@@ -11,6 +11,8 @@
         Phenomenon,
         CurveApply,
         AutoSizeColumnsMode,
-        Boolean
+        Boolean,
+        NadarayaWatsonVariant,
+        KernelType
     }
 }

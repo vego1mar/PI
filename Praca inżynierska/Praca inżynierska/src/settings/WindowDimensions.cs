@@ -21,12 +21,12 @@
         {
             About               = new Dimensions() { Width = 16 * 42, Height =  9 * 42 };
             ChartSettings       = new Dimensions() { Width =  9 * 39, Height = 16 * 39 };
-            GridPreviewer       = new Dimensions() { Width = 16 * 66, Height =  9 * 66 };
+            GridPreviewer       = new Dimensions() { Width = 16 * 75, Height =  9 * 75 };
             LanguageSelector    = new Dimensions() { Width = 16 * 27, Height =  9 * 27 };
             MainWindow          = new Dimensions() { Width = 16 * 80, Height =  9 * 80 };
             MeansSettings       = new Dimensions() { Width = 16 * 23, Height =  9 * 23 };
             PatternCurveDefiner = new Dimensions() { Width = 16 * 45, Height =  9 * 45 };
-            StatisticalAnalysis = new Dimensions() { Width = 16 * 81, Height =  9 * 81 };
+            StatisticalAnalysis = new Dimensions() { Width = 19 * 86, Height =  8 * 86 };
         }
     }
 }

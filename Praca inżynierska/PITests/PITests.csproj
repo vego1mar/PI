@@ -64,7 +64,7 @@
     <Compile Include="src\general\RandomsTest.cs" />
     <Compile Include="src\general\ArgumentsMakerTest.cs" />
     <Compile Include="src\general\ListsTest.cs" />
-    <Compile Include="src\general\AveragesTest.cs" />
+    <Compile Include="src\averaging\means\AveragesTest.cs" />
     <Compile Include="src\general\MathematicsTest.cs" />
     <Compile Include="src\general\SeriesAssistTest.cs" />
     <Compile Include="src\general\ChartAssistTest.cs" />
@@ -72,7 +72,7 @@
     <Compile Include="src\helpers\UiControlsTest.cs" />
     <Compile Include="src\helpers\ThreadsTest.cs" />
     <Compile Include="src\helpers\StringsTest.cs" />
-    <Compile Include="src\helpers\SystemInfoTest.cs" />
+    <Compile Include="src\helpers\InformationsTest.cs" />
     <Compile Include="src\tests\Assertions.cs" />
     <Compile Include="src\tests\TestObjects.cs" />
     <Compile Include="src\tests\TestStrings.cs" />

@@ -22,7 +22,8 @@ namespace PI.src.localization.enums
                                 SMA,
                                 Tolerance,
                                 Central,
-                                NN
+                                NN,
+                                NadarayaWatson
                             };
             }
         }
@@ -40,6 +41,7 @@ namespace PI.src.localization.enums
         public LocalizedString Tolerance { get { return new LocalizedString( CurrentLanguage, "Enums_MeanType_Tolerance" ); } }
         public LocalizedString Central { get { return new LocalizedString( CurrentLanguage, "Enums_MeanType_Central" ); } }
         public LocalizedString NN { get { return new LocalizedString( CurrentLanguage, "Enums_MeanType_NN" ); } }
+        public LocalizedString NadarayaWatson { get { return new LocalizedString( CurrentLanguage, "Enums_MeanType_NadarayaWatson" ); } }
 
         public IEnumerator<LocalizedString> GetEnumerator()
         {

@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PI.src.averaging;
+using PI.src.averaging.means;
 using PI.src.enumerators;
 using PI.src.general;
 using PI.src.parameters;
@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PITests.src.general
+namespace PITests.src.general.averaging.means
 {
     [TestClass]
     public class AveragesTest

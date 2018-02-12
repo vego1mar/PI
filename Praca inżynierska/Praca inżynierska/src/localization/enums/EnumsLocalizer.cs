@@ -47,6 +47,12 @@ namespace PI.src.localization.enums
             case LocalizableEnumerator.Boolean:
                 Traverse( new BooleanStrings(), control );
                 break;
+            case LocalizableEnumerator.NadarayaWatsonVariant:
+                Traverse( new NadarayaWatsonVariantStrings(), control );
+                break;
+            case LocalizableEnumerator.KernelType:
+                Traverse( new KernelTypeStrings(), control );
+                break;
             }
         }
 

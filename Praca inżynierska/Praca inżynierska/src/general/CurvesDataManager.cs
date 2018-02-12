@@ -5,7 +5,7 @@ using log4net;
 using System.Reflection;
 using PI.src.enumerators;
 using PI.src.parameters;
-using PI.src.averaging;
+using PI.src.averaging.means;
 using System.Linq;
 
 namespace PI.src.general
@@ -149,7 +149,7 @@ namespace PI.src.general
             IList<double> result = new List<double>();
 
             try {
-                signature = MethodBase.GetCurrentMethod().Name + "(" + method + ", " + curvesNo + ")";
+                signature = MethodBase.GetCurrentMethod().Name + '(' + method + ',' + curvesNo + ')';
                 IList<IList<double>> orderedSetOfCurves = SeriesAssist.GetOrderedCopy( ModifiedCurves, curvesNo );
 
                 switch ( method ) {
@@ -191,6 +191,9 @@ namespace PI.src.general
                     break;
                 case MeanType.NN:
                     result = Smoothers.NearestNeighbors( orderedSetOfCurves, MeansParams.NN.Amount );
+                    break;
+                case MeanType.NadarayaWatson:
+                    result = Smoothers.NadarayaWatson( orderedSetOfCurves, MeansParams.NadarayaWatson.Variant, MeansParams.NadarayaWatson.KernelType, MeansParams.NadarayaWatson.KernelSize );
                     break;
                 }
             }

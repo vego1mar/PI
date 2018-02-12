@@ -28,6 +28,9 @@ namespace PI.src.localization.windows
             public LocalizedString Central { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_Central" ); } }
             public LocalizedString MassPercent { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_MassPercent" ); } }
             public LocalizedString NN { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_NN" ); } }
+            public LocalizedString NadarayaWatson { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_NadarayaWatson" ); } }
+            public LocalizedString KernelType { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_KernelType" ); } }
+            public LocalizedString KernelSize { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_KernelSize" ); } }
             public LocalizedString Amount { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_Amount" ); } }
             public LocalizedString OK { get { return new LocalizedString( CurrentLanguage, "MeansSettings_Ui_OK" ); } }
         }

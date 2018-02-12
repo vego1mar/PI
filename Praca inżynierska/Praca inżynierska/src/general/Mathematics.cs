@@ -38,5 +38,12 @@ namespace PI.src.general
 
             return Math.Sqrt( sum / Convert.ToDouble( average.Count ) );
         }
+
+        public static double GetKernelDistanceArgument( IList<double> selector, IList<double> comparator, double kernelSize )
+        {
+            IList<double> x = Lists.GetCopy( comparator );
+            Lists.Subtract( x, selector );
+            return Lists.GetNorm( x, 2 ) / kernelSize;
+        }
     }
 }

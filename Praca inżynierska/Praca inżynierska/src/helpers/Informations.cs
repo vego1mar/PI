@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using log4net;
+using log4net.Appender;
+using log4net.Repository.Hierarchy;
 
 namespace PI.src.helpers
 {
-    public static class SystemInfos
+    public static class Informations
     {
         private static readonly ILog log = LogManager.GetLogger( MethodBase.GetCurrentMethod().DeclaringType );
 
@@ -74,6 +77,26 @@ namespace PI.src.helpers
             }
 
             return version;
+        }
+
+        public static string TryGetLogPath()
+        {
+            string signature = string.Empty;
+            string path = null;
+
+            try {
+                signature = MethodBase.GetCurrentMethod().Name + "()";
+                var rootAppender = ((Hierarchy) LogManager.GetRepository()).Root.Appenders.OfType<FileAppender>().FirstOrDefault();
+                path = (rootAppender != null) ? rootAppender.File : string.Empty;
+            }
+            catch ( FileNotFoundException ex ) {
+                log.Error( signature, ex );
+            }
+            catch ( Exception ex ) {
+                log.Fatal( signature, ex );
+            }
+
+            return path;
         }
     }
 }

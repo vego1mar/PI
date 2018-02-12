@@ -58,12 +58,20 @@
             this.uiGrid_GeoVar_ComBx = new System.Windows.Forms.ComboBox();
             this.uiGrid_AgmVar_TxtBx = new System.Windows.Forms.TextBox();
             this.uiGrid_GeoVar_TxtBx = new System.Windows.Forms.TextBox();
+            this.uiGrid_NW_TxtBx = new System.Windows.Forms.TextBox();
+            this.uiGrid_NWVar_TxtBx = new System.Windows.Forms.TextBox();
+            this.uiGrid_NWKerT_TxtBx = new System.Windows.Forms.TextBox();
+            this.uiGrid_NWKerS_TxtBx = new System.Windows.Forms.TextBox();
+            this.uiGrid_NWVar_ComBx = new System.Windows.Forms.ComboBox();
+            this.uiGrid_NWKerT_ComBx = new System.Windows.Forms.ComboBox();
+            this.uiGrid_NWKerS_Num = new System.Windows.Forms.NumericUpDown();
             this.ui_TbLay.SuspendLayout();
             this.ui_Grid_TbLay.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiGrid_GenRank_Num)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiGrid_NNk_Num)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiGrid_TolerTol_Num)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiGrid_CentralMass_Num)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiGrid_NWKerS_Num)).BeginInit();
             this.SuspendLayout();
             // 
             // ui_TbLay
@@ -100,6 +108,13 @@
             this.ui_Grid_TbLay.ColumnCount = 2;
             this.ui_Grid_TbLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.ui_Grid_TbLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.ui_Grid_TbLay.Controls.Add(this.uiGrid_NWKerS_Num, 1, 29);
+            this.ui_Grid_TbLay.Controls.Add(this.uiGrid_NWKerT_ComBx, 1, 28);
+            this.ui_Grid_TbLay.Controls.Add(this.uiGrid_NWVar_ComBx, 1, 27);
+            this.ui_Grid_TbLay.Controls.Add(this.uiGrid_NWKerS_TxtBx, 0, 29);
+            this.ui_Grid_TbLay.Controls.Add(this.uiGrid_NWKerT_TxtBx, 0, 28);
+            this.ui_Grid_TbLay.Controls.Add(this.uiGrid_NWVar_TxtBx, 0, 27);
+            this.ui_Grid_TbLay.Controls.Add(this.uiGrid_NW_TxtBx, 0, 26);
             this.ui_Grid_TbLay.Controls.Add(this.uiGrid_GenRank_Num, 1, 14);
             this.ui_Grid_TbLay.Controls.Add(this.uiGrid_GenRank_TxtBx, 0, 14);
             this.ui_Grid_TbLay.Controls.Add(this.uiGrid_TolerFin_ComBx, 1, 18);
@@ -132,7 +147,12 @@
             this.ui_Grid_TbLay.Location = new System.Drawing.Point(3, 3);
             this.ui_Grid_TbLay.Name = "ui_Grid_TbLay";
             this.ui_Grid_TbLay.Padding = new System.Windows.Forms.Padding(5);
-            this.ui_Grid_TbLay.RowCount = 27;
+            this.ui_Grid_TbLay.RowCount = 32;
+            this.ui_Grid_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.ui_Grid_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.ui_Grid_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.ui_Grid_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.ui_Grid_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.ui_Grid_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.ui_Grid_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.ui_Grid_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
@@ -563,6 +583,105 @@
             this.uiGrid_GeoVar_TxtBx.TabIndex = 25;
             this.uiGrid_GeoVar_TxtBx.Text = "Variant:";
             // 
+            // uiGrid_NW_TxtBx
+            // 
+            this.uiGrid_NW_TxtBx.BackColor = System.Drawing.SystemColors.Control;
+            this.ui_Grid_TbLay.SetColumnSpan(this.uiGrid_NW_TxtBx, 2);
+            this.uiGrid_NW_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiGrid_NW_TxtBx.Enabled = false;
+            this.uiGrid_NW_TxtBx.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.uiGrid_NW_TxtBx.Location = new System.Drawing.Point(8, 658);
+            this.uiGrid_NW_TxtBx.Name = "uiGrid_NW_TxtBx";
+            this.uiGrid_NW_TxtBx.ReadOnly = true;
+            this.uiGrid_NW_TxtBx.Size = new System.Drawing.Size(365, 20);
+            this.uiGrid_NW_TxtBx.TabIndex = 55;
+            this.uiGrid_NW_TxtBx.Text = "Nadaraya-Watson kernel-weighted average";
+            // 
+            // uiGrid_NWVar_TxtBx
+            // 
+            this.uiGrid_NWVar_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.uiGrid_NWVar_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
+            this.uiGrid_NWVar_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiGrid_NWVar_TxtBx.Location = new System.Drawing.Point(8, 683);
+            this.uiGrid_NWVar_TxtBx.Name = "uiGrid_NWVar_TxtBx";
+            this.uiGrid_NWVar_TxtBx.ReadOnly = true;
+            this.uiGrid_NWVar_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.uiGrid_NWVar_TxtBx.Size = new System.Drawing.Size(179, 20);
+            this.uiGrid_NWVar_TxtBx.TabIndex = 56;
+            this.uiGrid_NWVar_TxtBx.Text = "Variant:";
+            // 
+            // uiGrid_NWKerT_TxtBx
+            // 
+            this.uiGrid_NWKerT_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.uiGrid_NWKerT_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
+            this.uiGrid_NWKerT_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiGrid_NWKerT_TxtBx.Location = new System.Drawing.Point(8, 708);
+            this.uiGrid_NWKerT_TxtBx.Name = "uiGrid_NWKerT_TxtBx";
+            this.uiGrid_NWKerT_TxtBx.ReadOnly = true;
+            this.uiGrid_NWKerT_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.uiGrid_NWKerT_TxtBx.Size = new System.Drawing.Size(179, 20);
+            this.uiGrid_NWKerT_TxtBx.TabIndex = 57;
+            this.uiGrid_NWKerT_TxtBx.Text = "Kernel type:";
+            // 
+            // uiGrid_NWKerS_TxtBx
+            // 
+            this.uiGrid_NWKerS_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.uiGrid_NWKerS_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
+            this.uiGrid_NWKerS_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiGrid_NWKerS_TxtBx.Location = new System.Drawing.Point(8, 733);
+            this.uiGrid_NWKerS_TxtBx.Name = "uiGrid_NWKerS_TxtBx";
+            this.uiGrid_NWKerS_TxtBx.ReadOnly = true;
+            this.uiGrid_NWKerS_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.uiGrid_NWKerS_TxtBx.Size = new System.Drawing.Size(179, 20);
+            this.uiGrid_NWKerS_TxtBx.TabIndex = 58;
+            this.uiGrid_NWKerS_TxtBx.Text = "Kernel size:";
+            // 
+            // uiGrid_NWVar_ComBx
+            // 
+            this.uiGrid_NWVar_ComBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiGrid_NWVar_ComBx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.uiGrid_NWVar_ComBx.FormattingEnabled = true;
+            this.uiGrid_NWVar_ComBx.Location = new System.Drawing.Point(193, 683);
+            this.uiGrid_NWVar_ComBx.Name = "uiGrid_NWVar_ComBx";
+            this.uiGrid_NWVar_ComBx.Size = new System.Drawing.Size(180, 21);
+            this.uiGrid_NWVar_ComBx.TabIndex = 59;
+            // 
+            // uiGrid_NWKerT_ComBx
+            // 
+            this.uiGrid_NWKerT_ComBx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiGrid_NWKerT_ComBx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.uiGrid_NWKerT_ComBx.FormattingEnabled = true;
+            this.uiGrid_NWKerT_ComBx.Location = new System.Drawing.Point(193, 708);
+            this.uiGrid_NWKerT_ComBx.Name = "uiGrid_NWKerT_ComBx";
+            this.uiGrid_NWKerT_ComBx.Size = new System.Drawing.Size(180, 21);
+            this.uiGrid_NWKerT_ComBx.TabIndex = 60;
+            // 
+            // uiGrid_NWKerS_Num
+            // 
+            this.uiGrid_NWKerS_Num.DecimalPlaces = 2;
+            this.uiGrid_NWKerS_Num.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiGrid_NWKerS_Num.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.uiGrid_NWKerS_Num.Location = new System.Drawing.Point(193, 733);
+            this.uiGrid_NWKerS_Num.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            131072});
+            this.uiGrid_NWKerS_Num.Name = "uiGrid_NWKerS_Num";
+            this.uiGrid_NWKerS_Num.Size = new System.Drawing.Size(180, 20);
+            this.uiGrid_NWKerS_Num.TabIndex = 61;
+            this.uiGrid_NWKerS_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.uiGrid_NWKerS_Num.ThousandsSeparator = true;
+            this.uiGrid_NWKerS_Num.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            65536});
+            // 
             // MeansSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -586,6 +705,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.uiGrid_NNk_Num)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiGrid_TolerTol_Num)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiGrid_CentralMass_Num)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiGrid_NWKerS_Num)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -622,5 +742,12 @@
         private System.Windows.Forms.ComboBox uiGrid_TolerFin_ComBx;
         private System.Windows.Forms.NumericUpDown uiGrid_GenRank_Num;
         private System.Windows.Forms.TextBox uiGrid_GenRank_TxtBx;
+        private System.Windows.Forms.TextBox uiGrid_NWKerS_TxtBx;
+        private System.Windows.Forms.TextBox uiGrid_NWKerT_TxtBx;
+        private System.Windows.Forms.TextBox uiGrid_NWVar_TxtBx;
+        private System.Windows.Forms.TextBox uiGrid_NW_TxtBx;
+        private System.Windows.Forms.NumericUpDown uiGrid_NWKerS_Num;
+        private System.Windows.Forms.ComboBox uiGrid_NWKerT_ComBx;
+        private System.Windows.Forms.ComboBox uiGrid_NWVar_ComBx;
     }
 }

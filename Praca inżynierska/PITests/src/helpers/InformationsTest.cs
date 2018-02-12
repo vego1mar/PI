@@ -5,7 +5,7 @@ using PITests.src.tests;
 namespace PITests.src.helpers
 {
     [TestClass]
-    public class SystemInfoTest
+    public class InformationsTest
     {
         [TestMethod]
         public void TryGetDotNetFrameworkVersion()
@@ -14,7 +14,7 @@ namespace PITests.src.helpers
             const string DOT_NET_FRAMEWORK_MAJOR_VERSION = "4.7";
 
             // when
-            string result1 = SystemInfos.TryGetDotNetFrameworkVersion();
+            string result1 = Informations.TryGetDotNetFrameworkVersion();
 
             // then
             Assert.IsTrue( result1.Contains( DOT_NET_FRAMEWORK_MAJOR_VERSION ) );

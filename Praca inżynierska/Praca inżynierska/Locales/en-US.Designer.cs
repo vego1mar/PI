@@ -421,6 +421,33 @@ namespace PI.Locales {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to boxcar.
+        /// </summary>
+        internal static string Enums_KernelType_Boxcar {
+            get {
+                return ResourceManager.GetString("Enums_KernelType_Boxcar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Epanechnikov.
+        /// </summary>
+        internal static string Enums_KernelType_Epanechnikov {
+            get {
+                return ResourceManager.GetString("Enums_KernelType_Epanechnikov", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gaussian.
+        /// </summary>
+        internal static string Enums_KernelType_Gaussian {
+            get {
+                return ResourceManager.GetString("Enums_KernelType_Gaussian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to English.
         /// </summary>
         internal static string Enums_Languages_English {
@@ -529,6 +556,15 @@ namespace PI.Locales {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nadaraya-Watson.
+        /// </summary>
+        internal static string Enums_MeanType_NadarayaWatson {
+            get {
+                return ResourceManager.GetString("Enums_MeanType_NadarayaWatson", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NN.
         /// </summary>
         internal static string Enums_MeanType_NN {
@@ -552,6 +588,24 @@ namespace PI.Locales {
         internal static string Enums_MeanType_Tolerance {
             get {
                 return ResourceManager.GetString("Enums_MeanType_Tolerance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to noise coursing.
+        /// </summary>
+        internal static string Enums_NadarayaWatsonVariant_NoiseCoursing {
+            get {
+                return ResourceManager.GetString("Enums_NadarayaWatsonVariant_NoiseCoursing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to substitution.
+        /// </summary>
+        internal static string Enums_NadarayaWatsonVariant_Subsitution {
+            get {
+                return ResourceManager.GetString("Enums_NadarayaWatsonVariant_Subsitution", resourceCulture);
             }
         }
         
@@ -1465,11 +1519,38 @@ namespace PI.Locales {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kernel size:.
+        /// </summary>
+        internal static string MeansSettings_Ui_KernelSize {
+            get {
+                return ResourceManager.GetString("MeansSettings_Ui_KernelSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kernel type:.
+        /// </summary>
+        internal static string MeansSettings_Ui_KernelType {
+            get {
+                return ResourceManager.GetString("MeansSettings_Ui_KernelType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mass percent:.
         /// </summary>
         internal static string MeansSettings_Ui_MassPercent {
             get {
                 return ResourceManager.GetString("MeansSettings_Ui_MassPercent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nadaraya-Watson kernel-weighted average.
+        /// </summary>
+        internal static string MeansSettings_Ui_NadarayaWatson {
+            get {
+                return ResourceManager.GetString("MeansSettings_Ui_NadarayaWatson", resourceCulture);
             }
         }
         

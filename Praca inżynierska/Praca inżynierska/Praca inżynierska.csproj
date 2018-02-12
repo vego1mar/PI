@@ -76,8 +76,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\averaging\kernels\BoxcarKernel.cs" />
+    <Compile Include="src\averaging\kernels\EpanechnikovKernel.cs" />
+    <Compile Include="src\averaging\kernels\GaussianKernel.cs" />
+    <Compile Include="src\averaging\kernels\IKernel.cs" />
+    <Compile Include="src\averaging\kernels\KernelsCommander.cs" />
+    <Compile Include="src\enumerators\KernelType.cs" />
+    <Compile Include="src\enumerators\NadarayaWatsonVariant.cs" />
     <Compile Include="src\general\AppTimer.cs" />
     <Compile Include="src\general\GridAssist.cs" />
+    <Compile Include="src\localization\enums\KernelTypeStrings.cs" />
+    <Compile Include="src\localization\enums\NadarayaWatsonVariantStrings.cs" />
     <Compile Include="src\localization\windows\AboutStrings.cs" />
     <Compile Include="src\settings\WindowDimensions.cs" />
     <Compile Include="src\windows\About.cs">
@@ -97,7 +106,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="src\averaging\Smoothers.cs" />
+    <Compile Include="src\averaging\means\Smoothers.cs" />
     <Compile Include="src\enumerators\AutoSizeColumnsMode.cs" />
     <Compile Include="src\enumerators\ChartAreaAxis.cs" />
     <Compile Include="src\enumerators\ChartAreaGrid.cs" />
@@ -109,7 +118,7 @@
     <Compile Include="src\enumerators\Phenomenon.cs" />
     <Compile Include="src\enumerators\StandardMeanVariants.cs" />
     <Compile Include="src\enumerators\MeanType.cs" />
-    <Compile Include="src\averaging\Averages.cs" />
+    <Compile Include="src\averaging\means\Averages.cs" />
     <Compile Include="src\general\ChartAssist.cs" />
     <Compile Include="src\general\CurveMaker.cs" />
     <Compile Include="src\general\Lists.cs" />
@@ -207,7 +216,7 @@
       <DependentUpon>StatisticalAnalysis.cs</DependentUpon>
     </Compile>
     <Compile Include="src\helpers\Strings.cs" />
-    <Compile Include="src\helpers\SystemInfos.cs" />
+    <Compile Include="src\helpers\Informations.cs" />
     <Compile Include="src\helpers\Threads.cs" />
     <Compile Include="src\windows\MainWindow.cs">
       <SubType>Form</SubType>
@@ -264,7 +273,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="src\averaging\Averages.Auxiliary.cs" />
+    <Compile Include="src\averaging\means\Averages.Auxiliary.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

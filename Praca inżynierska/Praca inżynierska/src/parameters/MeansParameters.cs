@@ -12,6 +12,7 @@ namespace PI.src.parameters
         public ToleranceMeanSettings Tolerance { get; set; } = new ToleranceMeanSettings();
         public CentralMeanSettings Central { get; set; } = new CentralMeanSettings();
         public NearestNeighborsSettings NN { get; set; } = new NearestNeighborsSettings();
+        public NadarayaWatsonSettings NadarayaWatson { get; set; } = new NadarayaWatsonSettings();
 
         public class GeometricMeanSettings
         {
@@ -42,6 +43,13 @@ namespace PI.src.parameters
         public class NearestNeighborsSettings
         {
             public int Amount { get; set; } = 8;
+        }
+
+        public class NadarayaWatsonSettings
+        {
+            public NadarayaWatsonVariant Variant { get; set; } = NadarayaWatsonVariant.Subsitution;
+            public KernelType KernelType { get; set; } = KernelType.Gaussian;
+            public double KernelSize { get; set; } = 0.2;
         }
     }
 }
