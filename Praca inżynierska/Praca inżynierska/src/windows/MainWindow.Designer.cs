@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
             {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.uiCharts_Crv = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.ui_Pnl = new System.Windows.Forms.Panel();
             this.uiPnl_TabCtrl = new System.Windows.Forms.TabControl();
@@ -80,6 +80,8 @@
             this.uiMenuPrg_Lang = new System.Windows.Forms.ToolStripMenuItem();
             this.uiMenuPrg_About = new System.Windows.Forms.ToolStripMenuItem();
             this.uiMenuPrg_Exit = new System.Windows.Forms.ToolStripMenuItem();
+            this.uiMenu_File = new System.Windows.Forms.ToolStripMenuItem();
+            this.uiMenuFile_Import = new System.Windows.Forms.ToolStripMenuItem();
             this.uiMenu_Pnl = new System.Windows.Forms.ToolStripMenuItem();
             this.uiMenuPnl_KeepProp = new System.Windows.Forms.ToolStripMenuItem();
             this.uiMenuPnl_Hide = new System.Windows.Forms.ToolStripMenuItem();
@@ -116,46 +118,46 @@
             // 
             // uiCharts_Crv
             // 
-            chartArea1.AxisX.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
-            chartArea1.AxisX.IsLabelAutoFit = false;
-            chartArea1.AxisX.IsMarginVisible = false;
-            chartArea1.AxisX.LabelAutoFitMaxFontSize = 8;
-            chartArea1.AxisX.LabelAutoFitMinFontSize = 8;
-            chartArea1.AxisX.LabelAutoFitStyle = System.Windows.Forms.DataVisualization.Charting.LabelAutoFitStyles.None;
-            chartArea1.AxisX.LabelStyle.Font = new System.Drawing.Font("Consolas", 8F);
-            chartArea1.AxisX.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea1.AxisX.MajorTickMark.Enabled = false;
-            chartArea1.AxisX.TitleFont = new System.Drawing.Font("Consolas", 8F);
-            chartArea1.AxisY.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
-            chartArea1.AxisY.IsLabelAutoFit = false;
-            chartArea1.AxisY.LabelAutoFitMaxFontSize = 8;
-            chartArea1.AxisY.LabelStyle.Font = new System.Drawing.Font("Consolas", 8F);
-            chartArea1.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea1.AxisY.MajorTickMark.Enabled = false;
-            chartArea1.AxisY.TitleFont = new System.Drawing.Font("Consolas", 8F);
-            chartArea1.BackColor = System.Drawing.Color.White;
-            chartArea1.IsSameFontSizeForAllAxes = true;
-            chartArea1.Name = "IdealCurveChartArea";
-            this.uiCharts_Crv.ChartAreas.Add(chartArea1);
+            chartArea3.AxisX.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
+            chartArea3.AxisX.IsLabelAutoFit = false;
+            chartArea3.AxisX.IsMarginVisible = false;
+            chartArea3.AxisX.LabelAutoFitMaxFontSize = 8;
+            chartArea3.AxisX.LabelAutoFitMinFontSize = 8;
+            chartArea3.AxisX.LabelAutoFitStyle = System.Windows.Forms.DataVisualization.Charting.LabelAutoFitStyles.None;
+            chartArea3.AxisX.LabelStyle.Font = new System.Drawing.Font("Consolas", 8F);
+            chartArea3.AxisX.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea3.AxisX.MajorTickMark.Enabled = false;
+            chartArea3.AxisX.TitleFont = new System.Drawing.Font("Consolas", 8F);
+            chartArea3.AxisY.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
+            chartArea3.AxisY.IsLabelAutoFit = false;
+            chartArea3.AxisY.LabelAutoFitMaxFontSize = 8;
+            chartArea3.AxisY.LabelStyle.Font = new System.Drawing.Font("Consolas", 8F);
+            chartArea3.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea3.AxisY.MajorTickMark.Enabled = false;
+            chartArea3.AxisY.TitleFont = new System.Drawing.Font("Consolas", 8F);
+            chartArea3.BackColor = System.Drawing.Color.White;
+            chartArea3.IsSameFontSizeForAllAxes = true;
+            chartArea3.Name = "IdealCurveChartArea";
+            this.uiCharts_Crv.ChartAreas.Add(chartArea3);
             this.uiCharts_Crv.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Enabled = false;
-            legend1.Name = "Legend1";
-            this.uiCharts_Crv.Legends.Add(legend1);
+            legend3.Enabled = false;
+            legend3.Name = "Legend1";
+            this.uiCharts_Crv.Legends.Add(legend3);
             this.uiCharts_Crv.Location = new System.Drawing.Point(0, 0);
             this.uiCharts_Crv.Name = "uiCharts_Crv";
-            series1.BorderWidth = 5;
-            series1.ChartArea = "IdealCurveChartArea";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Color = System.Drawing.Color.Black;
-            series1.CustomProperties = "EmptyPointValue=Zero";
-            series1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            series1.IsVisibleInLegend = false;
-            series1.IsXValueIndexed = true;
-            series1.Legend = "Legend1";
-            series1.Name = "IdealCurveSeries";
-            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            this.uiCharts_Crv.Series.Add(series1);
+            series3.BorderWidth = 5;
+            series3.ChartArea = "IdealCurveChartArea";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Color = System.Drawing.Color.Black;
+            series3.CustomProperties = "EmptyPointValue=Zero";
+            series3.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            series3.IsVisibleInLegend = false;
+            series3.IsXValueIndexed = true;
+            series3.Legend = "Legend1";
+            series3.Name = "IdealCurveSeries";
+            series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            series3.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            this.uiCharts_Crv.Series.Add(series3);
             this.uiCharts_Crv.Size = new System.Drawing.Size(666, 614);
             this.uiCharts_Crv.TabIndex = 0;
             this.uiCharts_Crv.Text = "uiCurveChart";
@@ -882,6 +884,7 @@
             // 
             this.uiMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.uiMenu_Prg,
+            this.uiMenu_File,
             this.uiMenu_Pnl,
             this.uiMenu_Means,
             this.uiMenu_Chart});
@@ -923,7 +926,7 @@
             this.uiMenuPrg_About.Name = "uiMenuPrg_About";
             this.uiMenuPrg_About.Size = new System.Drawing.Size(212, 22);
             this.uiMenuPrg_About.Text = "About...";
-            this.uiMenuPrg_About.Click += new System.EventHandler(this.OnMenuAboutClick);
+            this.uiMenuPrg_About.Click += new System.EventHandler(this.OnMenuAbout);
             // 
             // uiMenuPrg_Exit
             // 
@@ -931,6 +934,23 @@
             this.uiMenuPrg_Exit.Size = new System.Drawing.Size(212, 22);
             this.uiMenuPrg_Exit.Text = "Exit";
             this.uiMenuPrg_Exit.Click += new System.EventHandler(this.OnMenuExit);
+            // 
+            // uiMenu_File
+            // 
+            this.uiMenu_File.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.uiMenu_File.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.uiMenuFile_Import});
+            this.uiMenu_File.Font = new System.Drawing.Font("Consolas", 8.25F);
+            this.uiMenu_File.Name = "uiMenu_File";
+            this.uiMenu_File.Size = new System.Drawing.Size(43, 20);
+            this.uiMenu_File.Text = "File";
+            // 
+            // uiMenuFile_Import
+            // 
+            this.uiMenuFile_Import.Name = "uiMenuFile_Import";
+            this.uiMenuFile_Import.Size = new System.Drawing.Size(128, 22);
+            this.uiMenuFile_Import.Text = "Import...";
+            this.uiMenuFile_Import.Click += new System.EventHandler(this.OnMenuImport);
             // 
             // uiMenu_Pnl
             // 
@@ -1123,6 +1143,8 @@
         private System.Windows.Forms.ComboBox uiPnlAvg_MeanT_ComBx;
         private System.Windows.Forms.Button uiPnlAvg_Apply_Btn;
         private System.Windows.Forms.ToolStripMenuItem uiMenuPrg_About;
+        private System.Windows.Forms.ToolStripMenuItem uiMenu_File;
+        private System.Windows.Forms.ToolStripMenuItem uiMenuFile_Import;
     }
     }
 

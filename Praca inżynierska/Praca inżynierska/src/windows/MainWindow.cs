@@ -13,6 +13,7 @@ using PI.src.localization.enums;
 using PI.src.localization.windows;
 using PI.src.localization.general;
 using System.Drawing;
+using PI.src.curves;
 
 namespace PI.src.windows
 {
@@ -176,6 +177,10 @@ namespace PI.src.windows
             uiMenuPrg_Lang.Text = names.Ui.Menu.ProgramSelectLanguage.GetString();
             uiMenuPrg_About.Text = names.Ui.Menu.ProgramAbout.GetString();
             uiMenuPrg_Exit.Text = names.Ui.Menu.ProgramExit.GetString();
+
+            // Menu: File
+            uiMenu_File.Text = names.Ui.Menu.FileTitle.GetString();
+            uiMenuFile_Import.Text = names.Ui.Menu.FileImport.GetString();
 
             // Menu: Panel
             uiMenu_Pnl.Text = names.Ui.Menu.PanelTitle.GetString();
@@ -605,10 +610,49 @@ namespace PI.src.windows
             log.Info( signature );
         }
 
-        private void OnMenuAboutClick( object sender, EventArgs e )
+        private void OnMenuAbout( object sender, EventArgs e )
         {
             UiControls.TryShowDialog( aboutDialog, this );
             log.Info( MethodBase.GetCurrentMethod().Name + "()" );
+        }
+
+        private void OnMenuImport( object sender, EventArgs e )
+        {
+            string signature = string.Empty;
+            string fileName = string.Empty;
+            OpenFileDialog openDialog = UiControls.GetCustomOpenFileDialog();
+
+            try {
+                if ( openDialog.ShowDialog( this ) == DialogResult.OK ) {
+                    fileName = openDialog.FileName;
+                    signature = MethodBase.GetCurrentMethod().Name + '(' + fileName + ')';
+                    CurvesDataImporter importer = new CurvesDataImporter( openDialog.FileName );
+                    importer.Import();
+                    DataChart.Import( importer );
+                    uiPnlMod_CrvIdx_Num.Maximum = importer.CurvesNo;
+                    uiPnlMod_CrvIdx_TrBr.Maximum = importer.CurvesNo;
+                    uiPnlMod_CrvNo_Num.Maximum = importer.CurvesNo;
+                    uiPnlMod_CrvNo_Num.Value = importer.CurvesNo;
+                    uiPnlAvg_Crvs2No_Num.Maximum = importer.CurvesNo;
+                    uiPnlAvg_Crvs2No_Num.Value = importer.CurvesNo;
+                    importer.Dispose();
+                    UiControls.TrySelectTab( uiPnl_TabCtrl, (int) DataSetCurveType.Modified );
+                    UiControls.TrySetSelectedIndex( uiPnlMod_CrvT_ComBx, (int) DataSetCurveType.Modified );
+                }
+            }
+            catch ( OutOfMemoryException ex ) {
+                log.Error( signature, ex );
+                AppMessages.General.StopOfOutOfMemoryException();
+                return;
+            }
+            catch ( Exception ex ) {
+                log.Fatal( signature, ex );
+                AppMessages.MainWindow.StopOfUnsupportedImportingError();
+                return;
+            }
+
+            AppMessages.MainWindow.AsteriskOfCurveDataSetImported();
+            log.Info( signature );
         }
 
         #endregion

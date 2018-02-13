@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms.DataVisualization.Charting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PI.src.curves;
 using PI.src.enumerators;
 using PI.src.general;
 using PITests.src.tests;

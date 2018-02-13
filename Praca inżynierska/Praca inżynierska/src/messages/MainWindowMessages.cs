@@ -75,5 +75,25 @@ namespace PI.src.messages
                 MessageBoxIcon.Stop
                 );
         }
+
+        public void StopOfUnsupportedImportingError()
+        {
+            UiControls.TryShowMessageBox(
+                Messages.GetInstance().MainWindow.UnsupportedImportingError.Text.GetString(),
+                Messages.GetInstance().MainWindow.UnsupportedImportingError.Caption.GetString(),
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Stop
+                );
+        }
+
+        public void AsteriskOfCurveDataSetImported()
+        {
+            UiControls.TryShowMessageBox(
+                Messages.GetInstance().MainWindow.CurveDataSetImported.Text.GetString(),
+                Messages.GetInstance().MainWindow.CurveDataSetImported.Caption.GetString(),
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Asterisk
+                );
+        }
     }
 }

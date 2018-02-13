@@ -88,8 +88,8 @@
             // ui_TbLay
             // 
             this.ui_TbLay.ColumnCount = 2;
-            this.ui_TbLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.ui_TbLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.ui_TbLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.ui_TbLay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.ui_TbLay.Controls.Add(this.uiL_StdDev_TxtBx, 0, 0);
             this.ui_TbLay.Controls.Add(this.uiR_Prv_TxtBx, 1, 0);
             this.ui_TbLay.Controls.Add(this.uiL_TbCtrl, 0, 1);
@@ -111,7 +111,7 @@
             this.uiL_StdDev_TxtBx.Location = new System.Drawing.Point(3, 3);
             this.uiL_StdDev_TxtBx.Name = "uiL_StdDev_TxtBx";
             this.uiL_StdDev_TxtBx.ReadOnly = true;
-            this.uiL_StdDev_TxtBx.Size = new System.Drawing.Size(528, 20);
+            this.uiL_StdDev_TxtBx.Size = new System.Drawing.Size(421, 20);
             this.uiL_StdDev_TxtBx.TabIndex = 22;
             this.uiL_StdDev_TxtBx.Text = "Standard deviation";
             // 
@@ -120,10 +120,10 @@
             this.uiR_Prv_TxtBx.BackColor = System.Drawing.Color.White;
             this.uiR_Prv_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiR_Prv_TxtBx.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.uiR_Prv_TxtBx.Location = new System.Drawing.Point(537, 3);
+            this.uiR_Prv_TxtBx.Location = new System.Drawing.Point(430, 3);
             this.uiR_Prv_TxtBx.Name = "uiR_Prv_TxtBx";
             this.uiR_Prv_TxtBx.ReadOnly = true;
-            this.uiR_Prv_TxtBx.Size = new System.Drawing.Size(529, 20);
+            this.uiR_Prv_TxtBx.Size = new System.Drawing.Size(636, 20);
             this.uiR_Prv_TxtBx.TabIndex = 21;
             this.uiR_Prv_TxtBx.Text = "Preview";
             // 
@@ -135,7 +135,7 @@
             this.uiL_TbCtrl.Location = new System.Drawing.Point(3, 28);
             this.uiL_TbCtrl.Name = "uiL_TbCtrl";
             this.uiL_TbCtrl.SelectedIndex = 0;
-            this.uiL_TbCtrl.Size = new System.Drawing.Size(528, 554);
+            this.uiL_TbCtrl.Size = new System.Drawing.Size(421, 554);
             this.uiL_TbCtrl.TabIndex = 23;
             this.uiL_TbCtrl.SelectedIndexChanged += new System.EventHandler(this.OnTabSelection);
             // 
@@ -145,7 +145,7 @@
             this.uiL_Peek_TbPg.Location = new System.Drawing.Point(4, 22);
             this.uiL_Peek_TbPg.Name = "uiL_Peek_TbPg";
             this.uiL_Peek_TbPg.Padding = new System.Windows.Forms.Padding(3);
-            this.uiL_Peek_TbPg.Size = new System.Drawing.Size(520, 528);
+            this.uiL_Peek_TbPg.Size = new System.Drawing.Size(413, 528);
             this.uiL_Peek_TbPg.TabIndex = 0;
             this.uiL_Peek_TbPg.Text = "Peek";
             this.uiL_Peek_TbPg.UseVisualStyleBackColor = true;
@@ -179,7 +179,7 @@
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.uiLPeek_Grid.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.uiLPeek_Grid.Size = new System.Drawing.Size(514, 522);
+            this.uiLPeek_Grid.Size = new System.Drawing.Size(407, 522);
             this.uiLPeek_Grid.TabIndex = 0;
             // 
             // uiLPeekGrid_NoiseA_Col
@@ -277,10 +277,10 @@
             // 
             this.uiR_TbCtrl.Controls.Add(this.uiR_Chart_TbPg);
             this.uiR_TbCtrl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiR_TbCtrl.Location = new System.Drawing.Point(537, 28);
+            this.uiR_TbCtrl.Location = new System.Drawing.Point(430, 28);
             this.uiR_TbCtrl.Name = "uiR_TbCtrl";
             this.uiR_TbCtrl.SelectedIndex = 0;
-            this.uiR_TbCtrl.Size = new System.Drawing.Size(529, 554);
+            this.uiR_TbCtrl.Size = new System.Drawing.Size(636, 554);
             this.uiR_TbCtrl.TabIndex = 24;
             // 
             // uiR_Chart_TbPg
@@ -289,7 +289,7 @@
             this.uiR_Chart_TbPg.Location = new System.Drawing.Point(4, 22);
             this.uiR_Chart_TbPg.Name = "uiR_Chart_TbPg";
             this.uiR_Chart_TbPg.Padding = new System.Windows.Forms.Padding(3);
-            this.uiR_Chart_TbPg.Size = new System.Drawing.Size(521, 528);
+            this.uiR_Chart_TbPg.Size = new System.Drawing.Size(628, 528);
             this.uiR_Chart_TbPg.TabIndex = 0;
             this.uiR_Chart_TbPg.Text = "Chart";
             this.uiR_Chart_TbPg.UseVisualStyleBackColor = true;
@@ -308,7 +308,7 @@
             this.uiRChart_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.uiRChart_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.uiRChart_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.uiRChart_TbLay.Size = new System.Drawing.Size(515, 522);
+            this.uiRChart_TbLay.Size = new System.Drawing.Size(622, 522);
             this.uiRChart_TbLay.TabIndex = 0;
             // 
             // uiRChart_Chart
@@ -324,7 +324,7 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.uiRChart_Chart.Series.Add(series1);
-            this.uiRChart_Chart.Size = new System.Drawing.Size(509, 446);
+            this.uiRChart_Chart.Size = new System.Drawing.Size(616, 446);
             this.uiRChart_Chart.TabIndex = 0;
             this.uiRChart_Chart.Text = "uiRightChart_Chart";
             // 
@@ -348,7 +348,7 @@
             this.uiRChart_Down_TbLay.Name = "uiRChart_Down_TbLay";
             this.uiRChart_Down_TbLay.RowCount = 1;
             this.uiRChart_Down_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.uiRChart_Down_TbLay.Size = new System.Drawing.Size(509, 29);
+            this.uiRChart_Down_TbLay.Size = new System.Drawing.Size(616, 29);
             this.uiRChart_Down_TbLay.TabIndex = 1;
             // 
             // uiRChartDown_MeanT_ComBx
@@ -356,9 +356,9 @@
             this.uiRChartDown_MeanT_ComBx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiRChartDown_MeanT_ComBx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.uiRChartDown_MeanT_ComBx.FormattingEnabled = true;
-            this.uiRChartDown_MeanT_ComBx.Location = new System.Drawing.Point(339, 3);
+            this.uiRChartDown_MeanT_ComBx.Location = new System.Drawing.Point(411, 3);
             this.uiRChartDown_MeanT_ComBx.Name = "uiRChartDown_MeanT_ComBx";
-            this.uiRChartDown_MeanT_ComBx.Size = new System.Drawing.Size(78, 21);
+            this.uiRChartDown_MeanT_ComBx.Size = new System.Drawing.Size(96, 21);
             this.uiRChartDown_MeanT_ComBx.TabIndex = 32;
             this.uiRChartDown_MeanT_ComBx.SelectedIndexChanged += new System.EventHandler(this.OnMeanTypeSelection);
             // 
@@ -367,9 +367,9 @@
             this.uiRChartDown_Noises_ComBx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiRChartDown_Noises_ComBx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.uiRChartDown_Noises_ComBx.FormattingEnabled = true;
-            this.uiRChartDown_Noises_ComBx.Location = new System.Drawing.Point(255, 3);
+            this.uiRChartDown_Noises_ComBx.Location = new System.Drawing.Point(309, 3);
             this.uiRChartDown_Noises_ComBx.Name = "uiRChartDown_Noises_ComBx";
-            this.uiRChartDown_Noises_ComBx.Size = new System.Drawing.Size(78, 21);
+            this.uiRChartDown_Noises_ComBx.Size = new System.Drawing.Size(96, 21);
             this.uiRChartDown_Noises_ComBx.TabIndex = 31;
             this.uiRChartDown_Noises_ComBx.SelectedIndexChanged += new System.EventHandler(this.OnNoiseSelection);
             // 
@@ -378,9 +378,9 @@
             this.uiRChartDown_Phen_ComBx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiRChartDown_Phen_ComBx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.uiRChartDown_Phen_ComBx.FormattingEnabled = true;
-            this.uiRChartDown_Phen_ComBx.Location = new System.Drawing.Point(171, 3);
+            this.uiRChartDown_Phen_ComBx.Location = new System.Drawing.Point(207, 3);
             this.uiRChartDown_Phen_ComBx.Name = "uiRChartDown_Phen_ComBx";
-            this.uiRChartDown_Phen_ComBx.Size = new System.Drawing.Size(78, 21);
+            this.uiRChartDown_Phen_ComBx.Size = new System.Drawing.Size(96, 21);
             this.uiRChartDown_Phen_ComBx.TabIndex = 30;
             this.uiRChartDown_Phen_ComBx.SelectedIndexChanged += new System.EventHandler(this.OnPhenomenonSelection);
             // 
@@ -388,9 +388,9 @@
             // 
             this.uiRChartDown_DtSet_Btn.BackColor = System.Drawing.Color.White;
             this.uiRChartDown_DtSet_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiRChartDown_DtSet_Btn.Location = new System.Drawing.Point(423, 3);
+            this.uiRChartDown_DtSet_Btn.Location = new System.Drawing.Point(513, 3);
             this.uiRChartDown_DtSet_Btn.Name = "uiRChartDown_DtSet_Btn";
-            this.uiRChartDown_DtSet_Btn.Size = new System.Drawing.Size(83, 23);
+            this.uiRChartDown_DtSet_Btn.Size = new System.Drawing.Size(100, 23);
             this.uiRChartDown_DtSet_Btn.TabIndex = 29;
             this.uiRChartDown_DtSet_Btn.Text = "Dataset";
             this.uiRChartDown_DtSet_Btn.UseVisualStyleBackColor = false;
@@ -399,7 +399,7 @@
             // uiRChartDown_CrvIdx_Num
             // 
             this.uiRChartDown_CrvIdx_Num.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiRChartDown_CrvIdx_Num.Location = new System.Drawing.Point(87, 3);
+            this.uiRChartDown_CrvIdx_Num.Location = new System.Drawing.Point(105, 3);
             this.uiRChartDown_CrvIdx_Num.Maximum = new decimal(new int[] {
             5,
             0,
@@ -411,7 +411,7 @@
             0,
             0});
             this.uiRChartDown_CrvIdx_Num.Name = "uiRChartDown_CrvIdx_Num";
-            this.uiRChartDown_CrvIdx_Num.Size = new System.Drawing.Size(78, 20);
+            this.uiRChartDown_CrvIdx_Num.Size = new System.Drawing.Size(96, 20);
             this.uiRChartDown_CrvIdx_Num.TabIndex = 9;
             this.uiRChartDown_CrvIdx_Num.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.uiRChartDown_CrvIdx_Num.ThousandsSeparator = true;
@@ -429,7 +429,7 @@
             this.uiRChartDown_CrvT_ComBx.FormattingEnabled = true;
             this.uiRChartDown_CrvT_ComBx.Location = new System.Drawing.Point(3, 3);
             this.uiRChartDown_CrvT_ComBx.Name = "uiRChartDown_CrvT_ComBx";
-            this.uiRChartDown_CrvT_ComBx.Size = new System.Drawing.Size(78, 21);
+            this.uiRChartDown_CrvT_ComBx.Size = new System.Drawing.Size(96, 21);
             this.uiRChartDown_CrvT_ComBx.TabIndex = 7;
             this.uiRChartDown_CrvT_ComBx.SelectedIndexChanged += new System.EventHandler(this.OnCurveTypeSelection);
             // 
@@ -454,7 +454,7 @@
             this.uiRChart_Up_TbLay.RowCount = 1;
             this.uiRChart_Up_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.uiRChart_Up_TbLay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.uiRChart_Up_TbLay.Size = new System.Drawing.Size(509, 29);
+            this.uiRChart_Up_TbLay.Size = new System.Drawing.Size(616, 29);
             this.uiRChart_Up_TbLay.TabIndex = 2;
             // 
             // uiRChartUp_DtSet_TxtBx
@@ -462,11 +462,11 @@
             this.uiRChartUp_DtSet_TxtBx.BackColor = System.Drawing.SystemColors.Control;
             this.uiRChartUp_DtSet_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
             this.uiRChartUp_DtSet_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiRChartUp_DtSet_TxtBx.Location = new System.Drawing.Point(423, 3);
+            this.uiRChartUp_DtSet_TxtBx.Location = new System.Drawing.Point(513, 3);
             this.uiRChartUp_DtSet_TxtBx.Name = "uiRChartUp_DtSet_TxtBx";
             this.uiRChartUp_DtSet_TxtBx.ReadOnly = true;
             this.uiRChartUp_DtSet_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiRChartUp_DtSet_TxtBx.Size = new System.Drawing.Size(83, 20);
+            this.uiRChartUp_DtSet_TxtBx.Size = new System.Drawing.Size(100, 20);
             this.uiRChartUp_DtSet_TxtBx.TabIndex = 18;
             this.uiRChartUp_DtSet_TxtBx.Text = "Selection:";
             // 
@@ -475,11 +475,11 @@
             this.uiRChartUp_MeanT_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
             this.uiRChartUp_MeanT_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
             this.uiRChartUp_MeanT_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiRChartUp_MeanT_TxtBx.Location = new System.Drawing.Point(339, 3);
+            this.uiRChartUp_MeanT_TxtBx.Location = new System.Drawing.Point(411, 3);
             this.uiRChartUp_MeanT_TxtBx.Name = "uiRChartUp_MeanT_TxtBx";
             this.uiRChartUp_MeanT_TxtBx.ReadOnly = true;
             this.uiRChartUp_MeanT_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiRChartUp_MeanT_TxtBx.Size = new System.Drawing.Size(78, 20);
+            this.uiRChartUp_MeanT_TxtBx.Size = new System.Drawing.Size(96, 20);
             this.uiRChartUp_MeanT_TxtBx.TabIndex = 17;
             this.uiRChartUp_MeanT_TxtBx.Text = "Mean type:";
             // 
@@ -488,11 +488,11 @@
             this.uiRChartUp_Surr_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
             this.uiRChartUp_Surr_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
             this.uiRChartUp_Surr_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiRChartUp_Surr_TxtBx.Location = new System.Drawing.Point(255, 3);
+            this.uiRChartUp_Surr_TxtBx.Location = new System.Drawing.Point(309, 3);
             this.uiRChartUp_Surr_TxtBx.Name = "uiRChartUp_Surr_TxtBx";
             this.uiRChartUp_Surr_TxtBx.ReadOnly = true;
             this.uiRChartUp_Surr_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiRChartUp_Surr_TxtBx.Size = new System.Drawing.Size(78, 20);
+            this.uiRChartUp_Surr_TxtBx.Size = new System.Drawing.Size(96, 20);
             this.uiRChartUp_Surr_TxtBx.TabIndex = 16;
             this.uiRChartUp_Surr_TxtBx.Text = "Noise:";
             // 
@@ -501,11 +501,11 @@
             this.uiRChartUp_Phen_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
             this.uiRChartUp_Phen_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
             this.uiRChartUp_Phen_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiRChartUp_Phen_TxtBx.Location = new System.Drawing.Point(171, 3);
+            this.uiRChartUp_Phen_TxtBx.Location = new System.Drawing.Point(207, 3);
             this.uiRChartUp_Phen_TxtBx.Name = "uiRChartUp_Phen_TxtBx";
             this.uiRChartUp_Phen_TxtBx.ReadOnly = true;
             this.uiRChartUp_Phen_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiRChartUp_Phen_TxtBx.Size = new System.Drawing.Size(78, 20);
+            this.uiRChartUp_Phen_TxtBx.Size = new System.Drawing.Size(96, 20);
             this.uiRChartUp_Phen_TxtBx.TabIndex = 15;
             this.uiRChartUp_Phen_TxtBx.Text = "Phenomenon:";
             // 
@@ -514,11 +514,11 @@
             this.uiRChartUp_CrvIdx_TxtBx.BackColor = System.Drawing.SystemColors.HighlightText;
             this.uiRChartUp_CrvIdx_TxtBx.Cursor = System.Windows.Forms.Cursors.Default;
             this.uiRChartUp_CrvIdx_TxtBx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiRChartUp_CrvIdx_TxtBx.Location = new System.Drawing.Point(87, 3);
+            this.uiRChartUp_CrvIdx_TxtBx.Location = new System.Drawing.Point(105, 3);
             this.uiRChartUp_CrvIdx_TxtBx.Name = "uiRChartUp_CrvIdx_TxtBx";
             this.uiRChartUp_CrvIdx_TxtBx.ReadOnly = true;
             this.uiRChartUp_CrvIdx_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiRChartUp_CrvIdx_TxtBx.Size = new System.Drawing.Size(78, 20);
+            this.uiRChartUp_CrvIdx_TxtBx.Size = new System.Drawing.Size(96, 20);
             this.uiRChartUp_CrvIdx_TxtBx.TabIndex = 14;
             this.uiRChartUp_CrvIdx_TxtBx.Text = "Curve index:";
             // 
@@ -531,7 +531,7 @@
             this.uiRChartUp_CrvT_TxtBx.Name = "uiRChartUp_CrvT_TxtBx";
             this.uiRChartUp_CrvT_TxtBx.ReadOnly = true;
             this.uiRChartUp_CrvT_TxtBx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.uiRChartUp_CrvT_TxtBx.Size = new System.Drawing.Size(78, 20);
+            this.uiRChartUp_CrvT_TxtBx.Size = new System.Drawing.Size(96, 20);
             this.uiRChartUp_CrvT_TxtBx.TabIndex = 13;
             this.uiRChartUp_CrvT_TxtBx.Text = "Curve type:";
             // 

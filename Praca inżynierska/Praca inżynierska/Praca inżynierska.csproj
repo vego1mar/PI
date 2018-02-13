@@ -84,7 +84,8 @@
     <Compile Include="src\enumerators\KernelType.cs" />
     <Compile Include="src\enumerators\NadarayaWatsonVariant.cs" />
     <Compile Include="src\general\AppTimer.cs" />
-    <Compile Include="src\general\GridAssist.cs" />
+    <Compile Include="src\curves\CurvesDataImporter.cs" />
+    <Compile Include="src\curves\GridAssist.cs" />
     <Compile Include="src\localization\enums\KernelTypeStrings.cs" />
     <Compile Include="src\localization\enums\NadarayaWatsonVariantStrings.cs" />
     <Compile Include="src\localization\windows\AboutStrings.cs" />
@@ -119,12 +120,12 @@
     <Compile Include="src\enumerators\StandardMeanVariants.cs" />
     <Compile Include="src\enumerators\MeanType.cs" />
     <Compile Include="src\averaging\means\Averages.cs" />
-    <Compile Include="src\general\ChartAssist.cs" />
-    <Compile Include="src\general\CurveMaker.cs" />
+    <Compile Include="src\curves\ChartAssist.cs" />
+    <Compile Include="src\curves\CurveMaker.cs" />
     <Compile Include="src\general\Lists.cs" />
     <Compile Include="src\general\Mathematics.cs" />
     <Compile Include="src\general\NoiseMaker.cs" />
-    <Compile Include="src\general\SeriesAssist.cs" />
+    <Compile Include="src\curves\SeriesAssist.cs" />
     <Compile Include="src\localization\enums\AutoSizeColumnsModeStrings.cs" />
     <Compile Include="src\localization\enums\BooleanStrings.cs" />
     <Compile Include="src\localization\enums\CSharpEnumerable.cs" />
@@ -159,8 +160,8 @@
     <Compile Include="src\settings\IdealCurveDefinerGeneratorSettings.cs" />
     <Compile Include="src\parameters\HyperbolicParameters.cs" />
     <Compile Include="src\settings\MainChartSettings.cs" />
-    <Compile Include="src\general\CurvesDataManager.cs" />
-    <Compile Include="src\general\ArgumentsMaker.cs" />
+    <Compile Include="src\curves\CurvesDataManager.cs" />
+    <Compile Include="src\curves\ArgumentsMaker.cs" />
     <Compile Include="src\windows\GridPreviewer.cs">
       <SubType>Form</SubType>
     </Compile>

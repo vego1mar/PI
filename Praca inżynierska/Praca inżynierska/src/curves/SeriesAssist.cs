@@ -1,10 +1,12 @@
 ﻿using PI.src.enumerators;
+using PI.src.general;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms.DataVisualization.Charting;
 
-namespace PI.src.general
+namespace PI.src.curves
 {
     public static class SeriesAssist
     {
@@ -188,6 +190,17 @@ namespace PI.src.general
             }
         }
 
+        public static void CopyPoints( Series target, IList<double> xSource, IList<double> ySource )
+        {
+            if ( target == null || xSource == null || ySource == null || xSource.Count != ySource.Count ) {
+                return;
+            }
+
+            for ( int i = 0; i < xSource.Count; i++ ) {
+                target.Points.AddXY( xSource[i], ySource[i] );
+            }
+        }
+
         public static void CopyPoints( IList<Series> target, int targetSet, Series source, int yValuesIndex = 0 )
         {
             if ( target == null || source == null || targetSet < 0 || target[targetSet] == null ) {
@@ -313,6 +326,28 @@ namespace PI.src.general
             }
 
             return copy;
+        }
+
+        public static IList<Series> GetSeries( IList<double> arguments, IList<IList<double>> orderedValues )
+        {
+            if ( arguments == null || orderedValues == null || arguments.Count == 0 ) {
+                return new List<Series>().AsReadOnly();
+            }
+
+            IList<Series> curves = Lists.GetNew<Series>( orderedValues[0].Count );
+            curves.ToList().ForEach( s => SetDefaultSettings( s ) );
+            Series series = new Series();
+
+            for ( int y = 0; y < orderedValues[0].Count; y++ ) {
+                for ( int x = 0; x < arguments.Count; x++ ) {
+                    series.Points.AddXY( arguments[x], orderedValues[x][y] );
+                }
+
+                CopyPoints( series, curves[y], 0 );
+                series.Points.Clear();
+            }
+
+            return curves;
         }
 
         /// <exception cref="ArgumentOutOfRangeException">Indices are negative or improper.</exception>

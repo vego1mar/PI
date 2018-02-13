@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace PI.src.general
+namespace PI.src.curves
 {
     public static class GridAssist
     {

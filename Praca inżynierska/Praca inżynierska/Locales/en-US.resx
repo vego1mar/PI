@@ -831,4 +831,22 @@
   <data name="MeansSettings_Ui_NadarayaWatson" xml:space="preserve">
     <value>Nadaraya-Watson kernel-weighted average</value>
   </data>
+  <data name="MainWindow_Menu_File_Import" xml:space="preserve">
+    <value>Import...</value>
+  </data>
+  <data name="MainWindow_Menu_File_Title" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="Messages_MainWindow_CurveDataSetImported_Caption" xml:space="preserve">
+    <value>Data set imported</value>
+  </data>
+  <data name="Messages_MainWindow_CurveDataSetImported_Text" xml:space="preserve">
+    <value>The data set file has been successfully imported.</value>
+  </data>
+  <data name="Messages_MainWindow_UnsupportedImportingError_Caption" xml:space="preserve">
+    <value>Unsupported importing error</value>
+  </data>
+  <data name="Messages_MainWindow_UnsupportedImportingError_Text" xml:space="preserve">
+    <value>Error during importing curves data sets. See log to gain more informations.</value>
+  </data>
 </root>

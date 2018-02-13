@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PI.src.general
+namespace PI.src.curves
 {
     public sealed class ArgumentsMaker
     {

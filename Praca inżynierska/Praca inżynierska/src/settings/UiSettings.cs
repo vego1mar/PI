@@ -1,4 +1,5 @@
-﻿using PI.src.general;
+﻿using PI.src.curves;
+using PI.src.general;
 using System.Collections.Generic;
 using System.Drawing;
 using static PI.src.settings.CurvesSettings;

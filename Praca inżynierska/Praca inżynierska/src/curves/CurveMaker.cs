@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms.DataVisualization.Charting;
 
-namespace PI.src.general
+namespace PI.src.curves
 {
     public static class CurveMaker
     {

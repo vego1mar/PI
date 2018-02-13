@@ -13,6 +13,7 @@ using System.Reflection;
 using PI.src.localization.enums;
 using PI.src.localization.windows;
 using System.Drawing;
+using PI.src.curves;
 
 namespace PI.src.windows
 {

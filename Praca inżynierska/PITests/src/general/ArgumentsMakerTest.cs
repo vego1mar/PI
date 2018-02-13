@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PI.src.general;
+using PI.src.curves;
 using PITests.src.tests;
 using System.Collections.Generic;
 

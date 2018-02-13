@@ -831,4 +831,22 @@
   <data name="MeansSettings_Ui_NadarayaWatson" xml:space="preserve">
     <value>Ważona jądrem średnia Nadarayi-Watsona</value>
   </data>
+  <data name="MainWindow_Menu_File_Import" xml:space="preserve">
+    <value>Importuj...</value>
+  </data>
+  <data name="MainWindow_Menu_File_Title" xml:space="preserve">
+    <value>Plik</value>
+  </data>
+  <data name="Messages_MainWindow_CurveDataSetImported_Caption" xml:space="preserve">
+    <value>Zestaw danych zaimportowany</value>
+  </data>
+  <data name="Messages_MainWindow_CurveDataSetImported_Text" xml:space="preserve">
+    <value>Plik z zestawem krzywych zaimportowano z powodzeniem.</value>
+  </data>
+  <data name="Messages_MainWindow_UnsupportedImportingError_Caption" xml:space="preserve">
+    <value>Nieobsługiwany błąd importowania</value>
+  </data>
+  <data name="Messages_MainWindow_UnsupportedImportingError_Text" xml:space="preserve">
+    <value>Błąd podczas importowania zestawu danych krzywych. Zobacz log, aby uzyskać więcej informacji.</value>
+  </data>
 </root>

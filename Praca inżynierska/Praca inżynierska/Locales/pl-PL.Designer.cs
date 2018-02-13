@@ -1069,6 +1069,24 @@ namespace PI.Locales {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Importuj....
+        /// </summary>
+        internal static string MainWindow_Menu_File_Import {
+            get {
+                return ResourceManager.GetString("MainWindow_Menu_File_Import", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plik.
+        /// </summary>
+        internal static string MainWindow_Menu_File_Title {
+            get {
+                return ResourceManager.GetString("MainWindow_Menu_File_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Informacje.
         /// </summary>
         internal static string MainWindow_Menu_Means_AveragingInfo {
@@ -1753,6 +1771,24 @@ namespace PI.Locales {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Zestaw danych zaimportowany.
+        /// </summary>
+        internal static string Messages_MainWindow_CurveDataSetImported_Caption {
+            get {
+                return ResourceManager.GetString("Messages_MainWindow_CurveDataSetImported_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plik z zestawem krzywych zaimportowano z powodzeniem..
+        /// </summary>
+        internal static string Messages_MainWindow_CurveDataSetImported_Text {
+            get {
+                return ResourceManager.GetString("Messages_MainWindow_CurveDataSetImported_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Niespełnione wymaganie wstępne.
         /// </summary>
         internal static string Messages_MainWindow_CurveTypeNotSelected_Caption {
@@ -1857,6 +1893,24 @@ namespace PI.Locales {
         internal static string Messages_MainWindow_SpecifiedCurveDoesNotExist_Text {
             get {
                 return ResourceManager.GetString("Messages_MainWindow_SpecifiedCurveDoesNotExist_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nieobsługiwany błąd importowania.
+        /// </summary>
+        internal static string Messages_MainWindow_UnsupportedImportingError_Caption {
+            get {
+                return ResourceManager.GetString("Messages_MainWindow_UnsupportedImportingError_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Błąd podczas importowania zestawu danych krzywych. Zobacz log, aby uzyskać więcej informacji..
+        /// </summary>
+        internal static string Messages_MainWindow_UnsupportedImportingError_Text {
+            get {
+                return ResourceManager.GetString("Messages_MainWindow_UnsupportedImportingError_Text", resourceCulture);
             }
         }
         

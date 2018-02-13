@@ -7,8 +7,9 @@ using PI.src.enumerators;
 using PI.src.parameters;
 using PI.src.averaging.means;
 using System.Linq;
+using PI.src.general;
 
-namespace PI.src.general
+namespace PI.src.curves
 {
     public class CurvesDataManager : ICloneable
     {
@@ -227,6 +228,18 @@ namespace PI.src.general
                 AverageCurve = SeriesAssist.GetCopy( AverageCurve, 0, false ),
                 MeansParams = MeansParams
             };
+        }
+
+        public void Import( CurvesDataImporter importer )
+        {
+            if ( importer == null || importer.Values == null ) {
+                return;
+            }
+
+            IdealCurve.Points.Clear();
+            SeriesAssist.CopyPoints( IdealCurve, importer.Arguments, Smoothers.NearestNeighbors( importer.Values ) );
+            ModifiedCurves = SeriesAssist.GetSeries( importer.Arguments, importer.Values );
+            AverageCurve.Points.Clear();
         }
     }
 }

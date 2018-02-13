@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms.DataVisualization.Charting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PI.src.general;
+using PI.src.curves;
 using PITests.src.tests;
 
 namespace PITests.src.general

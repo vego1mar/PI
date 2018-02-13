@@ -88,6 +88,31 @@ namespace PI.src.helpers
             return value;
         }
 
+        public static double? TryGetValue( string number, IFormatProvider provider )
+        {
+            double? value = null;
+            string signature = string.Empty;
+
+            try {
+                signature = MethodBase.GetCurrentMethod().Name + '(' + number + ')';
+                value = Convert.ToDouble( number, provider );
+            }
+            catch ( OverflowException ex ) {
+                log.Error( signature, ex );
+                return null;
+            }
+            catch ( FormatException ex ) {
+                log.Error( signature, ex );
+                return null;
+            }
+            catch ( Exception ex ) {
+                log.Fatal( signature, ex );
+                return null;
+            }
+
+            return value;
+        }
+
         public static string GetTimeHeader()
         {
             string date = DateTime.Now.ToString( CultureInfo.InvariantCulture );

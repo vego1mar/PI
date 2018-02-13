@@ -12,7 +12,9 @@ namespace PI.src.localization.messages
         public ExclamationPointsNotValidToChart PointsNotValidToChart { get; private set; } = new ExclamationPointsNotValidToChart();
         public ExclamationSpecifiedCurveDoesNotExist SpecifiedCurveDoesNotExist { get; private set; } = new ExclamationSpecifiedCurveDoesNotExist();
         public StopOperationMalformRejected OperationMalformRejected { get; private set; } = new StopOperationMalformRejected();
-         
+        public StopUnsupportedImportingError UnsupportedImportingError { get; private set; } = new StopUnsupportedImportingError();
+        public AsteriskCurveDataSetImported CurveDataSetImported { get; private set; } = new AsteriskCurveDataSetImported();
+
         public class ExclamationSeriesSelection
         {
             public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "Messages_MainWindow_SeriesSelection_Text" ); } }
@@ -53,6 +55,18 @@ namespace PI.src.localization.messages
         {
             public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "Messages_MainWindow_OperationMalformRejected_Text" ); } }
             public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "Messages_MainWindow_OperationMalformRejected_Caption" ); } }
+        }
+
+        public class StopUnsupportedImportingError
+        {
+            public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "Messages_MainWindow_UnsupportedImportingError_Text" ); } }
+            public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "Messages_MainWindow_UnsupportedImportingError_Caption" ); } }
+        }
+
+        public class AsteriskCurveDataSetImported
+        {
+            public LocalizedString Text { get { return new LocalizedString( CurrentLanguage, "Messages_MainWindow_CurveDataSetImported_Text" ); } }
+            public LocalizedString Caption { get { return new LocalizedString( CurrentLanguage, "Messages_MainWindow_CurveDataSetImported_Caption" ); } }
         }
     }
 }

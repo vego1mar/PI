@@ -295,5 +295,20 @@ namespace PI.src.helpers
                 log.Fatal( signature, ex );
             }
         }
+
+        public static OpenFileDialog GetCustomOpenFileDialog()
+        {
+            return new OpenFileDialog() {
+                RestoreDirectory = true,
+                DefaultExt = "txt",
+                Filter = "txt|*.txt",
+                FilterIndex = 1,
+                CheckFileExists = true,
+                CheckPathExists = true,
+                Multiselect = false,
+                ReadOnlyChecked = true,
+                ShowReadOnly = false
+            };
+        }
     }
 }

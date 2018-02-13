@@ -26,7 +26,7 @@
             MainWindow          = new Dimensions() { Width = 16 * 80, Height =  9 * 80 };
             MeansSettings       = new Dimensions() { Width = 16 * 23, Height =  9 * 23 };
             PatternCurveDefiner = new Dimensions() { Width = 16 * 45, Height =  9 * 45 };
-            StatisticalAnalysis = new Dimensions() { Width = 19 * 86, Height =  8 * 86 };
+            StatisticalAnalysis = new Dimensions() { Width = 16 * 83, Height =  9 * 83 };
         }
     }
 }

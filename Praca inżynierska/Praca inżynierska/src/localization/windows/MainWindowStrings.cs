@@ -25,6 +25,8 @@ namespace PI.src.localization.windows
                 public LocalizedString ProgramSelectLanguage { get { return new LocalizedString( CurrentLanguage, "MainWindow_Menu_Program_SelectLanguage" ); } }
                 public LocalizedString ProgramAbout { get { return new LocalizedString( CurrentLanguage, "MainWindow_Menu_Program_About" ); } }
                 public LocalizedString ProgramExit { get { return new LocalizedString( CurrentLanguage, "MainWindow_Menu_Program_Exit" ); } }
+                public LocalizedString FileTitle { get { return new LocalizedString( CurrentLanguage, "MainWindow_Menu_File_Title" ); } }
+                public LocalizedString FileImport { get { return new LocalizedString( CurrentLanguage, "MainWindow_Menu_File_Import" ); } }
                 public LocalizedString PanelTitle { get { return new LocalizedString( CurrentLanguage, "MainWindow_Menu_Panel_Title" ); } }
                 public LocalizedString PanelKeepProportions { get { return new LocalizedString( CurrentLanguage, "MainWindow_Menu_Panel_KeepProportions" ); } }
                 public LocalizedString PanelHide { get { return new LocalizedString( CurrentLanguage, "MainWindow_Menu_Panel_Hide" ); } }
