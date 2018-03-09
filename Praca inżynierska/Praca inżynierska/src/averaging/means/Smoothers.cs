@@ -14,14 +14,13 @@ namespace PI.src.averaging.means
             }
 
             IList<IList<double>> operative = new List<IList<double>>();
-            Lists.Concat( operative, Lists.Get( kNN, 1, orderedSet[0][0] ) );
-            Lists.Concat( operative, orderedSet );
             Lists.Concat( operative, Lists.Get( kNN, 1, 0.0 ) );
+            Lists.Concat( operative, orderedSet );
             IList<double> neighbors = new List<double>();
             IList<double> currentSet;
 
             for ( int i = kNN; i < orderedSet.Count + kNN; i++ ) {
-                currentSet = Lists.GetCopyConcatenated( operative, i - kNN, i );
+                currentSet = Lists.GetCopyConcatenated( operative, i - kNN, i + 1 );
                 neighbors.Add( Averages.Median( currentSet ).Value );
             }
 

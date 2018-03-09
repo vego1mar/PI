@@ -636,6 +636,7 @@ namespace PI.src.windows
                     uiPnlAvg_Crvs2No_Num.Maximum = importer.CurvesNo;
                     uiPnlAvg_Crvs2No_Num.Value = importer.CurvesNo;
                     importer.Dispose();
+                    AppMessages.MainWindow.AsteriskOfCurveDataSetImported();
                     UiControls.TrySelectTab( uiPnl_TabCtrl, (int) DataSetCurveType.Modified );
                     UiControls.TrySetSelectedIndex( uiPnlMod_CrvT_ComBx, (int) DataSetCurveType.Modified );
                 }
@@ -651,7 +652,6 @@ namespace PI.src.windows
                 return;
             }
 
-            AppMessages.MainWindow.AsteriskOfCurveDataSetImported();
             log.Info( signature );
         }
 
